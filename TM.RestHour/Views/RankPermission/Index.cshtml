@@ -1,0 +1,153 @@
+﻿@model TM.RestHour.Models.RankPermission
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .modal-footer {
+        padding: 15px;
+        text-align: right;
+        border-top:none !important;
+    }
+</style>
+
+@Html.Hidden("Save", @Url.Action("SaveRankPermission", "RankPermission"))
+<body style="background-image: url(../background/managerank.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="ta">Rank Permission</h2>
+        </div>
+        <div class="col-md-6">
+
+            <div style="width: 100%; margin: 0 auto" class="tablecontainer">
+                <div class="modal-dialog" style="width: 100%; margin: 0 auto">
+                    <div class=" modal-content">
+                        @*<div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Rank Permission</h4>
+                            </div>*@
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <input type="hidden" id="ID" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Rank">Rank</label>
+                                    @Html.DropDownListFor(model => model.RankID, (IEnumerable<SelectListItem>)ViewBag.Ranks, "Select", new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="Group">Group</label>
+                                    @Html.ListBoxFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Groups, new { @class = "listbox", @multiple = "multiple", @id = "ddlgrp" })
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnSave" class="button1">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </body>
+
+            @section Scripts
+{
+                @Scripts.Render("~/bundles/jqueryval")
+                @Styles.Render("~/Content/themes/base/css")
+
+                <script type="text/javascript">
+
+                    var saveurl = $('#Save').val();
+
+                    $(document).ready(function () {
+
+
+                        var orderCount = 0;
+                        $('.listbox').multiselect({
+                            onChange: function (option, checked) {
+                                if (checked) {
+                                    orderCount++;
+                                    $(option).data('order', orderCount);
+                                }
+                                else {
+                                    $(option).data('order', '');
+                                }
+                            },
+                            buttonText: function (options) {
+                                if (options.length === 0) {
+                                    return 'None selected';
+                                }
+                                else {
+                                    var selected = [];
+                                    options.each(function () {
+                                        selected.push([$(this).text(), $(this).data('order')]);
+                                    });
+
+                                    selected.sort(function (a, b) {
+                                        return a[1] - b[1];
+                                    });
+
+                                    var text = '';
+                                    for (var i = 0; i < selected.length; i++) {
+                                        text += selected[i][0] + ', ';
+                                    }
+
+                                    return text.substr(0, text.length - 2);
+                                }
+                            }
+                        });
+
+
+
+
+
+                        var GroupsJsonObject = { WF: [] };
+
+                        $('#btnSave').on('click', function () {
+                            var checkedIds = $('#ddlgrp').val();
+                            GroupsJsonObject.WF.push({ d: checkedIds.join(",") });
+                            //  alert(checkedIds);   ////////////////////////////////////////////
+                            //debugger;
+
+                            $.ajax({
+                                url: saveurl,
+                                data:
+                                JSON.stringify({
+                                    ranks: $('#RankID').val(),
+                                    selectedGroups: JSON.stringify(GroupsJsonObject)
+                                }),
+                                type: "POST",
+                                contentType: "application/json;charset=utf-8",
+                                dataType: "json",
+                                success: function (result) {
+
+                                    //alert('Data Saved Successfully');
+
+                                    ClearValues();
+                                }
+                            });
+
+
+                        });
+
+                        function ClearValues() {
+                            // $('#RankID').val();
+                            $("#RankID option:selected").removeAttr("selected");
+                            $('#ddlgrp option:selected').each(function () {
+                                $(this).prop('selected', false);
+                            })
+                            $('#ddlgrp').multiselect('refresh');
+
+
+                        }
+
+
+                    });
+                </script>
+            }
+
+
+

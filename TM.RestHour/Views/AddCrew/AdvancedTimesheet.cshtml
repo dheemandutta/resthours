@@ -1,0 +1,152 @@
+﻿<style>
+    div.asia {
+        width: 200px;
+        font-family: Verdana;
+        margin: 4px;
+        text-align: center;
+        padding: 4px;
+    }
+
+    #Asia {
+        position: absolute;
+        left: 10px;
+    }
+
+    div.ui-selected {
+        border: 4px solid #aaa;
+        background-color: #44c765;
+    }
+
+    h6 {
+        margin-top: 17px;
+        margin-left: 4px;
+        background: white;
+    }
+    /* div.ui-selecting {border:4px dotted #000; background-color:yellow;}*/
+    /*div.ui-selectee{background-color:white;}*/
+    .row ui-selectee, .col-md-6 ui-selectee, .right_text ui-selectee, .right_val ui-selectee {
+        background-color: white;
+    }
+
+
+
+    div.asia {
+        width: 200px;
+        font-family: Verdana;
+        margin: 4px;
+        text-align: center;
+        padding: 4px;
+    }
+
+    #Asia1 {
+        position: absolute;
+        left: 10px;
+    }
+
+    div.ui-selected {
+        border: 4px solid #aaa;
+        background-color: #44c765;
+    }
+
+    h6 {
+        margin-top: 17px;
+        margin-left: 4px;
+        background: white;
+    }
+    /* div.ui-selecting {border:4px dotted #000; background-color:yellow;}*/
+    /*div.ui-selectee{background-color:white;}*/
+    .row ui-selectee, .col-md-6 ui-selectee, .right_text ui-selectee, .right_val ui-selectee {
+        background-color: white;
+    }
+
+    .ui-tabs-vertical {
+        width: 55em;
+    }
+
+    .ui-tabs-vertical .ui-tabs-nav {
+            padding: .2em .1em .2em .2em;
+            float: left;
+            width: -88em;
+        }
+
+     .ui-tabs-vertical .ui-tabs-nav li {
+                clear: left;
+                width: 100%;
+                border-bottom-width: 1px !important;
+                border-right-width: 0 !important;
+                margin: 0 -1px .2em 0;
+            }
+
+     .ui-tabs-vertical .ui-tabs-nav li a {
+                    display: block;
+                }
+
+      .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+                    padding-bottom: 0;
+                    padding-right: .1em;
+                    border-right-width: 1px;
+                }
+
+      .ui-tabs-vertical .ui-tabs-panel {
+            padding: 1em;
+            float: right;
+            width: 40em;
+        }
+</style>
+<h5>Crew Name:</h5>
+
+
+
+<div id="vtabs">
+    <ul>
+        <li><a href='@Url.Action("MonTimeSheet","AddCrew")'>Monday</a></li>
+        <li><a href='@Url.Action("TuesTimeSheet", "AddCrew")'>Tuesday</a></li>
+        <li><a href='@Url.Action("WednesTimeSheet", "AddCrew")'>Wednesday</a></li>
+        <li><a href='@Url.Action("ThursTimeSheet", "AddCrew")'>Thursday</a></li>
+        <li><a href='@Url.Action("FriTimeSheet", "AddCrew")'>Friday</a></li>
+        <li><a href='@Url.Action("SaturTimeSheet", "AddCrew")'>Saturday</a></li>
+        <li><a href='@Url.Action("SunTimeSheet","AddCrew")'>Sunday</a></li>
+    </ul>
+   
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+   
+
+    $(function () {
+        $("#vtabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
+        $("#vtabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
+    });
+
+
+    $("#vtabs").tabs({
+        beforeLoad: function (event, ui) {
+            $(ui.panel).siblings('.ui-tabs-panel').empty();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

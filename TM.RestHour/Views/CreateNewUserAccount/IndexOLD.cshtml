@@ -1,0 +1,403 @@
+﻿@model TM.RestHour.Models.UserGroups
+@*@model TM.RestHour.Models.Users*@
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/CreateNewUserAccount.js"></script>
+<style>
+    .button {
+        position: relative;
+        background-color: #22BAA0;
+        border: none;
+        font-size: 14px;
+        color: #FFFFFF;
+        padding: 8px;
+        width: 148px;
+        text-align: center;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-right: 39px;
+        float: left;
+    }
+
+        .button:after {
+            content: "";
+            background: #90EE90;
+            display: block;
+            position: absolute;
+            padding-top: 300%;
+            padding-left: 350%;
+            margin-left: -20px !important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+        }
+
+        .button:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+        }
+
+    a.btn {
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        -webkit-transition-duration: 0.5s;
+        -moz-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+    }
+
+    body {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .main-footer {
+        background: #fff;
+        padding: 0px;
+    }
+
+    .content {
+        min-height: 250px;
+        padding: 15px 15px 0 15px;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 30px;
+        font-size: 13px;
+        border-radius: 4px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        box-sizing: border-box;
+        display: inline-block;
+        min-width: 1.5em;
+        padding: 0px !important;
+    }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            color: white !important;
+            border: none !important;
+        }
+
+    td, th {
+        padding: 0;
+        border: 1px solid #eee;
+        border-top-width: 3px;
+        border-top-style: solid;
+        border-top-color: rgb(238, 238, 238);
+    }
+
+    table.dataTable thead th, table.dataTable thead td {
+        padding: 10px 18px;
+        border-bottom: 1px solid #eee !important;
+    }
+
+    table.dataTable.no-footer {
+        border-bottom: 1px solid #fff !important;
+    }
+
+    table.dataTable thead th, table.dataTable thead td {
+        padding: 10px 18px;
+        border-bottom: 1px solid #111;
+        background: #000;
+        background-image: none;
+        background-repeat: repeat;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        color: #fff;
+    }
+
+    h1, .h1, h2, .h2, h3, .h3 {
+        margin-top: -2px;
+    }
+
+    table.dataTable tbody th, table.dataTable tbody td {
+        padding: 5px 10px !important;
+    }
+
+    .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+        z-index: 3;
+        color: #fff;
+        cursor: default;
+        background-color: #0f202a !important;
+        border-color: #0f202a !important;
+    }
+
+    table.dataTable {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .form-group {
+        width: 19%;
+        float: left;
+        padding: 24px 2px;
+    }
+
+    .modal-dialog {
+        width: 670px;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 10px 0;
+        border-radius: 4px;
+    }
+
+    .modal-body {
+        position: relative;
+        padding: 0px;
+    }
+
+    .modal-dialog {
+        width: 600px;
+        margin: 126px auto;
+    }
+
+    .close {
+        float: right;
+        font-size: 21px;
+        font-weight: bold;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        filter: alpha(opacity=20);
+        opacity: 100;
+    }
+
+    table.dataTable thead th, table.dataTable thead td {
+        padding: 10px 18px;
+        border-bottom: 1px solid #111;
+        background: #4d6d83;
+    }
+
+    table .dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+        background-color: #efefef;
+    }
+
+    table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+        background-color: #fff !important;
+    }
+
+    table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+        background-color: #f1f1f1 !important;
+    }
+
+    table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+        background-color: #c7cfcc !important;
+        color: #000;
+    }
+
+        table.dataTable.display tbody tr:hover > .sorting_1, table.dataTable.order-column.hover tbody tr:hover > .sorting_1 {
+            background-color: #c7cfcc !important;
+        }
+
+    .pagination > li > a, .pagination > li > span {
+        position: relative;
+        float: left;
+        padding: 2px 8px;
+    }
+</style>
+<h2>Create New User Account xxxx</h2>
+
+@Html.Hidden("Add", @Url.Action("Add", "CreateNewUserAccount"))
+@Html.Hidden("loaddata", @Url.Action("LoadData", "CreateNewUserAccount"))
+<div class="card" style="border: 0; border-radius: 0; box-shadow: 0 6px 15px 0 rgba(207, 211, 218, 0.35); padding:10px;">
+    <div style="width: 100%; margin: 0 auto" class="tablecontainer">
+        <div class="modal-dialog" style="width: 100%; margin: 0 auto">
+            <div class=" modal-content">
+                @*<div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Create New User Account</h4>
+                    </div>*@
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+                            <label for="Username">Username</label>
+                            <input type="text" class="form-control" id="Username" placeholder="Username" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input type="password" class="form-control" id="Password" placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Group">Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            @*@Html.ListBoxFor(model => model.GroupID, (IEnumerable<SelectListItem>)ViewBag.Groups, new { @class = "listbox", @multiple = "multiple", @id = "ddlgrp" })*@
+                            @Html.DropDownListFor(model => model.GroupID, (IEnumerable<SelectListItem>)ViewBag.Groups, "Select Group", new { @class = "form-control", @id = "ddlgrp" })
+                        </div>
+                        <div class="form-group">
+                            <label for="selectCrew" class="control-label">Select Crew</label><br />
+
+                            @Html.DropDownListFor(model => model.CrewID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" id="ID" />
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer" align="center">
+                    <button type="button" class="button" id="btnSave">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table id="Mastertable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Active</th>
+                @*<th>Edit</th>*@
+                @*<th>Delete</th>*@
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+
+        // var saveurl = $('#Save').val();
+        var posturl = $('#Add').val();
+
+        $(document).ready(function () {
+
+
+            SetUpGrid();
+
+
+
+            var orderCount = 0;
+
+
+
+
+
+
+            var GroupsJsonObject = { WF: [] };
+
+            $('#btnSave').on('click', function () {
+                var res = validate();
+                if (res == false) {
+                    return false;
+                }
+                else {
+                    var checkedIds = $('#ddlgrp').val();
+                    //GroupsJsonObject.WF.push({ d: checkedIds.join(",") });
+
+                    $.ajax({
+                        url: posturl,
+                        data:
+                        JSON.stringify({
+
+                            Username: $('#Username').val(),
+                            Password: $('#Password').val(),
+                            SelectedGroupID: $('#ddlgrp').val(),
+                            CrewID: $('#ddlCrew').val()
+                        }),
+                        type: "POST",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#Username').val("");
+                            $('#Password').val("");
+                            ClearValues();
+                           // alert('Data Saved Successfully');
+
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toast-bottom-full-width",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            };
+
+                            toastr.success("Data Saved Successfully");
+                            SetUpGrid();
+                        }
+                    });
+                }
+
+
+            });
+
+            function ClearValues() {
+                // $('#RankID').val();
+                $("#RankID option:selected").removeAttr("selected");
+                $('#ddlgrp option:selected').each(function () {
+                    $(this).prop('selected', false);
+                })
+                $('#ddlgrp').multiselect('refresh');
+
+
+            }
+
+            var userName = getParameterByName('username');
+            $('#Username').val(userName);
+            $('#Username').prop("disabled", true);
+
+            var selectedgroupId = getParameterByName('grp');
+            $('#ddlgrp').val(selectedgroupId);
+            //$("#ddlgrp").prop("disabled", true);
+
+            var crewId = getParameterByName('crewId');
+            $('#ddlCrew').val(crewId);
+            $('#ddlCrew').prop('disabled', true);
+
+
+        });
+
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+    </script>
+}
+
+
+

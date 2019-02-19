@@ -1,0 +1,205 @@
+body {
+    width: 100%;
+    font-family: 'Open Sans',sans-serif;
+    background: #ccc;
+    color: #4E5E6A;
+}
+
+.logo-name {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #6c6c6c;
+}
+
+.page-content {
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    background: #f7f8f8;
+    min-height: 100%;
+}
+
+.page-inner {
+    position: relative;
+}
+
+.center {
+    margin: 0 auto;
+    float: none !important;
+}
+
+.login-box {
+    margin: auto;
+    max-width: 400px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 186px 0px 0px;
+}
+
+    .login-box .logo-name {
+        display: block;
+        font-size: 23px;
+        font-weight: 500;
+        text-decoration: none;
+        color: #6c6c6c;
+        text-align: center;
+        
+        
+        padding-bottom: 20px;
+        padding-right: 30px;
+    }
+
+p {
+    display: block;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 22px;
+    margin: 0 0 10px;
+    font-style: normal;
+    white-space: normal;
+}
+
+button, input, optgroup, select, textarea {
+    width: 100%;
+    background: #fff;
+    border-radius: 0;
+    border: 1px solid #dce1e4;
+    box-shadow: none !important;
+    font-size: 13px;
+    padding: 6px 10px !important;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.page-content {
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    background: #F1F4F9;
+    min-height: 100%;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #22BAA0 !important;
+    border-color: #22BAA0 !important;
+}
+
+.m-t-md {
+    padding: 1px 58px;
+   
+}
+
+.divclass {
+    background: #d61717;
+    width: 252px;
+    border-radius: 7px;
+    padding: 7px;
+    font-size: 16px;
+    color: #fff;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.back {
+    background-image: url(../background/login.jpg);
+    background-size: cover;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 11px !important;
+}
+
+.remember {
+    padding: 18px 0 66PX;
+}
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 30px !important;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    width: 50% !important;
+    float: left;
+    padding-right: 0 !important;
+    padding-left: -4px !important;
+}
+
+label {
+    font-weight: 300 !important;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 19px;
+    width: 19px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #00000080;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 7px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.reg {
+    width: 45%;
+    float: right;
+}
+input, select, textarea {
+    max-width: 91% !important;
+}
+.field-validation-error {
+    color: #ffc10c !important;
+    font-weight: bold !important;
+}

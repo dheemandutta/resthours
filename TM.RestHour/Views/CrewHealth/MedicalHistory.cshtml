@@ -1,0 +1,104 @@
+﻿@model TM.RestHour.Models.Consultant
+
+@{
+    ViewBag.Title = "MedicalHistory";
+}
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
+<link href="~/link/css/rank.css" rel="stylesheet" />
+
+<script src="~/Scripts/notify.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/CrewHealth.js"></script>
+
+@Html.Hidden("loaddata", @Url.Action("LoadData", "CrewHealth"))
+
+<style>
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+    }
+
+    .bac1 {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+        height: 450px;
+    }
+</style>
+
+
+<body style="background-image: url(../background/Medicalrepor_MedicalHistory.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5" style="width: 30.667%;">
+            <h2 class="ta" style="color:#000;">Medical History</h2>
+        </div>
+
+       
+                <div class="col-md-6 bac1" style="width: 67%;">
+                    <div class="card">
+                        <div style="margin:0 auto" class="tablecontainer">
+                            <input type="hidden" id="hdnrole" />
+                            <table id="CrewHealthtable" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Crew Name</th>
+                                        <th>Weight(Kg)</th>
+                                        <th>BMI</th>
+                                        @*<th>BP</th>*@
+                                        <th>BS Level</th>
+                                        <th>Sys(mmHg)</th>
+                                        <th>Dia(mmHg)</th>
+                                        <th>UrineTest</th>
+                                        <th>Unannounced Alcohol</th>
+                                        <th>Annual D&H</th>
+                                        <th>Month</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    
+            </div>
+        </div>
+    </div>
+</body>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        $(document).ready(function () {
+
+            SetUpGrid();
+
+        });
+
+    </script>
+
+}

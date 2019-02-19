@@ -1,0 +1,62 @@
+
+.backk {
+   
+    height: 474px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    padding: 18px;
+    background: #fff;
+    margin: 0 -29px;
+   
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+.faqHeader {
+    font-size: 27px;
+    margin: 20px;
+}
+
+.panel-heading [data-toggle="collapse"]:after {
+    font-family: 'fontawesome';
+    content: "\f067"; /* "play" icon */
+    float: right;
+    color: #F58723;
+    font-size: 15px;
+    line-height: 22px;
+    /* rotate "play" icon from > (right arrow) to down arrow */
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+    /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    color: #454444;
+}
+.panel-title > a, .panel-title > small, .panel-title > .small, .panel-title > small > a, .panel-title > .small > a {
+    color: #9e1d1d !important;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
+    border-top: 1px solid #ddd;
+    text-align: justify;
+}
+.pi {
+    padding: 10px;
+    width: 100%;
+}
+.ta{
+    color:#000 !important;
+}

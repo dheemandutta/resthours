@@ -1,0 +1,192 @@
+﻿@model TM.RestHour.Models.Crew
+
+@{
+    ViewBag.Title = "CrewList";
+}
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+
+
+<link href="~/link/css/crewlistr.css" rel="stylesheet" />
+
+@*@Html.Hidden("Showreport3", @Url.Action("GetVarianceFromWorkSessions", "Reports"))
+    @Html.Hidden("loaddata", @Url.Action("GetVarianceFromWorkSessions", "Reports"))
+    @Html.Hidden("pdfreport", @Url.Action("GetVarianceFromWorkSessionsForPdf", "Reports"))*@
+
+
+<body style="background-image: url(../background/imo.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="ta" style="color:#000;">IMO Crew List</h2>
+        </div>
+        <div class="col-md-7 bac">
+            <div class="card">
+
+                <div class="row">
+                    @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+                    <div class="col-md-6" id="sideform">
+
+                        <button type="button" class="button1" id="btnPrint" @*disabled="disabled"*@>Print Report</button>
+
+                    </div>
+
+                </div>
+
+                <table width="100%">
+
+                    <tr>
+                        <td colspan="2">
+                            <table width="100%">
+
+                                @*<tr>
+            <td align="left" width="40%"><input id="EnableAdvancedPermissions" type="checkbox" /><span id="x"></span><strong> Arrival</strong></td>
+            <td align="left" width="20%"></td>
+            <td align="right" width="75%"></td>
+        </tr>
+        <tr>
+            <td align="left" width="40%"><input id="EnableAdvancedPermissions" type="checkbox" /><span id="x"></span><strong> Departure</strong></td>
+            <td align="left" width="20%"></td>
+            <td align="right" width="75%"></td>
+        </tr>*@
+
+                                <tr>
+                                    <td align="left" width="40%"> <span id="x"></span></td>
+                                    <td align="left" width="40%"> </td>
+                                    @*<td align="right" width="20%">Page No: 1 of 1</td>*@
+                                </tr>
+                                <tr>
+                                    <td align="left" width="40%"> </td>
+                                    <td align="left" width="40%"> </td>
+                                    <td align="right" width="20%">  <img src="~/companylogo/companylogo.png" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" width="40%">Name and type of ship :<strong> @Session["ShipName"].ToString() </strong> <span id="x"></span></td>
+                                    <td align="left" width="20%">IMO Number : <strong>@Session["IMONumber"].ToString()</strong></td>
+                                    <td align="right" width="75%">Call Sign: <strong> </strong> </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" width="40%">Post of Departure : <strong></strong><span id="x"></span></td>
+                                    <td align="left" width="20%">Date of Departure : <strong></strong></td>
+                                    <td align="right" width="75%">Flag state of Ship : <strong> @Session["Flag"].ToString()</strong> </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" width="40%">Last Post of Call : <strong></strong><span id="x"></span></td>
+                                    <td align="left" width="20%"></td>
+                                    <td align="right" width="75%"></td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+
+				<div id="dvdisplay" style="width:100%; margin:0 auto; " class="tablecontainer">
+
+					@Html.Hidden("loaddatareport", @Url.Action("LoadData", "Reports"))
+					@Html.Hidden("loadprintreport", @Url.Action("LoadData2", "Reports"))
+
+					<input type="hidden" id="hdnrole" />
+					<table id="certtableReport" class="display" cellspacing="0" style="width:100%">
+						<thead style="background: #fff;color: #000;">
+                            <tr>
+                                <th>Serial No.</th>
+                                <th>Family Name, Given Names</th>
+                                <th>Joining Date</th>
+
+                                <th>Ranks or Rating</th>
+                                <th>Nationality</th>
+                                <th>Date and place of Birth</th>
+                                <th>Passport</th> @*<th>No. of Identity</th>*@
+                                <th>Seaman</th>
+                            </tr>
+						</thead>
+					</table>
+				</div>
+
+
+                <div id="dvprint2" style="display:none;">
+                    <img src="~/companylogo/companylogo.png" />
+                    <hr>
+                    <table id="certtable_print" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th align="left">Serial No.</th>
+                                <th align="left">Family Name, Given Names</th>
+                                <th align="left">Joining Date</th>
+
+                                <th align="left">Ranks or Rating</th>
+                                <th align="left">Nationality</th>
+                                <th align="left">Date and place of Birth</th>
+                                <th align="left">Passport</th> @*<th>No. of Identity</th>*@
+                                <th align="left">Seaman</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+
+
+            </div>
+            </div>
+        </div>
+    </body>
+            @section Scripts
+{
+                @Scripts.Render("~/bundles/jqueryval")
+                @Scripts.Render("~/bundles/jqueryui")
+                @Styles.Render("~/Content/themes/base/css")
+
+
+                <script src="~/Scripts/pdfmake.min.js"></script>
+                <script src="~/Scripts/vfs_fonts.js"></script>
+                <script src="~/Scripts/Reports.js"></script>
+
+                <script type="text/javascript">
+
+
+                    $(document).ready(function () {
+
+
+                        SetUpGridReport();
+
+
+                        $(function () {
+                            $('.monthYearPicker').datepicker({
+                                changeMonth: true,
+                                changeYear: true,
+                                showButtonPanel: true,
+                                dateFormat: 'MM yy'
+                            }).focus(function () {
+                                var thisCalendar = $(this);
+                                $('.ui-datepicker-calendar').detach();
+                                $('.ui-datepicker-close').click(function () {
+                                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                                    thisCalendar.datepicker('setDate', new Date(year, month, 1));
+                                });
+                            });
+                        });
+
+
+
+                    });
+
+
+
+
+                    $("#btnPrint").click(function () {
+						//PrintTest('');
+                        Popup2('');
+                    });
+
+                    $("#btnAdd").click(function () {
+                        SetUpGridReport();
+                    });
+
+                </script>
+            }

@@ -1,0 +1,340 @@
+﻿@model TM.RestHour.Models.Crew
+
+@{
+    ViewBag.Title = "NCReportByMonth";
+}
+<style>
+    table {
+        background-color: #0009;
+        color: #fff;
+        font-size: 21px;
+    }
+        table th, table td {
+            padding: 1px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 400;
+        }
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: rgba(121, 121, 121, 0.4) !important;
+        overflow-y:auto;
+        height: 470px;
+        border-radius: 5px;
+    }
+    table th{
+        font-weight:bold !important;
+    }
+</style>
+
+
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+@*@Html.Hidden("Reportsadd9", @Url.Action("GetMonthlyData", "ReportsNCReportByMonth"))
+    @Html.Hidden("Showreport19", @Url.Action("GetDayWiseCrewData", "ReportsNCReportByMonth"))
+
+    @Html.Hidden("printReport29", @Url.Action("HTML_Report2", "ReportsNCReportByMonth"))*@
+@Html.Hidden("GetNonComplianceDetails", @Url.Action("GetNCDetails", "Reports"))
+@Html.Hidden("getNonComplianceInfo", @Url.Action("GetNonComplianceInfo", "Reports"))
+
+<body style="background-image: url(../background/page1.jpg);
+    background-size: cover;">
+    <div class="row">
+        <div class="col-md-4"><h1 class="ta">Monthly View</h1></div>
+        <div class="col-md-8 bac" >
+            <div>
+                <div class="row">
+                    @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+
+                    <div class="col-md-4" id="sideform">
+                        <div class="card">
+                            <div class="card-block">
+                                <form class="form-horizontal" role="form">
+
+
+                                    @*<div class="col-md-7" id="sideform">
+                                    <div class="form-group">
+
+                                        <input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Date" />
+                                    </div>
+                                </div>*@
+
+
+                                    @*<div class="form-group">
+                                    <div>
+                                        <div class="col-md-7" id="sideform">
+                                            <button type="button" class="btn btn-primary" id="btnAdd"  onclick="return GetNonComplianceDetails();">Show Report</button>
+                                        </div>
+
+                                    </div>
+                                </div>*@
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                @*<table width="100%">
+                <tr>
+                    <td align="left" width="75%"><b>MONTHLY VIEW</b></td>
+                    <td align="right">Revision Number : 05</td>
+                </tr>
+
+                <tr>
+                    <td align="left" width="75%">Form Number : ILO Rest</td>
+                    <td align="right"> Page Number : 1 of 1</td>
+                </tr>
+                <tr style="height:2px;">
+                    <td colspan="2"><hr style="padding:0px; margin:0px;" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table width="100%">
+                            <tr>
+                                <td align="left" width="40%">Year : <span id="yr"></span></td>
+                                <td align="left" width="20%"> Vessel Name : OSX 2 </td>
+                                <td align="right" width="75%"> Master : Singh, Amitabh </td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%">Month : <span id="mn"></span> </td>
+                                <td colspan="2" align="left">IMO Number : 8618217</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Day : </td>
+
+                                <td>Flag : Liberia</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+            </table>*@
+
+
+                <table border="1" style="  border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%; font-weight: bold;" id="schedule">
+                    <thead>
+                        <tr style="font-weight: bold;">
+                            <th class="tg-v0f9" width="12%" style="font-weight: bold;">Seafarer Name</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">01</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">02</th>
+                            <th class="tg-amwm" width="1%">03</th>
+                            <th class="tg-amwm" width="1%">04</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">05</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">06</th>
+                            <th class="tg-amwm" width="1%">07</th>
+                            <th class="tg-amwm" width="1%">08</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">09</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">10</th>
+                            <th class="tg-amwm" width="1%">11</th>
+                            <th class="tg-amwm" width="1%">12</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">13</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">14</th>
+                            <th class="tg-amwm" width="1%">15</th>
+                            <th class="tg-amwm" width="1%">16</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">17</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">18</th>
+                            <th class="tg-amwm" width="1%">19</th>
+                            <th class="tg-amwm" width="1%">20</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">21</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">22</th>
+                            <th class="tg-amwm" width="1%">23</th>
+                            <th class="tg-amwm" width="1%">24</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">25</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">26</th>
+                            <th class="tg-amwm" width="1%">27</th>
+                            <th class="tg-amwm" width="1%">28</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">29</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">30</th>
+                            <th class="tg-amwm" width="1%">31</th>
+                        </tr>
+                    </thead>  
+                    <tbody>
+                    <tr id="trclone" filled="no">
+                        <td class="tg-yw4l">&nbsp;</td>
+                        <td class="tg-yw4l" id="01" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="02" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="03"></td>
+                        <td class="tg-yw4l" id="04"></td>
+                        <td class="tg-yw4l" id="05" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="06" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="07"></td>
+                        <td class="tg-yw4l" id="08"></td>
+                        <td class="tg-yw4l" id="09" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="10" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="11"></td>
+                        <td class="tg-yw4l" id="12"></td>
+                        <td class="tg-yw4l" id="13" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="14" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="15"></td>
+                        <td class="tg-yw4l" id="16"></td>
+                        <td class="tg-yw4l" id="17" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="18" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="19"></td>
+                        <td class="tg-yw4l" id="20"></td>
+                        <td class="tg-yw4l" id="21" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="22" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="23"></td>
+                        <td class="tg-yw4l" id="24"></td>
+                        <td class="tg-yw4l" id="25" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="26" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="27"></td>
+                        <td class="tg-yw4l" id="28"></td>
+                        <td class="tg-yw4l" id="29" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="30" bgcolor="#d3d3d3"></td>
+                        <td class="tg-yw4l" id="31"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p class="bottom-three"></p>
+
+                @*<table width="100%">
+                <tr>
+
+                    <td align="right"></td>
+                    <td align="right">
+                        Signature of Master:  ________________________________________
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td></td>
+                    <td align="right">
+                        Singh, Amitabh
+                    </td>
+                </tr>
+            </table>*@
+
+                <div id="dvprint2"></div>
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                <h4 class="modal-title" id="myModalLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <h3><span id="succMsg"></span></h3>
+                            </div>
+                            <div class="modal-footer">
+
+
+                                <button id="btnCloseModal" type="button" class="btn btn-default">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    @section Scripts
+{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Styles.Render("~/Content/themes/base/css")
+
+
+        <script src="~/Scripts/pdfmake.min.js"></script>
+        <script src="~/Scripts/vfs_fonts.js"></script>
+        <script src="~/Scripts/Reports.js"></script>
+
+        <script type="text/javascript">
+
+
+            $(document).ready(function () {
+                $(function () {
+                    $('.monthYearPicker').datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        showButtonPanel: true,
+                        dateFormat: 'MM yy'
+                    }).focus(function () {
+                        var thisCalendar = $(this);
+                        $('.ui-datepicker-calendar').detach();
+                        $('.ui-datepicker-close').click(function () {
+                            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                            thisCalendar.datepicker('setDate', new Date(year, month, 1));
+                        });
+                    });
+                });
+
+                $("#btnCloseModal").on("click", function (event) {
+
+                    //CompleteRegistration(event);
+                    $('#myModal').modal('hide');
+
+                    return false;
+                });
+
+
+                const monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
+
+                const d = new Date();
+                var currMonth = monthNames[d.getMonth()];
+                var currYear = d.getFullYear();
+
+                var monthyr = currMonth + currYear;
+
+                GetNonComplianceDetailsByCurrentMonth(monthyr);
+            });
+
+
+            $("#btnPrint").click(function () {
+                // PrintDayWiseCrewData();
+            });
+
+
+
+
+
+
+
+
+            var valA = "Kindly find enclosed list of applicants who have prayed for financial assistance for the above mentioned category in the financial year under reference.";
+
+            $('#txtbodytext').text(valA);
+
+
+
+
+
+
+
+            $("#ReportsDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'MM yy',
+                onClose: function (dateText, inst) {
+
+                    if ($('#ddlCrew').val() != '') {
+                        $('#btnPrint').attr('disabled', false);
+                        $('#btnAdd').attr('disabled', false);
+                    }
+                    else {
+
+                        $('#ddlCrew').one('change', function () {
+                            $('#btnPrint').attr('disabled', false);
+                            $('#btnAdd').attr('disabled', false);
+                        });
+                    }
+                }
+            });
+        </script>
+    }
+

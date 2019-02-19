@@ -1,0 +1,1655 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+@*<style>
+            positive {
+                background-image: linear-gradient(black,black); /* your gradient */
+                background-repeat: no-repeat; /* don't remove */
+            }
+
+            negative {
+                background-image: linear-gradient(black,black);
+                background-position: 100% 100%;
+            }
+
+            .ui-datepicker-calendar {
+                display: none;
+            }
+
+            .tg {
+                border-collapse: collapse;
+    <a href="~/Views/Reports/Index.cshtml">~/Views/Reports/Index.cshtml</a>
+                border-spacing: 0;
+                width: 100%;
+            }
+
+            .bottom-three {
+                margin-bottom: 0.5cm;
+            }
+
+            .tg td {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                padding: 0px 0px;
+                border-style: solid;
+                border-width: 1px;
+                overflow: hidden;
+                word-break: normal;
+            }
+
+            .tg th {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                font-weight: normal;
+                padding: 0px 0px;
+                border-style: solid;
+                border-width: 1px;
+                overflow: hidden;
+                word-break: normal;
+            }
+
+            .tg .tg-baqh {
+                text-align: center;
+                vertical-align: top;
+            }
+
+            .tg .tg-8ls8 {
+                color: #ffc702;
+                text-align: right;
+                vertical-align: top;
+            }
+
+            .tg .tg-f8tx {
+                color: #000000;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            .tg .tg-v0f9 {
+                font-weight: bold;
+                font-family: Arial, Helvetica, sans-serif !important;
+                ;
+                color: #333333;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            .tg .tg-amwm {
+                font-weight: bold;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            .tg .tg-s4h7 {
+                color: #333333;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            .tg .tg-yw4l {
+                vertical-align: top;
+                /*text-align: right;*/
+            }
+
+            .tg .tg-l2oz {
+                font-weight: bold;
+                text-align: right;
+                vertical-align: top;
+            }
+
+            .tg .tg-pwjw {
+                color: #330001;
+                text-align: center;
+                vertical-align: top;
+            }
+        </style>
+
+        <style>
+            .hidden {
+                display: none
+            }
+        </style>*@
+<style>
+    p {
+        margin: -1px 0 1px;
+        font-size: 12px;
+    }
+
+    .super {
+        font-weight: 800;
+        font-size: 10px;
+    }
+
+    .desi {
+        background: #f7f7f7;
+        padding: 5px 9px;
+        box-shadow: 2px 4px 3px #d4d4d4;
+        margin-bottom: 8px;
+        border-radius: 7px;
+        color: #000;
+        font-size: 12px;
+    }
+
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        margin: 0 -29px;
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        height: 478px;
+        overflow: scroll;
+    }
+</style>
+
+@Html.Hidden("Reportsadd", @Url.Action("GetMonthlyData", "Reports"))
+@Html.Hidden("Showreport", @Url.Action("GetMonthlyDataForWeb", "Reports"))                               @*////////*@
+@Html.Hidden("GetWorkingHours", @Url.Action("GetNormalWorkingHours", "Reports"))                         @*/////////////////////*@
+@Html.Hidden("GetPlusOneDayAdjustmentValue", @Url.Action("GetPlusOneDayAdjustmentValue", "Reports"))     @*////////*@
+@Html.Hidden("GetMinusOneDayAdjustmentValue", @Url.Action("GetMinusOneDayAdjustmentValue", "Reports"))    @*////////*@
+
+@Html.Hidden("printReport1", @Url.Action("HTML_Report1", "Reports"))
+
+
+
+<body style="background-image: url(../background/report.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5" style="width:370px;">
+            <h2 class="ta" style="color:#000; width:257px;">Monthly Work Hours</h2>
+        </div>
+        <div class="col-md-7 bac" style="width:72.333%;">
+
+            <div class="card">
+                <div class="row">
+                    @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+
+                    <!-----Screen divided into 4+8 ---------->
+                    <div class="col-md-8" id="sideform" style="width: 81.666667%;">
+                        <div class="card">
+                            <div class="card-block">
+                                <form class="form-horizontal" role="form">
+
+
+                                    <div class="col-md-5" id="sideform">
+                                        <div class="form-group">
+                                            <label for="selectCrew">Crew</label>
+                                            @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
+                                            @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1"></div>
+
+                                    <div class="col-md-5" id="sideform">
+                                        <div class="form-group">
+                                            <label for="ReportsDate"> Month & Year</label>
+
+
+                                            <input name="ReportsDate" class="monthYearPicker form-control" style="width:200px;" id="ReportsDateVal" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1"></div>
+
+                                    <div class="col-md-5" id="sideform" style="float: right; width: 0%;">
+                                        <div class="form-group" style="float: right; width: 0%;">
+                                            <img src="~/companylogo/companylogo.png" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-7" id="sideform">
+                                        <div class="form-group">
+                                            <button type="button" class="button1" id="btnAdd" disabled="disabled" onclick=" return ProcessData();">Show Report</button>
+                                            @*myFunction();*@
+                                            @*clearTable();*@
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" id="sideform1">
+                                        <div class="form-group">
+                                            <button type="button" class="button1" id="btnPrint" disabled="disabled" onclick="PrintReport1();">Print Report</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<input id="btnPrint" type="button" value="Print" onclick="PrintReport1();" />*@
+                <table width="100%">
+                    <tr>
+                        <td align="left" width="60%"><b>HOURS OF WORK AND REST</b></td>
+                    </tr>
+                    <tr>
+                        <td align="left" width="69%">Form Number : </td>
+                        <td align="right">Revision Number : </td>
+                    </tr>
+                </table>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p align="left" width="40%">Seafarer's Full Name : <span id="nm"></span></p>
+                        <p align="left" width="50%">Seafarer's Rank : <span id="rn"></span></p>
+                        <p align="left">Year : <span id="yr"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p align="left" width="20%"> Vessel Name : @Session["ShipName"].ToString() </p>
+                        <p colspan="2" align="left">IMO Number : @Session["IMONumber"].ToString()</p>
+                        <p>Month : <span id="mn"></span></p>
+
+                    </div>
+                    <div class="col-md-4">
+                        <p align="left" width="60%"> Master : @Session["Master"].ToString() </p>
+                        <p align="left">Flag : @Session["Flag"].ToString()</p>
+
+
+
+                        @*<div class="row desi">
+                            <div class="col-md-6" style="padding: 0px 5px;">
+                            IMO STCW  &#9818;<br />
+                            ILO Work  &#9819;<br />
+                            ILO Rest  &#9820;<br />
+                            OCIMF  &#9822;
+                            </div>
+                            <div class="col-md-6" style="padding:0px;">
+                            ILO Rest (Flexible)  &#9824;<br />
+                            Customeised  &#9827;<br />
+                            IMO STCW 2010  &#9829;
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+
+
+
+                <div class="row desi">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ILO Work @*#*@ &#9819; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ILO Rest @*^*@ &#9820; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OCIMF @***@ &#9822; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Customised @*$*@ &#9827; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    IMO STCW 2010 @*&*@ &#9829;
+                </div>
+
+
+
+
+                @*<button type="button" data-column="#column-e">Hide/show last</button>*@
+
+                @*<button>Empty the div element</button>*@
+                <div class="taa">
+                    <table border="1" style="  border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%;" id="schedule">
+                        <tr>
+                            <th class="tg-v0f9" width="2%">Date</th>
+                            <th class="tg-amwm" width="1%" id="column-e">00</th>
+                            <th class="tg-amwm" width="1%" id="h0">00</th>
+                            <th class="tg-amwm" width="1%" id="h1">01</th>
+                            <th class="tg-amwm" width="1%" id="h2">02</th>
+                            <th class="tg-amwm" width="1%" id="h3">03</th>
+                            <th class="tg-amwm" width="1%" id="h4">04</th>
+                            <th class="tg-amwm" width="1%" id="h5">05</th>
+                            <th class="tg-amwm" width="1%" id="h6">06</th>
+                            <th class="tg-amwm" width="1%" id="h7">07</th>
+                            <th class="tg-amwm" width="1%" id="h8">08</th>
+                            <th class="tg-amwm" width="1%" id="h9">09</th>
+                            <th class="tg-amwm" width="1%" id="h10">10</th>
+                            <th class="tg-amwm" width="1%" id="h11">11</th>
+                            <th class="tg-amwm" width="1%" id="h12">12</th>
+                            <th class="tg-amwm" width="1%" id="h13">13</th>
+                            <th class="tg-amwm" width="1%" id="h14">14</th>
+                            <th class="tg-amwm" width="1%" id="h15">15</th>
+                            <th class="tg-amwm" width="1%" id="h16">16</th>
+                            <th class="tg-amwm" width="1%" id="h17">17</th>
+                            <th class="tg-amwm" width="1%" id="h18">18</th>
+                            <th class="tg-amwm" width="1%" id="h19">19</th>
+                            <th class="tg-amwm" width="1%" id="h20">20</th>
+                            <th class="tg-amwm" width="1%" id="h21">21</th>
+                            <th class="tg-amwm" width="1%" id="h22">22</th>
+                            <th class="tg-amwm" width="1%" id="h23">23</th>
+                            <th class="tg-amwm" width="2%">Normal</th>
+                            <th class="tg-amwm" width="2%">Overtime</th>
+                            <th class="tg-amwm" width="4%">Total</th>
+                            <th class="tg-amwm" width="4%">Rest</th>
+                            <th class="tg-amwm" width="14%">Comments</th>
+                            <th class="tg-amwm" width="3%">Minimum Rest in any 24 hours</th>
+                            <th class="tg-amwm" width="3%">Minimum Rest in any 7 days</th>
+                        </tr>
+                        <tr id="1" filled="no">
+                            <td class="tg-s4h7">01<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+
+                        </tr>
+                        <tr id="2" filled="no">
+                            <td class="tg-s4h7">02<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="3" filled="no">
+                            <td class="tg-s4h7">03<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="4" filled="no">
+                            <td class="tg-s4h7">04<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="5" filled="no">
+                            <td class="tg-s4h7">05<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="6" filled="no">
+                            <td class="tg-s4h7">06<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="7" filled="no">
+                            <td class="tg-s4h7">07<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="8" filled="no">
+                            <td class="tg-s4h7">08<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="9" filled="no">
+                            <td class="tg-s4h7">09<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="10" filled="no">
+                            <td class="tg-s4h7">10<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+
+                        </tr>
+                        <tr id="11" filled="no">
+                            <td class="tg-s4h7">11<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="12" filled="no">
+                            <td class="tg-s4h7">12<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="13" filled="no">
+                            <td class="tg-s4h7">13<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="14" filled="no">
+                            <td class="tg-s4h7">14<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="15" filled="no">
+                            <td class="tg-s4h7">15<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="16" filled="no">
+                            <td class="tg-s4h7">16<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="17" filled="no">
+                            <td class="tg-s4h7">17<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="18" filled="no">
+                            <td class="tg-s4h7">18<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="19" filled="no">
+                            <td class="tg-s4h7">19<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="20" filled="no">
+                            <td class="tg-s4h7">20<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="21" filled="no">
+                            <td class="tg-s4h7">21<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="22" filled="no">
+                            <td class="tg-s4h7">22<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="23" filled="no">
+                            <td class="tg-s4h7">23<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="24" filled="no">
+                            <td class="tg-s4h7">24<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="25" filled="no">
+                            <td class="tg-s4h7">25<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="26" filled="no">
+                            <td class="tg-s4h7">26<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="27" filled="no">
+                            <td class="tg-s4h7">27<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="28" filled="no">
+                            <td class="tg-s4h7">28<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="29" filled="no">
+                            <td class="tg-s4h7">29<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="30" filled="no">
+                            <td class="tg-s4h7">30<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="31" filled="no">
+                            <td class="tg-s4h7">31<sup><span class="super"></span></sup></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-amwm"></td>
+                            <td class="tg-amwm"></td>
+                        </tr>
+                        <tr id="totals">
+                            <td class="tg-s4h7" colspan="26"><b>Totals</b></td>
+                            <td class="tg-yw4l" id="sptotalnormalhrs"></td>
+                            <td class="tg-yw4l" id="sptotalovertimehrs"></td>
+                            <td class="tg-yw4l" id="sptotal"></td>
+                            <td class="tg-yw4l" colspan="4" id="sptotalRest"></td>
+
+                        </tr>
+                        <tr>
+                            <td class="tg-s4h7" colspan="26"><b>Guaranteed Overtime</b></td>
+                            <td class="tg-yw4l"><b></b></td>
+                            <td class="tg-yw4l"><b></b></td>
+                            <td class="tg-yw4l"><b></b></td>
+                            <td class="tg-yw4l" colspan="4"><b></b></td>
+
+                        </tr>
+                        <tr>
+                            <td class="tg-s4h7" colspan="26"><b>Extra Overtime Payable</b></td>
+                            <td class="tg-yw4l"><b></b></td>
+                            <td class="tg-yw4l"><b></b></td>
+                            <td class="tg-yw4l"><b></b></td>
+                            <td class="tg-yw4l" colspan="4"><b></b></td>
+
+                        </tr>
+                    </table>
+
+                    <p class="bottom-three"></p>
+
+
+                    <table style="width:126px;">
+                        <tr>
+                            <td colspan="2"><b>Key :</b></td>
+                        </tr>
+                        <tr>
+                            <td>First 30 mins :</td>
+                            <td> <p>&#9680;</p> </td>
+                        </tr>
+                        <tr>
+                            <td>Last 30 mins :</td>
+                            <td> <p>&#9681;</p> </td>
+                        </tr>
+                        <tr>
+                            <td>Full Hour :</td>
+                            <td> <p>&#9673;</p> </td>
+                        </tr>
+                    </table>
+
+                    <p class="bottom-three"></p>
+
+                    <table width="100%">
+                        <tr>
+                            <td>Signature of Seaman:</td>
+                            <td>________________________________________</td>
+                            <td>
+                                Signature of Master/Person Authorised by the Master :
+                            </td>
+                            <td>
+                                ________________________________________
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="2" align="center">
+
+                                <span id="seamanfooter"></span>
+                            </td>
+                            <td colspan="2" align="right">
+
+                                @*Singh, Amitabh*@<span id="Sname"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="dvprint"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+    <script src="~/Scripts/Reports.js"></script>
+
+    <script type="text/javascript">
+
+
+        //$('#btnPrint').attr('disabled', false);
+        $(document).ready(function () {
+
+
+            //$('button').disabled(true);
+
+
+            var loggedInUserId = 0;
+            loggedInUserId = $('#hdnCrewId').val();
+            $('#btnPrint').attr('disabled', true);
+            $('#btnAdd').attr('disabled', true);
+
+            if (loggedInUserId > 0) { // user level log in
+
+                console.log('Logged In UserId');
+                console.log(loggedInUserId);
+                $('#ddlCrew').val(loggedInUserId);
+                $("#ddlCrew").prop("disabled", true);
+
+            }
+
+
+            $(function () {
+                $('.monthYearPicker').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    showButtonPanel: true,
+                    dateFormat: 'MM yy'
+                }).focus(function () {
+                    var thisCalendar = $(this);
+                    $('.ui-datepicker-calendar').detach();
+                    $('.ui-datepicker-close').click(function () {
+                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                        thisCalendar.datepicker('setDate', new Date(year, month, 1));
+
+                        if ($('#ddlCrew').val() != '') {
+                            $('#btnPrint').attr('disabled', false);
+                            $('#btnAdd').attr('disabled', false);
+                        }
+                        else {
+
+
+                            $('#btnPrint').attr('disabled', true);
+                            $('#btnAdd').attr('disabled', true);
+
+                        }
+                    });
+                });
+            });
+
+
+            //function myFunction() {
+            //    location.reload();
+            //}
+
+        });
+
+        $(document).on("click", "[data-column]", function () {
+            var button = $(this),
+                header = $(button.data("column")),
+                table = header.closest("table"),
+                index = header.index() + 1, // convert to CSS's 1-based indexing
+                selector = "tbody tr td:nth-child(" + index + ")",
+                column = table.find(selector).add(header);
+
+            console.log(header);
+            column.toggleClass("hidden");
+        });
+
+        function ShowHideCol() {
+            var index = 2;
+            var header = $('#column-e');
+            var table = $('#schedule');
+            var selector = "tbody tr td:nth-child(" + index + ")";
+            var column = table.find(selector).add(header);
+
+            column.toggleClass('hidden');
+
+        }
+
+        $("#ReportsDateVal").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'MM yy',
+            onClose: function (dateText, inst) {
+
+                if ($('#ddlCrew').val() != '') {
+                    $('#btnPrint').attr('disabled', false);
+                    $('#btnAdd').attr('disabled', false);
+                }
+                else {
+
+                    $('#ddlCrew').on('change', function () {
+                        $('#btnPrint').attr('disabled', false);
+                        $('#btnAdd').attr('disabled', false);
+                    });
+                }
+            }
+        });
+
+        $("#btnPrint").click(function () {
+            // PrintPdf();
+        });
+
+
+
+
+                                                //$("button").click(function () {
+                                                //$("#1").empty();
+                                                //$("#2").empty();
+                                                //$("#3").empty();
+                                                //$("#4").empty();
+                                                //$("#5").empty();
+                                                //$("#6").empty();
+                                                //$("#7").empty();
+                                                //$("#8").empty();
+                                                //$("#9").empty();
+                                                //$("#10").empty();
+                                                //$("#11").empty();
+                                                //$("#12").empty();
+                                                //$("#13").empty();
+                                                //$("#14").empty();
+                                                //$("#15").empty();
+                                                //$("#16").empty();
+                                                //$("#17").empty();
+                                                //$("#18").empty();
+                                                //$("#19").empty();
+                                                //$("#20").empty();
+                                                //$("#21").empty();
+                                                //$("#22").empty();
+                                                //$("#23").empty();
+                                                //$("#24").empty();
+                                                //$("#25").empty();
+                                                //$("#26").empty();
+                                                //$("#27").empty();
+                                                //$("#28").empty();
+                                                //$("#29").empty();
+                                                //$("#30").empty();
+                                                //$("#31").empty();
+                                                //});
+
+
+
+
+    </script>
+}

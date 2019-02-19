@@ -1,0 +1,193 @@
+﻿
+@model TM.RestHour.Models.Vessel
+
+@{
+    ViewBag.Title = "CrewListNew";
+}
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+@*<link href="~/link/css/vissel.css" rel="stylesheet" />*@
+<link href="~/link/css/rank.css" rel="stylesheet" />
+<link href="~/link/css/crewlist.css" rel="stylesheet" />
+<link href="~/link/css/tab.css" rel="stylesheet" />
+<script src="~/Scripts/CrewListing.js"></script>
+
+
+<body style="background-image: url(../background/crewlist.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="ta">Crew List</h2>
+        </div>
+        <div class="col-md-8 bac">
+            <div class="card">
+
+                @*<div style="width:90%; margin:0 auto" class="tablecontainer">
+            @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
+            @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+            @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+            @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+
+
+            <input type="hidden" id="hdncount" />
+
+            <input type="hidden" id="hdnrole" />
+
+
+            <table id="CrewListtable" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>RankName</th>
+                        <th>StartDate</th>
+                        <th>Edit</th>
+                        <th>Deactivate</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>*@
+                <div class="container" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Nav tabs -->
+                            <div class="">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">  <span>Active Users</span></a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">  <span>Inactive Users</span></a></li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+
+                                    <div role="tabpanel" class="tab-pane active" id="home">
+                                        <div class="col-md-12 imo">
+                                            <div style="width:90%; margin:0 auto" class="tablecontainer">
+                                                @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
+                                                @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
+                                                @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                                                @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+                                                @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+                                                <input type="hidden" id="hdncount" />
+                                                <input type="hidden" id="hdnrole" />
+                                                <table id="CrewListtable" class="display" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>RankName</th>
+                                                            <th>StartDate</th>
+                                                            <th>Edit</th>
+                                                            <th>Deactivate</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="profile">
+                                        <div class="col-md-12 ilo">
+                                            <div style="width:90%; margin:0 auto" class="tablecontainer">
+                                                @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
+                                                @Html.Hidden("loaddataForInactiv", @Url.Action("LoadDataForInactiv", "CrewList"))
+                                                @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                                                @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+                                                @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+                                                <input type="hidden" id="hdncount" />
+                                                <input type="hidden" id="hdnrole" />
+                                                <table id="CrewListtableloaddataForInactiv" class="display" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>RankName</th>
+                                                            <th>StartDate</th>
+                                                            <th>Edit</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @section Scripts
+{
+                @Scripts.Render("~/bundles/jqueryval")
+                @Scripts.Render("~/bundles/jqueryui")
+                @Styles.Render("~/Content/themes/base/css")
+
+                <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+                <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        SetUpGrid();
+                        SetUpGridForInactiv();
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        
+                        DisableButton();
+
+                        var numItems = $('li.fancyTab').length;
+
+                        if (numItems == 12) {
+                            $("li.fancyTab").width('8.3%');
+                        }
+                        if (numItems == 11) {
+                            $("li.fancyTab").width('9%');
+                        }
+                        if (numItems == 10) {
+                            $("li.fancyTab").width('10%');
+                        }
+                        if (numItems == 9) {
+                            $("li.fancyTab").width('11.1%');
+                        }
+                        if (numItems == 8) {
+                            $("li.fancyTab").width('12.5%');
+                        }
+                        if (numItems == 7) {
+                            $("li.fancyTab").width('14.2%');
+                        }
+                        if (numItems == 6) {
+                            $("li.fancyTab").width('16.666666666666667%');
+                        }
+                        if (numItems == 5) {
+                            $("li.fancyTab").width('20%');
+                        }
+                        if (numItems == 4) {
+                            $("li.fancyTab").width('25%');
+                        }
+                        if (numItems == 3) {
+                            $("li.fancyTab").width('33.3%');
+                        }
+                        if (numItems == 2) {
+                            $("li.fancyTab").width('50%');
+                        }
+                    });
+
+                    $(window).load(function () {
+                        $('.fancyTabs').each(function () {
+                            var highestBox = 0;
+                            $('.fancyTab a', this).each(function () {
+                                if ($(this).height() > highestBox)
+                                    highestBox = $(this).height();
+                            });
+                            $('.fancyTab a', this).height(highestBox);
+                        });
+                    });
+                </script>
+            }
+        </div>
+    </div>
+</body>

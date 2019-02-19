@@ -1,0 +1,253 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+
+@{
+    ViewBag.Title = "WorkAndRestHours";
+}
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+<link href="~/link/css/rank.css" rel="stylesheet" />
+
+
+
+
+
+@*@Html.Hidden("Showreport" , @Url.Action("GetMonthlyDataForWeb", "Reports"))*@
+@Html.Hidden("Showreport3", @Url.Action("GetVarianceFromWorkSessions", "Reports"))
+@Html.Hidden("loaddata", @Url.Action("GetVarianceFromWorkSessions", "Reports"))
+@Html.Hidden("pdfreport", @Url.Action("GetVarianceFromWorkSessionsForPdf", "Reports"))
+
+
+
+<body style="background-image: url(../background/report.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="ta" style="color:#000;">Compliance Report</h2>
+        </div>
+        <div class="col-md-7 bac">
+            <div class="card">
+
+                <div class="row">
+                    @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+
+                    <div class="col-md-8" id="sideform">
+                        <div class="card">
+                            <div class="card-block">
+                                <form class="form-horizontal" role="form">
+
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="col-md-6" id="sideform">
+                                                <label for="selectCrew">Crew</label>
+                                                @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
+                                                @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="form-group">
+                                                <div class="col-md-6" id="sideform">
+                                                    <label for="ReportsDate"> Month & Year</label>
+
+
+                                                    <input name="ReportsDate" class="monthYearPicker form-control" style="width:200px;" id="ReportsDateVal" />
+                                                </div>
+
+                                                <div class="form-group" style="float: right; width: 0%;">
+                                                    <img src="~/companylogo/companylogo.png" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+
+
+
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="col-md-6" id="sideform">
+                                                <button type="button" class="button1" id="btnAdd" @*disabled="disabled"*@ onclick="return GetHours2();">Show Report</button>
+                                            </div>
+
+                                            <div class="col-md-6" id="sideform">
+
+                                                <button type="button" class="button1" id="btnPrint" @*disabled="disabled"*@>Print Report</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <table width="100%">
+                    <tr>
+                        <td align="left" width="75%"><b>Work and Rest Hours - Variance</b></td>
+
+                    </tr>
+
+                    <tr>
+                        <td align="left" width="75%">Vessel:<span id="vs">@Session["ShipName"].ToString()</span></td>
+                        <td align="right"> Crew:<span id="cr"></span></td>
+                    </tr>
+                    <tr>
+                        <td align="left" width="75%">Reporting Period:<span id="rp"></span></td>
+                        @*<td align="right"> Department:<span id="dp"></span></td>*@
+                    </tr>
+                </table>
+                <hr>
+                <input type="hidden" id="hdnrole" />
+                <div class="" style="height:210px; overflow-y:scroll;">
+                    <table id="certtable" class="display" cellspacing="0" width="100%">
+                        <thead >
+                            <tr>
+
+                                <th>Day</th>
+                                <th>Date</th>
+                                <th>Minimum Rest Hour</th>
+                                <th>Actual Rest Hour</th>
+                                <th>Min Rest in 7 days</th>
+                                <th>Actual Rest in 7 days</th>
+                                <th>Compliance Errors</th>
+                                <th>Comment</th>
+                                
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+            <div id="dvprint2" style="display:none;">
+                
+                <table width="100%">
+                    <tr>
+                        <td align="left" width="75%"><b>Work and Rest Hours - Variance</b></td>
+                        <td align="right">  <img src="~/companylogo/companylogo.png" />   </td>
+                    </tr>
+
+                    <tr>
+                        <td align="left" width="75%">Vessel:<span id="vs">@Session["ShipName"].ToString()</span></td>
+                        <td align="right"> Crew:<span id="cr_print"></span></td>
+                    </tr>
+                    <tr>
+                        <td align="left" width="75%">Reporting Period:<span id="rp_print"></span></td>
+                        @*<td align="right"> Department:<span id="dp_print"></span></td>*@
+                    </tr>
+                </table>
+                <hr>
+                <table id="certtable_print" class="display" cellspacing="0" width="100%">
+                    <thead align="center">
+                        <tr>
+                            <th>Day</th>
+                            <th>Date</th>
+                            <th>Minimum Rest Hour</th>
+                            <th>Actual Rest Hour</th>
+                            <th>Min Rest in 7 days</th>
+                            <th>Actual Rest in 7 days</th>
+                            <th>Compliance Errors</th>
+                            <th>Comment</th>
+
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            </div>
+        </div>
+    </body>
+            @section Scripts
+{
+                @Scripts.Render("~/bundles/jqueryval")
+                @Scripts.Render("~/bundles/jqueryui")
+                @Styles.Render("~/Content/themes/base/css")
+
+
+                <script src="~/Scripts/pdfmake.min.js"></script>
+                <script src="~/Scripts/vfs_fonts.js"></script>
+                <script src="~/Scripts/Reports.js"></script>
+
+                <script type="text/javascript">
+
+
+                    $(document).ready(function () {
+
+						$('#btnPrint').attr('disabled', true);
+						$('#btnAdd').attr('disabled', true);
+
+                        var loggedInUserId = 0;
+                        loggedInUserId = $('#hdnCrewId').val();
+
+                        if (loggedInUserId > 0) { // user level log in
+
+                            console.log('Logged In UserId');
+                            console.log(loggedInUserId);
+                            $('#ddlCrew').val(loggedInUserId);
+                            $("#ddlCrew").prop("disabled", true);
+
+                        }
+
+
+
+                        $(function () {
+							$('.monthYearPicker').datepicker({
+								changeMonth: true,
+								changeYear: true,
+								showButtonPanel: true,
+								dateFormat: 'MM yy'
+							}).focus(function () {
+								var thisCalendar = $(this);
+								$('.ui-datepicker-calendar').detach();
+								$('.ui-datepicker-close').click(function () {
+									var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+									var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+									thisCalendar.datepicker('setDate', new Date(year, month, 1));
+
+									if ($('#ddlCrew').val() != '') {
+										$('#btnPrint').attr('disabled', false);
+										$('#btnAdd').attr('disabled', false);
+
+										$('#cr').text($('#ddlCrew option:selected').text());
+										$('#rp').text($("#ui-datepicker-div .ui-datepicker-month :selected").text() + ' ' + year);
+
+										$('#cr_print').text($('#ddlCrew option:selected').text());
+										$('#rp_print').text($("#ui-datepicker-div .ui-datepicker-month :selected").text() + ' ' + year);
+									}
+									else {
+
+
+										$('#btnPrint').attr('disabled', true);
+										$('#btnAdd').attr('disabled', true);
+
+									}
+								});
+							});
+                        });
+
+                    });
+
+
+
+
+                    $("#btnPrint").click(function () {
+						//PrintWorkAndRestHours();
+						Popup2('');
+                    });
+
+                    $("#btnAdd").click(function () {
+                        SetUpGrid();
+                    });
+
+                </script>
+            }

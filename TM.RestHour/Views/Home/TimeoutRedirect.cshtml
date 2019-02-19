@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<style type="text/css">
+    .exactCenter {
+        width: 200px;
+        height: 200px;
+        position: fixed;
+        /*background-color: #00FF00;*/
+        top: 50%;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+    }
+</style>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TimeoutRedirect</title>
+</head>
+<body bgcolor="#E6E6FA">
+    <meta http-equiv="refresh" content="5;url=/Login/Index/" />
+
+    <h2>
+        Sorry, but your session has timed out. You'll be redirected to the Log On page in 5 seconds...
+    </h2>
+
+    <div class="exactCenter">
+        <img src="~/images/spinner.gif" style="width: 150px;">
+    </div>
+</body>
+</html>

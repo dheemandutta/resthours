@@ -1,0 +1,15 @@
+﻿/*-----------Notification box - Start----------*/
+.ErrorBox
+{
+	min-height:80px; min-width:200px; max-width:200px;
+	background-color:#FEB820;
+	border:1px Solid #7C4702;
+	z-index:5000;
+	position:fixed;
+	/*top:50%;
+	left:50%;*/
+	display:none;
+}
+.ErrorBox #spnNotificationHeader{font-size:14px;color:#FEB820;font-weight:bold;width:100%;float:left;background-color:#7C4702;padding:5px 0;text-align:center;}
+.ErrorBox #spnNotificationBody{font-size:12px;color:#7C4702;font-weight:lighter;padding:5px;float:left;}
+/*-----------Notification box - End------------*/

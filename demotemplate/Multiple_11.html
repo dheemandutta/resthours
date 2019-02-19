@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - Awesome Contacts Manager</title>
+	<link href="csss/bootstrap.css" rel="stylesheet"/>
+	<link href="plugin/datepicker/datepicker.css" rel="stylesheet"/>
+    
+	<link rel="stylesheet" href="plugin/datepicker/css/pickmeup.css" type="text/css" />
+	
+<link rel="stylesheet" href="csss/bootstrap-multiselect.css" type="text/css"/>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/hot-sneaks/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-2.1.3.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <style>
+      div.asia {width: 200px;  font-family:Verdana;
+            margin: 4px; text-align: center;  padding: 4px;}
+        #Asia {position: absolute; left:10px}
+        div.ui-selected {border: 4px solid #aaa; background-color:#44c765}
+     /* div.ui-selecting {border:4px dotted #000; background-color:yellow;}*/
+	 /*div.ui-selectee{background-color:white;}*/
+	  .row ui-selectee,.col-md-6 ui-selectee,.right_text ui-selectee,.right_val ui-selectee{background-color:white;}
+
+    </style>
+
+	<style>
+		#sideform{
+			border-right:3px solid black;
+		}
+		h6{
+			margin-top:17px;
+			margin-left:4px;
+			background:white;
+		}
+	</style>
+
+    
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Contacts">Awesome Contacts Manager</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                 <ul class="nav navbar-nav">
+                    <li><a href="index2.html">Home</a></li>
+                    <li><a href="aboutus.html">About</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                    <li><a href="mycontacts.html">My Contacts</a></li>
+					
+					<li><a href="Multiple.html">Single/Multiple Entry</a></li>
+					
+                </ul>
+                    <ul class="nav navbar-nav navbar-right padRight8px">
+        <li><a href="#" id="registerLink">Create Account</a></li>
+        <li><a href="#" id="loginLink">Log in</a></li>
+    </ul>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content">
+        
+
+
+<div class="jumbotron">
+    <h4>Multiple Entry</h4>
+    
+</div>
+
+<div class="row">
+  <!-----Screen divided into 4+8 ---------->
+   <div class="col-md-4" id="sideform">
+    <div class="card">
+	  <div class="card-block">
+		<form class="form-horizontal" role="form">
+		  <div class="form-group">
+			<label for="selectCrew" class="col-sm-3 control-label">Select Crew</label>
+			<div class="col-sm-9">
+			  <select id="example-getting-started" multiple="multiple" class="form-control" size="30" style="height:100%;">
+					<option value="AROY">A. ROY</option>
+					<option value="BROY">B. ROY</option>
+					<option value="CJANA">C . JANA</option>
+					<option value="DHASNDA">D .HANSDA</option>
+					<option value="EBHARAT">E. BHARAT</option>
+					<option value="RGUPTA">R GUPTA</option>
+				</select>
+			</div>
+		  </div>
+		  
+		  <div class="form-group">
+			<label for="inputPassword3" class="col-sm-3 control-label"></label>
+			<div class="col-sm-9">
+			  <div class="multiple"></div>
+			</div>
+		  </div>
+		  
+		  
+		</form>
+	  </div>
+	</div>
+   </div>
+   <div class="col-md-8">
+   
+		<div class="row">
+			<div class="col-md-12">
+				<h5></b>Resting Hours</b></h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<div class="asia" style="margin:0 auto;display:inline-block;width:15px;height:15px;border:1px solid #44c765;float:left;background:#44c765;"></div>&nbsp;Work 
+					
+			</div>
+			<div class="col-md-2">
+				<div class="asia" style="margin:0 auto;display:inline-block;width:15px;height:15px;border:1px solid ;float:left;;"></div>&nbsp;Rest
+					
+			</div>
+			
+		</div>
+		<div class="row" >
+			
+			<div class="col-md-12">
+			  
+				                            <div style="overflow:auto;width:90%;">
+                   
+
+            <!-- This is the div that does the trick: -->
+                                                <div style="width:1200px;" id="Asia">
+												</div>
+
+                                         </div>
+			
+			</div>
+			
+		</div>
+		<div class="row">
+			
+		</div>
+		<div class="row">
+		 <hr>
+		</div>
+		
+		<div class="row">
+			
+		</div>
+		
+		
+   
+   
+   </div>
+</div>
+   <hr />
+<footer>
+   <p>&copy; 2017 - My ASP.NET Application</p>
+</footer>
+    </div>
+
+   <!--<script src="js/jquery.js"></script>-->
+
+   <script type="text/javascript" src="js/jquery.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+    
+	
+  <script type="text/javascript" src="plugin/datepicker/js/demo.js"></script>
+   <script type="text/javascript" src="plugin/datepicker/js/jquery.pickmeup.js"></script>
+   <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+
+    <script src="js/jqueryui.js"></script>
+	<script type="text/javascript">
+    $(document).ready(function() {
+	  //var name = [];
+	  var nam2=[];
+	     $('#example-getting-started').multiselect();
+		 $('#example-getting-started').change(function(){
+				var name = [];
+				var alid=[];
+				//var nam2=[];
+			$.each($("#example-getting-started option:selected"), function(){ 
+                   			
+				name.push($(this).val());
+				
+				});
+				name2=name;
+				var countn=name.length;
+				countn=countn-1;
+				
+				//console.log(name);
+				if($("#"+name[countn]).length==0)
+				{
+				  //alert('1');
+					//$("#Asia").append('<div id="'+name[countn]+'"><div class="row"><div class="col-md-6"><b>'+name[countn]+'</b></div><div class="col-md-6"><div style="float:left;color:green;font-weight:bold;" id="righttext"></div><input type="hidden" id="right_val" value="0"/></div></div><div class="totalworking" id="tot_1" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_2" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;">1</div><div class="totalworking" id="tot_3" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_4" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;">2</div><div class="totalworking" id="tot_5" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_6" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;">3</div><div class="totalworking" id="tot_7" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_8" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;">4</div><div class="totalworking" id="tot_9" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_10" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>5</h6></div><div class="totalworking" id="tot_11" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_12" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;">6</div><div class="totalworking" id="tot_13" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_14" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>7</h6></div><div class="totalworking" id="tot_15" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_16" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>8</h6></div><div class="totalworking" id="tot_17" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_18" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>9</h6></div><div class="totalworking" id="tot_19" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_20" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>10</h6></div><div class="totalworking" id="tot_21" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_22" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>11</h6></div><div class="totalworking" id="tot_23" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_24" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>12</h6></div><div class="totalworking" id="tot_25" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_26" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>13</h6></div><div class="totalworking" id="tot_27" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_28" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>14</h6></div><div class="totalworking" id="tot_29" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_30" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>15</h6></div><div class="totalworking" id="tot_31" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_32" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>16</h6></div><div class="totalworking" id="tot_33" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_34" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>17</h6></div><div class="totalworking" id="tot_35" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_36" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>18</h6></div><div class="totalworking" id="tot_37" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_38" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>19</h6></div><div class="totalworking" id="tot_39" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_40" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;">20</div><div class="totalworking" id="tot_41" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_42" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>21</h6></div><div class="totalworking" id="tot_43" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_44" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>22</h6></div><div class="totalworking" id="tot_45" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_46" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>23</h6></div><div class="totalworking" id="tot_47" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_48" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>24</h6></div></div><hr>');
+					$("#Asia").append('<div id="'+name[countn]+'"><div class="row"><div class="col-md-6"><b>'+name[countn]+'</b></div><div class="col-md-6"><div style="float:left;color:green;font-weight:bold;" class="right_text" id="righttext"></div><input type="hidden" class="right_val" id="right_val" value="0"/></div></div><div class="totalworking" id="tot_1" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_2" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>1</h6></div><div class="totalworking" id="tot_3" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_4" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>2</h6></div><div class="totalworking" id="tot_5" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_6" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>3</h6></div><div class="totalworking" id="tot_7" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_8" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>4</h6></div><div class="totalworking" id="tot_9" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_10" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>5</h6></div><div class="totalworking" id="tot_11" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_12" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>6</h6></div><div class="totalworking" id="tot_13" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_14" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>7</h6></div><div class="totalworking" id="tot_15" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_16" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>8</h6></div><div class="totalworking" id="tot_17" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_18" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>9</h6></div><div class="totalworking" id="tot_19" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_20" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>10</h6></div><div class="totalworking" id="tot_21" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_22" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>11</h6></div><div class="totalworking" id="tot_23" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_24" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>12</h6></div><div class="totalworking" id="tot_25" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_26" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>13</h6></div><div class="totalworking" id="tot_27" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_28" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>14</h6></div><div class="totalworking" id="tot_29" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_30" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>15</h6></div><div class="totalworking" id="tot_31" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_32" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>16</h6></div><div class="totalworking" id="tot_33" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_34" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>17</h6></div><div class="totalworking" id="tot_35" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_36" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>18</h6></div><div class="totalworking" id="tot_37" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_38" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>19</h6></div><div class="totalworking" id="tot_39" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_40" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>20</h6></div><div class="totalworking" id="tot_41" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_42" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>21</h6></div><div class="totalworking" id="tot_43" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_44" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>22</h6></div><div class="totalworking" id="tot_45" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_46" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>23</h6></div><div class="totalworking" id="tot_47" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_48" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>24</h6></div><hr></div>');
+					  
+					$("#Asia").children().each(function(n, i) {
+					  var id = this.id;
+					 // alert(id);
+					 if($("#"+id).length>0){
+					   // alert(id);
+					   alid.push(id);
+					 }
+					  // do something with it
+					});
+				}else{
+				 // alert('2');
+				    var adtc=$("#example-getting-started").val();
+			        //var adtc_arr=adtc.split(",");
+					//name2=name;
+					  $("#Asia").children().each(function(n, i) {
+					  var id = this.id;
+					 // alert(id);
+					 if($("#"+id).length>0){
+					   // alert(id);
+					     alid.push(id);
+					 }
+					  // do something with it
+					});
+					  
+						//alert(ids);
+			          var df= arr_diff (alid, adtc);
+					  //alert($(this).val());
+					  if($("#"+df).length==0){
+						 $("#Asia").append('<div id="'+df+'"><div class="row"><div class="col-md-6"><b>'+df+'</b></div><div class="col-md-6"><div style="float:left;color:green;font-weight:bold;" id="righttext"></div><input type="hidden" id="right_val" value="0"/></div></div><div class="totalworking" id="tot_1" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_2" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>1</h6></div><div class="totalworking" id="tot_3" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_4" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>2</h6></div><div class="totalworking" id="tot_5" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_6" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>3</h6></div><div class="totalworking" id="tot_7" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_8" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>4</h6></div><div class="totalworking" id="tot_9" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_10" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>5</h6></div><div class="totalworking" id="tot_11" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_12" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>6</h6></div><div class="totalworking" id="tot_13" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_14" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>7</h6></div><div class="totalworking" id="tot_15" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_16" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>8</h6></div><div class="totalworking" id="tot_17" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_18" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>9</h6></div><div class="totalworking" id="tot_19" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_20" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>10</h6></div><div class="totalworking" id="tot_21" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_22" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>11</h6></div><div class="totalworking" id="tot_23" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_24" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>12</h6></div><div class="totalworking" id="tot_25" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_26" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>13</h6></div><div class="totalworking" id="tot_27" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_28" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>14</h6></div><div class="totalworking" id="tot_29" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_30" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>15</h6></div><div class="totalworking" id="tot_31" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_32" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>16</h6></div><div class="totalworking" id="tot_33" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_34" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>17</h6></div><div class="totalworking" id="tot_35" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_36" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>18</h6></div><div class="totalworking" id="tot_37" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_38" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>19</h6></div><div class="totalworking" id="tot_39" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_40" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>20</h6></div><div class="totalworking" id="tot_41" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_42" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>21</h6></div><div class="totalworking" id="tot_43" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_44" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>22</h6></div><div class="totalworking" id="tot_45" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_46" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>23</h6></div><div class="totalworking" id="tot_47" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_48" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>24</h6></div><hr></div>');
+					  }
+				    
+				
+				
+				}
+				if($("#example-getting-started").val()==null){
+				
+				  // alert('hello');
+				   $("#Asia").children().each(function(n, i) {
+					  var id = this.id;
+					 // alert(id);
+					 if($("#"+id).length>0){
+					   // alert(id);
+					    $('#'+id).remove();
+					 }
+					  // do something with it
+					});
+				}else{
+				    // alert('3');
+				    //alert($("#example-getting-started").val());
+					$("#Asia").children().each(function(n, i) {
+					  var id = this.id;
+					 // alert(id);
+					 if($("#"+id).length>0){
+					   // alert(id);
+					   alid.push(id);
+					 }
+					  // do something with it
+					});
+					var adtc=$("#example-getting-started").val();
+					 var df= arr_diff (alid, adtc);
+					 //alert(df);
+					  //alert($(this).val());
+					  /*if($("#"+df).length==0){
+						 $("#Asia").append('<div id="'+df+'"><div class="row"><div class="col-md-6"><b>'+df+'</b></div><div class="col-md-6"><div style="float:left;color:green;font-weight:bold;" id="righttext"></div><input type="hidden" id="right_val" value="0"/></div></div><div class="totalworking" id="tot_1" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_2" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>1</h6></div><div class="totalworking" id="tot_3" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_4" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>2</h6></div><div class="totalworking" id="tot_5" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_6" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>3</h6></div><div class="totalworking" id="tot_7" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_8" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>4</h6></div><div class="totalworking" id="tot_9" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_10" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>5</h6></div><div class="totalworking" id="tot_11" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_12" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>6</h6></div><div class="totalworking" id="tot_13" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_14" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>7</h6></div><div class="totalworking" id="tot_15" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_16" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>8</h6></div><div class="totalworking" id="tot_17" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_18" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>9</h6></div><div class="totalworking" id="tot_19" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_20" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>10</h6></div><div class="totalworking" id="tot_21" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_22" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>11</h6></div><div class="totalworking" id="tot_23" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_24" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>12</h6></div><div class="totalworking" id="tot_25" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_26" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>13</h6></div><div class="totalworking" id="tot_27" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_28" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>14</h6></div><div class="totalworking" id="tot_29" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_30" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>15</h6></div><div class="totalworking" id="tot_31" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_32" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>16</h6></div><div class="totalworking" id="tot_33" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_34" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>17</h6></div><div class="totalworking" id="tot_35" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_36" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>18</h6></div><div class="totalworking" id="tot_37" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_38" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>19</h6></div><div class="totalworking" id="tot_39" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_40" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>20</h6></div><div class="totalworking" id="tot_41" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_42" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>21</h6></div><div class="totalworking" id="tot_43" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_44" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>22</h6></div><div class="totalworking" id="tot_45" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_46" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>23</h6></div><div class="totalworking" id="tot_47" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_48" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>24</h6></div></div><hr>');
+					  }
+					  */
+					  $('#'+df).remove();
+				    
+					
+					
+					
+				}
+				
+				//alert("You have selected the name - " + name.join(", "));
+				
+		 });
+	     var tsele=0;
+			 $(".totalworking").click(function(){
+		     //alert('hello');
+			  $(this).removeClass('ui-selected totalworking');
+		      $(this).toggleClass('clicked') ;
+			 });
+			 var selecteddiv=[];
+       
+		$('#Asia').bind("mousedown", function(e){e.metaKey = true;})
+		.selectable({
+				 selected: function (event, ui) {
+                if ($(ui.selected).hasClass('click-selected')) {
+					//alert($(ui.selected).attr('id'));
+					 var nonwatch=$(ui.selected).attr('id').split("_");
+					  
+                   
+                    $(ui.selected).removeClass('ui-selected click-selected');
+					var tsele=0;
+					//$("#right_val_new").val();
+					var rvnew=parseFloat($("#right_val_new").val());
+					for(var tselect=1;tselect<48;tselect++)
+					{
+						if($("#tot_"+tselect).hasClass('click-selected')){
+							 tsele++ ;
+							 var tsd=parseFloat(tsele/2);
+							//console.log(tselect);
+							$("#righttext").text("Total working hours "+tsd+ " Hrs.");
+							var rv=parseFloat($("input.ui-selectee").val(tsd));
+							if(rvnew>0)
+							{
+								var newrv=parseFloat(tsd)-rvnew;
+							}else{
+								
+								var newrv=0;
+							}
+							//$("#righttextnonwatch").text("Total working hours Watchable "+newrv+ " Hrs. and Non Watchable "+rvnew+ " Hrs." );
+						}
+						
+						
+						
+					}
+					$("div").removeClass("ui-selectee");
+
+                } else {
+					 //alert( $(ui.selected).attr('id') );
+					 //selecteddiv.push($(ui.selected).attr('id'));
+					 var nonwatch=$(ui.selected).attr('id').split("_");
+					 //$("#tot2_"+nonwatch[1]).addClass('ui-selectee ui-selected click-selected');
+                    $(ui.selected).addClass('click-selected');
+					//console.log($("#tot_"+nonwatch[1]).css('background-color'));
+					 var tsele=0;
+					 //var rvnew=parseFloat($("#right_val_new").val());
+					 //var rvnew=0;
+					for(var tselect=1;tselect<48;tselect++)
+					{
+						if($("#tot_"+tselect).hasClass('click-selected')){
+							 tsele++ ;
+							 var tsd=parseFloat(tsele/2);
+							//console.log(tselect);
+							//$("#righttext").text("Total working hours "+tsd+ " Hrs.");
+							parseFloat($("input.ui-selectee").val(tsd));
+							
+							console.log(rv);
+							if(rvnew>0)
+							{
+								var newrv=parseFloat(tsd)-rvnew;
+							}else{
+								
+								var newrv=0;
+							}
+							
+							$("#righttextnonwatch").text("Total working hours Watchable "+tsd+ " Hrs. and Non Watchable "+parseFloat(newrv)+ " Hrs." );
+						}
+						
+						
+					}
+					
+					//console.log(tsele);
+					$("div").removeClass("ui-selectee");
+					$(".ui-selectable>div").removeClass("ui-selected click-selected");
+					
+					
+                }
+				
+            },
+            unselected: function (event, ui) {
+                $(ui.unselected).removeClass('click-selected');
+            }
+			  
+			}); 
+			function arr_diff (a1, a2) {
+
+			var a = [], diff = [];
+
+			for (var i = 0; i < a1.length; i++) {
+				a[a1[i]] = true;
+			}
+
+			for (var i = 0; i < a2.length; i++) {
+				if (a[a2[i]]) {
+					delete a[a2[i]];
+				} else {
+					a[a2[i]] = true;
+				}
+			}
+
+			for (var k in a) {
+				diff.push(k);
+			}
+
+			return diff;
+		}
+    });
+</script>
+	
+    
+
+<!-- Visual Studio Browser Link -->
+<!--<script type="application/json" id="__browserLink_initializationData">
+    {"appName":"Chrome","requestId":"9dbf6f3811a240a9b9a9e67200ff5851"}
+</script>
+<script type="text/javascript" src="script4.js" async="async"></script>
+<!-- End Browser Link -->
+
+</body>
+</html>

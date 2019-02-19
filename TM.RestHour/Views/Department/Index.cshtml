@@ -1,0 +1,325 @@
+﻿@model TM.RestHour.Models.Department
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/Department.js"></script>
+<link href="~/link/css/rank.css" rel="stylesheet" />
+
+
+
+
+<body style="background-image: url(../background/depart.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="ta">Department</h2>
+        </div>
+        <div class="col-md-7 bac">
+
+<div class="col-md-8" style="width: 93.667%;">
+    <div class="card">
+        <div style="width:99%; margin:0 auto" class="tablecontainer">
+            <button type="button" class="button1" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add Department</button><br /><br />
+            @Html.Hidden("myUrlForAssignCrew", @Url.Action("GetDepartmentByIDForAssignCrew", "Department"))
+
+            @Html.Hidden("myUrl", @Url.Action("GetDepartmentByID", "Department"))
+            @*   @Html.Hidden("addnew", @Url.Action("AddNewRanks", "Ranks"))*@
+            @Html.Hidden("Departmentadd", @Url.Action("Add", "Department"))
+            @Html.Hidden("loaddata", @Url.Action("LoadData", "Department"))
+            @Html.Hidden("deletedata", @Url.Action("DeleteDepartment", "Department"))
+
+               @Html.Hidden("UpdateAssignCrew", @Url.Action("UpdateAssignCrew", "Department"))
+            @*    @Html.Hidden("updateRank", @Url.Action("Update", "Ranks"))
+
+        @Html.Hidden("lcd", @Url.Action("LoadChildData", "Ranks"))
+        @Html.Hidden("myUrlid", @Url.Action("GetParentFundCategoryByFundCategoryName", "Ranks"))
+        @Html.Hidden("count", @Url.Action("CountRows", "Ranks"))*@
+            <input type="hidden" id="hdncount" />
+
+            @*<p><font color="blue"><i>* please drag the Order column up/down to move ranks up/down</i></font></p>*@
+            @*RanksMastertable   certtable*@
+            <input type="hidden" id="hdnrole" />
+            <table id="certtable" class="display" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Admin</th>
+                        <th>Edit</th>
+                        @*<th>Assign Crew</th>*@
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:890px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Department</h4>
+            </div>
+
+
+
+
+            <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
+                <fieldset class="for-panel">
+                    <legend>Please Enter Department Name And Code</legend>
+                    <div class="row">
+
+
+
+                        <div class="col-sm-3" style="width: 63%;">
+                            <div class="form-horizontal">
+                                <label class="col-xs-5 control-label">Department Name:</label>
+                                <input type="text" class="form-control" id="DepartmentMasterName" placeholder="Department Master Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                        @*<div class="col-sm-3" style="width: 63%;">
+                            <div class="form-horizontal">
+                                <label class="col-xs-5 control-label">Department Code:</label>
+                                <input type="text" class="form-control" id="DepartmentMasterCode" placeholder="Department Master Code" />
+                            </div>
+                        </div>*@
+
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                        <div class="col-sm-3" style="width: 63%;">
+                            <div class="form-horizontal">
+                                <label class="col-xs-5 control-label">Admin Crew:</label>
+                                @*@Html.DropDownListFor(model => model.xyz,(IEnumerable<SelectListItem>)ViewBag.Ranks,"Select", new { @class = "form-control" })*@
+                                @*@Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control" })*@
+                                @Html.ListBoxFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, new { @class = "listbox", @multiple = "multiple", @id = "ddlAdmCru" })
+
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" id="DepartmentMasterID"  class="form-control"/>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
+                <button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModalForAdminCrew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:890px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Admin Crew</h4>
+            </div>
+            <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
+                <fieldset class="for-panel">
+                    <legend>Select Crew Administrator</legend>
+                    <div class="row">
+
+
+                        <div class="col-sm-3" style="width: 63%;">
+                            <div class="col-md-7">
+                                <label class="col-xs-5 control-label">Crew:</label>
+                                @Html.ListBoxFor(model => model.IDUser, (IEnumerable<SelectListItem>)ViewBag.CrewUser, new { @class = "listbox", @multiple = "multiple", @id = "ddlAllCrew" })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+
+
+                        <div class="col-sm-3" style="width: 63%;">
+                            <div class="col-md-7">
+                                <label class="col-xs-5 control-label">Admin:</label>
+                                <select id="ddlDeptAdmin"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" id="DepartmentMasterID" />
+                        </div>
+                    </div>
+</fieldset>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="button" id="btnAdd" onclick="return UpdateAssignCrew();" style="width:86px;">Add/Update</button>
+                <button type="button" class="button" id="btnUpdate" style="display:none; width:86px;" onclick="UpdateAssignCrew();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </body>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script src="dist/dual-listbox.js"></script>
+
+    <script src="~/Scripts/jquery.typeahead.js"></script>
+    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
+    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
+    <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            SetUpGrid();
+
+            var numbers = [1, 2, 3, 4, 5];
+
+            for (var i = 0; i < numbers.length; i++) {
+                $('<option/>').val(numbers[i]).html(numbers[i]).appendTo('#items');
+            }
+        //    $('#example-clear-after-filter-selection').multiselect({
+        //        buttonContainer: '
+        //',
+        //            enableFiltering: true,
+        //        onChange: function ($option) {
+        //            // Check if the filter was used.
+        //            var query = $('#example-clear-after-filter-selection-container li.multiselect-filter input').val();
+
+        //            if (query) {
+        //                $('#example-clear-after-filter-selection-container li.multiselect-filter input').val('').trigger('keydown');
+        //            }
+        //        }
+        //    });
+
+
+
+            var orderCount = 0;
+            $('.listbox').multiselect({
+                onChange: function (option, checked) {
+                    if (checked) {
+                        orderCount++;
+                        $(option).data('order', orderCount);
+                    }
+                    else {
+                        $(option).data('order', '');
+                    }
+                },
+                buttonText: function (options) {
+                    if (options.length === 0) {
+                        return 'None selected';
+                    }
+                    else {
+                        var selected = [];
+                        options.each(function () {
+                            selected.push([$(this).text(), $(this).data('order')]);
+                        });
+
+                        selected.sort(function (a, b) {
+                            return a[1] - b[1];
+                        });
+
+                        var text = '';
+                        for (var i = 0; i < selected.length; i++) {
+                            text += selected[i][0] + ', ';
+                        }
+
+                        return text.substr(0, text.length - 2);
+                    }
+                }
+            });
+
+
+
+
+
+            //var GroupsJsonObject = { WF: [] };
+
+            //$('#btnSave').on('click', function () {
+            //    var checkedIds = $('#ddlgrp').val();
+            //    GroupsJsonObject.WF.push({ d: checkedIds.join(",") });
+            //    //  alert(checkedIds);   ////////////////////////////////////////////
+            //    //debugger;
+
+            //    $.ajax({
+            //        url: saveurl,
+            //        data:
+            //        JSON.stringify({
+            //            ranks: $('#RankID').val(),
+            //            selectedGroups: JSON.stringify(GroupsJsonObject)
+            //        }),
+            //        type: "POST",
+            //        contentType: "application/json;charset=utf-8",
+            //        dataType: "json",
+            //        success: function (result) {
+
+            //            //alert('Data Saved Successfully');
+
+            //            ClearValues();
+            //        }
+            //    });
+
+
+            //});
+
+            //function ClearValues() {
+            //    // $('#RankID').val();
+            //    $("#RankID option:selected").removeAttr("selected");
+            //    $('#ddlgrp option:selected').each(function () {
+            //        $(this).prop('selected', false);
+            //    })
+            //    $('#ddlgrp').multiselect('refresh');
+
+
+            //}
+
+
+
+
+
+            //ShowChildren(9);
+        });
+
+    </script>
+
+}

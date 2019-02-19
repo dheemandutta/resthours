@@ -1,0 +1,281 @@
+﻿<style>
+    div.asia {
+        width: 200px;
+        font-family: Verdana;
+        margin: 4px;
+        text-align: center;
+        padding: 4px;
+    }
+
+    #Asia {
+        position: absolute;
+        left: 10px;
+    }
+
+    div.ui-selected {
+        border: 4px solid #aaa;
+        background-color: #44c765;
+    }
+
+    h6 {
+        margin-top: 17px;
+        margin-left: 4px;
+        background: white;
+    }
+    /* div.ui-selecting {border:4px dotted #000; background-color:yellow;}*/
+    /*div.ui-selectee{background-color:white;}*/
+    .row ui-selectee, .col-md-6 ui-selectee, .right_text ui-selectee, .right_val ui-selectee {
+        background-color: white;
+    }
+
+
+
+    div.asia {
+        width: 200px;
+        font-family: Verdana;
+        margin: 4px;
+        text-align: center;
+        padding: 4px;
+    }
+
+    #Asia1 {
+        position: absolute;
+        left: 10px;
+    }
+
+    div.ui-selected {
+        border: 4px solid #aaa;
+        background-color: #44c765;
+    }
+
+    h6 {
+        margin-top: 17px;
+        margin-left: 4px;
+        background: white;
+    }
+    /* div.ui-selecting {border:4px dotted #000; background-color:yellow;}*/
+    /*div.ui-selectee{background-color:white;}*/
+    .row ui-selectee, .col-md-6 ui-selectee, .right_text ui-selectee, .right_val ui-selectee {
+        background-color: white;
+    }
+</style>
+
+<div class="row">
+    <div>
+        <div class="col-md-8">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    @*<h5></b>Resting Hours</b></h5>*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="asia" style="margin:0 auto;display:inline-block;width:15px;height:15px;border:1px solid #44c765;float:left;background:#44c765;"></div>&nbsp;OnDuty
+
+                </div>
+                <div class="col-md-2">
+                    <div class="asia" style="margin:0 auto;display:inline-block;width:15px;height:15px;border:1px solid ;float:left;;"></div>&nbsp;Rest
+
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div style="overflow:auto;width:90%;">
+
+
+                        <!-- This is the div that does the trick: -->
+                        <div style="width:1200px;" id="Asia">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+
+            </div>
+            <div class="row">
+                <hr>
+            </div>
+
+            <div class="row">
+
+            </div>
+            
+
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var name = 'ts1';
+    var selectedName = [];
+    var alid = [];
+
+
+
+    $("#Asia").append('<div id="' + name + '"><div class="row"><div class="col-md-6"><b>' + '' + '</b></div><div class="col-md-6"><div style="float:left;color:green;font-weight:bold;" class="right_text" id="righttext"></div><input type="hidden" class="right_val" id="right_val" value="0"/></div></div><div class="totalworking" id="tot_1" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_2" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>1</h6></div><div class="totalworking" id="tot_3" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_4" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>2</h6></div><div class="totalworking" id="tot_5" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_6" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>3</h6></div><div class="totalworking" id="tot_7" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_8" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>4</h6></div><div class="totalworking" id="tot_9" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_10" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>5</h6></div><div class="totalworking" id="tot_11" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_12" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>6</h6></div><div class="totalworking" id="tot_13" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_14" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>7</h6></div><div class="totalworking" id="tot_15" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_16" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>8</h6></div><div class="totalworking" id="tot_17" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_18" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>9</h6></div><div class="totalworking" id="tot_19" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_20" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>10</h6></div><div class="totalworking" id="tot_21" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_22" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>11</h6></div><div class="totalworking" id="tot_23" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_24" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>12</h6></div><div class="totalworking" id="tot_25" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_26" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>13</h6></div><div class="totalworking" id="tot_27" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_28" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>14</h6></div><div class="totalworking" id="tot_29" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_30" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>15</h6></div><div class="totalworking" id="tot_31" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_32" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>16</h6></div><div class="totalworking" id="tot_33" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_34" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>17</h6></div><div class="totalworking" id="tot_35" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_36" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>18</h6></div><div class="totalworking" id="tot_37" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_38" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>19</h6></div><div class="totalworking" id="tot_39" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_40" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>20</h6></div><div class="totalworking" id="tot_41" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_42" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>21</h6></div><div class="totalworking" id="tot_43" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_44" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>22</h6></div><div class="totalworking" id="tot_45" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_46" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>23</h6></div><div class="totalworking" id="tot_47" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"></div><div class="totalworking" id="tot_48" style="border:.5px solid black;width:15px;height:15px;display:inline-block;margin:0 auto;float:left;vertical-align:text-top;"><h6>24</h6></div><hr></div>');
+
+    $("#Asia").children().each(function (n, i) {
+        var id = this.id;
+        // alert(id);
+        if ($("#" + id).length > 0) {
+            // alert(id);
+            alid.push(id);
+        }
+        // do something with it
+    });
+
+    var tsele = 0;
+    // handle click
+    $(".totalworking").click(function () {
+        //alert('hello');
+        $(this).removeClass('ui-selected totalworking');
+        $(this).toggleClass('clicked');
+    });
+    var selecteddiv = [];
+    //handle drag select
+    $('#Asia').bind("mousedown", function (e) { e.metaKey = true; })
+    .selectable({
+        selected: function (event, ui) {
+
+            if ($(ui.selected).hasClass('click-selected')) {
+                //alert($(ui.selected).attr('id'));
+                //console.log('1');
+                var nonwatch = $(ui.selected).attr('id').split("_");
+
+
+                $(ui.selected).removeClass('ui-selected click-selected');
+                var tsele = 0;
+                //$("#right_val_new").val();
+                var rvnew = parseFloat($("#right_val_new").val());
+                for (var tselect = 1; tselect < 48; tselect++) {
+                    if ($("#tot_" + tselect).hasClass('click-selected')) {
+                        tsele++;
+                        var tsd = parseFloat(tsele / 2);
+                        //console.log(tselect);
+                        $("#righttext").text("Total working hours " + tsd + " Hrs.");
+                        var rv = parseFloat($("#right_val").val(tsd));
+                        if (rvnew > 0) {
+                            var newrv = parseFloat(tsd) - rvnew;
+                        } else {
+
+                            var newrv = 0;
+                        }
+                        //$("#righttextnonwatch").text("Total working hours Watchable "+newrv+ " Hrs. and Non Watchable "+rvnew+ " Hrs." );
+                    }
+
+
+
+                }
+                //$("div").removeClass("ui-selectee");
+                console.log(1);
+                $("div,b,input").removeClass("ui-selectee");
+                //$("div.row").removeClass("ui-selected");
+                $(".col-md-6.ui-selecting").removeClass("ui-selecting");
+                $(".col-md-6.ui-selecting").removeClass("ui-selecting");
+                $(".ui-selectable>div").removeClass("ui-selected click-selected");
+                $("div.row.ui-selected").removeClass("ui-selected");
+
+                $(".ui-selectable").find(".row").removeClass("ui-selected ");
+
+            } else if ($(ui.selected).hasClass('row ui-selected') || $(ui.selected).hasClass('col-md-6 ui-selected')) {
+                //alert('hello');
+                $(".row").removeClass("ui-selected");
+                $(".col-md-6").removeClass("ui-selected");
+
+                console.log('2');
+
+            }
+
+
+
+            else {
+
+                //console.log('3');
+                //alert( $(ui.selected).attr('id') );
+                //selecteddiv.push($(ui.selected).attr('id'));
+                var nonwatch = $(ui.selected).attr('id').split("_");
+                //$("#tot2_"+nonwatch[1]).addClass('ui-selectee ui-selected click-selected');
+                $(ui.selected).addClass('click-selected');
+                //console.log($("#tot_"+nonwatch[1]).css('background-color'));
+                var tsele = 0;
+                //var rvnew=parseFloat($("#right_val_new").val());
+                //var rvnew=0;
+                for (var tselect = 1; tselect < 48; tselect++) {
+                    if ($("#tot_" + tselect).hasClass('click-selected')) {
+                        tsele++;
+                        var tsd = parseFloat(tsele / 2);
+                        //console.log(tselect);
+                        //$("#righttext").text("Total working hours "+tsd+ " Hrs.");
+                        parseFloat($("#right_val").val(tsd));
+
+                        console.log(rv);
+                        if (rvnew > 0) {
+                            var newrv = parseFloat(tsd) - rvnew;
+                        } else {
+
+                            var newrv = 0;
+                        }
+
+                        $("#righttextnonwatch").text("Total working hours Watchable " + tsd + " Hrs. and Non Watchable " + parseFloat(newrv) + " Hrs.");
+                    }
+
+
+                }
+
+                //console.log(tsele);
+
+                $("div,b,input").removeClass("ui-selectee");
+                //$("div.row").removeClass("ui-selected");
+                $(".col-md-6.ui-selecting").removeClass("ui-selecting");
+                $(".col-md-6.ui-selecting").removeClass("ui-selecting");
+                $(".ui-selectable>div").removeClass("ui-selected click-selected");
+                $("div.row.ui-selected").removeClass("ui-selected");
+                //$(".row ui-selected").removeClass("ui-selected");
+                $(".ui-selectable").find(".row").removeClass("ui-selected ");
+
+
+
+
+            }
+
+
+        },
+        unselected: function (event, ui) {
+            $(ui.unselected).removeClass('click-selected');
+
+        }
+
+    });
+
+    function arr_diff(a1, a2) {
+
+        var a = [], diff = [];
+
+        for (var i = 0; i < a1.length; i++) {
+            a[a1[i]] = true;
+        }
+
+        for (var i = 0; i < a2.length; i++) {
+            if (a[a2[i]]) {
+                delete a[a2[i]];
+            } else {
+                a[a2[i]] = true;
+            }
+        }
+
+        for (var k in a) {
+            diff.push(k);
+        }
+
+        return diff;
+    }
+</script>

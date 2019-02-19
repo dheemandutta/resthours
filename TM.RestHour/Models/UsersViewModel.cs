@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace TM.RestHour.Models
+{
+    public class UsersViewModel
+    {
+        public Users Users { get; set; }
+        public List<Users> UsersList { get; set; }
+    }
+}

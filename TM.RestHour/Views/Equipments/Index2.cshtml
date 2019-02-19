@@ -1,0 +1,252 @@
+﻿@model TM.RestHour.Models.Equipments
+
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
+<link href="~/link/css/rank.css" rel="stylesheet" />
+
+<script src="~/Scripts/notify.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/Equipments.js"></script>
+
+@Html.Hidden("SaveMedicine", @Url.Action("SaveMedicine", "Equipments"))
+@Html.Hidden("loaddata", @Url.Action("LoadData2", "Equipments"))
+<style>
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+    }
+    .bac1 {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+        height:450px;
+    }
+</style>
+
+<body style="background-image: url(../background/Medicine.jpg);
+    background-size: cover;">
+    <div class="">
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="ta" style="color:#000; font-size: 41px;">Medicine Inventory</h2>
+            </div>
+            <div class="col-md-7">
+                <div class="row" style="margin-left: -184px;">
+                    <div class="col-md-8 bac1" style="height: 440px;">
+                        <div class="">
+                            <div style="margin:0 auto" class="tablecontainer">
+                                <button type="button" class="button1" data-toggle="modal" data-target="#myModal" onclick="clearTextBox2();">Add Medicine</button><br /><br />
+                                <input type="hidden" id="hdnrole" />
+                                <table id="Medicinetable" class="display" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Medicine Name</th>
+                                            <th>Quantity</th>
+                                            <th>Expiry Date</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="width: 500px;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Add Medicine</h4>
+                                            </div>
+                                            <div class="modal-dialog" id="dvuserdetailsn" style="width: 400px;">
+                                                <fieldset class="for-panel">
+
+                                                    @Html.Hidden("isSuperAdminUser", Session["SuperAdmin"].ToString())
+                                                    <input type="hidden" id="hdnrole" />
+                                                    @*@if (Session["SuperAdmin"].ToString() == "True")|| (Session["SuperAdmin"].ToString() == "True")*@
+                                                    @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
+                                        {
+
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="hidden" id="MedicineID" />
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="">
+
+                                                        <div class="form-group">
+                                                            <label for="MedicineName">Medicine Name</label>
+                                                            <input type="text" class="form-control" id="MedicineName" placeholder="Medicine Name" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for=" Quantity">Quantity</label>
+                                                            <input type="number" class="form-control" id="Quantity" placeholder="Quantity" />
+                                                        </div>
+
+                                                        <button type="button" class="button1" id="btnAdd" onclick="return SaveMedicine();" style="width:138px;">Add</button>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                            }
+                            else
+                            {
+
+                                <form>
+                                    <div class="form-group">
+                                        <input type="hidden" id="MedicineID" />
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="card">
+
+                                            <div class="form-group">
+                                                <label for="MedicineName">Medicine Name</label>
+                                                <input type="text" class="form-control" id="MedicineName" placeholder="Medicine Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for=" Quantity">Quantity</label>
+                                                <input type="number" class="form-control" id="Quantity" placeholder="Quantity" />
+                                            </div>
+
+                                            @*<button type="button" class="button1" id="btnAdd" onclick="return AddEquipments();" style="width:138px;">Add</button>*@
+
+                                        </div>
+                                    </div>
+                                </form>
+
+                }
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    @*<div class="col-md-7 bac">
+                <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
+            </div>*@
+
+
+                    <div class="col-md-3 bac">
+                        <div class="">
+
+                            <div>
+                                @using (Html.BeginForm("Index2", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <span style="font-size:20px;">Select File:</span>
+                        <br />
+                        <input type="file" name="postedFile" />
+                        @*<hr />*@
+                        <br />
+                        <input type="submit" value="Upload" class="button1" />
+                        <br /><br />
+                        <span style="color:green">@ViewBag.Message</span>
+        }
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box1">
+                                @*<img src="~/background/excel.png" class="img-responsive" style="height:100%; width:100%;" />*@
+                            </div>
+                            <div class="export-template-label" style="display:inline-block;margin:4px 5px -8px 0px;">
+                                <a href="../../MedicineNew/MedicineList.xlsx" target="_self" download>
+                                    <img src="#" alt="Download Template" style="float:left; width:160px;" class="button1">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+                </div>
+
+            </div>
+            
+</body>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        $(document).ready(function () {
+
+            SetUpGrid2();
+
+        });
+
+
+
+
+
+        $('#txtUploadFile').on('change', function (e) {
+            var files = e.target.files;
+            //var myID = 3; //uncomment this to make sure the ajax URL works
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        data.append("file" + x, files[x]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/MyController/UploadFile?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            console.log(result);
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+        });
+
+    </script>
+
+}
