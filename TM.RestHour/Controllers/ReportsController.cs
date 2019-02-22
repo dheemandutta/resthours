@@ -249,7 +249,7 @@ namespace TM.RestHour.Controllers
             List<ReportsPOCO> reportsList = new List<ReportsPOCO>();
             reportsList = reportsBL.GetCrewIDFromWorkSessionsForWeb(reportsPC, int.Parse(Session["VesselID"].ToString()));
             //32 to 36
-            string[] bookedHours = new string[36];
+            string[] bookedHours = new string[62];
             int row = 0;
             foreach (ReportsPOCO item in reportsList)
             {
