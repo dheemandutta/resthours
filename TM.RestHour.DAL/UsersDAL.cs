@@ -13,7 +13,7 @@ namespace TM.RestHour.DAL
 {
     public class UsersDAL
     {
-        public int GetUserAuthentication(string Username, string Password)
+        public int GetUserAuthentication(string Username,  string Password)
         {
             List<UsersPOCO> usersPOList = new List<UsersPOCO>();
             int returnedRows=0;
