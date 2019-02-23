@@ -3,11 +3,308 @@
     ViewBag.Title = "Index";
 }
 
+<link href="~/link/css/static.css" rel="stylesheet" />
+<style>
+</style>
+
 <body style="background-image: url(../background/page1.jpg);
     background-size: cover;">
     <div class="row">
-        <div class="col-md-4"><h1 class="ta">Help</h1></div>
-        <div class="col-md-8">
+        <div class="col-md-5"><h1 class="ta">Help</h1></div>
+        @*<div class="col-md-8">
+        </div>*@
+
+        <div class="col-md-7 backk">
+
+
+            <div class="">
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Login</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                This is the login page of the RestHours  Application . Users can login via this page.
+                                <img src="~/background/HLogin.png" style="width: 100%; float: right;" width="42" height="300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
+                                    Admin Menu                                  
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTen" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                If the User logged in as an admin.
+                                <img src="~/background/HMnuAdmin.png" style="width: 100%; float: right;" width="42" height="60">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">User Menu</a>
+                            </h4>
+                        </div>
+                        <div id="collapseEleven" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                If the User logged in as a normal user.
+                                <img src="~/background/HMnuUser.png" style="width: 100%; float: right;" width="42" height="60">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseone">Time Sheet</a>
+                            </h4>
+                        </div>
+                        <div id="collapseone" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+
+                                <img src="~/background/HTimeSheetUser.png" style="width: 100%; float: right;" width="42" height="400">
+                                <p>
+                                    <strong>1</strong>: User needs to select the date in which he wants to fill his timesheet
+</p>
+                                <p>
+                                    <strong>2</strong>: User needs to enter his timesheet data here ( start time and end time ) of the work he has done the selected day. User can enter his work data in three slots is required. For example, in the picture give below the user  has worked on 13th February 2019 for the following hours
+                                </p>
+
+                                <p>
+                                    0500 – 0900 (05:00 AM  to 09:00 AM)
+                                </p>
+                                <p>
+                                    1400 – 1700 ( 02:00 PM to 05:00 PM)
+                                </p>
+                                <p>
+                                    1900 – 2100 (07:00 PM to 09:00 PM)
+                                </p>
+
+                                <p>
+                                    Note :All times must be entered in a 24 hour (hhhh) format.
+                                </p>
+                                <p>
+                                    Note: Start time needs to be less than corresponding end time.
+                                </p>
+
+                                <img src="~/background/sampletimesheet.jpg" style="width: 100%; float: right;" width="42" height="300">
+
+
+                                <p>
+                                    <strong>3</strong> : Clicking this icon give the use a small floating guide on how to fill in the times as mentioned in point 2
+                                </p>
+                                <p>
+                                    <strong>4</strong> :  If any user has more than 3 time rages that he has worked in a day , he can click this button and add another row to enter his time.
+                                </p>
+                                <p>
+                                    <strong>5</strong>. Any extra added rows can be deleted by clicking this button before saving data. You cannot delete the top three rows however.
+                                </p>
+                                <p>
+                                    <strong>7</strong> : This area is read-only for the user. It helps the user to show the non-conformities (if any) with regards to the time that he has entered for the day. Like in the example picture given above we can see 2 non-conformities (N/C) corresponding to the entered time.
+                                </p>
+
+                                <p>
+                                    <strong>8</strong>: User can add any comments as he wished to add for the day.
+                                </p>
+
+                                <p>
+                                    Once filling is done for a certain day, the user will click theAdd button down below to save the changes for that day. A green floating message appears saying that data is successfully saved.
+                                </p>
+
+                                <p>
+                                    <strong>6</strong>: Once a certain day’s changes are saved the user can click the Copy Timesheet button and then click any other in the calendar that he wishes to fill data. Once that date is clicked, the time entry text boxes rest to 0000. Now if the user clicks on Copy Timesheet button again all the data from the previous copied date is filled in the time entry boxes. The user can just save the data as it is for that date or make minor modifications if any. This is similar to a copy-paste feature.
+                                    This feature can also used as follows. The user opens the timesheet and clicks of any date in the calendar that he has already saved data. When data for that day is loaded in the time entry boxes, the user clicks on the Copy Timesheetbutton. This will copy the data from that date. Now the user can click the Copy Timesheet button and then click any other in the calendar that he wishes to fill data. Once that date is clicked, the time entry text boxes rest to 0000. Now if the user clicks on Copy Timesheet button again all the data from the previous copied date is filled in the time entry boxes. The user can just save the data as it is for that date or make minor modifications if any.
+                                </p>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo">Add Crew</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Admin can add a crew member here
+                                <img src="~/background/HAddCrew.png" style="width: 100%; float: right;" width="42" height="500">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsethree">
+                                    Crew List
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsethree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Admin can see all the crew of Active Users and Inactive Users.
+                                <img src="~/background/HCrewList.png" style="width: 100%; float: right;" width="42" height="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsefour">
+                                    Crew Import
+
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsefour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                With the advent of internet and personal computers, the good old era of evening smoke room get together’s has greatly reduced on most ships. Try not to stay confined in your cabin after work. Make it a point to mix around and socialise. The more you stay separated from everyone, the lonelier it can get. The sea is a hostile place to work and we all need help often. Being a social animal and having people to like you can be a great way to make your life easier.<br /> Playing games can be another good way to socialise
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsefive">
+                                    Eat Healthy
+
+
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsefive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Binging on junk and unhealthy food make your mind and body less able to take the stress out of your work. Ensure that you follow a balanced diet on board. Go easy on those beers (applicable to only those lucky enough to still have alcohol on board) and soft drinks. Unnecessary calories should be avoided. Those extra calories will not only make you unfit, but could be detrimental .
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsesix">
+                                    Meditate / Pray
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsesix" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Prayers have a very solemn influence on our minds. It gives us perspective and keeps the mind at peace. Even a short prayer after waking up can be a great way to kick start a demanding work day. For those who aren’t really religious, simple meditation techniques such as breathing, voice aided meditation etc. can help to remain calm, focussed and motivated. Some people perform Yoga which combines exercises and meditation. Whatever works for you must be made a part of your daily activities.
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseseven">
+                                    Watch good movies and Documentaries
+
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseseven" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Watching movies is a great way to relax. But do not let it become the only way you spend your free time. Carry a good collection of documentary, movies that interest you. It will only help you enhance your knowledge. But preferably watch them in group or in company of other colleagues
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseight">
+                                    Watch good movies and Documentaries
+
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseight" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Watching movies is a great way to relax. But do not let it become the only way you spend your free time. Carry a good collection of documentary, movies that interest you. It will only help you enhance your knowledge. But preferably watch them in group or in company of other colleagues
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsenine">
+                                    Build up on your hobbies
+
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsenine" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                A lot of us think that when we are out at sea, we should not indulge in hobbies that we like. But it is in fact the other way round. Do what your heart pleases. Some people like writing while some others prefer cooking. Do not hold yourself back on doing anything that you like. People with interest in photography should consider investing in a good camera. The sea presents some of the best opportunities to take spectacular photographs.
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseaa">
+                                    Play by the Rules
+
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseaa" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Human are bound to have temptation to bend the rules every once in a while to get out of a situation. Bending rules will be of absolutely no good for you professionally and will only cause problems in the longer run. Your mind will never be at ease knowing that you are doing something which is wrong. What’s worse is that some people have the wrong notion that they are helping out their companies by doing illegal things such as pumping out bilges or hiding dangerous defects. This false sense of loyalty is very dangerous and should be chucked out of your system soonest possible. Companies will never support you if you are in the wrong knowingly. All the sweat, blood and grime that has gone into building your career will come to a naught by one senseless act. Playing by the rules might require a little bit of extra effort in the short term, but will ensure that your conscience remains clear. A clear conscience will only help you remain stress free, focused and motivated.
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsebb">
+                                    Fake it till you Make it
+
+
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsebb" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                We all face times when no amount of pep talk or any of the above activities help. In such situations, it is best to just pretend to have a positive outlook. Force yourself to have a positive body language. Lie to yourself that you are motivated, driven and kicked. Eventually, this will become your normal outlook and things will automatically fall in place. Coming out of the rut is very important
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
+
+
     </div>
 </body>
