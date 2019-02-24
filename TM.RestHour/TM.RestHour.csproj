@@ -253,15 +253,16 @@
     <Content Include="background\Flag_of_ILO.svg" />
     <Content Include="background\food.jpg" />
     <Content Include="background\HAddCrew.png" />
-    <Content Include="background\HAddCrew1.png" />
+    <Content Include="background\HCompanyDetails.png" />
     <Content Include="background\HComplianceReport.png" />
     <Content Include="background\HCrewInport.jpg" />
     <Content Include="background\HCrewList.png" />
     <Content Include="background\HCrewServiceTerms.png" />
+    <Content Include="background\HDailyWorkandRestHour.png" />
     <Content Include="background\HDepartment.png" />
     <Content Include="background\Health.jpg" />
     <Content Include="background\health\1.jpg" />
-    <Content Include="background\HLogin Big.png" />
+    <Content Include="background\HIMOCrewList.png" />
     <Content Include="background\HLogin.png" />
     <Content Include="background\HLoginRi.png" />
     <Content Include="background\HMailServerDetails.png" />
@@ -269,6 +270,7 @@
     <Content Include="background\HManageVesselDetails.png" />
     <Content Include="background\HMnuAdmin.png" />
     <Content Include="background\HMnuUser.png" />
+    <Content Include="background\HMonthlyView.png" />
     <Content Include="background\HMonthlyWorkHours.png" />
     <Content Include="background\HRegime.png" />
     <Content Include="background\HResetPassword.png" />
