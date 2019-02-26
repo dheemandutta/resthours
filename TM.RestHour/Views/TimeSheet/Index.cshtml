@@ -107,7 +107,7 @@
 
 									<div class="col-md-4" style="margin-top:14px; padding: 0 0px 0 18px;">
 
-										<button class="button1" type="button" id="btnCopyTimeSheet" style="width:142px;" disabled="disabled">Copy Time Sheet</button>
+										<button class="button1" type="button" id="btnCopyTimeSheet" style="width:142px;"  >Copy Time Sheet</button>
 									</div>
 								</div>
 							</form>
@@ -675,8 +675,7 @@
 
 
 
-                if ($('#hdnAdminstatus').val() == 'A') {
-
+                if ($('#hdnAdminstatus').val() === 'A') {
 
 
                     //logged in user is admin but he has selected a user under him
@@ -685,13 +684,16 @@
                         console.log($('#ddlCrew').val());
                         console.log($('#hdnCrewAdminId').val());
                         $('input[id*="stdt"],input[id*="enddat"]').attr('disabled', 'disabled');
+                        $('#btnCopyTimeSheet').attr('disabled', 'disabled');
                     }
                     else {
                         $('input[id*="stdt"],input[id*="enddat"]').removeAttr('disabled');
+                        $('#btnCopyTimeSheet').removeAttr('disabled');
                     }
                 }
-                else if ($('#hdnAdminstatus').val() == 'S') {
+                else if ($('#hdnAdminstatus').val() === 'S') {
                     $('input[id*="stdt"],input[id*="enddat"]').attr('disabled', 'disabled');
+                    $('#btnCopyTimeSheet').attr('disabled', 'disabled');
                 }
 			}
 		});
@@ -747,25 +749,24 @@
 				var compliancecheckurl = $('#checkcompliance').val();
 				var tsdata = [];
 				//run through each row
-				$('.table-responsive tr').not(":first").each(function (i, row) {
+                $('.table-responsive tr').not(":first").each(function (i, row) {
 
-					// reference all the stuff you need first
-					var $row = $(row),
-						$stdt = $row.find('input[id*="stdt"]'),
-						$enddt = $row.find('input[id*="enddat"]');
+                    // reference all the stuff you need first
+                    var $row = $(row),
+                        $stdt = $row.find('input[id*="stdt"]'),
+                        $enddt = $row.find('input[id*="enddat"]');
 
-					// if ($enddt.val() == '23:59') $enddt = '00:00' ;
+                    // if ($enddt.val() == '23:59') $enddt = '00:00' ;
 
-					if ($stdt.val() != $enddt.val()) {
-						tsdata[i] = new Array($stdt.val(), $enddt.val());
-					}
+                    if ($stdt.val() != $enddt.val()) {
+                        tsdata[i] = new Array($stdt.val(), $enddt.val());
+                    }
 
 
+                    //console.log('Prining tsdata');
+                    //console.log(tsdata);
 
-					//console.log('Prining tsdata');
-					//console.log(tsdata);
-
-				})
+                });
 
 				var allowpost = false;
 				var startsection = '';
