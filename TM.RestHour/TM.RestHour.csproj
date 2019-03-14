@@ -741,6 +741,7 @@
     <Content Include="devsqlscripts\02.11.2018_FullScriptOfRestHour_II.sql" />
     <Content Include="devsqlscripts\02202019_FullScript.sql" />
     <Content Include="devsqlscripts\03.12.2018_FullScriptOfRestHour.sql" />
+    <Content Include="devsqlscripts\03.14.2019_stpGetPreviousBlankDates.sql" />
     <Content Include="devsqlscripts\04.10.2018_FullScriptOfRestHour.sql" />
     <Content Include="devsqlscripts\09.10.2018_FullScriptOfRestHour.sql" />
     <Content Include="devsqlscripts\10.07.2018_stpGetCrewIDFromWorkSessions.sql" />
