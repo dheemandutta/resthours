@@ -170,7 +170,7 @@ namespace TM.RestHour.DAL
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("stpGetWrokSessionsByCrewandDate", con);
+            SqlCommand cmd = new SqlCommand("stpGetSecondWrokSessionsByCrewandDate", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@CrewId", crewId);
             cmd.Parameters.AddWithValue("@BookDate", bookDate);
@@ -181,13 +181,16 @@ namespace TM.RestHour.DAL
             DataTable myTable = ds.Tables[0];
             CrewTimesheetPOCO timesheet = new CrewTimesheetPOCO();
 
-            timesheet = myTable.AsEnumerable().Select(c => new CrewTimesheetPOCO()
+            for (int i = 0; i < myTable.Rows.Count; i++)
             {
-                ActualHours = c.Field<string>("ActualHours"),
-                Comment = c.Field<string>("Comment"),
-                ID = c.Field<int>("ID"),
-                NCDetailsID = c.Field<int>("NCDetailsID")
-            }).Skip(1).Take(1).SingleOrDefault();
+                timesheet.ActualHours = myTable.Rows[i]["ActualHours"].ToString();
+                timesheet.Comment = myTable.Rows[i]["Comment"].ToString();
+                timesheet.ID = int.Parse(myTable.Rows[i]["ID"].ToString());
+                timesheet.NCDetailsID = int.Parse(myTable.Rows[i]["NCDetailsID"].ToString());
+                timesheet.WorkSessionId = int.Parse(myTable.Rows[i]["ID"].ToString());
+                timesheet.Comment = myTable.Rows[i]["Comment"].ToString();
+                timesheet.RegimeID = int.Parse(myTable.Rows[i]["RegimeID"].ToString());
+            }
 
             con.Close();
             return timesheet;

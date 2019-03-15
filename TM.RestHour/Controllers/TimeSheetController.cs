@@ -1092,11 +1092,7 @@ namespace TM.RestHour.Controllers
             CrewTimesheetPOCO crewPC = new CrewTimesheetPOCO();
 
             crewPC = timesheetBL.GetSecondCrewTimeSheetByDate(int.Parse(crewId), DateTime.ParseExact(bookDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), int.Parse(Session["VesselID"].ToString()));
-            //DateTime dt = bookDate.FormatDate
-            //            (ConfigurationManager.AppSettings["InputDateFormat"].ToString(), ConfigurationManager.AppSettings["InputDateSeperator"].ToString(),
-            //             ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
-
-            //crewPC = timesheetBL.GetSecondCrewTimeSheetByDate(int.Parse(crewId),dt, int.Parse(Session["VesselID"].ToString()));
+           
 
 
 
