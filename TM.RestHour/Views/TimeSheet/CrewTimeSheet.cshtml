@@ -992,7 +992,7 @@
 					success: function (result) {
 
 
-
+                       // debugger;
 						//for (i = 0; i < result.length; i++) {
 
 
@@ -1006,7 +1006,7 @@
 							$(cell).children().each(function () {
 
 								var anchor = this;
-
+                              //  debugger;
 								for (var y = 0; y < result.length; y++) {
 									if (result[y] == $(anchor).text()) {
 										console.log('Coloring Green');
@@ -1289,41 +1289,46 @@
 			endcell = e;
 
 			//adjust for extra hidden cell
-			if (adjustmentvalue == '0' || adjustmentvalue == '+1' || adjustmentvalue == '+30') {
-				console.log('StartCell');
+            if (adjustmentvalue == '0' || adjustmentvalue == '+1' || adjustmentvalue == '+30') {
+                console.log('StartCell');
 
-				startcell = startcell - 1;
-				endcell = endcell - 1;
-				console.log(startcell);
-				console.log(endcell);
-			}
-			else if (adjustmentvalue == "-1")
-			{
-				console.log('StartCell');
-				console.log(startcell);
-				if (parseInt(startcell) == 1) {
-					startcell = -1;
-					endcell = endcell + 2;
-				}
-				else (parseInt(startcell) > 1)
-				{
-					startcell = startcell - 3;
-					endcell = endcell - 3;
-				}
-			}
-			else if (adjustmentvalue == "-30") {
-				console.log('StartCell30');
-				console.log(startcell);
-				if (parseInt(startcell) == 1) {
-					startcell = 1;
-					endcell = endcell ;
-				}
-				else (parseInt(startcell) > 1)
-				{
-					startcell = startcell - 2;
-					endcell = endcell - 2;
-				}
-			}
+                startcell = startcell - 1;
+                endcell = endcell - 1;
+                console.log(startcell);
+                console.log(endcell);
+            }
+            else if (adjustmentvalue == "-1") {
+                console.log('StartCell');
+                console.log(startcell);
+                if (parseInt(startcell) == 1) {
+                    startcell = -1;
+                    endcell = endcell + 2;
+                }
+                else (parseInt(startcell) > 1)
+                {
+                    startcell = startcell - 3;
+                    endcell = endcell - 3;
+                }
+            }
+            else if (adjustmentvalue == "-30") {
+                console.log('StartCell30');
+                console.log(startcell);
+                if (parseInt(startcell) == 1) {
+                    startcell = 1;
+                    endcell = endcell;
+                }
+                else (parseInt(startcell) > 1)
+                {
+                    startcell = startcell - 2;
+                    endcell = endcell - 2;
+                }
+            }
+            else if (adjustmentvalue == "-1D") {
+                startcell = startcell - 1;
+                endcell = endcell - 1;
+                console.log(startcell);
+                console.log(endcell);
+            }
 
 			//store in array
 			arrtimebox.push([startcell, endcell]);
