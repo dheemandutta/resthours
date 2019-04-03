@@ -652,7 +652,8 @@ namespace TM.Compliance
 
 
             //if (!Utility.CheckConsecutiveMinRestPeriod(restPeriods, (int)currentRegime.MinContRestIn24Hours))
-            if ((double)restPeriods.Max() / 2 < 6)
+
+            if (restPeriods.Count <=0 ||  (double)restPeriods.Max() / 2 < 6)
             {
 
                 temp24Compliance.IsValidMaxRestPeriod = false;
@@ -719,21 +720,26 @@ namespace TM.Compliance
             if (isFirstDay)// If first day of booking or previous day is not booked then remove the rest period at the top
             {
                 int addAtTop = 1;
+                //int arraySize = 0; ;
                 if (workHours[0] == "0")
                 {
                     //restPeriods.RemoveAt(0);
                     addAtTop = 0;
                 }
 
-                int arraySize = restPeriods.Count - addAtTop;
-                int[] firstDayRestPeriods = new int[arraySize];
-                int interCounter = 0;
-                for (int i = 0; i < firstDayRestPeriods.Length; i++)
+                if (restPeriods.Count > 1)
                 {
-                    firstDayRestPeriods[interCounter] = i == 0 ? 24 : restPeriods[i];
-                    interCounter++;
+                    int arraySize = restPeriods.Count - addAtTop;
+
+                    int[] firstDayRestPeriods = new int[arraySize];
+                    int interCounter = 0;
+                    for (int i = 0; i < firstDayRestPeriods.Length; i++)
+                    {
+                        firstDayRestPeriods[interCounter] = i == 0 ? 24 : restPeriods[i];
+                        interCounter++;
+                    }
+                    restPeriods = firstDayRestPeriods.ToList<int>();
                 }
-                restPeriods = firstDayRestPeriods.ToList<int>();
             }
 
 
@@ -748,7 +754,7 @@ namespace TM.Compliance
              2) The periods which are over minimum 10 hrs will not count towards NC
              3) The leading zero sessions will be considered as well*/
             int _returnValue = 0;
-            int _maxRestPeriod = restPeriods.Max();
+            int _maxRestPeriod = restPeriods.Count>0? restPeriods.Max():0 ;
             //ToDo: Fix 2nd highest
             List<int> _tempArray = (from number in restPeriods
                                     orderby number descending
