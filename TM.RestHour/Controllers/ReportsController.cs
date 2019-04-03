@@ -970,7 +970,7 @@ namespace TM.RestHour.Controllers
                 }
                 else
                 {
-                    if(reportdata.AdjustmentFactor == "0" || reportdata.AdjustmentFactor == "+30" || reportdata.AdjustmentFactor == "+1"  || reportdata.AdjustmentFactor == "")
+                    if(reportdata.AdjustmentFactor == "0" || reportdata.AdjustmentFactor == "+30" || reportdata.AdjustmentFactor == "+1"  || reportdata.AdjustmentFactor == "" || reportdata.AdjustmentFactor == "BOOKING_NOT_ALLOWED")
                     {
                         if (match != null)
                         {

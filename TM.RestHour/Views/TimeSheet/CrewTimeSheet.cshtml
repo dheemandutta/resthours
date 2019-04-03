@@ -1329,6 +1329,12 @@
                 console.log(startcell);
                 console.log(endcell);
             }
+            else if (adjustmentvalue == "BOOKING_NOT_ALLOWED") {
+                startcell = startcell - 1;
+                endcell = endcell - 1;
+                console.log(startcell);
+                console.log(endcell);
+            }
 
 			//store in array
 			arrtimebox.push([startcell, endcell]);
