@@ -103,7 +103,7 @@ function GetHours() {
            
 
                 $.each(result.BookedHours, function (index, item) {
-                    if (item != null) {
+                    if (item !== null) {
                         //debugger;
                         //loop in table to find the row corresponding to the date
                         //get tr corresponding to that date 
@@ -120,7 +120,7 @@ function GetHours() {
                         $(tr).children('td').each(function () {
                             // debugger;
 
-                            if (adjustmentfactor == 0 || adjustmentfactor == "+1" || adjustmentfactor == "+30" || adjustmentfactor == "-1D") {
+                            if (adjustmentfactor == 0 || adjustmentfactor == "+1" || adjustmentfactor == "+30" || adjustmentfactor == "-1D" || adjustmentfactor === "BOOKING_NOT_ALLOWED") {
 
                                 $(tr).attr("filled", "yes");
 
@@ -1267,7 +1267,7 @@ function PrintPdf() {
 
 function MapDataInTable(adjustmentfactor,tdnum,item,tr,thisro,colcnt) {
 
-    if (adjustmentfactor == 0 || adjustmentfactor == "+1" || adjustmentfactor == "+30" || adjustmentfactor == "-1D") {
+    if (adjustmentfactor == 0 || adjustmentfactor == "+1" || adjustmentfactor == "+30" || adjustmentfactor == "-1D" || adjustmentfactor == "BOOKING_NOT_ALLOWED") {
 
         $(tr).attr("filled", "yes");
         //console.log(tdnum);
@@ -1715,7 +1715,7 @@ function GetDayWiseCrewData() {
            // $('#nm').text(result.BookedHours[0].LastName + ' ,' + result.BookedHours[0].FirstName);
           //  $('#rn').text(result.BookedHours[0].RankName);
 
-            if (result != null) {
+            if (result !== null) {
                 //clear
                 $('#yr').text('');
                 $('#mn').text('');
@@ -1727,7 +1727,7 @@ function GetDayWiseCrewData() {
 
                 var positionCounter = 0;;
                 $.each(result.BookedHours, function (index, item) {
-                    if (item != null) {
+                    if (item !== null) {
 
                         var table = $('#schedule');
                         var trLast = $(table).find("tr:last");
