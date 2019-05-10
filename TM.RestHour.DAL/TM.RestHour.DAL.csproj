@@ -72,6 +72,7 @@
     <Compile Include="ShipDAL.cs" />
     <Compile Include="TimeAdjustmentDAL.cs" />
     <Compile Include="TimeSheetDAL.cs" />
+    <Compile Include="UploadMedicalInventoryDAL.cs" />
     <Compile Include="UserGroupsDAL.cs" />
     <Compile Include="UsersDAL.cs" />
   </ItemGroup>

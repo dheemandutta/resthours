@@ -73,6 +73,7 @@
     <Compile Include="ShipBL.cs" />
     <Compile Include="TimeAdjustmentBL.cs" />
     <Compile Include="TimeSheetBL.cs" />
+    <Compile Include="UploadMedicalInventoryBL.cs" />
     <Compile Include="UserGroupsBL.cs" />
     <Compile Include="UsersBL.cs" />
   </ItemGroup>

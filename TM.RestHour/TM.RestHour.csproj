@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ReportsNCReportByMonthController.cs" />
     <Compile Include="Controllers\TimeSheetController.cs" />
+    <Compile Include="Controllers\UploadMedicalInventoryController.cs" />
     <Compile Include="Controllers\VesselController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2655,6 +2656,7 @@
     <Content Include="EquipmentNew\EquipmentList.xlsx" />
     <Content Include="MedicalHistory\Medical Fermin.pdf" />
     <Content Include="Import\IMOcrewlistForm5.xlsx" />
+    <Content Include="MedicalInventory\MedicalInventory.xlsx" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\RESTHOUR  Installer.pubxml" />
@@ -2698,6 +2700,7 @@
     <Content Include="Scripts\TimePicker\jquery.timepicker.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\UploadMedicalInventory.js" />
     <Content Include="Scripts\Vessel.js" />
     <Content Include="Scripts\vfs_fonts.js" />
     <Content Include="Scripts\_references.js" />
@@ -2863,6 +2866,7 @@
     <Content Include="Views\CrewHealth\CrewServiceTerms.cshtml" />
     <Content Include="Views\CompanyDetails\Index.cshtml" />
     <Content Include="Views\MailServerDetails\FirstRun.cshtml" />
+    <Content Include="Views\UploadMedicalInventory\Index.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2876,6 +2880,7 @@
     <Folder Include="SQLScripts\05-CreateView\" />
     <Folder Include="SQLScripts\06-Initialization\" />
     <Folder Include="SQLScripts\08-MenuScript\" />
+    <Folder Include="UploadMedicalInventoryUploads\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\helppp\" />
   </ItemGroup>
