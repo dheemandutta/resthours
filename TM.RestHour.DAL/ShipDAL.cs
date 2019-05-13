@@ -275,17 +275,8 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@IMO", ship.IMO.ToString());
             cmd.Parameters.AddWithValue("@AdminUser", ship.AdminUser.ToString());
             cmd.Parameters.AddWithValue("@AdminPassword", ship.AdminPassword.ToString());
-            //cmd.Parameters.AddWithValue("@VesselID", VesselID);
-            //cmd.Parameters.AddWithValue("@Regime", ship.Regime.ToString());
-
-            //if (ship.ID > 0)
-            //{
-            //    cmd.Parameters.AddWithValue("@ID", ship.ID);
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@ID", DBNull.Value);
-            //}
+            cmd.Parameters.AddWithValue("@DeactivationDate", ship.DeactivationDate);
+           
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
 

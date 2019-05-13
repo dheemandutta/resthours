@@ -29,5 +29,7 @@ namespace TM.Base.Entities
         public string MailTo { get; set; }
         public string MailPassword { get; set; }
         public string AttachmentSize { get; set; }
+
+        public string DeactivationDate { get; set; }
     }
 }

@@ -299,6 +299,12 @@ namespace TM.RestHour.Controllers
             shipPC.IMO = ship.IMO;
             shipPC.AdminUser = ship.AdminUser;
             shipPC.AdminPassword = ship.AdminPassword;
+
+            string deactivationDate =  CryptoEngine.Encrypt(System.DateTime.Today.AddDays(90).ToString(), ship.IMO.ToString());
+
+            shipPC.DeactivationDate = deactivationDate;
+
+
             return Json(shipBL.SaveInitialShipValues(shipPC), JsonRequestBehavior.AllowGet);
         }
 

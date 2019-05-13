@@ -52,6 +52,7 @@
     <Compile Include="Common\CryptoEngine.cs" />
     <Compile Include="Entities\CIRMPOCO.cs" />
     <Compile Include="Entities\CompanyDetailsPOCO.cs" />
+    <Compile Include="Entities\ConfigPOCO.cs" />
     <Compile Include="Entities\ConsultantPOCO.cs" />
     <Compile Include="Entities\CrewPOCO.cs" />
     <Compile Include="Entities\CrewTimesheetPOCO.cs" />

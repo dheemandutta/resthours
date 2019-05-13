@@ -12,6 +12,7 @@ using System.Collections;
 using TM.Compliance;
 using System.Text;
 using System.Web.Security;
+using TM.Base.Common;
 
 
 namespace TM.RestHour.Controllers
@@ -184,8 +185,12 @@ namespace TM.RestHour.Controllers
 			UsersBL usersBL = new UsersBL();
 			int existingUsers = 0;
 			UsersPOCO usersPCm = new UsersPOCO();
+            OptionsBL optionsBL = new OptionsBL();
+            string deactivationHash = optionsBL.GetConfigValues("InstallationHash").ConfigValue;
 
-			existingUsers = usersBL.GetUserAuthentication(user.Users.Username, user.Users.Password);
+            
+
+            existingUsers = usersBL.GetUserAuthentication(user.Users.Username, user.Users.Password);
 
 
 
@@ -207,10 +212,11 @@ namespace TM.RestHour.Controllers
 				ShipBL ship = new ShipBL();
 				ShipPOCO shipPoco = ship.GetShipByID();
 
+                string deactivationDate = CryptoEngine.Decrypt(deactivationHash, shipPoco.IMONumber);
 
 
 
-				UsersBL users = new UsersBL();
+                UsersBL users = new UsersBL();
 				UsersPOCO usersPoco = users.GetUserNameByUserId(existingUsers, int.Parse(Session["VesselID"].ToString()));
 
 				System.Web.HttpContext.Current.Session["FirstName"] = usersPoco.FirstName;

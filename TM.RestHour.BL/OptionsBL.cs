@@ -21,5 +21,11 @@ namespace TM.RestHour.BL
             OptionsDAL regimes = new OptionsDAL();
             return regimes.GetTimeAdjustment(bookDate, VesselID);
         }
+
+        public ConfigPOCO GetConfigValues(string key)
+        {
+            OptionsDAL optionsDAL = new OptionsDAL();
+            return optionsDAL.GetConfigValue(key);
+        }
     }
 }

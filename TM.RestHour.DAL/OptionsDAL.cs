@@ -98,5 +98,23 @@ namespace TM.RestHour.DAL
 
             return timeAdjustmentList;
         }
+
+        public ConfigPOCO GetConfigValue(string keyname)
+        {
+            ConfigPOCO configPOCO = new ConfigPOCO();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetConfigValues", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@KeyVal", keyname);
+
+                    string val = (string)cmd.ExecuteScalar();
+                    configPOCO.ConfigValue = val;
+                }
+             }
+
+            return configPOCO;
+        }
     }
 }
