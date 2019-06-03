@@ -69,6 +69,8 @@ namespace TM.Base.Entities
         public int NCDetailsID { get; set; }
 
 		public string RegimeSymbol { get; set; }
+        public string Comments { get; set; }
+        public bool IsApproved { get; set; }
 
-	}
+    }
 }

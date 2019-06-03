@@ -189,6 +189,24 @@ function GetHours() {
                                     $(this).html(item.MinSevenDayRest);
                                     tdnum++;
                                 }
+                                else if (tdnum == 33) { // text area
+                                    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                    tdnum++;
+                                }
+                                else if (tdnum == 34) //checkbox
+                                {
+                                    if (item.IsApproved) {
+                                        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                        tdnum++;
+                                    }
+                                    else {
+                                        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                        tdnum++;
+
+                                    }
+
+
+                                }
                             }
                             else if (adjustmentfactor == "-1")
                             {
@@ -251,6 +269,24 @@ function GetHours() {
                                     else if (tdnum == 32) { //min rest in 7  
                                         $(this).html(item.MinSevenDayRest);
                                         tdnum++;
+                                    }
+                                    else if (tdnum == 33) { // text area
+                                        $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                        tdnum++;
+                                    }
+                                    else if (tdnum == 34) //checkbox
+                                    {
+                                        if (item.IsApproved) {
+                                            $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                            tdnum++;
+                                        }
+                                        else {
+                                            $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                            tdnum++;
+
+                                        }
+
+
                                     }
                                 }
                                 else {
@@ -319,6 +355,24 @@ function GetHours() {
                                         $(this).html(item.MinSevenDayRest);
                                         tdnum++;
                                     }
+                                    else if (tdnum == 33) { // text area
+                                        $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                        tdnum++;
+                                    }
+                                    else if (tdnum == 34) //checkbox
+                                    {
+                                        if (item.IsApproved) {
+                                            $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                            tdnum++;
+                                        }
+                                        else {
+                                            $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                            tdnum++;
+
+                                        }
+
+
+                                    }
                                 }
 
 
@@ -384,6 +438,24 @@ function GetHours() {
                                         $(this).html(item.MinSevenDayRest);
                                         tdnum++;
                                     }
+                                    else if (tdnum == 33) { // text area
+                                        $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                        tdnum++;
+                                    }
+                                    else if (tdnum == 34) //checkbox
+                                    {
+                                        if (item.IsApproved) {
+                                            $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                            tdnum++;
+                                        }
+                                        else {
+                                            $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                            tdnum++;
+
+                                        }
+
+
+                                    }
                                 }
                                 else
                                 {
@@ -397,7 +469,7 @@ function GetHours() {
                                         $(this).html('<h4>&#9681;</h4>');
                                     }
 
-                                    if (tdnum <= 1) tdnum++
+                                    if (tdnum <= 1) tdnum++;
 
                                     else if (tdnum > 1 && tdnum < 26) {
                                         //debugger;
@@ -453,6 +525,24 @@ function GetHours() {
                                     else if (tdnum == 32) { //min rest in 7  
                                         $(this).html(item.MinSevenDayRest);
                                         tdnum++;
+                                    }
+                                    else if (tdnum == 33) { // text area
+                                        $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                        tdnum++;
+                                    }
+                                    else if (tdnum == 34) //checkbox
+                                    {
+                                        if (item.IsApproved) {
+                                            $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                            tdnum++;
+                                        }
+                                        else {
+                                            $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                            tdnum++;
+
+                                        }
+
+
                                     }
                                 }
                             }
@@ -528,7 +618,26 @@ function GetHours() {
                                     console.log('Setting first to yes');
                                     $(tr).attr("filled", "yes");
                                     tdnum++;
+                                    }
+                                else if (tdnum == 33) { // text area
+                                    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                    tdnum++;
                                 }
+                                else if (tdnum == 34) //checkbox
+                                {
+                                    if (item.IsApproved) {
+                                        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                        tdnum++;
+                                    }
+                                    else {
+                                        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                        tdnum++;
+
+                                    }
+
+
+                                }
+
                                 }
                                 else if (f == "yes")
                                 {
