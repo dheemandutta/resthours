@@ -348,3 +348,54 @@ function AddTab4() {
         }
     });
 }
+
+function AddTab5() {
+
+    //alert($('textarea#Comments').val());
+
+    var posturl = $('#Tabadd5').val();
+    //var res = validate();
+    //if (res == false) {
+    //    return false;
+    //}
+    var Tab = {
+        //ID: $('#ID').val(),
+        //ShipName: $('#ShipName').val(),
+        ////Regime: $('input:radio[name=RName]:checked').val(),
+        Regime: 5,
+
+        //RegimeStartDate: $('#RegimeStartDate').val(),
+        //RegimeID: $('#RegimeID').val(),
+
+        //VesselID: $('#VesselID').val()
+    };
+
+    $.ajax({
+        url: posturl,
+        data: JSON.stringify(Tab),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        //success: function (result) {
+
+        //},
+        success: function (result) {
+
+            var msg = "Data Saved Successfully";
+            //$('#btnAdd1').attr('disabled', false);
+            //$('#btnAdd2').attr('disabled', false);
+            //$('#btnAdd3').attr('disabled', false);
+            //$('#btnAdd7').attr('disabled', false);
+            //$('#btnAdd4').attr('disabled', true);
+            DisableButton();
+            $('#myModal').modal('show');
+            $('#succMsg').html(msg);
+
+            clearTextBox();
+        }
+        ,
+        error: function (errormessage) {
+            console.log(errormessage.responseText);
+        }
+    });
+}
