@@ -140,7 +140,13 @@ namespace TM.RestHour.DAL
 								break;
 
 						}
-					}
+                        if (item["Comments"] != null)
+                            reports.Comments = item["Comments"].ToString();
+                        else
+                            reports.Comments = String.Empty;
+                        if (item["IsApproved"] != null)
+                            reports.IsApproved = Convert.ToBoolean(item["IsApproved"].ToString());
+                    }
 
 					//if (item["NCComments"] != DBNull.Value)
 					//	reports.NCComments = item["NCComments"].ToString();
