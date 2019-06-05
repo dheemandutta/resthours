@@ -12,7 +12,7 @@
 @Html.Hidden("Tabadd3", @Url.Action("Add", "Regime"))
 @Html.Hidden("Tabadd7", @Url.Action("Add", "Regime"))
 @Html.Hidden("Tabadd4", @Url.Action("Add", "Regime"))
-@Html.Hidden("Tabadd5", @Url.Action("Add", "Regime"))
+@Html.Hidden("Tabadd9", @Url.Action("Add", "Regime"))
 
 
 
@@ -76,9 +76,9 @@
                                                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">  <span>ILO Rest (MLC)</span></a></li>
                                                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"> <span>ILO Work (MLC)</span></a></li>
                                                     <li role="presentation" style="width:90px;"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"> <span>OCIMF</span></a></li>
-                                                    <li role="presentation" style="width:115px;"><a href="#extra" aria-controls="settings" role="tab" data-toggle="tab"> <span>Customised</span></a></li>
+                                                    <li role="presentation" style="width:115px;"><a href="#extra" aria-controls="extra" role="tab" data-toggle="tab"> <span>Customised</span></a></li>
 
-                                                    <li role="presentation" style="width:90px;"><a href="#opa90" aria-controls="settings" role="tab" data-toggle="tab"> <span>OPA-90</span></a></li>
+                                                    <li role="presentation" style="width:90px;"><a href="#opa90" aria-controls="opa90" role="tab" data-toggle="tab"> <span>OPA-90</span></a></li>
                                                 </ul>
 
                                                 <!-- Tab panes -->
@@ -197,20 +197,8 @@
 
                                                     <div role="tabpanel" class="tab-pane" id="opa90">
                                                         <div class="col-md-12">
-                                                            <ul class="b">
-                                                                <li><label>Minimum continuous rest in any 24 hour period</label>  <input type="number" name="quantity" min="1" max="100" style="margin-left:94px;"></li>
-                                                                <li> <label>Minimum total rest in any 24 hour period</label> <input type="number" name="quantity" min="1" max="100" style="margin-left:132px;"></li>
-                                                                <li><label>Minimum hours rest in any  7 day period </label> <input type="number" name="quantity" min="1" max="100" style="margin-left:136px;"></li>
-                                                            </ul>
-
-
-                                                            @*<input type="checkbox" name="opa" value="opa"> <label>Allow OPA 90 Clause</label>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" id="btnSave">OPA 90 Rule</button>*@
-
-                                                            <br />
-                                                            <button type="button" class="btn btn-link" style="padding:0;">@*Click here to see more information on the regimes*@</button>
-                                                            <br />
-                                                            @*<input type="radio" name="RName" value="4" checked>Customised<br>*@
-                                                            <button type="button" align="center" class="button1 wi" id="btnAdd5" onclick="return AddTab5();">Set Default Regime</button>
+                                                           
+                                                            <button type="button" align="center" class="button1 wi" id="btnAdd9" onclick="return AddTab9();">Set Default Regime</button>
 
                                                         </div>
                                                     </div>

@@ -138,8 +138,10 @@ namespace TM.RestHour.DAL
 							case "*":
 								reports.RegimeSymbol = "&#9822;";
 								break;
-
-						}
+                            case "!":
+                                reports.RegimeSymbol = "&#9828;";
+                                break;
+                        }
                         if (item["Comments"] != null)
                             reports.Comments = item["Comments"].ToString();
                         else

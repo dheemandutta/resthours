@@ -54,6 +54,7 @@ function DisableButton() {
                 $('#btnAdd3').attr('disabled', false);
                 $('#btnAdd7').attr('disabled', false);
                 $('#btnAdd4').attr('disabled', false);
+                $('#btnAdd9').attr('disabled', false);
             }
             else if (result.RegimeID === 5) {
                 $('#btnAdd1').attr('disabled', false);
@@ -61,6 +62,7 @@ function DisableButton() {
                 $('#btnAdd3').attr('disabled', false);
                 $('#btnAdd7').attr('disabled', false);
                 $('#btnAdd4').attr('disabled', false);
+                $('#btnAdd9').attr('disabled', false);
             }
             else if (result.RegimeID === 3) {
                 $('#btnAdd1').attr('disabled', false);
@@ -68,6 +70,7 @@ function DisableButton() {
                 $('#btnAdd3').attr('disabled', true);
                 $('#btnAdd7').attr('disabled', false);
                 $('#btnAdd4').attr('disabled', false);
+                $('#btnAdd9').attr('disabled', false);
             }
             else if (result.RegimeID === 7) {
                 $('#btnAdd1').attr('disabled', false);
@@ -75,6 +78,7 @@ function DisableButton() {
                 $('#btnAdd3').attr('disabled', false);
                 $('#btnAdd7').attr('disabled', true);
                 $('#btnAdd4').attr('disabled', false);
+                $('#btnAdd9').attr('disabled', false);
             }
             else if (result.RegimeID === 4) {
                 $('#btnAdd1').attr('disabled', false);
@@ -82,8 +86,16 @@ function DisableButton() {
                 $('#btnAdd3').attr('disabled', false);
                 $('#btnAdd7').attr('disabled', false);
                 $('#btnAdd4').attr('disabled', true);
+                $('#btnAdd9').attr('disabled', false);
             }
-
+            else if (result.RegimeID === 9) {
+                $('#btnAdd1').attr('disabled', false);
+                $('#btnAdd2').attr('disabled', false);
+                $('#btnAdd3').attr('disabled', false);
+                $('#btnAdd7').attr('disabled', false);
+                $('#btnAdd4').attr('disabled', false);
+                $('#btnAdd9').attr('disabled', true);
+            }
         },
         error: function (errormessage) {
             //debugger;
@@ -349,11 +361,11 @@ function AddTab4() {
     });
 }
 
-function AddTab5() {
+function AddTab9() {
 
     //alert($('textarea#Comments').val());
 
-    var posturl = $('#Tabadd5').val();
+    var posturl = $('#Tabadd9').val();
     //var res = validate();
     //if (res == false) {
     //    return false;
@@ -362,7 +374,7 @@ function AddTab5() {
         //ID: $('#ID').val(),
         //ShipName: $('#ShipName').val(),
         ////Regime: $('input:radio[name=RName]:checked').val(),
-        Regime: 5,
+        Regime: 9,
 
         //RegimeStartDate: $('#RegimeStartDate').val(),
         //RegimeID: $('#RegimeID').val(),

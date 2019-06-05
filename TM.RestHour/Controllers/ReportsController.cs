@@ -807,7 +807,8 @@ namespace TM.RestHour.Controllers
             sb.AppendLine("                    ILO Rest &#9820; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
             sb.AppendLine("                    OCIMF &#9822; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
             sb.AppendLine("                    Customeised &#9827; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-            sb.AppendLine("                    IMO STCW 2010 &#9829;");
+            sb.AppendLine("                    IMO STCW 2010 &#9829;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+            sb.AppendLine("                    OPA-90 &#9828;");
             sb.AppendLine("                </div>");
             sb.AppendLine("");
 
