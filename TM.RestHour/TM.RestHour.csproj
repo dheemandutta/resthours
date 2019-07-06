@@ -747,6 +747,7 @@
     <Content Include="devsqlscripts\04.10.2018_FullScriptOfRestHour.sql" />
     <Content Include="devsqlscripts\05.06.2019_Script of OPA-90 RegimeData.sql" />
     <Content Include="devsqlscripts\05.06.2019_stpGetCrewIDFromWorkSessions.sql" />
+    <Content Include="devsqlscripts\07.06.2019_FullScript.sql" />
     <Content Include="devsqlscripts\09.10.2018_FullScriptOfRestHour.sql" />
     <Content Include="devsqlscripts\10.07.2018_stpGetCrewIDFromWorkSessions.sql" />
     <Content Include="devsqlscripts\10.07.2018_stpGetWorkSessionsByValidOn.sql" />
