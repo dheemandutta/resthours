@@ -29,5 +29,10 @@ namespace TM.RestHour.Models
         public string MailTo { get; set; }
         public string MailPassword { get; set; }
         public string AttachmentSize { get; set; }
+
+        public string ShipEmail { get; set; }
+        public string ShipEmailPassword { get; set; }
+        public string AdminCenterEmail { get; set; }
+        public string POP3 { get; set; }
     }
 }

@@ -615,6 +615,35 @@ function validateMailServer() {
     }
 
 
+    if ($('#ShipEmail').val().length === 0) {
+        $('#ShipEmail').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ShipEmail').css('border-color', 'lightgrey');
+    }
+    if ($('#ShipEmailPassword').val().length === 0) {
+        $('#ShipEmailPassword').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ShipEmailPassword').css('border-color', 'lightgrey');
+    }
+    if ($('#AdminCenterEmail').val().length === 0) {
+        $('#AdminCenterEmail').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#AdminCenterEmail').css('border-color', 'lightgrey');
+    }
+    if ($('#POP3').val().length === 0) {
+        $('#POP3').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#POP3').css('border-color', 'lightgrey');
+    }
+
 
     return isValid;
 }
@@ -633,7 +662,10 @@ function SaveConfigData() {
         MailTo: $('#MailId').val(),
         MailPassword: $('#Password').val(),
        // AttachmentSize: $('#xyz').val()            //////////////////////////////////////////////////////////////
-    
+        ShipEmail: $('#ShipEmail').val(),
+        ShipEmailPassword: $('#ShipEmailPassword').val(),
+        AdminCenterEmail: $('#AdminCenterEmail').val(),
+        POP3: $('#POP3').val()
     };
     //debugger;
 

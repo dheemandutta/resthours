@@ -31,5 +31,10 @@ namespace TM.Base.Entities
         public string AttachmentSize { get; set; }
 
         public string DeactivationDate { get; set; }
+
+        public string ShipEmail { get; set; }
+        public string ShipEmailPassword { get; set; }
+        public string AdminCenterEmail { get; set; }
+        public string POP3 { get; set; }
     }
 }
