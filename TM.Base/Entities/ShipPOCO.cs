@@ -36,5 +36,6 @@ namespace TM.Base.Entities
         public string ShipEmailPassword { get; set; }
         public string AdminCenterEmail { get; set; }
         public string POP3 { get; set; }
+        public string POP3Port { get; set; }
     }
 }

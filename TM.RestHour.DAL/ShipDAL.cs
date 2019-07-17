@@ -294,12 +294,14 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@MailFrom", ship.MailFrom.ToString());
             cmd.Parameters.AddWithValue("@MailTo", ship.MailTo.ToString());
             cmd.Parameters.AddWithValue("@MailPassword", ship.MailPassword.ToString());
-            //New
+
+            //New  --> /MailServerDetails/Index
 
             cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail.ToString());
             cmd.Parameters.AddWithValue("@ShipEmailPassword", ship.ShipEmailPassword.ToString());
             cmd.Parameters.AddWithValue("@AdminCenterEmail", ship.AdminCenterEmail.ToString());
             cmd.Parameters.AddWithValue("@POP3", ship.POP3.ToString());
+            cmd.Parameters.AddWithValue("@POP3Port", ship.POP3Port.ToString());
 
             //cmd.Parameters.AddWithValue("@AttachmentSize", ship.AttachmentSize.ToString());
             //cmd.Parameters.AddWithValue("@VesselID", VesselID);

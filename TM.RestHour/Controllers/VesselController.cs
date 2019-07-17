@@ -285,6 +285,7 @@ namespace TM.RestHour.Controllers
             shipPC.ShipEmailPassword = ship.ShipEmailPassword;
             shipPC.AdminCenterEmail = ship.AdminCenterEmail;
             shipPC.POP3 = ship.POP3;
+            shipPC.POP3Port = ship.POP3Port;
 
             return Json(shipBL.SaveConfigData(shipPC), JsonRequestBehavior.AllowGet);
         }
