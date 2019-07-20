@@ -615,6 +615,7 @@ function validateMailServer() {
     }
 
 
+
     if ($('#ShipEmail').val().length === 0) {
         $('#ShipEmail').css('border-color', 'Red');
         isValid = false;
@@ -643,7 +644,13 @@ function validateMailServer() {
     else {
         $('#POP3').css('border-color', 'lightgrey');
     }
-
+    if ($('#POP3Port').val().length === 0) {
+        $('#POP3Port').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#POP3Port').css('border-color', 'lightgrey');
+    }
 
     return isValid;
 }

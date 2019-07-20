@@ -260,8 +260,6 @@ namespace TM.RestHour.DAL
 
 
 
-
-
        
         ///////////////////////////////////////////////////////////////////////////////////    
         public int SaveInitialShipValues(ShipPOCO ship)
