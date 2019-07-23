@@ -616,6 +616,7 @@ function validateMailServer() {
 
 
 
+
     if ($('#ShipEmail').val().length === 0) {
         $('#ShipEmail').css('border-color', 'Red');
         isValid = false;
