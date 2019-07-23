@@ -748,6 +748,7 @@
     <Content Include="devsqlscripts\13.09.2018_InitialScript_Data.sql" />
     <Content Include="devsqlscripts\13.09.2018_InitialScript_Schema.sql" />
     <Content Include="devsqlscripts\18.09.2018_InitialScript_SchemaAndData.sql" />
+    <Content Include="devsqlscripts\23.07.2019_Fullscript.sql" />
     <Content Include="devsqlscripts\InitialScript_Data.sql" />
     <Content Include="devsqlscripts\InitialScript_Schema.sql" />
     <Content Include="devsqlscripts\stpSaveConfigData_19072019.sql" />
