@@ -275,7 +275,107 @@
                                 //debugger;
                                 console.log(errormessage.responseText);
                             }
-                        });              
+                        });           
+
+                    $.ajax({
+                            url: x,
+                            data:
+                            {
+                                KeyName: 'shipemail'
+                            },
+                            type: "GET",
+                            contentType: "application/json;charset=UTF-8",
+                            dataType: "json",
+                            success: function (result) {
+                                $('#ShipEmail').val(result);
+
+                                // return result;
+                            },
+                            error: function (errormessage) {
+                                //debugger;
+                                console.log(errormessage.responseText);
+                            }
+                    });           
+
+                     $.ajax({
+                            url: x,
+                            data:
+                            {
+                                KeyName: 'shipemailpwd'
+                            },
+                            type: "GET",
+                            contentType: "application/json;charset=UTF-8",
+                            dataType: "json",
+                            success: function (result) {
+                                $('#ShipEmailPassword').val(result);
+
+                                // return result;
+                            },
+                            error: function (errormessage) {
+                                //debugger;
+                                console.log(errormessage.responseText);
+                            }
+                     });       
+
+                     $.ajax({
+                            url: x,
+                            data:
+                            {
+                                KeyName: 'admincenteremail'
+                            },
+                            type: "GET",
+                            contentType: "application/json;charset=UTF-8",
+                            dataType: "json",
+                            success: function (result) {
+                                $('#AdminCenterEmail').val(result);
+
+                                // return result;
+                            },
+                            error: function (errormessage) {
+                                //debugger;
+                                console.log(errormessage.responseText);
+                            }
+                     });             
+
+                      $.ajax({
+                            url: x,
+                            data:
+                            {
+                                KeyName: 'pop3'
+                            },
+                            type: "GET",
+                            contentType: "application/json;charset=UTF-8",
+                            dataType: "json",
+                            success: function (result) {
+                                $('#POP3').val(result);
+
+                                // return result;
+                            },
+                            error: function (errormessage) {
+                                //debugger;
+                                console.log(errormessage.responseText);
+                            }
+                      });         
+
+                    $.ajax({
+                            url: x,
+                            data:
+                            {
+                                KeyName: 'pop3port'
+                            },
+                            type: "GET",
+                            contentType: "application/json;charset=UTF-8",
+                            dataType: "json",
+                            success: function (result) {
+                                $('#POP3Port').val(result);
+
+                                // return result;
+                            },
+                            error: function (errormessage) {
+                                //debugger;
+                                console.log(errormessage.responseText);
+                            }
+                        });           
                 });
 
             </script>
