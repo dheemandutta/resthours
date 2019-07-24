@@ -22,11 +22,13 @@ namespace TM.RestHour.DAL
 			cmd.Parameters.AddWithValue("@ShipName", ship.ShipName.ToString());
 			cmd.Parameters.AddWithValue("@IMONumber", ship.IMONumber.ToString());    ////////////////////////////////////////////////////////////////////
 			cmd.Parameters.AddWithValue("@FlagOfShip", ship.FlagOfShip.ToString());
-			//cmd.Parameters.AddWithValue("@VesselID", VesselID);
-			//cmd.Parameters.AddWithValue("@Regime", ship.Regime.ToString());
 
-			
-			int recordsAffected = cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail.ToString());
+            //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+            //cmd.Parameters.AddWithValue("@Regime", ship.Regime.ToString());
+
+
+            int recordsAffected = cmd.ExecuteNonQuery();
 			con.Close();
 
 			return recordsAffected;
@@ -222,7 +224,11 @@ namespace TM.RestHour.DAL
                     if (item["Regime"] != null)
                         crewtimesheet.Regime = item["Regime"].ToString();
 
-                   
+
+
+                    if (item["ShipEmail"] != null)
+                        crewtimesheet.ShipEmail = item["ShipEmail"].ToString();
+
 
                     crewtimesheetList.Add(crewtimesheet);
                 }

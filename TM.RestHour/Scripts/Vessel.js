@@ -26,6 +26,16 @@ function validateVessel() {
         $('#FlagOfShip').css('border-color', 'lightgrey');
     }
 
+
+
+    if ($('#ShipEmail').val().length === 0) {
+        $('#ShipEmail').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ShipEmail').css('border-color', 'lightgrey');
+    }
+
     return isValid;
 
 }
@@ -72,6 +82,18 @@ function validate() {
     else {
         $('#SuperAdminPassword').css('border-color', 'lightgrey');
     }
+
+
+
+
+
+    //if ($('#ShipEmail').val().length === 0) {
+    //    $('#ShipEmail').css('border-color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#ShipEmail').css('border-color', 'lightgrey');
+    //}
 
     return isValid;
 }
@@ -201,7 +223,11 @@ function SetUpGrid() {
               },
                 {
                     "data": "IMONumber", "name": "IMONumber", "autoWidth": true
-                },
+            },
+
+        
+
+
                 {
                 "data": "ID", "width": "50px", "render": function (data) {
                     return '<a href="#" onclick="GetShipByID(' + data + ')">Edit</a>';
@@ -264,7 +290,9 @@ function Update() {
         ID: $('#ID').val(),
         ShipName: $('#ShipName').val(),
         FlagOfShip: $('#FlagOfShip').val(),
-        IMONumber: $('#IMONumber').val()
+        IMONumber: $('#IMONumber').val(),
+
+        ShipEmail: $('#ShipEmail_Edit').val()
     };
     //debugger;
     $.ajax({
@@ -283,6 +311,8 @@ function Update() {
             $('#ShipName').val("");
             $('#FlagOfShip').val("");
             $('#IMONumber').val("");
+
+            $('#ShipEmail_Edit').val("");
 
             GetShip();
         },
@@ -313,6 +343,9 @@ function GetShipByID(ID) {
             $('#ShipName').val(result.ShipName);
             $('#FlagOfShip').val(result.FlagOfShip);
             $('#IMONumber_edit').val(result.IMONumber);
+
+            $('#ShipEmail_Edit').val(result.ShipEmail);
+
             $('#myModal').modal('show');
             $('#btnUpdate').show();
           //  $('#btnAdd').hide();
@@ -385,6 +418,9 @@ function GetShip() {
             $('#Vessel').val(result.ShipName);
             $('#Flag').val(result.FlagOfShip);
             $('#IMONumber').val(result.IMONumber);
+
+            $('#ShipEmail').val(result.ShipEmail);
+
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();
             //$('#btnAdd').hide();

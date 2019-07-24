@@ -177,7 +177,10 @@ namespace TM.RestHour.Controllers
 			shipPC.ShipName = ship.ShipName;
 			shipPC.FlagOfShip = ship.FlagOfShip;
 			shipPC.IMONumber = ship.IMONumber;
-			return Json(shipBL.UpdateShip(shipPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
+
+            shipPC.ShipEmail = ship.ShipEmail;
+
+            return Json(shipBL.UpdateShip(shipPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult NewAdd(Vessel ship)
@@ -247,6 +250,8 @@ namespace TM.RestHour.Controllers
             um.ShipName = shipPC.ShipName;
             um.FlagOfShip = shipPC.FlagOfShip;
             um.IMONumber = shipPC.IMONumber;
+
+            um.ShipEmail = shipPC.ShipEmail;
 
             var cm = um;
 
