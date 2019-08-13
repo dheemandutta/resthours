@@ -279,13 +279,11 @@ namespace TM.RestHour.Controllers
         {
             ShipBL shipBL = new ShipBL();
             ShipPOCO shipPC = new ShipPOCO();
-            //shipPC.ID = ship.ID;
             shipPC.SmtpServer = ship.SmtpServer;
             shipPC.Port = ship.Port;
-            shipPC.MailFrom = ship.MailFrom;
-            shipPC.MailTo = ship.MailTo;
-            shipPC.MailPassword = ship.MailPassword;
-            //shipPC.AttachmentSize = ship.AttachmentSize;
+            //shipPC.MailFrom = ship.MailFrom;
+            //shipPC.MailTo = ship.MailTo;
+            //shipPC.MailPassword = ship.MailPassword;
             shipPC.ShipEmail = ship.ShipEmail;
             shipPC.ShipEmailPassword = ship.ShipEmailPassword;
             shipPC.AdminCenterEmail = ship.AdminCenterEmail;

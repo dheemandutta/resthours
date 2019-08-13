@@ -626,29 +626,29 @@ function validateMailServer() {
         $('#Port').css('border-color', 'lightgrey');
     }
 
-    if ($('#MailFrom').val().length === 0) {
-        $('#MailFrom').css('border-color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#MailFrom').css('border-color', 'lightgrey');
-    }
+    //if ($('#MailFrom').val().length === 0) {
+    //    $('#MailFrom').css('border-color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#MailFrom').css('border-color', 'lightgrey');
+    //}
 
-    if ($('#MailId').val().length === 0) {
-        $('#MailId').css('border-color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#MailId').css('border-color', 'lightgrey');
-    }
+    //if ($('#MailId').val().length === 0) {
+    //    $('#MailId').css('border-color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#MailId').css('border-color', 'lightgrey');
+    //}
 
-    if ($('#Password').val().length === 0) {
-        $('#Password').css('border-color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#Password').css('border-color', 'lightgrey');
-    }
+    //if ($('#Password').val().length === 0) {
+    //    $('#Password').css('border-color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#Password').css('border-color', 'lightgrey');
+    //}
 
 
 
@@ -702,10 +702,9 @@ function SaveConfigData() {
     var Ship = {
         SmtpServer: $('#SmptServer').val(),
         Port: $('#Port').val(),
-        MailFrom: $('#MailFrom').val(),
-        MailTo: $('#MailId').val(),
-        MailPassword: $('#Password').val(),
-       // AttachmentSize: $('#xyz').val()            //////////////////////////////////////////////////////////////
+        //MailFrom: $('#MailFrom').val(),
+        //MailTo: $('#MailId').val(),
+        //MailPassword: $('#Password').val(),         
         ShipEmail: $('#ShipEmail').val(),
         ShipEmailPassword: $('#ShipEmailPassword').val(),
         AdminCenterEmail: $('#AdminCenterEmail').val(),

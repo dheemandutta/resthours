@@ -295,10 +295,39 @@ namespace TM.RestHour.DAL
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SmtpServer", ship.SmtpServer.ToString());
             cmd.Parameters.AddWithValue("@Port", ship.Port.ToString());
-            cmd.Parameters.AddWithValue("@MailFrom", ship.MailFrom.ToString());
-            cmd.Parameters.AddWithValue("@MailTo", ship.MailTo.ToString());
-            cmd.Parameters.AddWithValue("@MailPassword", ship.MailPassword.ToString());
+            /////////////////////////////////////////////////////////////////////////////////
+            if (!String.IsNullOrEmpty(ship.MailFrom))
+            {
+                cmd.Parameters.AddWithValue("@MailFrom", ship.MailFrom);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MailFrom", DBNull.Value);
+            }
 
+            if (!String.IsNullOrEmpty(ship.MailTo))
+            {
+                cmd.Parameters.AddWithValue("@MailTo", ship.MailTo);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MailTo", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.MailPassword))
+            {
+                cmd.Parameters.AddWithValue("@MailPassword", ship.MailPassword);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MailPassword", DBNull.Value);
+            }
+            //////////////////////////////////////////////////////////////////////////////////
+            //cmd.Parameters.AddWithValue("@MailFrom", ship.MailFrom.ToString());
+            //cmd.Parameters.AddWithValue("@MailTo", ship.MailTo.ToString());
+            //cmd.Parameters.AddWithValue("@MailPassword", ship.MailPassword.ToString());
+            //////////////////////////////////////////////////////////////////////////////////
+            ///
             //New  --> /MailServerDetails/Index
 
             cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail.ToString());
