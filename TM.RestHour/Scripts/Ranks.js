@@ -371,12 +371,6 @@ function GetRanksByID(ID) {
 function Update() {
     // alert();
     var i = $('#Rankadd').val();
-    //debugger;
-    //alert($('#ID').val());
-    //var res = validate();
-    //if (res == false) {
-    //    return false;
-    //}
     var empObj = {
 
         ID: $('#ID').val(),

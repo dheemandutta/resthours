@@ -301,6 +301,10 @@ namespace TM.RestHour.Controllers
             shipPC.AdminPassword = ship.AdminPassword;
             string Key = shipPC.Vessel + shipPC.Flag + shipPC.IMO.ToString() + shipPC.SuperAdminUserName + shipPC.SuperAdminPassword;
 
+            if (Key.Length < 24) {
+                Key = Key + Key;
+            }
+
 
 
             string deactivationDate =  CryptoEngine.Encrypt(System.DateTime.Today.AddDays(90).ToString(), Key.Substring(0,24));
