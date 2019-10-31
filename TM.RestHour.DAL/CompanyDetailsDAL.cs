@@ -105,7 +105,11 @@ namespace TM.RestHour.DAL
 
             int recordsAffected = cmd.ExecuteNonQuery();
 
-            int newCompanyId = int.Parse(param.Value.ToString());
+            int newCompanyId = 0;
+
+            //int.TryParse(param.Value.ToString(),out newCompanyId);
+
+            newCompanyId = int.Parse(param.Value.ToString());
 
             con.Close();
 
