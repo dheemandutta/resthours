@@ -104,10 +104,10 @@
         $('#LatestUpdate').css('border-color', 'lightgrey');
     }
 
-    var fromdt = new Date($('#CreatedOn').val());
-    var todt = new Date($('#LatestUpdate').val());
+    var fromdt = $('#CreatedOn').val();
+    var todt = $('#LatestUpdate').val();
 
-    if (fromdt >= todt) {
+    if (Date.parse(fromdt) >= Date.parse(todt)) {
 
         isValid = false;
         $('.valid').notify("Form Date cannot be greater than To Date", "error", { position: "top left" });
