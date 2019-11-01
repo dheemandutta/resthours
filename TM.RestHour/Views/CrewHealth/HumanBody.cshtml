@@ -1,0 +1,411 @@
+﻿@*@model TM.RestHour.Models.HumanBody*@
+
+@{
+    ViewBag.Title = "HumanBody";
+}
+
+<style>
+
+    body {
+        font-size: 13px;
+        font-family: "Arial";
+    }
+
+    #mapper {
+        border: 0px solid #EEE;
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+        z-index: 1000;
+        position: absolute;
+        top: 0;
+        display: none;
+    }
+
+    #planetmap div {
+        display: block;
+        position: absolute;
+    }
+
+    #main_panel {
+        margin: auto;
+        padding: 10px;
+        width: 1000px;
+    }
+
+    #url_panel {
+    }
+
+    #form_panel {
+        float: left;
+        background: #eee;
+        border: 5px solid #FFF;
+        outline: 1px solid #eee;
+        left: 100px;
+        padding: 5px;
+        position: absolute;
+        top: 40px;
+        width: 310px;
+        display: none;
+        z-index: 2000;
+    }
+
+        #form_panel input, textarea {
+            padding: 3px;
+            background: #FFF;
+            border: 1px solid #CFCFCF;
+            color: #000;
+        }
+
+    #image_panel {
+        float: left;
+        width: 600px;
+        position: relative;
+    }
+
+        #image_panel img {
+            left: 0;
+            top: -102px;
+            max-width: 600px;
+            overflow: hidden;
+        }
+
+    #form_panel .label {
+        float: left;
+        width: 80px;
+        padding: 5px;
+    }
+
+    #form_panel .field {
+        float: left;
+        width: 200px;
+        padding: 5px;
+    }
+
+    #form_panel .row {
+        clear: both;
+    }
+
+    .tagged_title {
+        background: none repeat scroll 0 0 #538DD3;
+        border: 2px solid;
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 3px;
+        margin-top: 5px;
+    }
+
+    #info_panel {
+        padding: 10px;
+        margin: 20px 0;
+        background: #eee;
+    }
+
+    input[type='button'] {
+        background: none repeat scroll 0 0 #2769C4;
+        border: 1px solid #CFCFCF;
+        color: #FFFFFF;
+        font-weight: bold;
+        height: 30px;
+        padding: 5px;
+    }
+</style>
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+@*<script src="~/Scripts/Department.js"></script>*@
+@Html.Hidden("myUrlForAssignCrew", @Url.Action("GetDepartmentByIDForAssignCrew", "Department"))
+@Html.Hidden("myUrl", @Url.Action("GetDepartmentByID", "Department"))
+
+<body style="background-image: url(../background/MedicalAdvisory.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="ta">Human Body</h2>
+        </div>
+        <div class="col-md-7 bac">
+             <div class="modal-dialog" id="dvuserdetailsn" style="width: 745px; height:460px">
+                                    <fieldset class="for-panel">
+                                        <legend>Please Select The Coordinate</legend>
+                                        <div class="row">
+
+                                            <div id='main_panel' style="width: 755px;">
+                                                <div style='margin: auto; width: 600px;'>
+                                                    <div id='image_panel'>
+                                                        <img src='~/background/R_HumanBody.jpg' id='imageMap' />
+                                                        <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
+                                                        <div id="planetmap">
+                                                        </div>
+                                                        <div id='form_panel'>
+                                                            <div class='row'>
+                                                                <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
+                                                            </div>
+                                                            <div class='row'>
+                                                                <div class='label'></div>
+                                                                <div class='field'>
+                                                                    <input type='button' value='Add Tag' onclick='addTag()' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="background: none repeat scroll 0 0 #C7C7C8;
+                                                     border: 1px solid #AEAEAE;
+                                                     clear: both;
+                                                     margin: 20px auto;
+                                                     padding: 20px 0;
+                                                     text-align: center;
+                                                     width: 600px;">
+                                                    <input type="button" value="Show Tags" onclick="showTags()" />
+                                                    <input type="button" value="Hide Tags" onclick="hideTags()" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+            </div>
+
+            <div class="modal-footer">
+                 <button type="button" class="buttonpop" id="btnNext" onclick="return Next();" style="width:86px;">Next</button>
+                 @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script src="dist/dual-listbox.js"></script>
+
+    <script src="~/Scripts/jquery.typeahead.js"></script>
+    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
+    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
+    <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //SetUpGrid();
+            var numbers = [1, 2, 3, 4, 5];
+            for (var i = 0; i < numbers.length; i++) {
+                $('<option/>').val(numbers[i]).html(numbers[i]).appendTo('#items');
+            }
+
+            var orderCount = 0;
+            $('.listbox').multiselect({
+                onChange: function (option, checked) {
+                    if (checked) {
+                        orderCount++;
+                        $(option).data('order', orderCount);
+                    }
+                    else {
+                        $(option).data('order', '');
+                    }
+                },
+                buttonText: function (options) {
+                    if (options.length === 0) {
+                        return 'None selected';
+                    }
+                    else {
+                        var selected = [];
+                        options.each(function () {
+                            selected.push([$(this).text(), $(this).data('order')]);
+                        });
+
+                        selected.sort(function (a, b) {
+                            return a[1] - b[1];
+                        });
+
+                        var text = '';
+                        for (var i = 0; i < selected.length; i++) {
+                            text += selected[i][0] + ', ';
+                        }
+
+                        return text.substr(0, text.length - 2);
+                    }
+                }
+            });
+
+
+
+            $("#imageMap").click(function (e) {
+
+                var image_left = $(this).offset().left;
+                var click_left = e.pageX;
+                var left_distance = click_left - image_left;
+
+                var image_top = $(this).offset().top;
+                var click_top = e.pageY;
+                var top_distance = click_top - image_top;
+
+                var mapper_width = $('#mapper').width();
+                var imagemap_width = $('#imageMap').width();
+
+                var mapper_height = $('#mapper').height();
+                var imagemap_height = $('#imageMap').height();
+
+
+                if ((top_distance + mapper_height > imagemap_height) && (left_distance + mapper_width > imagemap_width)) {
+                    $('#mapper').css("left", (click_left - mapper_width - image_left))
+                        .css("top", (click_top - mapper_height - image_top))
+                        .css("width", "50px")
+                        .css("height", "50px")
+                        .show();
+                }
+                else if (left_distance + mapper_width > imagemap_width) {
+
+
+                    $('#mapper').css("left", (click_left - mapper_width - image_left))
+                        .css("top", top_distance)
+                        .css("width", "50px")
+                        .css("height", "50px")
+                        .show();
+
+                }
+                else if (top_distance + mapper_height > imagemap_height) {
+                    $('#mapper').css("left", left_distance)
+                        .css("top", (click_top - mapper_height - image_top))
+                        .css("width", "50px")
+                        .css("height", "50px")
+                        .show();
+                }
+                else {
+
+
+                    $('#mapper').css("left", left_distance)
+                        .css("top", top_distance)
+                        .css("width", "50px")
+                        .css("height", "50px")
+                        .show();
+                }
+
+
+                $("#mapper").resizable({ containment: "parent" });
+                $("#mapper").draggable({ containment: "parent" });
+
+            });
+        });
+
+        $("#planetmap").on("mouseover", ".tagged", function () {
+            if ($(this).find(".openDialog").length == 0) {
+                $(this).find(".tagged_box").css("display", "block");
+                $(this).css("border", "5px solid #EEE");
+
+                $(this).find(".tagged_title").css("display", "block");
+            }
+
+
+        });
+
+        $("#planetmap").on("mouseout", ".tagged", function () {
+            if ($(this).find(".openDialog").length == 0) {
+                $(this).find(".tagged_box").css("display", "none");
+                $(this).css("border", "none");
+                $(this).find(".tagged_title").css("display", "none");
+            }
+
+
+        });
+
+
+
+
+
+        $("#planetmap").on("click", ".tagged", function () {
+
+            console.log('tagged click');
+            $(this).find(".tagged_box").html("<img src='../background/del.png' class='openDialog' value='Delete' onclick='deleteTag(this)' />\n\
+                                                                <img src='../background/save.png' onclick='editTag(this);' value='Save' />");
+
+            var img_scope_top = $("#imageMap").offset().top + $("#imageMap").height() - $(this).find(".tagged_box").height();
+            var img_scope_left = $("#imageMap").offset().left + $("#imageMap").width() - $(this).find(".tagged_box").width();
+
+            $(this).draggable({ containment: [$("#imageMap").offset().left, $("#imageMap").offset().top, img_scope_left, img_scope_top] });
+
+        });
+
+        var addTag = function () {
+            var position = $('#mapper').position();
+
+
+            var pos_x = position.left;
+            var pos_y = position.top;
+            var pos_width = $('#mapper').width();
+            var pos_height = $('#mapper').height();
+
+            console.log('Pos width : {0}', pos_width);
+            console.log('Pos height : {0}', pos_height);
+
+            var htmlstr = '<div class="tagged"  style="width:' + pos_width + 'px' + ';height:' + pos_height + 'px' + ';left:' + pos_x + 'px' + ';top:' + pos_y + 'px' + ';" ><div   class="tagged_box" style="width:' + pos_width + 'px' + ';height:' + 'px' +
+                pos_height + ';display:none;" ><div class="tagged_title" style="top:' + (pos_height + 5) + 'px' + ';display:none;" >' +
+                $("#title").val() + '</div></div>';
+            console.log(htmlstr);
+
+            $('#planetmap').append(htmlstr);
+
+            htmlstr = '';
+
+            //$('#planetmap').append('<div class="tagged"  style="width:' + pos_width + ';height:' +
+            //    pos_height + ';left:' + pos_x + ';top:' + pos_y + ';" ><div   class="tagged_box" style="width:' + pos_width + ';height:' +
+            //    pos_height + ';display:none;" ></div><div class="tagged_title" style="top:' + (pos_height + 5) + ';display:none;" >' +
+            //    $("#title").val() + '</div></div>');
+
+            $("#mapper").hide();
+            $("#title").val('');
+            $("#form_panel").hide();
+
+
+        };
+
+        var openDialog = function () {
+            $("#form_panel").fadeIn("slow");
+        };
+
+        var showTags = function () {
+            $(".tagged_box").css("display", "block");
+            //$(".tagged_box").hide();
+            $(".tagged").css("border", "5px solid #EEE");
+            $(".tagged_title").css("display", "block");
+            //$(".tagged_title").hide();
+            //$('tagged').show();
+        };
+
+        var hideTags = function () {
+            $(".tagged_box").css("display", "none");
+            $(".tagged").css("border", "none");
+            $(".tagged_title").css("display", "none");
+        };
+
+        var editTag = function (obj) {
+
+            $(obj).parent().parent().draggable('disable');
+            $(obj).parent().parent().removeAttr('class');
+            $(obj).parent().parent().addClass('tagged');
+            $(obj).parent().parent().css("border", "none");
+            $(obj).parent().css("display", "none");
+            $(obj).parent().parent().find(".tagged_title").css("display", "none");
+            $(obj).parent().html('');
+
+        }
+
+        var deleteTag = function (obj) {
+            $(obj).parent().parent().remove();
+        };
+
+    </script>
+}
+
+

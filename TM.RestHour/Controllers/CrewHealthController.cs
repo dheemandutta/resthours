@@ -18,6 +18,11 @@ namespace TM.RestHour.Controllers
     [TraceFilterAttribute]
     public class CrewHealthController : BaseController
     {
+        public ActionResult HumanBody()
+        {
+            return View();
+        }
+
         // GET: CrewHealth
         [TraceFilterAttribute]
         public ActionResult JoiningMedicalReport()
