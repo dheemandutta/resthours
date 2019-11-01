@@ -244,6 +244,7 @@
   <ItemGroup>
     <Content Include="background\about.jpg" />
     <Content Include="background\addcrew.jpg" />
+    <Content Include="background\B_HumanBody.jpg" />
     <Content Include="background\crewimport.jpg" />
     <Content Include="background\crewlist.jpg" />
     <Content Include="background\depart.jpg" />
@@ -253,6 +254,7 @@
     <Content Include="background\excel.png" />
     <Content Include="background\Flag_of_ILO.svg" />
     <Content Include="background\food.jpg" />
+    <Content Include="background\F_HumanBody.jpg" />
     <Content Include="background\HAddCrew.png" />
     <Content Include="background\HCompanyDetails.png" />
     <Content Include="background\HComplianceReport.png" />
@@ -282,6 +284,7 @@
     <Content Include="background\imos.png" />
     <Content Include="background\line.png" />
     <Content Include="background\login.jpg" />
+    <Content Include="background\L_HumanBody.jpg" />
     <Content Include="background\main\1.jpg" />
     <Content Include="background\main\2.jpg" />
     <Content Include="background\main\3.jpg" />
@@ -298,6 +301,7 @@
     <Content Include="background\regime.jpg" />
     <Content Include="background\regional-panels-badge-2018.png" />
     <Content Include="background\report.jpg" />
+    <Content Include="background\R_HumanBody.jpg" />
     <Content Include="background\sss.jpg" />
     <Content Include="background\sss1.jpg" />
     <Content Include="background\sss2.jpg" />

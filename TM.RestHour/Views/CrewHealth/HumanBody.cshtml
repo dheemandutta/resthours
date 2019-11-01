@@ -128,318 +128,49 @@
             <h2 class="ta">Human Body</h2>
         </div>
         <div class="col-md-7 bac">
+             <div class="modal-dialog" id="dvuserdetailsn" style="width: 745px; height:460px">
+                                    <fieldset class="for-panel">
+                                        <legend>Please Select The Coordinate</legend>
+                                        <div class="row">
 
-            <div class="col-md-8" style="width: 93.667%;">
-                <div class="card">
-                    <div style="width:99%; margin:0 auto" class="tablecontainer">
-                        <button type="button" class="button1" data-toggle="modal" data-target="#myModal0" onclick="clearTextBox();">Right Side</button>
-                        <button type="button" class="button1" data-toggle="modal" data-target="#myModal1" onclick="clearTextBox();">Left Side</button>
-                        <button type="button" class="button1" data-toggle="modal" data-target="#myModal2" onclick="clearTextBox();">Back Side</button>
-                        <button type="button" class="button1" data-toggle="modal" data-target="#myModal3" onclick="clearTextBox();">Front Side</button>
-
-                        @*<input type="hidden" id="hdncount" />
-                            <input type="hidden" id="hdnrole" />*@
-                    </div>
-                </div>
-            </div>
-
-            @*Right*@
-            <div class="modal fade" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style="width:890px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Human Body</h4>
-                        </div>
-
-
-
-
-                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
-                            <fieldset class="for-panel">
-                                <legend>Please Select The Coordinate</legend>
-                                <div class="row">
-
-                                    <div id='main_panel'>
-                                        <div style='margin: auto; width: 600px;'>
-                                            <div id='image_panel'>
-                                                <img src='~/background/R_HumanBody.jpg' id='imageMap' />
-                                                <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
-                                                <div id="planetmap">
-                                                </div>
-                                                <div id='form_panel'>
-                                                    <div class='row'>
-                                                        <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
-                                                    </div>
-                                                    <div class='row'>
-                                                        <div class='label'></div>
-                                                        <div class='field'>
-                                                            <input type='button' value='Add Tag' onclick='addTag()' />
+                                            <div id='main_panel' style="width: 755px;">
+                                                <div style='margin: auto; width: 600px;'>
+                                                    <div id='image_panel'>
+                                                        <img src='~/background/R_HumanBody.jpg' id='imageMap' />
+                                                        <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
+                                                        <div id="planetmap">
+                                                        </div>
+                                                        <div id='form_panel'>
+                                                            <div class='row'>
+                                                                <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
+                                                            </div>
+                                                            <div class='row'>
+                                                                <div class='label'></div>
+                                                                <div class='field'>
+                                                                    <input type='button' value='Add Tag' onclick='addTag()' />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div style="background: none repeat scroll 0 0 #C7C7C8;
+                                                <div style="background: none repeat scroll 0 0 #C7C7C8;
                                                      border: 1px solid #AEAEAE;
                                                      clear: both;
                                                      margin: 20px auto;
                                                      padding: 20px 0;
                                                      text-align: center;
                                                      width: 600px;">
-                                            <input type="button" value="Show Tags" onclick="showTags()" />
-                                            <input type="button" value="Hide Tags" onclick="hideTags()" />
-                                        </div>
-                                    </div>
-
-
-
-                                    @*<div class="form-group">
-                                            <input type="hidden" id="DepartmentMasterID" class="form-control" />
-                                        </div>*@
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
-                            @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
-                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*Left*@
-            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style="width:890px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Human Body</h4>
-                        </div>
-
-
-
-
-                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
-                            <fieldset class="for-panel">
-                                <legend>Please Select The Coordinate</legend>
-                                <div class="row">
-
-                                    <div id='main_panel'>
-                                        <div style='margin: auto; width: 600px;'>
-                                            <div id='image_panel'>
-                                                <img src='~/background/L_HumanBody.jpg' id='imageMap' />
-                                                <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
-                                                <div id="planetmap">
-                                                </div>
-                                                <div id='form_panel'>
-                                                    <div class='row'>
-                                                        <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
-                                                    </div>
-                                                    <div class='row'>
-                                                        <div class='label'></div>
-                                                        <div class='field'>
-                                                            <input type='button' value='Add Tag' onclick='addTag()' />
-                                                        </div>
-                                                    </div>
+                                                    <input type="button" value="Show Tags" onclick="showTags()" />
+                                                    <input type="button" value="Hide Tags" onclick="hideTags()" />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div style="background: none repeat scroll 0 0 #C7C7C8;
-                                                     border: 1px solid #AEAEAE;
-                                                     clear: both;
-                                                     margin: 20px auto;
-                                                     padding: 20px 0;
-                                                     text-align: center;
-                                                     width: 600px;">
-                                            <input type="button" value="Show Tags" onclick="showTags()" />
-                                            <input type="button" value="Hide Tags" onclick="hideTags()" />
-                                        </div>
-                                    </div>
-
-
-
-                                    @*<div class="form-group">
-                                            <input type="hidden" id="DepartmentMasterID" class="form-control" />
-                                        </div>*@
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
-                            @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
-                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*Back*@
-            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style="width:890px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Human Body</h4>
-                        </div>
-
-
-
-
-                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
-                            <fieldset class="for-panel">
-                                <legend>Please Select The Coordinate</legend>
-                                <div class="row">
-
-                                    <div id='main_panel'>
-                                        <div style='margin: auto; width: 600px;'>
-                                            <div id='image_panel'>
-                                                <img src='~/background/B_HumanBody.jpg' id='imageMap' />
-                                                <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
-                                                <div id="planetmap">
-                                                </div>
-                                                <div id='form_panel'>
-                                                    <div class='row'>
-                                                        <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
-                                                    </div>
-                                                    <div class='row'>
-                                                        <div class='label'></div>
-                                                        <div class='field'>
-                                                            <input type='button' value='Add Tag' onclick='addTag()' />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div style="background: none repeat scroll 0 0 #C7C7C8;
-                                                     border: 1px solid #AEAEAE;
-                                                     clear: both;
-                                                     margin: 20px auto;
-                                                     padding: 20px 0;
-                                                     text-align: center;
-                                                     width: 600px;">
-                                            <input type="button" value="Show Tags" onclick="showTags()" />
-                                            <input type="button" value="Hide Tags" onclick="hideTags()" />
-                                        </div>
-                                    </div>
-
-
-
-                                    @*<div class="form-group">
-                                            <input type="hidden" id="DepartmentMasterID" class="form-control" />
-                                        </div>*@
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
-                            @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
-                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*Front*@
-            <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style="width:890px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Human Body</h4>
-                        </div>
-
-
-
-
-                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
-                            <fieldset class="for-panel">
-                                <legend>Please Select The Coordinate</legend>
-                                <div class="row">
-
-                                    <div id='main_panel'>
-                                        <div style='margin: auto; width: 600px;'>
-                                            <div id='image_panel'>
-                                                <img src='~/background/F_HumanBody.jpg' id='imageMap' />
-                                                <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
-                                                <div id="planetmap">
-                                                </div>
-                                                <div id='form_panel'>
-                                                    <div class='row'>
-                                                        <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
-                                                    </div>
-                                                    <div class='row'>
-                                                        <div class='label'></div>
-                                                        <div class='field'>
-                                                            <input type='button' value='Add Tag' onclick='addTag()' />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div style="background: none repeat scroll 0 0 #C7C7C8;
-                                                     border: 1px solid #AEAEAE;
-                                                     clear: both;
-                                                     margin: 20px auto;
-                                                     padding: 20px 0;
-                                                     text-align: center;
-                                                     width: 600px;">
-                                            <input type="button" value="Show Tags" onclick="showTags()" />
-                                            <input type="button" value="Hide Tags" onclick="hideTags()" />
-                                        </div>
-                                    </div>
-
-
-
-                                    @*<div class="form-group">
-                                            <input type="hidden" id="DepartmentMasterID" class="form-control" />
-                                        </div>*@
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
-                            @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
-                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
-                        </div>
-                    </div>
-                </div>
+                                    </fieldset>
             </div>
 
-
-            <div class="modal fade" id="myModalForAdminCrew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style="width:890px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Admin Crew</h4>
-                        </div>
-                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
-                            <fieldset class="for-panel">
-                                <legend>Select Crew Administrator</legend>
-                                <div class="row">
-
-
-
-
-
-
-                                    <div class="form-group">
-                                        <input type="hidden" id="DepartmentMasterID" />
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="button" id="btnAdd" onclick="return UpdateAssignCrew();" style="width:86px;">Add/Update</button>
-                            <button type="button" class="button" id="btnUpdate" style="display:none; width:86px;" onclick="UpdateAssignCrew();">Update</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                 <button type="button" class="buttonpop" id="btnNext" onclick="return Next();" style="width:86px;">Next</button>
+                 @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
             </div>
         </div>
     </div>
