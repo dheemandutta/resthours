@@ -327,7 +327,7 @@ function Update() {
 
 function GetShipByID(ID) {
     $('#ShipName').css('border-color', 'lightgrey');
-    var x = $("#myUrl").val();
+    var x = $("#myUrlship").val();
     $.ajax({
         url: x,
         data:
