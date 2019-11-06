@@ -2362,6 +2362,7 @@
     <Content Include="Scripts\build\parser.js" />
     <Content Include="Scripts\build\sugarpak.js" />
     <Content Include="Scripts\build\time.js" />
+    <Content Include="Scripts\canvas2image.js" />
     <Content Include="Scripts\CIRM.js" />
     <Content Include="Scripts\Consultant.js" />
     <Content Include="Scripts\CreateNewUserAccount.js" />
