@@ -128,51 +128,52 @@
             <h2 class="ta">Human Body</h2>
         </div>
         <div class="col-md-7 bac">
-             <div class="modal-dialog" id="dvuserdetailsn" style="width: 745px; height:460px">
-                                    <fieldset class="for-panel">
-                                        <legend>Please Select The Coordinate</legend>
-                                        <div class="row">
+            <div class="modal-dialog" id="dvuserdetailsn" style="width: 745px; height:460px">
+                <fieldset class="for-panel">
+                    <legend>Please Select The Coordinate</legend>
+                    <div class="row">
 
-                                            <div id='main_panel' style="width: 755px;">
-                                                <div style='margin: auto; width: 600px;'>
-                                                    <div id='image_panel'>
-                                                        <img src='~/background/L_HumanBody.jpg' id='imageMap' />
-                                                        <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
-                                                        <div id="planetmap">
-                                                        </div>
-                                                        <div id='form_panel'>
-                                                            <div class='row'>
-                                                                <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
-                                                            </div>
-                                                            <div class='row'>
-                                                                <div class='label'></div>
-                                                                <div class='field'>
-                                                                    <input type='button' value='Add Tag' onclick='addTag()' />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div style="background: none repeat scroll 0 0 #C7C7C8;
+                        <div id='main_panel' style="width: 755px;">
+                            <div style='margin: auto; width: 600px;'>
+                                <div id='image_panel'>
+                                    <img src="../background/L_HumanBody.jpg" id="imgToSwitch">
+                                    <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
+                                    <div id="planetmap">
+                                    </div>
+                                    <div id='form_panel'>
+                                        <div class='row'>
+                                            <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='label'></div>
+                                            <div class='field'>
+                                                <input type='button' value='Add Tag' onclick='addTag()' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background: none repeat scroll 0 0 #C7C7C8;
                                                      border: 1px solid #AEAEAE;
                                                      clear: both;
                                                      margin: 20px auto;
                                                      padding: 20px 0;
                                                      text-align: center;
                                                      width: 600px;">
-                                                    <input type="button" value="Show Tags" onclick="showTags()" />
-                                                    <input type="button" value="Hide Tags" onclick="hideTags()" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset>
+                                <input type="button" value="Show Tags" onclick="showTags()" />
+                                <input type="button" value="Hide Tags" onclick="hideTags()" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
             </div>
 
-             <div class="modal-footer">
-                 <button type="button" class="buttonpop" style="width:86px;" onclick="switchImg()">Next</button>
-             </div>
+            <div class="modal-footer">
+                <button type="button" class="buttonpop" style="width:86px;" onclick="switchImg()">Next</button>
+            </div>
         </div>
     </div>
+
 </body>
 
 @section Scripts
@@ -189,10 +190,12 @@
 
     <script src="dist/dual-listbox.js"></script>
 
-    <script src="~/Scripts/jquery.typeahead.js"></script>
+    @*<script src="~/Scripts/jquery.typeahead.js"></script>*@
     <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
     <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
     <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+
+
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -237,8 +240,6 @@
                     }
                 }
             });
-
-
 
             $("#imageMap").click(function (e) {
 
@@ -296,6 +297,10 @@
                 $("#mapper").draggable({ containment: "parent" });
 
             });
+
+
+
+
         });
 
         $("#planetmap").on("mouseover", ".tagged", function () {
@@ -319,15 +324,11 @@
 
         });
 
-
-
-
-
         $("#planetmap").on("click", ".tagged", function () {
 
             console.log('tagged click');
             $(this).find(".tagged_box").html("<img src='../background/del.png' class='openDialog' value='Delete' onclick='deleteTag(this)' />\n\
-                                                                <img src='../background/save.png' onclick='editTag(this);' value='Save' />");
+                                                                        <img src='../background/save.png' onclick='editTag(this);' value='Save' />");
 
             var img_scope_top = $("#imageMap").offset().top + $("#imageMap").height() - $(this).find(".tagged_box").height();
             var img_scope_left = $("#imageMap").offset().left + $("#imageMap").width() - $(this).find(".tagged_box").width();
@@ -405,21 +406,26 @@
         };
 
 
-         ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         var x = 1; //initializes counter
         function switchImg() {
             if (x == 1) { //if the counter is at 1
-                document.getElementById("imageMap").src = "../background/R_HumanBody.jpg";
+                document.getElementById("imgToSwitch").src = "../background/R_HumanBody.jpg";
                 x++; //increments the counter to 2
             } else if (x == 2) { //if this is the 2nd click
-                document.getElementById("imageMap").src = '../background/L_HumanBody.jpg';
+                document.getElementById("imgToSwitch").src = '../background/L_HumanBody.jpg';
                 x++; //increments counter to 3
             } else if (x == 3) { //if the counter is 3
-                document.getElementById("imageMap").src = '../background/F_HumanBody.jpg';
+                document.getElementById("imgToSwitch").src = '../background/F_HumanBody.jpg';
                 x = 1; //resets counter to 1
             }
         }
             ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
     </script>
 }

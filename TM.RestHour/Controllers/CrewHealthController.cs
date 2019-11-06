@@ -18,6 +18,10 @@ namespace TM.RestHour.Controllers
     [TraceFilterAttribute]
     public class CrewHealthController : BaseController
     {
+        public ActionResult test()
+        {
+            return View();
+        }
         public ActionResult HumanBody()
         {
             return View();
