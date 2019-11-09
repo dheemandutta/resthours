@@ -247,6 +247,7 @@
     <Content Include="background\B_HumanBody.jpg" />
     <Content Include="background\crewimport.jpg" />
     <Content Include="background\crewlist.jpg" />
+    <Content Include="background\del.png" />
     <Content Include="background\depart.jpg" />
     <Content Include="background\Doctors.jpg" />
     <Content Include="background\down.png" />
@@ -302,6 +303,7 @@
     <Content Include="background\regional-panels-badge-2018.png" />
     <Content Include="background\report.jpg" />
     <Content Include="background\R_HumanBody.jpg" />
+    <Content Include="background\save.png" />
     <Content Include="background\sss.jpg" />
     <Content Include="background\sss1.jpg" />
     <Content Include="background\sss2.jpg" />

@@ -114,7 +114,9 @@
 </style>
 
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-<link href="dist/dual-listbox.css" rel="stylesheet">
+<script src="~/Scripts/canvas2image.js"></script>
+<script src="~/Scripts/html2canvas.min.js"></script>
+@*<link href="dist/dual-listbox.css" rel="stylesheet">*@
 
 @*<script src="~/Scripts/Department.js"></script>*@
 @Html.Hidden("myUrlForAssignCrew", @Url.Action("GetDepartmentByIDForAssignCrew", "Department"))
@@ -128,63 +130,63 @@
             <h2 class="ta">Human Body</h2>
         </div>
         <div class="col-md-7 bac">
-             <div class="modal-dialog" id="dvuserdetailsn" style="width: 745px; height:460px">
-                                    <fieldset class="for-panel">
-                                        <legend>Please Select The Coordinate</legend>
-                                        <div class="row">
+            <div class="modal-dialog" id="dvuserdetailsn" style="width: 745px; height:460px">
+                <fieldset class="for-panel">
+                    <legend>Please Select The Coordinate</legend>
+                    <div class="row">
 
-                                            <div id='main_panel' style="width: 755px;">
-                                                <div style='margin: auto; width: 600px;'>
-                                                    <div id='image_panel'>
-                                                        <img src='~/background/L_HumanBody.jpg' id='imageMap' />
-                                                        <div id='mapper'><img src='~/background/save.png' onclick='openDialog()' /></div>
-                                                        <div id="planetmap">
-                                                        </div>
-                                                        <div id='form_panel'>
-                                                            <div class='row'>
-                                                                <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
-                                                            </div>
-                                                            <div class='row'>
-                                                                <div class='label'></div>
-                                                                <div class='field'>
-                                                                    <input type='button' value='Add Tag' onclick='addTag()' />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @*<div style="background: none repeat scroll 0 0 #C7C7C8;
-                                                     border: 1px solid #AEAEAE;
-                                                     clear: both;
-                                                     margin: 20px auto;
-                                                     padding: 20px 0;
-                                                     text-align: center;
-                                                     width: 600px;">
-                                                    <input type="button" value="Show Tags" onclick="showTags()" />
-                                                    <input type="button" value="Hide Tags" onclick="hideTags()" />
-                                                    <input type="button" value="Save Image" onclick="saveImage()" />
-                                                </div>*@
+                        <div id='main_panel' style="width: 755px;">
+                            <div style='margin: auto; width: 600px;'>
+                                <div id='image_panel'>
+                                    <img src='~/background/L_HumanBody.jpg' id='imageMap' />
+                                    <div id='mapper'><img src='~/background/save.png' alt="save tag" onclick='openDialog()' /></div>
+                                    <div id="planetmap">
+                                    </div>
+                                    <div id='form_panel'>
+                                        <div class='row'>
+                                            <div class='label'>Title</div><div class='field'><input type='text' id='title' /></div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='label'></div>
+                                            <div class='field'>
+                                                <input type='button' value='Add Tag' onclick='addTag()' />
                                             </div>
                                         </div>
-                       
-                                    </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div style="background: none repeat scroll 0 0 #C7C7C8;
+                                     border: 1px solid #AEAEAE;
+                                     clear: both;
+                                     margin: 20px auto;
+                                     padding: 20px 0;
+                                     text-align: center;
+                                     width: 600px;">
+                                    <input type="button" value="Show Tags" onclick="showTags()" />
+                                    <input type="button" value="Hide Tags" onclick="hideTags()" />
+                                    <input type="button" value="Save Image" onclick="saveImage()" />
+                                </div>*@
+                        </div>
+                    </div>
 
-                                    <div style="background: none repeat scroll 0 0 #C7C7C8;
+                </fieldset>
+
+                <div style="background: none repeat scroll 0 0 #C7C7C8;
                                                      border: 1px solid #AEAEAE;
                                                      clear: both;
                                                      margin: 20px auto;
                                                      padding: 20px 0;
                                                      text-align: center;
                                                      width: 600px;">
-                                                    <input type="button" value="Show Tags" onclick="showTags()" />
-                                                    <input type="button" value="Hide Tags" onclick="hideTags()" />
-                                                    <input type="button" value="Save Image" onclick="saveImage()" />
-                                    </div>
+                    <input type="button" value="Show Tags" onclick="showTags()" />
+                    <input type="button" value="Hide Tags" onclick="hideTags()" />
+                    <input type="button" value="Save Image" onclick="CaptureImage()" />
+                </div>
             </div>
 
-             <div class="modal-footer">
-                 <button type="button" class="buttonpop" style="width:86px;" onclick="switchImg()">Next</button>
-             </div>
+            <div class="modal-footer">
+                <button type="button" class="buttonpop" style="width:86px;" onclick="switchImg()">Next</button>
+            </div>
         </div>
     </div>
 </body>
@@ -195,18 +197,17 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/themes/base/css")
 
-    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
-    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+    @*<script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+        <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>*@
 
     <script src="~/Scripts/toastr.min.js"></script>
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
 
-    <script src="dist/dual-listbox.js"></script>
-    <script src="~/Scripts/canvas2image.js"></script>
-    <script src="~/Scripts/html2canvas.min.js"></script>
-    <script src="~/Scripts/jquery.typeahead.js"></script>
-    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
-    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
+    @*<script src="dist/dual-listbox.js"></script>*@
+
+    @*<script src="~/Scripts/jquery.typeahead.js"></script>*@
+    @*<script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
+        <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />*@
     <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
 
     <script type="text/javascript">
@@ -342,7 +343,7 @@
 
             console.log('tagged click');
             $(this).find(".tagged_box").html("<img src='../background/del.png' class='openDialog' value='Delete' onclick='deleteTag(this)' />\n\
-                                                                <img src='../background/save.png' onclick='editTag(this);' value='Save' />");
+                                                                    <img src='../background/save.png' onclick='editTag(this);' value='Save' />");
 
             var img_scope_top = $("#imageMap").offset().top + $("#imageMap").height() - $(this).find(".tagged_box").height();
             var img_scope_left = $("#imageMap").offset().left + $("#imageMap").width() - $(this).find(".tagged_box").width();
@@ -415,12 +416,21 @@
 
         }
 
+         var CaptureImage = function () {
+            html2canvas(document.querySelector("#image_panel")).then(canvas => {
+                document.body.appendChild(canvas)
+                Canvas2Image.saveAsImage(canvas);
+            });
+
+            
+        };
+
         var deleteTag = function (obj) {
             $(obj).parent().parent().remove();
         };
 
 
-         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         var x = 1; //initializes counter
         function switchImg() {
             if (x == 1) { //if the counter is at 1
@@ -434,10 +444,30 @@
                 x = 1; //resets counter to 1
             }
         }
-            ////////////////////////////////////////////////////////////////////////////////////////////////////
-        function saveImage() {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //function saveImage() {
+        //    console.log('screenshot');
+        //    //console.log($('#image_panel'))
+        //    //var element = $('#image_panel')[0];
+        //    console.log(document.querySelector("#image_panel"));
+        //    //html2canvas(element, {
+        //    //    onrendered: function (canvas) {
 
-        }
+        //    //        return Canvas2Image.saveAsPNG(canvas);
+        //    //    }
+        //    //});
+
+        //     var CaptureImage = function () {
+        //    html2canvas(document.querySelector("#image_panel")).then(canvas => {
+        //        document.body.appendChild(canvas);
+        //        console.log('canvas');
+        //        console.log(canvas);
+        //        Canvas2Image.saveAsImage(canvas);
+        //    });
+
+            
+        //};
+        //}
     </script>
 }
 
