@@ -162,6 +162,7 @@
                                                      width: 600px;">
                                                     <input type="button" value="Show Tags" onclick="showTags()" />
                                                     <input type="button" value="Hide Tags" onclick="hideTags()" />
+                                                    <input type="button" value="Save Image" onclick="saveImage()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +189,8 @@
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
 
     <script src="dist/dual-listbox.js"></script>
-
+    <script src="~/Scripts/canvas2image.js"></script>
+    <script src="~/Scripts/html2canvas.min.js"></script>
     <script src="~/Scripts/jquery.typeahead.js"></script>
     <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
     <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
@@ -420,7 +422,9 @@
             }
         }
             ////////////////////////////////////////////////////////////////////////////////////////////////////
+        function saveImage() {
 
+        }
     </script>
 }
 
