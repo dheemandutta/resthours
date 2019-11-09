@@ -138,7 +138,7 @@
                             <div id='main_panel' style="width: 755px;">
                                 <div style='margin: auto; width: 600px;'>
                                     <div id='image_panel'>
-                                        <img src='~/background/L_HumanBody.jpg' id='imageMap' />
+                                        <img src='~/background/F_HumanBody.jpg' id='imageMap' />
                                         <div id='mapper'><img src='~/background/save.png' alt="save tag" onclick='openDialog()' /></div>
                                         <div id="planetmap">
                                         </div>
@@ -434,16 +434,19 @@
         };
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////// FRBL
         var x = 1; //initializes counter
         function switchImg() {
             if (x == 1) { //if the counter is at 1
                 document.getElementById("imageMap").src = "../background/R_HumanBody.jpg";
                 x++; //increments the counter to 2
             } else if (x == 2) { //if this is the 2nd click
-                document.getElementById("imageMap").src = '../background/L_HumanBody.jpg';
+                document.getElementById("imageMap").src = '../background/B_HumanBody.jpg';
                 x++; //increments counter to 3
-            } else if (x == 3) { //if the counter is 3
+            }else if (x == 3) { //if this is the 3nd click
+                document.getElementById("imageMap").src = '../background/L_HumanBody.jpg';
+                x++; //increments counter to 4
+            }else if (x == 4) { //if the counter is 4
                 document.getElementById("imageMap").src = '../background/F_HumanBody.jpg';
                 x = 1; //resets counter to 1
             }
