@@ -11,126 +11,129 @@
 *@
 
 
-<html>
-<head>
-    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script src="~/src/jquery.image-marker.js"></script>
-    <script src="../src/jquery.image-marker.js"></script>
-    <link rel="stylesheet" type="text/css" href="../src/jquery.image-marker.css">
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="~/Scripts/canvas2image.js"></script>
-<script src="~/Scripts/html2canvas.min.js"></script>
+        <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <script src="~/src/jquery.image-marker.js"></script>
+        <script src="../src/jquery.image-marker.js"></script>
+        <link rel="stylesheet" type="text/css" href="../src/jquery.image-marker.css">
 
-    <style type="text/css">
+        <script src="~/Scripts/canvas2image.js"></script>
+        <script src="~/Scripts/html2canvas.min.js"></script>
 
-         #element {
-      
-    
-    overflow:hidden;
-    position: relative;
-    right:225px;
-    left: 220px;
-    width: 1000px;
-    }
+        <style type="text/css">
 
-        #element img {
-            left: 0;
-            top: -102px;
-            max-width: 600px;
-            overflow: hidden;
-        }
-
-
-
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            padding: 0;
-            margin: 0;
-            background-color: #fafafa;
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            color: #222;
-            font-weight: 300;
-        }
-
-        .page_content {
-            width: 960px;
-            margin: 70px auto;
-            position: relative;
-            overflow: auto;
-            position: relative;
-        }
-
-        .toolbar {
-            min-height: 32px;
-            margin: 9px 0 9px 10px;
-            line-height: 32px;
-            font-size: 16px;
-            overflow: auto;
-        }
-
-        .toolbar_btn {
-            float: left;
-            padding: 0 10px;
-            line-height: 30px;
-            margin-right: 10px;
-            border-radius: 6px;
-            color: #444;
-            cursor: pointer;
-            background-repeat: no-repeat;
-        }
-
-        .btn_grey {
-            background-color: #DDD;
-            margin: 1px 10px 0 0;
-            height: 30px;
-        }
-
-            .btn_grey:hover {
-                color: #FFF;
-                background-color: #1986C4;
-                border: 0;
+            #element {
+                overflow: hidden;
+                position: relative;
+                right: 225px;
+                left: 175px;
+                width: 1030px;
             }
 
-        .yello {
-            background-color: rgba(255,145,0,0.15);
-            border-color: #ff9100;
-        }
+                #element img {
+                    left: 0;
+                    top: -102px;
+                    max-width: 600px;
+                    overflow: hidden;
+                }
 
-        .green {
-            background-color: rgba(125,189,59,0.15);
-            border-color: red;   /* #7dbd3b */
-        }
 
-        .image-marker__dot.yello, .image-marker__line.yello {
-            background-color: #ff9100;
-        }
 
-        .image-marker__dot.green, .image-marker__line.green {
-            background-color: red;  /* #7dbd3b */
-        }
-    </style>
-</head>
+            * {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
 
-<body>
-    <div class="page_content" style="width: 1225px;">
-        @*<h1>Human Body</h1>*@
-        <div class="cell">
-            <div class="toolbar">
-                <div class="toolbar_left">
-                    @*<div class="buttonpop" id="add_pos_marker">Add Positive dot</div>*@
-                    <button type="button" class="buttonpop" style="width:120px;" id="add_pos_marker">Add Positive dot</button>
-                    @*<div class="toolbar_btn btn_grey" id="add_neg_marker">Add Negative dot</div>*@
-                    @*<div class="toolbar_btn btn_grey" id="save">Save</div>*@
+            body {
+                padding: 0;
+                margin: 0;
+                background-color: #fafafa;
+                font-family: 'Roboto', sans-serif;
+                font-size: 14px;
+                color: #222;
+                font-weight: 300;
+            }
+
+            .page_content {
+                width: 960px;
+                margin: 70px auto;
+                position: relative;
+                overflow: auto;
+                position: relative;
+            }
+
+            .toolbar {
+                min-height: 32px;
+                margin: 9px 0 9px 10px;
+                line-height: 32px;
+                font-size: 16px;
+                overflow: auto;
+            }
+
+            .toolbar_btn {
+                float: left;
+                padding: 0 10px;
+                line-height: 30px;
+                margin-right: 10px;
+                border-radius: 6px;
+                color: #444;
+                cursor: pointer;
+                background-repeat: no-repeat;
+            }
+
+            .btn_grey {
+                background-color: #DDD;
+                margin: 1px 10px 0 0;
+                height: 30px;
+            }
+
+                .btn_grey:hover {
+                    color: #FFF;
+                    background-color: #1986C4;
+                    border: 0;
+                }
+
+            .yello {
+                background-color: rgba(255,145,0,0.15);
+                border-color: #ff9100;
+            }
+
+            .green {
+                background-color: rgba(125,189,59,0.15);
+                border-color: red; /* #7dbd3b */
+            }
+
+            .image-marker__dot.yello, .image-marker__line.yello {
+                background-color: #ff9100;
+            }
+
+            .image-marker__dot.green, .image-marker__line.green {
+                background-color: red; /* #7dbd3b */
+            }
+        </style>
+    </head>
+
+    <body style="background-image: url(../background/BodyBg.jpg);
+    background-size: cover;">
+        <div class="page_content" style="width: 1225px;">
+            @*<h1>Human Body</h1>*@
+            <div class="cell">
+                <div class="toolbar">
+                    <div class="toolbar_left">
+                        @*<div class="buttonpop" id="add_pos_marker">Add Positive dot</div>*@
+                        @*<button type="button" class="buttonpop" style="width:120px;" id="add_pos_marker">Add Positive dot</button>*@
+                        @*<div class="toolbar_btn btn_grey" id="add_neg_marker">Add Negative dot</div>*@
+                        @*<div class="toolbar_btn btn_grey" id="save">Save</div>*@
+                    </div>
                 </div>
-            </div>
-            <div id="element"></div>
-            <div style="
+                <div id="element"></div>
+                <div style="
                                                      /*background: none repeat scroll 0 0 #C7C7C8;*/
                                                      /*border: 1px solid #AEAEAE;*/
                                                      clear: both;
@@ -139,86 +142,87 @@
                                                      text-align: center;
                                                      width: 600px;
                                                      height: 1px;">
-                <button type="button" class="buttonpop" style="width:86px;" onclick="switchImg()   ">Rotate    </button>
-                <button type="button" class="buttonpop" style="width:86px;" onclick="CaptureImage()">Save</button>
-
+                    <button type="button" class="buttonpop" style="width:86px; background-color:darkcyan; color:aliceblue" id="add_pos_marker">Add Dot</button>
+                    <button type="button" class="buttonpop" style="width:86px; background-color:chocolate; color:aliceblue" onclick="switchImg()   ">Rotate    </button>
+                    <button type="button" class="buttonpop" style="width:86px; background-color:forestgreen; color:aliceblue" onclick="CaptureImage()">Save</button>
+                    <button type="button" class="buttonpop" style="width:86px; background-color:crimson; color:aliceblue" onclick="window.close();">Close</button>
+                </div>
             </div>
         </div>
-    </div>
-    <script>
-        $(function () {
-            var img_src = "../background/F_HumanBody.jpg";
-            var imageMarker = $("#element").imageMarker({ src: img_src, drag_disabled: false });
-            if (!!window.localStorage.markers) {
-                JSON.parse(window.localStorage.markers).forEach(function (m) {
-                    $(imageMarker).trigger('add_marker', m);
-                })
+        <script>
+            $(function () {
+                var img_src = "../background/F_HumanBody.jpg";
+                var imageMarker = $("#element").imageMarker({ src: img_src, drag_disabled: false });
+                if (!!window.localStorage.markers) {
+                    JSON.parse(window.localStorage.markers).forEach(function (m) {
+                        $(imageMarker).trigger('add_marker', m);
+                    })
+                }
+                $('#add_neg_marker').click(function () {
+                    $(imageMarker).trigger('add_marker', {
+                        className: 'yello'
+                    });
+                });
+                $('#add_pos_marker').click(function () {
+                    $(imageMarker).trigger('add_marker', {
+                        content: '',
+                        className: 'green'
+                    });
+                });
+                $('#save').click(function () {
+                    $(imageMarker).trigger('get_markers', function (data) {
+                        window.localStorage.markers = JSON.stringify(data);
+                    });
+                });
+            });
+
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////// FRBL
+            var x = 1; //initializes counter
+            function switchImg() {
+                if (x == 1) { //if the counter is at 1
+                    document.getElementById("imageMap").src = "../background/R_HumanBody.jpg";
+                    x++; //increments the counter to 2
+                } else if (x == 2) { //if this is the 2nd click
+                    document.getElementById("imageMap").src = '../background/B_HumanBody.jpg';
+                    x++; //increments counter to 3
+                } else if (x == 3) { //if this is the 3nd click
+                    document.getElementById("imageMap").src = '../background/L_HumanBody.jpg';
+                    x++; //increments counter to 4
+                } else if (x == 4) { //if the counter is 4
+                    document.getElementById("imageMap").src = '../background/F_HumanBody.jpg';
+                    x = 1; //resets counter to 1
+                }
             }
-            $('#add_neg_marker').click(function () {
-                $(imageMarker).trigger('add_marker', {
-                    className: 'yello'
+            ////////////////////////////////////////////////////////////////////////////////////////////////////    Dheeman da
+
+            var CaptureImage = function () {
+                html2canvas(document.querySelector("#element")).then(canvas => {
+                    //document.body.appendChild(canvas)
+                    Canvas2Image.saveAsImage(canvas);
+                    deleteTag(document.querySelector("#element"));
                 });
-            });
-            $('#add_pos_marker').click(function () {
-                $(imageMarker).trigger('add_marker', {
-                    content: '',
-                    className: 'green'
-                });
-            });
-            $('#save').click(function () {
-                $(imageMarker).trigger('get_markers', function (data) {
-                    window.localStorage.markers = JSON.stringify(data);
-                });
-            });
-        });
+
+                //$('#myform').submit();
+            };
+
+            var deleteTag = function (obj) {
+                //$(obj).parent().parent().remove();
+                // $('.tagged_box').remove();
+                //$(".tagged_title").css("display", "none");
+                $('#planetmap').children('.tagged').remove();
+            };
 
 
-        //////////////////////////////////////////////////////////////////////////////////////////////////// FRBL
-        var x = 1; //initializes counter
-        function switchImg() {
-            if (x == 1) { //if the counter is at 1
-                document.getElementById("imageMap").src = "../background/R_HumanBody.jpg";
-                x++; //increments the counter to 2
-            } else if (x == 2) { //if this is the 2nd click
-                document.getElementById("imageMap").src = '../background/B_HumanBody.jpg';
-                x++; //increments counter to 3
-            }else if (x == 3) { //if this is the 3nd click
-                document.getElementById("imageMap").src = '../background/L_HumanBody.jpg';
-                x++; //increments counter to 4
-            }else if (x == 4) { //if the counter is 4
-                document.getElementById("imageMap").src = '../background/F_HumanBody.jpg';
-                x = 1; //resets counter to 1
-            }
-        }
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        </script>
 
-          var CaptureImage = function () {
-            html2canvas(document.querySelector("#element")).then(canvas => {
-                //document.body.appendChild(canvas)
-                Canvas2Image.saveAsImage(canvas);
-                 deleteTag(document.querySelector("#element"));
-            });
+        <script type="text/javascript">
 
-             //$('#myform').submit();
-        };
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-36251023-1']);
+            _gaq.push(['_setDomainName', 'jqueryscript.net']);
+            _gaq.push(['_trackPageview']);
 
-          var deleteTag = function (obj) {
-            //$(obj).parent().parent().remove();
-           // $('.tagged_box').remove();
-            //$(".tagged_title").css("display", "none");
-            $('#planetmap').children('.tagged').remove();
-        };
-
-
-    </script>
-
-    <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-36251023-1']);
-        _gaq.push(['_setDomainName', 'jqueryscript.net']);
-        _gaq.push(['_trackPageview']);
-
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>

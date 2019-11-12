@@ -4,7 +4,7 @@
     overflow: hidden;
     position:relative;
 
-    left: 25px;
+    left: 0px;
     width: 124%;
 }
 
@@ -20,18 +20,18 @@
 }
 
 .image-marker-container__box--left {
-  left: 0;
+  left: 6;
   width: 14%
 }
 
 .image-marker-container__box--right {
-    right: 289px;
-    width: 14.5%;
+    right: 300px;
+    width: 14%;
 }
 
 .image-marker-container__box--image {
   left: 15%;
-  right: 39%;
+  right: 38%;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQUlEQVQYV2NkIABWrVr1H6SEEZ86mKKwsDBGnAqRFeE0EV0RVoXYFGEoxKUIRSE+RXCFhBSBFRKjCK4QFE6EwhMA6fIqBUB9cUAAAAAASUVORK5CYII=);
   display: flex;
   align-items: center;

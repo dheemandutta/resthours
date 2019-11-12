@@ -244,6 +244,7 @@
   <ItemGroup>
     <Content Include="background\about.jpg" />
     <Content Include="background\addcrew.jpg" />
+    <Content Include="background\BodyBg.jpg" />
     <Content Include="background\B_HumanBody.jpg" />
     <Content Include="background\crewimport.jpg" />
     <Content Include="background\crewlist.jpg" />
