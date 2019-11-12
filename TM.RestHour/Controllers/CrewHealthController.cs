@@ -22,6 +22,10 @@ namespace TM.RestHour.Controllers
         {
             return View();
         }
+        public ActionResult TestBody()
+        {
+            return View();
+        }
         public ActionResult HumanBody()
         {
             return View();

@@ -2906,6 +2906,8 @@
     <None Include="SQLScripts\03-UpdateDB\01-UpdateDB.sql" />
     <None Include="SQLScripts\09-Create-SPs\dbo.stpGetCrewOvertimeValue.StoredProcedure.sql" />
     <None Include="SQLScripts\09-Create-SPs\dbo.stpUpdateInActive.StoredProcedure.sql" />
+    <Content Include="src\jquery.image-marker.css" />
+    <Content Include="src\jquery.image-marker.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3008,6 +3010,7 @@
     <Content Include="Views\UploadMedicalInventory\Index.cshtml" />
     <Content Include="Views\CrewHealth\HumanBody.cshtml" />
     <Content Include="Views\CrewHealth\test.cshtml" />
+    <Content Include="Views\CrewHealth\TestBody.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -52,6 +52,17 @@ namespace TM.RestHour
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
                         "~/Content/DataTables/css/jquery.dataTables.min.css"));
+
+
+
+
+
+
+            //bundles.Add(new StyleBundle("~/src").Include(
+            //            "~/src/jquery.image-marker.css"));
+
+            //bundles.Add(new ScriptBundle("~/src").Include(
+            //          "~/src/jquery.image-marker.js"));
         }
     }
 }
