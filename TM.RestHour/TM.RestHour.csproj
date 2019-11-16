@@ -246,6 +246,11 @@
     <Content Include="background\addcrew.jpg" />
     <Content Include="background\BodyBg.jpg" />
     <Content Include="background\B_HumanBody.jpg" />
+    <Content Include="background\CIRM1.png" />
+    <Content Include="background\CIRM2.png" />
+    <Content Include="background\CIRM3.png" />
+    <Content Include="background\CIRM4.png" />
+    <Content Include="background\CIRM5.png" />
     <Content Include="background\crewimport.jpg" />
     <Content Include="background\crewlist.jpg" />
     <Content Include="background\del.png" />
