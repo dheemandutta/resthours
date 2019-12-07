@@ -74,40 +74,40 @@
 
                                     @Html.TextBoxFor(a => a.Users.Username)
                                     @Html.ValidationMessageFor(a => a.Users.Username)
-                                  
+
 
                                     @*@Html.ValidationMessageFor(m => m.Username)*@
                                 </div>
                                 <div class="form-group">
                                     @Html.PasswordFor(a => a.Users.Password)
                                     @Html.ValidationMessageFor(a => a.Users.Password)
-                               
+
 
                                     @*@Html.ValidationMessageFor(m => m.Password)*@
                                 </div>
 
 
                                 @*<div class="form-group">
-                                        @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Vessel, "Select", new { @class = "form-control" })
-                                    </div>*@
+            @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Vessel, "Select", new { @class = "form-control" })
+        </div>*@
                                 @*<div class="remember">
 
-                                        <label class="container">
-                                            Remember me
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
+            <label class="container">
+                Remember me
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
 
-                                        @*<p style="float:right; font-size:12px; color:#fff;">Forgot Password?</p>
-                                    </div>*@
+            @*<p style="float:right; font-size:12px; color:#fff;">Forgot Password?</p>
+        </div>*@
                                 <div class="clearfix"></div>
                                 <div class="" style="margin: 0 auto;text-align: center; margin-right: 51px;">
                                     <input type="submit" class="btn btn-success" id="btnAdd" value="LOGIN" style="width:40%;" />
                                 </div>
                                 @*<input type="submit" class="btn btn-danger reg" value="REGISTER VESSEL" />*@
-                                @*<a href="forgot.html" class="display-block text-center m-t-md text-sm">Forgot Password?</a>
-                                    <p class="text-center m-t-xs text-sm">Do not have an account?</p>
-                                    <a href="register.html" class="btn btn-default btn-block m-t-md">Create an account</a>*@
+                                <a href="Login/ResetPasswordNew" style="color:red" class="text-center m-t-md text-sm">Forgot Password?</a>
+                                @*<p class="text-center m-t-xs text-sm">Do not have an account?</p>*@
+                                @*<a href="register.html" class="btn btn-default btn-block m-t-md">Create an account</a>*@
                             </div>
                             @*<p class="text-center m-t-xs text-sm">2015 © Modern by Steelcoders.</p>*@
                         </div>

@@ -19,6 +19,11 @@ namespace TM.RestHour.Controllers
 {
     public class LoginController : BaseController
     {
+        
+        public ActionResult ResetPasswordNew()
+        {
+            return View();
+        }
 
         // GET: /Login/
         public ActionResult Index()
