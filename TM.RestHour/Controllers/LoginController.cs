@@ -19,7 +19,10 @@ namespace TM.RestHour.Controllers
 {
     public class LoginController : BaseController
     {
-        
+        public ActionResult ResetPasswordOfID()
+        {
+            return View();
+        }
         public ActionResult ResetPasswordNew()
         {
             return View();
@@ -262,11 +265,21 @@ namespace TM.RestHour.Controllers
 
 		}
 
+        [HttpPost]
+        public ActionResult ResetPasswordOfID(LoginModel user)
+        {
+            LoginBL loginBL = new LoginBL();
+            LoginPOCO loginPC = new LoginPOCO();
+            //loginPC.ID = login.ID;
+            loginPC.UserName = user.Users.Username;
+            loginBL.UpdateResetPassword(loginPC);
+
+            return RedirectToAction("Index", "Login");
+        }
 
 
-
-		//for Ship drp
-		public void GetAllShipForDrp()
+        //for Ship drp
+        public void GetAllShipForDrp()
         {
             ShipBL crewDAL = new ShipBL();
             List<ShipPOCO> crewpocoList = new List<ShipPOCO>();

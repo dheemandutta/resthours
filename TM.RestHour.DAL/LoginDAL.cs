@@ -57,5 +57,23 @@ namespace TM.RestHour.DAL
             return recordsAffected;
 
         }
+
+
+        public int UpdateResetPassword(LoginPOCO login/*, int VesselID*/)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpUpdateByResetPassword", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+           // cmd.Parameters.AddWithValue("@ID", login.ID);
+            cmd.Parameters.AddWithValue("@UserName", login.UserName.ToString());
+            //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
     }
 }

@@ -77,3 +77,48 @@ function Reset() {
         }
     });
 }
+
+function UpdateResetPassword() {
+    // alert();
+    var i = $('#UpdateResetPassword').val();
+    // debugger;
+    //var res = validateVessel();
+    //if (res == false) {
+    //    return false;
+    //}
+    var empObj = {
+
+        //ID: $('#ID').val(),
+        UserName: $('#UserName').val()
+    };
+    //debugger;
+    $.ajax({
+
+        url: i,
+        data: JSON.stringify(empObj),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            //debugger;
+            //$('#myModal').modal('hide');
+
+            //$('#ID').val("");
+            //$('#UserName').val("");
+
+            //GetShip();
+            //alert("You will now be redirected.");
+            window.location = "//Login/Index/";
+        },
+        error: function (errormessage) {
+            console.log(errormessage.responseText);
+        }
+
+    });
+}
+
+function ForgotRedirect() {
+    var i = $('#UpdateResetPassword').val();
+
+}

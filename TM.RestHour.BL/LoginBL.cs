@@ -21,5 +21,11 @@ namespace TM.RestHour.BL
             LoginDAL loginDAL = new LoginDAL();
             return loginDAL.GetFirstRun();
         }
+
+        public int UpdateResetPassword(LoginPOCO pOCO/*, int VesselID*/)
+        {
+            LoginDAL loginDAL = new LoginDAL();
+            return loginDAL.UpdateResetPassword(pOCO/*, VesselID*/);
+        }
     }
 }

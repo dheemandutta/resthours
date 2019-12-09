@@ -12,5 +12,7 @@ namespace TM.RestHour.Models
 
         public int ID { get; set; }
         public string ShipName { get; set; }
+
+        public string UserName { get; set; }
     }
 }

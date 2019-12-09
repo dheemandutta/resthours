@@ -765,6 +765,7 @@
     <Content Include="devsqlscripts\InitialScript_Data.sql" />
     <Content Include="devsqlscripts\InitialScript_Schema.sql" />
     <Content Include="devsqlscripts\stpSaveConfigData_19072019.sql" />
+    <Content Include="devsqlscripts\stpUpdateByResetPassword_09.12.2019.sql" />
     <Content Include="EquipmentNew\dist\dual-listbox.css" />
     <Content Include="EquipmentNew\dist\dual-listbox.js" />
     <Content Include="ERRORBOX\CSS\ErrorBox.css" />
@@ -3018,6 +3019,7 @@
     <Content Include="Views\CrewHealth\test.cshtml" />
     <Content Include="Views\CrewHealth\TestBody.cshtml" />
     <Content Include="Views\Login\ResetPasswordNew.cshtml" />
+    <Content Include="Views\Login\ResetPasswordOfID.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
