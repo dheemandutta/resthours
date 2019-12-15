@@ -434,7 +434,7 @@ namespace TM.RestHour.DAL
                     cmd.Parameters.AddWithValue("@PageSize", length);
                     cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
                     cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
-                    cmd.Parameters.AddWithValue("@LoggedInUserId", CrewID);
+                    cmd.Parameters.AddWithValue("@LoggedInUserId", CrewID);  
                     //cmd.Parameters.AddWithValue("@VesselID", VesselID);
                     con.Open();
 
@@ -448,19 +448,17 @@ namespace TM.RestHour.DAL
                         consultantPOList.Add(new ConsultantPOCO
                         {
                             MedicalAdvisoryID = Convert.ToInt32(dr["MedicalAdvisoryID"]),
+                            CrewName = Convert.ToString(dr["CrewName"]),
                             Weight = Convert.ToString(dr["Weight"]),
                             BMI = Convert.ToString(dr["BMI"]),
-                            BP = Convert.ToString(dr["BP"]),
+                            //BP = Convert.ToString(dr["BP"]),
                             BloodSugarLevel = Convert.ToString(dr["BloodSugarLevel"]),
-                            UrineTest = Convert.ToBoolean(dr["UrineTest"]),
-
                             Systolic = Convert.ToString(dr["Systolic"]),
                             Diastolic = Convert.ToString(dr["Diastolic"]),
-
+                            UrineTest = Convert.ToBoolean(dr["UrineTest"]),
                             UnannouncedAlcohol = Convert.ToBoolean(dr["UnannouncedAlcohol"]),
                             AnnualDH = Convert.ToBoolean(dr["AnnualDH"]),
-                            Month = Convert.ToString(dr["Month"]),
-                            CrewName = Convert.ToString(dr["CrewName"]),
+                            Month = Convert.ToString(dr["Month"])
 
                             //CrewID = Convert.ToInt32(dr["CrewID"])
                         });
@@ -471,5 +469,58 @@ namespace TM.RestHour.DAL
             }
             return consultantPOList;
         }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public List<ConsultantPOCO> GetMedicalAdvisoryPageWise2(int pageIndex, ref int recordCount, int length)
+        {
+            List<ConsultantPOCO> consultantPOList = new List<ConsultantPOCO>();
+            List<ConsultantPOCO> consultantPO = new List<ConsultantPOCO>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetMedicalAdvisoryListPageWise", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@PageIndex", pageIndex);
+                    cmd.Parameters.AddWithValue("@PageSize", length);
+                    cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
+                    cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
+                    //cmd.Parameters.AddWithValue("@LoggedInUserId", CrewID);
+                    con.Open();
+
+                    DataSet ds = new DataSet();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        consultantPOList.Add(new ConsultantPOCO
+                        {
+                           // MedicalAdvisoryID = Convert.ToInt32(dr["MedicalAdvisoryID"]),
+                            CrewName = Convert.ToString(dr["CrewName"]),
+                            Weight = Convert.ToString(dr["Weight"]),
+                            BMI = Convert.ToString(dr["BMI"]),
+                            //BP = Convert.ToString(dr["BP"]),
+                            BloodSugarLevel = Convert.ToString(dr["BloodSugarLevel"]),
+                            Systolic = Convert.ToString(dr["Systolic"]),
+                            Diastolic = Convert.ToString(dr["Diastolic"]),
+                            UrineTest = Convert.ToBoolean(dr["UrineTest"]),
+                            UnannouncedAlcohol = Convert.ToBoolean(dr["UnannouncedAlcohol"]),
+                            AnnualDH = Convert.ToBoolean(dr["AnnualDH"]),
+                            Month = Convert.ToString(dr["Month"])
+
+                            //CrewID = Convert.ToInt32(dr["CrewID"])
+                        });
+                    }
+                    recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
+                    con.Close();
+                }
+            }
+            return consultantPOList;
+        }
+
     }
 }

@@ -764,6 +764,7 @@
     <Content Include="devsqlscripts\23.07.2019_Fullscript.sql" />
     <Content Include="devsqlscripts\InitialScript_Data.sql" />
     <Content Include="devsqlscripts\InitialScript_Schema.sql" />
+    <Content Include="devsqlscripts\stpGetMedicalAdvisoryListPageWise_16.12.2019.sql" />
     <Content Include="devsqlscripts\stpSaveConfigData_19072019.sql" />
     <Content Include="devsqlscripts\stpUpdateByResetPassword_09.12.2019.sql" />
     <Content Include="EquipmentNew\dist\dual-listbox.css" />

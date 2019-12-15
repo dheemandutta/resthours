@@ -143,9 +143,98 @@ function SetUpGrid() {
 
 
 
+function Popup2(data) {
+    var mywindow = window.open('', '', 'left=0,top=0,width=1600,height=1400');
 
+    var is_chrome = Boolean(mywindow.chrome);
 
+    mywindow.document.write('<html><head><title></title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write($('#dvprint2').html());
+    mywindow.document.write('</body></html>');
+    mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
+    is_chrome = false;
+    //alert(is_chrome);
+    if (is_chrome) {
+        mywindow.onload = function () { // wait until all resources loaded 
+            mywindow.focus(); // necessary for IE >= 10
+            mywindow.print();  // change window to mywindow
+            mywindow.close();// change window to mywindow
+        };
+    }
+    else {
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+        mywindow.print();
+        mywindow.close();
+    }
 
+    return true;
+}
+
+function SetUpPrintGridReport() {
+    var loadposturl = $('#loadprintreport').val();
+
+    //do not throw error
+    $.fn.dataTable.ext.errMode = 'none';
+
+    //check if datatable is already created then destroy iy and then create it
+    if ($.fn.dataTable.isDataTable('#certtable_print')) {
+        table = $('#certtable_print').DataTable();
+        table.destroy();
+    }
+
+    $("#certtable_print").DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "bLengthChange": false, //disable entries dropdown
+        "paging": false,
+        "bInfo": false,
+        "ajax": {
+            "url": loadposturl,
+            "type": "POST",
+            "datatype": "json"
+        },
+        "columns": [
+            {
+                "data": "CrewName", "name": "CrewName", "autoWidth": true
+            },
+            {
+                "data": "Weight", "name": "Weight", "autoWidth": true
+            },
+            {
+                "data": "BMI", "name": "BMI", "autoWidth": true
+            },
+            //{
+            //    "data": "BP", "name": "BP", "autoWidth": true
+            //},
+            {
+                "data": "BloodSugarLevel", "name": "BloodSugarLevel", "autoWidth": true
+            },
+            {
+                "data": "Systolic", "name": "Systolic", "autoWidth": true
+            },
+            {
+                "data": "Diastolic", "name": "Diastolic", "autoWidth": true
+            },
+            {
+                "data": "UrineTest", "name": "UrineTest", "autoWidth": true
+            },
+            {
+                "data": "UnannouncedAlcohol", "name": "UnannouncedAlcohol", "autoWidth": true
+            },
+            {
+                "data": "AnnualDH", "name": "AnnualDH", "autoWidth": true
+            },
+            {
+                "data": "Month", "name": "Month", "autoWidth": true
+            }
+
+        ]
+    });
+}
 
 
 function GetCrewDetailsForHealthByID() {
