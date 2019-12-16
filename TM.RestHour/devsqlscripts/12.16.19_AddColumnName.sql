@@ -1,0 +1,2 @@
+ALTER TABLE CIRM
+ADD CrewId int

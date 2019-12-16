@@ -35,5 +35,7 @@ namespace TM.RestHour.Models
 		public string AdminStatus { get; set; }
 
 		public int CrewAdminId { get; set; }
-	}
+
+        
+    }
 }

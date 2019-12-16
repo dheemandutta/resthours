@@ -66,6 +66,34 @@ namespace TM.RestHour.Controllers
         }
 
         [TraceFilterAttribute]
+        public void GetAllCrewForTimeSheet()
+        {
+            TimeSheetBL crewDAL = new TimeSheetBL();
+            List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+
+            crewpocoList = crewDAL.GetAllCrewForTimeSheet(int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
+
+            List<Crew> itmasterList = new List<Crew>();
+
+            foreach (CrewPOCO up in crewpocoList)
+            {
+                Crew unt = new Crew();
+                unt.ID = up.ID;
+                unt.Name = up.Name;
+
+                itmasterList.Add(unt);
+            }
+
+            ViewBag.Crew = itmasterList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.Name,
+                                                Value = x.ID.ToString()
+                                            });
+
+        }
+
+        [TraceFilterAttribute]
         public ActionResult MedicalHistory()
         {
             return View();
@@ -75,6 +103,7 @@ namespace TM.RestHour.Controllers
         public ActionResult MedicalTreatment()
         {
             GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
             return View();
         }
 
@@ -109,7 +138,7 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<ConsultantPOCO> consultantpocoList = new List<ConsultantPOCO>();
-            consultantpocoList = consultantBL.GetMedicalAdvisoryPageWise(pageIndex, ref totalrecords, length, 1 /*int.Parse(Session["LoggedInUserId"].ToString())*/);
+            consultantpocoList = consultantBL.GetMedicalAdvisoryPageWise(pageIndex, ref totalrecords, length, int.Parse(Session["LoggedInUserId"].ToString()));
             List<Consultant> consultantList = new List<Consultant>();
             foreach (ConsultantPOCO consultantPC in consultantpocoList)
             {

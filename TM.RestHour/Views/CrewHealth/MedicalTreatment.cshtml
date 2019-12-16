@@ -77,6 +77,11 @@
             <div class="row" style="border: 1px solid #eee; padding: 10px;">
                 <div class="col-md-4">
                     <div class="form-group">
+                        <label for="Crew">Crew</label>
+                        @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
+                        @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                    </div>
+                    <div class="form-group">
                         <label for="Nationality">Nationality</label>
                         <input type="text" class="form-control" id="Nationality" placeholder="Nationality" />
                     </div>
@@ -89,7 +94,7 @@
                         <input type="text" class="form-control" id="Diastolic" placeholder="Diastolic(mmHg)" />
                     </div>
                     <div class="form-group">
-                        <label for="Relevant Information for Desease">Relevant Information for Desease</label>
+                        <label for="Desease Relevant Information">Desease Relevant Information</label>
                         <textarea class="form-control" id="RelevantInformationforDesease" cols="7" rows="2"></textarea>
                     </div>
                     <div>
@@ -119,7 +124,7 @@
                         <textarea class="form-control" id="Symptomatology" cols="7" rows="2"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="Where and How Accident is caused">Where and How Accident is caused</label>
+                        <label for="Where and How Accident is occured">Where and How Accident is occured</label>
                         <input id="WhereandHowAccidentiscausedCHK" type="checkbox" />
                         <textarea class="form-control" id="WhereandHowAccidentiscausedARA" cols="7" rows="2"></textarea>
                     </div>

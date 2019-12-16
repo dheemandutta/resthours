@@ -3028,6 +3028,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Equipment\" />
+    <Folder Include="JoningMedical\" />
     <Folder Include="Medicine\" />
     <Folder Include="RDL\" />
     <Folder Include="SQLScripts\02-CreateIndexes\" />
