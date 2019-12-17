@@ -13,6 +13,24 @@
     return isValid;
 }
 
+//function clearTextBox() {
+//    //$("#ddlAdmCru option:selected").prop("selected", false);
+
+//    $('#ddlAdmCru option:selected').each(function () {
+//        $(this).prop('selected', false);
+//    });
+
+//    $('#ddlAdmCru').multiselect('refresh');
+
+//    //  $('#DepartmentMasterID').val("");
+//    $('#DepartmentMasterName').val("");
+//    $('#DepartmentMasterCode').val("");
+//    $('#ID').val("");
+//    $('#btnUpdate').hide();
+//    $('#btnAdd').show();
+
+//}
+
 function SaveCIRM() {
     //debugger;
     var saveCIRM = $('#saveCIRM').val();
@@ -22,7 +40,7 @@ function SaveCIRM() {
     //}
     var CIRM = {
         CIRMId: $('#CIRMId').val(),
-        NameOfVessel: $('#NameOfVessel').val(),
+        //NameOfVessel: $('#NameOfVessel').val(),
         RadioCallSign: $('#RadioCallSign').val(),
         PortofDestination: $('#PortofDestination').val(),
         Route: $('#Route').val(),
@@ -45,27 +63,48 @@ function SaveCIRM() {
         UploadMedicinesAvailable: $('#UploadMedicinesAvailable').val(),
         MedicalProductsAdministered: $('#MedicalProductsAdministered').val(),
         WhereAndHowAccidentIsausedARA: $('#WhereandHowAccidentiscausedARA').val(),
+
+        CrewId: $('#ddlCrew').val()
     };
     //debugger;
+   // console.log(CIRM);
     $.ajax({
         url: saveCIRM,
         data: JSON.stringify(CIRM),
         type: "POST",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        success: function (response) {
-            //debugger;
-            if (response.result == 'Redirect') {
-                //show successfull message
-                alert('Data Saved Successfully');
-                window.location = response.url;
-            }
-            else if (response.result == 'Error') {
-                alert('Data not saved,Please try again');
-            }
+        success: function (result) {
+            //loadData();
+            //$('#myModal').modal('hide');
+            // alert('Added Successfully');
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-full-width",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            toastr.success("Added Successfully");
+
+            //clearTextBox();
         },
         error: function (errormessage) {
             console.log(errormessage.responseText);
         }
     });
 }
+
+

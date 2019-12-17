@@ -1,10 +1,16 @@
 ﻿@model TM.RestHour.Models.CrewTimesheetViewModel
-
 @{
     ViewBag.Title = "MedicalTreatment";
 }
 
 <script src="~/Scripts/CIRM.js"></script>
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
 
 <body style="background-image: url(../background/Doctors.jpg);
     background-size: cover;">
@@ -19,11 +25,11 @@
         <div class="col-md-8 bacmt">
 
             @*<div class="col-md-4" style="padding-left:0;">
-            <div class="form-group">
-                <label for="selectCrew" class="control-label">Select Crew</label><br />
-                @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
-            </div>
-        </div>*@
+                    <div class="form-group">
+                        <label for="selectCrew" class="control-label">Select Crew</label><br />
+                        @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                    </div>
+                </div>*@
             <div class="clearfix"></div>
             <div class="row">
 
@@ -36,7 +42,10 @@
                 <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
                     <div class="form-group">
                         <label for="Name Of Vessel">Name Of Vessel</label>
-                        <input type="text" class="form-control" id="NameOfVessel" placeholder="Name Of Vessel" />
+                        @*<input class="form-control" id="NameOfVessel"/>*@
+                        <div class="form-control"> 
+                            @System.Web.HttpContext.Current.Session["ShipName"].ToString()
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="Radio Call Sign">Radio Call Sign</label>
@@ -78,8 +87,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="Crew">Crew</label>
-                        @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
-                        @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                        @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
+                        @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
                     </div>
                     <div class="form-group">
                         <label for="Nationality">Nationality</label>
@@ -172,80 +181,80 @@
 
             @*//////////////////////////////////////////////////////////////////////////////////////////////////*@
             @*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="width: 903px;">
-                <div class="modal-content">
+                    <div class="modal-dialog" style="width: 903px;">
+                        <div class="modal-content">
 
 
 
 
 
-                </div>
-            </div>
-        </div>*@
+                        </div>
+                    </div>
+                </div>*@
 
-        <script>
+            <script>
             function openBody() {
                 window.open("@Url.Action("TestBody", "CrewHealth")");
             }
-        </script>
+            </script>
 
             @*/////////////////////////////////////////////////////////////////////////////////////////////////////*@
 
             @*<div class="col-md-4">
-                        <div class="form-group">
-                            <label for="1">Problem or Symptoms</label>
-                            <textarea class="form-control" id="Problem" cols="7" rows="2"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="2">Medical Diagnosis</label>
-                            <textarea class="form-control" id="MedicalDiagnosis" cols="7" rows="2"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="3">Medical Advice</label>
-                            <textarea class="form-control" id="MedicalAdvice" cols="7" rows="2"></textarea>
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="3">Treatment So Far</label>
-                            <textarea class="form-control" id="TreatmentSoFar" cols="7" rows="2"></textarea>
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-
-                        <div class="">
-
-                            <div>
-                                @using (Html.BeginForm("MedicalTreatment", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <span style="font-size:20px;">Medical Reports:</span>
-                        <br />
-                        <input type="file" name="postedFile" />
-                        <br />
-                        <input type="submit" value="Upload" class="button1" />
-                        <br /><br />
-                        <span style="color:green">@ViewBag.Message</span>
-        }
+                                <div class="form-group">
+                                    <label for="1">Problem or Symptoms</label>
+                                    <textarea class="form-control" id="Problem" cols="7" rows="2"></textarea>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="2">Medical Diagnosis</label>
+                                    <textarea class="form-control" id="MedicalDiagnosis" cols="7" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="3">Medical Advice</label>
+                                    <textarea class="form-control" id="MedicalAdvice" cols="7" rows="2"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="3">Treatment So Far</label>
+                                    <textarea class="form-control" id="TreatmentSoFar" cols="7" rows="2"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <div class="">
+
+                                    <div>
+                                        @using (Html.BeginForm("MedicalTreatment", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <span style="font-size:20px;">Medical Reports:</span>
+                                <br />
+                                <input type="file" name="postedFile" />
+                                <br />
+                                <input type="submit" value="Upload" class="button1" />
+                                <br /><br />
+                                <span style="color:green">@ViewBag.Message</span>
+                }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
 
 
 
-                        <form action="../" onsubmit="return checkCheckBoxes(this);">
+                                <form action="../" onsubmit="return checkCheckBoxes(this);">
 
-                            <p style="margin-top:25%;"><input type="Submit" class="button1" value="Sent Email"></p>
-                        </form>
+                                    <p style="margin-top:25%;"><input type="Submit" class="button1" value="Sent Email"></p>
+                                </form>
 
 
-                    </div>*@
+                            </div>*@
 
 
             <div class="row" style="border: 1px solid #eee; padding: 10px;">
@@ -277,20 +286,20 @@
 
 
 
-                      Always consult promptly CIRM, as well as in cases of injury or pathological egregious, even for all those symptoms that apparently insignificant, may evolve into pathological complexes. Operating room
-                      <br />
-                    <strong>  INFORMATION TO BE PROVIDED BY A REQUEST FOR MEDICAL ASSISTANCE ADDRESSED TO C.I.R.M.
-                     </strong>
-                        <br />
-                      Name of vessel and radio call sign. <br />
-                      Location of ship, port of departure and destination, estimated time of arrival, route and speed. <br />
-                      Patient's age, nationality, qualification. <br />
-                      Respiratory rate, pulse, temperature and if possible blood pressure. <br />
-                      Symptomatology, location and type of pain, as well as all relevant information relating to the disease. <br />
-                      In case of injury, in addition to the symptoms, you should indicate where and how the accident. <br />
-                      Medical history of the patient. <br />
-                      Medicines available on board. <br />
-                      Medicine products already administered. <br />*@
+                              Always consult promptly CIRM, as well as in cases of injury or pathological egregious, even for all those symptoms that apparently insignificant, may evolve into pathological complexes. Operating room
+                              <br />
+                            <strong>  INFORMATION TO BE PROVIDED BY A REQUEST FOR MEDICAL ASSISTANCE ADDRESSED TO C.I.R.M.
+                             </strong>
+                                <br />
+                              Name of vessel and radio call sign. <br />
+                              Location of ship, port of departure and destination, estimated time of arrival, route and speed. <br />
+                              Patient's age, nationality, qualification. <br />
+                              Respiratory rate, pulse, temperature and if possible blood pressure. <br />
+                              Symptomatology, location and type of pain, as well as all relevant information relating to the disease. <br />
+                              In case of injury, in addition to the symptoms, you should indicate where and how the accident. <br />
+                              Medical history of the patient. <br />
+                              Medicines available on board. <br />
+                              Medicine products already administered. <br />*@
 
                     </p>
                 </div>
@@ -312,6 +321,17 @@
     <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
     <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
 
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script src="dist/dual-listbox.js"></script>
+
+    <script src="~/Scripts/jquery.typeahead.js"></script>
+    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
+    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
+    <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+
+
 
 
 
@@ -331,14 +351,29 @@
 
             //});
 
-            GetCrewDetailsForHealthByID();
+            //GetCrewDetailsForHealthByID();
+
+
+            var loggedInUserId = 0;
+            loggedInUserId = $('#hdnCrewId').val();
+
+            if (loggedInUserId > 0) { // user level log in
+
+                console.log('Logged In UserId');
+                console.log(loggedInUserId);
+                $('#ddlCrew').val(loggedInUserId);
+                $("#ddlCrew").prop("disabled", true);
+                //LoadData();
+                //SetCalendarColor();
+
+            }
 
         });
 
 
         function sentEmail() {
             alert("Hello! I am an alert box!");
-        }    
+        }
 
 
 

@@ -222,7 +222,7 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@WhereAndHowAccidentIsausedARA", DBNull.Value);
             }
 
-
+            cmd.Parameters.AddWithValue("@CrewId", cIRM.CrewId);
 
 
             if (cIRM.CIRMId > 0)

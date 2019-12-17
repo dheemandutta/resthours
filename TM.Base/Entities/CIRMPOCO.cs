@@ -33,5 +33,7 @@ namespace TM.Base.Entities
         public string UploadMedicinesAvailable { get; set; }
         public string MedicalProductsAdministered { get; set; }
         public string WhereAndHowAccidentIsausedARA { get; set; }
+
+        public int CrewId { get; set; }
     }
 }

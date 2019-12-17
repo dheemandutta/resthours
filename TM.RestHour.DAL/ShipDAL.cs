@@ -184,14 +184,11 @@ namespace TM.RestHour.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                    // cmd.Parameters.AddWithValue("@ID", ID);
                     con.Open();
-
-                   
+                
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(ds);
                     //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
-                    con.Close();
-
-                  
+                    con.Close();                 
                 }
             }
             return ConvertDataTableToShipList(ds);

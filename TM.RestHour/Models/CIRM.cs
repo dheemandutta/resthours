@@ -32,5 +32,7 @@ namespace TM.RestHour.Models
         public string UploadMedicinesAvailable { get; set; }
         public string MedicalProductsAdministered { get; set; }
         public string WhereAndHowAccidentIsausedARA { get; set; }
+
+        public int CrewId { get; set; }
     }
 }

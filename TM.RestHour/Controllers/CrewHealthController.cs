@@ -128,12 +128,34 @@ namespace TM.RestHour.Controllers
             return View();
         }
       
+
         [TraceFilterAttribute]
         public ActionResult MedicalTreatment()
         {
             GetAllCrewForDrp();
             GetAllCrewForTimeSheet();
-            return View();
+            Session["TimeModified"] = "+1";
+            Session["DateModified"] = "01/25/2018";
+
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+
+            return View(crewtimesheetVM);
         }
 
         public JsonResult LoadData(/*int CrewID*/)
@@ -323,7 +345,8 @@ namespace TM.RestHour.Controllers
             CIRMPOCO CIRMPC = new CIRMPOCO();
 
             CIRMPC.CIRMId = cIRM.CIRMId;
-            CIRMPC.NameOfVessel = cIRM.NameOfVessel;
+            //CIRMPC.NameOfVessel = cIRM.NameOfVessel;
+            CIRMPC.NameOfVessel = Session["ShipName"].ToString();
             CIRMPC.RadioCallSign = cIRM.RadioCallSign;
             CIRMPC.PortofDestination = cIRM.PortofDestination;
             CIRMPC.Route = cIRM.Route;
@@ -346,6 +369,9 @@ namespace TM.RestHour.Controllers
             CIRMPC.UploadMedicinesAvailable = cIRM.UploadMedicinesAvailable;
             CIRMPC.MedicalProductsAdministered = cIRM.MedicalProductsAdministered;
             CIRMPC.WhereAndHowAccidentIsausedARA = cIRM.WhereAndHowAccidentIsausedARA;
+            CIRMPC.CrewId = cIRM.CrewId;
+
+            
 
             return Json(CIRMBL.SaveCIRM(CIRMPC), JsonRequestBehavior.AllowGet);
         }
