@@ -12,6 +12,8 @@ using System.Collections;
 using TM.Compliance;
 using System.Text;
 using System.IO;
+using System.Configuration;
+using ExcelDataReader;
 
 namespace TM.RestHour.Controllers
 {
@@ -30,6 +32,33 @@ namespace TM.RestHour.Controllers
         {
             return View();
         }
+        public ActionResult UploadJoiningMedical()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //[TraceFilterAttribute]
+        //public ActionResult UploadJoiningMedical(HttpPostedFileBase fileUpload)
+        //{
+        //    //AdmissionFormBL admissionBl = new AdmissionFormBL();
+
+        //    //upload images
+        //    string FileName = Path.GetFileNameWithoutExtension(fileUpload.FileName);
+
+        //    //To Get File Extension
+        //    string FileExtension = Path.GetExtension(fileUpload.FileName);
+
+        //    //Get Upload path from Web.Config file AppSettings.
+        //    string UploadPath = ConfigurationManager.AppSettings["JoiningMedicalUploadPathes"].ToString();
+
+        //    //To copy and save file into server.
+        //    //fileUpload.SaveAs(admissionForm.StudentImagePath);
+
+        //    //admissionBl.SaveOrUpdate(admissionForm);
+        //    return View();
+        //}
+
 
         // GET: CrewHealth
         [TraceFilterAttribute]
