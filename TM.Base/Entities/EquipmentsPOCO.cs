@@ -12,6 +12,7 @@ namespace TM.Base.Entities
         public string EquipmentsName { get; set; }
         public string Comment { get; set; }
         public string Quantity { get; set; }
+        //public DateTime ExpiryDate { get; set; }
         public string ExpiryDate { get; set; }
 
         public int MedicineID { get; set; }

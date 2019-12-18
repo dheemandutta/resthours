@@ -77,5 +77,28 @@ namespace TM.RestHour.BL
             EquipmentsDAL equipmentsDAL = new EquipmentsDAL();
             return equipmentsDAL.GetServiceTermsListPageWise(pageIndex, ref recordCount, length/*, VesselID*/);
         }
+
+        public EquipmentsPOCO GetMedicalEquipmentByID(int EquipmentsID/*, int VesselID*/)
+        {
+            EquipmentsDAL equipmentsDAL = new EquipmentsDAL();
+            return equipmentsDAL.GetMedicalEquipmentByID(EquipmentsID/*, VesselID*/);
+        }
+
+        public EquipmentsPOCO GetMedicineByID(int MedicineID/*, int VesselID*/)
+        {
+            EquipmentsDAL equipmentsDAL = new EquipmentsDAL();
+            return equipmentsDAL.GetMedicineByID(MedicineID/*, VesselID*/);
+        }
+
+        public int DeleteEquipments(int EquipmentsID/*, ref string oUTPUT*/)
+        {
+            EquipmentsDAL equipmentsDAL = new EquipmentsDAL();
+            return equipmentsDAL.DeleteEquipments(EquipmentsID/*, ref oUTPUT*/);
+        }
+        public int DeleteMedicine(int MedicineID/*, ref string oUTPUT*/)
+        {
+            EquipmentsDAL equipmentsDAL = new EquipmentsDAL();
+            return equipmentsDAL.DeleteMedicine(MedicineID/*, ref oUTPUT*/);
+        }
     }
 }

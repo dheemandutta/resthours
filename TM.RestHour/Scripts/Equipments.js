@@ -29,9 +29,13 @@
 }
 
 function clearTextBox() {
+    $('#EquipmentsID').val("");
     $('#EquipmentsName').val("");
     $('#Comment').val("");
     $('#Quantity').val("");
+
+    $('#ExpiryDate').val("");
+    $('#Location').val("");
 }
 
 function SaveEquipments() {
@@ -46,12 +50,13 @@ function SaveEquipments() {
      //alert(res);
     if (res) {
         var Equipments = {
-            //ID: $('#ID').val(),
+            EquipmentsID: $('#EquipmentsID').val(),
             EquipmentsName: $('#EquipmentsName').val(),
             Quantity: $('#Quantity').val(),
             Comment: $('#Comment').val(),
            
-           
+            ExpiryDate: $('#ExpiryDate').val(),
+            Location: $('#Location').val()
             //Notes: $('textarea#Comments').val(),
         };
 
@@ -166,6 +171,19 @@ function SetUpGrid() {
             },
             {
                 "data": "Location", "name": "Location", "autoWidth": true
+            },
+            {
+                "data": "EquipmentsID", "width": "50px", "render": function (data) {
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicalEquipmentByID(' + data + ')"><i class="glyphicon glyphicon-edit"></i></a>';
+                }
+            },
+            {
+                "data": "EquipmentsID", "width": "50px", "render": function (d) {
+                    //debugger;
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteEquipments(' + d + ')"><i class="glyphicon glyphicon-trash"></i></a>';
+
+
+                }
             }
 
         ],
@@ -174,16 +192,41 @@ function SetUpGrid() {
     });
 }
 
+function GetMedicalEquipmentByID(EquipmentsID) {
+    $('#EquipmentsName').css('border-color', 'lightgrey');
+    var x = $("#GetMedicalEquipmentByID").val();
+    //alert(x);
+    //debugger;
+    $.ajax({
+        url: x,
+        data:
+        {
+            EquipmentsID: EquipmentsID
+        },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            $('#EquipmentsID').val(result.EquipmentsID);
+            $('#EquipmentsName').val(result.EquipmentsName);
+            $('#Comment').val(result.Comment);
+            $('#Quantity').val(result.Quantity);
+            $('#ExpiryDate').val(result.ExpiryDate);
+            $('#Location').val(result.Location);
 
+            $('#myModal').modal('show');
+            $('#btnUpdate').show();
+            $('#btnAdd').hide();
 
-
-
-
-
-
-
-
-
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
+}
 
 
 
@@ -218,8 +261,14 @@ function validate2() {
 }
 
 function clearTextBox2() {
+
+    $('#MedicineID').val("");
     $('#MedicineName').val("");
     $('#Quantity').val("");
+
+
+    $('#ExpiryDate').val("");
+    $('#Location').val("");
 }
 
 function SaveMedicine() {
@@ -234,11 +283,12 @@ function SaveMedicine() {
     //alert(res);
     if (res) {
         var Medicine = {
-            //ID: $('#ID').val(),
+            MedicineID: $('#MedicineID').val(),
             MedicineName: $('#MedicineName').val(),
             Quantity: $('#Quantity').val(),
           
-
+            ExpiryDate: $('#ExpiryDate').val(),
+            Location: $('#Location').val()
 
             //Notes: $('textarea#Comments').val(),
         };
@@ -295,7 +345,7 @@ function SaveMedicine() {
 }
 
 function loadData2() {
-    var loadposturl = $('#loaddata').val();
+    var loadposturl = $('#loaddata2').val();
     $.ajax({
         url: loadposturl,
         type: "GET",
@@ -312,7 +362,7 @@ function loadData2() {
 }
 
 function SetUpGrid2() {
-    var loadposturl = $('#loaddata').val();
+    var loadposturl = $('#loaddata2').val();
 
     //do not throw error
     $.fn.dataTable.ext.errMode = 'none';
@@ -351,10 +401,116 @@ function SetUpGrid2() {
             },
             {
                 "data": "Location", "name": "Location", "autoWidth": true
+            },
+            {
+                "data": "MedicineID", "width": "50px", "render": function (data) {
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicineByID(' + data + ')"><i class="glyphicon glyphicon-edit"></i></a>';
+                }
+            },
+            {
+                "data": "MedicineID", "width": "50px", "render": function (d) {
+                    //debugger;
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteMedicine(' + d + ')"><i class="glyphicon glyphicon-trash"></i></a>';
+                }
             }
 
         ],
         "rowId": "MedicineID",
         "dom": "Bfrtip"
     });
+}
+
+function GetMedicineByID(MedicineID) {
+    $('#MedicineName').css('border-color', 'lightgrey');
+    var x = $("#GetMedicineByID").val();
+    //alert(x);
+    //debugger;
+    $.ajax({
+        url: x,
+        data:
+        {
+            MedicineID: MedicineID
+        },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            $('#MedicineID').val(result.MedicineID);
+            $('#MedicineName').val(result.MedicineName);
+            $('#Quantity').val(result.Quantity);
+            $('#ExpiryDate').val(result.ExpiryDate);
+            $('#Location').val(result.Location);
+
+            $('#myModal').modal('show');
+            $('#btnUpdate').show();
+            $('#btnAdd').hide();
+
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
+}
+
+
+
+function DeleteEquipments(EquipmentsID) {
+    var ans = confirm("Do you want to delete the record?");
+    var deleteUrl = $('#DeleteEquipments').val();
+    if (ans) {
+        $.ajax({
+            url: deleteUrl,
+            data: JSON.stringify({ EquipmentsID: EquipmentsID }),
+            type: "POST",
+            contentType: "application/json;charser=UTF-8",
+            dataType: "json",
+            success: function (result) {
+
+                if (result > 0) {
+                    alert("Equipments deleted successfully");
+
+                    SetUpGrid();
+
+                }
+                else {
+                    alert("Grade can not be deleted as this is already used.");
+                }
+            },
+            error: function () {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+}
+
+function DeleteMedicine(MedicineID) {
+    var ans = confirm("Do you want to delete the record?");
+    var deleteUrl = $('#DeleteMedicine').val();
+    if (ans) {
+        $.ajax({
+            url: deleteUrl,
+            data: JSON.stringify({ MedicineID: MedicineID }),
+            type: "POST",
+            contentType: "application/json;charser=UTF-8",
+            dataType: "json",
+            success: function (result) {
+
+                if (result > 0) {
+                    alert("Medicine deleted successfully");
+
+                    SetUpGrid2();
+
+                }
+                else {
+                    alert("Grade can not be deleted as this is already used.");
+                }
+            },
+            error: function () {
+                alert(errormessage.responseText);
+            }
+        });
+    }
 }

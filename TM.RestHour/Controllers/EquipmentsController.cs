@@ -16,6 +16,8 @@ using System.IO;
 using System.Net;
 using ExcelDataReader;
 using System.Configuration;
+
+using TM.Base.Common;
 //using System.Threading.Tasks;
 
 namespace TM.RestHour.Controllers
@@ -40,10 +42,15 @@ namespace TM.RestHour.Controllers
         {
             EquipmentsBL equipmentsBL = new EquipmentsBL();
             EquipmentsPOCO equipmentsPC = new EquipmentsPOCO();
-            //consultantPC.DoctorID = consultant.DoctorID;
+
+            equipmentsPC.EquipmentsID = equipments.EquipmentsID;
             equipmentsPC.EquipmentsName = equipments.EquipmentsName;       
             equipmentsPC.Comment = equipments.Comment;
             equipmentsPC.Quantity = equipments.Quantity;
+
+            equipmentsPC.ExpiryDate = equipments.ExpiryDate;
+            equipmentsPC.Location = equipments.Location;
+
             return Json(equipmentsBL.SaveEquipments(equipmentsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
         }
 
@@ -169,13 +176,51 @@ namespace TM.RestHour.Controllers
         }
 
 
+        public JsonResult GetMedicalEquipmentByID(int EquipmentsID)
+        {
+            EquipmentsBL equipmentsBL = new EquipmentsBL();
+            EquipmentsPOCO equipmentsPOCOList = new EquipmentsPOCO();
+
+            equipmentsPOCOList = equipmentsBL.GetMedicalEquipmentByID(EquipmentsID /*, int.Parse(Session["VesselID"].ToString())*/);
+
+            Equipments dept = new Equipments();
+
+            dept.EquipmentsID = equipmentsPOCOList.EquipmentsID;
+            dept.EquipmentsName = equipmentsPOCOList.EquipmentsName;
+            dept.Comment = equipmentsPOCOList.Comment;
+            dept.Quantity = equipmentsPOCOList.Quantity;
+            dept.ExpiryDate = equipmentsPOCOList.ExpiryDate;
+            dept.Location = equipmentsPOCOList.Location;
+
+            var data = dept;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
 
 
 
 
+        public JsonResult GetMedicineByID(int MedicineID)
+        {
+            EquipmentsBL equipmentsBL = new EquipmentsBL();
+            EquipmentsPOCO equipmentsPOCOList = new EquipmentsPOCO();
 
+            equipmentsPOCOList = equipmentsBL.GetMedicineByID(MedicineID /*, int.Parse(Session["VesselID"].ToString())*/);
 
+            Equipments dept = new Equipments();
+
+            dept.MedicineID = equipmentsPOCOList.MedicineID;
+            dept.MedicineName = equipmentsPOCOList.MedicineName;
+            //dept.Comment = equipmentsPOCOList.Comment;
+            dept.Quantity = equipmentsPOCOList.Quantity;
+            dept.ExpiryDate = equipmentsPOCOList.ExpiryDate;
+            dept.Location = equipmentsPOCOList.Location;
+
+            var data = dept;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
 
 
@@ -189,8 +234,13 @@ namespace TM.RestHour.Controllers
             EquipmentsBL equipmentsBL = new EquipmentsBL();
             EquipmentsPOCO equipmentsPC = new EquipmentsPOCO();
             //consultantPC.DoctorID = consultant.DoctorID;
+            equipmentsPC.MedicineID = equipments.MedicineID;
             equipmentsPC.MedicineName = equipments.MedicineName;
             equipmentsPC.Quantity = equipments.Quantity;
+
+            equipmentsPC.ExpiryDate = equipments.ExpiryDate;
+            equipmentsPC.Location = equipments.Location;
+
             return Json(equipmentsBL.SaveMedicine(equipmentsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
         }
 
@@ -321,6 +371,24 @@ namespace TM.RestHour.Controllers
 			}
 
             return View();
+        }
+
+
+
+
+        public ActionResult DeleteEquipments(int EquipmentsID/*, ref string recordCount*/)
+        {
+            EquipmentsBL equipmentsBL = new EquipmentsBL();
+            int recordaffected = equipmentsBL.DeleteEquipments(EquipmentsID/*, ref recordCount*/);
+            return Json(recordaffected, JsonRequestBehavior.AllowGet);
+
+        }
+        public ActionResult DeleteMedicine(int MedicineID/*, ref string recordCount*/)
+        {
+            EquipmentsBL equipmentsBL = new EquipmentsBL();
+            int recordaffected = equipmentsBL.DeleteMedicine(MedicineID/*, ref recordCount*/);
+            return Json(recordaffected, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

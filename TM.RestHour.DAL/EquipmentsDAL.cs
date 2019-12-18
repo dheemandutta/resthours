@@ -32,16 +32,35 @@ namespace TM.RestHour.DAL
             
             cmd.Parameters.AddWithValue("@Quantity", equipments.Quantity);
 
+
+            if (!String.IsNullOrEmpty(equipments.ExpiryDate))
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDate", equipments.ExpiryDate);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDate", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(equipments.Location))
+            {
+                cmd.Parameters.AddWithValue("@Location", equipments.Location);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Location", DBNull.Value);
+            }
+
             //cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
-            //if (ship.ID > 0)
-            //{
-            //    cmd.Parameters.AddWithValue("@ID", equipments.ID);
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@ID", DBNull.Value);
-            //}
+            if (equipments.EquipmentsID > 0)
+            {
+                cmd.Parameters.AddWithValue("@EquipmentsID", equipments.EquipmentsID);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@EquipmentsID", DBNull.Value);
+            }
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
 
@@ -157,16 +176,37 @@ namespace TM.RestHour.DAL
 
             cmd.Parameters.AddWithValue("@Quantity", equipments.Quantity);
 
+
+
+            if (!String.IsNullOrEmpty(equipments.ExpiryDate))
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDate", equipments.ExpiryDate);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDate", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(equipments.Location))
+            {
+                cmd.Parameters.AddWithValue("@Location", equipments.Location);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Location", DBNull.Value);
+            }
+
             //cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
-            //if (ship.ID > 0)
-            //{
-            //    cmd.Parameters.AddWithValue("@ID", equipments.ID);
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@ID", DBNull.Value);
-            //}
+            if (equipments.MedicineID > 0)
+            {
+                cmd.Parameters.AddWithValue("@MedicineID", equipments.MedicineID);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicineID", DBNull.Value);
+            }
+
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
 
@@ -462,6 +502,142 @@ namespace TM.RestHour.DAL
                 }
             }
             return equipmentsPOList;
+        }
+
+
+
+
+
+        public EquipmentsPOCO GetMedicalEquipmentByID(int EquipmentsID/*, int VesselID*/)
+        {
+            List<EquipmentsPOCO> prodPOList = new List<EquipmentsPOCO>();
+            List<EquipmentsPOCO> prodPO = new List<EquipmentsPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetMedicalEquipmentByID", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@EquipmentsID", EquipmentsID);
+                    //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return ConvertDataTableToMedicalEquipmentList(ds);
+        }
+        private EquipmentsPOCO ConvertDataTableToMedicalEquipmentList(DataSet ds)
+        {
+            EquipmentsPOCO departmentPC = new EquipmentsPOCO();
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    if (item["EquipmentsID"] != DBNull.Value)
+                        departmentPC.EquipmentsID = Convert.ToInt32(item["EquipmentsID"].ToString());
+
+                    if (item["EquipmentsName"] != DBNull.Value)
+                        departmentPC.EquipmentsName = item["EquipmentsName"].ToString();
+
+                    if (item["Comment"] != DBNull.Value)
+                        departmentPC.Comment = item["Comment"].ToString();
+
+                    if (item["Quantity"] != DBNull.Value)
+                        departmentPC.Quantity = item["Quantity"].ToString();
+
+                    if (item["ExpiryDate"] != DBNull.Value)
+                        departmentPC.ExpiryDate = item["ExpiryDate"].ToString();
+
+                    if (item["Location"] != DBNull.Value)
+                        departmentPC.Location = item["Location"].ToString();
+
+                    //List<int> days = new List<int>();
+                    //departmentList.Add(departmentPC);
+                }
+            }
+            return departmentPC;
+        }
+
+        public EquipmentsPOCO GetMedicineByID(int MedicineID/*, int VesselID*/)
+        {
+            List<EquipmentsPOCO> prodPOList = new List<EquipmentsPOCO>();
+            List<EquipmentsPOCO> prodPO = new List<EquipmentsPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetMedicineByID", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MedicineID", MedicineID);
+                    //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return ConvertDataTableToMedicineList(ds);
+        }
+        private EquipmentsPOCO ConvertDataTableToMedicineList(DataSet ds)
+        {
+            EquipmentsPOCO departmentPC = new EquipmentsPOCO();
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    if (item["MedicineID"] != DBNull.Value)
+                        departmentPC.MedicineID = Convert.ToInt32(item["MedicineID"].ToString());
+
+                    if (item["MedicineName"] != DBNull.Value)
+                        departmentPC.MedicineName = item["MedicineName"].ToString();
+
+                    if (item["Quantity"] != DBNull.Value)
+                        departmentPC.Quantity = item["Quantity"].ToString();
+
+                    if (item["ExpiryDate"] != DBNull.Value)
+                        departmentPC.ExpiryDate = item["ExpiryDate"].ToString();
+
+                    if (item["Location"] != DBNull.Value)
+                        departmentPC.Location = item["Location"].ToString();
+
+                    //List<int> days = new List<int>();
+                    //departmentList.Add(departmentPC);
+                }
+            }
+            return departmentPC;
+        }
+
+
+        public int DeleteEquipments(int EquipmentsID/*, ref string oUTPUT*/)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpDeleteEquipments", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@EquipmentsID", EquipmentsID);
+            int recordAffected = cmd.ExecuteNonQuery();
+            //oUTPUT = Convert.ToString(cmd.Parameters["@OUTPUT"].Value);
+            con.Close();
+            return recordAffected;
+        }
+
+        public int DeleteMedicine(int MedicineID/*, ref string oUTPUT*/)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpDeleteMedicine", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MedicineID", MedicineID);
+            int recordAffected = cmd.ExecuteNonQuery();
+            //oUTPUT = Convert.ToString(cmd.Parameters["@OUTPUT"].Value);
+            con.Close();
+            return recordAffected;
         }
     }
 }

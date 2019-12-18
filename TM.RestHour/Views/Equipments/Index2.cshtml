@@ -12,13 +12,21 @@
 <link href="dist/dual-listbox.css" rel="stylesheet">
 <link href="~/link/css/rank.css" rel="stylesheet" />
 
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
 <script src="~/Scripts/notify.min.js"></script>
 <script src="~/Scripts/toastr.min.js"></script>
 <link href="~/Content/toastr.min.css" rel="stylesheet" />
 <script src="~/Scripts/Equipments.js"></script>
 
 @Html.Hidden("SaveMedicine", @Url.Action("SaveMedicine", "Equipments"))
-@Html.Hidden("loaddata", @Url.Action("LoadData2", "Equipments"))
+@Html.Hidden("loaddata2", @Url.Action("LoadData2", "Equipments"))
+@Html.Hidden("GetMedicineByID", @Url.Action("GetMedicineByID", "Equipments"))
+@Html.Hidden("DeleteMedicine", @Url.Action("DeleteMedicine", "Equipments"))
+
 <style>
     .bac {
         border-radius: 0;
@@ -29,6 +37,7 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
         margin: 10px;
     }
+
     .bac1 {
         border-radius: 0;
         padding: 18px;
@@ -37,7 +46,7 @@
         border-radius: 6px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
         margin: 10px;
-        height:450px;
+        height: 450px;
     }
 </style>
 
@@ -62,6 +71,8 @@
                                             <th>Quantity</th>
                                             <th>Expiry Date</th>
                                             <th>Location</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -80,59 +91,82 @@
                                                     <input type="hidden" id="hdnrole" />
                                                     @*@if (Session["SuperAdmin"].ToString() == "True")|| (Session["SuperAdmin"].ToString() == "True")*@
                                                     @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
-                                        {
+                                                    {
 
-                                            <form>
-                                                <div class="form-group">
-                                                    <input type="hidden" id="MedicineID" />
-                                                </div>
+                                                        <form>
+                                                            <div class="form-group">
+                                                                <input type="hidden" id="MedicineID" />
+                                                            </div>
 
-                                                <div class="col-md-12">
-                                                    <div class="">
+                                                            <div class="col-md-12">
+                                                                <div class="">
 
-                                                        <div class="form-group">
-                                                            <label for="MedicineName">Medicine Name</label>
-                                                            <input type="text" class="form-control" id="MedicineName" placeholder="Medicine Name" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for=" Quantity">Quantity</label>
-                                                            <input type="number" class="form-control" id="Quantity" placeholder="Quantity" />
-                                                        </div>
+                                                                    <div class="form-group">
+                                                                        <label for="MedicineName">Medicine Name</label>
+                                                                        <input type="text" class="form-control" id="MedicineName" placeholder="Medicine Name" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for=" Quantity">Quantity</label>
+                                                                        <input type="number" class="form-control" id="Quantity" placeholder="Quantity" />
+                                                                    </div>
 
-                                                        <button type="button" class="button1" id="btnAdd" onclick="return SaveMedicine();" style="width:138px;">Add</button>
+                                                                    <div class="form-group">
+                                                                        <label for="Expiry Date">Expiry Date</label>
+                                                                        <input type="text" class="form-control" id="ExpiryDate" placeholder="Expiry Date" />
+                                                                    </div>
 
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                                    <div class="form-group">
+                                                                        <label for=" Location">Location</label>
+                                                                        <input type="text" class="form-control" id="Location" placeholder="Location" />
+                                                                    </div>
 
-                            }
-                            else
-                            {
+                                                                    <button type="button" class="button1" id="btnAdd" onclick="return SaveMedicine();" style="width:138px;">Add</button>
+                                                                    <button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="SaveMedicine();">Update</button>
 
-                                <form>
-                                    <div class="form-group">
-                                        <input type="hidden" id="MedicineID" />
-                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
 
-                                    <div class="col-md-12">
-                                        <div class="card">
+                                                    }
+                                                    else
+                                                    {
 
-                                            <div class="form-group">
-                                                <label for="MedicineName">Medicine Name</label>
-                                                <input type="text" class="form-control" id="MedicineName" placeholder="Medicine Name" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for=" Quantity">Quantity</label>
-                                                <input type="number" class="form-control" id="Quantity" placeholder="Quantity" />
-                                            </div>
+                                                        <form>
+                                                            <div class="form-group">
+                                                                <input type="hidden" id="MedicineID" />
+                                                            </div>
 
-                                            @*<button type="button" class="button1" id="btnAdd" onclick="return AddEquipments();" style="width:138px;">Add</button>*@
+                                                            <div class="col-md-12">
+                                                                <div class="card">
 
-                                        </div>
-                                    </div>
-                                </form>
+                                                                    <div class="form-group">
+                                                                        <label for="MedicineName">Medicine Name</label>
+                                                                        <input type="text" class="form-control" id="MedicineName" placeholder="Medicine Name" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for=" Quantity">Quantity</label>
+                                                                        <input type="number" class="form-control" id="Quantity" placeholder="Quantity" />
+                                                                    </div>
 
-                }
+                                                                    <div class="form-group">
+                                                                        <label for="Expiry Date">Expiry Date</label>
+                                                                        <input type="text" class="form-control" id="ExpiryDate" placeholder="Expiry Date" />
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for=" Location">Location</label>
+                                                                        <input type="text" class="form-control" id="Location" placeholder="Location" />
+                                                                    </div>
+
+                                                                    @*<button type="button" class="button1" id="btnAdd" onclick="return AddEquipments();" style="width:138px;">Add</button>*@
+
+                                                                    <button type="button" class="button1" id="btnAdd" onclick="return SaveMedicine();" style="width:138px;">Add</button>
+                                                                    <button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="SaveMedicine();">Update</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                    }
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -146,8 +180,8 @@
 
 
                     @*<div class="col-md-7 bac">
-                <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
-            </div>*@
+                            <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
+                        </div>*@
 
 
                     <div class="col-md-3 bac">
@@ -155,16 +189,16 @@
 
                             <div>
                                 @using (Html.BeginForm("Index2", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <span style="font-size:20px;">Select File:</span>
-                        <br />
-                        <input type="file" name="postedFile" />
-                        @*<hr />*@
-                        <br />
-                        <input type="submit" value="Upload" class="button1" />
-                        <br /><br />
-                        <span style="color:green">@ViewBag.Message</span>
-        }
+                                {
+                                    <span style="font-size:20px;">Select File:</span>
+                                    <br />
+                                    <input type="file" name="postedFile" />
+                                    @*<hr />*@
+                                    <br />
+                                    <input type="submit" value="Upload" class="button1" />
+                                    <br /><br />
+                                    <span style="color:green">@ViewBag.Message</span>
+                                }
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -186,10 +220,10 @@
             </div>
 
 
-                </div>
+        </div>
 
-            </div>
-            
+    </div>
+
 </body>
 
 
@@ -212,7 +246,13 @@
         });
 
 
+        $("#ExpiryDate").datepicker({
 
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
 
 
         $('#txtUploadFile').on('change', function (e) {
