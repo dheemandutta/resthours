@@ -761,6 +761,13 @@
     <Content Include="devsqlscripts\13.09.2018_InitialScript_Data.sql" />
     <Content Include="devsqlscripts\13.09.2018_InitialScript_Schema.sql" />
     <Content Include="devsqlscripts\18.09.2018_InitialScript_SchemaAndData.sql" />
+    <Content Include="devsqlscripts\18.12.2019_stpDeleteEquipments.sql" />
+    <Content Include="devsqlscripts\18.12.2019_stpDeleteMedicine.sql" />
+    <Content Include="devsqlscripts\18.12.2019_stpGetMedicalEquipmentByID.sql" />
+    <Content Include="devsqlscripts\18.12.2019_stpGetMedicineByID.sql" />
+    <Content Include="devsqlscripts\18.12.2019_stpSaveCIRM.sql" />
+    <Content Include="devsqlscripts\18.12.2019_stpSaveMedicine.sql" />
+    <Content Include="devsqlscripts\18.12.2019_stpSavetblEquipments.sql" />
     <Content Include="devsqlscripts\23.07.2019_Fullscript.sql" />
     <Content Include="devsqlscripts\InitialScript_Data.sql" />
     <Content Include="devsqlscripts\InitialScript_Schema.sql" />
