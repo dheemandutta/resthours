@@ -15,7 +15,13 @@
     else {
         $('#LastName').css('border-color', 'lightgrey');
     }
-
+    if ($('#Gender').val().length === 0) {
+        $('#Gender').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Gender').css('border-color', 'lightgrey');
+    }
     
     if ($('#RankID').val().length === 0) {
         $('#RankID').css('border-color', 'Red');
@@ -83,6 +89,13 @@
         $('#PassportSeamanPassportBook').css('border-color', 'lightgrey');
     }
 
+    if ($('#DepartmentMasterID').val().length === 0) {
+        $('#DepartmentMasterID').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#DepartmentMasterID').css('border-color', 'lightgrey');
+    }
 
 
 
