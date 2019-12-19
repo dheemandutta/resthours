@@ -1,4 +1,4 @@
-﻿
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
 @{
     ViewBag.Title = "UploadJoiningMedical";
 }
@@ -17,66 +17,52 @@
                     <div class="col-md-6">
 
 
-                        Photo Upload
-                        <div class="panel b">
-                            <div id="collapse05" class="panel-body">
+                        Upload
+                        @using (Html.BeginForm("UploadJoiningMedical", "CrewHealth", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="panel b">
+                                <div class="form-group">
+                                    <label for="Crew">Crew</label>
+                                    @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
+                                    @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                </div>
+                                <div id="collapse05" class="panel-body">
 
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <input type="file" id="fileUpload" name="fileUpload" />
-                                            <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+                                                <span style="font-size:20px;">Select File:</span>
+                                                <br />
+                                                <input type="file" name="postedFile" accept="application/pdf,image/gif, image/jpeg" />
+                                                <br />
+                                                <input type="submit" value="Upload" class="btn btn-warning" />
+                                                <br /><br />
 
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <input type="hidden" id="FormID" />
-                                </div>
 
-                                <div class="mt-lg">
-                                </div>
+                                    <div class="form-group">
+                                        <input type="hidden" id="FormID" />
+                                    </div>
 
+                                    <div class="mt-lg">
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
+
+                        }
+
+                        <span style="color:green">@ViewBag.UploadMessage</span>
 
 
-                        <div class="mt-lg">
-                            <input type="submit" value="Create" class="btn btn-info" />
-                            @*<button type="button" id="btnClear" class="btn btn-info" onclick="ClearAll">Clear all</button>*@
-                        </div>
-
-
-
-                        @*<div>
-            @using (Html.BeginForm("Index", "CrewImport", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <span style="font-size:20px;">Select File:</span>
-                <br />
-                <input type="file" name="postedFile" />
-                <br />
-                <input type="submit" value="Upload" class="button1" />
-                <br /><br />
-                <span style="color:green">@ViewBag.Message</span>
-            }
-        </div>*@
                     </div>
-                    @*<div class="col-md-4">
-                        <div class="box">
-                            <img src="~/background/excel.png" class="img-responsive" style="height:100%; width:100%;" />
-                        </div>
-                        <div class="export-template-label" style="display:inline-block;margin:4px 5px -8px 0px;">
-                            <a href="../../Import/IMOcrewlistForm5.xlsx" target="_self" download>
-                                <img src="#" alt="Download Excel" style="float:left;" class="button1">
-                            </a>
-                        </div>
-                    </div>*@
+
                 </div>
-                @*<p style="color:blue; font-size:15px;">Important Instructions</p>
-                <p style="color:blue; font-size:12px;">* Data will not be inserted if there is no name</p>
-                <p style="color:blue; font-size:12px;">* If Rank,Country data does not match with any existing data in the system An new Rank and Country will be inserted</p>*@
+
             </div>
         </div>
     </div>
