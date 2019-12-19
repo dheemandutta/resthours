@@ -155,9 +155,13 @@
 
                 <div class="form-group" style="margin-bottom: 18px;">
                     <button type="button" class="button1" id="btnAdd" onclick="return AddCrew();" style="width:130px; float: left;">Add / Update Crew</button>
-                    <button type="button" class="button1" id="btnAdd1" onclick="return AddCrewEdit();" style="width:120px; float: right;">More Settings</button>
-                    @*<a href="@Url.Action("Index", "CreateNewUserAccount")"><span> Vessel</span> </a>*@
-                </div>
+                    <button type="button" class="button1" id="btnAdd1" onclick="return AddCrewEdit();" style="display:none; width:120px; float: right;">More Settings</button>
+                    @using (Html.BeginForm())
+                    {
+                        <input type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width:130px; float: left;" Close />
+                    }
+                        @*<a href="@Url.Action("Index", "CreateNewUserAccount")"><span> Vessel</span> </a>*@
+                    </div>
 
             </div>
         </div>
@@ -234,10 +238,10 @@
         var pageMode = GetParameterValues("mode");
         //alert(pageMode);
         if (pageMode == "update") {
-            $('#btnAdd1').show();
+           // $('#btnAdd1').show();
         }
         else {
-            $('#btnAdd1').hide();
+           // $('#btnAdd1').hide();
         }
 
 

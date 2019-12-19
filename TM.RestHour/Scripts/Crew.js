@@ -136,9 +136,9 @@ function clearTextBox() {
     $('#FirstName').val("");
     $('#MiddleName').val("");
     $('#LastName').val("");
+    $('#Gender').val("");
     $('#RankID').val("");
-
-   // $('#Nationality').val("");
+    $('#CountryID').val("");
     $('#DOB').val("");
     $('#POB').val("");
     //$('#CrewIdentity').val("");
@@ -146,7 +146,7 @@ function clearTextBox() {
 
     $('#CreatedOn').val("");
     $('#LatestUpdate').val("");
-    //$('#PayNum').val("");
+    $('#DepartmentMasterID').val("");
     $('#EmployeeNumber').val("");
     $('#Comments').val("");
     $('#Watchkeeper').val("");
@@ -244,7 +244,8 @@ function AddCrew() {
 
                     clearTextBox();
 
-                    window.location = response.url;
+                    //window.location = response.url;
+                    $('#btnAdd1').show();
                 }
                 else if (response.result == 'Error') {
                     alert('Data not saved,Please try again');
@@ -259,6 +260,8 @@ function AddCrew() {
         });
     }
 }
+
+
 
 function AddCrewEdit() {
 

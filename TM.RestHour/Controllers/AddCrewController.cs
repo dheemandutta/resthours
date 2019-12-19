@@ -46,12 +46,23 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
-		//public ActionResult Index()
-		//{
+        //[HttpPost]
+        //public ActionResult Index()
+        //{
+        //    if (Request.QueryString["crew"] != null)
+        //    {
+        //        int crewId = int.Parse(Request.QueryString["crew"].ToString());
+        //        //GetAllCrewByCrewID(Convert.ToString(crewId).ToString());
+        //    }
+        //    return Json(new { result = "Redirect", url = Url.Action("Index", "CreateNewUserAccount", Request.QueryString.ToRouteValues(new { grp = groupId, username = crewUserId, crewId = crew.ID })) });
+        //}
 
-		//    return View();
-		//}
-		[TraceFilterAttribute]
+        //public ActionResult Index()
+        //{
+
+        //    return View();
+        //}
+        [TraceFilterAttribute]
 		public ActionResult CrewDetails()
         {
             GetAllRanksForDrp();
@@ -237,6 +248,9 @@ namespace TM.RestHour.Controllers
 				return Json(new { result = "Redirect", url = Url.Action("CrewListNew", "CrewList") });
 			}
         }
+
+        //
+        
 
         public JsonResult AddEdit(Crew crew)
         {
