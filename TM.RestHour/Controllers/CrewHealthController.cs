@@ -97,9 +97,9 @@ namespace TM.RestHour.Controllers
                 //List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
                 CrewPOCO crewpocoList = new CrewPOCO();
 
-               // crewpocoList = crewDAL.SaveJoiningMedicalFilePath(formCollection["ID"].ToString();, fileName);
+                // crewpocoList = crewDAL.SaveJoiningMedicalFilePath(formCollection["ID"].ToString();, fileName);
 
-                int id = crewDAL.SaveJoiningMedicalFilePath(crewpocoList.["ID"].ToString());
+                string id = crewDAL.SaveJoiningMedicalFilePath(formCollection["ID"].ToString());
                 string file = crewDAL.SaveJoiningMedicalFilePath(fileName);
 
                 ViewBag.UploadMessage = "File Uploaded Successfully";
