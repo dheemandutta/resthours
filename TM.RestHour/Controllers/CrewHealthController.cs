@@ -13,11 +13,11 @@ using TM.Compliance;
 using System.Text;
 using System.IO;
 using System.Configuration;
-using ExcelDataReader;
+
 
 namespace TM.RestHour.Controllers
 {
-    [TraceFilterAttribute]
+    
     public class CrewHealthController : BaseController
     {
         public ActionResult test()
@@ -93,14 +93,10 @@ namespace TM.RestHour.Controllers
                 //To copy and save file into server.
                 postedFile.SaveAs(path + fileName);
                 ////BL call..............
-                CrewBL crewDAL = new CrewBL();
-                //List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
-                CrewPOCO crewpocoList = new CrewPOCO();
-
-                // crewpocoList = crewDAL.SaveJoiningMedicalFilePath(formCollection["ID"].ToString();, fileName);
-
-                string id = crewDAL.SaveJoiningMedicalFilePath(formCollection["ID"].ToString());
-                string file = crewDAL.SaveJoiningMedicalFilePath(fileName);
+                CrewBL crewBL = new CrewBL();
+                
+                crewBL.SaveJoiningMedicalFilePath(int.Parse(formCollection["ID"].ToString()),fileName);
+                
 
                 ViewBag.UploadMessage = "File Uploaded Successfully";
         }
