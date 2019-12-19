@@ -255,10 +255,10 @@ namespace TM.RestHour.BL
             return crew.GetAllCountryForDrp(/*VesselID*/);
         }
 
-        public int SaveJoiningMedicalFilePath(CrewPOCO crew)
+        public int SaveJoiningMedicalFilePath(int crewId,string filepath)
         {
             CrewDAL crewDAL = new CrewDAL();
-            return crewDAL.SaveJoiningMedicalFilePath(crew);        //UploadJoiningMedical  --->  in Controler
+            return crewDAL.SaveJoiningMedicalFilePath(crewId,filepath);        //UploadJoiningMedical  --->  in Controler
         }
     }
 }
