@@ -34,30 +34,71 @@ namespace TM.RestHour.Controllers
         }
         public ActionResult UploadJoiningMedical()
         {
-            return View();
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
         }
 
-        //[HttpPost]
-        //[TraceFilterAttribute]
-        //public ActionResult UploadJoiningMedical(HttpPostedFileBase fileUpload)
-        //{
-        //    //AdmissionFormBL admissionBl = new AdmissionFormBL();
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult UploadJoiningMedical(HttpPostedFileBase postedFile,FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
 
-        //    //upload images
-        //    string FileName = Path.GetFileNameWithoutExtension(fileUpload.FileName);
+            if(postedFile !=null)
+            { 
+            //upload images
+            string fileName = Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = fileName + "_" + formCollection["ID"].ToString();
 
-        //    //To Get File Extension
-        //    string FileExtension = Path.GetExtension(fileUpload.FileName);
+            //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+             fileName = fileName + FileExtension;
 
-        //    //Get Upload path from Web.Config file AppSettings.
-        //    string UploadPath = ConfigurationManager.AppSettings["JoiningMedicalUploadPathes"].ToString();
+            if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+            {
+                ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                return View();
+            }
 
-        //    //To copy and save file into server.
-        //    //fileUpload.SaveAs(admissionForm.StudentImagePath);
+            //Get Upload path from Web.Config file AppSettings.
+            string path = Server.MapPath(ConfigurationManager.AppSettings["JoiningMedicalUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
 
-        //    //admissionBl.SaveOrUpdate(admissionForm);
-        //    return View();
-        //}
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+        }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);
+            return View();
+        }
 
 
         // GET: CrewHealth
@@ -134,8 +175,8 @@ namespace TM.RestHour.Controllers
         {
             GetAllCrewForDrp();
             GetAllCrewForTimeSheet();
-            Session["TimeModified"] = "+1";
-            Session["DateModified"] = "01/25/2018";
+            //Session["TimeModified"] = "";
+            //Session["DateModified"] = "";
 
             CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
             Crew c = new Crew();
