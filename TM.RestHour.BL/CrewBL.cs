@@ -254,5 +254,11 @@ namespace TM.RestHour.BL
             CrewDAL crew = new CrewDAL();
             return crew.GetAllCountryForDrp(/*VesselID*/);
         }
+
+        public int SaveJoiningMedicalFilePath(CrewPOCO crew)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.SaveJoiningMedicalFilePath(crew);        //UploadJoiningMedical  --->  in Controler
+        }
     }
 }

@@ -67,7 +67,7 @@ namespace TM.RestHour.Controllers
             { 
             //upload images
             string fileName = Path.GetFileNameWithoutExtension(postedFile.FileName);
-                fileName = fileName + "_" + formCollection["ID"].ToString();
+                fileName = fileName + "_" + formCollection["ID"].ToString();     
 
             //To Get File Extension
                 string FileExtension = Path.GetExtension(postedFile.FileName);
@@ -92,11 +92,20 @@ namespace TM.RestHour.Controllers
 
                 //To copy and save file into server.
                 postedFile.SaveAs(path + fileName);
-                
+                ////BL call..............
+                CrewBL crewDAL = new CrewBL();
+                //List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+                CrewPOCO crewpocoList = new CrewPOCO();
+
+               // crewpocoList = crewDAL.SaveJoiningMedicalFilePath(formCollection["ID"].ToString();, fileName);
+
+                int id = crewDAL.SaveJoiningMedicalFilePath(crewpocoList.["ID"].ToString());
+                string file = crewDAL.SaveJoiningMedicalFilePath(fileName);
+
                 ViewBag.UploadMessage = "File Uploaded Successfully";
         }
             GetAllCrewForTimeSheet();
-            //admissionBl.SaveOrUpdate(admissionForm);
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
             return View();
         }
 

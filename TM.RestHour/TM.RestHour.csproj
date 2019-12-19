@@ -770,6 +770,7 @@
     <Content Include="devsqlscripts\18.12.2019_stpSaveCIRM.sql" />
     <Content Include="devsqlscripts\18.12.2019_stpSaveMedicine.sql" />
     <Content Include="devsqlscripts\18.12.2019_stpSavetblEquipments.sql" />
+    <Content Include="devsqlscripts\19.12.2019 RestHourClient Script.sql" />
     <Content Include="devsqlscripts\19.12.2019_stpGetCrewDetailsForHealthByIDNew.sql" />
     <Content Include="devsqlscripts\19.12.2019_stpSaveJoiningMedicalFilePath.sql" />
     <Content Include="devsqlscripts\23.07.2019_Fullscript.sql" />

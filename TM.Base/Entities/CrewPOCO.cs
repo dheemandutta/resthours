@@ -70,5 +70,9 @@ namespace TM.Base.Entities
         public string CountryName { get; set; }
 
         public int RowNumber { get; set; }
+
+        public int CrewId { get; set; }
+
+        public string File { get; set; }
     }
 }

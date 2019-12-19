@@ -695,5 +695,43 @@ namespace TM.RestHour.DAL
             return countryList;
 
         }
+
+
+
+        public int SaveJoiningMedicalFilePath(CrewPOCO crew)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveJoiningMedicalFilePath", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CrewId", crew.CrewId);
+            cmd.Parameters.AddWithValue("@File", crew.File.ToString());
+
+            //if (!String.IsNullOrEmpty(crew.MiddleName))
+            //{
+            //    cmd.Parameters.AddWithValue("@MiddleName", crew.MiddleName.ToString());
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@MiddleName", DBNull.Value);
+            //}
+
+            //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+
+            //if (crew.ID > 0)
+            //{
+            //    cmd.Parameters.AddWithValue("@ID", crew.ID);
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@ID", DBNull.Value);
+            //}
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
     }
 }
