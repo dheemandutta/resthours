@@ -715,5 +715,55 @@ namespace TM.RestHour.DAL
 
             return recordsAffected;
         }
+
+
+
+        public CrewPOCO GetJoiningMedicalFileDatawByID(int CrewId /*,int VesselID*/)
+        {
+            List<CrewPOCO> prodPOList = new List<CrewPOCO>();
+            List<CrewPOCO> prodPO = new List<CrewPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetJoiningMedicalFileDatawByID", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewId", CrewId);
+                    //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+                    con.Open();
+
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+                    con.Close();
+
+                }
+            }
+            return ConvertDataTableToJoiningMedicalFileDatawList(ds).FirstOrDefault();
+        }
+
+        private List<CrewPOCO> ConvertDataTableToJoiningMedicalFileDatawList(DataSet ds)
+        {
+            List<CrewPOCO> crewtimesheetList = new List<CrewPOCO>();
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    CrewPOCO crewtimesheet = new CrewPOCO();
+
+                    //if (item["ID"] != System.DBNull.Value)
+                    //    crewtimesheet.ID = Convert.ToInt32(item["ID"].ToString());
+
+                    if (item["JoiningMedicalFile"] != System.DBNull.Value)
+                        crewtimesheet.JoiningMedicalFile = Convert.ToString(item["JoiningMedicalFile"]);
+
+                    crewtimesheetList.Add(crewtimesheet);
+                }
+            }
+
+            return crewtimesheetList;
+        }
     }
 }

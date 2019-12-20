@@ -410,3 +410,41 @@ function SetUpGridServiceTerms() {
         "dom": "Bfrtip"
     });
 }
+
+
+
+
+
+
+
+
+
+function GetJoiningMedicalFileDatawByID() {
+
+    var x = $("#GetJoiningMedicalFileDatawByID").val();
+    $.ajax({
+        url: x,
+        data:
+        {
+            crewID: $('#ddlCrew').val()
+        },
+        type: "POST", //GET
+        // data: JSON.stringify({ 'ID': ID }),
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            //$('#ID').val(result.ID);
+            $('#JoiningMedicalFile').val(result.JoiningMedicalFile);
+
+            //$('#myModal').modal('show');
+            //$('#btnUpdate').show();
+            //$('#btnAdd').hide();
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
+}

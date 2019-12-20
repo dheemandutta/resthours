@@ -513,6 +513,24 @@ namespace TM.RestHour.Controllers
 
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public JsonResult GetJoiningMedicalFileDatawByID(int CrewId)
+        {
+            CrewBL crewBL = new CrewBL();
+            CrewPOCO crewPC = new CrewPOCO();
+
+            //crewPC = crewBL.GetJoiningMedicalFileDatawByID(int.Parse(CrewId));
+            crewBL.GetJoiningMedicalFileDatawByID(int.Parse(CrewId.ToString()));
+            Crew um = new Crew();
+
+            //um.ID = consultantPC.ID;
+            um.JoiningMedicalFile = crewPC.JoiningMedicalFile;
+
+            var cm = um;
+
+            return Json(cm, JsonRequestBehavior.AllowGet);
+        }
     }
 }
-

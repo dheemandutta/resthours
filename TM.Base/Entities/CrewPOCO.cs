@@ -74,5 +74,7 @@ namespace TM.Base.Entities
         public int CrewId { get; set; }
 
         public string File { get; set; }
+
+        public string JoiningMedicalFile { get; set; }
     }
 }

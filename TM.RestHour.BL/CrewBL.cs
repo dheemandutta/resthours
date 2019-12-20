@@ -260,5 +260,12 @@ namespace TM.RestHour.BL
             CrewDAL crewDAL = new CrewDAL();
             return crewDAL.SaveJoiningMedicalFilePath(crewId,filepath);        //UploadJoiningMedical  --->  in Controler
         }
+
+        public bool GetJoiningMedicalFileDatawByID(int CrewId)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.GetJoiningMedicalFileDatawByID(CrewId).OvertimeEnabled;
+        }
+
     }
 }

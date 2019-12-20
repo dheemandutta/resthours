@@ -773,6 +773,7 @@
     <Content Include="devsqlscripts\19.12.2019 RestHourClient Script.sql" />
     <Content Include="devsqlscripts\19.12.2019_stpGetCrewDetailsForHealthByIDNew.sql" />
     <Content Include="devsqlscripts\19.12.2019_stpSaveJoiningMedicalFilePath.sql" />
+    <Content Include="devsqlscripts\20.12.2019 stpGetJoiningMedicalFileDatawByID.sql" />
     <Content Include="devsqlscripts\23.07.2019_Fullscript.sql" />
     <Content Include="devsqlscripts\InitialScript_Data.sql" />
     <Content Include="devsqlscripts\InitialScript_Schema.sql" />
