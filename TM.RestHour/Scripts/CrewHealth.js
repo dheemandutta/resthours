@@ -426,17 +426,16 @@ function GetJoiningMedicalFileDatawByID() {
         url: x,
         data:
         {
-            crewID: $('#ddlCrew').val()
+            CrewId: $('#ddlCrew').val()
         },
         type: "POST", //GET
-        // data: JSON.stringify({ 'ID': ID }),
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
             //debugger;
             //$('#ID').val(result.ID);
-            $('#JoiningMedicalFile').val(result.JoiningMedicalFile);
-
+            //$('#JoiningMedicalFile').val(result.JoiningMedicalFile);
+            console.log(result);
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();
             //$('#btnAdd').hide();

@@ -718,7 +718,7 @@ namespace TM.RestHour.DAL
 
 
 
-        public CrewPOCO GetJoiningMedicalFileDatawByID(int CrewId /*,int VesselID*/)
+        public string GetJoiningMedicalFileDatawByID(int CrewId )
         {
             List<CrewPOCO> prodPOList = new List<CrewPOCO>();
             List<CrewPOCO> prodPO = new List<CrewPOCO>();
@@ -740,7 +740,7 @@ namespace TM.RestHour.DAL
 
                 }
             }
-            return ConvertDataTableToJoiningMedicalFileDatawList(ds).FirstOrDefault();
+            return ds.Tables[0].Rows[0]["JoiningMedicalFile"].ToString();
         }
 
         private List<CrewPOCO> ConvertDataTableToJoiningMedicalFileDatawList(DataSet ds)

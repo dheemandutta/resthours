@@ -48,7 +48,7 @@
                 <div style="margin:0 auto" class="tablecontainer">
                     @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
                     @Html.Hidden("GetCrewDetailsForHealth", @Url.Action("GetCrewDetailsForHealthByID", "CrewHealth"))
-                    @Html.Hidden("GetJoiningMedicalFileDatawByID", @Url.Action("GetJoiningMedicalFileDatawByID", "CrewHealth"))
+                    @Html.Hidden("GetJoiningMedicalFileDatawByID", @Url.Action("GetJoininingMedicalByCrewId", "CrewHealth"))
                     <input type="hidden" id="hdncount" />
                     <input type="hidden" id="hdnrole" />
                     <div class="">
@@ -133,7 +133,7 @@
                             //var ID = $('#ddlCrew').val();
 
                             GetCrewDetailsForHealthByID();
-                            GetJoiningMedicalFileDatawByID(); ///////////////////////////////////////////////////////////////////////// deep
+                            //GetJoiningMedicalFileDatawByID(); ///////////////////////////////////////////////////////////////////////// deep
 
                         });
 

@@ -342,6 +342,8 @@ namespace TM.RestHour.Controllers
 
             um.ActiveFrom = consultantPC.ActiveFrom;
 
+            um.JoiningMedicalReportPath = GetJoininingMedicalByCrewId(crewID);
+
             var cm = um;
 
             return Json(cm, JsonRequestBehavior.AllowGet);
@@ -515,22 +517,22 @@ namespace TM.RestHour.Controllers
         }
 
 
-        [HttpGet]
-        public JsonResult GetJoiningMedicalFileDatawByID(int CrewId)
+        
+        private string GetJoininingMedicalByCrewId(int CrewId)
         {
             CrewBL crewBL = new CrewBL();
-            CrewPOCO crewPC = new CrewPOCO();
+            //CrewPOCO crewPC = new CrewPOCO();
 
             //crewPC = crewBL.GetJoiningMedicalFileDatawByID(int.Parse(CrewId));
-            crewBL.GetJoiningMedicalFileDatawByID(int.Parse(CrewId.ToString()));
-            Crew um = new Crew();
+           return crewBL.GetJoiningMedicalFileDatawByID(CrewId);
+            //Crew um = new Crew();
 
             //um.ID = consultantPC.ID;
-            um.JoiningMedicalFile = crewPC.JoiningMedicalFile;
+            //um.JoiningMedicalFile = crewPC.JoiningMedicalFile;
 
-            var cm = um;
+            //var cm = um;
 
-            return Json(cm, JsonRequestBehavior.AllowGet);
+            //return um.JoiningMedicalFile;
         }
     }
 }

@@ -35,5 +35,7 @@ namespace TM.RestHour.Models
         public string ActiveTo { get; set; }
 
         public string Location { get; set; }
+
+        public string JoiningMedicalReportPath { get; set; }
     }
 }
