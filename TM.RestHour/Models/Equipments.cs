@@ -37,5 +37,7 @@ namespace TM.RestHour.Models
         public string Location { get; set; }
 
         public string JoiningMedicalReportPath { get; set; }
+
+        public System.IO.FileStream PdfFile { get; set; }
     }
 }

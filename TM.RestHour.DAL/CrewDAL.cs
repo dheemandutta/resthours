@@ -740,7 +740,11 @@ namespace TM.RestHour.DAL
 
                 }
             }
-            return ds.Tables[0].Rows[0]["JoiningMedicalFile"].ToString();
+            if (ds.Tables[0].Rows.Count > 0)
+
+                return ds.Tables[0].Rows[0]["JoiningMedicalFile"].ToString();
+            else
+                return String.Empty;
         }
 
         private List<CrewPOCO> ConvertDataTableToJoiningMedicalFileDatawList(DataSet ds)

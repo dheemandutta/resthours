@@ -421,29 +421,26 @@ function SetUpGridServiceTerms() {
 
 function GetJoiningMedicalFileDatawByID() {
 
-    var x = $("#GetJoiningMedicalFileDatawByID").val();
+    var x = $("#GetJoiningreportUrl").val();
+    var cId = $('#ddlCrew').val();
     $.ajax({
         url: x,
         data:
         {
-            CrewId: $('#ddlCrew').val()
+            CrewId: cId
         },
-        type: "POST", //GET
+        type: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
             //debugger;
-            //$('#ID').val(result.ID);
-            //$('#JoiningMedicalFile').val(result.JoiningMedicalFile);
             console.log(result);
-            //$('#myModal').modal('show');
-            //$('#btnUpdate').show();
-            //$('#btnAdd').hide();
+            $('#ifrjoiningreport').attr('src', result);
+
         },
         error: function (errormessage) {
             //debugger;
             console.log(errormessage.responseText);
         }
     });
-    return false;
 }

@@ -49,6 +49,7 @@
                     @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
                     @Html.Hidden("GetCrewDetailsForHealth", @Url.Action("GetCrewDetailsForHealthByID", "CrewHealth"))
                     @Html.Hidden("GetJoiningMedicalFileDatawByID", @Url.Action("GetJoininingMedicalByCrewId", "CrewHealth"))
+                    @Html.Hidden("GetJoiningreportUrl", @Url.Action("GetPdfFileLocation", "CrewHealth"))
                     <input type="hidden" id="hdncount" />
                     <input type="hidden" id="hdnrole" />
                     <div class="">
@@ -88,11 +89,13 @@
                                         <input type="text" class="form-control" id="RankName" placeholder="RankName" disabled />
                                     </div>
                                 </div>
-                                <div class="export-template-label" style="display:inline-block;float: right; margin-right: 13px;">
-                                    <a href="../../MedicalHistory/Medical Fermin.pdf" target="_self" download>
-                                        <img src="#" alt="Download Joining Medical" style="float:left;" class="button1">
-                                    </a>
-                                </div>
+                                @*@using (Html.BeginForm("JoiningMedicalReport", "CrewHealth", FormMethod.Post))
+                                {
+                                    <div class="export-template-label" style="display:inline-block;float: right; margin-right: 13px;">
+                                    <input type="submit" alt="Download Joining Medical" style="float:left;" class="button1" value="Download Joining Medical" id="btnSubmit" />
+
+                                    </div>
+                                }*@
                             </div>
 
 
@@ -105,9 +108,9 @@
             <br />
             <br />
 
+            @*@Url.Action("GetPDF")*@
 
-
-            <iframe src="@Url.Action("GetPDF")" width="100%" height="55%" style="margin-top:20px;"></iframe>
+            <iframe src="" width="100%" height="55%" style="margin-top:20px;" id="ifrjoiningreport"></iframe>
 
             @section Scripts
 {
@@ -133,7 +136,7 @@
                             //var ID = $('#ddlCrew').val();
 
                             GetCrewDetailsForHealthByID();
-                            //GetJoiningMedicalFileDatawByID(); ///////////////////////////////////////////////////////////////////////// deep
+                            GetJoiningMedicalFileDatawByID(); ///////////////////////////////////////////////////////////////////////// deep
 
                         });
 
@@ -154,7 +157,7 @@
 
                 </script>
             }
-            
+
         </div>
 </body>
 

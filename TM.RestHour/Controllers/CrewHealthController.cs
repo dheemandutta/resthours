@@ -118,6 +118,22 @@ namespace TM.RestHour.Controllers
             return View(crewtimesheetVM);
         }
 
+        [HttpPost]
+        public ActionResult JoiningMedicalReport(FormCollection formCollection)
+        {
+
+            FileStream fs = new FileStream(Server.MapPath("~/MedicalHistory/Medical Fermin.pdf"), FileMode.Open, FileAccess.Read);
+            return File(fs, "application/pdf");
+
+
+            //GetAllCrewForDrp();
+            //CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            //Crew crew = new Crew();
+            //crew.ID = int.Parse(Session["LoggedInUserId"].ToString());
+            //crewtimesheetVM.Crew = crew;
+            //return View(crewtimesheetVM);
+        }
+
         [TraceFilterAttribute]
         public ActionResult CrewServiceTerms()
         {
@@ -343,6 +359,7 @@ namespace TM.RestHour.Controllers
             um.ActiveFrom = consultantPC.ActiveFrom;
 
             um.JoiningMedicalReportPath = GetJoininingMedicalByCrewId(crewID);
+            
 
             var cm = um;
 
@@ -351,9 +368,9 @@ namespace TM.RestHour.Controllers
 
 
 
-        public FileStreamResult GetPDF()
+        public FileStreamResult GetPDF(string file) //
         {
-            FileStream fs = new FileStream(Server.MapPath("~/MedicalHistory/Medical Fermin.pdf"), FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(Server.MapPath("~/MedicalHistory/Medical Fermin.pdf"), FileMode.Open, FileAccess.Read); //    ~/MedicalHistory/Medical Fermin.pdf
             return File(fs, "application/pdf");
         }
 
@@ -521,18 +538,28 @@ namespace TM.RestHour.Controllers
         private string GetJoininingMedicalByCrewId(int CrewId)
         {
             CrewBL crewBL = new CrewBL();
-            //CrewPOCO crewPC = new CrewPOCO();
+            string path = ConfigurationManager.AppSettings["JoiningPdfRelativePath"].ToString();
 
             //crewPC = crewBL.GetJoiningMedicalFileDatawByID(int.Parse(CrewId));
-           return crewBL.GetJoiningMedicalFileDatawByID(CrewId);
-            //Crew um = new Crew();
+            string fileName = crewBL.GetJoiningMedicalFileDatawByID(CrewId);
 
-            //um.ID = consultantPC.ID;
-            //um.JoiningMedicalFile = crewPC.JoiningMedicalFile;
+            path = path + fileName;
 
-            //var cm = um;
+                       
 
-            //return um.JoiningMedicalFile;
+            return path;
+            
+        }
+
+        public JsonResult GetPdfFileLocation(int CrewId)
+        {
+
+            string filePath = GetJoininingMedicalByCrewId(CrewId);
+            filePath = filePath.Replace('~', ' ');
+            //FileStream fs = new FileStream(Server.MapPath(filePath), FileMode.Open, FileAccess.Read);
+            var cm = filePath;
+
+            return Json(cm, JsonRequestBehavior.AllowGet);
         }
     }
 }
