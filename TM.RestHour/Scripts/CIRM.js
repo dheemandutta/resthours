@@ -59,15 +59,18 @@ function SaveCIRM() {
         LocationAndTypeOfPain: $('#Locationandtypeofpain').val(),
         RelevantInformationForDesease: $('#RelevantInformationforDesease').val(),
         WhereAndHowAccidentIsCausedCHK: document.getElementById("WhereandHowAccidentiscausedCHK").checked,
-        UploadMedicalHistory: $('#UploadMedicalHistory').val(),
+        //UploadMedicalHistory: $('#UploadMedicalHistory').val(),
         UploadMedicinesAvailable: $('#UploadMedicinesAvailable').val(),
         MedicalProductsAdministered: $('#MedicalProductsAdministered').val(),
         WhereAndHowAccidentIsausedARA: $('#WhereandHowAccidentiscausedARA').val(),
-
-        CrewId: $('#ddlCrew').val()
+        CrewId: $('#ddlCrew').val(),
+        IsEquipmentUploaded: $('#uploaddoc1').val(),
+        IsmedicineUploaded: $('#uploaddoc2').val(),
+        IsJoiningReportUloaded: $('#uploaddoc3').val(),
+        IsMedicalHistoryUploaded: $('#uploaddoc4').val()
     };
     //debugger;
-   // console.log(CIRM);
+    console.log(CIRM);
     $.ajax({
         url: saveCIRM,
         data: JSON.stringify(CIRM),

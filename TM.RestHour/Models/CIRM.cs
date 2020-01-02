@@ -34,5 +34,11 @@ namespace TM.RestHour.Models
         public string WhereAndHowAccidentIsausedARA { get; set; }
 
         public int CrewId { get; set; }
+
+        public int IsEquipmentUploaded { get; set; }
+        public int IsmedicineUploaded { get; set; }
+        public int IsJoiningReportUloaded { get; set; }
+
+        public int IsMedicalHistoryUploaded { get; set; }
     }
 }
