@@ -106,7 +106,7 @@
                         <label for="Desease Relevant Information">Desease Relevant Information</label>
                         <textarea class="form-control" id="RelevantInformationforDesease" cols="7" rows="2"></textarea>
                     </div>
-                    <div>
+                    @*<div>
                         @using (Html.BeginForm("MedicalTreatment", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <span style="font-size:18px;">Upload Medicines Available:</span>
@@ -117,7 +117,13 @@
                             <br /><br />
                             <span style="color:green">@ViewBag.Message</span>
                         }
-                    </div>
+                    </div>*@
+                <div>
+                    <input type="checkbox" name="uploaddoc" value="Equipment"> Upload Medical Equipemts </br>
+                    <input type="checkbox" name="uploaddoc" value="Medicine"> Upload Medical Inventory </br>
+                    <input type="checkbox" name="uploaddoc" value="JoiningReport"> Upload Joining Report </br>
+                    <input type="checkbox" name="uploaddoc" value="History"> Upload Medical History </br>
+                </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
@@ -155,7 +161,7 @@
                         <label for="Location and type of pain">Location and type of pain</label>
                         <textarea class="form-control" id="Locationandtypeofpain" cols="7" rows="2"></textarea>
                     </div>
-                    <div>
+                    @*<div>
                         @using (Html.BeginForm("MedicalTreatment", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <span style="font-size:18px;">Upload Medical History:</span>
@@ -166,7 +172,7 @@
                             <br /><br />
                             <span style="color:green">@ViewBag.Message</span>
                         }
-                    </div>
+                    </div>*@
 
 
                     <div class="col-md-3" style="padding: 10px; margin-top:68px;">
