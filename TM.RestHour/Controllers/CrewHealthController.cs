@@ -434,10 +434,12 @@ namespace TM.RestHour.Controllers
             CIRMPC.UploadMedicinesAvailable = cIRM.UploadMedicinesAvailable;
             CIRMPC.MedicalProductsAdministered = cIRM.MedicalProductsAdministered;
             CIRMPC.WhereAndHowAccidentIsausedARA = cIRM.WhereAndHowAccidentIsausedARA;
+
             CIRMPC.IsEquipmentUploaded = cIRM.IsEquipmentUploaded;
             CIRMPC.IsJoiningReportUloaded = cIRM.IsJoiningReportUloaded;
             CIRMPC.IsMedicalHistoryUploaded = cIRM.IsMedicalHistoryUploaded;
             CIRMPC.IsmedicineUploaded = cIRM.IsmedicineUploaded;
+
             CIRMPC.CrewId = cIRM.CrewId;
 
             

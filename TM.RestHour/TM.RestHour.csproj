@@ -750,6 +750,8 @@
     <Content Include="CSS\login_page.css" />
     <Content Include="CSS\popuo-box.css" />
     <Content Include="CSS\style.css" />
+    <Content Include="devsqlscripts\02.01.2020_ALTER_TABLE_CIRM.sql" />
+    <Content Include="devsqlscripts\02.01.2020_stpSaveCIRM.sql" />
     <Content Include="devsqlscripts\02202019_FullScript.sql" />
     <Content Include="devsqlscripts\03.14.2019_stpGetPreviousBlankDates.sql" />
     <Content Include="devsqlscripts\03.15.2019_stpGetSecondWrokSessionsByCrewandDate.sql" />

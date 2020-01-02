@@ -64,10 +64,16 @@ function SaveCIRM() {
         MedicalProductsAdministered: $('#MedicalProductsAdministered').val(),
         WhereAndHowAccidentIsausedARA: $('#WhereandHowAccidentiscausedARA').val(),
         CrewId: $('#ddlCrew').val(),
-        IsEquipmentUploaded: $('#uploaddoc1').val(),
-        IsmedicineUploaded: $('#uploaddoc2').val(),
-        IsJoiningReportUloaded: $('#uploaddoc3').val(),
-        IsMedicalHistoryUploaded: $('#uploaddoc4').val()
+
+        //IsEquipmentUploaded: $('#uploaddoc1').val(),
+        //IsmedicineUploaded: $('#uploaddoc2').val(),
+        //IsJoiningReportUloaded: $('#uploaddoc3').val(),
+        //IsMedicalHistoryUploaded: $('#uploaddoc4').val(),
+
+        IsEquipmentUploaded: document.getElementById("uploaddoc1").checked,
+        IsmedicineUploaded: document.getElementById("uploaddoc2").checked,
+        IsJoiningReportUloaded: document.getElementById("uploaddoc3").checked,
+        IsMedicalHistoryUploaded: document.getElementById("uploaddoc4").checked
     };
     //debugger;
     console.log(CIRM);

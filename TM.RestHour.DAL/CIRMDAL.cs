@@ -222,6 +222,11 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@WhereAndHowAccidentIsausedARA", DBNull.Value);
             }
 
+            cmd.Parameters.AddWithValue("@IsEquipmentUploaded", cIRM.IsEquipmentUploaded);
+            cmd.Parameters.AddWithValue("@IsJoiningReportUloaded", cIRM.IsJoiningReportUloaded);
+            cmd.Parameters.AddWithValue("@IsMedicalHistoryUploaded", cIRM.IsMedicalHistoryUploaded);
+            cmd.Parameters.AddWithValue("@IsmedicineUploaded", cIRM.IsmedicineUploaded);
+
             cmd.Parameters.AddWithValue("@CrewId", cIRM.CrewId);
 
 
