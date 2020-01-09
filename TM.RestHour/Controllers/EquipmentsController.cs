@@ -294,7 +294,7 @@ namespace TM.RestHour.Controllers
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
 
-        
+    
 
         [HttpPost]
         [TraceFilterAttribute]

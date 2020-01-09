@@ -15,5 +15,11 @@ namespace TM.RestHour.BL
             CIRMDAL cIRMDAL = new CIRMDAL();
             return cIRMDAL.SaveCIRM(cIRM /*, VesselID*/);
         }
+
+        public CIRMPOCO GetCIRMByCrewId(int CrewId)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.GetCIRMByCrewId(CrewId).FirstOrDefault();
+        }
     }
 }

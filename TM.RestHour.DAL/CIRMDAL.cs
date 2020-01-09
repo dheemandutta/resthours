@@ -242,6 +242,69 @@ namespace TM.RestHour.DAL
             con.Close();
 
             return recordsAffected;
-        }       
+        }
+
+
+
+        public List<CIRMPOCO> GetCIRMByCrewId(int CrewId)
+        {
+            List<CIRMPOCO> prodPOList = new List<CIRMPOCO>();
+            List<CIRMPOCO> prodPO = new List<CIRMPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetCIRMByCrewId", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewId", CrewId);
+                    con.Open();
+
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+                    con.Close();
+
+                }
+            }
+            return ConvertDataTableToCIRMByCrewIdList(ds);
+        }
+
+        private List<CIRMPOCO> ConvertDataTableToCIRMByCrewIdList(DataSet ds)
+        {
+            List<CIRMPOCO> crewtimesheetList = new List<CIRMPOCO>();
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    CIRMPOCO crewtimesheet = new CIRMPOCO();
+
+                    //if (item["ID"] != System.DBNull.Value)
+                    //    crewtimesheet.ID = Convert.ToInt32(item["ID"].ToString());
+
+                    //if (item["LastName"] != System.DBNull.Value)
+                    //    crewtimesheet.LastName = item["LastName"].ToString();
+
+                    if (item["IsEquipmentUploaded"] != System.DBNull.Value)
+                        crewtimesheet.IsEquipmentUploaded = Convert.ToInt32(item["IsEquipmentUploaded"].ToString());
+
+                    if (item["IsJoiningReportUloaded"] != System.DBNull.Value)
+                        crewtimesheet.IsJoiningReportUloaded = Convert.ToInt32(item["IsJoiningReportUloaded"].ToString());
+
+                    if (item["IsMedicalHistoryUploaded"] != System.DBNull.Value)
+                        crewtimesheet.IsMedicalHistoryUploaded = Convert.ToInt32(item["IsMedicalHistoryUploaded"].ToString());
+
+                    if (item["IsmedicineUploaded"] != System.DBNull.Value)
+                        crewtimesheet.IsmedicineUploaded = Convert.ToInt32(item["IsmedicineUploaded"].ToString());
+
+
+                    crewtimesheetList.Add(crewtimesheet);
+                }
+            }
+
+
+            return crewtimesheetList;
+        }
     }
 }

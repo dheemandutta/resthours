@@ -14,12 +14,183 @@ using System.Text;
 using System.IO;
 using System.Configuration;
 
+using System.Net;
+using System.Net.Mail;
 
 namespace TM.RestHour.Controllers
 {
     
     public class CrewHealthController : BaseController
     {
+        public ActionResult MailCIRM()
+        {
+            GetAllCrewForDrp();
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult MailCIRM(FormCollection formCollection)
+        //{
+
+        //    CIRMBL cIRMBL = new CIRMBL();
+        //    CIRMPOCO cIRMPOCO = new CIRMPOCO();
+
+        //    cIRMPOCO = cIRMBL.GetCIRMByCrewId(Convert.ToInt32(formCollection[0].ToString()));
+
+        //    //Session["Role"] = CrewId[0].ToString();          
+            
+        //    //CIRM cIRM = new CIRM();
+
+        //    //cIRM.IsEquipmentUploaded = cIRMPOCO.IsEquipmentUploaded;
+        //    //cIRM.IsJoiningReportUloaded = cIRMPOCO.IsJoiningReportUloaded;
+        //    //cIRM.IsMedicalHistoryUploaded = cIRMPOCO.IsMedicalHistoryUploaded;
+        //    //cIRM.IsmedicineUploaded = cIRMPOCO.IsmedicineUploaded;
+
+
+
+
+        //    //var fromAddress = new MailAddress("cableman24x7@gmail.com", "From Name");
+        //    //var toAddress = new MailAddress("prasenjitpaul100@gmail.com", "To Name");
+        //    //const string fromPassword = "cableman24x712345";
+        //    //const string subject = "Subject";
+        //    //const string body = "Body";
+
+        //    //var smtp = new SmtpClient
+        //    //{
+        //    //    Host = "smtp.gmail.com",
+        //    //    Port = 587,
+        //    //    EnableSsl = true,
+        //    //    DeliveryMethod = SmtpDeliveryMethod.Network,
+        //    //    UseDefaultCredentials = false,
+        //    //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+        //    //};
+        //    //using (var message = new MailMessage(fromAddress, toAddress)
+        //    //{
+        //    //    Subject = subject,
+        //    //    Body = body
+        //    //})
+        //    //{
+        //    //    smtp.Send(message);
+        //    //}
+        //    return View();
+        //}
+
+
+
+
+        public JsonResult LoadData22()
+        {
+            int draw, start, length;
+            int pageIndex = 0;
+
+            if (null != Request.Form.GetValues("draw"))
+            {
+                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+            }
+            else
+            {
+                draw = 1;
+                start = 0;
+                length = 1000;
+            }
+
+            if (start == 0)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                pageIndex = (start / length) + 1;
+            }
+
+            EquipmentsBL equipmentsBL = new EquipmentsBL();
+            int totalrecords = 0;
+
+            List<EquipmentsPOCO> equipmentspocoList = new List<EquipmentsPOCO>();
+            equipmentspocoList = equipmentsBL.GetMedicinePageWise(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+            List<Equipments> equipmentsList = new List<Equipments>();
+            foreach (EquipmentsPOCO equipmentsPC in equipmentspocoList)
+            {
+                Equipments equipments = new Equipments();
+                equipments.MedicineID = equipmentsPC.MedicineID;
+                equipments.MedicineName = equipmentsPC.MedicineName;
+                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.Location = equipmentsPC.Location;
+
+                equipmentsList.Add(equipments);
+            }
+
+            var data = equipmentsList;
+
+            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult LoadData33()
+        {
+            int draw, start, length;
+            int pageIndex = 0;
+
+            if (null != Request.Form.GetValues("draw"))
+            {
+                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+            }
+            else
+            {
+                draw = 1;
+                start = 0;
+                length = 1000;
+            }
+
+            if (start == 0)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                pageIndex = (start / length) + 1;
+            }
+
+            EquipmentsBL equipmentsBL = new EquipmentsBL();
+            int totalrecords = 0;
+
+            List<EquipmentsPOCO> equipmentspocoList = new List<EquipmentsPOCO>();
+            equipmentspocoList = equipmentsBL.GetEquipmentsPageWise(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+            List<Equipments> equipmentsList = new List<Equipments>();
+            foreach (EquipmentsPOCO equipmentsPC in equipmentspocoList)
+            {
+                Equipments equipments = new Equipments();
+                equipments.EquipmentsID = equipmentsPC.EquipmentsID;
+                equipments.EquipmentsName = equipmentsPC.EquipmentsName;
+                equipments.Comment = equipmentsPC.Comment;
+                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.Location = equipmentsPC.Location;
+
+                equipmentsList.Add(equipments);
+            }
+
+            var data = equipmentsList;
+
+            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         public ActionResult test()
         {
             return View();

@@ -90,7 +90,6 @@ namespace TM.RestHour.Controllers
 			return Json(countries, JsonRequestBehavior.AllowGet);
 		}
 
-
 		[HttpPost]
         public ActionResult Index(LoginModel user)
         {
@@ -196,12 +195,7 @@ namespace TM.RestHour.Controllers
             OptionsBL optionsBL = new OptionsBL();
             string deactivationHash = optionsBL.GetConfigValues("InstallationHash").ConfigValue;
 
-            
-
             existingUsers = usersBL.GetUserAuthentication(user.Users.Username, user.Users.Password);
-
-
-
 
 			if (existingUsers > 0)
 			{
