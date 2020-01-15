@@ -59,5 +59,11 @@ namespace TM.RestHour.BL
             ConsultantDAL consultantDAL = new ConsultantDAL();
             return consultantDAL.GetMedicalAdvisoryPageWise2(pageIndex, ref recordCount, length/*, CrewID*/);
         }
+
+        public List<ConsultantPOCO> stpGetMedicalAdvisoryListPageWise2(int pageIndex, ref int recordCount, int length/*, int CrewID*/)
+        {
+            ConsultantDAL consultantDAL = new ConsultantDAL();
+            return consultantDAL.stpGetMedicalAdvisoryListPageWise2(pageIndex, ref recordCount, length/*, CrewID*/);
+        }
     }
 }

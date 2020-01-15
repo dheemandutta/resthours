@@ -12,7 +12,7 @@
 
 @Html.Hidden("loaddata22", @Url.Action("LoadData22", "CrewHealth"))
 @Html.Hidden("loaddata33", @Url.Action("LoadData33", "CrewHealth"))
-
+@Html.Hidden("loaddata44", @Url.Action("LoadData44", "CrewHealth"))
 
 
 @*<table id="certtable_print2" class="display" cellspacing="0" width="100%">
@@ -47,6 +47,7 @@
                     </div>
                     <button type="button" class="button1" id="btnPrint2" @*disabled="disabled"*@>Print Medicine</button>
                     <button type="button" class="button1" id="btnPrint3" @*disabled="disabled"*@>Print Equipment</button>
+                    <button type="button" class="button1" id="btnPrint4" @*disabled="disabled"*@>Print Advisory</button>
                 </div>
 
             </div>
@@ -86,6 +87,28 @@
     </table>
 </div>
 
+<div id="dvprint44" style="display:none;">
+    <img src="~/companylogo/companylogo.png" />
+    <hr>
+    <table id="certtable_print4" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th align="left">Weight </th>
+                <th align="left">BMI </th>
+                <th align="left">BloodSugarLevel </th>
+
+                <th align="left">Systolic </th>
+                <th align="left">Diastolic </th>
+                <th align="left">UrineTest </th>
+
+                <th align="left">UnannouncedAlcohol </th>
+                <th align="left">AnnualDH </th>
+                <th align="left">Month </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
@@ -107,6 +130,7 @@
 
             SetUpPrintGridReport2();
             SetUpGrid33();
+            SetUpGrid44();
         });
 
         $("#btnPrint2").click(function () {
@@ -114,11 +138,15 @@
             Popup22('');
         });
 
-          $("#btnPrint3").click(function () {
+        $("#btnPrint3").click(function () {
             //PrintTest('');
             Popup33('');
         });
 
+        $("#btnPrint4").click(function () {
+            //PrintTest('');
+            Popup44('');
+        });
+
     </script>
 }
-

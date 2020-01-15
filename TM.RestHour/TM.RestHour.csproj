@@ -764,6 +764,8 @@
     <Content Include="devsqlscripts\12.16.2019_JoiningMedicalFileData.sql" />
     <Content Include="devsqlscripts\13.09.2018_InitialScript_Data.sql" />
     <Content Include="devsqlscripts\13.09.2018_InitialScript_Schema.sql" />
+    <Content Include="devsqlscripts\15.01.2020_stpGetCIRMByCrewId.sql" />
+    <Content Include="devsqlscripts\15.01.2020_stpGetMedicalAdvisoryListPageWise2.sql" />
     <Content Include="devsqlscripts\18.09.2018_InitialScript_SchemaAndData.sql" />
     <Content Include="devsqlscripts\18.12.2019_stpDeleteEquipments.sql" />
     <Content Include="devsqlscripts\18.12.2019_stpDeleteMedicine.sql" />
