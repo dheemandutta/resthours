@@ -17,6 +17,8 @@ using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 
+
+
 namespace TM.RestHour.Controllers
 {
     
@@ -371,7 +373,7 @@ namespace TM.RestHour.Controllers
         }
 
         [TraceFilterAttribute]
-        public ActionResult MonthlyMedicalAdvisory()
+        public ActionResult MonthlyMedicalAdvisory(FormCollection collection)
         {
             GetAllCrewForDrp();
             CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
