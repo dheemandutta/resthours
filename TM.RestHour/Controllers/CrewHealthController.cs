@@ -24,6 +24,11 @@ namespace TM.RestHour.Controllers
     
     public class CrewHealthController : BaseController
     {
+
+        public ActionResult DailyTemperatureReading()
+        {
+            return View();
+        }
         public ActionResult MailCIRM()
         {
             GetAllCrewForDrp();

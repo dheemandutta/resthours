@@ -3042,6 +3042,7 @@
     <Content Include="Views\Login\ResetPasswordOfID.cshtml" />
     <Content Include="Views\CrewHealth\UploadJoiningMedical.cshtml" />
     <Content Include="Views\CrewHealth\MailCIRM.cshtml" />
+    <Content Include="Views\CrewHealth\DailyTemperatureReading.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

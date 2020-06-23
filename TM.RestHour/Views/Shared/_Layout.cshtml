@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="../src/jquery.image-marker.css">*@
 
 
+
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
@@ -94,6 +95,7 @@
                                         <li><a href="@Url.Action("MonthlyMedicalAdvisory", "CrewHealth")" style="border:none;">Monthly Medical Data</a></li>
                                         <li><a href="@Url.Action("MedicalHistory", "CrewHealth")" style="border:none;">Medical History</a></li>
                                         <li><a href="@Url.Action("MedicalTreatment", "CrewHealth")" style="border:none;">CIRM</a></li>
+                                        <li><a href="@Url.Action("DailyTemperatureReading", "CrewHealth")" style="border:none;">Daily Temperature Reading</a></li>
                                         <li><a href="@Url.Action("MailCIRM", "CrewHealth")" style="border:none;">Mail CIRM</a></li>
                                     </ul>
                                 </li>
@@ -496,13 +498,20 @@
                     </li>
 
 
-                    <li class=""><a href='@Url.Action("Index", "About")'>xyzzz1</a></li>
-                    <li class=""><a href='@Url.Action("Index", "About")'>xyzzz2</a></li>
+                    <li class=""><a href='@Url.Action("Index", "About")'>Plans</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <b style="color:red;">Medical Assist</b><i class="fa fa-angle-down" style="padding: 0 10px;"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href='@Url.Action("MedicalTreatment", "CrewHealth")'>Vessel Details</a></li>
+                            <li><a href='@Url.Action("MedicalTreatment", "CrewHealth")'>Patient Details</a></li>
+                        </ul>
+                    </li>
+
                     <li class=""><a href='@Url.Action("Index", "About")'>About</a></li>
                     <li class=""><a href='@Url.Action("index", "help")' style="border:none !important;">Help</a></li>
-
-
-
 
 
                 </ul>
