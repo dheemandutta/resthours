@@ -496,13 +496,20 @@
                     </li>
 
 
-                    <li class=""><a href='@Url.Action("Index", "About")'>xyzzz1</a></li>
-                    <li class=""><a href='@Url.Action("Index", "About")'><b style="color:red;">xyzzz2</b></a></li>
+                    <li class=""><a href='@Url.Action("Index", "About")'>Plans</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <b style="color:red;">Medical Assist</b><i class="fa fa-angle-down" style="padding: 0 10px;"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href='@Url.Action("MedicalTreatment", "CrewHealth")'>Vessel Details</a></li>
+                            <li><a href='@Url.Action("MedicalTreatment", "CrewHealth")'>Patient Details</a></li>
+                        </ul>
+                    </li>
+
                     <li class=""><a href='@Url.Action("Index", "About")'>About</a></li>
                     <li class=""><a href='@Url.Action("index", "help")' style="border:none !important;">Help</a></li>
-
-
-
 
 
                 </ul>
