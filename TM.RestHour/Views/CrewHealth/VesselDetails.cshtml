@@ -1,0 +1,258 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+@{
+    ViewBag.Title = "VesselDetails";
+}
+
+
+<script src="~/Scripts/CIRM.js"></script>
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<body style="background-image: url(../background/Doctors.jpg);
+    background-size: cover;">
+
+    @Html.Hidden("saveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
+
+    <div class="row">
+        <div class="col-md-2">
+            <h3  style=" color:#000;">CIRM - Vessel Details</h3>
+        </div>
+
+        <div class="col-md-10 bacmt">
+
+
+            <div class="clearfix"></div>
+            <div class="row">
+
+                @*<div class="col-md-4">
+                    <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
+                    <button type="button" class="button1" style="float: right; right: 25px;" data-toggle="modal" data-target="#myModal" onclick="openBody();">Go to the Image</button><br /><br />
+                </div>*@
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="Name Of Vessel">Name Of Vessel</label>
+                        <div class="form-control">
+                            @System.Web.HttpContext.Current.Session["ShipName"].ToString()
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Call Sign">Call Sign</label>
+                        <input type="text" class="form-control" id="CallSign" placeholder="Call Sign" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Type Of Vessel">Type Of Vessel</label>
+                        <input type="text" class="form-control" id="TypeOfVessel" placeholder="Type Of Vessel" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Date and time of Reporting in GMT">Date and time of Reporting in GMT</label>
+                        <input type="text" class="form-control" id="DateTimeOfReportingGMT" placeholder="Date and time of Reporting in GMT" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Present Location">Present Location</label>
+                        <input type="text" class="form-control" id="PresentLocation" placeholder="Present Location" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Course">Course (0-359 Deg)</label>
+                        <input type="text" class="form-control" id="Course" placeholder="Course" />
+                    </div>
+                                   
+                </div>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="Speed">Speed (in knots)</label>
+                        <input type="text" class="form-control" id="Speed" placeholder="Speed" />
+                    </div>
+                    <div class="form-group">
+                        <label for="PortOfDepartureCountry">Port of departure/Country </label>
+                        <input type="text" class="form-control" id="PortOfDepartureCountry" placeholder="Port of departure/Country" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Port Of Arrival/Country ETA">Port Of Arrival/Country (ETA)</label>
+                        <input type="text" class="form-control" id="PortOfArrivalCountryETA" placeholder="Port Of Arrival/Country" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Agent’s Details If Known">Agent’s Details If Known</label>
+                        <textarea type="text" class="form-control valid" id="AgentsDetailsIfKnown" placeholder="Agent’s Details If Known" style="width: 95% !important;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ETA To Nearest Port">ETA To Nearest Port</label>
+                        <input type="text" class="form-control" id="ETAToNearestPort" placeholder="ETA To Nearest Port" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Communications Resources">Communications Resources</label>
+                        <input type="text" class="form-control" id="CommunicationsResources" placeholder="Communications Resources" />
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <b for="Weather At Present Position">Weather At Present Position</b>
+                    <div class="form-group">
+                        <label for="Wind Speed (knots)">Wind Speed (knots)</label>
+                        <input type="text" class="form-control" id="WindSpeedKnots" placeholder="Wind Speed (knots)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Sea (Beaufort Force)">Sea (Beaufort Force)</label>
+                        <input type="text" class="form-control" id="SeaBeaufortForce" placeholder="Sea (Beaufort Force)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Visibility">Visibility</label>
+                        <input type="text" class="form-control" id="Visibility" placeholder="Visibility" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Swell – Height and direction">Swell – Height and direction</label>
+                        <input type="text" class="form-control" id="SwellHeightDirection" placeholder="Swell – Height and direction" />
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="Helicopter Deck">Helicopter Deck</label>
+                        <input id="HelicopterDeck" type="checkbox" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Helicopter winching area">Helicopter winching area (only if above is no)</label>
+                        <input id="HelicopterWinchingArea" type="checkbox" />
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                    <button type="button" class="button1" id="btnAdd" onclick="return SaveVesselDetails();">Add</button>
+                </div>
+
+            </div>
+         
+
+            <script>
+            function openBody() {
+                window.open("@Url.Action("TestBody", "CrewHealth")");
+            }
+            </script>
+
+          
+
+
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <div class="col-md-12">
+
+
+                    <p style="line-height:28px;">
+                        The medical assistance of the International Radio Medical Centre (C.I.R.M.) is guarantee by doctors in continuous service on call (H. 24). The controls of ships in navigation with sick or injured person on board can contact the C.I.R.M. through the following ways:
+
+                        <br />
+
+                        Phone &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>[+39 ] - 06.59290263<br /></strong>
+
+
+                        E-mail &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong> telesoccorso@cirm.it</strong>
+
+                        <br />
+
+                        <strong> Requests must carry the initials MEDRAD or DH-DOCTOR.</strong><br />
+
+                        Note: For reference please visit <a href="http://www.cirm.it/sito_eng/telesoccorso.htm" style="color:blue !important;">www.cirm.it/sito_eng/telesoccorso.htm</a>
+
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script src="dist/dual-listbox.js"></script>
+
+    <script src="~/Scripts/jquery.typeahead.js"></script>
+    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
+    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
+    <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+
+
+
+
+
+    @*@if (Convert.ToBoolean(Session["Admin"].ToString()) || Convert.ToBoolean(Session["User"].ToString()))
+        {*@
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            //$('#ddlCrew').on('change', function () {
+            //    alert(hello);
+
+            //    var ID = $('#ddlCrew').val();
+
+            //    GetCrewDetailsForHealthByID(ID);
+
+            //});
+
+            //GetCrewDetailsForHealthByID();
+
+
+            var loggedInUserId = 0;
+            loggedInUserId = $('#hdnCrewId').val();
+
+            if (loggedInUserId > 0) { // user level log in
+
+                console.log('Logged In UserId');
+                console.log(loggedInUserId);
+                $('#ddlCrew').val(loggedInUserId);
+                $("#ddlCrew").prop("disabled", true);
+                //LoadData();
+                //SetCalendarColor();
+
+            }
+
+        });
+
+
+        function sentEmail() {
+            alert("Hello! I am an alert box!");
+        }
+
+
+
+
+
+        function checkCheckBoxes(theForm) {
+            if (
+                theForm.CHECKBOX_1.checked == false) {
+                alert('Medical Advice Send');
+                return false;
+            } else {
+                alert('Medical Advice Send along with joining Medical Report');
+                return false;
+            }
+        }
+
+
+
+
+
+    </script>
+    @*}*@
+}
