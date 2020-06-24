@@ -210,6 +210,7 @@
     <Compile Include="Models\CompanyDetails.cs" />
     <Compile Include="Models\Consultant.cs" />
     <Compile Include="Models\Crew.cs" />
+    <Compile Include="Models\CrewTemperature.cs" />
     <Compile Include="Models\CrewTimesheetViewModel.cs" />
     <Compile Include="Models\CrewViewModel.cs" />
     <Compile Include="Models\Department.cs" />
@@ -2933,6 +2934,7 @@
     <None Include="SQLScripts\09-Create-SPs\dbo.stpGetCrewOvertimeValue.StoredProcedure.sql" />
     <None Include="SQLScripts\09-Create-SPs\dbo.stpUpdateInActive.StoredProcedure.sql" />
     <Content Include="SQLScripts\22.06.2020 RestHour Client Script.sql" />
+    <Content Include="SQLScripts\stpSaveCrewTemperature.sql" />
     <Content Include="SQLScripts\24.06.2020 RestHourClient Script.sql" />
     <Content Include="src\jquery.image-marker.css" />
     <Content Include="src\jquery.image-marker.js" />

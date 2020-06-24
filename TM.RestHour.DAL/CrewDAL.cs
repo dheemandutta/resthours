@@ -180,9 +180,6 @@ namespace TM.RestHour.DAL
             
         }
 
-
-
-
         public List<CrewPOCO> GetCrewPageWise(int pageIndex, ref int recordCount, int length, int VesselID)
         {
 
@@ -226,7 +223,6 @@ namespace TM.RestHour.DAL
             return crewPOList;
         }
 
-
         public List<CrewPOCO> GetCrewForInactivPageWise(int pageIndex, ref int recordCount, int length, int VesselID)
         {
 
@@ -269,8 +265,6 @@ namespace TM.RestHour.DAL
             }
             return crewPOList;
         }
-
-
 
         public int[] AddCrewTimeSheet(CrewTimesheetPOCO crewtimesheetData,int VesselID)
 
@@ -343,8 +337,6 @@ namespace TM.RestHour.DAL
             returnValues[1] = newncdetailsId;
             return returnValues;
         }
-
-
 
         public List<CrewPOCO> GetAllCrewByCrewID(int ID, int VesselID)
         {
@@ -473,8 +465,6 @@ namespace TM.RestHour.DAL
             return crewtimesheetList;
         }
 
-
-
         public CrewPOCO GetCrewByID(int ID)
         {
             List<ConsultantPOCO> prodPOList = new List<ConsultantPOCO>();
@@ -600,7 +590,6 @@ namespace TM.RestHour.DAL
 
         }
 
-
         public CrewPOCO GetCrewOvertimeValue(int ID, int VesselID)
         {
             List<CrewPOCO> prodPOList = new List<CrewPOCO>();
@@ -672,7 +661,6 @@ namespace TM.RestHour.DAL
 
         }
 
-
         //for CountryMaster drp
         public List<CrewPOCO> GetAllCountryForDrp(/*int VesselID*/)
         {
@@ -696,8 +684,6 @@ namespace TM.RestHour.DAL
 
         }
 
-
-
         public int SaveJoiningMedicalFilePath(int crewId, string filepath)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
@@ -715,8 +701,6 @@ namespace TM.RestHour.DAL
 
             return recordsAffected;
         }
-
-
 
         public string GetJoiningMedicalFileDatawByID(int CrewId )
         {
@@ -768,6 +752,24 @@ namespace TM.RestHour.DAL
             }
 
             return crewtimesheetList;
+        }
+
+        public int SaveCrewTemperature(CrewTemperaturePOCO crewTemperature)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveCrewTemperature", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@CrewID", crewTemperature.CrewID.ToString());
+            cmd.Parameters.AddWithValue("@Temperature", crewTemperature.Temperature.ToString());
+            cmd.Parameters.AddWithValue("@Unit", crewTemperature.Unit.ToString());
+
+            cmd.Parameters.AddWithValue("@ReadingDate", crewTemperature.ReadingDate.ToString());
+            cmd.Parameters.AddWithValue("@ReadingTime", crewTemperature.ReadingTime.ToString());
+            cmd.Parameters.AddWithValue("@Comment", crewTemperature.Comment.ToString());
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+            return recordsAffected;
         }
     }
 }

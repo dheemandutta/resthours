@@ -55,6 +55,7 @@
     <Compile Include="Entities\ConfigPOCO.cs" />
     <Compile Include="Entities\ConsultantPOCO.cs" />
     <Compile Include="Entities\CrewPOCO.cs" />
+    <Compile Include="Entities\CrewTemperaturePOCO.cs" />
     <Compile Include="Entities\CrewTimesheetPOCO.cs" />
     <Compile Include="Entities\DepartmentPOCO.cs" />
     <Compile Include="Entities\EquipmentsPOCO.cs" />
