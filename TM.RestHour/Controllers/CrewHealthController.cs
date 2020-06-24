@@ -76,6 +76,7 @@ namespace TM.RestHour.Controllers
         }
         public ActionResult DailyTemperatureReading()
         {
+            GetAllCrewForDrp();
             return View();
         }
         public ActionResult MailCIRM()
