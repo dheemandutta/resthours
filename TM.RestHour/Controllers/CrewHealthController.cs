@@ -24,7 +24,56 @@ namespace TM.RestHour.Controllers
     
     public class CrewHealthController : BaseController
     {
+        public ActionResult VesselDetails()
+        {
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
 
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+
+            return View(crewtimesheetVM);
+        }
+        public ActionResult PatientDetails()
+        {
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+
+            return View(crewtimesheetVM);
+        }
         public ActionResult DailyTemperatureReading()
         {
             GetAllCrewForDrp();
