@@ -766,7 +766,14 @@ namespace TM.RestHour.DAL
 
             cmd.Parameters.AddWithValue("@ReadingDate", crewTemperature.ReadingDate.ToString());
             cmd.Parameters.AddWithValue("@ReadingTime", crewTemperature.ReadingTime.ToString());
-            cmd.Parameters.AddWithValue("@Comment", crewTemperature.Comment.ToString());
+            if (!String.IsNullOrEmpty(crewTemperature.Comment))
+            {
+                cmd.Parameters.AddWithValue("@Comment", crewTemperature.Comment);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
+            }
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
             return recordsAffected;
