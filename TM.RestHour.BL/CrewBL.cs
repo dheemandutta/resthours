@@ -10,14 +10,14 @@ namespace TM.RestHour.BL
 {
     public class CrewBL
     {
-        public int SaveCrew(CrewPOCO crew,int VesselID)
+        public int SaveCrew(CrewPOCO crew, int VesselID)
         {
             CrewDAL crewDAL = new CrewDAL();
             return crewDAL.SaveCrew(crew, VesselID);
         }
 
         //for Ranks drp
-        public List<CrewPOCO> GetAllRanksForDrp( int VesselID)
+        public List<CrewPOCO> GetAllRanksForDrp(int VesselID)
         {
             CrewDAL crew = new CrewDAL();
             return crew.GetAllRanksForDrp(VesselID);
@@ -42,7 +42,7 @@ namespace TM.RestHour.BL
         }
 
 
-        public int[] AddCrewTimeSheet(CrewTimesheetPOCO  timesheetjsondata,int VesselID)
+        public int[] AddCrewTimeSheet(CrewTimesheetPOCO timesheetjsondata, int VesselID)
         {
             CrewDAL crewDAL = new CrewDAL();
             return crewDAL.AddCrewTimeSheet(timesheetjsondata, VesselID);
@@ -54,7 +54,7 @@ namespace TM.RestHour.BL
             return crewDAL.GetAllCrewByCrewID(ID, VesselID).FirstOrDefault();
         }
 
-        public CrewTimesheetPOCO GetLastSevenDaysWorkSchedule(int CrewId, DateTime bookDate, int VesselID,int[] todaybookedHours)
+        public CrewTimesheetPOCO GetLastSevenDaysWorkSchedule(int CrewId, DateTime bookDate, int VesselID, int[] todaybookedHours)
         {
             List<CrewTimesheetPOCO> crewtimesheetList = new List<CrewTimesheetPOCO>();
             CrewDAL crewDAL = new CrewDAL();
@@ -63,67 +63,67 @@ namespace TM.RestHour.BL
             // this indiactes if I am saving or updating vs loading data.
             for (int i = 0; i < todaybookedHours.Length; i++)
             {
-                if(todaybookedHours[i] == 1)
+                if (todaybookedHours[i] == 1)
                 {
                     isAllZero = false;
                     break;
                 }
             }
 
-            if(isAllZero)
-                crewtimesheetList = crewDAL.GetLastSevenDaysWorkSchedule(CrewId,bookDate, VesselID,7);
+            if (isAllZero)
+                crewtimesheetList = crewDAL.GetLastSevenDaysWorkSchedule(CrewId, bookDate, VesselID, 7);
             else
                 crewtimesheetList = crewDAL.GetLastSevenDaysWorkSchedule(CrewId, bookDate, VesselID, 6);
 
             CrewTimesheetPOCO last7daysbookedHours = new CrewTimesheetPOCO();
-            int index =0;
+            int index = 0;
             int nullindex = 0;
-            bool isAllZeros = true ;
-			int[] arr = new int[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 };
-			
+            bool isAllZeros = true;
+            int[] arr = new int[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 };
 
 
-			//CASE 1 : NO DATA
-			if (crewtimesheetList.Count == 0)
-			{
 
-				//insert  current day on top
-				for (int i = 0; i < 48; i++)
-				{
-					last7daysbookedHours.last7DaysBookedHoursReversed[i] = todaybookedHours[i].ToString();
-					//last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[i] = todaybookedHours[i].ToString();
-				}
+            //CASE 1 : NO DATA
+            if (crewtimesheetList.Count == 0)
+            {
 
-				for (int i = 48; i < 336; i++)
-				{
-					last7daysbookedHours.last7DaysBookedHoursReversed[i] = null;
-					//last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[i] = null;
-				}
+                //insert  current day on top
+                for (int i = 0; i < 48; i++)
+                {
+                    last7daysbookedHours.last7DaysBookedHoursReversed[i] = todaybookedHours[i].ToString();
+                    //last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[i] = todaybookedHours[i].ToString();
+                }
 
-			}
-			else if (crewtimesheetList.Count == 7) //CASE 2: 7 valid data
-			{
+                for (int i = 48; i < 336; i++)
+                {
+                    last7daysbookedHours.last7DaysBookedHoursReversed[i] = null;
+                    //last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[i] = null;
+                }
 
-				int arrayindex = 0;
-				for (int j = 0; j < crewtimesheetList.Count; j++)
-				{
-					for (int k = 0; k < crewtimesheetList[j].BookedHours.Length; k++)
-					{
-						last7daysbookedHours.last7DaysBookedHoursReversed[arrayindex++] = crewtimesheetList[j].BookedHours[k].ToString();
-						//last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[arrayindex++] = crewtimesheetList[j].BookedHours[k].ToString();
-					}
-				}
+            }
+            else if (crewtimesheetList.Count == 7) //CASE 2: 7 valid data
+            {
 
-				
-			}
-			else if(crewtimesheetList.Count > 0 &&  crewtimesheetList.Count < 7) //CASE 3 : partial data
-			{
-				DateTime furthestDate = bookDate.AddDays(-7);
-				int insertarrayIndex = 0;
-				int validdataindexCounter = 0;
-				DateTime nearestDate = bookDate;
-				bool isDataFilled = false;
-				bool hassaveddataforBookDate = false;
+                int arrayindex = 0;
+                for (int j = 0; j < crewtimesheetList.Count; j++)
+                {
+                    for (int k = 0; k < crewtimesheetList[j].BookedHours.Length; k++)
+                    {
+                        last7daysbookedHours.last7DaysBookedHoursReversed[arrayindex++] = crewtimesheetList[j].BookedHours[k].ToString();
+                        //last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[arrayindex++] = crewtimesheetList[j].BookedHours[k].ToString();
+                    }
+                }
+
+
+            }
+            else if (crewtimesheetList.Count > 0 && crewtimesheetList.Count < 7) //CASE 3 : partial data
+            {
+                DateTime furthestDate = bookDate.AddDays(-7);
+                int insertarrayIndex = 0;
+                int validdataindexCounter = 0;
+                DateTime nearestDate = bookDate;
+                bool isDataFilled = false;
+                bool hassaveddataforBookDate = false;
 
                 //            while (nearestDate >= furthestDate)
                 //{
@@ -212,16 +212,16 @@ namespace TM.RestHour.BL
             //copy array
             Array.Copy(last7daysbookedHours.last7DaysBookedHoursReversed, last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues, 336);
 
-			for (int i = 0; i < last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues.Length; i++)
-			{
-				if (String.IsNullOrEmpty(last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[i]))
-				{
-					last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[i] = "0";
-				}
-			}
+            for (int i = 0; i < last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues.Length; i++)
+            {
+                if (String.IsNullOrEmpty(last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[i]))
+                {
+                    last7daysbookedHours.last7DaysBookedHoursReversedWithZeroValues[i] = "0";
+                }
+            }
 
 
-			return last7daysbookedHours;
+            return last7daysbookedHours;
 
         }
 
@@ -255,16 +255,21 @@ namespace TM.RestHour.BL
             return crew.GetAllCountryForDrp(/*VesselID*/);
         }
 
-        public int SaveJoiningMedicalFilePath(int crewId,string filepath)
+        public int SaveJoiningMedicalFilePath(int crewId, string filepath)
         {
             CrewDAL crewDAL = new CrewDAL();
-            return crewDAL.SaveJoiningMedicalFilePath(crewId,filepath);        //UploadJoiningMedical  --->  in Controler
+            return crewDAL.SaveJoiningMedicalFilePath(crewId, filepath);        //UploadJoiningMedical  --->  in Controler
         }
 
         public string GetJoiningMedicalFileDatawByID(int CrewId)
         {
             CrewDAL crewDAL = new CrewDAL();
             return crewDAL.GetJoiningMedicalFileDatawByID(CrewId);
+        }
+        public int SaveCrewTemperature(CrewTemperaturePOCO crewTemperature)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.SaveCrewTemperature(crewTemperature);
         }
 
     }

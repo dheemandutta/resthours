@@ -557,3 +557,53 @@ function SetUpPrintGridReport2() {
         "dom": "Bfrtip"
     });
 }
+
+function SaveCrewTemperature() {
+    //debugger;
+    var savecrewtemperature = $('#savecrewtemperature').val();
+    //var res = validate();
+    //if (res == false) {
+    //    return false;
+    //}
+    var crewTemperature = {
+        CrewID: $('#ddlCrew').val(),
+        Temperature: $('#Temperature').val(),
+        Unit: $('#ddlUnit').val(),
+        ReadingDate: $('#ReportsDate').val(),
+        ReadingTime: $('#ddlTime').val(),
+        Comment: $('#Remarks').val(),
+    };
+    //debugger;
+    $.ajax({
+        url: savecrewtemperature,
+        data: JSON.stringify(crewTemperature),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            
+            if (result >0) {
+                //show successfull message
+                alert('Data Saved Successfully');
+             // window.location = response.url;
+
+                $('#ddlCrew').val('');
+                $('#Temperature').val('');
+                $('#ddlUnit').val('');
+                $('#ReportsDate').val('');
+                $('#ddlTime').val('');
+                $('#Remarks').val('');
+
+            }
+
+
+
+            else if (response.result == 'Error') {
+                alert('Data not saved,Please try again');
+            }
+        },
+        error: function (errormessage) {
+            console.log(errormessage.responseText);
+        }
+    });
+}

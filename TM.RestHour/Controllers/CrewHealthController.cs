@@ -685,7 +685,6 @@ namespace TM.RestHour.Controllers
 
         }
 
-
         public JsonResult SaveCIRM(CIRM cIRM)
         {
             CIRMBL CIRMBL = new CIRMBL();
@@ -729,7 +728,21 @@ namespace TM.RestHour.Controllers
             return Json(CIRMBL.SaveCIRM(CIRMPC), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult SaveCrewTemperature(CrewTemperature crewTemperature)
+        {
+            CrewBL crewBl = new CrewBL();
+            CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
 
+            crewTemperaturePC.CrewID = crewTemperature.CrewID;
+            crewTemperaturePC.ReadingDate = crewTemperature.ReadingDate;
+            crewTemperaturePC.ReadingTime = crewTemperature.ReadingTime;
+
+            crewTemperaturePC.Unit = crewTemperature.Unit;
+            crewTemperaturePC.Temperature = crewTemperature.Temperature;
+            
+            crewTemperaturePC.Comment = crewTemperature.Comment;
+            return Json(crewBl.SaveCrewTemperature(crewTemperaturePC), JsonRequestBehavior.AllowGet);
+        }
         [HttpGet]
         public JsonResult GetCrewDetailsForHealthByID2(int crewID)
         {
