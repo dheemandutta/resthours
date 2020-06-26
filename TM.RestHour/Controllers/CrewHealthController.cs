@@ -49,6 +49,43 @@ namespace TM.RestHour.Controllers
 
             return View(crewtimesheetVM);
         }
+
+
+        public JsonResult SaveVesselDetails(VesselDetails vesselDetails)
+        {
+            VesselDetailsBL vesselDetailsBL = new VesselDetailsBL();
+            VesselDetailsPOCO vesselDetailsPC = new VesselDetailsPOCO();
+
+            vesselDetailsPC.ID = vesselDetails.ID;
+            vesselDetailsPC.VesselName = vesselDetails.VesselName;
+            vesselDetailsPC.CallSign = vesselDetails.CallSign;
+
+            vesselDetailsPC.DateOfReportingGMT = vesselDetails.DateOfReportingGMT;
+
+            vesselDetailsPC.TimeOfReportingGMT = vesselDetails.TimeOfReportingGMT;
+            vesselDetailsPC.PresentLocation = vesselDetails.PresentLocation;
+            vesselDetailsPC.Course = vesselDetails.Course;
+            vesselDetailsPC.Speed = vesselDetails.Speed;
+            vesselDetailsPC.PortOfDeparture = vesselDetails.PortOfDeparture;
+            vesselDetailsPC.PortOfArrival = vesselDetails.PortOfArrival;
+
+            vesselDetailsPC.ETADateGMT = vesselDetails.ETADateGMT;
+
+            vesselDetailsPC.ETATimeGMT = vesselDetails.ETATimeGMT;
+            vesselDetailsPC.AgentDetails = vesselDetails.AgentDetails;
+
+            vesselDetailsPC.NearestPortETADateGMT = vesselDetails.NearestPortETADateGMT;
+
+            vesselDetailsPC.NearestPortETATimeGMT = vesselDetails.NearestPortETATimeGMT;
+            vesselDetailsPC.WindSpeed = vesselDetails.WindSpeed;
+            vesselDetailsPC.Sea = vesselDetails.Sea;
+            vesselDetailsPC.Visibility = vesselDetails.Visibility;
+            vesselDetailsPC.Swell = vesselDetails.Swell;
+
+            return Json(vesselDetailsBL.SaveVesselDetails(vesselDetailsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult PatientDetails()
         {
             GetAllCrewForDrp();

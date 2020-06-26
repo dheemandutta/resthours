@@ -75,6 +75,7 @@
     <Compile Include="UploadMedicalInventoryDAL.cs" />
     <Compile Include="UserGroupsDAL.cs" />
     <Compile Include="UsersDAL.cs" />
+    <Compile Include="VesselDetailsDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TM.Base\TM.Base.csproj">

@@ -76,6 +76,7 @@
     <Compile Include="Entities\TimeAdjustmentPOCO.cs" />
     <Compile Include="Entities\UserGroupsPOCO.cs" />
     <Compile Include="Entities\UsersPOCO.cs" />
+    <Compile Include="Entities\VesselDetailsPOCO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

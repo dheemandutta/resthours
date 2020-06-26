@@ -4,23 +4,55 @@
 }
 
 
-<script src="~/Scripts/CIRM.js"></script>
+<script src="~/Scripts/VesselDetails.js"></script>
 
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-
 <link href="dist/dual-listbox.css" rel="stylesheet">
+<link href="~/link/css/rank.css" rel="stylesheet" />
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+<script src="~/Scripts/notify.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<style>
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+    }
+
+    .bac1 {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+        height: 450px;
+    }
+</style>
 
 <body style="background-image: url(../background/Doctors.jpg);
     background-size: cover;">
 
-    @Html.Hidden("saveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
+    @Html.Hidden("SaveVesselDetails", @Url.Action("SaveVesselDetails", "CrewHealth"))
 
     <div class="row">
         <div class="col-md-2">
-            <h3  style=" color:#000;">CIRM - Vessel Details</h3>
+            <h3 style=" color:#000;">CIRM - Vessel Details</h3>
         </div>
 
         <div class="col-md-10 bacmt">
@@ -30,15 +62,19 @@
             <div class="row">
 
                 @*<div class="col-md-4">
-                    <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
-                    <button type="button" class="button1" style="float: right; right: 25px;" data-toggle="modal" data-target="#myModal" onclick="openBody();">Go to the Image</button><br /><br />
-                </div>*@
+                        <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
+                        <button type="button" class="button1" style="float: right; right: 25px;" data-toggle="modal" data-target="#myModal" onclick="openBody();">Go to the Image</button><br /><br />
+                    </div>*@
 
                 <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
                     <div class="form-group">
-                        <label for="Name Of Vessel">Name Of Vessel</label>
+                        <input type="hidden" id="ID" />
+                    </div>
+                    <div class="form-group">
+                        <label for="VesselName">Vessel Name</label>
                         <div class="form-control">
-                            @System.Web.HttpContext.Current.Session["ShipName"].ToString()
+                            @*@System.Web.HttpContext.Current.Session["ShipName"].ToString()*@
+                            <input type="text" class="form-control" id="VesselName" placeholder="VesselName" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,21 +82,21 @@
                         <input type="text" class="form-control" id="CallSign" placeholder="Call Sign" />
                     </div>
                     <div class="form-group">
-                        <label for="Type Of Vessel">Type Of Vessel</label>
-                        <input type="text" class="form-control" id="TypeOfVessel" placeholder="Type Of Vessel" />
+                        <label for="DateOfReportingGMT">Date Of Reporting GMT</label>
+                        <input type="text" class="form-control" id="DateOfReportingGMT" placeholder="Date Of Reporting GMT" />
                     </div>
                     <div class="form-group">
-                        <label for="Date and time of Reporting in GMT">Date and time of Reporting in GMT</label>
-                        <input type="text" class="form-control" id="DateTimeOfReportingGMT" placeholder="Date and time of Reporting in GMT" />
+                        <label for="TimeOfReportingGMT">Time Of Reporting GMT</label>
+                        <input type="text" class="form-control" id="TimeOfReportingGMT" placeholder="Time Of Reporting GMT" />
                     </div>
                     <div class="form-group">
-                        <label for="Present Location">Present Location</label>
+                        <label for="PresentLocation">Present Location </label>
                         <input type="text" class="form-control" id="PresentLocation" placeholder="Present Location" />
                     </div>
                     <div class="form-group">
                         <label for="Course">Course (0-359 Deg)</label>
                         <input type="text" class="form-control" id="Course" placeholder="Course" />
-                    </div>                                   
+                    </div>
                 </div>
 
                 <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
@@ -69,57 +105,64 @@
                         <input type="text" class="form-control" id="Speed" placeholder="Speed" />
                     </div>
                     <div class="form-group">
-                        <label for="PortOfDepartureCountry">Port of departure/Country </label>
-                        <input type="text" class="form-control" id="PortOfDepartureCountry" placeholder="Port of departure/Country" />
+                        <label for="PortOfDeparture">Port Of Departure</label>
+                        <input type="text" class="form-control" id="PortOfDeparture" placeholder="Port Of Departure" />
                     </div>
                     <div class="form-group">
-                        <label for="Port Of Arrival/Country ETA">Port Of Arrival/Country (ETA)</label>
-                        <input type="text" class="form-control" id="PortOfArrivalCountryETA" placeholder="Port Of Arrival/Country" />
+                        <label for="PortOfArrival">Port Of Arrival</label>
+                        <input type="text" class="form-control" id="PortOfArrival" placeholder="Port Of Arrival" />
                     </div>
                     <div class="form-group">
-                        <label for="Agent’s Details If Known">Agent’s Details If Known</label>
-                        <textarea type="text" class="form-control valid" id="AgentsDetailsIfKnown" placeholder="Agent’s Details If Known" style="width: 95% !important;"></textarea>
+                        <label for="ETADateGMT">ETA Date GMT</label>
+                        <input type="text" class="form-control" id="ETADateGMT" placeholder="ETA Date GMT" />
                     </div>
                     <div class="form-group">
-                        <label for="ETA To Nearest Port">ETA To Nearest Port</label>
-                        <input type="text" class="form-control" id="ETAToNearestPort" placeholder="ETA To Nearest Port" />
+                        <label for="ETA Time GMT">ETA Time GMT</label>
+                        <input type="text" class="form-control" id="ETATimeGMT" placeholder="ETA Time GMT" />
                     </div>
                     <div class="form-group">
-                        <label for="Communications Resources">Communications Resources</label>
-                        <input type="text" class="form-control" id="CommunicationsResources" placeholder="Communications Resources" />
+                        <label for="AgentDetails">Agent Details</label>
+                        <textarea type="text" class="form-control valid" id="AgentDetails" placeholder="Agent Details" style="width: 95% !important;"></textarea>
                     </div>
                 </div>
 
                 <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
-                    <b for="Weather At Present Position">Weather At Present Position</b>
                     <div class="form-group">
-                        <label for="Wind Speed (knots)">Wind Speed (knots)</label>
-                        <input type="text" class="form-control" id="WindSpeedKnots" placeholder="Wind Speed (knots)" />
+                        <label for="NearestPortETADateGMT">Nearest Port ETA Date GMT</label>
+                        <input type="text" class="form-control" id="NearestPortETADateGMT" placeholder="Nearest Port ETA Date GMT" />
                     </div>
                     <div class="form-group">
-                        <label for="Sea (Beaufort Force)">Sea (Beaufort Force)</label>
-                        <input type="text" class="form-control" id="SeaBeaufortForce" placeholder="Sea (Beaufort Force)" />
+                        <label for="NearestPortETATimeGMT">Nearest Port ETA Time GMT</label>
+                        <input type="text" class="form-control" id="NearestPortETATimeGMT" placeholder="Nearest Port ETA Time GMT" />
+                    </div>
+                    <div class="form-group">
+                        <label for="WindSpeed">WindSpeed</label>
+                        <input type="text" class="form-control" id="WindSpeed" placeholder="WindSpeed" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Sea">Sea</label>
+                        <input type="text" class="form-control" id="Sea" placeholder="Sea" />
                     </div>
                     <div class="form-group">
                         <label for="Visibility">Visibility</label>
                         <input type="text" class="form-control" id="Visibility" placeholder="Visibility" />
                     </div>
                     <div class="form-group">
-                        <label for="Swell – Height and direction">Swell – Height and direction</label>
-                        <input type="text" class="form-control" id="SwellHeightDirection" placeholder="Swell – Height and direction" />
+                        <label for="Swell">Swell</label>
+                        <input type="text" class="form-control" id="Swell" placeholder="Swell" />
                     </div>
                 </div>
 
-                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
-                    <div class="form-group">
-                        <label for="Helicopter Deck">Helicopter Deck</label>
-                        <input id="HelicopterDeck" type="checkbox" />
-                    </div>
-                    <div class="form-group">
-                        <label for="Helicopter winching area">Helicopter winching area (only if above is no)</label>
-                        <input id="HelicopterWinchingArea" type="checkbox" />
-                    </div>
-                </div>
+                @*<div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                        <div class="form-group">
+                            <label for="Helicopter Deck">Helicopter Deck</label>
+                            <input id="HelicopterDeck" type="checkbox" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Helicopter winching area">Helicopter winching area (only if above is no)</label>
+                            <input id="HelicopterWinchingArea" type="checkbox" />
+                        </div>
+                    </div>*@
 
 
 
@@ -128,15 +171,15 @@
                 </div>
 
             </div>
-         
 
-            <script>
-            function openBody() {
-                window.open("@Url.Action("TestBody", "CrewHealth")");
-            }
-            </script>
 
-          
+            @*<script>
+                function openBody() {
+                    window.open("@Url.Action("TestBody", "CrewHealth")");
+                }
+                </script>*@
+
+
 
 
             <div class="row" style="border: 1px solid #eee; padding: 10px;">
@@ -176,18 +219,8 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/themes/base/css")
 
-    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
-    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
-
     <script src="~/Scripts/toastr.min.js"></script>
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
-
-    <script src="dist/dual-listbox.js"></script>
-
-    <script src="~/Scripts/jquery.typeahead.js"></script>
-    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
-    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
-    <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
 
 
 
@@ -200,56 +233,34 @@
 
         $(document).ready(function () {
 
-            //$('#ddlCrew').on('change', function () {
-            //    alert(hello);
+           
 
-            //    var ID = $('#ddlCrew').val();
-
-            //    GetCrewDetailsForHealthByID(ID);
-
-            //});
-
-            //GetCrewDetailsForHealthByID();
-
-
-            var loggedInUserId = 0;
-            loggedInUserId = $('#hdnCrewId').val();
-
-            if (loggedInUserId > 0) { // user level log in
-
-                console.log('Logged In UserId');
-                console.log(loggedInUserId);
-                $('#ddlCrew').val(loggedInUserId);
-                $("#ddlCrew").prop("disabled", true);
-                //LoadData();
-                //SetCalendarColor();
-
-            }
 
         });
 
+        $("#DateOfReportingGMT").datepicker({
 
-        function sentEmail() {
-            alert("Hello! I am an alert box!");
-        }
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
 
+        });
 
+        $("#ETADateGMT").datepicker({
 
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
 
+        });
 
-        function checkCheckBoxes(theForm) {
-            if (
-                theForm.CHECKBOX_1.checked == false) {
-                alert('Medical Advice Send');
-                return false;
-            } else {
-                alert('Medical Advice Send along with joining Medical Report');
-                return false;
-            }
-        }
+        $("#NearestPortETADateGMT").datepicker({
 
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
 
-
+        });
 
 
     </script>

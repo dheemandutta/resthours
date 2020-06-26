@@ -76,6 +76,7 @@
     <Compile Include="UploadMedicalInventoryBL.cs" />
     <Compile Include="UserGroupsBL.cs" />
     <Compile Include="UsersBL.cs" />
+    <Compile Include="VesselDetailsBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TM.Base\TM.Base.csproj">
