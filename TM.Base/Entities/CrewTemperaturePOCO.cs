@@ -12,7 +12,7 @@ namespace TM.Base.Entities
         public int CrewID { get; set; }
         public decimal Temperature { get; set; }
         public string Unit { get; set; }
-        public DateTime ReadingDate { get; set; }
+        public string ReadingDate { get; set; }
         public DateTime ReadingTime { get; set; }
         public string Comment { get; set; }
     }

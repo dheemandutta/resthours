@@ -10,6 +10,10 @@
 <script src="~/Scripts/toastr.min.js"></script>
 <link href="~/Content/toastr.min.css" rel="stylesheet" />
 <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+
 
 <script src="~/Scripts/CrewHealth.js"></script>
 <style>
@@ -38,7 +42,7 @@
 </style>
 
 @*@Html.Hidden("SaveMedicalAdvisory", @Url.Action("SaveMedicalAdvisory", "Consultant"))*@
-@Html.Hidden("savecrewtemperature",@Url.Action("SaveCrewTemperature","CrewHealth"))
+@Html.Hidden("savecrewtemperature", @Url.Action("SaveCrewTemperature", "CrewHealth"))
 
 <body style="background-image: url(../background/MedicalAdvisory.jpg);background-size: cover;">
 
@@ -74,9 +78,12 @@
 
                         <div class="row">
                             <div class="col-sm-3">
-                                <input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Date" />
+                                @*<input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Date" />*@
+                                <input type="text" class="form-control" id="ReportsDate" placeholder="Select Date" />
                             </div>
                         </div>
+
+
 
                     </div>
 
@@ -169,13 +176,13 @@
                                 <textarea class="form-control" id="Remarks" cols="7" rows="2"></textarea>
                             </div>
                         </div>
-                            <div class="form-group" style="margin-bottom: 18px;">
-                                <button type="button" class="button1" id="btnAdd" onclick="SaveCrewTemperature()" style="width:100px; float: left ;">Add</button>
+                        <div class="form-group" style="margin-bottom: 18px;">
+                            <button type="button" class="button1" id="btnAdd" onclick="SaveCrewTemperature()" style="width:100px; float: left ;">Add</button>
 
 
-                            </div>
-</div>
-</form>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -193,24 +200,10 @@
 
                 changeMonth: true,
                 changeYear: true,
-                //showButtonPanel: true,
                 dateFormat: 'd-M-yy',
-                onClose: function (dateText, inst) {
 
-                    if ($('#ReportsDate').val() != '') {
-                        //$('#btnPrint').attr('disabled', false);
-                        $('#btnAdd').attr('disabled', false);
-                    }
-                    else {
-
-                        $('#ReportsDate').one('change', function () {
-                            // $('#btnPrint').attr('disabled', false);
-                            $('#btnAdd').attr('disabled', false);
-                        });
-                    }
-                }
             });
         });
-                //alert('hi');
+                            //alert('hi');
     </script>
 }

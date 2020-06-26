@@ -762,11 +762,35 @@ namespace TM.RestHour.DAL
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@CrewID", crewTemperature.CrewID.ToString());
             cmd.Parameters.AddWithValue("@Temperature", crewTemperature.Temperature.ToString());
-            cmd.Parameters.AddWithValue("@Unit", crewTemperature.Unit.ToString());
 
-            cmd.Parameters.AddWithValue("@ReadingDate", crewTemperature.ReadingDate.ToString());
+            if (!String.IsNullOrEmpty(crewTemperature.Unit))
+            {
+                cmd.Parameters.AddWithValue("@Unit", crewTemperature.Unit.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Unit", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.ReadingDate))
+            {
+                cmd.Parameters.AddWithValue("@ReadingDate", crewTemperature.ReadingDate.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ReadingDate", DBNull.Value);
+            }
+            
             cmd.Parameters.AddWithValue("@ReadingTime", crewTemperature.ReadingTime.ToString());
-            cmd.Parameters.AddWithValue("@Comment", crewTemperature.Comment.ToString());
+
+            if (!String.IsNullOrEmpty(crewTemperature.Comment))
+            {
+                cmd.Parameters.AddWithValue("@Comment", crewTemperature.Comment);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
+            }
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
             return recordsAffected;
