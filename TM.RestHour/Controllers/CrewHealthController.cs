@@ -88,6 +88,7 @@ namespace TM.RestHour.Controllers
 
         public ActionResult PatientDetails()
         {
+            GetAllCountryForDrp();
             GetAllCrewForDrp();
             GetAllCrewForTimeSheet();
 
@@ -111,6 +112,36 @@ namespace TM.RestHour.Controllers
 
             return View(crewtimesheetVM);
         }
+
+        //for CountryMaster drp
+        public void GetAllCountryForDrp()
+        {
+            CrewBL crewDAL = new CrewBL();
+            List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+
+            crewpocoList = crewDAL.GetAllCountryForDrp(/*int.Parse(Session["VesselID"].ToString())*/);
+
+
+            List<Crew> itmasterList = new List<Crew>();
+
+            foreach (CrewPOCO up in crewpocoList)
+            {
+                Crew unt = new Crew();
+                unt.CountryID = up.CountryID;
+                unt.CountryName = up.CountryName;
+
+                itmasterList.Add(unt);
+            }
+
+            ViewBag.CountryMaster = itmasterList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.CountryName,
+                                                Value = x.CountryID.ToString()
+                                            });
+
+        }
+
         public ActionResult DailyTemperatureReading()
         {
             GetAllCrewForDrp();

@@ -36,6 +36,9 @@ namespace TM.RestHour.Models
 
 		public int CrewAdminId { get; set; }
 
-        
+
+
+        public int CountryID { get; set; }
+        public string CountryName { get; set; }
     }
 }
