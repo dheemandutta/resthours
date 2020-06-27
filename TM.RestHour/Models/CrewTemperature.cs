@@ -14,5 +14,8 @@ namespace TM.RestHour.Models
         public string ReadingDate { get; set; }
         public DateTime ReadingTime { get; set; }
         public string Comment { get; set; }
+
+        public int TemperatureModeID { get; set; }
+        public string TemperatureMode { get; set; }
     }
 }

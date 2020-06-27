@@ -15,5 +15,9 @@ namespace TM.Base.Entities
         public string ReadingDate { get; set; }
         public DateTime ReadingTime { get; set; }
         public string Comment { get; set; }
+
+        public int TemperatureModeID { get; set; }
+        public string TemperatureMode { get; set; }
+
     }
 }

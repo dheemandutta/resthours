@@ -9,8 +9,6 @@ namespace TM.Base.Entities
     public class CrewPOCO
     {
 
-        
-        
         public int ID { get; set; }
         public string Name { get; set; }
         public int RankID { get; set; }
@@ -33,16 +31,10 @@ namespace TM.Base.Entities
         public string Active { get; set; }
         public string PassportSeamanIndicator { get; set; }
        
-
-
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
-
-
-
-
 
         public string Nationality { get; set; }
 
@@ -76,5 +68,8 @@ namespace TM.Base.Entities
         public string File { get; set; }
 
         public string JoiningMedicalFile { get; set; }
+
+        public int TemperatureModeID { get; set; }
+        public string TemperatureMode { get; set; }
     }
 }

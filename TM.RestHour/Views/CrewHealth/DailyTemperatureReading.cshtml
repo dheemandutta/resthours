@@ -176,6 +176,21 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">Mode</label>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+
+
+                                @Html.DropDownListFor(model => model.Crew.TemperatureModeID, (IEnumerable<SelectListItem>)ViewBag.TemperatureModeList, "Select", new { @class = "form-control", @id = "ddlTempModeList" })
+                                @*<select id="ddlCrew" name="Id" class="form-control"></select>*@
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">Remakrs</label>
 
 

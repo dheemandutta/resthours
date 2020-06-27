@@ -572,6 +572,7 @@ function SaveCrewTemperature() {
         ReadingDate: $('#ReportsDate').val(),
         ReadingTime: $('#ddlTime').val(),
         Comment: $('#Remarks').val(),
+        TemperatureModeID: $('#ddlTempModeList').val()
     };
     //debugger;
     $.ajax({

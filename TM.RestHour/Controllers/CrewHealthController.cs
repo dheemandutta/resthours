@@ -145,6 +145,7 @@ namespace TM.RestHour.Controllers
         public ActionResult DailyTemperatureReading()
         {
             GetAllCrewForDrp();
+            GetAllTemperatureModeForDrp();
             return View();
         }
         public ActionResult MailCIRM()
@@ -361,12 +362,6 @@ namespace TM.RestHour.Controllers
             var data = consultantList;
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
-
-
 
 
 
@@ -930,5 +925,34 @@ namespace TM.RestHour.Controllers
 
             return Json(cm, JsonRequestBehavior.AllowGet);
         }
+        
+        public void GetAllTemperatureModeForDrp()
+        {
+            CrewBL crewDAL = new CrewBL();
+            List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+
+            crewpocoList = crewDAL.GetAllTemperatureModeForDrp();
+
+
+            List<Crew> itmasterList = new List<Crew>();
+
+            foreach (CrewPOCO up in crewpocoList)
+            {
+                Crew unt = new Crew();
+                unt.TemperatureModeID= up.TemperatureModeID;
+                unt.TemperatureMode= up.TemperatureMode;
+
+                itmasterList.Add(unt);
+            }
+
+            ViewBag.TemperatureModeList = itmasterList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.TemperatureMode,
+                                                Value = x.TemperatureModeID.ToString()
+                                            });
+
+        }
+
     }
 }

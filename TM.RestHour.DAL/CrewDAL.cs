@@ -791,9 +791,34 @@ namespace TM.RestHour.DAL
             {
                 cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
             }
+
+          
+            cmd.Parameters.AddWithValue("@TemperatureModeID", crewTemperature.TemperatureModeID);
+
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
             return recordsAffected;
+        }
+
+        public List<CrewPOCO> GetAllTemperatureModeForDrp()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpGetTemperatureMode", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            DataTable myTable = ds.Tables[0];
+            List<CrewPOCO> tempmodelist = myTable.AsEnumerable().Select(m => new CrewPOCO()
+            {
+                TemperatureModeID = m.Field<int>("ID"),
+                TemperatureMode = m.Field<string>("Mode"),
+
+            }).ToList();
+            con.Close();
+            return tempmodelist;
+
         }
     }
 }
