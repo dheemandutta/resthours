@@ -37,5 +37,16 @@ namespace TM.Base.Entities
         public string AdminCenterEmail { get; set; }
         public string POP3 { get; set; }
         public string POP3Port { get; set; }
+
+
+
+
+
+        public string Description { get; set; }
+        public int VesselSubTypeID { get; set; }
+        public string VesselSubSubTypeDecsription { get; set; }
+        public int VesselTypeID { get; set; }
+        public string SubTypeDescription { get; set; }
+        public int VesselSubSubTypeID { get; set; }
     }
 }

@@ -79,5 +79,30 @@ namespace TM.RestHour.BL
             ShipDAL shipDAL = new ShipDAL();
             return shipDAL.GetConfigData(KeyName);
         }
+
+
+
+
+
+        //for VesselType drp
+        public List<ShipPOCO> GetVesselTypeForDrp()
+        {
+            ShipDAL ship = new ShipDAL();
+            return ship.GetVesselTypeForDrp();
+        }
+
+        //for VesselSubTypeByVesselTypeIDForDrp drp
+        public List<ShipPOCO> GetVesselSubTypeByVesselTypeIDForDrp(string VesselTypeID)
+        {
+            ShipDAL ship = new ShipDAL();
+            return ship.GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
+        }
+
+        //for VesselSubSubTypeByVesselSubTypeIDForDrp drp
+        public List<ShipPOCO> GetVesselSubSubTypeByVesselSubTypeIDForDrp(string VesselSubTypeID)
+        {
+            ShipDAL ship = new ShipDAL();
+            return ship.GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
+        }
     }
 }
