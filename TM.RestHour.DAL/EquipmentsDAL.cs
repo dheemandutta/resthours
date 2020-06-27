@@ -156,8 +156,6 @@ namespace TM.RestHour.DAL
 
 		}
 
-
-
 		public int SaveMedicine(EquipmentsPOCO equipments /*,int VesselID*/)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
@@ -257,10 +255,6 @@ namespace TM.RestHour.DAL
             return equipmentsPOList;
         }
 
-
-
-
-
         public List<EquipmentsPOCO> GetCrewDetailsForHealthByID(int ID)
         {
             List<EquipmentsPOCO> prodPOList = new List<EquipmentsPOCO>();
@@ -329,11 +323,6 @@ namespace TM.RestHour.DAL
             }
             return crewtimesheetList;
         }
-
-
-
-
-
 
         public List<EquipmentsPOCO> GetCrewDetailsForHealthByID2(int ID)
         {
@@ -425,9 +414,6 @@ namespace TM.RestHour.DAL
             return crewtimesheetList;
         }
 
-
-
-
         public int SaveServiceTerms(EquipmentsPOCO equipments, int VesselID)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
@@ -461,8 +447,6 @@ namespace TM.RestHour.DAL
 
             return recordsAffected;
         }
-
-
 
         public List<EquipmentsPOCO> GetServiceTermsListPageWise(int pageIndex, ref int recordCount, int length/*, int VesselID*/)
         {
@@ -504,10 +488,6 @@ namespace TM.RestHour.DAL
             return equipmentsPOList;
         }
 
-
-
-
-
         public EquipmentsPOCO GetMedicalEquipmentByID(int EquipmentsID/*, int VesselID*/)
         {
             List<EquipmentsPOCO> prodPOList = new List<EquipmentsPOCO>();
@@ -529,6 +509,7 @@ namespace TM.RestHour.DAL
             }
             return ConvertDataTableToMedicalEquipmentList(ds);
         }
+       
         private EquipmentsPOCO ConvertDataTableToMedicalEquipmentList(DataSet ds)
         {
             EquipmentsPOCO departmentPC = new EquipmentsPOCO();
@@ -583,6 +564,7 @@ namespace TM.RestHour.DAL
             }
             return ConvertDataTableToMedicineList(ds);
         }
+        
         private EquipmentsPOCO ConvertDataTableToMedicineList(DataSet ds)
         {
             EquipmentsPOCO departmentPC = new EquipmentsPOCO();
@@ -613,7 +595,6 @@ namespace TM.RestHour.DAL
             return departmentPC;
         }
 
-
         public int DeleteEquipments(int EquipmentsID/*, ref string oUTPUT*/)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
@@ -638,6 +619,51 @@ namespace TM.RestHour.DAL
             //oUTPUT = Convert.ToString(cmd.Parameters["@OUTPUT"].Value);
             con.Close();
             return recordAffected;
+        }
+
+        public List<EquipmentsPOCO> GetAllMedicineAll()
+        {
+            SqlConnection con =new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpGetMedicineAll", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            DataTable myTable = ds.Tables[0];
+            List<EquipmentsPOCO> medicineList = myTable.AsEnumerable().Select(m => new EquipmentsPOCO()
+            {
+                MedicineID= m.Field<int>("MedicineID"),
+                MedicineName =m.Field<string>("MedicineName"),
+                Quantity=m.Field<string>("Quantity"),
+                ExpiryDate=m.Field<string>("ExpiryDate"),
+                Location=m.Field<string>("Location"),
+            }).ToList();
+            con.Close();
+            return medicineList;
+        }
+
+        public List<EquipmentsPOCO> GetAllEquipmentAll()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpGetEqipmentAll", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            DataTable myTable = ds.Tables[0];
+            List<EquipmentsPOCO> medicineList = myTable.AsEnumerable().Select(m => new EquipmentsPOCO()
+            {
+                EquipmentsID= m.Field<int>("EquipmentsID"),
+                EquipmentsName= m.Field<string>("EquipmentsName"),
+                Comment=m.Field<string>("Comment"),
+                Quantity = m.Field<string>("Quantity"),
+                ExpiryDate = m.Field<string>("ExpiryDate"),
+                Location = m.Field<string>("Location"),
+            }).ToList();
+            con.Close();
+            return medicineList;
         }
     }
 }
