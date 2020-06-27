@@ -802,7 +802,8 @@ namespace TM.RestHour.Controllers
 
             crewTemperaturePC.Unit = crewTemperature.Unit;
             crewTemperaturePC.Temperature = crewTemperature.Temperature;
-            
+            crewTemperaturePC.TemperatureModeID = crewTemperature.TemperatureModeID;
+
             crewTemperaturePC.Comment = crewTemperature.Comment;
             return Json(crewBl.SaveCrewTemperature(crewTemperaturePC), JsonRequestBehavior.AllowGet);
         }

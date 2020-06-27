@@ -13,7 +13,7 @@ namespace TM.Base.Entities
         public decimal Temperature { get; set; }
         public string Unit { get; set; }
         public string ReadingDate { get; set; }
-        public DateTime ReadingTime { get; set; }
+        public string ReadingTime { get; set; }
         public string Comment { get; set; }
 
         public int TemperatureModeID { get; set; }
