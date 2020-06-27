@@ -2939,6 +2939,7 @@
     <Content Include="SQLScripts\27.06.2020 Part - 2 Snehasish _RestHourClient script.sql" />
     <Content Include="SQLScripts\27.06.2020 RestHourClient script.sql" />
     <Content Include="SQLScripts\26.06.2020 RestHourClient script.sql" />
+    <Content Include="SQLScripts\28.06.2020 RestHourClient script.sql" />
     <Content Include="SQLScripts\stpSaveCrewTemperature.sql" />
     <Content Include="SQLScripts\24.06.2020 RestHourClient Script.sql" />
     <Content Include="src\jquery.image-marker.css" />
