@@ -100,5 +100,16 @@ namespace TM.RestHour.BL
             EquipmentsDAL equipmentsDAL = new EquipmentsDAL();
             return equipmentsDAL.DeleteMedicine(MedicineID/*, ref oUTPUT*/);
         }
+
+        public List<EquipmentsPOCO> GetAllEquipmentAll()
+        {
+            EquipmentsDAL equipments = new EquipmentsDAL();
+            return equipments.GetAllEquipmentAll();
+        }
+        public List<EquipmentsPOCO> GetAllMedicineAll()
+        {
+            EquipmentsDAL equipments = new EquipmentsDAL();
+            return equipments.GetAllMedicineAll();
+        }
     }
 }

@@ -1,0 +1,78 @@
+USE [RestHourClient]
+GO
+/****** Object:  StoredProcedure [dbo].[stpGetMedicineAll]    Script Date: 27-Jun-20 7:18:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[stpGetMedicineAll]
+AS
+BEGIN
+Select MedicineID, MedicineName, Quantity, ExpiryDate, Location from tblMedicine
+END
+
+
+
+
+
+USE [RestHourClient]
+GO
+/****** Object:  StoredProcedure [dbo].[stpGetMedicineAll]    Script Date: 27-Jun-20 7:18:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[stpGetEquipmentAll]
+AS
+BEGIN
+Select EquipmentsID, EquipmentsName, Comment, Quantity, ExpiryDate, Location from tblEquipments
+END
+
+
+
+
+
+USE [RestHourClient]
+GO
+/****** Object:  StoredProcedure [dbo].[stpSaveCrewTemperature]    Script Date: 27-Jun-20 7:21:09 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[stpSaveCrewTemperature]
+(
+	@CrewID	int,
+	@Temperature	decimal,
+	@Unit	varchar(5),
+	@ReadingDate	varchar(50),
+	@ReadingTime	varchar(5),
+	@Comment		varchar(500),
+	@TemperatureModeID INT
+)
+AS
+BEGIN
+	INSERT INTO CrewTemperature(CrewID, Temperature, Unit, ReadingDate, ReadingTime, Comment,TemperatureModeID) VALUES
+	(@CrewID, @Temperature, @Unit, @ReadingDate, @ReadingTime,@Comment,@TemperatureModeID)
+END
+
+
+
+
+
+USE [RestHourClient]
+GO
+/****** Object:  StoredProcedure [dbo].[stpGetTemperatureMode]    Script Date: 27-Jun-20 7:21:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[stpGetTemperatureMode]
+
+AS
+Begin
+
+Select ID,  Mode 
+from TemperatureMode
+End
+

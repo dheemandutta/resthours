@@ -272,5 +272,11 @@ namespace TM.RestHour.BL
             return crew.SaveCrewTemperature(crewTemperature);
         }
 
+        public List<CrewPOCO> GetAllTemperatureModeForDrp()
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetAllTemperatureModeForDrp();
+        }
+
     }
 }
