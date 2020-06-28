@@ -357,30 +357,33 @@
                         GetShip();
                     }
 
-                    $('#VesselTypeID').on('change', function () {
-                        //alert($('option:selected', this).text());
-                        //alert($(this).val());
-
-                        var VesselTypeID = $('#VesselTypeID').val();
-
-
-                        GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
-
-                    });
-
-
-                    $('#VesselSubTypeID').on('change', function () {
-                        //alert($('option:selected', this).text());
-                        //alert($(this).val());
-
-                        var VesselSubTypeID = $('#VesselSubTypeID').val();
-
-
-                        GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
-
-                    });
+                 
 
                 });
+
+                $('#VesselTypeID').on('change', function () {
+                    //alert($('option:selected', this).text());
+                    //alert($(this).val());
+
+                    var VesselTypeID = $('#VesselTypeID').val();
+
+
+                    GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
+
+                });
+
+
+                $('#VesselSubTypeID').on('submit', function () {
+                    //alert($('option:selected', this).text());
+                    //alert($(this).val());
+
+                    var VesselSubTypeID = $('#VesselSubTypeID').val();
+
+
+                    GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
+
+                });
+
 
             </script>
         }
