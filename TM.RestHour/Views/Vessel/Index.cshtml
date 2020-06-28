@@ -29,6 +29,10 @@
 
                     <div style="margin:0 auto" class="tablecontainer">
                         @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
+
+                        @Html.Hidden("myUrlid1", @Url.Action("GetVesselSubTypeByVesselTypeIDForDrp", "Vessel"))
+                        @Html.Hidden("myUrlid2", @Url.Action("GetVesselSubSubTypeByVesselSubTypeIDForDrp", "Vessel"))
+
                         @Html.Hidden("myUrl", @Url.Action("GetShipByID", "Vessel"))
                         @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
                         @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))
@@ -42,15 +46,15 @@
                         @if (Session["SuperAdmin"].ToString() == "True")
                         {
                             @*<table id="VesselMastertable" class="display" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Vessel</th>
-                                            <th>Flag</th>
-                                            <th>IMO Number</th>
-                                            <th>Edit</th>
-                                        </tr>
-                                    </thead>
-                                </table>*@
+                <thead>
+                    <tr>
+                        <th>Vessel</th>
+                        <th>Flag</th>
+                        <th>IMO Number</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+            </table>*@
 
                             <div class="">
                                 <form>
@@ -60,6 +64,27 @@
 
                                     <div class="col-md-12">
                                         <div class="card">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="VesselType">Vessel Type</label>
+                                                    @Html.DropDownListFor(model => model.VesselTypeID, (IEnumerable<SelectListItem>)ViewBag.VesselType, "Select", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="VesselSubType">Vessel Sub Type</label>
+                                                    <select id="VesselSubTypeID" name="VesselSubTypeID" class="form-control"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="VesselSubSubType">Vessel Sub Sub Type</label>
+                                                    <select id="VesselSubSubTypeID" name="VesselSubSubTypeID" class="form-control"></select>
+                                                </div>
+                                            </div>
+
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="Vessel">Vessel</label>
@@ -110,14 +135,14 @@
                         else
                         {
                             @*<table id="VesselMastertable2" class="display" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Vessel</th>
-                                            <th>Flag</th>
-                                            <th>IMO Number</th>
-                                        </tr>
-                                    </thead>
-                                </table>*@
+                <thead>
+                    <tr>
+                        <th>Vessel</th>
+                        <th>Flag</th>
+                        <th>IMO Number</th>
+                    </tr>
+                </thead>
+            </table>*@
 
                             <div>
                                 <form>
@@ -147,11 +172,11 @@
                                             </div>
 
                                             @*<div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="Ship Email">Ship Email</label>
-                                                        <input type="text" class="form-control" id="ShipEmail" placeholder="Ship Email" disabled />
-                                                    </div>
-                                                </div>*@
+                                <div class="form-group">
+                                    <label for="Ship Email">Ship Email</label>
+                                    <input type="text" class="form-control" id="ShipEmail" placeholder="Ship Email" disabled />
+                                </div>
+                            </div>*@
                                         </div>
                                     </div>
 
@@ -331,6 +356,29 @@
                         //SetUpNonAdminGrid();
                         GetShip();
                     }
+
+                    $('#VesselTypeID').on('change', function () {
+                        //alert($('option:selected', this).text());
+                        //alert($(this).val());
+
+                        var VesselTypeID = $('#VesselTypeID').val();
+
+
+                        GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
+
+                    });
+
+
+                    $('#VesselSubTypeID').on('change', function () {
+                        //alert($('option:selected', this).text());
+                        //alert($(this).val());
+
+                        var VesselSubTypeID = $('#VesselSubTypeID').val();
+
+
+                        GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
+
+                    });
 
                 });
 

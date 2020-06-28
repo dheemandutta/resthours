@@ -376,5 +376,86 @@ namespace TM.RestHour.DAL
             //    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Crewxml"].ToString(), XmlWriteMode.WriteSchema);
             //}
         }
+
+
+
+
+
+
+
+        //for VesselType drp
+        public List<ShipPOCO> GetVesselTypeForDrp()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_GetVesselTypeForDrp", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            DataTable myTable = ds.Tables[0];
+            List<ShipPOCO> ranksList = myTable.AsEnumerable().Select(m => new ShipPOCO()
+            {
+                VesselTypeID = m.Field<int>("ID"),
+                Description = m.Field<string>("Description"),
+
+            }).ToList();
+
+            return ranksList;
+            con.Close();
+
+        }
+
+        //for VesselSubTypeByVesselTypeIDForDrp drp
+        public List<ShipPOCO> GetVesselSubTypeByVesselTypeIDForDrp(string VesselTypeID)
+        {
+           // List<ShipPOCO> POCOList = new List<ShipPOCO>();
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_GetVesselSubTypeByVesselTypeIDForDrp", con);
+            cmd.Parameters.AddWithValue("@VesselTypeID", VesselTypeID);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+
+            //POCOList = ds.Tables[0].DataTableToList<ShipPOCO>(); 
+            DataTable myTable = ds.Tables[0];
+            List<ShipPOCO> POCOList = myTable.AsEnumerable().Select(m => new ShipPOCO()
+            {
+                VesselSubTypeID = m.Field<int>("ID"),
+                SubTypeDescription = m.Field<string>("SubTypeDescription"),
+
+            }).ToList();
+
+            return POCOList;
+            con.Close();
+        }
+
+        //for VesselSubSubTypeByVesselSubTypeIDForDrp drp
+        public List<ShipPOCO> GetVesselSubSubTypeByVesselSubTypeIDForDrp(string VesselSubTypeID)
+        {
+            //List<ShipPOCO> POCOList = new List<ShipPOCO>();
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_GetVesselSubSubTypeByVesselSubTypeIDForDrp", con);
+            cmd.Parameters.AddWithValue("@VesselSubTypeID", VesselSubTypeID);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+
+            //POCOList = ds.Tables[0].DataTableToList<ShipPOCO>(); 
+            DataTable myTable = ds.Tables[0];
+            List<ShipPOCO> POCOList = myTable.AsEnumerable().Select(m => new ShipPOCO()
+            {
+                VesselSubSubTypeID = m.Field<int>("ID"),
+                VesselSubSubTypeDecsription = m.Field<string>("VesselSubSubTypeDecsription"),
+
+            }).ToList();
+
+            return POCOList;
+            con.Close();
+        }
     }
 }

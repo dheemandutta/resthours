@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=5.2.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.2.0\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelDataReader, Version=3.4.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.3.4.0\lib\net45\ExcelDataReader.dll</HintPath>
     </Reference>
@@ -51,10 +54,13 @@
     <Reference Include="Notify, Version=1.0.2.0, Culture=neutral, PublicKeyToken=60f94bdcb4e14c0b, processorArchitecture=MSIL">
       <HintPath>..\packages\Notify.1.0.2\lib\net40\Notify.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -2939,6 +2945,7 @@
     <Content Include="SQLScripts\27.06.2020 Part - 2 Snehasish _RestHourClient script.sql" />
     <Content Include="SQLScripts\27.06.2020 RestHourClient script.sql" />
     <Content Include="SQLScripts\26.06.2020 RestHourClient script.sql" />
+    <Content Include="SQLScripts\28.06.2020 RestHourClient script.sql" />
     <Content Include="SQLScripts\stpSaveCrewTemperature.sql" />
     <Content Include="SQLScripts\24.06.2020 RestHourClient Script.sql" />
     <Content Include="src\jquery.image-marker.css" />
