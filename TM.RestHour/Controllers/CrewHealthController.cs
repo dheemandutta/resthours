@@ -409,10 +409,10 @@ namespace TM.RestHour.Controllers
             //AdmissionFormBL admissionBl = new AdmissionFormBL();
 
             if(postedFile !=null)
-            { 
-            //upload images
-            string fileName = Path.GetFileNameWithoutExtension(postedFile.FileName);
-                fileName = fileName + "_" + formCollection["ID"].ToString();     
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "JoiningMedical" + "_" + formCollection["ID"].ToString();     
 
             //To Get File Extension
                 string FileExtension = Path.GetExtension(postedFile.FileName);
