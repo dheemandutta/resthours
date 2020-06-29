@@ -2942,6 +2942,7 @@
     <None Include="SQLScripts\09-Create-SPs\dbo.stpGetCrewOvertimeValue.StoredProcedure.sql" />
     <None Include="SQLScripts\09-Create-SPs\dbo.stpUpdateInActive.StoredProcedure.sql" />
     <Content Include="SQLScripts\22.06.2020 RestHour Client Script.sql" />
+    <Content Include="SQLScripts\29.06.2020 Snehasish RestHourClient Script.sql" />
     <Content Include="SQLScripts\27.06.2020 Part - 2 Snehasish _RestHourClient script.sql" />
     <Content Include="SQLScripts\27.06.2020 RestHourClient script.sql" />
     <Content Include="SQLScripts\26.06.2020 RestHourClient script.sql" />
@@ -3060,6 +3061,7 @@
     <Content Include="Views\CrewHealth\DailyTemperatureReading.cshtml" />
     <Content Include="Views\CrewHealth\VesselDetails.cshtml" />
     <Content Include="Views\CrewHealth\PatientDetails.cshtml" />
+    <Content Include="Views\CrewHealth\GetCrewTemperaturePageWiseByCrewID.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

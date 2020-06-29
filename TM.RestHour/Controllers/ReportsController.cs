@@ -677,13 +677,6 @@ namespace TM.RestHour.Controllers
         }
 
 
-
-
-
-
-
-
-
         public JsonResult HTML_Report1(string monthyear, string crewID,string fullname,string rank)
         {
             ReportsPOCO reportsPC = new ReportsPOCO();  //////
@@ -1592,12 +1585,6 @@ namespace TM.RestHour.Controllers
 
             return sb.ToString();
         }
-
-
-
-
-
-
 
 
 
