@@ -565,6 +565,33 @@ namespace TM.RestHour.Controllers
             return View(crewtimesheetVM);
         }
 
+
+
+        [HttpPost]
+        public ActionResult MedicalTreatment(HttpPostedFileBase postedFile)
+        {
+
+            if (postedFile != null)
+            {
+                string path = Server.MapPath("~/UploadsTest/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                postedFile.SaveAs(path + Path.GetFileName(postedFile.FileName));
+                ViewBag.Message = "File uploaded successfully.";
+            }
+
+            return View();
+        }
+
+
+
+
+
+
+
         public JsonResult LoadData(/*int CrewID*/)
         {
             int draw, start, length;
