@@ -54,10 +54,6 @@
 //    });
 //}
 
-
-
-
-
 function loadData() {
     var loadposturl = $('#loaddata').val();
     $.ajax({
@@ -140,8 +136,6 @@ function SetUpGrid() {
         "dom": "Bfrtip"
     });
 }
-
-
 
 function Popup2(data) {
     var mywindow = window.open('', '', 'left=0,top=0,width=1600,height=1400');
@@ -236,7 +230,6 @@ function SetUpPrintGridReport() {
     });
 }
 
-
 function GetCrewDetailsForHealthByID() {
 
     var x = $("#GetCrewDetailsForHealth").val();
@@ -312,7 +305,6 @@ function GetCrewDetailsForHealthByID2() {
     return false;
 }
 
-
 function SaveServiceTerms() {
     //debugger;
     var saveServiceTerms = $('#saveServiceTerms').val();
@@ -347,8 +339,6 @@ function SaveServiceTerms() {
         }
     });
 }
-
-
 
 function loadDataServiceTerms() {
     var loadposturl = $('#loaddataServiceTerms').val();
@@ -408,7 +398,6 @@ function SetUpGridServiceTerms() {
     });
 }
 
-
 function GetJoiningMedicalFileDatawByID() {
 
     var x = $("#GetJoiningreportUrl").val();
@@ -435,14 +424,6 @@ function GetJoiningMedicalFileDatawByID() {
     });
 }
 
-
-
-
-
-//////////////////////////////////////////////////////////////////////////
-
-
-
 function loadData22() {
     var loadposturl = $('#loaddata22').val();
     $.ajax({
@@ -459,8 +440,6 @@ function loadData22() {
         }
     });
 }
-
-
 
 function Popup22(data) {
 
@@ -495,9 +474,6 @@ function Popup22(data) {
 
     return true;
 }
-
-
-
 
 function SetUpPrintGridReport2() {
     var loadposturl = $('#loaddata22').val();
@@ -608,7 +584,7 @@ function SaveCrewTemperature() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                SetUpGridCrewTemperatureReport();
+                SetUpGridCrewTemperatureReport(CrewID);
             },
             error: function (errormessage) {
                 alert(errormessage.responseText);
@@ -617,7 +593,7 @@ function SaveCrewTemperature() {
     }
 
 
-    function SetUpGridCrewTemperatureReport() {
+    function SetUpGridCrewTemperatureReport(CrewID) {
         var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
 
         $.fn.dataTable.ext.errMode = 'none';

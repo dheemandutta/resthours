@@ -200,6 +200,7 @@ namespace TM.RestHour.Controllers
 
         }
         [TraceFilterAttribute]
+       
         public JsonResult GetMonthlyData(Reports reports)
         {
             ReportsBL reportsBL = new ReportsBL();
@@ -234,6 +235,7 @@ namespace TM.RestHour.Controllers
             return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
         [TraceFilterAttribute]
+        
         public JsonResult GetMonthlyDataForWeb(Reports reports)
         {
             ReportsBL reportsBL = new ReportsBL();
@@ -268,6 +270,7 @@ namespace TM.RestHour.Controllers
             return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
         [TraceFilterAttribute]
+        
         public JsonResult GetDayWiseCrewData(string bookDate)
         {
             //Reports reports = new Reports();
@@ -302,8 +305,6 @@ namespace TM.RestHour.Controllers
             // return Json(data, JsonRequestBehavior.AllowGet);
             return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
-
-
 
         [TraceFilterAttribute]
         public JsonResult GetVarianceFromWorkSessions(Reports reports)
@@ -360,6 +361,7 @@ namespace TM.RestHour.Controllers
             // return Json(data, JsonRequestBehavior.AllowGet);
             //return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
+        
         [TraceFilterAttribute]
         public JsonResult GetVarianceFromWorkSessionsForPdf(Reports reports)
         {
@@ -414,6 +416,7 @@ namespace TM.RestHour.Controllers
              return Json(data, JsonRequestBehavior.AllowGet);
             //return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
+        
         [TraceFilterAttribute]
         public JsonResult LoadData()
         {
@@ -469,6 +472,7 @@ namespace TM.RestHour.Controllers
 
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
+        
         [TraceFilterAttribute]
         public JsonResult LoadData2()
         {
@@ -548,13 +552,6 @@ namespace TM.RestHour.Controllers
             return stringWriter.ToString();
         }
 
-
-
-
-
-
-
-
         public JsonResult GetPlusOneDayAdjustmentValue(string monthyear)
         {
 
@@ -598,8 +595,6 @@ namespace TM.RestHour.Controllers
 
             return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
-
-
 
         public List<OneDayTimeAdjustmentPOCO> GetMinusOneDayAdjustmentValueForPDF(string monthyear, string crewID)
         {
@@ -676,7 +671,6 @@ namespace TM.RestHour.Controllers
             return reportsList;
         }
 
-
         public JsonResult HTML_Report1(string monthyear, string crewID,string fullname,string rank)
         {
             ReportsPOCO reportsPC = new ReportsPOCO();  //////
@@ -711,7 +705,6 @@ namespace TM.RestHour.Controllers
             var data = html.ToString();
             return Json(data, JsonRequestBehavior.AllowGet);
         } //end
-
 
         private string GetColorHexCode(int index, ReportsPOCO reports)
         {
@@ -1586,9 +1579,6 @@ namespace TM.RestHour.Controllers
             return sb.ToString();
         }
 
-
-
-
         public JsonResult HTML_Report2(string letterText)
         {
             StringBuilder sb = new StringBuilder();
@@ -1734,11 +1724,6 @@ namespace TM.RestHour.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-
-
-
-
-
         public JsonResult GetNCDetails(string monthyear)
         {
             ReportsBL reportsBL = new ReportsBL();
@@ -1791,11 +1776,6 @@ namespace TM.RestHour.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-
-
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         public JsonResult GetMonthlyDataForUser(Reports reports)
         {
             ReportsBL reportsBL = new ReportsBL();
@@ -1829,8 +1809,6 @@ namespace TM.RestHour.Controllers
             // return Json(data, JsonRequestBehavior.AllowGet);
             return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
-
-
 
         public JsonResult GetMonthlyDataForWebForUser(Reports reports)
         {
@@ -1866,7 +1844,6 @@ namespace TM.RestHour.Controllers
             return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult GetPlusOneDayAdjustmentValueForUser(string monthyear)
         {
 
@@ -1889,8 +1866,6 @@ namespace TM.RestHour.Controllers
             return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
 
-
-
         public JsonResult GetMinusOneDayAdjustmentValueForUser(string monthyear, string crewID)
         {
 
@@ -1912,9 +1887,6 @@ namespace TM.RestHour.Controllers
 
             return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
-
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public JsonResult GetVarianceFromWorkSessionsForUser(Reports reports)
         {

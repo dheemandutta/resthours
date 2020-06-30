@@ -148,6 +148,13 @@ namespace TM.RestHour.Controllers
             GetAllTemperatureModeForDrp();
             return View();
         }
+
+        public ActionResult ReportDailyTemperature()
+        {
+            GetAllCrewForDrp();
+            return View();
+        }
+
         public ActionResult MailCIRM()
         {
             GetAllCrewForDrp();
@@ -533,8 +540,7 @@ namespace TM.RestHour.Controllers
         public ActionResult MedicalHistory()
         {
             return View();
-        }
-      
+        }      
 
         [TraceFilterAttribute]
         public ActionResult MedicalTreatment()
@@ -565,8 +571,6 @@ namespace TM.RestHour.Controllers
             return View(crewtimesheetVM);
         }
 
-
-
         [HttpPost]
         public ActionResult MedicalTreatment(HttpPostedFileBase postedFile)
         {
@@ -585,12 +589,6 @@ namespace TM.RestHour.Controllers
 
             return View();
         }
-
-
-
-
-
-
 
         public JsonResult LoadData(/*int CrewID*/)
         {
@@ -650,7 +648,6 @@ namespace TM.RestHour.Controllers
 
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
-
 
         public JsonResult LoadData2(/*int CrewID*/)
         {
@@ -712,7 +709,6 @@ namespace TM.RestHour.Controllers
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
 
-
         [HttpGet]
         public JsonResult GetCrewDetailsForHealthByID(int crewID)
         {
@@ -738,15 +734,11 @@ namespace TM.RestHour.Controllers
             return Json(cm, JsonRequestBehavior.AllowGet);
         }
 
-
-
         public FileStreamResult GetPDF(string file) //
         {
             FileStream fs = new FileStream(Server.MapPath("~/MedicalHistory/Medical Fermin.pdf"), FileMode.Open, FileAccess.Read); //    ~/MedicalHistory/Medical Fermin.pdf
             return File(fs, "application/pdf");
         }
-
-
 
         public void GetAllCrewForDrp()
         {
@@ -864,7 +856,6 @@ namespace TM.RestHour.Controllers
             return Json(cm, JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult SaveServiceTerms(EquipmentsPOCO equipmentsPOCO)
         {
             EquipmentsBL consultantBL = new EquipmentsBL();
@@ -925,8 +916,6 @@ namespace TM.RestHour.Controllers
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
 
-
-        
         private string GetJoininingMedicalByCrewId(int CrewId)
         {
             CrewBL crewBL = new CrewBL();
