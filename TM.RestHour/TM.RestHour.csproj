@@ -3062,6 +3062,11 @@
     <Content Include="Views\CrewHealth\VesselDetails.cshtml" />
     <Content Include="Views\CrewHealth\PatientDetails.cshtml" />
     <Content Include="Views\CrewHealth\ReportDailyTemperature.cshtml" />
+    <Content Include="Views\CrewHealth\MedicalEquipmentOnBoard.cshtml" />
+    <Content Include="Views\CrewHealth\MedicalHistoryUpload.cshtml" />
+    <Content Include="Views\CrewHealth\MedicineAvailableOnBoard.cshtml" />
+    <Content Include="Views\CrewHealth\PreExistingMedicationPrescription.cshtml" />
+    <Content Include="Views\CrewHealth\WorkAndRestHourLatestRecord.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3070,7 +3075,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Equipment\" />
     <Folder Include="JoiningMedical\" />
+    <Folder Include="MedicalEquipmentOnBoard\" />
+    <Folder Include="MedicalHistoryUpload\" />
+    <Folder Include="MedicineAvailableOnBoard\" />
     <Folder Include="Medicine\" />
+    <Folder Include="PreExistingMedicationPrescription\" />
     <Folder Include="RDL\" />
     <Folder Include="SQLScripts\02-CreateIndexes\" />
     <Folder Include="SQLScripts\05-CreateView\" />
@@ -3079,6 +3088,7 @@
     <Folder Include="UploadMedicalInventoryUploads\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\helppp\" />
+    <Folder Include="WorkAndRestHourLatestRecord\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
