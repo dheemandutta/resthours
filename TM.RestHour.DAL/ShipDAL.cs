@@ -300,6 +300,7 @@ namespace TM.RestHour.DAL
                     if (item["ID"] != null)
                         crewtimesheet.ID = Convert.ToInt32(item["ID"].ToString());
 
+
                     if (item["ShipName"] != null)
                         crewtimesheet.ShipName = item["ShipName"].ToString();
 
@@ -313,9 +314,45 @@ namespace TM.RestHour.DAL
                         crewtimesheet.Regime = item["Regime"].ToString();
 
 
+                    if (item["VesselTypeID"] != null)
+                        crewtimesheet.VesselTypeID = Convert.ToInt32(item["VesselTypeID"].ToString());
+
+                    //if (item["VesselSubTypeID"] != null)
+                    //    crewtimesheet.VesselSubTypeID = Convert.ToInt32(item["VesselSubTypeID"].ToString());
+
+                    if (item["VesselSubSubTypeID"] != null)
+                        crewtimesheet.VesselSubSubTypeID = Convert.ToInt32(item["VesselSubSubTypeID"].ToString());
+
 
                     if (item["ShipEmail"] != null)
                         crewtimesheet.ShipEmail = item["ShipEmail"].ToString();
+
+                    if (item["ShipEmail2"] != null)
+                        crewtimesheet.ShipEmail2 = item["ShipEmail2"].ToString();
+
+                    if (item["Voices1"] != null)
+                        crewtimesheet.Voices1 = item["Voices1"].ToString();
+
+                    if (item["Voices2"] != null)
+                        crewtimesheet.Voices2 = item["Voices2"].ToString();
+
+                    if (item["Fax1"] != null)
+                        crewtimesheet.Fax1 = item["Fax1"].ToString();
+
+                    if (item["Fax2"] != null)
+                        crewtimesheet.Fax2 = item["Fax2"].ToString();
+
+                    if (item["VOIP1"] != null)
+                        crewtimesheet.VOIP1 = item["VOIP1"].ToString();
+
+                    if (item["VOIP2"] != null)
+                        crewtimesheet.VOIP2 = item["VOIP2"].ToString();
+
+                    if (item["Mobile1"] != null)
+                        crewtimesheet.Mobile1 = item["Mobile1"].ToString();
+
+                    if (item["Mobile2"] != null)
+                        crewtimesheet.Mobile2 = item["Mobile2"].ToString();
 
 
                     crewtimesheetList.Add(crewtimesheet);

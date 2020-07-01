@@ -488,11 +488,25 @@ function GetShip() {
         success: function (result) {
             //debugger;
             $('#ID').val(result.ID);
+
             $('#Vessel').val(result.ShipName);
             $('#Flag').val(result.FlagOfShip);
             $('#IMONumber').val(result.IMONumber);
 
-            $('#ShipEmail').val(result.ShipEmail);
+            $('#VesselTypeID').val(result.VesselTypeID);
+            $('#VesselSubTypeID').val(result.VesselSubTypeID);
+            $('#VesselSubSubTypeID').val(result.VesselSubSubTypeID);
+
+            $('#Email1').val(result.ShipEmail);
+            $('#Email2').val(result.ShipEmail2);
+            $('#Voice1').val(result.Voices1);
+            $('#Voice2').val(result.Voices2);
+            $('#Fax1').val(result.Fax1);
+            $('#Fax2').val(result.Fax2);
+            $('#VideoCall1').val(result.VOIP1);
+            $('#VideoCall2').val(result.VOIP2);
+            $('#Mobile1').val(result.Mobile1);
+            $('#Mobile2').val(result.Mobile2);
 
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();
