@@ -175,13 +175,27 @@ namespace TM.RestHour.Controllers
 			ShipBL shipBL = new ShipBL();
 			ShipPOCO shipPC = new ShipPOCO();
 			shipPC.ID = ship.ID;
+
 			shipPC.ShipName = ship.ShipName;
 			shipPC.FlagOfShip = ship.FlagOfShip;
 			shipPC.IMONumber = ship.IMONumber;
 
-            shipPC.ShipEmail = ship.ShipEmail;
+            shipPC.VesselTypeID = ship.VesselTypeID;
+            shipPC.VesselSubTypeID = ship.VesselSubTypeID;
+            shipPC.VesselSubSubTypeID = ship.VesselSubSubTypeID;
 
-            return Json(shipBL.UpdateShip(shipPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
+            shipPC.ShipEmail = ship.ShipEmail;
+            shipPC.ShipEmail2 = ship.ShipEmail2;
+            shipPC.Voices1 = ship.Voices1;
+            shipPC.Voices2 = ship.Voices2;
+            shipPC.Fax1 = ship.Fax1;
+            shipPC.Fax2 = ship.Fax2;
+            shipPC.VOIP1 = ship.VOIP1;
+            shipPC.VOIP2 = ship.VOIP2;
+            shipPC.Mobile1 = ship.Mobile1;
+            shipPC.Mobile2 = ship.Mobile2;
+
+            return Json(shipBL.UpdateShip(shipPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult NewAdd(Vessel ship)

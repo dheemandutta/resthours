@@ -201,16 +201,16 @@ namespace TM.RestHour.Controllers
             return Json(shipBL.SaveShip(shipPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Update(Vessel ship)
-        {
-            ShipBL shipBL = new ShipBL();
-            ShipPOCO shipPC = new ShipPOCO();
-            shipPC.ID = ship.ID;
-            shipPC.ShipName = ship.ShipName;
-            shipPC.FlagOfShip = ship.FlagOfShip;
-            shipPC.IMONumber = ship.IMONumber;
-            return Json(shipBL.UpdateShip(shipPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult Update(Vessel ship)
+        //{
+        //    ShipBL shipBL = new ShipBL();
+        //    ShipPOCO shipPC = new ShipPOCO();
+        //    shipPC.ID = ship.ID;
+        //    shipPC.ShipName = ship.ShipName;
+        //    shipPC.FlagOfShip = ship.FlagOfShip;
+        //    shipPC.IMONumber = ship.IMONumber;
+        //    return Json(shipBL.UpdateShip(shipPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
+        //}
 
         public JsonResult NewAdd(Vessel ship)
         {

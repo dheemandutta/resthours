@@ -13,7 +13,7 @@ namespace TM.RestHour.DAL
     public class ShipDAL
     {
 
-		public int UpdateVessel(ShipPOCO ship, int VesselID)
+		public int UpdateVessel(ShipPOCO ship/*, int VesselID*/)
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -23,10 +23,101 @@ namespace TM.RestHour.DAL
 			cmd.Parameters.AddWithValue("@IMONumber", ship.IMONumber.ToString());    ////////////////////////////////////////////////////////////////////
 			cmd.Parameters.AddWithValue("@FlagOfShip", ship.FlagOfShip.ToString());
 
-            cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail.ToString());
-            //cmd.Parameters.AddWithValue("@VesselID", VesselID);
-            //cmd.Parameters.AddWithValue("@Regime", ship.Regime.ToString());
+            cmd.Parameters.AddWithValue("@VesselTypeID", ship.VesselTypeID.ToString());
+            cmd.Parameters.AddWithValue("@VesselSubTypeID", ship.VesselSubTypeID.ToString());    
+            cmd.Parameters.AddWithValue("@VesselSubSubTypeID", ship.VesselSubSubTypeID.ToString());
 
+            if (!String.IsNullOrEmpty(ship.ShipEmail))
+            {
+                cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ShipEmail", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.ShipEmail2))
+            {
+                cmd.Parameters.AddWithValue("@ShipEmail2", ship.ShipEmail2);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ShipEmail2", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.Voices1))
+            {
+                cmd.Parameters.AddWithValue("@Voices1", ship.Voices1);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Voices1", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.Voices2))
+            {
+                cmd.Parameters.AddWithValue("@Voices2", ship.Voices2);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Voices2", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.Fax1))
+            {
+                cmd.Parameters.AddWithValue("@Fax1", ship.Fax1);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Fax1", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.Fax2))
+            {
+                cmd.Parameters.AddWithValue("@Fax2", ship.Fax2);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Fax2", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.VOIP1))
+            {
+                cmd.Parameters.AddWithValue("@VOIP1", ship.VOIP1);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@VOIP1", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.VOIP2))
+            {
+                cmd.Parameters.AddWithValue("@VOIP2", ship.VOIP2);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@VOIP2", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.Mobile1))
+            {
+                cmd.Parameters.AddWithValue("@Mobile1", ship.Mobile1);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Mobile1", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.Mobile2))
+            {
+                cmd.Parameters.AddWithValue("@Mobile2", ship.Mobile2);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Mobile2", DBNull.Value);
+            }
+
+            //cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
             int recordsAffected = cmd.ExecuteNonQuery();
 			con.Close();
@@ -457,5 +548,8 @@ namespace TM.RestHour.DAL
             return POCOList;
             con.Close();
         }
+
+
+
     }
 }
