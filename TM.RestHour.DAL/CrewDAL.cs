@@ -684,23 +684,6 @@ namespace TM.RestHour.DAL
 
         }
 
-        public int SaveJoiningMedicalFilePath(int crewId, string filepath)
-        {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("stpSaveJoiningMedicalFilePath", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@CrewId", crewId);
-            cmd.Parameters.AddWithValue("@File", filepath);
-
-            
-
-            int recordsAffected = cmd.ExecuteNonQuery();
-            con.Close();
-
-            return recordsAffected;
-        }
 
         public string GetJoiningMedicalFileDatawByID(int CrewId )
         {
@@ -849,10 +832,10 @@ namespace TM.RestHour.DAL
                         crewPOList.Add(new CrewTemperaturePOCO
                         {
                             ID = Convert.ToInt32(dr["ID"]),
+
                             Temperature= Convert.ToDecimal(dr["Temperature"]),
                             ReadingDate = Convert.ToString(dr["ReadingDate"]),
                             ReadingTime= Convert.ToString(dr["ReadingTime"]),
-                            Comment= Convert.ToString(dr["Comment"]),
                             Unit = Convert.ToString(dr["Unit"]),
                             TemperatureMode= Convert.ToString(dr["TemperatureMode"]),
                         });
@@ -863,5 +846,105 @@ namespace TM.RestHour.DAL
             }
             return crewPOList;
         }
+
+
+
+
+
+
+
+
+        public int SaveJoiningMedicalFilePath(int crewId, string filepath)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveJoiningMedicalFilePath", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CrewId", crewId);
+            cmd.Parameters.AddWithValue("@File", filepath);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
+        public int SaveMedicineAvailableOnBoardFilePath(int crewId, string filepath)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveMedicineAvailableOnBoardFilePath", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CrewId", crewId);
+            cmd.Parameters.AddWithValue("@File", filepath);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
+        public int SaveMedicalEquipmentOnBoardFilePath(int crewId, string filepath)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveMedicalEquipmentOnBoardFilePath", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CrewId", crewId);
+            cmd.Parameters.AddWithValue("@File", filepath);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
+        public int SaveMedicalHistoryUploadFilePath(int crewId, string filepath)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveMedicalHistoryUploadFilePath", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CrewId", crewId);
+            cmd.Parameters.AddWithValue("@File", filepath);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
+        public int SaveWorkAndRestHourLatestRecordFilePath(int crewId, string filepath)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveWorkAndRestHourLatestRecordFilePath", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CrewId", crewId);
+            cmd.Parameters.AddWithValue("@File", filepath);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
+        public int SavePreExistingMedicationPrescriptionFilePath(int crewId, string filepath)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSavePreExistingMedicationPrescriptionFilePath", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CrewId", crewId);
+            cmd.Parameters.AddWithValue("@File", filepath);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
+
+     
     }
 }

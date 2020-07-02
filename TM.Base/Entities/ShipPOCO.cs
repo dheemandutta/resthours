@@ -48,5 +48,43 @@ namespace TM.Base.Entities
         public int VesselTypeID { get; set; }
         public string SubTypeDescription { get; set; }
         public int VesselSubSubTypeID { get; set; }
+
+
+
+
+
+
+
+
+        public long TimeStamp { get; set; }
+
+        //public DateTime? LastSyncDate { get; set; }
+        public string LastSyncDate { get; set; }
+
+        public int? CompanyID { get; set; }
+
+        public string ShipEmail2 { get; set; }
+
+        public string Voices1 { get; set; }
+
+        public string Voices2 { get; set; }
+
+        public string Fax1 { get; set; }
+
+        public string Fax2 { get; set; }
+
+        public string VOIP1 { get; set; }
+
+        public string VOIP2 { get; set; }
+
+        public string Mobile1 { get; set; }
+
+        public string Mobile2 { get; set; }
+
+        public string CommunicationsResources { get; set; }
+
+        public int? HelicopterDeck { get; set; }
+
+        public int? HelicopterWinchingArea { get; set; }
     }
 }

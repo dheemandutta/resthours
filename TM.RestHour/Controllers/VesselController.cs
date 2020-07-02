@@ -175,13 +175,27 @@ namespace TM.RestHour.Controllers
 			ShipBL shipBL = new ShipBL();
 			ShipPOCO shipPC = new ShipPOCO();
 			shipPC.ID = ship.ID;
+
 			shipPC.ShipName = ship.ShipName;
 			shipPC.FlagOfShip = ship.FlagOfShip;
 			shipPC.IMONumber = ship.IMONumber;
 
-            shipPC.ShipEmail = ship.ShipEmail;
+            shipPC.VesselTypeID = ship.VesselTypeID;
+            shipPC.VesselSubTypeID = ship.VesselSubTypeID;
+            shipPC.VesselSubSubTypeID = ship.VesselSubSubTypeID;
 
-            return Json(shipBL.UpdateShip(shipPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
+            shipPC.ShipEmail = ship.ShipEmail;
+            shipPC.ShipEmail2 = ship.ShipEmail2;
+            shipPC.Voices1 = ship.Voices1;
+            shipPC.Voices2 = ship.Voices2;
+            shipPC.Fax1 = ship.Fax1;
+            shipPC.Fax2 = ship.Fax2;
+            shipPC.VOIP1 = ship.VOIP1;
+            shipPC.VOIP2 = ship.VOIP2;
+            shipPC.Mobile1 = ship.Mobile1;
+            shipPC.Mobile2 = ship.Mobile2;
+
+            return Json(shipBL.UpdateShip(shipPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult NewAdd(Vessel ship)
@@ -248,11 +262,25 @@ namespace TM.RestHour.Controllers
             Vessel um = new Vessel();
 
             um.ID = shipPC.ID;
+
             um.ShipName = shipPC.ShipName;
             um.FlagOfShip = shipPC.FlagOfShip;
             um.IMONumber = shipPC.IMONumber;
 
+            um.VesselTypeID = shipPC.VesselTypeID;
+            um.VesselSubTypeID = shipPC.VesselSubTypeID;
+            um.VesselSubSubTypeID = shipPC.VesselSubSubTypeID;
+
             um.ShipEmail = shipPC.ShipEmail;
+            um.ShipEmail2 = shipPC.ShipEmail2;
+            um.Voices1 = shipPC.Voices1;
+            um.Voices2 = shipPC.Voices2;
+            um.Fax1 = shipPC.Fax1;
+            um.Fax2 = shipPC.Fax2;
+            um.VOIP1 = shipPC.VOIP1;
+            um.VOIP2 = shipPC.VOIP2;
+            um.Mobile1 = shipPC.Mobile1;
+            um.Mobile2 = shipPC.Mobile2;
 
             var cm = um;
 

@@ -58,39 +58,30 @@ function GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID) {
 function validateVessel() {
     var isValid = true;
 
-    if ($('#ShipName').val().length === 0) {
-        $('#ShipName').css('border-color', 'Red');
+    if ($('#VesselTypeID').val().length === 0) {
+        $('#VesselTypeID').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#ShipName').css('border-color', 'lightgrey');
+        $('#VesselTypeID').css('border-color', 'lightgrey');
     }
 
-    if ($('#IMONumber').val().length === 0) {
-        $('#IMONumber').css('border-color', 'Red');
+    if ($('#VesselSubTypeID').val().length === 0) {
+        $('#VesselSubTypeID').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#IMONumber').css('border-color', 'lightgrey');
+        $('#VesselSubTypeID').css('border-color', 'lightgrey');
     }
 
-    if ($('#FlagOfShip').val().length === 0) {
-        $('#FlagOfShip').css('border-color', 'Red');
+    if ($('#VesselSubSubTypeID').val().length === 0) {
+        $('#VesselSubSubTypeID').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#FlagOfShip').css('border-color', 'lightgrey');
+        $('#VesselSubSubTypeID').css('border-color', 'lightgrey');
     }
-
-
-
-    if ($('#ShipEmail').val().length === 0) {
-        $('#ShipEmail').css('border-color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#ShipEmail').css('border-color', 'lightgrey');
-    }
+   
 
     return isValid;
 
@@ -338,17 +329,30 @@ function Update() {
     var i = $('#VesselUpdate').val();
     // debugger;
     var res = validateVessel();
-    if (res == false) {
+    if (res === false) {
         return false;
     }
     var empObj = {
 
         ID: $('#ID').val(),
-        ShipName: $('#ShipName').val(),
-        FlagOfShip: $('#FlagOfShip').val(),
+        ShipName: $('#Vessel').val(),
+        FlagOfShip: $('#Flag').val(),
         IMONumber: $('#IMONumber').val(),
 
-        ShipEmail: $('#ShipEmail_Edit').val()
+        VesselTypeID: $('#VesselTypeID').val(),
+        VesselSubTypeID: $('#VesselSubTypeID').val(),
+        VesselSubSubTypeID: $('#VesselSubSubTypeID').val(),
+
+        ShipEmail: $('#Email1').val(),
+        ShipEmail2: $('#Email2').val(),
+        Voices1: $('#Voice1').val(),
+        Voices2: $('#Voice2').val(),
+        Fax1: $('#Fax1').val(),
+        Fax2: $('#Fax2').val(),
+        VOIP1: $('#VideoCall1').val(),
+        VOIP2: $('#VideoCall2').val(),
+        Mobile1: $('#Mobile1').val(),
+        Mobile2: $('#Mobile2').val()
     };
     //debugger;
     $.ajax({
@@ -364,11 +368,24 @@ function Update() {
             $('#myModal').modal('hide');
 
             $('#ID').val("");
-            $('#ShipName').val("");
-            $('#FlagOfShip').val("");
+            $('#Vessel').val("");
+            $('#Flag').val("");
             $('#IMONumber').val("");
 
-            $('#ShipEmail_Edit').val("");
+            $('#VesselTypeID').val("");
+            $('#VesselSubTypeID').val("");
+            $('#VesselSubSubTypeID').val("");
+
+            $('#Email1').val("");
+            $('#Email2').val("");
+            $('#Voice1').val("");
+            $('#Voice2').val("");
+            $('#Fax1').val("");
+            $('#Fax2').val("");
+            $('#VideoCall1').val("");
+            $('#VideoCall2').val("");
+            $('#Mobile1').val("");
+            $('#Mobile2').val("");
 
             GetShip();
         },
@@ -471,11 +488,25 @@ function GetShip() {
         success: function (result) {
             //debugger;
             $('#ID').val(result.ID);
+
             $('#Vessel').val(result.ShipName);
             $('#Flag').val(result.FlagOfShip);
             $('#IMONumber').val(result.IMONumber);
 
-            $('#ShipEmail').val(result.ShipEmail);
+            $('#VesselTypeID').val(result.VesselTypeID);
+            $('#VesselSubTypeID').val(result.VesselSubTypeID);
+            $('#VesselSubSubTypeID').val(result.VesselSubSubTypeID);
+
+            $('#Email1').val(result.ShipEmail);
+            $('#Email2').val(result.ShipEmail2);
+            $('#Voice1').val(result.Voices1);
+            $('#Voice2').val(result.Voices2);
+            $('#Fax1').val(result.Fax1);
+            $('#Fax2').val(result.Fax2);
+            $('#VideoCall1').val(result.VOIP1);
+            $('#VideoCall2').val(result.VOIP2);
+            $('#Mobile1').val(result.Mobile1);
+            $('#Mobile2').val(result.Mobile2);
 
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();

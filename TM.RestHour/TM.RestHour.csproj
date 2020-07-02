@@ -2941,6 +2941,8 @@
     <None Include="SQLScripts\03-UpdateDB\01-UpdateDB.sql" />
     <None Include="SQLScripts\09-Create-SPs\dbo.stpGetCrewOvertimeValue.StoredProcedure.sql" />
     <None Include="SQLScripts\09-Create-SPs\dbo.stpUpdateInActive.StoredProcedure.sql" />
+    <Content Include="SQLScripts\01.07.2020 Full Script Of RestHourClient.sql" />
+    <Content Include="SQLScripts\02.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\22.06.2020 RestHour Client Script.sql" />
     <Content Include="SQLScripts\29.06.2020 Snehasish RestHourClient Script.sql" />
     <Content Include="SQLScripts\27.06.2020 Part - 2 Snehasish _RestHourClient script.sql" />
@@ -3062,6 +3064,11 @@
     <Content Include="Views\CrewHealth\VesselDetails.cshtml" />
     <Content Include="Views\CrewHealth\PatientDetails.cshtml" />
     <Content Include="Views\CrewHealth\ReportDailyTemperature.cshtml" />
+    <Content Include="Views\CrewHealth\MedicalEquipmentOnBoard.cshtml" />
+    <Content Include="Views\CrewHealth\MedicalHistoryUpload.cshtml" />
+    <Content Include="Views\CrewHealth\MedicineAvailableOnBoard.cshtml" />
+    <Content Include="Views\CrewHealth\PreExistingMedicationPrescription.cshtml" />
+    <Content Include="Views\CrewHealth\WorkAndRestHourLatestRecord.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3070,7 +3077,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Equipment\" />
     <Folder Include="JoiningMedical\" />
+    <Folder Include="MedicalEquipmentOnBoard\" />
+    <Folder Include="MedicalHistoryUpload\" />
+    <Folder Include="MedicineAvailableOnBoard\" />
     <Folder Include="Medicine\" />
+    <Folder Include="PreExistingMedicationPrescription\" />
     <Folder Include="RDL\" />
     <Folder Include="SQLScripts\02-CreateIndexes\" />
     <Folder Include="SQLScripts\05-CreateView\" />
@@ -3079,6 +3090,7 @@
     <Folder Include="UploadMedicalInventoryUploads\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\helppp\" />
+    <Folder Include="WorkAndRestHourLatestRecord\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

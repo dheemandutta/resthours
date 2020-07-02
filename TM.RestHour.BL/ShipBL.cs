@@ -10,10 +10,10 @@ namespace TM.RestHour.BL
 {
     public class ShipBL
     {
-		public int UpdateShip(ShipPOCO shipPOCO, int VesselID)
+		public int UpdateShip(ShipPOCO shipPOCO/*, int VesselID*/)
 		{
 			ShipDAL shipDAL = new ShipDAL();
-			return shipDAL.UpdateVessel(shipPOCO, VesselID);
+			return shipDAL.UpdateVessel(shipPOCO/*, VesselID*/);
 		}
 
 		public int SaveShip(ShipPOCO shipPOCO,int VesselID)

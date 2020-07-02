@@ -82,7 +82,7 @@ function SetUpGrid() {
         table = $('#CrewHealthtable').DataTable();
         table.destroy();
     }
-    
+
     // alert('hh');
     var table = $("#CrewHealthtable").DataTable({
         "dom": 'Bfrtip',
@@ -129,7 +129,7 @@ function SetUpGrid() {
             {
                 "data": "Month", "name": "Month", "autoWidth": true
             }
-           
+
 
         ],
         "rowId": "MedicalAdvisoryID",
@@ -240,7 +240,7 @@ function GetCrewDetailsForHealthByID() {
             crewID: $('#ddlCrew').val()
         },
         type: "GET",
-       // data: JSON.stringify({ 'ID': ID }),
+        // data: JSON.stringify({ 'ID': ID }),
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
@@ -364,7 +364,7 @@ function SetUpGridServiceTerms() {
     $.fn.dataTable.ext.errMode = 'none';
 
     //check if datatable is already created then destroy iy and then create it
-    if ($.fn.dataTable.isDataTable('#CrewServiceTerms')) {              
+    if ($.fn.dataTable.isDataTable('#CrewServiceTerms')) {
         table = $('#CrewServiceTerms').DataTable();
         table.destroy();
     }
@@ -548,11 +548,11 @@ function SaveCrewTemperature() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            
-            if (result >0) {
+
+            if (result > 0) {
                 //show successfull message
                 alert('Data Saved Successfully');
-             // window.location = response.url;
+                // window.location = response.url;
 
                 $('#ddlCrew').val('');
                 $('#Temperature').val('');
@@ -573,10 +573,10 @@ function SaveCrewTemperature() {
             console.log(errormessage.responseText);
         }
     });
+}
 
 
-
-    function loadTemperatureData(CrewID) {
+function loadTemperatureData(CrewID) {
         var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
         $.ajax({
             url: loadposturl,
@@ -593,28 +593,31 @@ function SaveCrewTemperature() {
     }
 
 
-    function SetUpGridCrewTemperatureReport(CrewID) {
+function SetUpGridCrewTemperatureReport(CrewID) {
         var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
 
         $.fn.dataTable.ext.errMode = 'none';
-        if ($.fn.dataTable.isDataTable('#certtableReport')) {
+    if ($.fn.dataTable.isDataTable('#certtableReport')) {
             table = $('#certtableReport').DataTable();
             table.destroy();
         }
         // alert('hh');
-        var mytable = $("#certtableReport").DataTable({
-            "processing": true,
-            "serverSide": true,
-            "filter": false,
-            "orderMulti": false,
-            "bLengthChange": false,
+        var table = $("#certtableReport").DataTable({
+            "dom": 'Bfrtip',
+            "rowReorder": false,
+            "ordering": false,
+            "filter": false, // this is for disable filter (search box)
+
             "ajax": {
                 "url": loadposturl,
                 "type": "POST",
                 "datatype": "json",
-                "data": { CrewID: $('#ddlCrew').val() },
+                "data": { CrewID: $('#btnAdd').val() },
             },
             "columns": [
+                {
+                    "data": "Temperature", "name": "Temperature", "autoWidth": true
+                },
                 {
                     "data": "ReadingDate", "name": "ReadingDate", "autowidth": true
                 },
@@ -622,19 +625,12 @@ function SaveCrewTemperature() {
                     "data": "ReadingTime", "name": "ReadingTime", "autoWidth": true
                 },
                 {
-                    "data": "Temperature", "name": "Temperature", "autoWidth": true
-                },
-                {
                     "data": "Unit", "name": "Unit", "autoWidth": true
                 },
                 {
                     "data": "TemperatureMode", "name": "TemperatureMode", "autoWidth": true
-                },
-                {
-                    "data": "Comment", "name": "Unit", "Comment": true
-                },
+                }
             ]
         });
     }
 
-}

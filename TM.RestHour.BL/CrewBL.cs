@@ -262,11 +262,6 @@ namespace TM.RestHour.BL
             return crew.GetAllCountryForDrp(/*VesselID*/);
         }
 
-        public int SaveJoiningMedicalFilePath(int crewId, string filepath)
-        {
-            CrewDAL crewDAL = new CrewDAL();
-            return crewDAL.SaveJoiningMedicalFilePath(crewId, filepath);        //UploadJoiningMedical  --->  in Controler
-        }
 
         public string GetJoiningMedicalFileDatawByID(int CrewId)
         {
@@ -285,5 +280,50 @@ namespace TM.RestHour.BL
             return crew.GetAllTemperatureModeForDrp();
         }
 
+
+
+
+
+
+
+
+
+
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public int SaveJoiningMedicalFilePath(int crewId, string filepath)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.SaveJoiningMedicalFilePath(crewId, filepath);        //UploadJoiningMedical  --->  in Controler
+        }
+
+        public int SaveMedicineAvailableOnBoardFilePath(int crewId, string filepath)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.SaveMedicineAvailableOnBoardFilePath(crewId, filepath);
+        }
+
+        public int SaveMedicalEquipmentOnBoardFilePath(int crewId, string filepath)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.SaveMedicalEquipmentOnBoardFilePath(crewId, filepath);
+        }
+
+        public int SaveMedicalHistoryUploadFilePath(int crewId, string filepath)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.SaveMedicalHistoryUploadFilePath(crewId, filepath);
+        }
+
+        public int SaveWorkAndRestHourLatestRecordFilePath(int crewId, string filepath)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.SaveWorkAndRestHourLatestRecordFilePath(crewId, filepath);
+        }
+
+        public int SavePreExistingMedicationPrescriptionFilePath(int crewId, string filepath)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.SavePreExistingMedicationPrescriptionFilePath(crewId, filepath);
+        }
     }
 }

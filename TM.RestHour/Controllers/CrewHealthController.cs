@@ -384,79 +384,7 @@ namespace TM.RestHour.Controllers
         {
             return View();
         }
-        public ActionResult UploadJoiningMedical()
-        {
-            // GetAllCrewForTimeSheet();
-            GetAllCrewForDrp();
-            GetAllCrewForTimeSheet();
-            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
-            Crew c = new Crew();
-            crewtimesheetVM.Crew = c;
-
-            if (Convert.ToBoolean(Session["User"]) == true)
-            {
-                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
-                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
-                crewtimesheetVM.CrewAdminId = 0;
-
-            }
-            else
-            {
-                crewtimesheetVM.Crew.ID = 0;
-                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
-                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
-            }
-            return View(crewtimesheetVM);
-        }
-
-        [HttpPost]
-        [TraceFilterAttribute]
-        public ActionResult UploadJoiningMedical(HttpPostedFileBase postedFile,FormCollection formCollection)
-        {
-            //AdmissionFormBL admissionBl = new AdmissionFormBL();
-
-            if(postedFile !=null)
-            {
-                //upload images
-                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
-                fileName = "JoiningMedical" + "_" + formCollection["ID"].ToString();     
-
-            //To Get File Extension
-                string FileExtension = Path.GetExtension(postedFile.FileName);
-             fileName = fileName + FileExtension;
-
-            if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
-            {
-                ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
-                return View();
-            }
-
-            //Get Upload path from Web.Config file AppSettings.
-            string path = Server.MapPath(ConfigurationManager.AppSettings["JoiningMedicalUploadPath"].ToString());
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                if (System.IO.File.Exists(path + fileName))
-                {
-                    System.IO.File.Delete(path + fileName);
-                }
-
-                //To copy and save file into server.
-                postedFile.SaveAs(path + fileName);
-                ////BL call..............
-                CrewBL crewBL = new CrewBL();
-                
-                crewBL.SaveJoiningMedicalFilePath(int.Parse(formCollection["ID"].ToString()),fileName);
-                
-
-                ViewBag.UploadMessage = "File Uploaded Successfully";
-        }
-            GetAllCrewForTimeSheet();
-            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
-            return View();
-        }
-
+       
 
         // GET: CrewHealth
         [TraceFilterAttribute]
@@ -1009,16 +937,13 @@ namespace TM.RestHour.Controllers
                 CrewTemperature crewTemp = new CrewTemperature();
                
                 crewTemp.ID = crewPC.ID;
-                // crew.Name = crewPC.Name;
-                crewTemp.Temperature = crewPC.Temperature;
 
-                //crew.FlagOfShip = crewPC.FlagOfShip;      //////////////////////////////// deep
+                crewTemp.Temperature = crewPC.Temperature;
                 crewTemp.ReadingDate = crewPC.ReadingDate;
                 crewTemp.ReadingTime = crewPC.ReadingTime;
-             
-                crewTemp.Comment = crewPC.Comment;
                 crewTemp.Unit = crewPC.Unit;
                 crewTemp.TemperatureMode = crewPC.TemperatureMode;
+
                 crewList.Add(crewTemp);
             }
 
@@ -1028,5 +953,448 @@ namespace TM.RestHour.Controllers
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        public ActionResult UploadJoiningMedical()
+        {
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
+        }
+
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult UploadJoiningMedical(HttpPostedFileBase postedFile, FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
+            if (postedFile != null)
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "JoiningMedical" + "_" + formCollection["ID"].ToString();
+
+                //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+                fileName = fileName + FileExtension;
+
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+                {
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                    return View();
+                }
+
+                //Get Upload path from Web.Config file AppSettings.
+                string path = Server.MapPath(ConfigurationManager.AppSettings["JoiningMedicalUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
+
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                ////BL call..............
+                CrewBL crewBL = new CrewBL();
+
+                crewBL.SaveJoiningMedicalFilePath(int.Parse(formCollection["ID"].ToString()), fileName);
+
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+            }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
+            return View();
+        }
+
+
+
+        public ActionResult MedicineAvailableOnBoard()
+        {
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
+        }
+
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult MedicineAvailableOnBoard(HttpPostedFileBase postedFile, FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
+            if (postedFile != null)
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "MedicineAvailableOnBoard" + "_" + formCollection["ID"].ToString();
+
+                //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+                fileName = fileName + FileExtension;
+
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+                {
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                    return View();
+                }
+
+                //Get Upload path from Web.Config file AppSettings.
+                string path = Server.MapPath(ConfigurationManager.AppSettings["MedicineAvailableOnBoardUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
+
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                ////BL call..............
+                CrewBL crewBL = new CrewBL();
+
+                // crewBL.SaveMedicineAvailableOnBoardFilePath(int.Parse(formCollection["ID"].ToString()), fileName);  ///// do it
+
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+            }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
+            return View();
+        }
+
+
+
+        public ActionResult MedicalEquipmentOnBoard()
+        {
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
+        }
+
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult MedicalEquipmentOnBoard(HttpPostedFileBase postedFile, FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
+            if (postedFile != null)
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "MedicalEquipmentOnBoard" + "_" + formCollection["ID"].ToString();
+
+                //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+                fileName = fileName + FileExtension;
+
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+                {
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                    return View();
+                }
+
+                //Get Upload path from Web.Config file AppSettings.
+                string path = Server.MapPath(ConfigurationManager.AppSettings["MedicalEquipmentOnBoardUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
+
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                ////BL call..............
+                CrewBL crewBL = new CrewBL();
+
+                // crewBL.SaveMedicalEquipmentOnBoardFilePath(int.Parse(formCollection["ID"].ToString()), fileName);  ///// do it
+
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+            }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
+            return View();
+        }
+
+
+
+        public ActionResult MedicalHistoryUpload()
+        {
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
+        }
+
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult MedicalHistoryUpload(HttpPostedFileBase postedFile, FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
+            if (postedFile != null)
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "MedicalHistoryUpload" + "_" + formCollection["ID"].ToString();
+
+                //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+                fileName = fileName + FileExtension;
+
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+                {
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                    return View();
+                }
+
+                //Get Upload path from Web.Config file AppSettings.
+                string path = Server.MapPath(ConfigurationManager.AppSettings["MedicalHistoryUploadUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
+
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                ////BL call..............
+                CrewBL crewBL = new CrewBL();
+
+                //crewBL.SaveMedicalHistoryUploadFilePath(int.Parse(formCollection["ID"].ToString()), fileName);  ///// do it
+
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+            }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
+            return View();
+        }
+
+
+
+        public ActionResult WorkAndRestHourLatestRecord()
+        {
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
+        }
+
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult WorkAndRestHourLatestRecord(HttpPostedFileBase postedFile, FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
+            if (postedFile != null)
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "WorkAndRestHourLatestRecord" + "_" + formCollection["ID"].ToString();
+
+                //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+                fileName = fileName + FileExtension;
+
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+                {
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                    return View();
+                }
+
+                //Get Upload path from Web.Config file AppSettings.
+                string path = Server.MapPath(ConfigurationManager.AppSettings["WorkAndRestHourLatestRecordUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
+
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                ////BL call..............
+                CrewBL crewBL = new CrewBL();
+
+                //crewBL.SaveWorkAndRestHourLatestRecordFilePath(int.Parse(formCollection["ID"].ToString()), fileName);  ///// do it
+
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+            }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
+            return View();
+        }
+
+
+
+        public ActionResult PreExistingMedicationPrescription()
+        {
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
+        }
+
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult PreExistingMedicationPrescription(HttpPostedFileBase postedFile, FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
+            if (postedFile != null)
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "PreExistingMedicationPrescription" + "_" + formCollection["ID"].ToString();
+
+                //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+                fileName = fileName + FileExtension;
+
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+                {
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                    return View();
+                }
+
+                //Get Upload path from Web.Config file AppSettings.
+                string path = Server.MapPath(ConfigurationManager.AppSettings["PreExistingMedicationPrescriptionUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
+
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                ////BL call..............
+                CrewBL crewBL = new CrewBL();
+
+                //crewBL.SavePreExistingMedicationPrescriptionFilePath(int.Parse(formCollection["ID"].ToString()), fileName);  ///// do it
+
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+            }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
+            return View();
+        }
     }
 }
