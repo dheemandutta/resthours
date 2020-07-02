@@ -752,7 +752,7 @@ namespace TM.RestHour.Controllers
             crewTemperaturePC.TemperatureModeID = crewTemperature.TemperatureModeID;
 
             crewTemperaturePC.Comment = crewTemperature.Comment;
-            return Json(crewBl.SaveCrewTemperature(crewTemperaturePC), JsonRequestBehavior.AllowGet);
+            return Json(crewBl.SaveCrewTemperature(crewTemperaturePC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetCrewDetailsForHealthByID2(int crewID)
@@ -951,18 +951,6 @@ namespace TM.RestHour.Controllers
 
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

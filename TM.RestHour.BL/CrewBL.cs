@@ -268,10 +268,10 @@ namespace TM.RestHour.BL
             CrewDAL crewDAL = new CrewDAL();
             return crewDAL.GetJoiningMedicalFileDatawByID(CrewId);
         }
-        public int SaveCrewTemperature(CrewTemperaturePOCO crewTemperature)
+        public int SaveCrewTemperature(CrewTemperaturePOCO crewTemperature, int VesselID)
         {
             CrewDAL crew = new CrewDAL();
-            return crew.SaveCrewTemperature(crewTemperature);
+            return crew.SaveCrewTemperature(crewTemperature, VesselID);
         }
 
         public List<CrewPOCO> GetAllTemperatureModeForDrp()

@@ -13,7 +13,7 @@ namespace TM.RestHour.DAL
 {
     public class CrewDAL
     {
-        public int SaveCrew(CrewPOCO crew,int VesselID)
+        public int SaveCrew(CrewPOCO crew, int VesselID)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
@@ -737,7 +737,7 @@ namespace TM.RestHour.DAL
             return crewtimesheetList;
         }
 
-        public int SaveCrewTemperature(CrewTemperaturePOCO crewTemperature)
+        public int SaveCrewTemperature(CrewTemperaturePOCO crewTemperature,  int VesselID)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
@@ -777,6 +777,7 @@ namespace TM.RestHour.DAL
 
           
             cmd.Parameters.AddWithValue("@TemperatureModeID", crewTemperature.TemperatureModeID);
+            cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
