@@ -573,10 +573,10 @@ function SaveCrewTemperature() {
             console.log(errormessage.responseText);
         }
     });
+}
 
 
-
-    function loadTemperatureData(CrewID) {
+function loadTemperatureData(CrewID) {
         var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
         $.ajax({
             url: loadposturl,
@@ -593,28 +593,31 @@ function SaveCrewTemperature() {
     }
 
 
-    function SetUpGridCrewTemperatureReport(CrewID) {
+function SetUpGridCrewTemperatureReport(CrewID) {
         var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
 
         $.fn.dataTable.ext.errMode = 'none';
-        if ($.fn.dataTable.isDataTable('#certtableReport')) {
+    if ($.fn.dataTable.isDataTable('#certtableReport')) {
             table = $('#certtableReport').DataTable();
             table.destroy();
         }
         // alert('hh');
-        var mytable = $("#certtableReport").DataTable({
-            "processing": true,
-            "serverSide": true,
-            "filter": false,
-            "orderMulti": false,
-            "bLengthChange": false,
+        var table = $("#certtableReport").DataTable({
+            "dom": 'Bfrtip',
+            "rowReorder": false,
+            "ordering": false,
+            "filter": false, // this is for disable filter (search box)
+
             "ajax": {
                 "url": loadposturl,
                 "type": "POST",
                 "datatype": "json",
-                "data": { CrewID: $('#ddlCrew').val() },
+                "data": { CrewID: $('#btnAdd').val() },
             },
             "columns": [
+                {
+                    "data": "Temperature", "name": "Temperature", "autoWidth": true
+                },
                 {
                     "data": "ReadingDate", "name": "ReadingDate", "autowidth": true
                 },
@@ -622,19 +625,12 @@ function SaveCrewTemperature() {
                     "data": "ReadingTime", "name": "ReadingTime", "autoWidth": true
                 },
                 {
-                    "data": "Temperature", "name": "Temperature", "autoWidth": true
-                },
-                {
                     "data": "Unit", "name": "Unit", "autoWidth": true
                 },
                 {
                     "data": "TemperatureMode", "name": "TemperatureMode", "autoWidth": true
-                },
-                {
-                    "data": "Comment", "name": "Unit", "Comment": true
-                },
+                }
             ]
         });
     }
 
-}

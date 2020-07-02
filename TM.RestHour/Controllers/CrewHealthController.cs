@@ -937,16 +937,13 @@ namespace TM.RestHour.Controllers
                 CrewTemperature crewTemp = new CrewTemperature();
                
                 crewTemp.ID = crewPC.ID;
-                // crew.Name = crewPC.Name;
-                crewTemp.Temperature = crewPC.Temperature;
 
-                //crew.FlagOfShip = crewPC.FlagOfShip;      //////////////////////////////// deep
+                crewTemp.Temperature = crewPC.Temperature;
                 crewTemp.ReadingDate = crewPC.ReadingDate;
                 crewTemp.ReadingTime = crewPC.ReadingTime;
-             
-                crewTemp.Comment = crewPC.Comment;
                 crewTemp.Unit = crewPC.Unit;
                 crewTemp.TemperatureMode = crewPC.TemperatureMode;
+
                 crewList.Add(crewTemp);
             }
 
