@@ -29,13 +29,20 @@
 
             <div class="row" style="border: 1px solid #eee; padding: 10px;">
 
-                <div class="col-md-4">
+
+                <div class="col-md-3">
+                    <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
+                    @*<a href="@Url.Action("HumanBody", "CrewHealth")" class="button1">Go to the Image</a>*@
+                    <button type="button" class="button1" style="float: right; right: 25px;" data-toggle="modal" data-target="#myModal" onclick="openBody();">Go to the Image</button><br /><br />
+                </div>
+
+                <div class="col-md-3">
                     @*<div class="form-group">
-                            <label for="Name Of Vessel">Name Of Vessel</label>
-                            <div class="form-control">
-                                @System.Web.HttpContext.Current.Session["ShipName"].ToString()
-                            </div>
-                        </div>*@
+                      <label for="Name Of Vessel">Name Of Vessel</label>
+                      <div class="form-control">
+                      @System.Web.HttpContext.Current.Session["ShipName"].ToString()
+                      </div>
+                </div>*@
                     <div class="form-group">
                         <label for="Crew">Crew</label>
                         @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
@@ -57,7 +64,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="Rank">Rank</label>
                         <input type="text" class="form-control" id="Rank" placeholder="Rank " />
@@ -72,7 +79,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="Sex ">Sex </label>
                         <select name="Sex" class="form-control" id="Sex">
@@ -117,19 +124,19 @@
 
                     <div class="col-md-6">
                         @*<div class="form-group" style="width: 100%;">
-                                 <label for="Temperature">Temperature</label>
-                             </div>
-                            <div class="form-group" style="width: 100%;">
-                                 <div class="col-md-6" id="sideform">
-                                     <input type="text" style="width: 150%;" class="form-control" id="Temperature" placeholder="Temperature" />
-                                 </div>
-                                 <div class="col-md-5" id="sideform">
-                                     <select name="Addiction" style="width: 100%;" class="form-control" id="Addiction">
-                                         <option value="C">°C</option>
-                                         <option value="F">°F</option>
-                                     </select>
-                                 </div>
-                             </div>*@
+                         <label for="Temperature">Temperature</label>
+                     </div>
+                    <div class="form-group" style="width: 100%;">
+                         <div class="col-md-6" id="sideform">
+                             <input type="text" style="width: 150%;" class="form-control" id="Temperature" placeholder="Temperature" />
+                         </div>
+                         <div class="col-md-5" id="sideform">
+                             <select name="Addiction" style="width: 100%;" class="form-control" id="Addiction">
+                                 <option value="C">°C</option>
+                                 <option value="F">°F</option>
+                             </select>
+                         </div>
+                     </div>*@
                         <div class="form-group" style="width: 100%;">
                             <label for="Pulse">Pulse (Beats/Minute)</label>
                             <input type="text" class="form-control" id="Pulse" placeholder="Pulse (bpm)" />
@@ -156,15 +163,15 @@
 
                     <div class="col-md-6">
                         @*<div class="form-group" style="width: 100%;">
-                                <label for="Mode">Mode</label>
-                                <select name="Mode" style="width: 100%;" class="form-control" id="Mode">
-                                    <option value="">Select</option>
-                                    <option value="Oral">Oral</option>
-                                    <option value="Rectum">Rectum</option>
-                                    <option value="Forehead">Forehead</option>
-                                    <option value="Armpit">Armpit</option>
-                                </select>
-                            </div>*@
+                        <label for="Mode">Mode</label>
+                        <select name="Mode" style="width: 100%;" class="form-control" id="Mode">
+                            <option value="">Select</option>
+                            <option value="Oral">Oral</option>
+                            <option value="Rectum">Rectum</option>
+                            <option value="Forehead">Forehead</option>
+                            <option value="Armpit">Armpit</option>
+                        </select>
+                    </div>*@
                         <div class="form-group" style="width: 100%;">
                             <label for="RespiratoryRate">Respiratory Rate</label>
                             <input type="text" class="form-control" id="RespiratoryRate" placeholder="Respiratory Rate" />
@@ -341,19 +348,132 @@
 
 
                 @*<div class="col-md-3" style="padding: 10px; margin-top:68px;">
-                        <button type="button" class="button1" id="btnAdd" onclick="return SaveCIRM();">Add</button>
-                    </div>*@
+                <button type="button" class="button1" id="btnAdd" onclick="return SaveCIRM();">Add</button>
+            </div>*@
             </div>
 
 
 
             @*<script>
-                function openBody() {
-                    window.open("@Url.Action("TestBody", "CrewHealth")");
-                }
-                </script>*@
+        function openBody() {
+            window.open("@Url.Action("TestBody", "CrewHealth")");
+        }
+        </script>*@
+
+            <script>
+            function openBody() {
+                window.open("@Url.Action("TestBody", "CrewHealth")");
+            }
+            </script>
 
 
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <div class="col-md-12">
+
+                    @*<h2>   MEDICAL ADVICE</h2>*@
+
+                    <p style="line-height:28px;">
+                        The medical assistance of the International Radio Medical Centre (C.I.R.M.) is guarantee by doctors in continuous service on call (H. 24). The controls of ships in navigation with sick or injured person on board can contact the C.I.R.M. through the following ways:
+
+                        <br />
+
+                        Phone &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>[+39 ] - 06.59290263<br /></strong>
+
+
+                        E-mail &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong> telesoccorso@cirm.it</strong>
+
+                        <br />
+
+                        <strong> Requests must carry the initials MEDRAD or DH-DOCTOR.</strong><br />
+
+                        Note: For reference please visit <a href="http://www.cirm.it/sito_eng/telesoccorso.htm" style="color:blue !important;">www.cirm.it/sito_eng/telesoccorso.htm</a>
+
+
+                        @*<strong> It should be noted that the medical service of the C.I.R.M. is completely free of charge.</strong><br />
+
+
+
+
+
+
+                      Always consult promptly CIRM, as well as in cases of injury or pathological egregious, even for all those symptoms that apparently insignificant, may evolve into pathological complexes. Operating room
+                      <br />
+                    <strong>  INFORMATION TO BE PROVIDED BY A REQUEST FOR MEDICAL ASSISTANCE ADDRESSED TO C.I.R.M.
+                     </strong>
+                        <br />
+                      Name of vessel and radio call sign. <br />
+                      Location of ship, port of departure and destination, estimated time of arrival, route and speed. <br />
+                      Patient's age, nationality, qualification. <br />
+                      Respiratory rate, pulse, temperature and if possible blood pressure. <br />
+                      Symptomatology, location and type of pain, as well as all relevant information relating to the disease. <br />
+                      In case of injury, in addition to the symptoms, you should indicate where and how the accident. <br />
+                      Medical history of the patient. <br />
+                      Medicines available on board. <br />
+                      Medicine products already administered. <br />*@
+
+                    </p>
+                </div>
+
+            </div>
+
+
+            @* /////////////////////////////////////////////////  Popup  ///////////////////////////////////////////////////////////////////*@
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:890px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                        </div>
+
+                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
+                            <fieldset class="for-panel">
+                                <legend>Upload</legend>
+                                <div class="row">
+
+                                    <div class="col-sm-3" style="width: 63%;">
+                                        <div class="form-horizontal">
+                                            <label class="col-xs-5 control-label">Photo:</label>
+                                            @*<div>
+                                            @using (Html.BeginForm("MedicalTreatment", "CrewHealth", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                            {
+                                                <span>Select File:</span>
+                                                <input type="file" name="postedFile" />
+                                                <hr />
+                                                <input type="submit" value="Upload" />
+                                                <br />
+                                                <span style="color:green">@ViewBag.Message</span>
+                                            }
+                                        </div>*@
+                                        </div>
+                                    </div>
+
+                                    @*////////////////////////////////Dheeman da///////////////////////////////////////////////////////*@
+                                    <input id="upload" name="upload" type="file" />
+                                    <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
+
+
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+
+                                    <div class="form-group">
+                                        <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
+                            @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
+                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
