@@ -13,103 +13,79 @@ namespace TM.RestHour.DAL
 {
     public class CIRMDAL
     {
-        public int SaveCIRM(CIRMPOCO cIRM/*, int VesselID*/)
+        public int SaveCIRM(CIRMPOCO cIRM, int VesselID)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("stpSaveCIRM", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@NameOfVessel", cIRM.NameOfVessel.ToString());
+            cmd.Parameters.AddWithValue("@CrewId", cIRM.CrewId);
+            cmd.Parameters.AddWithValue("@Nationality", cIRM.Nationality.ToString());
+            cmd.Parameters.AddWithValue("@Addiction", cIRM.Addiction.ToString());
+            cmd.Parameters.AddWithValue("@RankID", cIRM.RankID);
 
-            if (!String.IsNullOrEmpty(cIRM.RadioCallSign))
+            if (!String.IsNullOrEmpty(cIRM.Ethinicity))
             {
-                cmd.Parameters.AddWithValue("@RadioCallSign", cIRM.RadioCallSign.ToString());
+                cmd.Parameters.AddWithValue("@Ethinicity", cIRM.Ethinicity.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@RadioCallSign", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Ethinicity", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.PortofDestination))
+            if (!String.IsNullOrEmpty(cIRM.Frequency))
             {
-                cmd.Parameters.AddWithValue("@PortofDestination", cIRM.PortofDestination.ToString());
+                cmd.Parameters.AddWithValue("@Frequency", cIRM.Frequency.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@PortofDestination", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Frequency", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.Route))
+            if (!String.IsNullOrEmpty(cIRM.Sex))
             {
-                cmd.Parameters.AddWithValue("@Route", cIRM.Route.ToString());
+                cmd.Parameters.AddWithValue("@Sex", cIRM.Sex.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Route", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Sex", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.LocationOfShip))
+            if (!String.IsNullOrEmpty(cIRM.Age))
             {
-                cmd.Parameters.AddWithValue("@LocationOfShip", cIRM.LocationOfShip.ToString());
+                cmd.Parameters.AddWithValue("@Age", cIRM.Age.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@LocationOfShip", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Age", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.PortofDeparture))
+            if (!String.IsNullOrEmpty(cIRM.JoiningDate))
             {
-                cmd.Parameters.AddWithValue("@PortofDeparture", cIRM.PortofDeparture.ToString());
+                cmd.Parameters.AddWithValue("@JoiningDate", cIRM.JoiningDate.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@PortofDeparture", DBNull.Value);
+                cmd.Parameters.AddWithValue("@JoiningDate", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.EstimatedTimeOfarrivalhrs))
+            if (!String.IsNullOrEmpty(cIRM.Category))
             {
-                cmd.Parameters.AddWithValue("@EstimatedTimeOfarrivalhrs", cIRM.EstimatedTimeOfarrivalhrs.ToString());
+                cmd.Parameters.AddWithValue("@Category", cIRM.Category.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@EstimatedTimeOfarrivalhrs", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Category", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.Speed))
+            if (!String.IsNullOrEmpty(cIRM.SubCategory))
             {
-                cmd.Parameters.AddWithValue("@Speed", cIRM.Speed.ToString());
+                cmd.Parameters.AddWithValue("@SubCategory", cIRM.SubCategory.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Speed", DBNull.Value);
-            }
-
-            if (!String.IsNullOrEmpty(cIRM.Nationality))
-            {
-                cmd.Parameters.AddWithValue("@Nationality", cIRM.Nationality.ToString());
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@Nationality", DBNull.Value);
-            }
-
-            if (!String.IsNullOrEmpty(cIRM.Qualification))
-            {
-                cmd.Parameters.AddWithValue("@Qualification", cIRM.Qualification.ToString());
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@Qualification", DBNull.Value);
-            }
-
-            if (!String.IsNullOrEmpty(cIRM.RespiratoryRate))
-            {
-                cmd.Parameters.AddWithValue("@RespiratoryRate", cIRM.RespiratoryRate.ToString());
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@RespiratoryRate", DBNull.Value);
+                cmd.Parameters.AddWithValue("@SubCategory", DBNull.Value);
             }
 
             if (!String.IsNullOrEmpty(cIRM.Pulse))
@@ -121,13 +97,22 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@Pulse", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.Temperature))
+            if (!String.IsNullOrEmpty(cIRM.OxygenSaturation))
             {
-                cmd.Parameters.AddWithValue("@Temperature", cIRM.Temperature.ToString());
+                cmd.Parameters.AddWithValue("@OxygenSaturation", cIRM.OxygenSaturation.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Temperature", DBNull.Value);
+                cmd.Parameters.AddWithValue("@OxygenSaturation", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.RespiratoryRate))
+            {
+                cmd.Parameters.AddWithValue("@RespiratoryRate", cIRM.RespiratoryRate.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@RespiratoryRate", DBNull.Value);
             }
 
             if (!String.IsNullOrEmpty(cIRM.Systolic))
@@ -148,22 +133,76 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@Diastolic", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.Symptomatology))
+            if (!String.IsNullOrEmpty(cIRM.SymptomatologyDate))
             {
-                cmd.Parameters.AddWithValue("@Symptomatology", cIRM.Symptomatology.ToString());
+                cmd.Parameters.AddWithValue("@SymptomatologyDate", cIRM.SymptomatologyDate.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Symptomatology", DBNull.Value);
+                cmd.Parameters.AddWithValue("@SymptomatologyDate", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.LocationAndTypeOfPain))
+            if (!String.IsNullOrEmpty(cIRM.SymptomatologyTime))
             {
-                cmd.Parameters.AddWithValue("@LocationAndTypeOfPain", cIRM.LocationAndTypeOfPain.ToString());
+                cmd.Parameters.AddWithValue("@SymptomatologyTime", cIRM.SymptomatologyTime.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@LocationAndTypeOfPain", DBNull.Value);
+                cmd.Parameters.AddWithValue("@SymptomatologyTime", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Vomiting))
+            {
+                cmd.Parameters.AddWithValue("@Vomiting", cIRM.Vomiting.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Vomiting", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.FrequencyOfVomiting))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfVomiting", cIRM.FrequencyOfVomiting.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfVomiting", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Fits))
+            {
+                cmd.Parameters.AddWithValue("@Fits", cIRM.Fits.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Fits", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.FrequencyOfFits))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfFits", cIRM.FrequencyOfFits.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfFits", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.SymptomatologyDetails))
+            {
+                cmd.Parameters.AddWithValue("@SymptomatologyDetails", cIRM.SymptomatologyDetails.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SymptomatologyDetails", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicinesAdministered))
+            {
+                cmd.Parameters.AddWithValue("@MedicinesAdministered", cIRM.MedicinesAdministered.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicinesAdministered", DBNull.Value);
             }
 
             if (!String.IsNullOrEmpty(cIRM.RelevantInformationForDesease))
@@ -175,59 +214,174 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@RelevantInformationForDesease", DBNull.Value);
             }
 
-            cmd.Parameters.AddWithValue("@WhereAndHowAccidentIsCausedCHK", cIRM.WhereAndHowAccidentIsCausedCHK);
-
-            //if (!String.IsNullOrEmpty(cIRM.WhereAndHowAccidentIsCausedCHK))
-            //{
-            //    cmd.Parameters.AddWithValue("@WhereAndHowAccidentIsCausedCHK", cIRM.WhereAndHowAccidentIsCausedCHK.ToString());
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@WhereAndHowAccidentIsCausedCHK", DBNull.Value);
-            //}
-
-            if (!String.IsNullOrEmpty(cIRM.UploadMedicalHistory))
+            if (!String.IsNullOrEmpty(cIRM.WhereAndHowAccidentOccured))
             {
-                cmd.Parameters.AddWithValue("@UploadMedicalHistory", cIRM.UploadMedicalHistory.ToString());
+                cmd.Parameters.AddWithValue("@WhereAndHowAccidentOccured", cIRM.WhereAndHowAccidentOccured.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@UploadMedicalHistory", DBNull.Value);
+                cmd.Parameters.AddWithValue("@WhereAndHowAccidentOccured", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.UploadMedicinesAvailable))
+            if (cIRM.NoHurt.HasValue)
             {
-                cmd.Parameters.AddWithValue("@UploadMedicinesAvailable", cIRM.UploadMedicinesAvailable.ToString());
+                cmd.Parameters.AddWithValue("@NoHurt", cIRM.NoHurt);
             }
             else
             {
-                cmd.Parameters.AddWithValue("@UploadMedicinesAvailable", DBNull.Value);
+                cmd.Parameters.AddWithValue("@NoHurt", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.MedicalProductsAdministered))
+            if (cIRM.HurtLittleBit.HasValue)
             {
-                cmd.Parameters.AddWithValue("@MedicalProductsAdministered", cIRM.MedicalProductsAdministered.ToString());
+                cmd.Parameters.AddWithValue("@HurtLittleBit", cIRM.HurtLittleBit);
             }
             else
             {
-                cmd.Parameters.AddWithValue("@MedicalProductsAdministered", DBNull.Value);
+                cmd.Parameters.AddWithValue("@HurtLittleBit", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.WhereAndHowAccidentIsausedARA))
+            if (cIRM.HurtsLittleMore.HasValue)
             {
-                cmd.Parameters.AddWithValue("@WhereAndHowAccidentIsausedARA", cIRM.WhereAndHowAccidentIsausedARA.ToString());
+                cmd.Parameters.AddWithValue("@HurtsLittleMore", cIRM.HurtsLittleMore);
             }
             else
             {
-                cmd.Parameters.AddWithValue("@WhereAndHowAccidentIsausedARA", DBNull.Value);
+                cmd.Parameters.AddWithValue("@HurtsLittleMore", DBNull.Value);
             }
 
-            cmd.Parameters.AddWithValue("@IsEquipmentUploaded", cIRM.IsEquipmentUploaded);
-            cmd.Parameters.AddWithValue("@IsJoiningReportUloaded", cIRM.IsJoiningReportUloaded);
-            cmd.Parameters.AddWithValue("@IsMedicalHistoryUploaded", cIRM.IsMedicalHistoryUploaded);
-            cmd.Parameters.AddWithValue("@IsmedicineUploaded", cIRM.IsmedicineUploaded);
+            if (cIRM.HurtsEvenMore.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@HurtsEvenMore", cIRM.HurtsEvenMore);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@HurtsEvenMore", DBNull.Value);
+            }
 
-            cmd.Parameters.AddWithValue("@CrewId", cIRM.CrewId);
+            if (cIRM.HurtsWholeLot.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@HurtsWholeLot", cIRM.HurtsWholeLot);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@HurtsWholeLot", DBNull.Value);
+            }
+
+            if (cIRM.HurtsWoest.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@HurtsWoest", cIRM.HurtsWoest);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@HurtsWoest", DBNull.Value);
+            }
+
+            if (cIRM.JoiningMedical.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@JoiningMedical", cIRM.JoiningMedical);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@JoiningMedical", DBNull.Value);
+            }
+
+            if (cIRM.MedicineAvailableOnBoard.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@MedicineAvailableOnBoard", cIRM.MedicineAvailableOnBoard);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicineAvailableOnBoard", DBNull.Value);
+            }
+
+            if (cIRM.MedicalEquipmentOnBoard.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@MedicalEquipmentOnBoard", cIRM.MedicalEquipmentOnBoard);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicalEquipmentOnBoard", DBNull.Value);
+            }
+
+            if (cIRM.MedicalHistoryUpload.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@MedicalHistoryUpload", cIRM.MedicalHistoryUpload);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicalHistoryUpload", DBNull.Value);
+            }
+
+            if (cIRM.WorkAndRestHourLatestRecord.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@WorkAndRestHourLatestRecord", cIRM.WorkAndRestHourLatestRecord);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WorkAndRestHourLatestRecord", DBNull.Value);
+            }
+
+            if (cIRM.PreExistingMedicationPrescription.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@PreExistingMedicationPrescription", cIRM.PreExistingMedicationPrescription);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PreExistingMedicationPrescription", DBNull.Value);
+            }
+
+
+
+
+            if (!String.IsNullOrEmpty(cIRM.LocationAndTypeOfInjuryOrBurn))
+            {
+                cmd.Parameters.AddWithValue("@LocationAndTypeOfInjuryOrBurn", cIRM.LocationAndTypeOfInjuryOrBurn.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@LocationAndTypeOfInjuryOrBurn", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.FrequencyOfPain))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfPain", cIRM.FrequencyOfPain.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfPain", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.PictureUploadPath))
+            {
+                cmd.Parameters.AddWithValue("@PictureUploadPath", cIRM.PictureUploadPath.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PictureUploadPath", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.FirstAidGiven))
+            {
+                cmd.Parameters.AddWithValue("@FirstAidGiven", cIRM.FirstAidGiven.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FirstAidGiven", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.PercentageOfBurn))
+            {
+                cmd.Parameters.AddWithValue("@PercentageOfBurn", cIRM.PercentageOfBurn.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PercentageOfBurn", DBNull.Value);
+            }
+
+            //cmd.Parameters.AddWithValue("@IsEquipmentUploaded", cIRM.IsEquipmentUploaded);
+
+            cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
 
             if (cIRM.CIRMId > 0)

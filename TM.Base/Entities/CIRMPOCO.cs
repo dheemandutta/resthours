@@ -40,5 +40,84 @@ namespace TM.Base.Entities
         public int IsJoiningReportUloaded { get; set; }
 
         public int IsMedicalHistoryUploaded { get; set; }
+
+
+
+
+
+
+
+        public string Addiction { get; set; }
+
+        public int? RankID { get; set; }
+
+        public string Ethinicity { get; set; }
+
+        public string Frequency { get; set; }
+
+        public string Sex { get; set; }
+
+        public string Age { get; set; }
+
+        public string JoiningDate { get; set; }
+
+        public string Category { get; set; }
+
+        public string SubCategory { get; set; }
+
+        public string OxygenSaturation { get; set; }
+
+        public string SymptomatologyDate { get; set; }
+
+        public string SymptomatologyTime { get; set; }
+
+        public string Vomiting { get; set; }
+
+        public string FrequencyOfVomiting { get; set; }
+
+        public string Fits { get; set; }
+
+        public string FrequencyOfFits { get; set; }
+
+        public string SymptomatologyDetails { get; set; }
+
+        public string MedicinesAdministered { get; set; }
+
+        public string WhereAndHowAccidentOccured { get; set; }
+
+        public Boolean? NoHurt { get; set; }
+
+        public Boolean? HurtLittleBit { get; set; }
+
+        public Boolean? HurtsLittleMore { get; set; }
+
+        public Boolean? HurtsEvenMore { get; set; }
+
+        public Boolean? HurtsWholeLot { get; set; }
+
+        public Boolean? HurtsWoest { get; set; }
+
+        public Boolean? JoiningMedical { get; set; }
+
+        public Boolean? MedicineAvailableOnBoard { get; set; }
+
+        public Boolean? MedicalEquipmentOnBoard { get; set; }
+
+        public Boolean? MedicalHistoryUpload { get; set; }
+
+        public Boolean? WorkAndRestHourLatestRecord { get; set; }
+
+        public Boolean? PreExistingMedicationPrescription { get; set; }
+
+        public string LocationAndTypeOfInjuryOrBurn { get; set; }
+
+        public string FrequencyOfPain { get; set; }
+
+        public string PictureUploadPath { get; set; }
+
+        public string FirstAidGiven { get; set; }
+
+        public string PercentageOfBurn { get; set; }
+
     }
 }
