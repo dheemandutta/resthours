@@ -12,6 +12,7 @@ namespace TM.RestHour.DAL
 {
     public class FirstRunDAL
     {
+
         public List<ShipPOCO> ValidateFirstRun(ref string msg)
         {
 
