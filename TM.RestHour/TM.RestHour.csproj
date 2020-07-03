@@ -2941,6 +2941,7 @@
     <None Include="SQLScripts\03-UpdateDB\01-UpdateDB.sql" />
     <None Include="SQLScripts\09-Create-SPs\dbo.stpGetCrewOvertimeValue.StoredProcedure.sql" />
     <None Include="SQLScripts\09-Create-SPs\dbo.stpUpdateInActive.StoredProcedure.sql" />
+    <Content Include="SQLScripts\02.07.2020 Snehasish Script.sql" />
     <Content Include="SQLScripts\01.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\02.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\22.06.2020 RestHour Client Script.sql" />
