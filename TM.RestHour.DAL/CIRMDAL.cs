@@ -223,59 +223,59 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@WhereAndHowAccidentOccured", DBNull.Value);
             }
 
-            if (cIRM.NoHurt.HasValue)
-            {
-                cmd.Parameters.AddWithValue("@NoHurt", cIRM.NoHurt);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@NoHurt", DBNull.Value);
-            }
+            //if (cIRM.NoHurt.HasValue)
+            //{
+            //    cmd.Parameters.AddWithValue("@NoHurt", cIRM.NoHurt);
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@NoHurt", DBNull.Value);
+            //}
 
-            if (cIRM.HurtLittleBit.HasValue)
-            {
-                cmd.Parameters.AddWithValue("@HurtLittleBit", cIRM.HurtLittleBit);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@HurtLittleBit", DBNull.Value);
-            }
+            //if (cIRM.HurtLittleBit.HasValue)
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtLittleBit", cIRM.HurtLittleBit);
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtLittleBit", DBNull.Value);
+            //}
 
-            if (cIRM.HurtsLittleMore.HasValue)
-            {
-                cmd.Parameters.AddWithValue("@HurtsLittleMore", cIRM.HurtsLittleMore);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@HurtsLittleMore", DBNull.Value);
-            }
+            //if (cIRM.HurtsLittleMore.HasValue)
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtsLittleMore", cIRM.HurtsLittleMore);
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtsLittleMore", DBNull.Value);
+            //}
 
-            if (cIRM.HurtsEvenMore.HasValue)
-            {
-                cmd.Parameters.AddWithValue("@HurtsEvenMore", cIRM.HurtsEvenMore);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@HurtsEvenMore", DBNull.Value);
-            }
+            //if (cIRM.HurtsEvenMore.HasValue)
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtsEvenMore", cIRM.HurtsEvenMore);
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtsEvenMore", DBNull.Value);
+            //}
 
-            if (cIRM.HurtsWholeLot.HasValue)
-            {
-                cmd.Parameters.AddWithValue("@HurtsWholeLot", cIRM.HurtsWholeLot);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@HurtsWholeLot", DBNull.Value);
-            }
+            //if (cIRM.HurtsWholeLot.HasValue)
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtsWholeLot", cIRM.HurtsWholeLot);
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtsWholeLot", DBNull.Value);
+            //}
 
-            if (cIRM.HurtsWoest.HasValue)
-            {
-                cmd.Parameters.AddWithValue("@HurtsWoest", cIRM.HurtsWoest);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@HurtsWoest", DBNull.Value);
-            }
+            //if (cIRM.HurtsWoest.HasValue)
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtsWoest", cIRM.HurtsWoest);
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@HurtsWoest", DBNull.Value);
+            //}
 
             if (cIRM.JoiningMedical.HasValue)
             {

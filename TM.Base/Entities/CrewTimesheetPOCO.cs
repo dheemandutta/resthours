@@ -71,6 +71,13 @@ namespace TM.Base.Entities
 		public List<int> NcDay { get; set; }
 
         public int RegimeID { get; set; }
+
+
+
+
+
+        public int RankID { get; set; }
+        public string RankName { get; set; }
     }
 }
 

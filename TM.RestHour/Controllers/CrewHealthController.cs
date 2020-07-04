@@ -26,6 +26,7 @@ namespace TM.RestHour.Controllers
     {
         public ActionResult VesselDetails()
         {
+            GetAllRanksForDrp();
             GetAllCrewForDrp();
             GetAllCrewForTimeSheet();
 
@@ -50,6 +51,35 @@ namespace TM.RestHour.Controllers
             return View(crewtimesheetVM);
         }
 
+
+        //for Ranks drp
+        public void GetAllRanksForDrp()
+        {
+            CrewBL crewDAL = new CrewBL();
+            List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+
+            crewpocoList = crewDAL.GetAllRanksForDrp(int.Parse(Session["VesselID"].ToString()));
+
+
+            List<Crew> itmasterList = new List<Crew>();
+
+            foreach (CrewPOCO up in crewpocoList)
+            {
+                Crew unt = new Crew();
+                unt.RankID = up.RankID;
+                unt.RankName = up.RankName;
+
+                itmasterList.Add(unt);
+            }
+
+            ViewBag.Ranks = itmasterList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.RankName,
+                                                Value = x.RankID.ToString()
+                                            });
+
+        }
 
         public JsonResult SaveVesselDetails(VesselDetails vesselDetails)
         {
@@ -88,27 +118,28 @@ namespace TM.RestHour.Controllers
 
         public ActionResult PatientDetails()
         {
+            GetAllRanksForDrp();
             GetAllCountryForDrp();
             GetAllCrewForDrp();
             GetAllCrewForTimeSheet();
 
             CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
-            Crew c = new Crew();
-            crewtimesheetVM.Crew = c;
+            //Crew c = new Crew();
+            //crewtimesheetVM.Crew = c;
 
-            if (Convert.ToBoolean(Session["User"]) == true)
-            {
-                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
-                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
-                crewtimesheetVM.CrewAdminId = 0;
+            //if (Convert.ToBoolean(Session["User"]) == true)
+            //{
+            //    crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+            //    crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            //    crewtimesheetVM.CrewAdminId = 0;
 
-            }
-            else
-            {
-                crewtimesheetVM.Crew.ID = 0;
-                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
-                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
-            }
+            //}
+            //else
+            //{
+            //    crewtimesheetVM.Crew.ID = 0;
+            //    crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+            //    crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            //}
 
             return View(crewtimesheetVM);
         }
