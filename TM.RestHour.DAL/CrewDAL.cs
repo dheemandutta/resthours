@@ -832,7 +832,7 @@ namespace TM.RestHour.DAL
                     {
                         crewPOList.Add(new CrewTemperaturePOCO
                         {
-                            ID = Convert.ToInt32(dr["ID"]),
+                            //ID = Convert.ToInt32(dr["ID"]),
 
                             Temperature= Convert.ToDecimal(dr["Temperature"]),
                             ReadingDate = Convert.ToString(dr["ReadingDate"]),

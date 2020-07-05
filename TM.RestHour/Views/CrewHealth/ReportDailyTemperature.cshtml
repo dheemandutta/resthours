@@ -34,7 +34,7 @@
             <div class="card">
 
                 <div class="row">
-                    @Html.Hidden("loadTemperatureData", @Url.Action("GetCrewTemperaturePageWiseByCrewID", "CrewHealth"))
+                    @Html.Hidden("getcrewtemperaturepagewisebycrewID", @Url.Action("GetCrewTemperaturePageWiseByCrewID", "CrewHealth"))
 
                     <div class="col-md-8" id="sideform">
                         <div class="card">
@@ -52,7 +52,8 @@
                                     <div class="form-group">
                                         <div>
                                             <div class="col-md-6" id="sideform">
-                                                <button type="button" class="button1" id="btnAdd" onclick="return SetUpGridCrewTemperatureReport(CrewID)">Show Report</button>
+                                                @*<button type="button" class="button1" id="btnAdd" onclick="return SetUpGridCrewTemperatureReport(CrewID)">Show Report</button>*@
+                                                <input type="button" class="button1" id="ShowReport" value="Show Report">
 
                                             </div>
 
@@ -78,9 +79,10 @@
                     <table id="certtableReport" class="display" cellspacing="0" width="100%">
                         <thead>
                             <tr>
+                                <th>Temperature</th>
+
                                 <th>Reading Date</th>
                                 <th>Reading Time</th>
-                                <th>Temperature</th>
                                 <th>Unit</th>
                                 <th>Mode</th>
                             </tr>
@@ -109,7 +111,11 @@
         $(document).ready(function () {
 
             //SetUpGridCrewTemperatureReport(CrewID);
+            $('#ShowReport').click(function () {
 
+               
+                SetUpGridCrewTemperatureReport();
+            });
         });
 
         //$("#btnAdd").click(function () {

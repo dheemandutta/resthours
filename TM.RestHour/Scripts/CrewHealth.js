@@ -576,7 +576,7 @@ function SaveCrewTemperature() {
 }
 
 
-function loadTemperatureData(CrewID) {
+function loadTemperatureData() {
         var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
         $.ajax({
             url: loadposturl,
@@ -584,7 +584,7 @@ function loadTemperatureData(CrewID) {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                SetUpGridCrewTemperatureReport(CrewID);
+                SetUpGridCrewTemperatureReport();
             },
             error: function (errormessage) {
                 alert(errormessage.responseText);
@@ -592,11 +592,10 @@ function loadTemperatureData(CrewID) {
         });
     }
 
-
 function SetUpGridCrewTemperatureReport(CrewID) {
         var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
-
-        $.fn.dataTable.ext.errMode = 'none';
+    var CrewID = $('#ddlCrew').val()
+       
     if ($.fn.dataTable.isDataTable('#certtableReport')) {
             table = $('#certtableReport').DataTable();
             table.destroy();
@@ -612,7 +611,7 @@ function SetUpGridCrewTemperatureReport(CrewID) {
                 "url": loadposturl,
                 "type": "POST",
                 "datatype": "json",
-                "data": { CrewID: $('#btnAdd').val() },
+                "data": { CrewID: CrewID},
             },
             "columns": [
                 {
