@@ -596,12 +596,12 @@ function SetUpGridCrewTemperatureReport(CrewID) {
         var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
     var CrewID = $('#ddlCrew').val()
        
-    if ($.fn.dataTable.isDataTable('#certtableReport')) {
-            table = $('#certtableReport').DataTable();
+    if ($.fn.dataTable.isDataTable('#certtableReport2')) {
+            table = $('#certtableReport2').DataTable();
             table.destroy();
         }
         // alert('hh');
-        var table = $("#certtableReport").DataTable({
+        var table = $("#certtableReport2").DataTable({
             "dom": 'Bfrtip',
             "rowReorder": false,
             "ordering": false,
@@ -633,3 +633,82 @@ function SetUpGridCrewTemperatureReport(CrewID) {
         });
     }
 
+
+
+
+
+
+function Popup22(data) {
+    var mywindow = window.open('', '', 'left=0,top=0,width=1600,height=1400');
+
+    var is_chrome = Boolean(mywindow.chrome);
+
+    mywindow.document.write('<html><head><title></title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write($('#div1').html());
+    mywindow.document.write('</body></html>');
+    mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
+    is_chrome = false;
+    //alert(is_chrome);
+    if (is_chrome) {
+        mywindow.onload = function () { // wait until all resources loaded 
+            mywindow.focus(); // necessary for IE >= 10
+            mywindow.print();  // change window to mywindow
+            mywindow.close();// change window to mywindow
+        };
+    }
+    else {
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+        mywindow.print();
+        mywindow.close();
+    }
+
+    return true;
+}
+
+
+
+
+function SetUpGridCrewTemperatureReportForPrin(CrewID) {
+    var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
+    var CrewID = $('#ddlCrew').val()
+
+    if ($.fn.dataTable.isDataTable('#certtable_print22')) {
+        table = $('#certtable_print22').DataTable();
+        table.destroy();
+    }
+    // alert('hh');
+    var table = $("#certtable_print22").DataTable({
+        "dom": 'Bfrtip',
+        "rowReorder": false,
+        "ordering": false,
+        "filter": false, // this is for disable filter (search box)
+        "paging": false,
+        "bInfo": false,
+
+        "ajax": {
+            "url": loadposturl,
+            "type": "POST",
+            "datatype": "json",
+            "data": { CrewID: CrewID },
+        },
+        "columns": [
+            {
+                "data": "Temperature", "name": "Temperature", "autoWidth": true
+            },
+            {
+                "data": "ReadingDate", "name": "ReadingDate", "autowidth": true
+            },
+            {
+                "data": "ReadingTime", "name": "ReadingTime", "autoWidth": true
+            },
+            {
+                "data": "Unit", "name": "Unit", "autoWidth": true
+            },
+            {
+                "data": "TemperatureMode", "name": "TemperatureMode", "autoWidth": true
+            }
+        ]
+    });
+}

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "ReportDailyTemperature";
 }
-    <script src="~/Scripts/jquery-3.2.1.js"></script>
+<script src="~/Scripts/jquery-3.2.1.js"></script>
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
@@ -28,7 +28,7 @@
 
     <div class="row">
         <div class="col-md-5">
-            <h2 class="ta" style="color:#000;">Compliance Report</h2>
+            <h2 class="ta" style="color:#000;">Crew Temperature Report</h2>
         </div>
         <div class="col-md-7 bac">
             <div class="card">
@@ -59,7 +59,6 @@
 
                                             <div class="col-md-6" id="sideform">
                                                 <button type="button" class="button1" id="btnPrint" @*disabled="disabled"*@>Print Report</button>
-
                                             </div>
                                         </div>
                                     </div>
@@ -72,26 +71,53 @@
 
                 </div>
 
+                <div id="div1" style="display;">
+                    <hr>
+                    <input type="hidden" id="hdnrole" />
+                    <div class="" style="height:210px; overflow-y:scroll;">
+                        <table id="certtableReport2" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Temperature</th>
 
-                <hr>
-                <input type="hidden" id="hdnrole" />
-                <div class="" style="height:210px; overflow-y:scroll;">
-                    <table id="certtableReport" class="display" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Temperature</th>
+                                    <th>Reading Date</th>
+                                    <th>Reading Time</th>
+                                    <th>Unit</th>
+                                    <th>Mode</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
 
-                                <th>Reading Date</th>
-                                <th>Reading Time</th>
-                                <th>Unit</th>
-                                <th>Mode</th>
-                            </tr>
-                        </thead>
-                    </table>
                 </div>
+
             </div>
         </div>
     </div>
+
+
+    @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+    <div id="dvprint22" style="display:none;">
+
+        <hr>
+        <table id="certtable_print22" class="display" cellspacing="0" width="100%">
+            <thead align="center">
+                <tr>
+                    <th>Temperature</th>
+
+                    <th>Reading Date</th>
+                    <th>Reading Time</th>
+                    <th>Unit</th>
+                    <th>Mode</th>
+                </tr>
+            </thead>
+            <tbody align="center">
+            </tbody>
+        </table>
+
+    </div>
+    @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
 </body>
 
 
@@ -102,6 +128,8 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/themes/base/css")
 
+    @*<script src="~/Scripts/DataTables/buttons.print.min.js"></script>*@
+
     <script src="~/Scripts/toastr.min.js"></script>
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
 
@@ -110,25 +138,33 @@
 
         $(document).ready(function () {
 
-            //SetUpGridCrewTemperatureReport(CrewID);
-            $('#ShowReport').click(function () {
-
-               
-                SetUpGridCrewTemperatureReport();
-            });
+            $('#btnPrint').attr('disabled', true);
         });
 
-        //$("#btnAdd").click(function () {
-        //    SetUpGridCrewTemperatureReport(CrewID);
-        //});
 
-            //$("#ExpiryDate").datepicker({
+        $('#ShowReport').click(function () {
 
-            //    changeMonth: true,
-            //    changeYear: true,
-            //    dateFormat: 'd-M-yy',
+            $('#btnPrint').attr('disabled', false);
+            SetUpGridCrewTemperatureReport();
+        });
 
+
+        $("#btnPrint").click(function () {
+            //PrintWorkAndRestHours();
+            Popup22('');
+        });
+
+            //$("#btnAdd").click(function () {
+            //    SetUpGridCrewTemperatureReport(CrewID);
             //});
+
+                //$("#ExpiryDate").datepicker({
+
+                //    changeMonth: true,
+                //    changeYear: true,
+                //    dateFormat: 'd-M-yy',
+
+                //});
 
     </script>
 
