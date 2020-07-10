@@ -339,34 +339,59 @@ namespace TM.RestHour.Controllers
 
 
         //for VesselType drp
-        public void GetVesselTypeForDrp()
+
+
+
+        //public void GetVesselTypeForDrp()
+        //{
+        //    ShipBL shipBL = new ShipBL();
+        //    List<ShipPOCO> pocoList = new List<ShipPOCO>();
+
+        //    pocoList = shipBL.GetVesselTypeForDrp(/*int.Parse(Session["VesselID"].ToString())*/);
+
+
+        //    List<Vessel> itmasterList = new List<Vessel>();
+
+        //    foreach (ShipPOCO up in pocoList)
+        //    {
+        //        Vessel unt = new Vessel();
+        //        unt.VesselTypeID = up.VesselTypeID;
+        //        unt.Description = up.Description;
+
+        //        itmasterList.Add(unt);
+        //    }
+
+        //    ViewBag.VesselType = itmasterList.Select(x =>
+        //                                    new SelectListItem()
+        //                                    {
+        //                                        Text = x.Description,
+        //                                        Value = x.VesselTypeID.ToString()
+        //                                    });
+
+        //}
+
+
+        public JsonResult GetVesselTypeForDrp( )
         {
             ShipBL shipBL = new ShipBL();
-            List<ShipPOCO> pocoList = new List<ShipPOCO>();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
 
-            pocoList = shipBL.GetVesselTypeForDrp(/*int.Parse(Session["VesselID"].ToString())*/);
+            blockpocoList = shipBL.GetVesselTypeForDrp();
 
+            List<Vessel> blockList = new List<Vessel>();
 
-            List<Vessel> itmasterList = new List<Vessel>();
-
-            foreach (ShipPOCO up in pocoList)
+            foreach (ShipPOCO up in blockpocoList)
             {
-                Vessel unt = new Vessel();
-                unt.VesselTypeID = up.VesselTypeID;
-                unt.Description = up.Description;
+                Vessel comp = new Vessel();
+                comp.Description = up.Description;
+                comp.VesselTypeID = up.VesselTypeID;
 
-                itmasterList.Add(unt);
+                blockList.Add(comp);
             }
+            var data = blockList;
 
-            ViewBag.VesselType = itmasterList.Select(x =>
-                                            new SelectListItem()
-                                            {
-                                                Text = x.Description,
-                                                Value = x.VesselTypeID.ToString()
-                                            });
-
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
-
 
         //for VesselSubTypeByVesselTypeIDForDrp drp
         public JsonResult GetVesselSubTypeByVesselTypeIDForDrp(string VesselTypeID)
@@ -414,5 +439,30 @@ namespace TM.RestHour.Controllers
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+
+
+
+
+        public JsonResult GetVesselTypeIDFromShip()
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselTypeIDFromShip();
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.VesselTypeID = up.VesselTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
