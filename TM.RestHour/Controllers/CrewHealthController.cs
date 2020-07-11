@@ -26,6 +26,7 @@ namespace TM.RestHour.Controllers
     {
         public ActionResult VesselDetails()
         {
+            GetAllRanksForDrp();
             GetAllCrewForDrp();
             GetAllCrewForTimeSheet();
 
@@ -50,6 +51,35 @@ namespace TM.RestHour.Controllers
             return View(crewtimesheetVM);
         }
 
+
+        //for Ranks drp
+        public void GetAllRanksForDrp()
+        {
+            CrewBL crewDAL = new CrewBL();
+            List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+
+            crewpocoList = crewDAL.GetAllRanksForDrp(int.Parse(Session["VesselID"].ToString()));
+
+
+            List<Crew> itmasterList = new List<Crew>();
+
+            foreach (CrewPOCO up in crewpocoList)
+            {
+                Crew unt = new Crew();
+                unt.RankID = up.RankID;
+                unt.RankName = up.RankName;
+
+                itmasterList.Add(unt);
+            }
+
+            ViewBag.Ranks = itmasterList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.RankName,
+                                                Value = x.RankID.ToString()
+                                            });
+
+        }
 
         public JsonResult SaveVesselDetails(VesselDetails vesselDetails)
         {
@@ -88,27 +118,28 @@ namespace TM.RestHour.Controllers
 
         public ActionResult PatientDetails()
         {
+            GetAllRanksForDrp();
             GetAllCountryForDrp();
             GetAllCrewForDrp();
             GetAllCrewForTimeSheet();
 
             CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
-            Crew c = new Crew();
-            crewtimesheetVM.Crew = c;
+            //Crew c = new Crew();
+            //crewtimesheetVM.Crew = c;
 
-            if (Convert.ToBoolean(Session["User"]) == true)
-            {
-                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
-                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
-                crewtimesheetVM.CrewAdminId = 0;
+            //if (Convert.ToBoolean(Session["User"]) == true)
+            //{
+            //    crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+            //    crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            //    crewtimesheetVM.CrewAdminId = 0;
 
-            }
-            else
-            {
-                crewtimesheetVM.Crew.ID = 0;
-                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
-                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
-            }
+            //}
+            //else
+            //{
+            //    crewtimesheetVM.Crew.ID = 0;
+            //    crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+            //    crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            //}
 
             return View(crewtimesheetVM);
         }
@@ -695,64 +726,38 @@ namespace TM.RestHour.Controllers
 
         }
 
-        public JsonResult SaveCIRM(CIRM cIRM)
+        public JsonResult SaveCIRM(CIRMPOCO cIRM)
         {
             CIRMBL CIRMBL = new CIRMBL();
-            CIRMPOCO CIRMPC = new CIRMPOCO();
+            //CIRMPOCO CIRMPC = new CIRMPOCO();
 
-            CIRMPC.CIRMId = cIRM.CIRMId;
-            //CIRMPC.NameOfVessel = cIRM.NameOfVessel;
-            CIRMPC.NameOfVessel = Session["ShipName"].ToString();
-            CIRMPC.RadioCallSign = cIRM.RadioCallSign;
-            CIRMPC.PortofDestination = cIRM.PortofDestination;
-            CIRMPC.Route = cIRM.Route;
-            CIRMPC.LocationOfShip = cIRM.LocationOfShip;
-            CIRMPC.PortofDeparture = cIRM.PortofDeparture;
-            CIRMPC.EstimatedTimeOfarrivalhrs = cIRM.EstimatedTimeOfarrivalhrs;
-            CIRMPC.Speed = cIRM.Speed;
-            CIRMPC.Nationality = cIRM.Nationality;
-            CIRMPC.Qualification = cIRM.Qualification;
-            CIRMPC.RespiratoryRate = cIRM.RespiratoryRate;
-            CIRMPC.Pulse = cIRM.Pulse;
-            CIRMPC.Temperature = cIRM.Temperature;
-            CIRMPC.Systolic = cIRM.Systolic;
-            CIRMPC.Diastolic = cIRM.Diastolic;
-            CIRMPC.Symptomatology = cIRM.Symptomatology;
-            CIRMPC.LocationAndTypeOfPain = cIRM.LocationAndTypeOfPain;
-            CIRMPC.RelevantInformationForDesease = cIRM.RelevantInformationForDesease;
-            CIRMPC.WhereAndHowAccidentIsCausedCHK = cIRM.WhereAndHowAccidentIsCausedCHK;
-            CIRMPC.UploadMedicalHistory = cIRM.UploadMedicalHistory;
-            CIRMPC.UploadMedicinesAvailable = cIRM.UploadMedicinesAvailable;
-            CIRMPC.MedicalProductsAdministered = cIRM.MedicalProductsAdministered;
-            CIRMPC.WhereAndHowAccidentIsausedARA = cIRM.WhereAndHowAccidentIsausedARA;
+            //CIRMPC.CIRMId = cIRM.CIRMId;
 
-            CIRMPC.IsEquipmentUploaded = cIRM.IsEquipmentUploaded;
-            CIRMPC.IsJoiningReportUloaded = cIRM.IsJoiningReportUloaded;
-            CIRMPC.IsMedicalHistoryUploaded = cIRM.IsMedicalHistoryUploaded;
-            CIRMPC.IsmedicineUploaded = cIRM.IsmedicineUploaded;
+            //CIRMPC.CrewId = cIRM.CrewId;
+            /////////CIRMPC.NameOfVessel = Session["ShipName"].ToString();
+            //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
+            //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
+            //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
+            //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
 
-            CIRMPC.CrewId = cIRM.CrewId;
-
-            
-
-            return Json(CIRMBL.SaveCIRM(CIRMPC), JsonRequestBehavior.AllowGet);
+            return Json(CIRMBL.SaveCIRM(cIRM, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SaveCrewTemperature(CrewTemperature crewTemperature)
+        public JsonResult SaveCrewTemperature(CrewTemperaturePOCO crewTemperature)
         {
             CrewBL crewBl = new CrewBL();
-            CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
+            //CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
 
-            crewTemperaturePC.CrewID = crewTemperature.CrewID;
-            crewTemperaturePC.ReadingDate = crewTemperature.ReadingDate;
-            crewTemperaturePC.ReadingTime = crewTemperature.ReadingTime;
+            //crewTemperaturePC.CrewID = crewTemperature.CrewID;
+            //crewTemperaturePC.ReadingDate = crewTemperature.ReadingDate;
+            //crewTemperaturePC.ReadingTime = crewTemperature.ReadingTime;
 
-            crewTemperaturePC.Unit = crewTemperature.Unit;
-            crewTemperaturePC.Temperature = crewTemperature.Temperature;
-            crewTemperaturePC.TemperatureModeID = crewTemperature.TemperatureModeID;
+            //crewTemperaturePC.Unit = crewTemperature.Unit;
+            //crewTemperaturePC.Temperature = crewTemperature.Temperature;
+            //crewTemperaturePC.TemperatureModeID = crewTemperature.TemperatureModeID;
 
-            crewTemperaturePC.Comment = crewTemperature.Comment;
-            return Json(crewBl.SaveCrewTemperature(crewTemperaturePC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
+            //crewTemperaturePC.Comment = crewTemperature.Comment;
+            return Json(crewBl.SaveCrewTemperature(crewTemperature, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetCrewDetailsForHealthByID2(int crewID)

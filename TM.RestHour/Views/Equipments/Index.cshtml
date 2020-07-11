@@ -22,10 +22,6 @@
 <link href="~/Content/toastr.min.css" rel="stylesheet" />
 <script src="~/Scripts/Equipments.js"></script>
 
-@Html.Hidden("SaveEquipments", @Url.Action("SaveEquipments", "Equipments"))
-@Html.Hidden("loaddata", @Url.Action("LoadData", "Equipments"))
-@Html.Hidden("GetMedicalEquipmentByID", @Url.Action("GetMedicalEquipmentByID", "Equipments"))
-@Html.Hidden("DeleteEquipments", @Url.Action("DeleteEquipments", "Equipments"))
 <style>
     .bac {
         border-radius: 0;
@@ -48,6 +44,12 @@
         height: 450px;
     }
 </style>
+
+@Html.Hidden("SaveEquipments", @Url.Action("SaveEquipments", "Equipments"))
+@Html.Hidden("loaddata", @Url.Action("LoadData", "Equipments"))
+@Html.Hidden("GetMedicalEquipmentByID", @Url.Action("GetMedicalEquipmentByID", "Equipments"))
+@Html.Hidden("DeleteEquipments", @Url.Action("DeleteEquipments", "Equipments"))
+
 
 
 <body style="background-image: url(../background/equipment.jpg);

@@ -587,6 +587,31 @@ namespace TM.RestHour.DAL
         }
 
 
+       
 
+
+
+
+        public List<ShipPOCO> GetVesselTypeIDFromShip()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpGetVesselTypeIDFromShip", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            DataTable myTable = ds.Tables[0];
+            List<ShipPOCO> ranksList = myTable.AsEnumerable().Select(m => new ShipPOCO()
+            {
+                VesselTypeID = m.Field<int>("VesselTypeID"),
+                //Description = m.Field<string>("Description"),
+
+            }).ToList();
+
+            return ranksList;
+            con.Close();
+
+        }
     }
 }

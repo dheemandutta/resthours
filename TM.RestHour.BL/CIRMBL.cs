@@ -10,10 +10,10 @@ namespace TM.RestHour.BL
 {
     public class CIRMBL
     {
-        public int SaveCIRM(CIRMPOCO cIRM /*,int VesselID*/)
+        public int SaveCIRM(CIRMPOCO cIRM ,int VesselID)
         {
             CIRMDAL cIRMDAL = new CIRMDAL();
-            return cIRMDAL.SaveCIRM(cIRM /*, VesselID*/);
+            return cIRMDAL.SaveCIRM(cIRM , VesselID);
         }
 
         public CIRMPOCO GetCIRMByCrewId(int CrewId)
@@ -21,5 +21,8 @@ namespace TM.RestHour.BL
             CIRMDAL cIRMDAL = new CIRMDAL();
             return cIRMDAL.GetCIRMByCrewId(CrewId).FirstOrDefault();
         }
+
+
+
     }
 }

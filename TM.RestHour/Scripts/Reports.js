@@ -2182,9 +2182,7 @@ function GetDayWiseCrewDataPrint() {
         }
     });
 
-    //$('#dvprint2').show();
-
-   // setTimeout(Popup2(''),60000);
+  
 
     //debugger;
     //setRowValue('schedule', 'totals', 28, totalNormal);
@@ -3629,8 +3627,7 @@ function PrintReport2() {
     //});
 
     //if (statustext) {
-    //    $('#dvprint2').val(htmlstr);
-    //    var divtoprint = $('#dvprint2');
+
 
     //GetDayWiseCrewDataPrint();
     
@@ -5622,8 +5619,7 @@ function PrintReport2ForUser() {
     //});
 
     //if (statustext) {
-    //    $('#dvprint2').val(htmlstr);
-    //    var divtoprint = $('#dvprint2');
+
 
     //GetDayWiseCrewDataPrint();
 
