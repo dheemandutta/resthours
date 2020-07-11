@@ -281,47 +281,31 @@
                 }
                 else {
                     GetShip();
-                }
-               
-                
-
+                }                            
                 GetVesselTypeForDrp();
                 //GetVesselTypeIDFromShip();
 
-                $('#VesselTypeID').trigger("change");
+                //$('#VesselTypeID').trigger("change");
             });
 
             $('#VesselTypeID').on('change', function () {
                 //alert($('option:selected', this).text());
             
-
                 var VesselTypeID = $('#VesselTypeID').val();
                 console.log('hi');
                 console.log(VesselTypeID);
 
                 GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
-
             });
-
-
-           
-
-
+         
             $('#VesselSubTypeID').on('change', function () {
                 //alert($('option:selected', this).text());
                 //alert($(this).val());
-
                 var VesselSubTypeID = $('#VesselSubTypeID').val();
 
-
                 GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
-
             });
-
 
         </script>
     }
-
-
-
 </body>

@@ -17,6 +17,7 @@
             //drpVesselType.find('option').remove();
            // console.log(result[0].VesselTypeID);
             $('#VesselTypeID').val(result[0].VesselTypeID);
+            GetVesselSubTypeByVesselTypeIDForDrp(result[0].VesselTypeID);
             //$.each(result, function () {
             //    drpVesselType.append('<option value=' + this.VesselTypeID + '>' + this.Description + '</option>');
             //});
