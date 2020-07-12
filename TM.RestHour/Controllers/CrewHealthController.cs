@@ -913,6 +913,59 @@ namespace TM.RestHour.Controllers
             {
                 draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
                 start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+            }
+            else
+            {
+                draw = 1;
+                start = 0;
+                length = 15;
+            }
+
+            if (start == 0)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                pageIndex = (start / length) + 1;
+            }
+
+            CrewBL CrewBL = new CrewBL();
+            int totalrecords = 0;
+
+            List<CrewTemperaturePOCO> CrewTemperaturePOCOList = new List<CrewTemperaturePOCO>();
+            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref totalrecords, length, CrewID); 
+            List<CrewTemperature> crewList = new List<CrewTemperature>();
+            foreach (CrewTemperaturePOCO crewPC in CrewTemperaturePOCOList)
+            {
+                CrewTemperature crewTemp = new CrewTemperature();
+               
+                crewTemp.ID = crewPC.ID;
+
+                crewTemp.Temperature = crewPC.Temperature;
+                crewTemp.ReadingDate = crewPC.ReadingDate;
+                crewTemp.ReadingTime = crewPC.ReadingTime;
+                crewTemp.Unit = crewPC.Unit;
+                crewTemp.TemperatureMode = crewPC.TemperatureMode;
+
+                crewList.Add(crewTemp);
+            }
+
+            var data = crewList;
+
+            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCrewTemperaturePageWiseByCrewID2(int CrewID)
+        {
+            int draw, start, length;
+            int pageIndex = 0;
+
+            if (null != Request.Form.GetValues("draw"))
+            {
+                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
                 length = 1000;//int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
             }
             else
@@ -935,12 +988,12 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<CrewTemperaturePOCO> CrewTemperaturePOCOList = new List<CrewTemperaturePOCO>();
-            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref totalrecords, length, CrewID);
+            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID2(pageIndex, ref totalrecords, length, CrewID);
             List<CrewTemperature> crewList = new List<CrewTemperature>();
             foreach (CrewTemperaturePOCO crewPC in CrewTemperaturePOCOList)
             {
                 CrewTemperature crewTemp = new CrewTemperature();
-               
+
                 crewTemp.ID = crewPC.ID;
 
                 crewTemp.Temperature = crewPC.Temperature;

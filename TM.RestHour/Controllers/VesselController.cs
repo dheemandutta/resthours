@@ -464,5 +464,45 @@ namespace TM.RestHour.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetVesselSubTypeIDFromShip()
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselSubTypeIDFromShip();
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.VesselSubTypeID = up.VesselSubTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetVesselSubSubTypeIDFromShip()
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselSubSubTypeIDFromShip();
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.VesselSubSubTypeID = up.VesselSubSubTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

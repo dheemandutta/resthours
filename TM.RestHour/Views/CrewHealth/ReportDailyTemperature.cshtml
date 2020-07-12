@@ -34,7 +34,8 @@
             <div class="card">
 
                 <div class="row">
-                    @Html.Hidden("getcrewtemperaturepagewisebycrewID", @Url.Action("GetCrewTemperaturePageWiseByCrewID", "CrewHealth"))
+                    @Html.Hidden("getCrewTemperaturePageWiseByCrewID", @Url.Action("GetCrewTemperaturePageWiseByCrewID", "CrewHealth"))
+                    @Html.Hidden("getCrewTemperaturePageWiseByCrewID2", @Url.Action("GetCrewTemperaturePageWiseByCrewID2", "CrewHealth"))
 
                     <div class="col-md-8" id="sideform">
                         <div class="card">
@@ -145,7 +146,7 @@
         $('#ShowReport').click(function () {
 
             $('#btnPrint').attr('disabled', false);
-            SetUpGridCrewTemperatureReport();
+            GetCrewTemperaturePageWiseByCrewID();
         });
 
 

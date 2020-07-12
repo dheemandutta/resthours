@@ -3361,7 +3361,7 @@ function loadData2() {
 
 function SetUpGridReport() {
 
-    SetUpPrintGridReport();
+    SetUpPrintGridReport();/////////////////////////////////////////////////////
 
     var loadposturl = $('#loaddatareport').val();
     //do not throw error

@@ -592,9 +592,12 @@ function loadTemperatureData() {
         });
     }
 
-function SetUpGridCrewTemperatureReport(CrewID) {
-        var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
-    var CrewID = $('#ddlCrew').val()
+function GetCrewTemperaturePageWiseByCrewID(CrewID) {
+
+    GetCrewTemperaturePageWiseByCrewID2();
+
+    var loadposturl = $('#getCrewTemperaturePageWiseByCrewID').val();
+    var CrewID = $('#ddlCrew').val();
        
     if ($.fn.dataTable.isDataTable('#certtableReport2')) {
             table = $('#certtableReport2').DataTable();
@@ -602,10 +605,11 @@ function SetUpGridCrewTemperatureReport(CrewID) {
         }
         // alert('hh');
         var table = $("#certtableReport2").DataTable({
-            "dom": 'Bfrtip',
-            "rowReorder": false,
-            "ordering": false,
+            "processing": true, // for show progress bar
+            "serverSide": true, // for process server side
             "filter": false, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "bLengthChange": false, //disable entries dropdown
 
             "ajax": {
                 "url": loadposturl,
@@ -645,7 +649,7 @@ function Popup22(data) {
 
     mywindow.document.write('<html><head><title></title>');
     mywindow.document.write('</head><body >');
-    mywindow.document.write($('#div1').html());
+    mywindow.document.write($('#dvprint22').html());
     mywindow.document.write('</body></html>');
     mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
     is_chrome = false;
@@ -670,8 +674,8 @@ function Popup22(data) {
 
 
 
-function SetUpGridCrewTemperatureReportForPrin(CrewID) {
-    var loadposturl = $('#getcrewtemperaturepagewisebycrewID').val();
+function GetCrewTemperaturePageWiseByCrewID2(CrewID) {
+    var loadposturl = $('#getCrewTemperaturePageWiseByCrewID2').val();
     var CrewID = $('#ddlCrew').val()
 
     if ($.fn.dataTable.isDataTable('#certtable_print22')) {
@@ -680,10 +684,11 @@ function SetUpGridCrewTemperatureReportForPrin(CrewID) {
     }
     // alert('hh');
     var table = $("#certtable_print22").DataTable({
-        "dom": 'Bfrtip',
-        "rowReorder": false,
-        "ordering": false,
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
         "filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "bLengthChange": false, //disable entries dropdown
         "paging": false,
         "bInfo": false,
 

@@ -32,6 +32,9 @@
                         @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
 
                         @Html.Hidden("myUrlGetVesselTypeIDFromShip", @Url.Action("GetVesselTypeIDFromShip", "Vessel"))
+                        @Html.Hidden("myUrlGetVesselSubTypeIDFromShip", @Url.Action("GetVesselSubTypeIDFromShip", "Vessel"))
+                        @Html.Hidden("myUrlGetVesselSubSubTypeIDFromShip", @Url.Action("GetVesselSubSubTypeIDFromShip", "Vessel"))
+
                         @Html.Hidden("myUrlid0", @Url.Action("GetVesselTypeForDrp", "Vessel"))
                         @Html.Hidden("myUrlid1", @Url.Action("GetVesselSubTypeByVesselTypeIDForDrp", "Vessel"))
                         @Html.Hidden("myUrlid2", @Url.Action("GetVesselSubSubTypeByVesselSubTypeIDForDrp", "Vessel"))
@@ -283,7 +286,6 @@
                     GetShip();
                 }                            
                 GetVesselTypeForDrp();
-                //GetVesselTypeIDFromShip();
 
                 //$('#VesselTypeID').trigger("change");
             });
@@ -300,10 +302,13 @@
          
             $('#VesselSubTypeID').on('change', function () {
                 //alert($('option:selected', this).text());
-                //alert($(this).val());
+        
                 var VesselSubTypeID = $('#VesselSubTypeID').val();
+                //console.log('hi');
+                //console.log(VesselSubTypeID);
 
                 GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
+                
             });
 
         </script>

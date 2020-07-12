@@ -613,5 +613,50 @@ namespace TM.RestHour.DAL
             con.Close();
 
         }
+
+        public List<ShipPOCO> GetVesselSubTypeIDFromShip()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpGetVesselSubTypeIDFromShip", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            DataTable myTable = ds.Tables[0];
+            List<ShipPOCO> ranksList = myTable.AsEnumerable().Select(m => new ShipPOCO()
+            {
+                VesselSubTypeID = m.Field<int>("VesselSubTypeID"),
+                //Description = m.Field<string>("Description"),
+
+            }).ToList();
+
+            return ranksList;
+            con.Close();
+
+        }
+
+        public List<ShipPOCO> GetVesselSubSubTypeIDFromShip()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpGetVesselSubSubTypeIDFromShip", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            DataTable myTable = ds.Tables[0];
+            List<ShipPOCO> ranksList = myTable.AsEnumerable().Select(m => new ShipPOCO()
+            {
+                VesselSubSubTypeID = m.Field<int>("VesselSubSubTypeID"),
+                //Description = m.Field<string>("Description"),
+
+            }).ToList();
+
+            return ranksList;
+            con.Close();
+
+        }
+
     }
 }

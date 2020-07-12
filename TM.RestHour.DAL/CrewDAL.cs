@@ -848,6 +848,49 @@ namespace TM.RestHour.DAL
             return crewPOList;
         }
 
+        public List<CrewTemperaturePOCO> GetCrewTemperaturePageWiseByCrewID2(int pageIndex, ref int recordCount, int length, int crewID)
+        {
+
+            List<CrewTemperaturePOCO> crewPOList = new List<CrewTemperaturePOCO>();
+            List<CrewTemperaturePOCO> crewPO = new List<CrewTemperaturePOCO>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetCrewTemperaturePageWieByCrewID2", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@PageIndex", pageIndex);
+                    cmd.Parameters.AddWithValue("@PageSize", length);
+                    cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
+                    cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.AddWithValue("@CrewID", crewID);
+                    con.Open();
+
+                    DataSet ds = new DataSet();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        crewPOList.Add(new CrewTemperaturePOCO
+                        {
+                            //ID = Convert.ToInt32(dr["ID"]),
+
+                            Temperature = Convert.ToDecimal(dr["Temperature"]),
+                            ReadingDate = Convert.ToString(dr["ReadingDate"]),
+                            ReadingTime = Convert.ToString(dr["ReadingTime"]),
+                            Unit = Convert.ToString(dr["Unit"]),
+                            TemperatureMode = Convert.ToString(dr["TemperatureMode"]),
+                        });
+                    }
+                    recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
+                    con.Close();
+                }
+            }
+            return crewPOList;
+        }
+
 
 
 

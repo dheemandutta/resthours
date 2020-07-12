@@ -1,4 +1,65 @@
-﻿function GetVesselTypeIDFromShip(/*VesselTypeID*/) {
+﻿function GetVesselSubSubTypeIDFromShip() {
+    var x = $("#myUrlGetVesselSubSubTypeIDFromShip").val();
+
+    $.ajax({
+        url: x,
+        type: "POST",
+        //////data: JSON.stringify({ /*'VesselTypeID': VesselTypeID*/ }),
+        data:
+        {
+            //////    ID: ID
+        },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+
+
+
+
+            $('#VesselSubSubTypeID').val(result[0].VesselSubSubTypeID);
+           /////////////////////// GetVesselSubSubTypeByVesselTypeIDForDrp(result[0].VesselSubTypeID);
+
+
+
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+function GetVesselSubTypeIDFromShip() {
+    var x = $("#myUrlGetVesselSubTypeIDFromShip").val();
+
+    $.ajax({
+        url: x,
+        type: "POST",
+        //////data: JSON.stringify({ /*'VesselTypeID': VesselTypeID*/ }),
+        data:
+        {
+            //////    ID: ID
+        },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            //var drpVesselType = $('#VesselTypeID');
+            //drpVesselType.find('option').remove();
+            // console.log(result[0].VesselTypeID);
+            $('#VesselSubTypeID').val(result[0].VesselSubTypeID);
+            GetVesselSubSubTypeByVesselSubTypeIDForDrp(result[0].VesselSubTypeID);
+            //$.each(result, function () {
+            //    drpVesselType.append('<option value=' + this.VesselTypeID + '>' + this.Description + '</option>');
+            //});
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+function GetVesselTypeIDFromShip(/*VesselTypeID*/) {
     var x = $("#myUrlGetVesselTypeIDFromShip").val();
     
     $.ajax({
@@ -47,6 +108,8 @@ function GetVesselTypeForDrp(/*VesselTypeID*/) {
             var drpVesselType = $('#VesselTypeID');
             drpVesselType.find('option').remove();
 
+            drpVesselType.append('<option value=' + '0' + '>' + 'Select' + '</option>');
+
             $.each(result, function () {
                 drpVesselType.append('<option value=' + this.VesselTypeID + '>' + this.Description + '</option>');
             });
@@ -74,10 +137,12 @@ function GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID) {
             var drpVesselSubType = $('#VesselSubTypeID');
             drpVesselSubType.find('option').remove();
 
+            drpVesselSubType.append('<option value=' + '0' + '>' + 'Select' + '</option>');
+
             $.each(result, function () {
                 drpVesselSubType.append('<option value=' + this.VesselSubTypeID + '>' + this.SubTypeDescription + '</option>');
             });
-
+            GetVesselSubTypeIDFromShip();
 
         },
         error: function (errormessage) {
@@ -88,8 +153,8 @@ function GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID) {
 
 function GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID) {
     var x = $("#myUrlid2").val();
-
-
+    console.log(VesselSubTypeID);
+    console.log('hiii');
     $.ajax({
         url: x,
         type: "POST",
@@ -101,10 +166,12 @@ function GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID) {
             var drpVesselSubSubType = $('#VesselSubSubTypeID');
             drpVesselSubSubType.find('option').remove();
 
+            drpVesselSubSubType.append('<option value=' + '0' + '>' + 'Select' + '</option>');
+
             $.each(result, function () {
                 drpVesselSubSubType.append('<option value=' + this.VesselSubSubTypeID + '>' + this.VesselSubSubTypeDecsription + '</option>');
             });
-
+            GetVesselSubSubTypeIDFromShip();
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
