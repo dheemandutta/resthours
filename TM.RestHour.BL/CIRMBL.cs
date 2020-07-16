@@ -23,6 +23,15 @@ namespace TM.RestHour.BL
         }
 
 
+        public ShipPOCO GetCrewForCIRMPatientDetails()
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            ShipPOCO ship = new ShipPOCO();
 
+            return cIRMDAL.GetCrewForCIRMPatientDetails().FirstOrDefault();
+            //ship = shipDAL.GetCrewForCIRMPatientDetails().FirstOrDefault();
+            //ship.IMONumber = ship.IMONumber.Substring(ship.IMONumber.Length - 7);
+            //return ship;
+        }
     }
 }

@@ -45,7 +45,8 @@
     }
 </style>
 
-@Html.Hidden("SaveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))    
+@Html.Hidden("SaveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
+@Html.Hidden("getCrewForCIRMPatientDetails", @Url.Action("GetCrewForCIRMPatientDetails", "CrewHealth"))
 
 <body style="background-image: url(../background/Doctors.jpg);
     background-size: cover;">
@@ -81,11 +82,12 @@
                     <div class="form-group">
                         <label for="Crew">Crew</label>
                         @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
-                        @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                        @*@Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })*@
+                        <input type="text" class="form-control" id="CrewName" placeholder=" " disabled />
                     </div>
                     <div class="form-group">
                         <label for="Nationality">Nationality</label>
-                        @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control", @id = "Nationality" })
+                        @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster , "Select" , new { @class = "form-control" , @id = "Nationality"  })
                     </div>
                     <div class="form-group">
                         <label for="Addiction">Addiction</label>
@@ -117,18 +119,19 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="Sex ">Sex </label>
-                        <select name="Sex" class="form-control" id="Sex">
-                            <option value="M">M</option>
-                            <option value="F">F</option>
-                        </select>
+                        @*<select name="Sex" class="form-control" id="Sex">
+            <option value="M">M</option>
+            <option value="F">F</option>
+        </select>*@
+                        <input type="text" class="form-control" id="Sex" placeholder=" " disabled/>
                     </div>
                     <div class="form-group">
-                        <label for=" Age">Age </label>
-                        <input type="text" class="form-control" id="Age" placeholder="Age " />
+                        <label for=" Age">Date Of Birth  </label>
+                        <input type="text" class="form-control" id="Age" placeholder="Age " disabled/>
                     </div>
                     <div class="form-group">
                         <label for=" JoiningDate">Joining Date </label>
-                        <input type="text" class="form-control" id="JoiningDate" placeholder="JoiningDate " />
+                        <input type="text" class="form-control" id="JoiningDate" placeholder="JoiningDate " maxlength="4" size="4" />
                     </div>
                 </div>
 
@@ -528,10 +531,13 @@
         $(document).ready(function () {
 
             SetUpGrid();
+            GetCrewForCIRMPatientDetails();
 
+            document.getElementById("Nationality").disabled = true;
+            document.getElementById("ddlRank").disabled = true;
         });
 
-
+     
 
 
         $("#JoiningDate").datepicker({

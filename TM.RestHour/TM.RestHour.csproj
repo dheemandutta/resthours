@@ -2948,6 +2948,7 @@
     <Content Include="SQLScripts\04.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\06.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\10.07.2020 Full Script Of RestHourClient.sql" />
+    <Content Include="SQLScripts\16.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\22.06.2020 RestHour Client Script.sql" />
     <Content Include="SQLScripts\29.06.2020 Snehasish RestHourClient Script.sql" />
     <Content Include="SQLScripts\27.06.2020 Part - 2 Snehasish _RestHourClient script.sql" />

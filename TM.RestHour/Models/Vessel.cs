@@ -80,5 +80,18 @@ namespace TM.RestHour.Models
         public int? HelicopterDeck { get; set; }
 
         public int? HelicopterWinchingArea { get; set; }
+
+
+
+
+
+
+
+        public string CrewName { get; set; }
+        public int RankID { get; set; }
+        public string Gender { get; set; }
+        public int CountryID { get; set; }
+        public string DOB { get; set; }
+
     }
 }

@@ -317,8 +317,8 @@ namespace TM.RestHour.DAL
                     if (item["VesselTypeID"] != null)
                         crewtimesheet.VesselTypeID = Convert.ToInt32(item["VesselTypeID"].ToString());
 
-                    //if (item["VesselSubTypeID"] != null)
-                    //    crewtimesheet.VesselSubTypeID = Convert.ToInt32(item["VesselSubTypeID"].ToString());
+                    if (item["VesselSubTypeID"] != null)
+                        crewtimesheet.VesselSubTypeID = Convert.ToInt32(item["VesselSubTypeID"].ToString());
 
                     if (item["VesselSubSubTypeID"] != null)
                         crewtimesheet.VesselSubSubTypeID = Convert.ToInt32(item["VesselSubSubTypeID"].ToString());

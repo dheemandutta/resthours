@@ -50,6 +50,15 @@
 
     @Html.Hidden("SaveVesselDetails", @Url.Action("SaveVesselDetails", "CrewHealth"))
 
+
+    @Html.Hidden("myUrlGetVesselTypeIDFromShip", @Url.Action("GetVesselTypeIDFromShip", "CrewHealth"))
+    @Html.Hidden("myUrlGetVesselSubTypeIDFromShip", @Url.Action("GetVesselSubTypeIDFromShip", "CrewHealth"))
+    @Html.Hidden("myUrlGetVesselSubSubTypeIDFromShip", @Url.Action("GetVesselSubSubTypeIDFromShip", "CrewHealth"))
+
+    @Html.Hidden("myUrlid0", @Url.Action("GetVesselTypeForDrp", "CrewHealth"))
+    @Html.Hidden("myUrlid1", @Url.Action("GetVesselSubTypeByVesselTypeIDForDrp", "CrewHealth"))
+    @Html.Hidden("myUrlid2", @Url.Action("GetVesselSubSubTypeByVesselSubTypeIDForDrp", "CrewHealth"))
+
     <div class="row">
         <div class="col-md-2">
             <h3 style=" color:#000;">CIRM - Vessel Details</h3>
@@ -65,6 +74,33 @@
                         <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
                         <button type="button" class="button1" style="float: right; right: 25px;" data-toggle="modal" data-target="#myModal" onclick="openBody();">Go to the Image</button><br /><br />
                     </div>*@
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VesselType">Vessel Type</label>
+                                @*@Html.DropDownListFor(model => model.VesselTypeID, (IEnumerable<SelectListItem>)ViewBag.VesselType, "Select", new { @class = "form-control" })*@
+                                <select id="VesselTypeID" name="VesselTypeID" class="form-control" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VesselSubType">Vessel Sub Type</label>
+                                <select id="VesselSubTypeID" name="VesselSubTypeID" class="form-control" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VesselSubSubType">Vessel Sub Sub Type</label>
+                                <select id="VesselSubSubTypeID" name="VesselSubSubTypeID" class="form-control" disabled></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
 
                 <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
                     <div class="form-group">
@@ -233,10 +269,41 @@
 
         $(document).ready(function () {
 
-           
+            GetVesselTypeForDrp();
 
+            //$('#VesselTypeID').trigger("change");
+        });
+
+        $('#VesselTypeID').on('change', function () {
+            //alert($('option:selected', this).text());
+
+            var VesselTypeID = $('#VesselTypeID').val();
+            console.log('hi');
+            console.log(VesselTypeID);
+
+            GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
+        });
+
+        $('#VesselSubTypeID').on('change', function () {
+            //alert($('option:selected', this).text());
+
+            var VesselSubTypeID = $('#VesselSubTypeID').val();
+            //console.log('hi');
+            //console.log(VesselSubTypeID);
+
+            GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
 
         });
+
+
+
+
+
+
+
+
+
+
 
         $("#DateOfReportingGMT").datepicker({
 
