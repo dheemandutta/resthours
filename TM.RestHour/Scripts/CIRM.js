@@ -195,3 +195,42 @@ function GetCrewForCIRMPatientDetails() {
     });
     return false;
 }
+
+
+
+function GetCrewForCIRMPatientDetailsByCrew(ID) {
+
+    var x = $("#getCrewForCIRMPatientDetailsByCrew").val();
+    $.ajax({
+        url: x,
+        data:
+        {
+            ID: ID
+        },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            $('#ID').val(result.ID);
+
+           // $('#CrewName').val(result.CrewName);
+            $('#ddlRank').val(result.RankID);
+            $('#Sex').val(result.Gender);
+            $('#Nationality').val(result.CountryID);
+            $('#Age').val(result.DOB);
+
+            //$('#myModal').modal('show');
+            //$('#btnUpdate').show();
+            //$('#btnAdd').hide();
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
+}
+
+
+

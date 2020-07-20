@@ -48,6 +48,8 @@
 <body style="background-image: url(../background/Doctors.jpg);
     background-size: cover;">
 
+    @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
+
     @Html.Hidden("SaveVesselDetails", @Url.Action("SaveVesselDetails", "CrewHealth"))
 
 
@@ -108,10 +110,8 @@
                     </div>
                     <div class="form-group">
                         <label for="VesselName">Vessel Name</label>
-                        <div class="form-control">
                             @*@System.Web.HttpContext.Current.Session["ShipName"].ToString()*@
-                            <input type="text" class="form-control" id="VesselName" placeholder="VesselName" />
-                        </div>
+                        <input type="text" class="form-control" id="VesselName" placeholder="VesselName" disabled />
                     </div>
                     <div class="form-group">
                         <label for="Call Sign">Call Sign</label>
@@ -123,7 +123,59 @@
                     </div>
                     <div class="form-group">
                         <label for="TimeOfReportingGMT">Time Of Reporting GMT</label>
-                        <input type="text" class="form-control" id="TimeOfReportingGMT" placeholder="Time Of Reporting GMT" />
+                        @*<input type="text" class="form-control" id="TimeOfReportingGMT" placeholder="Time Of Reporting GMT" />*@
+                        <select name="account" class="form-control" id="TimeOfReportingGMT" required="">
+                            <option value="">Select</option>
+                            <option value="00:00">00:00</option>
+                            <option value="00:30">00:30</option>
+                            <option value="01:00">01:00</option>
+                            <option value="01:30">01:30</option>
+                            <option value="02:00">02:00</option>
+                            <option value="02:30">02:30</option>
+                            <option value="03:00">03:00</option>
+                            <option value="03:30">03:30</option>
+                            <option value="04:00">04:00</option>
+                            <option value="04:30">04:30</option>
+                            <option value="05:00">05:00</option>
+                            <option value="05:30">05:30</option>
+                            <option value="06:00">06:00</option>
+                            <option value="06:30">06:30</option>
+                            <option value="07:00">07:00</option>
+                            <option value="07:30">07:30</option>
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:00">23:00</option>
+                            <option value="23:30">23:30</option>
+
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="PresentLocation">Present Location </label>
@@ -154,7 +206,59 @@
                     </div>
                     <div class="form-group">
                         <label for="ETA Time GMT">ETA Time GMT</label>
-                        <input type="text" class="form-control" id="ETATimeGMT" placeholder="ETA Time GMT" />
+                        @*<input type="text" class="form-control" id="ETATimeGMT" placeholder="ETA Time GMT" />*@
+                        <select name="account" class="form-control" id="ETATimeGMT" required="">
+                            <option value="">Select</option>
+                            <option value="00:00">00:00</option>
+                            <option value="00:30">00:30</option>
+                            <option value="01:00">01:00</option>
+                            <option value="01:30">01:30</option>
+                            <option value="02:00">02:00</option>
+                            <option value="02:30">02:30</option>
+                            <option value="03:00">03:00</option>
+                            <option value="03:30">03:30</option>
+                            <option value="04:00">04:00</option>
+                            <option value="04:30">04:30</option>
+                            <option value="05:00">05:00</option>
+                            <option value="05:30">05:30</option>
+                            <option value="06:00">06:00</option>
+                            <option value="06:30">06:30</option>
+                            <option value="07:00">07:00</option>
+                            <option value="07:30">07:30</option>
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:00">23:00</option>
+                            <option value="23:30">23:30</option>
+
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="AgentDetails">Agent Details</label>
@@ -169,7 +273,59 @@
                     </div>
                     <div class="form-group">
                         <label for="NearestPortETATimeGMT">Nearest Port ETA Time GMT</label>
-                        <input type="text" class="form-control" id="NearestPortETATimeGMT" placeholder="Nearest Port ETA Time GMT" />
+                        @*<input type="text" class="form-control" id="NearestPortETATimeGMT" placeholder="Nearest Port ETA Time GMT" />*@
+                        <select name="account" class="form-control" id="NearestPortETATimeGMT" required="">
+                            <option value="">Select</option>
+                            <option value="00:00">00:00</option>
+                            <option value="00:30">00:30</option>
+                            <option value="01:00">01:00</option>
+                            <option value="01:30">01:30</option>
+                            <option value="02:00">02:00</option>
+                            <option value="02:30">02:30</option>
+                            <option value="03:00">03:00</option>
+                            <option value="03:30">03:30</option>
+                            <option value="04:00">04:00</option>
+                            <option value="04:30">04:30</option>
+                            <option value="05:00">05:00</option>
+                            <option value="05:30">05:30</option>
+                            <option value="06:00">06:00</option>
+                            <option value="06:30">06:30</option>
+                            <option value="07:00">07:00</option>
+                            <option value="07:30">07:30</option>
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:00">23:00</option>
+                            <option value="23:30">23:30</option>
+
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="WindSpeed">WindSpeed</label>
@@ -218,30 +374,30 @@
 
 
 
-            <div class="row" style="border: 1px solid #eee; padding: 10px;">
-                <div class="col-md-12">
+            @*<div class="row" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="col-md-12">
 
 
-                    <p style="line-height:28px;">
-                        The medical assistance of the International Radio Medical Centre (C.I.R.M.) is guarantee by doctors in continuous service on call (H. 24). The controls of ships in navigation with sick or injured person on board can contact the C.I.R.M. through the following ways:
+                        <p style="line-height:28px;">
+                            The medical assistance of the International Radio Medical Centre (C.I.R.M.) is guarantee by doctors in continuous service on call (H. 24). The controls of ships in navigation with sick or injured person on board can contact the C.I.R.M. through the following ways:
 
-                        <br />
+                            <br />
 
-                        Phone &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>[+39 ] - 06.59290263<br /></strong>
+                            Phone &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>[+39 ] - 06.59290263<br /></strong>
 
 
-                        E-mail &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong> telesoccorso@cirm.it</strong>
+                            E-mail &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong> telesoccorso@cirm.it</strong>
 
-                        <br />
+                            <br />
 
-                        <strong> Requests must carry the initials MEDRAD or DH-DOCTOR.</strong><br />
+                            <strong> Requests must carry the initials MEDRAD or DH-DOCTOR.</strong><br />
 
-                        Note: For reference please visit <a href="http://www.cirm.it/sito_eng/telesoccorso.htm" style="color:blue !important;">www.cirm.it/sito_eng/telesoccorso.htm</a>
+                            Note: For reference please visit <a href="http://www.cirm.it/sito_eng/telesoccorso.htm" style="color:blue !important;">www.cirm.it/sito_eng/telesoccorso.htm</a>
 
-                    </p>
-                </div>
+                        </p>
+                    </div>
 
-            </div>
+                </div>*@
         </div>
 
     </div>
@@ -272,6 +428,7 @@
             GetVesselTypeForDrp();
 
             //$('#VesselTypeID').trigger("change");
+            GetShip();
         });
 
         $('#VesselTypeID').on('change', function () {

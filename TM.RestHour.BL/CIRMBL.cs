@@ -33,5 +33,11 @@ namespace TM.RestHour.BL
             //ship.IMONumber = ship.IMONumber.Substring(ship.IMONumber.Length - 7);
             //return ship;
         }
+
+        public ShipPOCO GetCrewForCIRMPatientDetailsByCrew(int ID)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.GetCrewForCIRMPatientDetailsByCrew(ID).FirstOrDefault();
+        }
     }
 }

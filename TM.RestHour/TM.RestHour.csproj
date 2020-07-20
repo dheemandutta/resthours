@@ -3075,6 +3075,7 @@
     <Content Include="Views\CrewHealth\MedicineAvailableOnBoard.cshtml" />
     <Content Include="Views\CrewHealth\PreExistingMedicationPrescription.cshtml" />
     <Content Include="Views\CrewHealth\WorkAndRestHourLatestRecord.cshtml" />
+    <Content Include="Views\CrewHealth\UploadPistures.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3094,6 +3095,7 @@
     <Folder Include="SQLScripts\06-Initialization\" />
     <Folder Include="SQLScripts\08-MenuScript\" />
     <Folder Include="UploadMedicalInventoryUploads\" />
+    <Folder Include="UploadPistures\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\helppp\" />
     <Folder Include="WorkAndRestHourLatestRecord\" />

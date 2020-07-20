@@ -309,3 +309,36 @@ function GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID) {
         }
     });
 }
+
+
+
+
+function GetShip() {
+
+    var x = $("#myUrlNew").val();
+    $.ajax({
+        url: x,
+        data:
+        {
+            //    ID: ID
+        },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            $('#ID').val(result.ID);
+
+            $('#VesselName').val(result.ShipName);
+
+            //$('#myModal').modal('show');
+            //$('#btnUpdate').show();
+            //$('#btnAdd').hide();
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
+}

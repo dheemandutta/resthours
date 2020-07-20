@@ -53,6 +53,24 @@ namespace TM.RestHour.Controllers
             return View(crewtimesheetVM);
         }
 
+        [HttpGet]
+        public JsonResult GetShipByID()
+        {
+            ShipBL shipBL = new ShipBL();
+            ShipPOCO shipPC = new ShipPOCO();
+
+            shipPC = shipBL.GetShipByID();
+
+            Vessel um = new Vessel();
+
+            um.ID = shipPC.ID;
+
+            um.ShipName = shipPC.ShipName;
+
+            var cm = um;
+
+            return Json(cm, JsonRequestBehavior.AllowGet);
+        }
 
         //for Ranks drp
         public void GetAllRanksForDrp()
@@ -1447,6 +1465,76 @@ namespace TM.RestHour.Controllers
 
 
 
+        public ActionResult UploadPistures()
+        {
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
+        }
+
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult UploadPistures(HttpPostedFileBase postedFile, FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
+            if (postedFile != null)
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "UploadPistures" + "_" + formCollection["ID"].ToString();
+
+                //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+                fileName = fileName + FileExtension;
+
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+                {
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                    return View();
+                }
+
+                //Get Upload path from Web.Config file AppSettings.
+                string path = Server.MapPath(ConfigurationManager.AppSettings["UploadPisturesUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
+
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                ////BL call..............
+                CrewBL crewBL = new CrewBL();
+
+                //crewBL.SavePreExistingMedicationPrescriptionFilePath(int.Parse(formCollection["ID"].ToString()), fileName);  ///// do it
+
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+            }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
+            return View();
+        }
+
 
 
 
@@ -1477,6 +1565,28 @@ namespace TM.RestHour.Controllers
 
 
 
+        [HttpGet]
+        public JsonResult GetCrewForCIRMPatientDetailsByCrew(int ID)
+        {
+            CIRMBL shipBL = new CIRMBL();
+            ShipPOCO shipPC = new ShipPOCO();
+
+            shipPC = shipBL.GetCrewForCIRMPatientDetailsByCrew(ID);
+
+            Vessel um = new Vessel();
+
+            um.ID = shipPC.ID;
+
+            //um.CrewName = shipPC.CrewName;
+            um.RankID = shipPC.RankID;
+            um.Gender = shipPC.Gender;
+            um.CountryID = shipPC.CountryID;
+            um.DOB = shipPC.DOB;
+
+            var cm = um;
+
+            return Json(cm, JsonRequestBehavior.AllowGet);
+        }
 
 
 

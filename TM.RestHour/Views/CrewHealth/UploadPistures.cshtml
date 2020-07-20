@@ -1,0 +1,111 @@
+﻿
+@model TM.RestHour.Models.CrewTimesheetViewModel
+@{
+    ViewBag.Title = "UploadPistures";
+}
+
+
+<body style="background-image: url(../background/crewimport.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="ta">Upload Pistures</h2>
+        </div>
+        <div class="col-md-6">
+            <div class="import">
+                <div class="row">
+                    <div class="col-md-6">
+
+
+                        Upload
+                        @using (Html.BeginForm("UploadPistures", "CrewHealth", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="panel b">
+                                <div class="form-group">
+                                    <label for="Crew">Crew</label>
+                                    @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
+                                    @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                </div>
+                                <div id="collapse05" class="panel-body">
+
+                                    <div class="row">
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+                                                <span style="font-size:20px;">Select File:</span>
+                                                <br />
+                                                <input type="file" name="postedFile" accept="application/pdf,image/gif, image/jpeg" />
+                                                <br />
+                                                <input type="submit" value="Upload" class="btn btn-warning" />
+                                                <br /><br />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <input type="hidden" id="FormID" />
+                                    </div>
+
+                                    <div class="mt-lg">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("PatientDetails", "CrewHealth")';return false;">Back To Patient Details Page</button>
+                        }
+
+                        <span style="color:green">@ViewBag.UploadMessage</span>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imgStudent').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).ready(function () {
+
+    });
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryValidate")
+    @Scripts.Render("~/bundles/jquerySteps")
+    @Scripts.Render("~/bundles/demoWizard")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/datetimePicker")
+    @Scripts.Render("~/bundles/filestyle")
+    @Scripts.Render("~/bundles/tagsinput")
+    @Scripts.Render("~/bundles/chosen")
+    @Scripts.Render("~/bundles/sliderCtrl")
+    @Scripts.Render("~/bundles/inputmask")
+    @Scripts.Render("~/bundles/wysiwyg")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/ColorPicker")
+    @Scripts.Render("~/bundles/demoForms")
+    @Scripts.Render("~/bundles/select2")
+    @Scripts.Render("~/bundles/sparklines")
+
+
+}

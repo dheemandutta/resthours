@@ -48,6 +48,10 @@
 @Html.Hidden("SaveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
 @Html.Hidden("getCrewForCIRMPatientDetails", @Url.Action("GetCrewForCIRMPatientDetails", "CrewHealth"))
 
+@Html.Hidden("uploadPistures", Url.Action("UploadPistures", "CrewHealth", new { id = Model.ID }))
+
+@Html.Hidden("getCrewForCIRMPatientDetailsByCrew", @Url.Action("GetCrewForCIRMPatientDetailsByCrew", "CrewHealth"))
+
 <body style="background-image: url(../background/Doctors.jpg);
     background-size: cover;">
 
@@ -82,12 +86,12 @@
                     <div class="form-group">
                         <label for="Crew">Crew</label>
                         @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
-                        @*@Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })*@
-                        <input type="text" class="form-control" id="CrewName" placeholder=" " disabled />
+                        @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                        @*<input type="text" class="form-control" id="CrewName" placeholder=" " disabled />*@
                     </div>
                     <div class="form-group">
                         <label for="Nationality">Nationality</label>
-                        @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster , "Select" , new { @class = "form-control" , @id = "Nationality"  })
+                        @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control", @id = "Nationality" })
                     </div>
                     <div class="form-group">
                         <label for="Addiction">Addiction</label>
@@ -120,14 +124,14 @@
                     <div class="form-group">
                         <label for="Sex ">Sex </label>
                         @*<select name="Sex" class="form-control" id="Sex">
-            <option value="M">M</option>
-            <option value="F">F</option>
-        </select>*@
-                        <input type="text" class="form-control" id="Sex" placeholder=" " disabled/>
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select>*@
+                        <input type="text" class="form-control" id="Sex" placeholder=" " disabled />
                     </div>
                     <div class="form-group">
                         <label for=" Age">Date Of Birth  </label>
-                        <input type="text" class="form-control" id="Age" placeholder="Age " disabled/>
+                        <input type="text" class="form-control" id="Age" placeholder="Age " disabled />
                     </div>
                     <div class="form-group">
                         <label for=" JoiningDate">Joining Date </label>
@@ -289,6 +293,7 @@
                         <div class="form-group">
                             <label for="Vomiting">Vomiting</label>
                             <select name="Vomiting" style="width: 100%;" class="form-control" id="Vomiting">
+                                <option value="">Select</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
@@ -300,6 +305,7 @@
                         <div class="form-group">
                             <label for="Fits">Fits</label>
                             <select name="Fits" style="width: 100%;" class="form-control" id="Fits">
+                                <option value="">Select</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
@@ -385,6 +391,12 @@
                         <input type="checkbox" name="uploaddoc" id="PreExistingMedicationPrescription" value="1">  Pre Existing Medication Prescription
                         <button type="button" onclick="location.href='@Url.Action("PreExistingMedicationPrescription", "CrewHealth")';return false;">Upload </button>
                         </br>
+
+                        <input type="checkbox" name="uploaddoc" id="UploadPistures" value="1">  Upload Pistures
+                        <button type="button" onclick="location.href='@Url.Action("UploadPistures", "CrewHealth")';return false;">Upload </button>
+                        <button type="button" class="button1" id="" onclick="return UploadPistures();">Add</button>
+
+                        </br>
                     </div>
                 </div>
 
@@ -397,14 +409,14 @@
                         <label for="FrequencyOfPain">Frequency Of Pain</label>
                         <input type="text" class="form-control" id="FrequencyOfPain" placeholder="Frequency Of Pain" />
                     </div>
-                    <div class="form-group">
-                        <span style="font-size:20px;">Upload Pistures:</span>
-                        <br />
-                        <input type="file" name="postedFile" accept="application/pdf,image/gif, image/jpeg" />
-                        <br />
-                        <input type="submit" value="Upload" class="btn btn-warning" />
-                        <br /><br />
-                    </div>
+                    @*<div class="form-group">
+                            <span style="font-size:20px;">Upload Pistures:</span>
+                            <br />
+                            <input type="file" name="postedFile" accept="application/pdf,image/gif, image/jpeg" />
+                            <br />
+                            <input type="submit" value="Upload" class="btn btn-warning" />
+                            <br /><br />
+                        </div>*@
                 </div>
 
                 <div class="col-md-4">
@@ -531,13 +543,32 @@
         $(document).ready(function () {
 
             SetUpGrid();
-            GetCrewForCIRMPatientDetails();
+            //GetCrewForCIRMPatientDetails();
 
             document.getElementById("Nationality").disabled = true;
             document.getElementById("ddlRank").disabled = true;
+
+            $('#FrequencyOfVomiting').hide();
+            $('#FrequencyOfFits').hide();
         });
 
-     
+        $('#ddlCrew').on('change', function () {
+            //alert($('option:selected', this).text());
+
+            var ID = $('#ddlCrew').val();
+            console.log('hi');
+            console.log(ID);
+
+            GetCrewForCIRMPatientDetailsByCrew(ID);
+        });
+
+        $('#Vomiting').change(function () {
+            $('#FrequencyOfVomiting').show();
+        });
+
+        $('#Fits').change(function () {
+            $('#FrequencyOfFits').show();
+        });
 
 
         $("#JoiningDate").datepicker({
@@ -555,6 +586,15 @@
             dateFormat: 'd-M-yy',
 
         });
+
+
+
+
+
+        function UploadPistures() {
+            var url = $("#uploadPistures").val();
+            location.href = url;
+        }
 
 
     </script>

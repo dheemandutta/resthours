@@ -521,5 +521,66 @@ namespace TM.RestHour.DAL
             return crewtimesheetList;
         }
 
+
+
+
+        public List<ShipPOCO> GetCrewForCIRMPatientDetailsByCrew(int ID)
+        {
+            List<ShipPOCO> prodPOList = new List<ShipPOCO>();
+            List<ShipPOCO> prodPO = new List<ShipPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetCrewForCIRMPatientDetailsByCrew", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", ID);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+                    con.Close();
+                }
+            }
+            return ConvertDataTableToCIRMByCrewId2List(ds);
+        }
+
+        private List<ShipPOCO> ConvertDataTableToCIRMByCrewId2List(DataSet ds)
+        {
+            List<ShipPOCO> crewtimesheetList = new List<ShipPOCO>();
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    ShipPOCO crewtimesheet = new ShipPOCO();
+
+                    if (item["ID"] != null)
+                        crewtimesheet.ID = Convert.ToInt32(item["ID"].ToString());
+
+                    //if (item["CrewName"] != null)
+                    //    crewtimesheet.CrewName = item["CrewName"].ToString();
+
+                    if (item["RankID"] != null)
+                        crewtimesheet.RankID = Convert.ToInt32(item["RankID"].ToString());
+
+                    if (item["Gender"] != null)
+                        crewtimesheet.Gender = item["Gender"].ToString();
+
+                    if (item["CountryID"] != null)
+                        crewtimesheet.CountryID = Convert.ToInt32(item["CountryID"].ToString());
+
+                    if (item["DOB"] != null)
+                        crewtimesheet.DOB = item["DOB"].ToString();
+
+
+                    crewtimesheetList.Add(crewtimesheet);
+                }
+            }
+
+
+            return crewtimesheetList;
+        }
     }
 }
