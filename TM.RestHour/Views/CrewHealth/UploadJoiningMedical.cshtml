@@ -3,6 +3,10 @@
     ViewBag.Title = "UploadJoiningMedical";
 }
 
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
 
 <body style="background-image: url(../background/crewimport.jpg);
     background-size: cover;">
@@ -53,7 +57,9 @@
 
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("PatientDetails", "CrewHealth")';return false;">Back To Patient Details Page</button>
+                            @*<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("PatientDetails", "CrewHealth")';return false;">Back To Patient Details Page</button>*@
+                            <button type="button" class="btn btn-primary" style="width:86px; background-color:crimson; color:aliceblue" onclick="window.close();">Close</button>
+
                         }
 
                         <span style="color:green">@ViewBag.UploadMessage</span>
@@ -69,6 +75,30 @@
 </body>
 
 
+
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryValidate")
+        @Scripts.Render("~/bundles/jquerySteps")
+        @Scripts.Render("~/bundles/demoWizard")
+        @Scripts.Render("~/bundles/moment")
+        @Scripts.Render("~/bundles/datetimePicker")
+        @Scripts.Render("~/bundles/filestyle")
+        @Scripts.Render("~/bundles/tagsinput")
+        @Scripts.Render("~/bundles/chosen")
+        @Scripts.Render("~/bundles/sliderCtrl")
+        @Scripts.Render("~/bundles/inputmask")
+        @Scripts.Render("~/bundles/wysiwyg")
+        @Scripts.Render("~/bundles/moment")
+        @Scripts.Render("~/bundles/ColorPicker")
+        @Scripts.Render("~/bundles/demoForms")
+        @Scripts.Render("~/bundles/select2")
+        @Scripts.Render("~/bundles/sparklines")*@
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+}
 
 
 
@@ -87,34 +117,22 @@
 
 
     $(document).ready(function () {
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
 
+        var me = getUrlVars()["CrewID"];
+        $("#ddlCrew").val(me);
     });
 
 </script>
 
 
-
-
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryValidate")
-    @Scripts.Render("~/bundles/jquerySteps")
-    @Scripts.Render("~/bundles/demoWizard")
-    @Scripts.Render("~/bundles/moment")
-    @Scripts.Render("~/bundles/datetimePicker")
-    @Scripts.Render("~/bundles/filestyle")
-    @Scripts.Render("~/bundles/tagsinput")
-    @Scripts.Render("~/bundles/chosen")
-    @Scripts.Render("~/bundles/sliderCtrl")
-    @Scripts.Render("~/bundles/inputmask")
-    @Scripts.Render("~/bundles/wysiwyg")
-    @Scripts.Render("~/bundles/moment")
-    @Scripts.Render("~/bundles/ColorPicker")
-    @Scripts.Render("~/bundles/demoForms")
-    @Scripts.Render("~/bundles/select2")
-    @Scripts.Render("~/bundles/sparklines")
-
-
-}
 

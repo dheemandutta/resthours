@@ -375,28 +375,33 @@
                     </div>
                     <div class="form-group">
                         <input type="checkbox" name="uploaddoc" id="JoiningMedical" value="1"> Joining Medical
-                        <button type="button" onclick="location.href='@Url.Action("UploadJoiningMedical", "CrewHealth")';return false;">Upload </button>
+                        @*<button type="button" onclick="location.href='@Url.Action("UploadJoiningMedical", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:18%;" onclick="return UploadJoiningMedical();" id="btnUploadJoiningMedical">Upload</button>
                         </br>
                         <input type="checkbox" name="uploaddoc" id="MedicineAvailableOnBoard" value="1"> Medicine Available On Board
-                        <button type="button" onclick="location.href='@Url.Action("MedicineAvailableOnBoard", "CrewHealth")';return false;">Upload </button>
+                        @*<button type="button" onclick="location.href='@Url.Action("MedicineAvailableOnBoard", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:18%;" onclick="return MedicineAvailableOnBoard();" id="btnMedicineAvailableOnBoard">Upload</button>
                         </br>
                         <input type="checkbox" name="uploaddoc" id="MedicalEquipmentOnBoard" value="1">  Medical Equipment On Board
-                        <button type="button" onclick="location.href='@Url.Action("MedicalEquipmentOnBoard", "CrewHealth")';return false;">Upload </button>
+                        @*<button type="button" onclick="location.href='@Url.Action("MedicalEquipmentOnBoard", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:18%;" onclick="return MedicalEquipmentOnBoard();" id="btnMedicalEquipmentOnBoard">Upload</button>
                         </br>
                         <input type="checkbox" name="uploaddoc" id="MedicalHistoryUpload" value="1"> Medical History Upload
-                        <button type="button" onclick="location.href='@Url.Action("MedicalHistoryUpload", "CrewHealth")';return false;">Upload </button>
+                        @*<button type="button" onclick="location.href='@Url.Action("MedicalHistoryUpload", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:18%;" onclick="return MedicalHistoryUpload();" id="btnMedicalHistoryUpload">Upload</button>
                         </br>
                         <input type="checkbox" name="uploaddoc" id="WorkAndRestHourLatestRecord" value="1"> Work And Rest Hour Latest Record
-                        <button type="button" onclick="location.href='@Url.Action("WorkAndRestHourLatestRecord", "CrewHealth")';return false;">Upload</button>
+                        @*<button type="button" onclick="location.href='@Url.Action("WorkAndRestHourLatestRecord", "CrewHealth")';return false;">Upload</button>*@
+                        <button type="button" class="button1" style="width:18%;" onclick="return WorkAndRestHourLatestRecord();" id="btnWorkAndRestHourLatestRecord">Upload</button>
                         </br>
                         <input type="checkbox" name="uploaddoc" id="PreExistingMedicationPrescription" value="1">  Pre Existing Medication Prescription
-                        <button type="button" onclick="location.href='@Url.Action("PreExistingMedicationPrescription", "CrewHealth")';return false;">Upload </button>
+                        @*<button type="button" onclick="location.href='@Url.Action("PreExistingMedicationPrescription", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:18%;" onclick="return PreExistingMedicationPrescription();" id="btnPreExistingMedicationPrescription">Upload</button>
                         </br>
 
                         <input type="checkbox" name="uploaddoc" id="UploadPistures" value="1">  Upload Pistures
                         @*<button type="button" onclick="location.href='@Url.Action("UploadPistures", "CrewHealth")';return false;">Upload </button>*@
-                        <button type="button" class="button1" onclick="return UploadPistures();" id="btnUploadPistures">Upload</button>
-
+                        <button type="button" class="button1" style="width:18%;" onclick="return UploadPistures();" id="btnUploadPistures">Upload</button>
                         </br>
                     </div>
                 </div>
@@ -552,6 +557,12 @@
             $('#FrequencyOfVomiting').hide();
             $('#FrequencyOfFits').hide();
 
+            $('#btnUploadJoiningMedical').hide();
+            $('#btnMedicineAvailableOnBoard').hide();
+            $('#btnMedicalEquipmentOnBoard').hide();
+            $('#btnMedicalHistoryUpload').hide();
+            $('#btnWorkAndRestHourLatestRecord').hide();
+            $('#btnPreExistingMedicationPrescription').hide();
             $('#btnUploadPistures').hide();
         });
 
@@ -564,6 +575,12 @@
 
             GetCrewForCIRMPatientDetailsByCrew(ID);
 
+            $('#btnUploadJoiningMedical').show();
+            $('#btnMedicineAvailableOnBoard').show();
+            $('#btnMedicalEquipmentOnBoard').show();
+            $('#btnMedicalHistoryUpload').show();
+            $('#btnWorkAndRestHourLatestRecord').show();
+            $('#btnPreExistingMedicationPrescription').show();
             $('#btnUploadPistures').show();
         });
 
@@ -592,27 +609,39 @@
 
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
         //function UploadPistures() {
         //    var url = $("#uploadPistures").val();
         //    location.href = window.open( url + "?CrewID=" + $("#ddlCrew").val());
         //}
 
+        function UploadJoiningMedical() {
+            window.open("@Url.Action("UploadJoiningMedical", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function MedicineAvailableOnBoard() {
+            window.open("@Url.Action("MedicineAvailableOnBoard", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function MedicalEquipmentOnBoard() {
+            window.open("@Url.Action("MedicalEquipmentOnBoard", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function MedicalHistoryUpload() {
+            window.open("@Url.Action("MedicalHistoryUpload", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function WorkAndRestHourLatestRecord() {
+            window.open("@Url.Action("WorkAndRestHourLatestRecord", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+         function PreExistingMedicationPrescription() {
+            window.open("@Url.Action("PreExistingMedicationPrescription", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
 
         function UploadPistures() {
-            window.open("@Url.Action("uploadPistures", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+            window.open("@Url.Action("UploadPistures", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
         }
+
 
 
     </script>
