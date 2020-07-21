@@ -48,7 +48,8 @@
 @Html.Hidden("SaveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
 @Html.Hidden("getCrewForCIRMPatientDetails", @Url.Action("GetCrewForCIRMPatientDetails", "CrewHealth"))
 
-@Html.Hidden("uploadPistures", Url.Action("UploadPistures", "CrewHealth", new { id = Model.ID }))
+@*@Html.Hidden("uploadPistures", @Url.Action("UploadPistures", "CrewHealth"))*@
+
 
 @Html.Hidden("getCrewForCIRMPatientDetailsByCrew", @Url.Action("GetCrewForCIRMPatientDetailsByCrew", "CrewHealth"))
 
@@ -393,8 +394,8 @@
                         </br>
 
                         <input type="checkbox" name="uploaddoc" id="UploadPistures" value="1">  Upload Pistures
-                        <button type="button" onclick="location.href='@Url.Action("UploadPistures", "CrewHealth")';return false;">Upload </button>
-                        <button type="button" class="button1" id="" onclick="return UploadPistures();">Add</button>
+                        @*<button type="button" onclick="location.href='@Url.Action("UploadPistures", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" onclick="return UploadPistures();" id="btnUploadPistures">Upload</button>
 
                         </br>
                     </div>
@@ -550,6 +551,8 @@
 
             $('#FrequencyOfVomiting').hide();
             $('#FrequencyOfFits').hide();
+
+            $('#btnUploadPistures').hide();
         });
 
         $('#ddlCrew').on('change', function () {
@@ -560,6 +563,8 @@
             console.log(ID);
 
             GetCrewForCIRMPatientDetailsByCrew(ID);
+
+            $('#btnUploadPistures').show();
         });
 
         $('#Vomiting').change(function () {
@@ -591,9 +596,22 @@
 
 
 
+
+
+
+
+
+
+
+
+        //function UploadPistures() {
+        //    var url = $("#uploadPistures").val();
+        //    location.href = window.open( url + "?CrewID=" + $("#ddlCrew").val());
+        //}
+
+
         function UploadPistures() {
-            var url = $("#uploadPistures").val();
-            location.href = url;
+            window.open("@Url.Action("uploadPistures", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
         }
 
 
