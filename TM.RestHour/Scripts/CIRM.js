@@ -30,6 +30,39 @@
 }
 
 
+
+function clearTextBox() {
+    $('#CIRMId').val("");
+    //$('#VesselName').val("");
+    $('#ddlCrew').val("");
+    $('#Ethinicity').val("");
+    $('#Addiction').val("");
+    $('#Frequency').val("");
+    $('#JoiningDate').val("");
+    $('#Category').val("");
+    $('#SubCategory').val("");
+    $('#Pulse').val("");
+    $('#RespiratoryRate').val("");
+    $('#OxygenSaturation').val("");
+    $('#Systolic').val("");
+    $('#Diastolic').val("");
+    $('#SymptomatologyDate').val("");
+    $('#SymptomatologyTime').val("");
+    $('#Vomiting').val("");
+    $('#FrequencyOfVomiting').val("");
+    $('#Fits').val("");
+    $('#FrequencyOfFits').val("");
+    $('#SymptomatologyDetails').val("");
+    $('#MedicinesAdministered').val("");
+    $('#RelevantInformationForDesease').val("");
+    $('#WhereAndHowAccidentOccured').val("");
+    $('#LocationAndTypeOfInjuryOrBurn').val("");
+    $('#FrequencyOfPain').val("");
+    $('#PictureUploadPath').val("");
+    $('#FirstAidGiven').val("");
+    $('#PercentageOfBurn').val("");
+}
+
 function SaveCIRM() {
 
     //alert($('textarea#Comments').val());
@@ -115,51 +148,41 @@ function SaveCIRM() {
             //,
 
 
+            success: function (result) {
+                //loadData();
+                $('#myModal').modal('hide');
+                // alert('Added Successfully');
 
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-full-width",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
 
-            success: function (response) {
-                //debugger;
-                if (response.result == 'Redirect') {
-                    //show successfull message
-                    //alert('Added Successfully');
+                toastr.success("Added Successfully");
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-bottom-full-width",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
-                    toastr.success("Added Successfully");
-
-                   // clearTextBox();     ///////////////////////////////////////////////
-
-                    $('#btnAdd1').show();
-                }
-                else if (response.result == 'Error') {
-                    alert('Data not saved,Please try again');
-                }
+                clearTextBox();
             },
-
-
-
             error: function (errormessage) {
                 console.log(errormessage.responseText);
             }
         });
     }
 }
+
+
 
 
 function GetCrewForCIRMPatientDetails() {

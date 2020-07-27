@@ -1493,6 +1493,11 @@ namespace TM.RestHour.Controllers
         [TraceFilterAttribute]
         public ActionResult UploadPistures(HttpPostedFileBase postedFile, FormCollection formCollection)
         {
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c; 
             //AdmissionFormBL admissionBl = new AdmissionFormBL();
             if (postedFile != null)
             {

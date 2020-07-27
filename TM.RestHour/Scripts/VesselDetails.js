@@ -9,12 +9,20 @@
         $('#VesselName').css('border-color', 'lightgrey');
     }
 
+    if ($('#CallSign').val().length === 0) {
+        $('#CallSign').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#CallSign').css('border-color', 'lightgrey');
+    }
+
     return isValid;
 }
 
 function clearTextBox() {
     $('#ID').val("");
-    $('#VesselName').val("");
+    //$('#VesselName').val("");
     $('#CallSign').val("");
     $('#DateOfReportingGMT').val("");
     $('#TimeOfReportingGMT').val("");
