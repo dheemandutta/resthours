@@ -35,71 +35,91 @@
     background-size: cover;">
 
     <div class="row">
-        <div class="col-md-8">
-            <h2 class="ta" style="color:#000;">Medical Consultant</h2>
+        <div class="col-md-5">
+            <h2 class="ta" style="color:#000;">Medical Consultancy</h2>
         </div>
 
-        <div class="col-md-4 bac">
-            <div>
+        <div class="col-md-7 bac">
+
+
+
+            <div class="col-md-8">
+                <img src="../MedicalConsultancy/DocOnCall.jpg" style="width:665px; height:460px; text-align:center;" />
+            </div>
+
+
+
+            @*<div>
                 <form>
                     <div class="form-group">
                         <input type="hidden" id="DoctorID" />
                     </div>
+
+                    <img src="../MedicalConsultancy/DosOnCall.jpg" width="600" height="400">
+
                     <div class="row">
+
+
+
                         <div class="col-md-12">
 
 
-                            <div class="form-group">
-                                <label for="DoctorName">Doctor Name</label>
-                                <input type="text" class="form-control" id="DoctorName" placeholder="Doctor Name" />
-                            </div>
-                            <div class="form-group">
-                                <label for=" DoctorEmail">Email</label>
-                                <input type="email" class="form-control email" id="DoctorEmail" placeholder="Doctor Email" />
-                            </div>
-                            <div class="form-group">
-                                <label for="Speciality">SpecialityID</label>
-                                @Html.DropDownListFor(model => model.SpecialityID, (IEnumerable<SelectListItem>)ViewBag.Consultant, "Select", new { @class = "form-control" })
-                            </div>
-                            <div class="form-group">
-                                <label for="Comment">Comment</label>
-                                <textarea class="form-control" id="Comment" cols="7" rows="2"></textarea>
-                            </div>
-                            <button type="button" class="button1" id="btnAdd" onclick="return AddConsultant();" style="float: right; right: 82px;">Add</button>
+                        <div class="form-group">
+                            <label for="DoctorName">Doctor Name</label>
+                            <input type="text" class="form-control" id="DoctorName" placeholder="Doctor Name" />
                         </div>
+                        <div class="form-group">
+                            <label for=" DoctorEmail">Email</label>
+                            <input type="email" class="form-control email" id="DoctorEmail" placeholder="Doctor Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Speciality">SpecialityID</label>
+                            @Html.DropDownListFor(model => model.SpecialityID, (IEnumerable<SelectListItem>)ViewBag.Consultant, "Select", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="Comment">Comment</label>
+                            <textarea class="form-control" id="Comment" cols="7" rows="2"></textarea>
+                        </div>
+                        <button type="button" class="button1" id="btnAdd" onclick="return AddConsultant();" style="float: right; right: 82px;">Add</button>
+                    </div>
 
 
 
-                        @* <div class="col-md-6">
-        <div class="form-group">
-            <label for="Weight">Weight</label>
-            <input type="text" class="form-control" id="Weight" placeholder="Weight" />
-        </div>
-        <div class="form-group">
-            <label for="BMI ">BMI </label>
-            <input type="text" class="form-control" id="BMI" placeholder="BMI" />
-        </div>
-        <div class="form-group">
-            <label for="BP">BP</label>
-            <input type="text" class="form-control" id="BP" placeholder="BP" />
-        </div>
-        <div class="form-group">
-            <label for="BloodSugerLevel">Blood Sugar Level</label>
-            <input type="text" class="form-control" id="BloodSugarLevel" placeholder="BloodSugarLevel" />
-        </div>
-        <div class="form-group">
-            <label for="UrineTest">Urine Test</label>
-            <input id="UrineTest" type="checkbox"/>
-        </div>
-
-                        
 
 
-                    </div>*@
+                        /////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+                         <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Weight">Weight</label>
+                                    <input type="text" class="form-control" id="Weight" placeholder="Weight" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="BMI ">BMI </label>
+                                    <input type="text" class="form-control" id="BMI" placeholder="BMI" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="BP">BP</label>
+                                    <input type="text" class="form-control" id="BP" placeholder="BP" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="BloodSugerLevel">Blood Sugar Level</label>
+                                    <input type="text" class="form-control" id="BloodSugarLevel" placeholder="BloodSugarLevel" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="UrineTest">Urine Test</label>
+                                    <input id="UrineTest" type="checkbox"/>
+                                </div>
+                    </div>
                     </div>
                 </form>
-            </div>
-            </div>
+            </div>*@
+        </div>
         </div>
     </body>
 

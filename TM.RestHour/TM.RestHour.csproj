@@ -200,6 +200,7 @@
     <Compile Include="Controllers\MvcExtensions.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PatientProblemController.cs" />
+    <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\RankPermissionController.cs" />
     <Compile Include="Controllers\RanksController.cs" />
     <Compile Include="Controllers\RegimeController.cs" />
@@ -2225,6 +2226,7 @@
     <Content Include="link\js\jquery.min.js" />
     <Content Include="link\js\resume.js" />
     <Content Include="link\js\resume.min.js" />
+    <Content Include="MedicalConsultancy\DocOnCall.jpg" />
     <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
@@ -2829,6 +2831,7 @@
     <Content Include="MedicalHistory\Medical Fermin.pdf" />
     <Content Include="Import\IMOcrewlistForm5.xlsx" />
     <Content Include="MedicalInventory\MedicalInventory.xlsx" />
+    <Content Include="COVIDPLAN.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\RESTHOUR  Installer.pubxml" />
@@ -2949,6 +2952,7 @@
     <Content Include="SQLScripts\06.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\10.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\16.07.2020 Full Script Of RestHourClient.sql" />
+    <Content Include="SQLScripts\20.08.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\21.07.2020 Full Script Of RestHourClient.sql" />
     <Content Include="SQLScripts\22.06.2020 RestHour Client Script.sql" />
     <Content Include="SQLScripts\29.06.2020 Snehasish RestHourClient Script.sql" />
@@ -3077,6 +3081,7 @@
     <Content Include="Views\CrewHealth\PreExistingMedicationPrescription.cshtml" />
     <Content Include="Views\CrewHealth\WorkAndRestHourLatestRecord.cshtml" />
     <Content Include="Views\CrewHealth\UploadPistures.cshtml" />
+    <Content Include="Views\Plans\Index.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
