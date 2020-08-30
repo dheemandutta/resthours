@@ -27,7 +27,7 @@
 @Html.Hidden("GetMedicineByID", @Url.Action("GetMedicineByID", "Equipments"))
 @Html.Hidden("DeleteMedicine", @Url.Action("DeleteMedicine", "Equipments"))
 
-
+@Html.Hidden("loadData2Print", @Url.Action("LoadData2Print", "Equipments"))
 
 <style>
     .bac {
@@ -176,20 +176,35 @@
                                     </div>
 
                                 </div>
-                               <button type="button" class="button1" style="width:auto" id="btnDownloadInventory">Download Medical Inventory</button><br /><br />
+                                <button type="button" class="button1" style="width:auto" id="btnDownloadInventory">Download Medical Inventory</button><br /><br />
                             </div>
                         </div>
                     </div>
 
 
 
-                  
+                    <div id="dvprint2" style="display:none;">
+                        @*<img src="~/companylogo/companylogo.png" />*@
+                        Medicine Inventory Report
+                        <hr>
+                        <table id="certtable_print2" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th align="left">Medicine Name</th>
+                                    <th align="left">Quantity</th>
+                                    <th align="left">Expiry Date</th>
+                                    <th align="left">Location </th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                    </div>
 
 
 
                     @*<div class="col-md-7 bac">
-                            <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
-                        </div>*@
+            <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
+        </div>*@
 
 
                     <div class="col-md-3 bac">
@@ -253,7 +268,7 @@
         $(document).ready(function () {
 
             SetUpGrid2();
-            SetUpPrintGridReport();
+            SetUpGridloadData2Print();
 
         });
 
@@ -301,10 +316,12 @@
 
 
 
-        $("#btnPrint").click(function () {
+        $("#btnDownloadInventory").click(function () {
             //PrintTest('');
             Popup2('');
         });
+
+
 
     </script>
 
