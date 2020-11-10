@@ -88,7 +88,9 @@
                     </div>
                     <div class="form-group">
                         <label for="Nationality">Nationality</label>
-                        <input type="text" class="form-control" id="Nationality" placeholder="Nationality" />
+                        @*<input type="text" class="form-control" id="Nationality" placeholder="Nationality" />*@
+                        @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
+
                     </div>
                     <div class="form-group">
                         <label for="Pulse (bpm)">Pulse (bpm)</label>

@@ -50,5 +50,7 @@ namespace TM.RestHour.Models
         public string UploadUrineReport { get; set; }
 
         public int CrewID { get; set; }
+
+        public int CrewNameID { get; set; }
     }
 }

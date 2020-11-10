@@ -9,6 +9,7 @@
         padding: 0px;
         margin: 0px;
     }
+
     table th, table td {
         padding: 1px;
         text-align: left;
@@ -27,6 +28,8 @@
     @Html.Hidden("printReport29", @Url.Action("HTML_Report2", "ReportsNCReportByMonth"))*@
 @Html.Hidden("GetNonComplianceDetails", @Url.Action("GetNCDetails", "Reports"))
 @Html.Hidden("getNonComplianceInfo", @Url.Action("GetNonComplianceInfo", "Reports"))
+
+@Html.Hidden("GetNonComplianceDetailsForMV", @Url.Action("GetNCDetails", "Reports"))
 
 <body style="background-image: url(../background/report.jpg);
     background-size: cover;">
@@ -61,13 +64,30 @@
 
 
                                     <div class="form-group">
-                                        <div>
+                                        <div style="float: left;">
                                             <div class="col-md-7" id="sideform">
-                                                <button type="button" class="button1" id="btnAdd" @*disabled="disabled"*@ onclick="return GetNonComplianceDetails();">Show Report</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div style="float: left;">
+                                            <div class="col-md-7" id="sideform">
                                             </div>
                                         </div>
                                     </div>
 
+
+                                    <div class="col-md-7" id="sideform">
+                                        <div class="form-group">
+                                            <button type="button" class="button1" id="btnAdd" @*disabled="disabled"*@ onclick="return GetNonComplianceDetails();">Show Report</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" id="sideform1">
+                                        <div class="form-group">
+                                            <button type="button" class="button1" id="btnPrint" disabled="disabled" onclick="GetNonComplianceDetailsForMV();">Print Report</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -117,41 +137,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr id="trclone" filled="no">
-                            <td class="tg-yw4l">&nbsp;</td>
-                            <td class="tg-yw4l">&nbsp;</td>
-                            <td class="tg-yw4l" id="01" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="02" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="03"></td>
-                            <td class="tg-yw4l" id="04"></td>
-                            <td class="tg-yw4l" id="05" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="06" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="07"></td>
-                            <td class="tg-yw4l" id="08"></td>
-                            <td class="tg-yw4l" id="09" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="10" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="11"></td>
-                            <td class="tg-yw4l" id="12"></td>
-                            <td class="tg-yw4l" id="13" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="14" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="15"></td>
-                            <td class="tg-yw4l" id="16"></td>
-                            <td class="tg-yw4l" id="17" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="18" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="19"></td>
-                            <td class="tg-yw4l" id="20"></td>
-                            <td class="tg-yw4l" id="21" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="22" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="23"></td>
-                            <td class="tg-yw4l" id="24"></td>
-                            <td class="tg-yw4l" id="25" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="26" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="27"></td>
-                            <td class="tg-yw4l" id="28"></td>
-                            <td class="tg-yw4l" id="29" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="30" bgcolor="#d3d3d3"></td>
-                            <td class="tg-yw4l" id="31"></td>
-                        </tr>
+                            <tr id="trclone" filled="no">
+                                <td class="tg-yw4l">&nbsp;</td>
+                                <td class="tg-yw4l">&nbsp;</td>
+                                <td class="tg-yw4l" id="01" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="02" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="03"></td>
+                                <td class="tg-yw4l" id="04"></td>
+                                <td class="tg-yw4l" id="05" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="06" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="07"></td>
+                                <td class="tg-yw4l" id="08"></td>
+                                <td class="tg-yw4l" id="09" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="10" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="11"></td>
+                                <td class="tg-yw4l" id="12"></td>
+                                <td class="tg-yw4l" id="13" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="14" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="15"></td>
+                                <td class="tg-yw4l" id="16"></td>
+                                <td class="tg-yw4l" id="17" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="18" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="19"></td>
+                                <td class="tg-yw4l" id="20"></td>
+                                <td class="tg-yw4l" id="21" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="22" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="23"></td>
+                                <td class="tg-yw4l" id="24"></td>
+                                <td class="tg-yw4l" id="25" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="26" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="27"></td>
+                                <td class="tg-yw4l" id="28"></td>
+                                <td class="tg-yw4l" id="29" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="30" bgcolor="#d3d3d3"></td>
+                                <td class="tg-yw4l" id="31"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -159,7 +179,7 @@
                 <p class="bottom-three"></p>
 
 
-                <div id="dvprint2"></div>
+                <div id="dvprintForMV"></div>
 
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -180,107 +200,108 @@
 
                     </div>
                 </div>
-
+                <div id="dvprintForMV"></div>
             </div>
-            </div></div>
-    </body>
+        </div>
+    </div>
+</body>
 
-            @section Scripts
+@section Scripts
 {
-                @Scripts.Render("~/bundles/jqueryval")
-                @Scripts.Render("~/bundles/jqueryui")
-                @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
 
 
 
-                <script src="~/Scripts/vfs_fonts.js"></script>
-                <script src="~/Scripts/Reports.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+    <script src="~/Scripts/Reports.js"></script>
 
-                <script type="text/javascript">
-
-
-                    $(document).ready(function () {
-                        $(function () {
-                            $('.monthYearPicker').datepicker({
-                                changeMonth: true,
-                                changeYear: true,
-                                showButtonPanel: true,
-                                dateFormat: 'MM yy'
-                            }).focus(function () {
-                                var thisCalendar = $(this);
-                                $('.ui-datepicker-calendar').detach();
-                                $('.ui-datepicker-close').click(function () {
-                                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-                                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                                    thisCalendar.datepicker('setDate', new Date(year, month, 1));
-                                });
-                            });
-                        });
-
-                        $("#btnCloseModal").on("click", function (event) {
-
-                            //CompleteRegistration(event);
-                            $('#myModal').modal('hide');
-
-                            return false;
-                        });
+    <script type="text/javascript">
 
 
-                        const monthNames = ["January", "February", "March", "April", "May", "June",
-                            "July", "August", "September", "October", "November", "December"
-                        ];
-
-                        const d = new Date();
-                        var currMonth = monthNames[d.getMonth()];
-                        var currYear = d.getFullYear();
-
-                        var monthyr = currMonth + currYear;
-
-                        //GetNonComplianceDetailsByCurrentMonth(monthyr);
+        $(document).ready(function () {
+            $(function () {
+                $('.monthYearPicker').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    showButtonPanel: true,
+                    dateFormat: 'MM yy'
+                }).focus(function () {
+                    var thisCalendar = $(this);
+                    $('.ui-datepicker-calendar').detach();
+                    $('.ui-datepicker-close').click(function () {
+                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                        thisCalendar.datepicker('setDate', new Date(year, month, 1));
                     });
+                });
+            });
+
+            $("#btnCloseModal").on("click", function (event) {
+
+                //CompleteRegistration(event);
+                $('#myModal').modal('hide');
+
+                return false;
+            });
 
 
-                    $("#btnPrint").click(function () {
-                        // PrintDayWiseCrewData();
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+
+            const d = new Date();
+            var currMonth = monthNames[d.getMonth()];
+            var currYear = d.getFullYear();
+
+            var monthyr = currMonth + currYear;
+
+            //GetNonComplianceDetailsByCurrentMonth(monthyr);
+        });
+
+
+        $("#btnPrint").click(function () {
+            // PrintDayWiseCrewData();
+        });
+
+
+
+
+
+
+
+
+        var valA = "Kindly find enclosed list of applicants who have prayed for financial assistance for the above mentioned category in the financial year under reference.";
+
+        $('#txtbodytext').text(valA);
+
+
+
+
+
+
+
+        $("#ReportsDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'MM yy',
+            onClose: function (dateText, inst) {
+
+                if ($('#ddlCrew').val() != '') {
+                    $('#btnPrint').attr('disabled', false);
+                    $('#btnAdd').attr('disabled', false);
+                }
+                else {
+
+                    $('#ddlCrew').one('change', function () {
+                        $('#btnPrint').attr('disabled', false);
+                        $('#btnAdd').attr('disabled', false);
                     });
-
-
-
-
-
-
-
-
-                    var valA = "Kindly find enclosed list of applicants who have prayed for financial assistance for the above mentioned category in the financial year under reference.";
-
-                    $('#txtbodytext').text(valA);
-
-
-
-
-
-
-
-                    $("#ReportsDate").datepicker({
-                        changeMonth: true,
-                        changeYear: true,
-                        showButtonPanel: true,
-                        dateFormat: 'MM yy',
-                        onClose: function (dateText, inst) {
-
-                            if ($('#ddlCrew').val() != '') {
-                                $('#btnPrint').attr('disabled', false);
-                                $('#btnAdd').attr('disabled', false);
-                            }
-                            else {
-
-                                $('#ddlCrew').one('change', function () {
-                                    $('#btnPrint').attr('disabled', false);
-                                    $('#btnAdd').attr('disabled', false);
-                                });
-                            }
-                        }
-                    });
-                </script>
+                }
             }
+        });
+    </script>
+}
 

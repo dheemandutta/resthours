@@ -79,6 +79,15 @@ function validate3() {
         $('#BMI').css('border-color', 'lightgrey');
     }
 
+
+    if ($('#ddlCrew').val().length === 0) {
+        $('#ddlCrew').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ddlCrew').css('border-color', 'lightgrey');
+    }
+
     return isValid;
 }
 
@@ -310,9 +319,12 @@ function SaveMedicalAdvisory() {
     if (res) {
         var MedicalAdvisory = {
 
+            
+            CrewID: $('#ID').val(),   
+
             Weight: $('#Weight').val(),
             BMI: $('#BMI').val(),
-           // BP: $('#BP').val(),
+            //BP: $('#BP').val(),
             BloodSugarLevel: $('#BloodSugarLevel').val(),
             UrineTest: document.getElementById("UrineTest").checked,
 
@@ -326,12 +338,14 @@ function SaveMedicalAdvisory() {
             UnannouncedAlcohol: document.getElementById("UnannouncedAlcohol").checked,
             AnnualDH: document.getElementById("AnnualDH").checked,
             Month: $('#Month').val(),
-            CrewID: $('#ID').val(),            /////////////////////////////
+            CrewNameID: $('#ddlCrew').val(),        //////////////////////////////////////////////
+            CrewName: $("#ddlCrew option:selected").text(),       //////////////////////////////////////////////  $("#yourDropdown option:selected").text();
             PulseRatebpm: $('#PulseRatebpm').val(),
             AnyDietaryRestrictions: $('#AnyDietaryRestrictions').val(),
             MedicalProductsAdministered: $('#MedicalProductsAdministered').val(),
             UploadExistingPrescriptions: $('#UploadExistingPrescriptions').val(),    ///////////////////////////////////////
-            UploadUrineReport: $('#UploadUrineReport').val(),     ///////////////////////////////////
+            UploadUrineReport: $('#UploadUrineReport').val()    ///////////////////////////////////
+         
         };
 
         $.ajax({

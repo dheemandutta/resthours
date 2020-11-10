@@ -72,6 +72,7 @@ namespace TM.RestHour.Controllers
             return Json(cm, JsonRequestBehavior.AllowGet);
         }
 
+
         //for Ranks drp
         public void GetAllRanksForDrp()
         {
@@ -526,6 +527,7 @@ namespace TM.RestHour.Controllers
         {
             GetAllCrewForDrp();
             GetAllCrewForTimeSheet();
+            GetAllCountryForDrp();
             //Session["TimeModified"] = "";
             //Session["DateModified"] = "";
 

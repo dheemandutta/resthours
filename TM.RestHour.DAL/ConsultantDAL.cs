@@ -222,6 +222,14 @@ namespace TM.RestHour.DAL
             SqlCommand cmd = new SqlCommand("stpSaveMedicalAdvisory", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
+
+  
+            cmd.Parameters.AddWithValue("@CrewNameID", consultant.CrewNameID);
+            cmd.Parameters.AddWithValue("@CrewName", consultant.CrewName);
+
+
+
+
             if (!String.IsNullOrEmpty(consultant.Weight))
             {
                 cmd.Parameters.AddWithValue("@Weight", consultant.Weight.ToString());
@@ -339,16 +347,7 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@Month", DBNull.Value);
             }
 
-            //if (!String.IsNullOrEmpty(consultant.CrewName))
-            //{
-            //    cmd.Parameters.AddWithValue("@CrewName", consultant.CrewName.ToString());
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@CrewName", DBNull.Value);
-            //}
-            cmd.Parameters.AddWithValue("@CrewID", consultant.CrewID);
-
+           
 
             if (!String.IsNullOrEmpty(consultant.PulseRatebpm))
             {

@@ -163,5 +163,64 @@ namespace TM.RestHour.Controllers
             //int recordaffected = 0;
             //return Json(recordaffected, JsonRequestBehavior.AllowGet);
         }
+
+
+
+
+
+
+
+
+        [TraceFilterAttribute]
+        public JsonResult LoadData2()
+        {
+            int draw, start, length;
+            int pageIndex = 0;
+
+            if (null != Request.Form.GetValues("draw"))
+            {
+                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+            }
+            else
+            {
+                draw = 1;
+                start = 0;
+                length = 1000;
+            }
+
+            if (start == 0)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                pageIndex = (start / length) + 1;
+            }
+
+            CrewBL crewBL = new CrewBL();
+            int totalrecords = 0;
+
+            List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+            crewpocoList = crewBL.GetCrewPageWise2(pageIndex, ref totalrecords, length, int.Parse(Session["VesselID"].ToString()));
+            List<Crew> crewList = new List<Crew>();
+            foreach (CrewPOCO crewPC in crewpocoList)
+            {
+                Crew crew = new Crew();
+                crew.ID = crewPC.ID;
+                crew.Name = crewPC.Name;
+                crew.RankName = crewPC.RankName;
+                crew.StartDate = crewPC.StartDate;
+                // crew.LatestUpdate = crewPC.LatestUpdate;
+                //crew.CreatedOn = crewPC.IMONumber;
+                //crew.CreatedOn = crewPC.IMONumber;
+                crewList.Add(crew);
+            }
+
+            var data = crewList;
+
+            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

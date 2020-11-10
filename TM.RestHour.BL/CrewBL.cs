@@ -330,5 +330,14 @@ namespace TM.RestHour.BL
             CrewDAL crewDAL = new CrewDAL();
             return crewDAL.SavePreExistingMedicationPrescriptionFilePath(crewId, filepath);
         }
+
+
+
+
+        public List<CrewPOCO> GetCrewPageWise2(int pageIndex, ref int recordCount, int length, int VesselID)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetCrewPageWise2(pageIndex, ref recordCount, length, VesselID);
+        }
     }
 }

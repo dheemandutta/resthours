@@ -83,6 +83,9 @@ namespace TM.RestHour.Controllers
             ConsultantPOCO consultantPC = new ConsultantPOCO();
             //consultantPC.DoctorID = consultant.DoctorID;
 
+            
+            consultantPC.CrewID = consultant.CrewID;
+
             consultantPC.Weight = consultant.Weight;
             consultantPC.BMI = consultant.BMI;
            // consultantPC.BP = consultant.BP;
@@ -99,7 +102,8 @@ namespace TM.RestHour.Controllers
             consultantPC.UnannouncedAlcohol = consultant.UnannouncedAlcohol;
             consultantPC.AnnualDH = consultant.AnnualDH;
             consultantPC.Month = consultant.Month;
-            consultantPC.CrewID = consultant.CrewID;
+            consultantPC.CrewNameID = consultant.CrewNameID;
+            consultantPC.CrewName = consultant.CrewName;
             consultantPC.PulseRatebpm = consultant.PulseRatebpm;
             consultantPC.AnyDietaryRestrictions = consultant.AnyDietaryRestrictions;
             consultantPC.MedicalProductsAdministered = consultant.MedicalProductsAdministered;
