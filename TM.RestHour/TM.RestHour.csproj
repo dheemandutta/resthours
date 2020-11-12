@@ -788,6 +788,7 @@
     <Content Include="devsqlscripts\19.12.2019_stpSaveJoiningMedicalFilePath.sql" />
     <Content Include="devsqlscripts\20.12.2019 stpGetJoiningMedicalFileDatawByID.sql" />
     <Content Include="devsqlscripts\23.07.2019_Fullscript.sql" />
+    <Content Include="devsqlscripts\FullScriptOfRH_12.11.2020.sql" />
     <Content Include="devsqlscripts\InitialScript_Data.sql" />
     <Content Include="devsqlscripts\InitialScript_Schema.sql" />
     <Content Include="devsqlscripts\stpGetMedicalAdvisoryListPageWise_16.12.2019.sql" />
@@ -2960,6 +2961,7 @@
     <Content Include="SQLScripts\27.06.2020 RestHourClient script.sql" />
     <Content Include="SQLScripts\26.06.2020 RestHourClient script.sql" />
     <Content Include="SQLScripts\28.06.2020 RestHourClient script.sql" />
+    <Content Include="SQLScripts\FullScriptOfRH_12.11.2020.sql" />
     <Content Include="SQLScripts\stpSaveCrewTemperature.sql" />
     <Content Include="SQLScripts\24.06.2020 RestHourClient Script.sql" />
     <Content Include="src\jquery.image-marker.css" />
