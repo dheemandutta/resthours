@@ -69,7 +69,7 @@ namespace TM.RestHour.Controllers
             {
                 draw = 1;
                 start = 0;
-                length = 50;
+                length = 500;
             }
 
             if (start == 0)
@@ -309,7 +309,7 @@ namespace TM.RestHour.Controllers
             {
                 draw = 1;
                 start = 0;
-                length = 50;
+                length = 500;
             }
 
             if (start == 0)

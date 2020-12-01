@@ -197,6 +197,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MailServerDetailsController.cs" />
     <Compile Include="Controllers\ManageRankController.cs" />
+    <Compile Include="Controllers\MentalHealthController.cs" />
     <Compile Include="Controllers\MvcExtensions.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PatientProblemController.cs" />
@@ -3084,6 +3085,7 @@
     <Content Include="Views\CrewHealth\WorkAndRestHourLatestRecord.cshtml" />
     <Content Include="Views\CrewHealth\UploadPistures.cshtml" />
     <Content Include="Views\Plans\Index.cshtml" />
+    <Content Include="Views\MentalHealth\Index.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
