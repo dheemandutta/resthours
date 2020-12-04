@@ -26,6 +26,7 @@ namespace TM.RestHour.Controllers
         // GET: MailServerDetails
         public ActionResult Index()
         {
+            //GetVesselTypeForDrp();
             return View();
         }
 
@@ -61,6 +62,7 @@ namespace TM.RestHour.Controllers
         //[TraceFilterAttribute]
         public ActionResult FirstRun()
         {
+            GetVesselTypeForDrp();
             return View();
         }
 
@@ -297,6 +299,22 @@ namespace TM.RestHour.Controllers
             shipPC.Vessel = ship.Vessel1;
             shipPC.Flag = ship.Flag;
             shipPC.IMO = ship.IMO;
+            /////////////////////////////////////////////////////////
+            shipPC.VesselTypeID = ship.VesselTypeID;
+            shipPC.VesselSubTypeID = ship.VesselSubTypeID;
+            shipPC.VesselSubSubTypeID = ship.VesselSubSubTypeID;
+
+            shipPC.ShipEmail = ship.ShipEmail;
+            shipPC.ShipEmail2 = ship.ShipEmail2;
+            shipPC.Voices1 = ship.Voices1;
+            shipPC.Voices2 = ship.Voices2;
+            shipPC.Fax1 = ship.Fax1;
+            shipPC.Fax2 = ship.Fax2;
+            shipPC.VOIP1 = ship.VOIP1;
+            shipPC.VOIP2 = ship.VOIP2;
+            shipPC.Mobile1 = ship.Mobile1;
+            shipPC.Mobile2 = ship.Mobile2;
+            /////////////////////////////////////////////////////////
             shipPC.AdminUser = ship.AdminUser;
             shipPC.AdminPassword = ship.AdminPassword;
             string Key = shipPC.Vessel + shipPC.Flag + shipPC.IMO.ToString() + shipPC.SuperAdminUserName + shipPC.SuperAdminPassword;
@@ -311,6 +329,7 @@ namespace TM.RestHour.Controllers
 
             shipPC.DeactivationDate = deactivationDate;
 
+         
 
             return Json(shipBL.SaveInitialShipValues(shipPC), JsonRequestBehavior.AllowGet);
         }
@@ -336,6 +355,184 @@ namespace TM.RestHour.Controllers
             //return shipBL.GetConfigData(KeyName);
 
             return Json(shipBL.GetConfigData(KeyName), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public JsonResult GetVesselTypeForDrp()
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselTypeForDrp();
+
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.Description = up.Description;
+                comp.VesselTypeID = up.VesselTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        //for VesselSubTypeByVesselTypeIDForDrp drp
+        public JsonResult GetVesselSubTypeByVesselTypeIDForDrp(string VesselTypeID)
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
+
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.SubTypeDescription = up.SubTypeDescription;
+                comp.VesselSubTypeID = up.VesselSubTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+        //for VesselSubSubTypeByVesselSubTypeIDForDrp drp
+        public JsonResult GetVesselSubSubTypeByVesselSubTypeIDForDrp(string VesselSubTypeID)
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
+
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.VesselSubSubTypeDecsription = up.VesselSubSubTypeDecsription;
+                comp.VesselSubSubTypeID = up.VesselSubSubTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+        public JsonResult GetVesselTypeIDFromShip()
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselTypeIDFromShip();
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.VesselTypeID = up.VesselTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetVesselSubTypeIDFromShip()
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselSubTypeIDFromShip();
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.VesselSubTypeID = up.VesselSubTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetVesselSubSubTypeIDFromShip()
+        {
+            ShipBL shipBL = new ShipBL();
+            List<ShipPOCO> blockpocoList = new List<ShipPOCO>();
+
+            blockpocoList = shipBL.GetVesselSubSubTypeIDFromShip();
+            List<Vessel> blockList = new List<Vessel>();
+
+            foreach (ShipPOCO up in blockpocoList)
+            {
+                Vessel comp = new Vessel();
+                comp.VesselSubSubTypeID = up.VesselSubSubTypeID;
+
+                blockList.Add(comp);
+            }
+            var data = blockList;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Update(Vessel ship)
+        {
+            ShipBL shipBL = new ShipBL();
+            ShipPOCO shipPC = new ShipPOCO();
+            shipPC.ID = ship.ID;
+
+            shipPC.ShipName = ship.ShipName;
+            shipPC.FlagOfShip = ship.FlagOfShip;
+            shipPC.IMONumber = ship.IMONumber;
+
+            shipPC.VesselTypeID = ship.VesselTypeID;
+            shipPC.VesselSubTypeID = ship.VesselSubTypeID;
+            shipPC.VesselSubSubTypeID = ship.VesselSubSubTypeID;
+
+            shipPC.ShipEmail = ship.ShipEmail;
+            shipPC.ShipEmail2 = ship.ShipEmail2;
+            shipPC.Voices1 = ship.Voices1;
+            shipPC.Voices2 = ship.Voices2;
+            shipPC.Fax1 = ship.Fax1;
+            shipPC.Fax2 = ship.Fax2;
+            shipPC.VOIP1 = ship.VOIP1;
+            shipPC.VOIP2 = ship.VOIP2;
+            shipPC.Mobile1 = ship.Mobile1;
+            shipPC.Mobile2 = ship.Mobile2;
+
+            return Json(shipBL.UpdateShip(shipPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -767,13 +767,29 @@ function SaveInitialShipValues() {
         return false;
     }
 
-
     var Ship = {
-        Vessel1: $('#ShipName').val(),              ///////////////////////////////////////////////////////////////////////
+        Vessel1: $('#ShipName').val(),             
         Flag: $('#FlagOfShip').val(),
         IMO: $('#IMONumber').val(),
         AdminUser: $('#SuperAdminUserName').val(),
         AdminPassword: $('#SuperAdminPassword').val(),
+
+        //////////////////////////////////////////////////////////////////////////////////////
+        VesselTypeID: $('#VesselTypeID').val(),
+        VesselSubTypeID: $('#VesselSubTypeID').val(),
+        VesselSubSubTypeID: $('#VesselSubSubTypeID').val(),
+
+        ShipEmail: $('#Email1').val(),
+        ShipEmail2: $('#Email2').val(),
+        Voices1: $('#Voice1').val(),
+        Voices2: $('#Voice2').val(),
+        Fax1: $('#Fax1').val(),
+        Fax2: $('#Fax2').val(),
+        VOIP1: $('#VideoCall1').val(),
+        VOIP2: $('#VideoCall2').val(),
+        Mobile1: $('#Mobile1').val(),
+        Mobile2: $('#Mobile2').val()
+        ////////////////////////////////////////////////////////////////////////////////////////
     };
 
 
