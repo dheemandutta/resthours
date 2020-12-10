@@ -47,7 +47,7 @@ namespace TM.Base.Entities
         public string VesselSubSubTypeDecsription { get; set; }
         public int VesselTypeID { get; set; }
         public string SubTypeDescription { get; set; }
-        public int VesselSubSubTypeID { get; set; }
+        public int? VesselSubSubTypeID { get; set; }
 
 
 

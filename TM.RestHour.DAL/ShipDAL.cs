@@ -347,8 +347,13 @@ namespace TM.RestHour.DAL
                     if (item["VesselSubTypeID"] != null)
                         crewtimesheet.VesselSubTypeID = Convert.ToInt32(item["VesselSubTypeID"].ToString());
 
-                    if (item["VesselSubSubTypeID"] != null)
+                    //if (item["VesselSubSubTypeID"] != null)
+                    //    crewtimesheet.VesselSubSubTypeID = Convert.ToInt32(item["VesselSubSubTypeID"].ToString());
+
+                    if (item["VesselSubSubTypeID"] != DBNull.Value)
                         crewtimesheet.VesselSubSubTypeID = Convert.ToInt32(item["VesselSubSubTypeID"].ToString());
+
+
 
 
                     if (item["ShipEmail"] != null)
@@ -437,7 +442,28 @@ namespace TM.RestHour.DAL
             //////////////////////////////////////////////////////////////////////////////////////////////////
             cmd.Parameters.AddWithValue("@VesselTypeID", ship.VesselTypeID.ToString());
             cmd.Parameters.AddWithValue("@VesselSubTypeID", ship.VesselSubTypeID.ToString());
-            cmd.Parameters.AddWithValue("@VesselSubSubTypeID", ship.VesselSubSubTypeID.ToString());
+            //cmd.Parameters.AddWithValue("@VesselSubSubTypeID", ship.VesselSubSubTypeID.ToString());
+
+            //if (ship.VesselSubSubTypeID.HasValue)
+            //{
+            //    cmd.Parameters.AddWithValue("@VesselSubSubTypeID", ship.VesselSubSubTypeID);
+            //}
+            //else
+            //{
+            //    cmd.Parameters.AddWithValue("@VesselSubSubTypeID", DBNull.Value);
+            //}
+
+            if (ship.VesselSubSubTypeID > 0)
+            {
+                cmd.Parameters.AddWithValue("@VesselSubSubTypeID", ship.VesselSubSubTypeID);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@VesselSubSubTypeID", DBNull.Value);
+            }
+
+
+
 
             if (!String.IsNullOrEmpty(ship.ShipEmail))
             {

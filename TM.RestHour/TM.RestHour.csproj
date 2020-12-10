@@ -337,7 +337,6 @@
     <Content Include="background\travel\logo.jpg" />
     <Content Include="background\up.png" />
     <Content Include="background\vissel.jpg" />
-    <Content Include="companylogo\companylogo.png" />
     <Content Include="companylogo\Viridian Logo-Small.png" />
     <Content Include="companylogo\Viridian Logo.png" />
     <Content Include="Content\bootstrap-duallistbox.css" />
@@ -2836,7 +2835,6 @@
     <Content Include="MedicalInventory\MedicalInventory.xlsx" />
     <Content Include="COVIDPLAN.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\RESTHOUR  Installer.pubxml" />
     <None Include="Properties\PublishProfiles\RESTHOUR Installer.pubxml" />
     <None Include="Properties\PublishProfiles\RestHourPublish.pubxml" />
