@@ -242,7 +242,7 @@ function AddCrew() {
 
                     toastr.success("Added Successfully");
 
-                    clearTextBox();
+                   // clearTextBox();  deep
 
                     //window.location = response.url;
                     $('#btnAdd1').show();
