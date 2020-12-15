@@ -52,5 +52,13 @@ namespace TM.RestHour.Models
         public int CrewID { get; set; }
 
         public int CrewNameID { get; set; }
+
+
+
+
+        public string MonthName { get; set; }
+        public int Year { get; set; }
+        public int Months { get; set; }
+        public string Hours { get; set; }
     }
 }

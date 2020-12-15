@@ -605,11 +605,64 @@ namespace TM.RestHour.DAL
             ///
             //New  --> /MailServerDetails/Index
 
-            cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail.ToString());
-            cmd.Parameters.AddWithValue("@ShipEmailPwd", ship.ShipEmailPassword.ToString());
-            cmd.Parameters.AddWithValue("@AdminCenterEmail", ship.AdminCenterEmail.ToString());
-            cmd.Parameters.AddWithValue("@Pop", ship.POP3.ToString());
-            cmd.Parameters.AddWithValue("@PopPort", ship.POP3Port.ToString());
+            if (!String.IsNullOrEmpty(ship.ShipEmail))
+            {
+                cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ShipEmail", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.ShipEmailPassword))
+            {
+                cmd.Parameters.AddWithValue("@ShipEmailPwd", ship.ShipEmailPassword);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ShipEmailPwd", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.AdminCenterEmail))
+            {
+                cmd.Parameters.AddWithValue("@AdminCenterEmail", ship.AdminCenterEmail);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@AdminCenterEmail", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.POP3))
+            {
+                cmd.Parameters.AddWithValue("@Pop", ship.POP3);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Pop", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(ship.POP3Port))
+            {
+                cmd.Parameters.AddWithValue("@PopPort", ship.POP3Port);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PopPort", DBNull.Value);
+            }
+
+
+
+            //cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail.ToString());
+            //cmd.Parameters.AddWithValue("@ShipEmailPwd", ship.ShipEmailPassword.ToString());
+            //cmd.Parameters.AddWithValue("@AdminCenterEmail", ship.AdminCenterEmail.ToString());
+            //cmd.Parameters.AddWithValue("@Pop", ship.POP3.ToString());
+            //cmd.Parameters.AddWithValue("@PopPort", ship.POP3Port.ToString());
+
+
+
+
+
+
 
             //cmd.Parameters.AddWithValue("@AttachmentSize", ship.AttachmentSize.ToString());
             //cmd.Parameters.AddWithValue("@VesselID", VesselID);

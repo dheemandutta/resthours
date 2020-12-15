@@ -630,6 +630,58 @@ namespace TM.RestHour.Controllers
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
 
+        //public JsonResult LoadData(Reports reports)
+        //{
+        //    ConsultantBL consultantBL = new ConsultantBL();
+        //    ConsultantPOCO consultantPC = new ConsultantPOCO();
+
+        //    int draw, start, length;
+        //    int pageIndex = 0;
+
+        //    if (null != Request.Form.GetValues("draw"))
+        //    {
+        //        draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+        //        start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+        //        length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+        //    }
+        //    else
+        //    {
+        //        draw = 1;
+        //        start = 0;
+        //        length = 50;
+        //    }
+
+        //    if (start == 0)
+        //    {
+        //        pageIndex = 1;
+        //    }
+        //    else
+        //    {
+        //        pageIndex = (start / length) + 1;
+        //    }
+        //    int totalrecords = 0;
+        //    string month = reports.SelectedMonthYear.Substring(0, reports.SelectedMonthYear.Length - 4);
+
+        //    consultantPC.Months = (int)((Months)Enum.Parse(typeof(Months), month.Trim()));
+        //    consultantPC.MonthName = month;
+        //    consultantPC.Year = int.Parse(Utilities.GetLast(reports.SelectedMonthYear, 4));
+        //    //consultantPC.CrewID = reports.CrewID;
+
+        //    List<ConsultantPOCO> consultantpocoList = new List<ConsultantPOCO>();
+        //    consultantpocoList = consultantBL.GetMedicalAdvisoryPageWise(pageIndex, ref totalrecords, length, int.Parse(Session["LoggedInUserId"].ToString()));
+
+        //    string[] bookedHours = new string[36];
+        //    int row = 0;
+        //    foreach (ConsultantPOCO item in consultantpocoList)
+        //    {
+        //        bookedHours[row] = item.Hours;
+        //        row++;
+        //    }
+        //    var data = consultantpocoList;
+
+        //    return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+        //}
+
         public JsonResult LoadData2(/*int CrewID*/)
         {
             int draw, start, length;

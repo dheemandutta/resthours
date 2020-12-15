@@ -294,6 +294,7 @@
     <Content Include="background\HMonthlyWorkHours.png" />
     <Content Include="background\HRegime.png" />
     <Content Include="background\HResetPassword.png" />
+    <Content Include="background\HTime.png" />
     <Content Include="background\HTimeSheetUser.png" />
     <Content Include="background\HumanBody.jpg" />
     <Content Include="background\ilo.png" />
