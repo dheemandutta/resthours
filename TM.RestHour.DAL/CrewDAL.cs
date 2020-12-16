@@ -775,7 +775,28 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
             }
 
-          
+
+
+            if (!String.IsNullOrEmpty(crewTemperature.Place))
+            {
+                cmd.Parameters.AddWithValue("@Place", crewTemperature.Place);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Place", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.Means))
+            {
+                cmd.Parameters.AddWithValue("@Means", crewTemperature.Means);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Means", DBNull.Value);
+            }
+
+
+
             cmd.Parameters.AddWithValue("@TemperatureModeID", crewTemperature.TemperatureModeID);
             cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
@@ -833,12 +854,15 @@ namespace TM.RestHour.DAL
                         crewPOList.Add(new CrewTemperaturePOCO
                         {
                             //ID = Convert.ToInt32(dr["ID"]),
-
-                            Temperature= Convert.ToDecimal(dr["Temperature"]),
                             ReadingDate = Convert.ToString(dr["ReadingDate"]),
-                            ReadingTime= Convert.ToString(dr["ReadingTime"]),
+                            ReadingTime = Convert.ToString(dr["ReadingTime"]),
+                            CrewName = Convert.ToString(dr["CrewName"]),
+                            RankName = Convert.ToString(dr["RankName"]),
+                            Place = Convert.ToString(dr["Place"]),
+                            TemperatureMode = Convert.ToString(dr["TemperatureMode"]),
+                            Temperature = Convert.ToDecimal(dr["Temperature"]),
                             Unit = Convert.ToString(dr["Unit"]),
-                            TemperatureMode= Convert.ToString(dr["TemperatureMode"]),
+                            Means = Convert.ToString(dr["Means"])
                         });
                     }
                     recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
@@ -876,12 +900,15 @@ namespace TM.RestHour.DAL
                         crewPOList.Add(new CrewTemperaturePOCO
                         {
                             //ID = Convert.ToInt32(dr["ID"]),
-
-                            Temperature = Convert.ToDecimal(dr["Temperature"]),
                             ReadingDate = Convert.ToString(dr["ReadingDate"]),
                             ReadingTime = Convert.ToString(dr["ReadingTime"]),
-                            Unit = Convert.ToString(dr["Unit"]),
+                            CrewName = Convert.ToString(dr["CrewName"]),
+                            RankName = Convert.ToString(dr["RankName"]),
+                            Place = Convert.ToString(dr["Place"]),
                             TemperatureMode = Convert.ToString(dr["TemperatureMode"]),
+                            Temperature = Convert.ToDecimal(dr["Temperature"]),
+                            Unit = Convert.ToString(dr["Unit"]),
+                            Means = Convert.ToString(dr["Means"])
                         });
                     }
                     recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);

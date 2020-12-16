@@ -19,5 +19,10 @@ namespace TM.Base.Entities
         public int TemperatureModeID { get; set; }
         public string TemperatureMode { get; set; }
 
+        public string Place { get; set; }
+        public string Means { get; set; }
+        public string CrewName { get; set; }
+        public string RankName { get; set; }
+
     }
 }

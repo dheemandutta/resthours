@@ -1017,11 +1017,15 @@ namespace TM.RestHour.Controllers
                
                 crewTemp.ID = crewPC.ID;
 
-                crewTemp.Temperature = crewPC.Temperature;
                 crewTemp.ReadingDate = crewPC.ReadingDate;
                 crewTemp.ReadingTime = crewPC.ReadingTime;
-                crewTemp.Unit = crewPC.Unit;
+                crewTemp.CrewName = crewPC.CrewName;
+                crewTemp.RankName = crewPC.RankName;
+                crewTemp.Place = crewPC.Place;
                 crewTemp.TemperatureMode = crewPC.TemperatureMode;
+                crewTemp.Temperature = crewPC.Temperature;
+                crewTemp.Unit = crewPC.Unit;
+                crewTemp.Means = crewPC.Means;
 
                 crewList.Add(crewTemp);
             }
@@ -1062,7 +1066,7 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<CrewTemperaturePOCO> CrewTemperaturePOCOList = new List<CrewTemperaturePOCO>();
-            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID2(pageIndex, ref totalrecords, length, CrewID);
+            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref totalrecords, length, CrewID);
             List<CrewTemperature> crewList = new List<CrewTemperature>();
             foreach (CrewTemperaturePOCO crewPC in CrewTemperaturePOCOList)
             {
@@ -1070,11 +1074,15 @@ namespace TM.RestHour.Controllers
 
                 crewTemp.ID = crewPC.ID;
 
-                crewTemp.Temperature = crewPC.Temperature;
                 crewTemp.ReadingDate = crewPC.ReadingDate;
                 crewTemp.ReadingTime = crewPC.ReadingTime;
-                crewTemp.Unit = crewPC.Unit;
+                crewTemp.CrewName = crewPC.CrewName;
+                crewTemp.RankName = crewPC.RankName;
+                crewTemp.Place = crewPC.Place;
                 crewTemp.TemperatureMode = crewPC.TemperatureMode;
+                crewTemp.Temperature = crewPC.Temperature;
+                crewTemp.Unit = crewPC.Unit;
+                crewTemp.Means = crewPC.Means;
 
                 crewList.Add(crewTemp);
             }

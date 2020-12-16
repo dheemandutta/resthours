@@ -54,6 +54,7 @@
 //    });
 //}
 
+
 function loadData() {
     var loadposturl = $('#loaddata').val();
     $.ajax({
@@ -524,13 +525,89 @@ function SetUpPrintGridReport2() {
     });
 }
 
+function validate2() {
+    var isValid = true;
+
+    if ($('#ddlCrew').val().length === 0) {
+        $('#ddlCrew').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ddlCrew').css('border-color', 'lightgrey');
+    }
+
+    if ($('#Temperature').val().length === 0) {
+        $('#Temperature').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Temperature').css('border-color', 'lightgrey');
+    }
+
+    if ($('#ddlUnit').val().length === 0) {
+        $('#ddlUnit').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ddlUnit').css('border-color', 'lightgrey');
+    }
+
+    if ($('#ReportsDate').val().length === 0) {
+        $('#ReportsDate').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ReportsDate').css('border-color', 'lightgrey');
+    }
+
+    if ($('#ddlTime').val().length === 0) {
+        $('#ddlTime').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ddlTime').css('border-color', 'lightgrey');
+    }
+
+    if ($('#ddlTempModeList').val().length === 0) {
+        $('#ddlTempModeList').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ddlTempModeList').css('border-color', 'lightgrey');
+    }
+
+    if ($('#Place').val().length === 0) {
+        $('#Place').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Place').css('border-color', 'lightgrey');
+    }
+
+    if ($('#ddlMeans').val().length === 0) {
+        $('#ddlMeans').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ddlMeans').css('border-color', 'lightgrey');
+    }
+
+
+
+
+
+
+    return isValid;
+}
+
 function SaveCrewTemperature() {
     //debugger;
     var savecrewtemperature = $('#savecrewtemperature').val();
-    //var res = validate();
-    //if (res == false) {
-    //    return false;
-    //}
+    var res = validate2();
+    if (res == false) {
+        return false;
+    }
+    if (res) {
     var crewTemperature = {
         CrewID: $('#ddlCrew').val(),
         Temperature: $('#Temperature').val(),
@@ -538,7 +615,10 @@ function SaveCrewTemperature() {
         ReadingDate: $('#ReportsDate').val(),
         ReadingTime: $('#ddlTime').val(),
         Comment: $('#Remarks').val(),
-        TemperatureModeID: $('#ddlTempModeList').val()
+        TemperatureModeID: $('#ddlTempModeList').val(),
+
+        Place: $('#Place').val(),
+        Means: $('#ddlMeans').val()
     };
     //debugger;
     $.ajax({
@@ -561,6 +641,9 @@ function SaveCrewTemperature() {
                 $('#ddlTime').val('');
                 $('#Remarks').val('');
 
+                $('#Place').val('');
+                $('#ddlMeans').val('');
+
             }
 
 
@@ -573,6 +656,7 @@ function SaveCrewTemperature() {
             console.log(errormessage.responseText);
         }
     });
+    }
 }
 
 
@@ -619,20 +703,33 @@ function GetCrewTemperaturePageWiseByCrewID(CrewID) {
             },
             "columns": [
                 {
-                    "data": "Temperature", "name": "Temperature", "autoWidth": true
-                },
-                {
-                    "data": "ReadingDate", "name": "ReadingDate", "autowidth": true
+                    "data": "ReadingDate", "name": "ReadingDate", "autoWidth": true
                 },
                 {
                     "data": "ReadingTime", "name": "ReadingTime", "autoWidth": true
                 },
                 {
-                    "data": "Unit", "name": "Unit", "autoWidth": true
+                    "data": "CrewName", "name": "CrewName", "autoWidth": true
+                },
+                {
+                    "data": "RankName", "name": "RankName", "autoWidth": true
+                },
+                {
+                    "data": "Place", "name": "Place", "autoWidth": true
                 },
                 {
                     "data": "TemperatureMode", "name": "TemperatureMode", "autoWidth": true
+                },
+                {
+                    "data": "Temperature", "name": "Temperature", "autoWidth": true
+                },
+                {
+                    "data": "Unit", "name": "Unit", "autoWidth": true
+                },
+                {
+                    "data": "Means", "name": "Means", "autoWidth": true
                 }
+               
             ]
         });
     }
@@ -700,19 +797,31 @@ function GetCrewTemperaturePageWiseByCrewID2(CrewID) {
         },
         "columns": [
             {
-                "data": "Temperature", "name": "Temperature", "autoWidth": true
-            },
-            {
-                "data": "ReadingDate", "name": "ReadingDate", "autowidth": true
+                "data": "ReadingDate", "name": "ReadingDate", "autoWidth": true
             },
             {
                 "data": "ReadingTime", "name": "ReadingTime", "autoWidth": true
             },
             {
-                "data": "Unit", "name": "Unit", "autoWidth": true
+                "data": "CrewName", "name": "CrewName", "autoWidth": true
+            },
+            {
+                "data": "RankName", "name": "RankName", "autoWidth": true
+            },
+            {
+                "data": "Place", "name": "Place", "autoWidth": true
             },
             {
                 "data": "TemperatureMode", "name": "TemperatureMode", "autoWidth": true
+            },
+            {
+                "data": "Temperature", "name": "Temperature", "autoWidth": true
+            },
+            {
+                "data": "Unit", "name": "Unit", "autoWidth": true
+            },
+            {
+                "data": "Means", "name": "Means", "autoWidth": true
             }
         ]
     });
