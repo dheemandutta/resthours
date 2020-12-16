@@ -1094,6 +1094,151 @@ namespace TM.RestHour.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public JsonResult GetCrewTemperaturePageWise()
+        {
+            int draw, start, length;
+            int pageIndex = 0;
+
+            if (null != Request.Form.GetValues("draw"))
+            {
+                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+            }
+            else
+            {
+                draw = 1;
+                start = 0;
+                length = 15;
+            }
+
+            if (start == 0)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                pageIndex = (start / length) + 1;
+            }
+
+            CrewBL CrewBL = new CrewBL();
+            int totalrecords = 0;
+
+            List<CrewTemperaturePOCO> CrewTemperaturePOCOList = new List<CrewTemperaturePOCO>();
+            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWise(pageIndex, ref totalrecords, length);
+            List<CrewTemperature> crewList = new List<CrewTemperature>();
+            foreach (CrewTemperaturePOCO crewPC in CrewTemperaturePOCOList)
+            {
+                CrewTemperature crewTemp = new CrewTemperature();
+
+                crewTemp.ID = crewPC.ID;
+
+                crewTemp.ReadingDate = crewPC.ReadingDate;
+                crewTemp.ReadingTime = crewPC.ReadingTime;
+                crewTemp.CrewName = crewPC.CrewName;
+                crewTemp.RankName = crewPC.RankName;
+                crewTemp.Place = crewPC.Place;
+                crewTemp.TemperatureMode = crewPC.TemperatureMode;
+                crewTemp.Temperature = crewPC.Temperature;
+                crewTemp.Unit = crewPC.Unit;
+                crewTemp.Means = crewPC.Means;
+
+                crewList.Add(crewTemp);
+            }
+
+            var data = crewList;
+
+            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCrewTemperaturePageWise2()
+        {
+            int draw, start, length;
+            int pageIndex = 0;
+
+            if (null != Request.Form.GetValues("draw"))
+            {
+                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+                length = 1000;//int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+            }
+            else
+            {
+                draw = 1;
+                start = 0;
+                length = 1000;
+            }
+
+            if (start == 0)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                pageIndex = (start / length) + 1;
+            }
+
+            CrewBL CrewBL = new CrewBL();
+            int totalrecords = 0;
+
+            List<CrewTemperaturePOCO> CrewTemperaturePOCOList = new List<CrewTemperaturePOCO>();
+            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWise(pageIndex, ref totalrecords, length);
+            List<CrewTemperature> crewList = new List<CrewTemperature>();
+            foreach (CrewTemperaturePOCO crewPC in CrewTemperaturePOCOList)
+            {
+                CrewTemperature crewTemp = new CrewTemperature();
+
+                crewTemp.ID = crewPC.ID;
+
+                crewTemp.ReadingDate = crewPC.ReadingDate;
+                crewTemp.ReadingTime = crewPC.ReadingTime;
+                crewTemp.CrewName = crewPC.CrewName;
+                crewTemp.RankName = crewPC.RankName;
+                crewTemp.Place = crewPC.Place;
+                crewTemp.TemperatureMode = crewPC.TemperatureMode;
+                crewTemp.Temperature = crewPC.Temperature;
+                crewTemp.Unit = crewPC.Unit;
+                crewTemp.Means = crewPC.Means;
+
+                crewList.Add(crewTemp);
+            }
+
+            var data = crewList;
+
+            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         public ActionResult UploadJoiningMedical()
         {

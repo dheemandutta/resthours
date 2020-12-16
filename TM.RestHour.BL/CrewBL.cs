@@ -47,6 +47,15 @@ namespace TM.RestHour.BL
             return crew.GetCrewTemperaturePageWiseByCrewID2(pageIndex, ref recordCount, length, crewID);
         }
 
+        public List<CrewTemperaturePOCO> GetCrewTemperaturePageWise(int pageIndex, ref int recordCount, int length)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetCrewTemperaturePageWise(pageIndex, ref recordCount, length);
+        }
+
+
+
+
         public List<CrewPOCO> GetCrewForInactivPageWise(int pageIndex, ref int recordCount, int length, int VesselID)
         {
             CrewDAL crew = new CrewDAL();

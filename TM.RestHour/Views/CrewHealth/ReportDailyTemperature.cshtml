@@ -37,6 +37,9 @@
                     @Html.Hidden("getCrewTemperaturePageWiseByCrewID", @Url.Action("GetCrewTemperaturePageWiseByCrewID", "CrewHealth"))
                     @Html.Hidden("getCrewTemperaturePageWiseByCrewID2", @Url.Action("GetCrewTemperaturePageWiseByCrewID2", "CrewHealth"))
 
+                    @Html.Hidden("getCrewTemperaturePageWise", @Url.Action("GetCrewTemperaturePageWise", "CrewHealth"))
+                    @Html.Hidden("getCrewTemperaturePageWise2", @Url.Action("GetCrewTemperaturePageWise2", "CrewHealth"))
+
                     <div class="col-md-8" id="sideform">
                         <div class="card">
                             <div class="card-block">
@@ -52,14 +55,24 @@
                                     </div>
                                     <div class="form-group">
                                         <div>
-                                            <div class="col-md-6" id="sideform">
+                                            <div class="col-md-5" id="sideform">
                                                 @*<button type="button" class="button1" id="btnAdd" onclick="return SetUpGridCrewTemperatureReport(CrewID)">Show Report</button>*@
                                                 <input type="button" class="button1" id="ShowReport" value="Show Report">
-
                                             </div>
-
-                                            <div class="col-md-6" id="sideform">
+                                            <div class="col-md-5" id="sideform">
                                                 <button type="button" class="button1" id="btnPrint" @*disabled="disabled"*@>Print Report</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="col-md-5" id="sideform">
+                                                @*<button type="button" class="button1" id="btnAdd" onclick="return SetUpGridCrewTemperatureReport(CrewID)">Show Report</button>*@
+                                                <input type="button" class="button1" id="ShowReportForAll" value="Show For All">
+                                            </div>
+                                            <div class="col-md-5" id="sideform">
+                                                <button type="button" class="button1" id="btnPrintForAll" @*disabled="disabled"*@>Print For All</button>
                                             </div>
                                         </div>
                                     </div>
@@ -125,6 +138,31 @@
     </div>
     @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
 
+    @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+    <div id="dvprint222" style="display:none;">
+
+        <hr>
+        <table id="certtable_print222" class="display" cellspacing="0" width="100%">
+            <thead align="center">
+                <tr>
+                    <th>Reading Date</th>
+                    <th>Reading Time</th>
+                    <th>Full Name</th>
+                    <th>Rank</th>
+                    <th>Place</th>
+                    <th>Temperature Mode</th>
+                    <th>Body Temperature (NORMAL : 36.0 – 37.5 C)</th>
+                    <th>Unit</th>
+                    <th>TEMPERATURE TAKEN THROUGH</th>
+                </tr>
+            </thead>
+            <tbody align="center">
+            </tbody>
+        </table>
+
+    </div>
+    @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
 </body>
 
 
@@ -146,6 +184,7 @@
         $(document).ready(function () {
 
             $('#btnPrint').attr('disabled', true);
+            $('#btnPrintForAll').attr('disabled', true);
         });
 
 
@@ -159,6 +198,24 @@
         $("#btnPrint").click(function () {
             //PrintWorkAndRestHours();
             Popup22('');
+        });
+
+
+
+
+
+
+
+        $('#ShowReportForAll').click(function () {
+
+            $('#btnPrintForAll').attr('disabled', false);
+            GetCrewTemperaturePageWise();
+        });
+
+
+        $("#btnPrintForAll").click(function () {
+            //PrintWorkAndRestHours();
+            Popup222('');
         });
 
             //$("#btnAdd").click(function () {

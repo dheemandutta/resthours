@@ -920,6 +920,57 @@ namespace TM.RestHour.DAL
 
 
 
+        public List<CrewTemperaturePOCO> GetCrewTemperaturePageWise(int pageIndex, ref int recordCount, int length)
+        {
+
+            List<CrewTemperaturePOCO> crewPOList = new List<CrewTemperaturePOCO>();
+            List<CrewTemperaturePOCO> crewPO = new List<CrewTemperaturePOCO>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetCrewTemperaturePageWie", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@PageIndex", pageIndex);
+                    cmd.Parameters.AddWithValue("@PageSize", length);
+                    cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
+                    cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
+                    //cmd.Parameters.AddWithValue("@CrewID", crewID);
+                    con.Open();
+
+                    DataSet ds = new DataSet();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        crewPOList.Add(new CrewTemperaturePOCO
+                        {
+                            //ID = Convert.ToInt32(dr["ID"]),
+                            ReadingDate = Convert.ToString(dr["ReadingDate"]),
+                            ReadingTime = Convert.ToString(dr["ReadingTime"]),
+                            CrewName = Convert.ToString(dr["CrewName"]),
+                            RankName = Convert.ToString(dr["RankName"]),
+                            Place = Convert.ToString(dr["Place"]),
+                            TemperatureMode = Convert.ToString(dr["TemperatureMode"]),
+                            Temperature = Convert.ToDecimal(dr["Temperature"]),
+                            Unit = Convert.ToString(dr["Unit"]),
+                            Means = Convert.ToString(dr["Means"])
+                        });
+                    }
+                    recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
+                    con.Close();
+                }
+            }
+            return crewPOList;
+        }
+
+
+
+
+
+
 
 
 

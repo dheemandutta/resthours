@@ -826,3 +826,187 @@ function GetCrewTemperaturePageWiseByCrewID2(CrewID) {
         ]
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function GetCrewTemperaturePageWise() {
+
+    GetCrewTemperaturePageWise2();
+
+    var loadposturl = $('#getCrewTemperaturePageWise').val();
+    //var CrewID = $('#ddlCrew').val();
+
+    if ($.fn.dataTable.isDataTable('#certtableReport2')) {
+        table = $('#certtableReport2').DataTable();
+        table.destroy();
+    }
+    // alert('hh');
+    var table = $("#certtableReport2").DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "bLengthChange": false, //disable entries dropdown
+
+        "ajax": {
+            "url": loadposturl,
+            "type": "POST",
+            "datatype": "json",
+           // "data": { CrewID: CrewID },
+        },
+        "columns": [
+            {
+                "data": "ReadingDate", "name": "ReadingDate", "autoWidth": true
+            },
+            {
+                "data": "ReadingTime", "name": "ReadingTime", "autoWidth": true
+            },
+            {
+                "data": "CrewName", "name": "CrewName", "autoWidth": true
+            },
+            {
+                "data": "RankName", "name": "RankName", "autoWidth": true
+            },
+            {
+                "data": "Place", "name": "Place", "autoWidth": true
+            },
+            {
+                "data": "TemperatureMode", "name": "TemperatureMode", "autoWidth": true
+            },
+            {
+                "data": "Temperature", "name": "Temperature", "autoWidth": true
+            },
+            {
+                "data": "Unit", "name": "Unit", "autoWidth": true
+            },
+            {
+                "data": "Means", "name": "Means", "autoWidth": true
+            }
+
+        ]
+    });
+}
+
+
+
+
+
+
+function Popup222(data) {
+    var mywindow = window.open('', '', 'left=0,top=0,width=1600,height=1400');
+
+    var is_chrome = Boolean(mywindow.chrome);
+
+    mywindow.document.write('<html><head><title></title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write($('#dvprint222').html());
+    mywindow.document.write('</body></html>');
+    mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
+    is_chrome = false;
+    //alert(is_chrome);
+    if (is_chrome) {
+        mywindow.onload = function () { // wait until all resources loaded 
+            mywindow.focus(); // necessary for IE >= 10
+            mywindow.print();  // change window to mywindow
+            mywindow.close();// change window to mywindow
+        };
+    }
+    else {
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+        mywindow.print();
+        mywindow.close();
+    }
+
+    return true;
+}
+
+
+
+
+function GetCrewTemperaturePageWise2() {
+    var loadposturl = $('#getCrewTemperaturePageWise2').val();
+   // var CrewID = $('#ddlCrew').val()
+
+    if ($.fn.dataTable.isDataTable('#certtable_print222')) {
+        table = $('#certtable_print222').DataTable();
+        table.destroy();
+    }
+    // alert('hh');
+    var table = $("#certtable_print222").DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "bLengthChange": false, //disable entries dropdown
+        "paging": false,
+        "bInfo": false,
+
+        "ajax": {
+            "url": loadposturl,
+            "type": "POST",
+            "datatype": "json",
+           // "data": { CrewID: CrewID },
+        },
+        "columns": [
+            {
+                "data": "ReadingDate", "name": "ReadingDate", "autoWidth": true
+            },
+            {
+                "data": "ReadingTime", "name": "ReadingTime", "autoWidth": true
+            },
+            {
+                "data": "CrewName", "name": "CrewName", "autoWidth": true
+            },
+            {
+                "data": "RankName", "name": "RankName", "autoWidth": true
+            },
+            {
+                "data": "Place", "name": "Place", "autoWidth": true
+            },
+            {
+                "data": "TemperatureMode", "name": "TemperatureMode", "autoWidth": true
+            },
+            {
+                "data": "Temperature", "name": "Temperature", "autoWidth": true
+            },
+            {
+                "data": "Unit", "name": "Unit", "autoWidth": true
+            },
+            {
+                "data": "Means", "name": "Means", "autoWidth": true
+            }
+        ]
+    });
+}
