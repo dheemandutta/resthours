@@ -175,7 +175,8 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="VesselType">Vessel Type</label>
-                                                    @Html.DropDownListFor(model => model.VesselTypeID, (IEnumerable<SelectListItem>)ViewBag.VesselType, "Select", new { @class = "form-control" })
+                                                    @*@Html.DropDownListFor(model => model.VesselTypeID, (IEnumerable<SelectListItem>)ViewBag.VesselType, "Select", new { @class = "form-control" })*@
+                                                    <select id="VesselTypeID" name="VesselTypeID" class="form-control"></select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
