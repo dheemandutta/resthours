@@ -127,14 +127,14 @@
                                 </li>
 
                                 @*<li class="dropdown">
-            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
-            </a>
-            <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-                <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
-            </ul>
-        </li>*@
+                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
+                            <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+                            <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
+                        </ul>
+                    </li>*@
 
                                 <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
 
@@ -282,14 +282,14 @@
                                 </li>
 
                                 @*<li class="dropdown">
-            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
-            </a>
-            <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-                <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
-            </ul>
-        </li>*@
+                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
+                            <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+                            <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
+                        </ul>
+                    </li>*@
 
                                 <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
 
@@ -415,14 +415,14 @@
                                 </li>
 
                                 @*<li class="dropdown">
-            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
-            </a>
-            <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-                <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
-            </ul>
-        </li>*@
+                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
+                            <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+                            <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
+                        </ul>
+                    </li>*@
 
                                 <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
 
@@ -467,7 +467,8 @@
 
                     @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
                     {
-                        <li class=""><a href="@Url.Action("Index", "TimeSheet")">Crew Time Sheet</a></li>
+                        @*<li class=""><a href="@Url.Action("Index", "TimeSheet")">Crew Time Sheet</a></li>*@         @*//// this line - Admin can't use the TimeSheet page ///// Deep*@
+                        <li class=""><a href="@Url.Action("CrewTimeSheet", "TimeSheet")">Crew Time Sheet</a></li>     @*//// this line - Admin can   use the TimeSheet page ///// Deep*@
                     }
                     else
                     {
