@@ -127,6 +127,24 @@
     }
     
 
+
+
+
+    if ($('#IssuingStateOfIdentityDocument').val().length === 0) {
+        $('#IssuingStateOfIdentityDocument').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#IssuingStateOfIdentityDocument').css('border-color', 'lightgrey');
+    }
+
+    if ($('#ExpiryDateOfIdentityDocument').val().length === 0) {
+        $('#ExpiryDateOfIdentityDocument').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ExpiryDateOfIdentityDocument').css('border-color', 'lightgrey');
+    }
     
 
     return isValid;
@@ -153,7 +171,8 @@ function clearTextBox() {
     $('#OvertimeEnabled').val("");
 
    
-   
+    $('#IssuingStateOfIdentityDocument').val("");
+    $('#ExpiryDateOfIdentityDocument').val("");
    
 }
 
@@ -195,7 +214,11 @@ function AddCrew() {
             // Watchkeeper: $('#Watchkeeper').val(),
             //OvertimeEnabled: $('#OvertimeEnabled').val(),
             Watchkeeper: document.getElementById("Watchkeeper").checked,
-            OvertimeEnabled: document.getElementById("OvertimeEnabled").checked
+            OvertimeEnabled: document.getElementById("OvertimeEnabled").checked,
+
+
+            IssuingStateOfIdentityDocument: $('#IssuingStateOfIdentityDocument').val(),
+            ExpiryDateOfIdentityDocument1: $('#ExpiryDateOfIdentityDocument').val()
         };
 
         $.ajax({
@@ -288,7 +311,10 @@ function AddCrewEdit() {
             LatestUpdate1: $('#LatestUpdate').val(),
             Notes: $('textarea#Comments').val(),
             Watchkeeper: document.getElementById("Watchkeeper").checked,
-            OvertimeEnabled: document.getElementById("OvertimeEnabled").checked
+            OvertimeEnabled: document.getElementById("OvertimeEnabled").checked,
+
+            IssuingStateOfIdentityDocument: $('#IssuingStateOfIdentityDocument').val(),
+            ExpiryDateOfIdentityDocument1: $('#ExpiryDateOfIdentityDocument').val()
         };
 
         $.ajax({
@@ -417,6 +443,12 @@ function LoadDataById(id) {
             else {
                 $('#OvertimeEnabled').prop('checked', false);
             }
+
+
+
+
+            $('#IssuingStateOfIdentityDocument').val(result.IssuingStateOfIdentityDocument);
+            $('#ExpiryDateOfIdentityDocument').val(result.ExpiryDateOfIdentityDocument1);
 
 
         },

@@ -117,9 +117,9 @@
 
 
                 @*<div class="form-group">
-                    <label for="EmployeeNumber">Employee Number</label>
-                    <input type="text" class="form-control" id="EmployeeNumber" placeholder="EmployeeNumber" />
-                </div>*@
+            <label for="EmployeeNumber">Employee Number</label>
+            <input type="text" class="form-control" id="EmployeeNumber" placeholder="EmployeeNumber" />
+        </div>*@
                 <div class="form-group">
                     <label for="Department">Department</label>
                     @*@Html.ListBoxFor(model => model.DepartmentMasterID, (IEnumerable<SelectListItem>)ViewBag.Departments, new { @class = "listbox", @multiple = "multiple", @id = "ddlAdmCru" })*@
@@ -133,6 +133,18 @@
                     <input type="text" class="form-control valid1" id="LatestUpdate" placeholder="To" style="width: 45%; float:right;" />
                 </div>
                 <br />
+
+
+                <div class="form-group">
+                    <label for="POB">Issuing State Of Identity Document</label>
+                    <input type="text" class="form-control" id="IssuingStateOfIdentityDocument" placeholder="Issuing State Of Identity Document" />
+                </div>
+                <div class="form-group">
+                    <label for="DOB">Expiry Date Of Identity Document</label>
+                    <input type="text" class="form-control" id="ExpiryDateOfIdentityDocument" placeholder="Expiry Date Of Identity Document" />
+                </div>
+
+
                 <div class="form-group">
                     <label for="Comments">Comments</label>
                     <textarea class="form-control" id="Comments" cols="7" rows="2"></textarea>
@@ -154,13 +166,13 @@
                 </div>
 
                 @*<div class="form-group" style="margin-bottom: 18px;">
-                    <button type="button" class="button1" id="btnAdd" onclick="return AddCrew();" style="width:130px; float: left;">Add / Update Crew</button>
-                    <button type="button" class="button1" id="btnAdd1" onclick="return AddCrewEdit();" style="display:none; width:120px; float: right;">More Settings</button>
-                    @using (Html.BeginForm())
-                    {
-                        <input type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width:130px; float: left;" Close />
-                    }
-                </div>*@
+            <button type="button" class="button1" id="btnAdd" onclick="return AddCrew();" style="width:130px; float: left;">Add / Update Crew</button>
+            <button type="button" class="button1" id="btnAdd1" onclick="return AddCrewEdit();" style="display:none; width:120px; float: right;">More Settings</button>
+            @using (Html.BeginForm())
+            {
+                <input type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width:130px; float: left;" Close />
+            }
+        </div>*@
 
 
             </div>
@@ -177,7 +189,7 @@
             <div>&nbsp;</div>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <div class="form-group" style="margin-bottom: 18px;">
                 @using (Html.BeginForm())
                 {
@@ -188,7 +200,7 @@
             <div>&nbsp;</div>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <div class="form-group" style="margin-bottom: 18px;">
                 <button type="button" class="button1" id="btnAdd1" onclick="return AddCrewEdit();" style="display:none; width:120px; float: right;">More Settings</button>
             </div>
@@ -224,7 +236,14 @@
 
     });
 
+    
+    $("#ExpiryDateOfIdentityDocument").datepicker({
 
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
+
+    });
 
 
     $("#LatestUpdate").datepicker({

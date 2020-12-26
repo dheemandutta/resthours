@@ -71,5 +71,12 @@ namespace TM.Base.Entities
 
         public int TemperatureModeID { get; set; }
         public string TemperatureMode { get; set; }
+
+
+
+        public string IssuingStateOfIdentityDocument { get; set; }
+
+        public DateTime? ExpiryDateOfIdentityDocument { get; set; }
+        public string ExpiryDateOfIdentityDocument1 { get; set; }
     }
 }

@@ -131,8 +131,33 @@ namespace TM.RestHour.DAL
            
 
             cmd.Parameters.AddWithValue("@OvertimeEnabled", crew.OvertimeEnabled);
-           
-         
+
+
+
+
+
+            if (!String.IsNullOrEmpty(crew.IssuingStateOfIdentityDocument))
+            {
+                cmd.Parameters.AddWithValue("@IssuingStateOfIdentityDocument", crew.IssuingStateOfIdentityDocument.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@IssuingStateOfIdentityDocument", DBNull.Value);
+            }
+
+            if (crew.ExpiryDateOfIdentityDocument.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDateOfIdentityDocument", crew.ExpiryDateOfIdentityDocument);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDateOfIdentityDocument", DBNull.Value);
+            }
+
+
+
+
+
 
             if (crew.ID > 0)
             {
@@ -456,6 +481,14 @@ namespace TM.RestHour.DAL
                         crewtimesheet.DepartmentMasterID = Convert.ToInt16(item["DepartmentMasterID"]);
 
 
+
+
+
+                    if (item["IssuingStateOfIdentityDocument"] != System.DBNull.Value)
+                        crewtimesheet.IssuingStateOfIdentityDocument = item["IssuingStateOfIdentityDocument"].ToString();
+
+                    if (item["ExpiryDateOfIdentityDocument1"] != System.DBNull.Value)
+                        crewtimesheet.ExpiryDateOfIdentityDocument1 = item["ExpiryDateOfIdentityDocument1"].ToString();
 
                     crewtimesheetList.Add(crewtimesheet);
                 }

@@ -224,6 +224,27 @@ namespace TM.RestHour.Controllers
 
             crewPC.ServiceTermsPOCO = serviceTermsPOCO;
 
+
+
+
+            crewPC.IssuingStateOfIdentityDocument = crew.IssuingStateOfIdentityDocument;
+
+            crewPC.ExpiryDateOfIdentityDocument1 = crew.ExpiryDateOfIdentityDocument1;
+            if (!String.IsNullOrEmpty(crewPC.ExpiryDateOfIdentityDocument1))
+            {
+                //serviceTermsPOCO.ActiveTo = DateTime.ParseExact(serviceTermsPOCO.ActiveTo1, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                DateTime expiryDateOfIdentityDocument1 = crewPC.ExpiryDateOfIdentityDocument1.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), ConfigurationManager.AppSettings["InputDateSeperator"].ToString(), ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+                crewPC.ExpiryDateOfIdentityDocument = expiryDateOfIdentityDocument1;
+            }
+            else
+            {
+                crewPC.ExpiryDateOfIdentityDocument = null;
+            }
+
+
+
+
+
             // return Json(crewBL.SaveCrew(crewPC), JsonRequestBehavior.AllowGet);
 
 
@@ -314,14 +335,26 @@ namespace TM.RestHour.Controllers
 
 			crewPC.ServiceTermsPOCO = serviceTermsPOCO;
 
-			// return Json(crewBL.SaveCrew(crewPC), JsonRequestBehavior.AllowGet);
+            // return Json(crewBL.SaveCrew(crewPC), JsonRequestBehavior.AllowGet);
 
 
+            crewPC.IssuingStateOfIdentityDocument = crew.IssuingStateOfIdentityDocument;
 
+            crewPC.ExpiryDateOfIdentityDocument1 = crew.ExpiryDateOfIdentityDocument1;
+            if (!String.IsNullOrEmpty(crewPC.ExpiryDateOfIdentityDocument1))
+            {
+                //serviceTermsPOCO.ActiveTo = DateTime.ParseExact(serviceTermsPOCO.ActiveTo1, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                DateTime expiryDateOfIdentityDocument1 = crewPC.ExpiryDateOfIdentityDocument1.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), ConfigurationManager.AppSettings["InputDateSeperator"].ToString(), ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+                crewPC.ExpiryDateOfIdentityDocument = expiryDateOfIdentityDocument1;
+            }
+            else
+            {
+                crewPC.ExpiryDateOfIdentityDocument = null;
+            }
 
-			//int recordsaffected = crewBL.SaveCrew(crewPC, int.Parse(Session["VesselID"].ToString()));
+            //int recordsaffected = crewBL.SaveCrew(crewPC, int.Parse(Session["VesselID"].ToString()));
 
-			RanksBL ranks = new RanksBL();
+            RanksBL ranks = new RanksBL();
 			int groupId = ranks.GetGroupFromRank(crew.RankID, int.Parse(Session["VesselID"].ToString()));
 
 
@@ -414,6 +447,10 @@ namespace TM.RestHour.Controllers
 
             um.DepartmentMasterName = crewPC.DepartmentMasterName;
             um.DepartmentMasterID = crewPC.DepartmentMasterID;
+
+
+            um.IssuingStateOfIdentityDocument = crewPC.IssuingStateOfIdentityDocument; 
+            um.ExpiryDateOfIdentityDocument1 = crewPC.ExpiryDateOfIdentityDocument1;
 
             var cm = um;
 
