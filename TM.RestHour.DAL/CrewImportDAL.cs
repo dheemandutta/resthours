@@ -47,18 +47,35 @@ namespace TM.RestHour.DAL
                         string middlename = String.Empty;//dTable.Rows[r][6].ToString();
                         string lastname = dTable.Rows[r][1].ToString();
                         string dob = dTable.Rows[r][5].ToString();
-                        string pob = dTable.Rows[r][4].ToString();
+                        string pob = dTable.Rows[r][7].ToString();
                         string passportbook = string.Empty;
                         string seaman = string.Empty;
+
+                        ////////////////////////////////////////////
+                        string issuingStateOfIdentityDocument = dTable.Rows[r][14].ToString();
+                        string expiryDateOfIdentityDocument = dTable.Rows[r][15].ToString();
+                        string createdOn = dTable.Rows[r][16].ToString();
+                        string latestUpdate = dTable.Rows[r][17].ToString();
+                        string department = dTable.Rows[r][18].ToString();
+                        //////////////////////////////////////////////////////
+
+
+
+
+
                         if (dTable.Rows[r][11].ToString().ToUpper().Trim() == "PASSPORT")
                             passportbook = dTable.Rows[r][12].ToString();
                         else
                             seaman = dTable.Rows[r][12].ToString();
-                        string countryname = dTable.Rows[r][14].ToString();
+                        string countryname = dTable.Rows[r][4].ToString();
                         string gender = dTable.Rows[r][8].ToString();
                         bool bwatchkeeper = false;
                         bool bovertime = false;
                         DateTime dateofbirth = new DateTime();
+
+                        DateTime ExpiryDateOfIdentityDocument = new DateTime();
+                        DateTime CreatedOn = new DateTime();
+                        DateTime LatestUpdate = new DateTime();
 
                         if (rank != String.Empty && firstname != String.Empty && lastname != string.Empty & dob != string.Empty && rank != string.Empty && countryname != string.Empty)
                         {
@@ -143,6 +160,81 @@ namespace TM.RestHour.DAL
                                 command.Parameters.AddWithValue("@Gender", gender);
                             else
                                 command.Parameters.AddWithValue("@Gender", DBNull.Value);
+
+
+
+
+
+
+
+
+
+
+                            /////////////////////////////////////////////////////////////////////////////////////////////////
+                            if (!String.IsNullOrEmpty(issuingStateOfIdentityDocument))
+                                command.Parameters.AddWithValue("@IssuingStateOfIdentityDocument", issuingStateOfIdentityDocument);
+                            else
+                                command.Parameters.AddWithValue("@IssuingStateOfIdentityDocument", DBNull.Value);
+
+
+
+                           
+                            if (expiryDateOfIdentityDocument != string.Empty)
+                            {
+                                try
+                                {
+                                    expiryDateOfIdentityDocument = expiryDateOfIdentityDocument.Replace('.', '-');
+                                    ExpiryDateOfIdentityDocument = expiryDateOfIdentityDocument.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), ConfigurationManager.AppSettings["InputDateSeperator"].ToString(), ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+                                }
+                                catch
+                                {
+                                    ExpiryDateOfIdentityDocument = new DateTime(2000, 01, 01);
+                                }
+                            }
+                            command.Parameters.AddWithValue("@ExpiryDateOfIdentityDocument", ExpiryDateOfIdentityDocument);
+
+
+
+                           
+                            if (createdOn != string.Empty)
+                            {
+                                try
+                                {
+                                    createdOn = createdOn.Replace('.', '-');
+                                    CreatedOn = createdOn.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), ConfigurationManager.AppSettings["InputDateSeperator"].ToString(), ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+                                }
+                                catch
+                                {
+                                    CreatedOn = new DateTime(2000, 01, 01);
+                                }
+                            }
+                            command.Parameters.AddWithValue("@CreatedOn", CreatedOn);
+
+
+
+                          
+                            if (latestUpdate != string.Empty)
+                            {
+                                try
+                                {
+                                    latestUpdate = latestUpdate.Replace('.', '-');
+                                    LatestUpdate = latestUpdate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), ConfigurationManager.AppSettings["InputDateSeperator"].ToString(), ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+                                }
+                                catch
+                                {
+                                    LatestUpdate = new DateTime(2000, 01, 01);
+                                }
+                            }
+                            command.Parameters.AddWithValue("@LatestUpdate", LatestUpdate);
+
+
+
+
+                            if (!String.IsNullOrEmpty(department))
+                                command.Parameters.AddWithValue("@Department", department);
+                            else
+                                command.Parameters.AddWithValue("@Department", DBNull.Value);
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////
 
                             int i = command.ExecuteNonQuery();
                         }

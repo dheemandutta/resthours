@@ -39,8 +39,6 @@ namespace TM.RestHour.Controllers
                     Directory.CreateDirectory(path);
                 }
 
-
-
 				string fileName = string.Empty;
 				fileName = Path.GetFileName(postedFile.FileName);
 
@@ -51,16 +49,6 @@ namespace TM.RestHour.Controllers
 
 				postedFile.SaveAs(path + Path.GetFileName(postedFile.FileName));
                 ViewBag.Message = "File uploaded successfully.";
-
-
-
-
-
-
-
-
-
-
 
                 string filePath = path + fileName;
 
@@ -74,8 +62,6 @@ namespace TM.RestHour.Controllers
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
 
-
-
                         // 2. Use the AsDataSet extension method
                         var dataSet = reader.AsDataSet(new ExcelDataSetConfiguration()
                         {
@@ -86,37 +72,18 @@ namespace TM.RestHour.Controllers
                             {
                                 UseHeaderRow = false ,// Use first row is ColumnName here :D
                                 FilterRow = rowHeader => rowHeader.Depth >= 10
-
                             }
-
                         });
 
                         if (dataSet.Tables.Count > 0)
                         {
                             dtData = dataSet.Tables[0];
                             // Do Something
-                        }
-
-
-                       
+                        }                     
                         // The result of each spreadsheet is in result.Tables
                     }
-
                      crewImportBL.ImportCrew(dtData, int.Parse(Session["VesselID"].ToString()));        ////////////////////////////////////////
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
 
             return View();
