@@ -206,7 +206,8 @@ function GetCrewForCIRMPatientDetails() {
             $('#Sex').val(result.Gender);
             $('#Nationality').val(result.CountryID);
             $('#Age').val(result.DOB);
-
+            //13-01-2021 SSG
+            $('#JoiningDate').val(result.CreatedOn);
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();
             //$('#btnAdd').hide();
@@ -242,7 +243,8 @@ function GetCrewForCIRMPatientDetailsByCrew(ID) {
             $('#Sex').val(result.Gender);
             $('#Nationality').val(result.CountryID);
             $('#Age').val(result.DOB);
-
+            //13-01-2021 SSG
+            $('#JoiningDate').val(result.CreatedOn);
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();
             //$('#btnAdd').hide();

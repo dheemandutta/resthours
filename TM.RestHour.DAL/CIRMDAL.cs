@@ -514,6 +514,9 @@ namespace TM.RestHour.DAL
 
                     if (item["DOB"] != null)
                         crewtimesheet.DOB = item["DOB"].ToString();
+                    //13-01-2021 SSG
+                    if (item["CreatedOn"] != null)
+                        crewtimesheet.CreatedOn = item["CreatedOn"].ToString();
 
                     crewtimesheetList.Add(crewtimesheet);
                 }
@@ -573,7 +576,9 @@ namespace TM.RestHour.DAL
 
                     if (item["DOB"] != null)
                         crewtimesheet.DOB = item["DOB"].ToString();
-
+                    //13-01-2021 SSG
+                    if (item["CreatedOn"] != null)
+                        crewtimesheet.CreatedOn = item["CreatedOn"].ToString();
 
                     crewtimesheetList.Add(crewtimesheet);
                 }

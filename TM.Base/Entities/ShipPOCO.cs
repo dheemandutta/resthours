@@ -96,5 +96,7 @@ namespace TM.Base.Entities
         public string Gender { get; set; }
         public int CountryID { get; set; }
         public string DOB { get; set; }
+        //13-01-2021 SSG
+        public string CreatedOn { get; set; }
     }
 }

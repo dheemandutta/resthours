@@ -1768,7 +1768,8 @@ namespace TM.RestHour.Controllers
             um.Gender = shipPC.Gender;
             um.CountryID = shipPC.CountryID;
             um.DOB = shipPC.DOB;
-
+            //13-01-2021 SSG
+            um.CreatedOn = shipPC.CreatedOn;
             var cm = um;
 
             return Json(cm, JsonRequestBehavior.AllowGet);
@@ -1794,6 +1795,8 @@ namespace TM.RestHour.Controllers
             um.Gender = shipPC.Gender;
             um.CountryID = shipPC.CountryID;
             um.DOB = shipPC.DOB;
+            //13-01-2021 SSG
+            um.CreatedOn = shipPC.CreatedOn;
 
             var cm = um;
 
