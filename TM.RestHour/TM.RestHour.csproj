@@ -798,6 +798,7 @@
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_04122020.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_11122020.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_14.01.2021.sql" />
+    <Content Include="devsqlscripts\Worth_SQL_Script_Initial_15.01.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_16.12.2020.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_16.12.2020_II.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_26.12.2020.sql" />
@@ -2974,6 +2975,7 @@
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_11122020.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_13.01.2021.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_14.01.2021.sql" />
+    <Content Include="SQLScripts\Worth_SQL_Script_Initial_15.01.2021.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_16.12.2020.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_16.12.2020_II.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_26.12.2020.sql" />
