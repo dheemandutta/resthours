@@ -778,7 +778,9 @@ namespace TM.RestHour.Controllers
             TimeSheetBL crewDAL = new TimeSheetBL();
             List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
 
-            crewpocoList = crewDAL.GetAllCrewForDrp(int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
+            //crewpocoList = crewDAL.GetAllCrewForDrp(int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
+            //Added as a bugfix: Dheeman
+            crewpocoList = crewDAL.GetAllCrewForTimeSheet(int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
 
             List<Crew> itmasterList = new List<Crew>();
 
