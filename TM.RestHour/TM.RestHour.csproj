@@ -795,6 +795,7 @@
     <Content Include="devsqlscripts\stpGetMedicalAdvisoryListPageWise_16.12.2019.sql" />
     <Content Include="devsqlscripts\stpSaveConfigData_19072019.sql" />
     <Content Include="devsqlscripts\stpUpdateByResetPassword_09.12.2019.sql" />
+    <Content Include="devsqlscripts\Worth_SQL_Script_Initial_02.02.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_04122020.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_11122020.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_14.01.2021.sql" />
@@ -2971,6 +2972,7 @@
     <Content Include="SQLScripts\FullScriptOfRH_12.11.2020.sql" />
     <Content Include="SQLScripts\stpSaveCrewTemperature.sql" />
     <Content Include="SQLScripts\24.06.2020 RestHourClient Script.sql" />
+    <Content Include="SQLScripts\Worth_SQL_Script_Initial_02.02.2021.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_04122020.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_11122020.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_13.01.2021.sql" />
