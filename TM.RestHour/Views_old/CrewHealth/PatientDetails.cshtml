@@ -1,0 +1,655 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+@{
+    ViewBag.Title = "PatientDetails";
+}
+
+
+<script src="~/Scripts/CIRM.js"></script>
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<style>
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+    }
+
+    .bac1 {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+        height: 450px;
+    }
+</style>
+
+@Html.Hidden("SaveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
+@Html.Hidden("getCrewForCIRMPatientDetails", @Url.Action("GetCrewForCIRMPatientDetails", "CrewHealth"))
+
+@*@Html.Hidden("uploadPistures", @Url.Action("UploadPistures", "CrewHealth"))*@
+
+
+@Html.Hidden("getCrewForCIRMPatientDetailsByCrew", @Url.Action("GetCrewForCIRMPatientDetailsByCrew", "CrewHealth"))
+
+<body style="background-image: url(../background/Doctors.jpg);
+    background-size: cover;">
+
+    @*@Html.Hidden("saveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))*@
+
+    <div class="row">
+        <div class="col-md-2">
+            <h3 style=" color:#000;">CIRM - Patient Details</h3>
+        </div>
+
+        <div class="col-md-10 bacmt">
+
+
+            <div class="clearfix"></div>
+
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+
+
+                <div class="col-md-3">
+                    <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
+                    @*<a href="@Url.Action("HumanBody", "CrewHealth")" class="button1">Go to the Image</a>*@
+                    <button type="button" class="button1" style="float: right; right: 25px;" data-toggle="modal" data-target="#myModal" onclick="openBody();">Go to the Image</button><br /><br />
+                </div>
+
+                <div class="col-md-3">
+                    @*<div class="form-group">
+                              <label for="Name Of Vessel">Name Of Vessel</label>
+                              <div class="form-control">
+                              @System.Web.HttpContext.Current.Session["ShipName"].ToString()
+                              </div>
+                        </div>*@
+                    <div class="form-group">
+                        <label for="Crew">Crew</label>
+                        @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
+                        @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                        @*<input type="text" class="form-control" id="CrewName" placeholder=" " disabled />*@
+                    </div>
+                    <div class="form-group">
+                        <label for="Nationality">Nationality</label>
+                        @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control", @id = "Nationality" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Addiction">Addiction</label>
+                        <select name="Addiction" class="form-control" id="Addiction">
+                            <option value="">Select</option>
+                            <option value="Smoking">Smoking</option>
+                            <option value="Drinking">Drinking</option>
+                            <option value="Tobacco">Tobacco</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Rank">Rank</label>
+                        @Html.DropDownListFor(model => model.RankID, (IEnumerable<SelectListItem>)ViewBag.Ranks, "Select", new { @class = "form-control", @id = "ddlRank" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Ethinicity">Ethinicity</label>
+                        <input type="text" class="form-control" id="Ethinicity" placeholder="Ethinicity " />
+                    </div>
+                    <div class="form-group">
+                        <label for="Frequency">Frequency</label>
+                        <input type="text" class="form-control" id="Frequency" placeholder="Frequency " />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Sex ">Sex </label>
+                        @*<select name="Sex" class="form-control" id="Sex">
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select>*@
+                        <input type="text" class="form-control" id="Sex" placeholder=" " disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for=" Age">Date Of Birth  </label>
+                        <input type="text" class="form-control" id="Age" placeholder="Age " disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for=" JoiningDate">Joining Date </label>
+                        <input type="text" class="form-control" id="JoiningDate" placeholder="JoiningDate " disabled />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <h4>Type of Ailment </h4>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Category">Category</label>
+                        <input type="text" class="form-control" id="Category" placeholder="Category " />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="SubCategory">Sub Category</label>
+                        <input type="text" class="form-control" id="SubCategory" placeholder="Sub Category " />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6" style="border: 1px solid #eee; padding: 10px;">
+                    <h4>Vital statistics</h4>
+
+                    <div class="col-md-6">
+                        @*<div class="form-group" style="width: 100%;">
+                                 <label for="Temperature">Temperature</label>
+                             </div>
+                            <div class="form-group" style="width: 100%;">
+                                 <div class="col-md-6" id="sideform">
+                                     <input type="text" style="width: 150%;" class="form-control" id="Temperature" placeholder="Temperature" />
+                                 </div>
+                                 <div class="col-md-5" id="sideform">
+                                     <select name="Addiction" style="width: 100%;" class="form-control" id="Addiction">
+                                         <option value="C">°C</option>
+                                         <option value="F">°F</option>
+                                     </select>
+                                 </div>
+                             </div>*@
+                        <div class="form-group" style="width: 100%;">
+                            <label for="Pulse">Pulse (Beats/Minute)</label>
+                            <input type="text" class="form-control" id="Pulse" placeholder="Pulse (bpm)" />
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            <label for="OxygenSaturation">Oxygen Saturation/SpO2</label>
+                            <input type="text" class="form-control" id="OxygenSaturation" placeholder="Oxygen Saturation/SpO2" />
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            &nbsp; &nbsp; &nbsp;
+                        </div>
+                        <div style="border: 1px solid #eee; padding: 10px;">
+                            <h4>Blood Pressure</h4>
+                            <div class="form-group" style="width: 100%;">
+                                <label for="Systolic">Systolic (mmHg)</label>
+                                <input type="text" class="form-control" id="Systolic" placeholder="Systolic (mmHg)" />
+                            </div>
+                            <div class="form-group" style="width: 100%;">
+                                <label for="Diastolic">Diastolic (mmHg)</label>
+                                <input type="text" class="form-control" id="Diastolic" placeholder="Diastolic (mmHg)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        @*<div class="form-group" style="width: 100%;">
+                                <label for="Mode">Mode</label>
+                                <select name="Mode" style="width: 100%;" class="form-control" id="Mode">
+                                    <option value="">Select</option>
+                                    <option value="Oral">Oral</option>
+                                    <option value="Rectum">Rectum</option>
+                                    <option value="Forehead">Forehead</option>
+                                    <option value="Armpit">Armpit</option>
+                                </select>
+                            </div>*@
+                        <div class="form-group" style="width: 100%;">
+                            <label for="RespiratoryRate">Respiratory Rate</label>
+                            <input type="text" class="form-control" id="RespiratoryRate" placeholder="Respiratory Rate" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6" style="border: 1px solid #eee; padding: 10px;">
+                    <h4> Medical Condition</h4>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+
+                    <h4>Symptomology </h4>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ObservedDateAndTime">Observed Date And Time</label>
+                            <input type="text" class="form-control" id="SymptomatologyDate" placeholder="Date" />
+                            @*<input type="text" class="form-control" id="SymptomatologyTime" placeholder="Time" />*@
+                            <select name="account" class="form-control" id="SymptomatologyTime" required="">
+                                <option value="">Select</option>
+                                <option value="00:00">00:00</option>
+                                <option value="00:30">00:30</option>
+                                <option value="01:00">01:00</option>
+                                <option value="01:30">01:30</option>
+                                <option value="02:00">02:00</option>
+                                <option value="02:30">02:30</option>
+                                <option value="03:00">03:00</option>
+                                <option value="03:30">03:30</option>
+                                <option value="04:00">04:00</option>
+                                <option value="04:30">04:30</option>
+                                <option value="05:00">05:00</option>
+                                <option value="05:30">05:30</option>
+                                <option value="06:00">06:00</option>
+                                <option value="06:30">06:30</option>
+                                <option value="07:00">07:00</option>
+                                <option value="07:30">07:30</option>
+                                <option value="08:00">08:00</option>
+                                <option value="08:30">08:30</option>
+                                <option value="09:00">09:00</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                                <option value="18:30">18:30</option>
+                                <option value="19:00">19:00</option>
+                                <option value="19:30">19:30</option>
+                                <option value="20:00">20:00</option>
+                                <option value="20:30">20:30</option>
+                                <option value="21:00">21:00</option>
+                                <option value="21:30">21:30</option>
+                                <option value="22:00">22:00</option>
+                                <option value="22:30">22:30</option>
+                                <option value="23:00">23:00</option>
+                                <option value="23:30">23:30</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            &nbsp; &nbsp; &nbsp;
+                        </div>
+                        <div class="form-group">
+                            <label for="Vomiting">Vomiting</label>
+                            <select name="Vomiting" style="width: 100%;" class="form-control" id="Vomiting">
+                                <option value="">Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <input type="text" class="form-control" id="FrequencyOfVomiting" placeholder="Frequency Of Vomiting" />
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            &nbsp; &nbsp; &nbsp;
+                        </div>
+                        <div class="form-group">
+                            <label for="Fits">Fits</label>
+                            <select name="Fits" style="width: 100%;" class="form-control" id="Fits">
+                                <option value="">Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <input type="text" class="form-control" id="FrequencyOfFits" placeholder="Frequency Of Fits" />
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            &nbsp; &nbsp; &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Details">Details</label>
+                            <textarea type="text" class="form-control valid" id="Details" placeholder="Details" style="width: 95% !important;"></textarea>
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            &nbsp; &nbsp; &nbsp;
+                        </div>
+                        <div class="form-group">
+                            <label for="MedicinesAdministered">Medicines Administered</label>
+                            <textarea type="text" class="form-control valid" id="MedicinesAdministered" placeholder="Medicines Administered" style="width: 95% !important;"></textarea>
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            &nbsp; &nbsp; &nbsp;
+                        </div>
+                        <div class="form-group">
+                            <label for="AnyOtherRelevantInformation">Any Other Relevant Information</label>
+                            <textarea type="text" class="form-control valid" id="AnyOtherRelevantInformation" placeholder="Any Other Relevant Information" style="width: 95% !important;"></textarea>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <h4>In Case of Accident occured</h4>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="WhereAndHowAccidentOccured ">Where And How Accident Occured</label>
+                        <textarea type="text" class="form-control valid" id="WhereAndHowAccidentOccured" placeholder="Where And How Accident Occured" style="width: 95% !important;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="SeverityOfPain">Severity Of Pain</label>
+                        <div style="border: 1px solid #eee; padding: 10px;">
+                            <label class="radio-inline">
+                                <input type="radio" name="SeverityOfPain" value="1" checked>No Hurt
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="SeverityOfPain" value="2">Hurt Little Bit
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="SeverityOfPain" value="3">Hurts Little More
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="SeverityOfPain" value="4">Hurts Even More
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="SeverityOfPain" value="5">Hurts Whole Lot
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="SeverityOfPain" value="6">Hurts Woest
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="uploaddoc" id="JoiningMedical" value="1">
+                        @*<button type="button" onclick="location.href='@Url.Action("UploadJoiningMedical", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:90%; margin: 5px;" onclick="return UploadJoiningMedical();" id="btnUploadJoiningMedical">Upload Joining Medical</button>
+
+                        <input type="checkbox" name="uploaddoc" id="MedicineAvailableOnBoard" value="1">
+                        @*<button type="button" onclick="location.href='@Url.Action("MedicineAvailableOnBoard", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:90%; margin: 5px;" onclick="return MedicineAvailableOnBoard();" id="btnMedicineAvailableOnBoard">Upload Medicine Available On Board</button>
+
+                        <input type="checkbox" name="uploaddoc" id="MedicalEquipmentOnBoard" value="1">
+                        @*<button type="button" onclick="location.href='@Url.Action("MedicalEquipmentOnBoard", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:90%; margin: 5px;" onclick="return MedicalEquipmentOnBoard();" id="btnMedicalEquipmentOnBoard">Upload Medical Equipment On Board</button>
+
+                        <input type="checkbox" name="uploaddoc" id="MedicalHistoryUpload" value="1">
+                        @*<button type="button" onclick="location.href='@Url.Action("MedicalHistoryUpload", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:90%; margin: 5px;" onclick="return MedicalHistoryUpload();" id="btnMedicalHistoryUpload">Upload Medical History Upload</button>
+
+                        <input type="checkbox" name="uploaddoc" id="WorkAndRestHourLatestRecord" value="1">
+                        @*<button type="button" onclick="location.href='@Url.Action("WorkAndRestHourLatestRecord", "CrewHealth")';return false;">Upload</button>*@
+                        <button type="button" class="button1" style="width:90%; margin: 5px;" onclick="return WorkAndRestHourLatestRecord();" id="btnWorkAndRestHourLatestRecord">Upload Work And Rest Hour Latest Record</button>
+
+                        <input type="checkbox" name="uploaddoc" id="PreExistingMedicationPrescription" value="1">
+                        @*<button type="button" onclick="location.href='@Url.Action("PreExistingMedicationPrescription", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:90%; margin: 5px;" onclick="return PreExistingMedicationPrescription();" id="btnPreExistingMedicationPrescription">Upload Pre Existing Medication Prescription</button>
+
+
+
+                        <input type="checkbox" name="uploaddoc" id="UploadPistures" value="1">
+                        @*<button type="button" onclick="location.href='@Url.Action("UploadPistures", "CrewHealth")';return false;">Upload </button>*@
+                        <button type="button" class="button1" style="width:90%; margin: 5px;" onclick="return UploadPistures();" id="btnUploadPistures">Upload</button>
+                        </br>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="LocationAndTypeOfInjuryBurn ">Location And Type Of Injury/Burn</label>
+                        <textarea type="text" class="form-control valid" id="LocationAndTypeOfInjuryBurn" placeholder="Location And Type Of Injury/Burn" style="width: 95% !important;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="FrequencyOfPain">Frequency Of Pain</label>
+                        <input type="text" class="form-control" id="FrequencyOfPain" placeholder="Frequency Of Pain" />
+                    </div>
+                    @*<div class="form-group">
+                <span style="font-size:20px;">Upload Pistures:</span>
+                <br />
+                <input type="file" name="postedFile" accept="application/pdf,image/gif, image/jpeg" />
+                <br />
+                <input type="submit" value="Upload" class="btn btn-warning" />
+                <br /><br />
+            </div>*@
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="FirstAidGiven ">First Aid Given</label>
+                        <textarea type="text" class="form-control valid" id="FirstAidGiven" placeholder="First Aid Given" style="width: 95% !important;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="PercentageOfBurn">Percentage Of Burn</label>
+                        <input type="text" class="form-control" id="PercentageOfBurn" placeholder="Percentage Of Burn" />
+                    </div>
+                    <div class="form-group">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    @*<div class="form-group">
+            <button type="button" class="button1" id="btnAdd" onclick="return SaveCIRM();">Add</button>
+        </div>*@
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="text" class="form-control" style="width:90%;" id="Email" placeholder="Enter the Email for Doctors / Hospitals" />
+                    </div>
+                    <button type="button" class="button1" id="" onclick="">Send</button>
+                </div>
+             
+
+
+
+
+
+                @*<div class="col-md-3" style="padding: 10px; margin-top:68px;">
+            <button type="button" class="button1" id="btnAdd" onclick="return SaveCIRM();">Add</button>
+        </div>*@
+            </div>
+
+
+            <script>
+            function openBody() {
+                window.open("@Url.Action("TestBody", "CrewHealth")");
+            }
+            </script>
+
+
+
+            @* /////////////////////////////////////////////////  Popup  ///////////////////////////////////////////////////////////////////*@
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:890px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                        </div>
+
+                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
+                            <fieldset class="for-panel">
+                                <legend>Upload</legend>
+                                <div class="row">
+
+                                    <div class="col-sm-3" style="width: 63%;">
+                                        <div class="form-horizontal">
+                                            <label class="col-xs-5 control-label">Photo:</label>
+                                            @*<div>
+                                                    @using (Html.BeginForm("MedicalTreatment", "CrewHealth", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                    {
+                                                        <span>Select File:</span>
+                                                        <input type="file" name="postedFile" />
+                                                        <hr />
+                                                        <input type="submit" value="Upload" />
+                                                        <br />
+                                                        <span style="color:green">@ViewBag.Message</span>
+                                                    }
+                                                </div>*@
+                                        </div>
+                                    </div>
+
+                                    @*////////////////////////////////Dheeman da///////////////////////////////////////////////////////*@
+                                    <input id="upload" name="upload" type="file" />
+                                    <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
+
+
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+
+                                    <div class="form-group">
+                                        <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
+                            @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
+                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        $(document).ready(function () {
+
+            SetUpGrid();
+            //GetCrewForCIRMPatientDetails();
+
+            document.getElementById("Nationality").disabled = true;
+            document.getElementById("ddlRank").disabled = true;
+
+            $('#FrequencyOfVomiting').hide();
+            $('#FrequencyOfFits').hide();
+
+            $('#btnUploadJoiningMedical').hide();
+            $('#btnMedicineAvailableOnBoard').hide();
+            $('#btnMedicalEquipmentOnBoard').hide();
+            $('#btnMedicalHistoryUpload').hide();
+            $('#btnWorkAndRestHourLatestRecord').hide();
+            $('#btnPreExistingMedicationPrescription').hide();
+            $('#btnUploadPistures').hide();
+        });
+
+        $('#ddlCrew').on('change', function () {
+            //alert($('option:selected', this).text());
+
+            var ID = $('#ddlCrew').val();
+            console.log('hi');
+            console.log(ID);
+
+            GetCrewForCIRMPatientDetailsByCrew(ID);
+
+            $('#btnUploadJoiningMedical').show();
+            $('#btnMedicineAvailableOnBoard').show();
+            $('#btnMedicalEquipmentOnBoard').show();
+            $('#btnMedicalHistoryUpload').show();
+            $('#btnWorkAndRestHourLatestRecord').show();
+            $('#btnPreExistingMedicationPrescription').show();
+            $('#btnUploadPistures').show();
+        });
+
+        $('#Vomiting').change(function () {
+            $('#FrequencyOfVomiting').show();
+        });
+
+        $('#Fits').change(function () {
+            $('#FrequencyOfFits').show();
+        });
+
+      
+        $("#JoiningDate").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+       
+        $("#SymptomatologyDate").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+
+        //function UploadPistures() {
+        //    var url = $("#uploadPistures").val();
+        //    location.href = window.open( url + "?CrewID=" + $("#ddlCrew").val());
+        //}
+
+        function UploadJoiningMedical() {
+            window.open("@Url.Action("UploadJoiningMedical", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function MedicineAvailableOnBoard() {
+            window.open("@Url.Action("MedicineAvailableOnBoard", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function MedicalEquipmentOnBoard() {
+            window.open("@Url.Action("MedicalEquipmentOnBoard", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function MedicalHistoryUpload() {
+            window.open("@Url.Action("MedicalHistoryUpload", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function WorkAndRestHourLatestRecord() {
+            window.open("@Url.Action("WorkAndRestHourLatestRecord", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+         function PreExistingMedicationPrescription() {
+            window.open("@Url.Action("PreExistingMedicationPrescription", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+        function UploadPistures() {
+            window.open("@Url.Action("UploadPistures", "CrewHealth")" + "?CrewID=" + $("#ddlCrew").val());
+        }
+
+
+
+    </script>
+
+}

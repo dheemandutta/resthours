@@ -1,0 +1,345 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+
+@{
+                /**/
+
+                ViewBag.Title = "WorkAndRestHoursForUser";
+}
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 0px 0px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 0px 0px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+        }
+
+        .tg .tg-baqh {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .tg .tg-8ls8 {
+            color: #ffc702;
+            text-align: right;
+            vertical-align: top;
+        }
+
+        .tg .tg-f8tx {
+            color: #000000;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .tg .tg-v0f9 {
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif !important;
+            ;
+            color: #333333;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .tg .tg-amwm {
+            font-weight: bold;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .tg .tg-s4h7 {
+            color: #333333;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .tg .tg-yw4l {
+            vertical-align: top;
+            text-align: center;
+            font-size: 9px;
+        }
+
+        .tg .tg-l2oz {
+            font-weight: bold;
+            text-align: right;
+            vertical-align: top;
+        }
+
+        .tg .tg-pwjw {
+            color: #330001;
+            text-align: center;
+            vertical-align: top;
+        }
+</style>
+
+<style>
+    .button {
+        position: relative;
+        background-color: #22BAA0;
+        border: none;
+        font-size: 14px;
+        color: #FFFFFF;
+        padding: 8px;
+        width: 148px;
+        text-align: center;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-right: 39px;
+        float: left;
+    }
+
+        .button:after {
+            content: "";
+            background: #90EE90;
+            display: block;
+            position: absolute;
+            padding-top: 300%;
+            padding-left: 350%;
+            margin-left: -20px !important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+        }
+
+        .button:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+        }
+
+    a.btn {
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        -webkit-transition-duration: 0.5s;
+        -moz-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+    }
+
+    body {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .main-footer {
+        background: #fff;
+        padding: 0px;
+    }
+
+    .content {
+        min-height: 250px;
+        padding: 15px 15px 0 15px;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 30px;
+        font-size: 13px;
+        border-radius: 4px;
+    }
+</style>
+
+@*@Html.Hidden("Showreport" , @Url.Action("GetMonthlyDataForWeb", "Reports"))*@
+@Html.Hidden("Showreport3ForUser", @Url.Action("GetVarianceFromWorkSessionsForUser", "Reports"))
+@Html.Hidden("loaddataForUser", @Url.Action("GetVarianceFromWorkSessionsForUser", "Reports"))
+@Html.Hidden("pdfreportForUser", @Url.Action("GetVarianceFromWorkSessionsForPdfForUser", "Reports"))
+
+
+<h2>Compliance Report</h2>
+<div class="card" style="border: 0; border-radius: 0; box-shadow: 0 6px 15px 0 rgba(207, 211, 218, 0.35); padding:10px;">
+
+    <div class="row">
+        @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+
+        <div class="col-md-4" id="sideform">
+            <div class="card">
+                <div class="card-block">
+                    <form class="form-horizontal" role="form">
+
+                        <div class="form-group">
+                            <div>
+                                <div class="col-md-7" id="sideform">
+                                    <label for="selectCrew">Crew</label>
+                                    @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <div class="col-md-4" id="sideform">
+                                        <label for="ReportsDate"> Month & Year</label>
+
+
+                                        <input name="ReportsDate" class="monthYearPicker form-control" style="width:200px;" id="ReportsDateVal" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div>
+                                <div class="col-md-7" id="sideform">
+                                    <button type="button" class="button" id="btnAdd" @*disabled="disabled"*@ onclick="return GetHours2ForUser();">Show Report</button>
+                                </div>
+
+                                <div class="col-md-4" id="sideform">
+
+                                    <button type="button" class="button" id="btnPrint" @*disabled="disabled"*@>Print Report</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <table width="100%">
+        <tr>
+            <td align="left" width="75%"><b>Work and Rest Hours - Variance</b></td>
+
+        </tr>
+
+        <tr>
+            <td align="left" width="75%">Vessel:<span id="vs"></span></td>
+            <td align="right"> Crew:<span id="cr"></span></td>
+        </tr>
+        <tr>
+            <td align="left" width="75%">Reporting Period:<span id="rp"></span></td>
+            <td align="right"> Department:<span id="dp"></span></td>
+        </tr>
+    </table>
+    <hr>
+    <input type="hidden" id="hdnrole" />
+    <table id="certtable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+
+                <th>Day</th>
+                <th>Date</th>
+                <th>Normal Hours</th>
+                <th>Overtime</th>
+                <th>Total Hours</th>
+                <th>Compliance Errors</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div id="dvprint2" style="display:none;">
+    <table width="100%">
+        <tr>
+            <td align="left" width="75%"><b>Work and Rest Hours - Variance</b></td>
+
+        </tr>
+
+        <tr>
+            <td align="left" width="75%">Vessel:<span id="vs"></span></td>
+            <td align="right"> Crew:<span id="cr_print"></span></td>
+        </tr>
+        <tr>
+            <td align="left" width="75%">Reporting Period:<span id="rp"></span></td>
+            <td align="right"> Department:<span id="dp_print"></span></td>
+        </tr>
+    </table>
+    <hr>
+    <table id="certtable_print" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Date</th>
+                <th>Normal Hours</th>
+                <th>Overtime</th>
+                <th>Total Hours</th>
+                <th>Compliance Errors</th>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+    <script src="~/Scripts/Reports.js"></script>
+
+    <script type="text/javascript">
+
+
+			$(document).ready(function () {
+				$(function () {
+					$('.monthYearPicker').datepicker({
+						changeMonth: true,
+						changeYear: true,
+						showButtonPanel: true,
+						dateFormat: 'MM yy'
+					}).focus(function () {
+						var thisCalendar = $(this);
+						$('.ui-datepicker-calendar').detach();
+						$('.ui-datepicker-close').click(function () {
+							var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+							var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+							thisCalendar.datepicker('setDate', new Date(year, month, 1));
+						});
+					});
+				});
+
+			});
+
+
+
+
+			$("#btnPrint").click(function () {
+				//PrintWorkAndRestHours();
+				Popup2('');
+			});
+
+			$("#btnAdd").click(function () {
+				SetUpGrid();
+			});
+
+    </script>
+}
+
+

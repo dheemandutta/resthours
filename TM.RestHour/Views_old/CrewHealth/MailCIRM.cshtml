@@ -1,0 +1,152 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+@{
+    ViewBag.Title = "MailCIRM";
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/MailCIRM.js"></script>
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+
+@Html.Hidden("loaddata22", @Url.Action("LoadData22", "CrewHealth"))
+@Html.Hidden("loaddata33", @Url.Action("LoadData33", "CrewHealth"))
+@Html.Hidden("loaddata44", @Url.Action("LoadData44", "CrewHealth"))
+
+
+@*<table id="certtable_print2" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Medicine Name</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+    </table>*@
+
+
+
+@using (Html.BeginForm())
+{
+    <body style="background-image: url(../background/Doctors.jpg);
+    background-size: cover;">
+        <div class="row" style="height:20px;">
+            <div class="col-md-4">
+                <h2 class="ta" style="color:#000;">Mail CIRM</h2>
+            </div>
+            <div class="col-md-8 bacmt">
+                <div class="col-md-4" style="padding-left:0;">
+                    <div class="form-group">
+                        <label for="selectCrew" class="control-label">Select Crew</label><br />
+                        @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                    </div>
+                    <div class="row" style="padding: 10px;">
+                        <input type="submit" class="button1" id="btnSendMail" value="SendMail" />
+                    </div>
+                    <button type="button" class="button1" id="btnPrint2" @*disabled="disabled"*@>Print Medicine</button>
+                    <button type="button" class="button1" id="btnPrint3" @*disabled="disabled"*@>Print Equipment</button>
+                    <button type="button" class="button1" id="btnPrint4" @*disabled="disabled"*@>Print Advisory</button>
+                </div>
+
+            </div>
+        </div>
+    </body>
+}
+
+
+<div id="dvprint22" style="display:none;">
+    <img src="~/companylogo/companylogo.png" />
+    <hr>
+    <table id="certtable_print2" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th align="left">Medicine Name</th>
+                <th align="left">Quantity</th>
+                <th align="left">Expiry Date</th>
+                <th align="left">Location</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div id="dvprint33" style="display:none;">
+    <img src="~/companylogo/companylogo.png" />
+    <hr>
+    <table id="certtable_print3" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th align="left">Equipment Name</th>
+                <th align="left">Quantity</th>
+                <th align="left">Comment</th>
+                <th align="left">Expiry Date</th>
+                <th align="left">Location</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div id="dvprint44" style="display:none;">
+    <img src="~/companylogo/companylogo.png" />
+    <hr>
+    <table id="certtable_print4" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th align="left">Weight </th>
+                <th align="left">BMI </th>
+                <th align="left">BloodSugarLevel </th>
+
+                <th align="left">Systolic </th>
+                <th align="left">Diastolic </th>
+                <th align="left">UrineTest </th>
+
+                <th align="left">UnannouncedAlcohol </th>
+                <th align="left">AnnualDH </th>
+                <th align="left">Month </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            SetUpPrintGridReport2();
+            SetUpGrid33();
+            SetUpGrid44();
+        });
+
+        $("#btnPrint2").click(function () {
+            //PrintTest('');
+            Popup22('');
+        });
+
+        $("#btnPrint3").click(function () {
+            //PrintTest('');
+            Popup33('');
+        });
+
+        $("#btnPrint4").click(function () {
+            //PrintTest('');
+            Popup44('');
+        });
+
+    </script>
+}

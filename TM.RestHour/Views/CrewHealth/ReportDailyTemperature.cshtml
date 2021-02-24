@@ -23,15 +23,14 @@
 
 
 <script src="~/Scripts/CrewHealth.js"></script>
-<body style="background-image: url(../background/report.jpg);
-    background-size: cover;">
+<body>
 
-    <div class="row">
-        <div class="col-md-5">
-            <h2 class="ta" style="color:#000;">Crew Temperature Report</h2>
+    <div class="">
+        <div class="head_title">
+            <h1 class="ta">Crew Temperature Report</h1>
         </div>
-        <div class="col-md-7 bac">
-            <div class="card">
+        <div class="card bac">
+            <div class="">
 
                 <div class="row">
                     @Html.Hidden("getCrewTemperaturePageWiseByCrewID", @Url.Action("GetCrewTemperaturePageWiseByCrewID", "CrewHealth"))
@@ -41,7 +40,7 @@
                     @Html.Hidden("getCrewTemperaturePageWise2", @Url.Action("GetCrewTemperaturePageWise2", "CrewHealth"))
 
                     <div class="col-md-8" id="sideform">
-                        <div class="card">
+                        <div class="">
                             <div class="card-block">
                                 <form class="form-horizontal" role="form">
 

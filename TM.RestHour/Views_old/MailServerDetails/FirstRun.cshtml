@@ -1,0 +1,422 @@
+﻿@model TM.RestHour.Models.Vessel
+
+@{
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+@{
+    ViewBag.Title = "FirstRun";
+}
+
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="~/link/css/layout.css">
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/Vessel.js"></script>
+<style>
+    .modal-footer {
+        padding: 15px;
+        text-align: right;
+        border-top: 1px solid #fff;
+        text-align: center;
+    }
+</style>
+<body style="background-image: url(../background/password1.jpg);
+    background-size: cover; background-attachment:fixed;">
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="ta" style="color:#000;"></h2>
+        </div>
+        <div class="col-md-8">
+
+            <div class="card">
+
+                <div style="margin:0 auto" class="tablecontainer">
+                    @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
+                    @Html.Hidden("myUrl", @Url.Action("GetCompanyDetails", "MailServerDetails"))
+
+                    @Html.Hidden("myUrlship", @Url.Action("GetShipByID", "MailServerDetails"))
+                    @Html.Hidden("addnew", @Url.Action("AddNewVessel", "MailServerDetails"))
+                    @Html.Hidden("NewUnitadd", @Url.Action("NewAdd", "MailServerDetails"))
+
+                    @Html.Hidden("next", @Url.Action("Index", "MailServerDetails"))
+                    @Html.Hidden("saveInitialShipValues", @Url.Action("SaveInitialShipValues", "MailServerDetails"))
+
+
+                    @Html.Hidden("myUrlGetVesselTypeIDFromShip", @Url.Action("GetVesselTypeIDFromShip", "MailServerDetails"))
+                    @Html.Hidden("myUrlGetVesselSubTypeIDFromShip", @Url.Action("GetVesselSubTypeIDFromShip", "MailServerDetails"))
+                    @Html.Hidden("myUrlGetVesselSubSubTypeIDFromShip", @Url.Action("GetVesselSubSubTypeIDFromShip", "MailServerDetails"))
+
+                    @Html.Hidden("myUrlid0", @Url.Action("GetVesselTypeForDrp", "MailServerDetails"))
+                    @Html.Hidden("myUrlid1", @Url.Action("GetVesselSubTypeByVesselTypeIDForDrp", "MailServerDetails"))
+                    @Html.Hidden("myUrlid2", @Url.Action("GetVesselSubSubTypeByVesselSubTypeIDForDrp", "MailServerDetails"))
+
+
+                    <input type="hidden" id="hdncount" />
+
+                    <input type="hidden" id="hdnrole" />
+                    <div class="row" style="margin-top: 74px;">
+                        <div class="col-md-6 bac">
+                            <h3 style="margin-top: 0px;" align="center">Register New Vessel</h3>
+                            <div align="center">
+                                @*<div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Add Vessel</h4>
+                    </div>*@
+                                <div class="modal-body" style="width: 60%;">
+
+                                    <form>
+
+                                        <div>
+                                            <label for="Vessel">Vessel</label>
+                                            <input type="text" class="form-control" id="ShipName" placeholder="Vessel" style="width: 100%;" />
+                                        </div>
+                                        <div>
+                                            <label for="Flag">Flag</label>
+                                            <input type="text" class="form-control" id="FlagOfShip" placeholder="Flag" style="width: 100%;" />
+                                        </div>
+                                        <div>
+                                            <label for="IMO Number">IMO Number</label>
+                                            <input type="text" class="form-control numberinput" maxlength="7" id="IMONumber" placeholder="IMO Number" />
+                                            @*     1)Use "maxlength="7"",    2)Use "numberinput",    3) Copy "javascript" bottom in this page.     *@
+                                        </div>
+
+
+
+
+                                                <div>
+                                                    <label for="VesselType">Vessel Type</label>
+                                                    @*@Html.DropDownListFor(model => model.VesselTypeID, (IEnumerable<SelectListItem>)ViewBag.VesselType, "Select", new { @class = "form-control" })*@
+                                                    <select id="VesselTypeID" name="VesselTypeID" class="form-control"></select>
+                                                </div>
+                                                <div>
+                                                    <label for="VesselSubType">Vessel Sub Type</label>
+                                                    <select id="VesselSubTypeID" name="VesselSubTypeID" class="form-control"></select>
+                                                </div>
+                                                <div>
+                                                    <label for="VesselSubSubType">Vessel Sub Sub Type</label>
+                                                    <select id="VesselSubSubTypeID" name="VesselSubSubTypeID" class="form-control"></select>
+                                                </div>
+                                                <div>
+                                                    <label for="Email">Email</label>
+                                                    <input type="text" class="form-control" id="Email1" placeholder="Email 1" />
+                                                    <input type="text" class="form-control" id="Email2" placeholder="Email 2" />
+                                                </div>
+                                                <div>
+                                                    <label for="Voice">Voice</label>
+                                                    <input type="text" class="form-control" id="Voice1" placeholder="Voice 1" />
+                                                    <input type="text" class="form-control" id="Voice2" placeholder="Voice 2" />
+                                                </div>
+                                                <div>
+                                                    <label for="Fax">Fax</label>
+                                                    <input type="text" class="form-control" id="Fax1" placeholder="Fax 1" />
+                                                    <input type="text" class="form-control" id="Fax2" placeholder="Fax 2" />
+                                                </div>
+                                                <div>
+                                                    <label for="Video Call">Video Call(VOIP)</label>
+                                                    <input type="text" class="form-control" id="VideoCall1" placeholder="Video Call 1" />
+                                                    <input type="text" class="form-control" id="VideoCall2" placeholder="Video Call 2" />
+                                                </div>
+                                                <div>
+                                                    <label for="Mobile">Mobile</label>
+                                                    <input type="text" class="form-control" id="Mobile1" placeholder="Mobile 1" />
+                                                    <input type="text" class="form-control" id="Mobile2" placeholder="Mobile 2" />
+                                                </div>
+
+                                                <div class="form-group" style="width:86px;">
+                                                    <input type="hidden" id="ID" />
+                                                </div>
+
+                                    </form>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                        @*<div class="modal-footer">
+                                @*<button type="button" class="button" id="btnAdd" onclick="return NewAdd();" style="width:86px;">Add</button>
+                            </div>*@
+                            </div>
+                        </div>
+                                <div class="col-md-6 bac" style="float: right; right: 42px;">
+                                    <h3 style="margin-top: 0px;" align="center">Enter Super Admin Details</h3>
+                                    <div align="center">
+                                        @*<div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Add Vessel</h4>
+                            </div>*@
+                                        <div class="modal-body" style="width: 60%;">
+
+                                            <form>
+
+                                                <div>
+                                                    <label for="SuperAdminUserName">Super Admin User Name</label>
+                                                    <input type="text" class="form-control" id="SuperAdminUserName" placeholder="Super Admin User Name" style="width: 100%;" />
+                                                </div>
+                                                <div>
+                                                    <label for="SuperAdminPassword">Super Admin Password</label>
+                                                    <input type="password" class="form-control" id="SuperAdminPassword" maxlength="10" placeholder="Super Admin Password" style="width: 100%;" />
+                                                </div>
+                                                <div>
+                                                    <label for="ConfirmPassword">Confirm Password</label>
+                                                    <input type="password" class="form-control" id="ConfirmPassword" maxlength="10" placeholder="Confirm Password" style="width: 100%;" />
+                                                </div>
+
+                                                <div class="form-group" style="width:86px;">
+                                                    <input type="hidden" id="ID" />
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="modal-footer">
+                                            @*<button onclick="location.href='@Url.Action("Index", "MailServerDetails")'" class="button1" id="NextBTN" type="button">Next</button>*@
+                                            @*<button type="button" class="button" id="btnNext" onclick="return SaveInitialShipValues();" style="width:86px;">Next</button>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div class="col-md-6 bac">
+                                    <h3 style="margin-top: 0px;" align="center">Upload Company Logo</h3>
+                                    <div align="center">
+                                        <div class="modal-body" style="width: 60%;">
+                                            @*<form>*@
+
+                                            <div>
+                                                <label for="CompanyCode">Company Code</label>
+                                                <input type="text" class="form-control" id="CompanyCode" placeholder="Company Code" style="width: 100%;" />
+                                            </div>
+
+                                            <div>
+                                                @using (Html.BeginForm("FirstRun", "MailServerDetails", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
+                                                    <span style="font-size:20px;">Select File:</span>
+                                                    <br />
+                                                    <input type="file" name="postedFile" />
+                                                    <br />
+                                                    <input type="submit" value="Upload" class="button1" />
+                                                    <br /><br />
+                                                    <span style="color:green">@ViewBag.Message</span>
+                                                }
+                                            </div>
+
+                                            @*</form>*@
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 bac" style="float: right; right: 42px;">
+                                    <h3 style="margin-top: 0px;" align="center">Company Details</h3>
+                                    <div align="center">
+                                        <div class="modal-body" style="width: 60%;">
+                                            <form>
+
+                                                <div style="width: 500px;">
+                                                    <div class="row">
+
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                                                        <div class="col-sm-3" style="width: 63%;">
+                                                            <div class="form-horizontal">
+                                                                <label class="col-xs-5 control-label">Name:</label>
+                                                                <input type="text" class="form-control" id="Name" placeholder="Name" disabled />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                                                        <div class="col-sm-3" style="width: 63%;">
+                                                            <div class="form-horizontal">
+                                                                <label class="col-xs-5 control-label">Address:</label>
+                                                                <input type="text" class="form-control" id="Address" placeholder="Address" disabled />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                                                        <div class="col-sm-3" style="width: 63%;">
+                                                            <div class="form-horizontal">
+                                                                <label class="col-xs-5 control-label">Website:</label>
+                                                                <input type="text" class="form-control" id="Website" placeholder="Website" disabled />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                                                        <div class="col-sm-3" style="width: 63%;">
+                                                            <div class="form-horizontal">
+                                                                <label class="col-xs-5 control-label">AdminContact:</label>
+                                                                <input type="text" class="form-control" id="AdminContact" placeholder="AdminContact" disabled />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                                                        <div class="col-sm-3" style="width: 63%;">
+                                                            <div class="form-horizontal">
+                                                                <label class="col-xs-5 control-label">AdminContactEmail:</label>
+                                                                <input type="text" class="form-control" id="AdminContactEmail" placeholder="AdminContactEmail" disabled />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                                                        <div class="col-sm-3" style="width: 63%;">
+                                                            <div class="form-horizontal">
+                                                                <label class="col-xs-5 control-label">ContactNumber:</label>
+                                                                <input type="text" class="form-control" id="ContactNumber" placeholder="ContactNumber" disabled />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                                                        <div class="col-sm-3" style="width: 63%;">
+                                                            <div class="form-horizontal">
+                                                                <label class="col-xs-5 control-label">Domain:</label>
+                                                                <input type="text" class="form-control" id="Domain" placeholder="Domain" disabled />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+                                                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                                                        <div class="col-sm-3" style="width: 63%;">
+                                                            <div class="form-horizontal">
+                                                                <label class="col-xs-5 control-label">SecureKey:</label>
+                                                                <input type="text" class="form-control" id="SecureKey" placeholder="SecureKey" />
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <input type="hidden" id="ID" class="form-control" />
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer" style="width: 145%;">
+                                                    @*<button type="button" class="button1" id="btnAdd" onclick="return Add();" style="width:86px;">Add        </button>
+                                        <button type="button" class="button1" id="btnUpdate" onclick="Add();" style="width:86px;">Update     </button>*@
+                                                    <button type="button" class="button1" id="btnNext" disabled="disabled" onclick="return SaveInitialShipValues();" style="width:86px;">Next</button>
+                                                    <button type="button" class="button1" id="btnAdd" onclick="return GetCompanyDetailsByID();" style="width:86px;">Get Details</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+
+        @section Scripts
+        {
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/jqueryui")
+            @Styles.Render("~/Content/themes/base/css")
+
+            <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+            <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+            <script type="text/javascript">
+                            //$(document).ready(function () {
+
+                            //    //SetUpGrid();
+                            //});
+
+                            $(document).ready(function () {
+                                $(".numberinput").forceNumeric();
+
+                            });
+
+                $("#btnAdd").click(function () {
+                    $('#btnNext').attr('disabled', false);
+                });
+
+                            // forceNumeric() plug-in implementation
+                            jQuery.fn.forceNumeric = function () {
+                                return this.each(function () {
+                                    $(this).keydown(function (e) {
+                                        var key = e.which || e.keyCode;
+
+                                        if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+                                            // numbers
+                                            key >= 48 && key <= 57 ||
+                                            // Numeric keypad
+                                            key >= 96 && key <= 105 ||
+                                            // comma, period and minus, . on keypad
+                                            key == 190 || key == 188 || key == 109 || key == 110 ||
+                                            // Backspace and Tab and Enter
+                                            key == 8 || key == 9 || key == 13 ||
+                                            // Home and End
+                                            key == 35 || key == 36 ||
+                                            // left and right arrows
+                                            key == 37 || key == 39 ||
+                                            // Del and Ins
+                                            key == 46 || key == 45)
+                                            return true;
+
+                                        return false;
+                                    });
+                                });
+                            }
+
+
+
+
+
+                GetVesselTypeForDrp();
+
+                $('#VesselTypeID').on('change', function () {
+                    var VesselTypeID = $('#VesselTypeID').val();
+                    console.log('hi');
+                    console.log(VesselTypeID);
+                    GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
+                });
+
+                $('#VesselSubTypeID').on('change', function () {
+                    var VesselSubTypeID = $('#VesselSubTypeID').val();
+                    GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
+                });
+
+
+
+            </script>
+        }
+
+
+

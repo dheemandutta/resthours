@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/link/css/addcrew.css" rel="stylesheet" />
+	<script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/Crew.js"></script>
+    <script src="~/Scripts/build/date.js"></script>
+    <script>
+        $(function () {
+            $("#tabs").tabs({
+                beforeLoad: function (event, ui) {
+                    ui.jqXHR.fail(function () {
+                        ui.panel.html(
+                            "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+                            "If this wouldn't be a demo.");
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+
+<body style="background-image: url(../background/addcrew.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="ta" style="color:#000;">Crew</h2>
+        </div>
+        <div class="col-md-8 bac">
+            <div id="tabs" style="border:none !important;">
+
+
+                <ul id="tabscontrols">
+                    <li><a href="@Url.Action("AddEditCrew", "AddCrew")">Crew Details</a></li>
+                    <li><a href='@Url.Action("CrewDetails")'>Service Terms</a></li>
+                    <li><a href='@Url.Action("Overtime","AddCrew")'>Overtime</a></li>
+                    <li><a href='@Url.Action("BasicTimeSheet","AddCrew")'>Individual Schedules(Basic)</a></li>
+                    <li><a href='@Url.Action("IMOSchedule","AddCrew")'>Official IMO/ILO Schedules</a></li>
+                    @*<li><a href='@Url.Action("AdvancedTimesheet","AddCrew")'>Individual Schedules(Advanced)</a></li>*@
+                </ul>
+
+            </div>
+
+            </div>
+        </div>
+</body>
+
+
+
+
+
+@*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">*@
+
+@*</div>*@
+
+</html>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('#tabscontrols').find('> li:eq(0)').nextAll().hide();
+
+            // $("#CreatedOn").datepicker({
+
+            //     changeMonth: true,
+            //     changeYear: true,
+
+            // });
+
+
+            //$("#LatestUpdate").datepicker({
+
+            //     changeMonth: true,
+            //     changeYear: true,
+
+            // });
+
+
+
+            $('#tabs').tabs({
+                activate: function (event, ui) {
+
+
+
+                }
+
+            });
+
+
+        });
+
+    </script>
+}

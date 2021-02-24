@@ -1,0 +1,2596 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+
+@{
+	ViewBag.Title = "CrewTimeSheet";
+}
+
+<h2 style="margin:12px 6px; float:right;">Crew Time Sheet</h2>
+
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+
+
+@*<script src="~/ERRORBOX/JS/ErrorBox.js"></script>
+	<link href="~/ERRORBOX/CSS/ErrorBox.css" rel="stylesheet" />*@
+
+<!--JS for ErrorBox - Start-->
+@*<script src="@Url.Content("~/ErrorBox/JS/ErrorBox.js")" type="text/javascript"></script>*@
+<!--JS for ErrorBox - End-->
+<!--CSS for ErrorBox - Start-->
+@*<link href="@Url.Content("~/ErrorBox/CSS/ErrorBox.css")" rel="stylesheet" type="text/css" />*@
+<!--CSS for ErrorBox - End-->
+<style type="text/css">
+	.toggle.ios, .toggle-on.ios, .toggle-off.ios {
+		border-radius: 20px;
+	}
+
+	.toggle.btn {
+		min-width: 30px;
+		width: 88px !important;
+		height: 30px !important;
+	}
+
+	.toggle.ios .toggle-handle {
+		border-radius: 20px;
+	}
+
+	.toggle btn btn-primary ios {
+		width: 55px !important;
+		height: 27px !important;
+	}
+
+	.pre-occupied {
+		background-color: #44c765;
+		opacity: .1;
+	}
+
+	.occupied {
+		background-color: #44c765;
+		opacity: 1 !important;
+	}
+
+	.occupied_red {
+		background-color: red;
+		opacity: 1 !important;
+	}
+
+
+	.tg {
+		width: 100%;
+		margin-bottom: 0px;
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+		.tg td {
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			padding: 0px 0px;
+			border-style: solid;
+			border-width: 1px;
+			overflow: hidden;
+			word-break: normal;
+		}
+
+		.tg th {
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			padding: 0px 0px;
+			border-style: solid;
+			border-width: 1px;
+			overflow: hidden;
+			word-break: normal;
+		}
+
+		.tg .tg-baqh {
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-8ls8 {
+			color: #ffc702;
+			text-align: right;
+			vertical-align: top;
+		}
+
+		.tg .tg-f8tx {
+			color: #000000;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-v0f9 {
+			font-weight: bold;
+			font-family: Arial, Helvetica, sans-serif !important;
+			color: #333333;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-amwm {
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-s4h7 {
+			color: #333333;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-yw4l {
+			vertical-align: top;
+			text-align: center;
+			font-size: 9px;
+		}
+
+		.tg .tg-l2oz {
+			font-weight: bold;
+			text-align: right;
+			vertical-align: top;
+		}
+
+		.tg .tg-pwjw {
+			color: #330001;
+			text-align: center;
+			vertical-align: top;
+		}
+</style>
+
+
+<style>
+	.tg {
+		width: 100%;
+		margin-bottom: 0px;
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+		.tg td {
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			padding: 0px 0px;
+			border-style: solid;
+			border-width: 1px;
+			overflow: hidden;
+			word-break: normal;
+		}
+
+		.tg th {
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			padding: 0px 0px;
+			border-style: solid;
+			border-width: 1px;
+			overflow: hidden;
+			word-break: normal;
+		}
+
+		.tg .tg-baqh {
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-8ls8 {
+			color: #ffc702;
+			text-align: right;
+			vertical-align: top;
+		}
+
+		.tg .tg-f8tx {
+			color: #000000;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-v0f9 {
+			font-weight: bold;
+			font-family: Arial, Helvetica, sans-serif !important;
+			;
+			color: #333333;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-amwm {
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-s4h7 {
+			color: #333333;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.tg .tg-yw4l {
+			vertical-align: top;
+			text-align: center;
+			font-size: 9px;
+		}
+
+		.tg .tg-l2oz {
+			font-weight: bold;
+			text-align: right;
+			vertical-align: top;
+		}
+
+		.tg .tg-pwjw {
+			color: #330001;
+			text-align: center;
+			vertical-align: top;
+		}
+
+
+	div.asia {
+		width: 200px;
+		font-family: Verdana;
+		margin: 4px;
+		text-align: center;
+		padding: 4px;
+	}
+
+	#Asia {
+		position: absolute;
+		left: 10px;
+	}
+
+	div.ui-selected {
+		border: 4px solid #aaa;
+		background-color: #44c765;
+	}
+	/* div.ui-selecting {border:4px dotted #000; background-color:yellow;}*/
+	/*div.ui-selectee{background-color:white;}*/
+	.row ui-selectee, .col-md-6 ui-selectee, .right_text ui-selectee, .right_val ui-selectee {
+		background-color: white;
+	}
+
+	#sideform {
+		border-right: 3px solid black;
+	}
+
+	h6 {
+		margin-top: 17px;
+		margin-left: 4px;
+		background: white;
+	}
+
+	table {
+		width: 100%;
+		margin-bottom: 7px;
+		border-collapse: collapse;
+	}
+
+	table, th, td {
+		border: none;
+	}
+
+		table th, table td {
+			padding: 5px;
+			text-align: left;
+		}
+
+	.glyphicon-none:before {
+		content: "\2122";
+		color: transparent !important;
+	}
+
+	.ui-timepicker-container {
+		z-index: 1151 !important;
+	}
+
+	.ui-state-booked {
+		background-color: greenyellow !important;
+		color: #000 !important;
+		border-color: lightyellow !important;
+	}
+
+	.ui-state-bookednc {
+		background-color: orangered !important;
+		color: #000 !important;
+		border-color: orangered !important;
+	}
+</style>
+
+<style>
+	.button {
+		position: relative;
+		background-color: #22BAA0;
+		border: none;
+		font-size: 14px;
+		color: #FFFFFF;
+		padding: 8px;
+		width: 148px;
+		text-align: center;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;
+		text-decoration: none;
+		overflow: hidden;
+		cursor: pointer;
+		border-radius: 4px;
+	}
+
+		.button:after {
+			content: "";
+			background: #90EE90;
+			display: block;
+			position: absolute;
+			padding-top: 300%;
+			padding-left: 350%;
+			margin-left: -20px !important;
+			margin-top: -120%;
+			opacity: 0;
+			transition: all 0.8s
+		}
+
+		.button:active:after {
+			padding: 0;
+			margin: 0;
+			opacity: 1;
+			transition: 0s
+		}
+
+	a.btn {
+		-webkit-transform: scale(0.8);
+		-moz-transform: scale(0.8);
+		-o-transform: scale(0.8);
+		-webkit-transition-duration: 0.5s;
+		-moz-transition-duration: 0.5s;
+		-o-transition-duration: 0.5s;
+	}
+
+	body {
+		padding-top: 0px !important;
+		padding-bottom: 0px !important;
+	}
+
+	.main-footer {
+		background: #fff;
+		padding: 0px;
+	}
+
+	.content {
+		min-height: 250px;
+		padding: 15px 15px 0 15px;
+	}
+
+	.form-control {
+		display: block;
+		width: 100%;
+		height: 30px;
+	}
+</style>
+
+
+<div class="row">
+
+	@Html.Hidden("getcrewinfo", @Url.Action("GetAllCrewByCrewID", "AddCrew"))
+	@Html.Hidden("basicTS", @Url.Action("AddCrewTimeSheet", "TimeSheet"))
+	@Html.Hidden("checkcompliance", @Url.Action("CheckTimeSheetComplance", "TimeSheet"))
+	@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))
+	@Html.Hidden("GetCrewLastBookedHours", @Url.Action("GetCrewLastBookedHours", "TimeSheet"))
+	@Html.Hidden("RetrieveTimeChange", @Url.Action("RetrieveTimeChange", "TimeSheet"))
+	@Html.Hidden("RetrieveTimeChangeDate", Url.Action("RetrieveTimeChangeDate", "TimeSheet"))
+	@Html.Hidden("GetAdjustmentFactor", @Url.Action("GetAdjustmentFactor", "TimeSheet"))
+	@Html.Hidden("GetMinusOneBookStatus", @Url.Action("GetMinusOneBookStatus", "TimeSheet"))
+	@Html.Hidden("GetSecondCrewBookedHours", @Url.Action("GetSecondCrewBookedHours", "TimeSheet"))
+	@Html.Hidden("GetNCForMonth", @Url.Action("GetNCForMonth", "TimeSheet"))
+	<!-----Screen divided into 4+8 ---------->
+
+	<input type="hidden" id="hdnAdjustmentFactor" />
+	<input type="hidden" id="hdnID" />
+	<input type="hidden" id="hdnNCID" />
+	<div class="col-md-6">
+		<div class="card" style="border: 0;
+    border-radius: 0;
+    box-shadow: 0 6px 15px 0 rgba(207, 211, 218, 0.35); padding:10px;">
+			<div class="card-block">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-9">
+							<label for="selectCrew" class="control-label">Select Crew</label><br />
+							@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
+							@Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+							<div id="divdaytoggle" style="display: none;">
+								<input id="daytoggle" checked data-toggle="toggle" data-on="Time 1" data-off="Time 2" data-onstyle="success" data-offstyle="danger" type="checkbox">
+							</div>
+						</div>
+
+						@*<input  id="daytoggle" checked data-toggle="toggle" data-style="android" data-onstyle="success" data-offstyle="danger" type="checkbox">*@
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label"></label>
+						<div class="col-sm-6">
+							<div class="multiple">
+
+							</div>
+						</div>
+
+						<div class="col-md-4">
+
+							@*<div class="form-inline">*@
+							<div class="form-horizontal" style="width: 950px; margin-bottom:3px;">
+								<br />
+								<label>Total Work Hours:</label>
+								<input type="text" class="form-control" id="TotalWorkHours" placeholder="Total Work Hours" style="width: 150px;" />
+							</div>
+							<div class="form-horizontal" style="width: 950px; margin-bottom:3px;">
+								<label>Total Rest Hours:</label>
+								<input type="text" class="form-control" id="TotalRestHours" placeholder="Total Rest Hours" style="width: 150px;" />
+							</div>
+							@*</div>*@
+
+						</div>
+
+
+
+
+						<div class="col-md-4" style="margin-top:4px;">
+
+
+
+							<div class="form-horizontal" style="width: 950px; padding:6px 0;">
+
+								<div class="asia" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #2ecc71; float: left; background: #2ecc71; border-radius:50%;"></div>&nbsp;Compliant
+							</div>
+
+							<div class="form-horizontal" style="width: 950px; padding:0px 0 6px 0;">
+
+								<div class="asia" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #ff0000e6; float: left; background: #ff0000e6; border-radius:50%;"></div>&nbsp;Non Compliant
+
+							</div>
+
+							<button class="button" type="button" id="btnCopyTimeSheet">Copy Time Sheet</button>
+
+						</div>
+					</div>
+				</form>
+			</div>
+
+
+
+			@*<div class="form-group">
+					<label for="selectCrew" class="col-sm-3 control-label">Select Crew</label>
+					<div class="col-sm-9">
+
+						<select class="form-control" id="ddlCrew">
+							<option value="+15">+ 15</option>
+							<option value="-15">-  15</option>
+							<option value="+30">+ 30</option>
+							<option value="-30">-  30</option>
+						</select>
+
+					</div>
+				</div>*@
+
+
+			<div>
+
+				<table class="tg" id="schedule_header">
+					<tr>
+
+						<th class="tg-amwm" colspan="2">00</th>
+						<th class="tg-amwm" colspan="2">01</th>
+						<th class="tg-amwm" colspan="2">02</th>
+						<th class="tg-amwm" colspan="2">03</th>
+						<th class="tg-amwm" colspan="2">04</th>
+						<th class="tg-amwm" colspan="2">05</th>
+						<th class="tg-amwm" colspan="2">06</th>
+						<th class="tg-amwm" colspan="2">07</th>
+						<th class="tg-amwm" colspan="2">08</th>
+						<th class="tg-amwm" colspan="2">09</th>
+						<th class="tg-amwm" colspan="2">10</th>
+						<th class="tg-amwm" colspan="2">11</th>
+						<th class="tg-amwm" colspan="2">12</th>
+						<th class="tg-amwm" colspan="2">13</th>
+						<th class="tg-amwm" colspan="2">14</th>
+						<th class="tg-amwm" colspan="2">15</th>
+						<th class="tg-amwm" colspan="2">16</th>
+						<th class="tg-amwm" colspan="2">17</th>
+						<th class="tg-amwm" colspan="2">18</th>
+						<th class="tg-amwm" colspan="2">19</th>
+						<th class="tg-amwm" colspan="2">20</th>
+						<th class="tg-amwm" colspan="2">21</th>
+						<th class="tg-amwm" colspan="2">22</th>
+						<th class="tg-amwm" colspan="2">23</th>
+					</tr>
+
+
+
+
+					<tr id="trclone">
+
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="30"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="60"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="90"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="120"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="150"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="180"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="210"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="240"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="270"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="300"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="330"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="360"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="390"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="420"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="450"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="480"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="510"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="540"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="570"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="600"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="630"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="660"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="690"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="720"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="750"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="780"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="810"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="840"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="870"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="900"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="930"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="960"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="990"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1020"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1050"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1080"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1110"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1140"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1170"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1200"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1230"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1260"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1290"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1320"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1350"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1380"></td>
+						<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1410"></td>
+
+					</tr>
+				</table>
+			</div>
+			<div class="tg" id="schedule"></div>
+
+			@*<div class="modal-dialog">
+
+				</div>*@
+
+
+
+			<div></div>
+
+			<table id="cloneTable" class="table-responsive">
+				<tr>
+					<td><b>Start Time</b></td>
+					<td><b>End Time</b></td>
+					<td>&nbsp;&nbsp;&nbsp;</td>
+					<td>&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr class="clonrow">
+					@*<td style="width:47%"><input type='text' name='startdate' id="stdt0" class="form-control timepicker"></td>
+						<td style="width:47%"><input type='text' name='enddate' id="enddat0" class="form-control timepicker"></td>*@
+					<td style="width:47%"><select name='startdate' id="stdt0" class="form-control timepicker"></select></td>
+					<td style="width:47%"><select name='enddate' id="enddat0" class="form-control timepicker"></select></td>
+					<td>&nbsp;&nbsp;&nbsp;</td>
+					<td>&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr class="clonrow">
+					@*<td><input type='text' name='startdate' id="stdt1" class="form-control timepicker"></td>
+						<td><input type='text' name='enddate' id="enddat1" class="form-control timepicker"></td>*@
+					<td style="width:47%"><select name='startdate' id="stdt1" class="form-control timepicker"></select></td>
+					<td style="width:47%"><select name='enddate' id="enddat1" class="form-control timepicker"></select></td>
+					<td>
+						&nbsp;&nbsp;&nbsp;
+						@*<input checked data-toggle="toggle" data-style="ios" type="checkbox">*@
+
+					</td>
+					<td>&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr class="clonrow">
+					@*<td><input type='text' name='startdate' id="startdt0" class="form-control timepicker"></td>
+						<td><input type='text' name='enddate' id="enddt0" class="form-control timepicker"></td>*@
+					<td style="width:47%"><select name='startdate' id="startdt0" class="form-control timepicker pos"></select></td>
+					<td style="width:47%"><select name='enddate' id="enddt0" class="form-control timepicker pos"></select></td>
+
+					<td style="width:16%">
+						<a href="#" class="btn btn-primary a-btn-slide-text addbtn">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							<span><strong>Add</strong></span>
+						</a>
+					</td>
+					<td style="width:16%">
+						<a href="#" class="btn btn-primary a-btn-slide-text delbtn" style="background:#dd4b39; border:#dd4b39;">
+							<span class="glyphicon glyphicon-trash"></span>
+							<span><strong>Delete</strong></span>
+						</a>
+					</td>
+				</tr>
+			</table>
+
+			@*<span class="pos" style="align-self:center"></span>*@
+			@*<div class="pos" style=""></div>*@
+
+
+
+			<div align="right">
+				@*<span class="pos" style="align-self:center"></span>*@
+				@*<div class="pos" style=""></div>*@
+				<button type="button" class="button" id="btnAdd" style="margin-right:25px;">Add</button>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-6">
+		<div class="card" style="border: 0;
+    border-radius: 0;
+    box-shadow: 0 6px 15px 0 rgba(207, 211, 218, 0.35); padding:37px 15px;">
+			<div class="" id="dvuserdetailsn">
+
+				<legend>Crew Information</legend>
+				<div class="row" style="margin-right: -359px;">
+
+					<div class="form-group">
+						<input type="hidden" id="ID" />
+					</div>
+
+
+					<div class="form-horizontal" style="width: 950px; margin-bottom:3px;">
+						<label class="col-xs-5 control-label" style="width: 12%;">Name:</label>
+						<input type="text" class="form-control" id="FullName" placeholder="FullName" style="width: 900px;" />
+					</div>
+
+
+
+					<div class="form-horizontal" style="width: 950px; margin-bottom:3px;">
+						<label class="col-xs-5 control-label" style="width: 12%;">Rank:</label>
+						<input type="text" class="form-control" id="Rank" placeholder="Rank" />
+					</div>
+
+
+
+					@*<div class="form-horizontal" style="width: 950px; margin-bottom:3px;">
+							<label class="col-xs-5 control-label" style="width: 12%;">Comments:</label>
+							<input type="text" class="form-control" id="txtComments" placeholder="Comments" />
+						</div>*@
+
+
+					@*<div class="form-horizontal" style="width: 950px; margin-bottom:3px;">
+							<label class="col-xs-5 control-label" style="width: 12%;">Service:</label>
+
+							<input type="text" style="width: 12%;" class="form-control" id="ServiceTerms1" placeholder="From" readonly />
+							To
+							<input type="text" style="width: 12%;" class="form-control" id="ServiceTerms2" placeholder="To" readonly />
+						</div>*@
+
+					<div class="form-horizontal" style="width: 950px; margin-bottom:3px;">
+						<label class="col-xs-5 control-label" style="width: 12%;">Service:</label>
+						<form>
+							<label style="max-width: 13%;">
+								<input type="text" class="form-control" id="ServiceTerms1" placeholder="From" readonly />
+							</label>
+							<label style="max-width: 13%;">
+								<span>To</span>
+							</label>
+							<label style="max-width: 13%;">
+								<span>&nbsp;</span>
+							</label>
+							<label style="max-width: 13%;">
+								<input type="text" class="form-control" id="ServiceTerms2" placeholder="To" readonly />
+							</label>
+						</form>
+					</div>
+
+				</div>
+			</div>
+			<br />
+			<div class="" id="dvuserdetailsn1">
+
+				<legend>Non-Conformities(N/C)</legend>
+				<div class="row" style="margin-right: -359px;">
+
+					<div class="form-group">
+						<input type="hidden" id="ID" />
+					</div>
+
+
+					<div class="form-horizontal" style="width: 950px;">
+						<label class="col-xs-5 control-label" style="width: 10%;"></label>
+						@*<input type="text" class="form-control" id="FullName" />*@
+						<div class="form-control" id="Comments" style="width:40%; height: 62px; position: relative; left: 112px; margin-bottom: 11px; color:#f82020;"></div>
+
+					</div>
+
+					<div class="form-horizontal" style="width: 950px;">
+						<label class="col-xs-5 control-label" style="width: 12%;">Comments:</label>
+						<textarea type="text" class="form-control valid" id="txtComments" placeholder="Comments"></textarea>
+						@*<input type="text" class="form-control" id="txtComments" placeholder="Comments" />*@
+					</div>
+
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+
+
+
+
+	@*<div class="col-md-6" id="sideform">
+			<div class="card">
+				<div class="card-block">
+
+				</div>
+			</div>
+		</div>*@
+
+
+
+
+
+	<div>
+		@*<div align="center">
+				<button type="button" class="btn btn-primary" id="btnCopyTimeSheet">Copy Time Sheet</button>
+			</div>*@
+		<div class="modal-dialog" id="Resulta">
+			@*    For TimePicker     *@
+		</div>
+
+
+
+
+		@*<div class="col-sm-4">*@
+
+		@*</div>*@
+	</div>
+
+
+
+
+</div>
+<div id="dvMessageBox" title="Download complete">
+	<p id="pMessageText"></p>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				@*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+				<h4 class="modal-title" id="myModalLabel"></h4>
+			</div>
+			<div class="modal-body">
+				<h3><span id="succMsg"></span></h3>
+			</div>
+			<div class="modal-footer">
+
+
+				<button id="btnCloseModal" type="button" class="btn btn-default">Close</button>
+			</div>
+		</div>
+
+	</div>
+
+
+</div>
+
+@section Scripts
+{
+	@Scripts.Render("~/bundles/jqueryval")
+	@Styles.Render("~/Content/themes/base/css")
+	<script src="~/Scripts/TimePicker/jquery.timepicker.min.js"></script>
+	<link href="~/Content/TimePicker/jquery.timepicker.min.css" rel="stylesheet" />
+	<script src="~/Scripts/toastr.min.js"></script>
+	<link href="~/Content/toastr.min.css" rel="stylesheet" />
+	<script src="~/Scripts/notify.min.js"></script>
+	<script src="~/Scripts/bootstrap2-toggle.min.js"></script>
+	<link href="~/Content/bootstrap2-toggle.min.css" rel="stylesheet" />
+	<script type="text/javascript">
+
+		//debugger;
+		/*Global count to set the attribute id*/
+		var count = 1;
+		var rowcounter = 0;
+		var newrowCreated = false;
+		var timeModified = '';
+		var dateModified = '';
+		var adjustmentvalue = '';
+		var prevAdjustmentValue = '';
+
+		/*Clone row using the table name*/
+		function addCloneMappingRow() {
+
+			//create a original copy of the row to clone later
+			var $tr = $('table.table-responsive tr.clonrow:nth-child(4)').clone();
+
+			//debugger;
+			//increase index of row counter
+			rowcounter = rowcounter + 1;
+
+			var newRow = $tr.clone();
+
+			newRow.find('td').each(function () {
+				var el = $(this).find(':first-child');
+				var id = el.attr('id') || null;
+				if (id) {
+					var i = id.substr(id.length - 1);
+					var prefix = id.substr(0, (id.length - 1));
+					el.attr('id', prefix + (rowcounter));
+					//el.attr('name', prefix + (rowcounter));
+				}
+			});
+
+
+			newrowCreated = true;
+			//add dp to the new row
+			//addTP(newRow.find('input.timepicker'));
+			addTPDynamic($('select.timepicker'));
+
+
+			//console.log(newRow);
+
+			$(newRow).find('input, hidden, select, textarea, checkbox').each(function () {
+				var currentNameAttr = $(this).attr('name');
+				// get the current name attribute
+				// construct a new name attribute using regular expressions
+				// the match is divided into three groups (indicated by parentheses)
+				// p1 will be 'v', p2 will be the number, p3 will be the remainder of the string
+				var newNameAttr = currentNameAttr.replace(/([^\d]*)(\d*)([^\w]*)/, function (match, p1, p2, p3) {
+					return p1 + (count) + p3;
+				});
+				$(this).attr('name', newNameAttr);
+				if (newNameAttr.indexOf("id") !== -1) {
+					$(this).attr('value', '');
+				} else {
+				}
+			});
+
+			//debugger;
+			$('table.table-responsive').append(newRow);
+
+			count++;
+		}
+
+		function GetLastMinusAdjustmentDate(crewid, bdate) {
+			var m = $('#GetMinusOneBookStatus').val();
+
+			return $.ajax({
+				url: m,
+				data:
+				{
+					crewId: crewid,
+					bookDate: bdate
+				},
+				type: "GET",
+				contentType: "application/json;charset=UTF-8",
+				dataType: "json",
+				async: 'false',
+				complete: function (result) {
+
+				},
+				error: function (errormessage) {
+					//debugger;
+					console.log(errormessage.responseText);
+				}
+			});
+		}
+
+
+		function GetAdjustmentFactor() {
+			var adjustmentFactor = $('#GetAdjustmentFactor').val();
+			var selectedDt = '';
+
+			selectedDt = $('.multiple').val();
+
+			if (selectedDt == '') {
+
+				var d = new Date();
+
+				var month = d.getMonth() + 1;
+				var day = d.getDate();
+
+				var output = (('' + month).length < 2 ? '0' : '') + month + '/' +
+					(('' + day).length < 2 ? '0' : '') + day + '/' +
+					d.getFullYear();
+
+
+
+				selectedDt = output;
+				console.log(selectedDt);
+			}
+
+			//debugger;  //ok
+			return $.ajax({
+				url: adjustmentFactor,
+				data:
+				{
+					selectedDate: selectedDt
+				},
+				type: "GET",
+				contentType: "application/json;charset=UTF-8",
+				dataType: "json",
+				async: 'false',
+				success: function (result) {
+					adjustmentvalue = result;
+					console.log(adjustmentvalue);
+				},
+				error: function (errormessage) {
+					//debugger;
+					console.log(errormessage.responseText);
+				}
+			});
+		}
+
+
+
+		function addTP($els) {
+
+			//var dfrd = $.Deferred();
+
+			//console.log($els.attr('id'));
+			//console.log('in addTP');
+			//console.log($('.multiple').val());
+
+
+			var selectValues = {
+				"00:00": "00:00", "00:30": "00:30", "01:00": "01:00", "01:30": "01:30", "02:00": "02:00", "02:30": "02:30", "03:00": "03:00", "03:30": "03:30", "04:00": "04:00", "04:30": "04:30", "05:00": "05:00", "05:30": "05:30", "06:00": "06:00", "06:30": "06:30", "07:00": "07:00", "07:30": "07:30", "08:00": "08:00", "08:30": "08:30"
+				, "09:00": "09:00", "09:30": "09:30", "10:00": "10:00", "10:30": "10:30", "11:00": "11:00", "11:30": "11:30", "12:00": "12:00", "12:30": "12:30", "13:00": "13:00", "13:30": "13:30", "14:00": "14:00", "14:30": "14:30", "15:00": "15:00", "15:30": "15:30", "16:00": "16:00", "16:30": "16:30", "17:00": "17:00", "17:30": "17:30"
+				, "18:00": "18:00", "18:30": "18:30", "19:00": "19:00", "19:30": "19:30", "20:00": "20:00", "20:30": "20:30", "21:00": "21:00", "21:30": "21:30", "22:00": "22:00", "22:30": "22:30", "23:00": "23:00", "23:30": "23:30", "23:59": "23:59"
+			};
+
+			$.each(selectValues, function (key, value) {
+				$els.append($("<option></option>")
+					.attr("value", key)
+					.text(value));
+			});
+
+
+
+
+		}
+
+		$("#btnCloseModal").on("click", function (event) {
+
+			//CompleteRegistration(event);
+			$('#myModal').modal('hide');
+
+			return false;
+		});
+
+		function addTPDynamic($els) {
+
+			var dfrd = $.Deferred();
+
+			//console.log($els.attr('id'));
+			//console.log('in addTP');
+			//console.log($('.multiple').val());
+
+
+
+
+			GetAdjustmentFactor().done(function (data) {
+				console.log('in done');
+				console.log(data);
+				console.log(adjustmentvalue);
+				$els.attr('disabled', false);
+				$('#btnAdd').attr('disabled', false);
+				$('#hdnAdjustmentFactor').val(adjustmentvalue);
+
+				if (adjustmentvalue == "+1") {
+
+					$('#btnAdd').attr('disabled', false);
+
+					if ($(".timepicker option[value='00:00']").length > 0) {
+						$(".timepicker option[value='00:00']").remove();
+					}
+
+					if ($(".timepicker option[value='00:30']").length > 0) {
+						$(".timepicker option[value='00:30']").remove();
+					}
+
+					$('#daytoggle').bootstrapToggle('disable');
+				}
+
+				else if (adjustmentvalue == "+30") {
+
+					$('#daytoggle').bootstrapToggle('disable');
+					$('#btnAdd').attr('disabled', false);
+
+					if ($(".timepicker option[value='00:00']").length > 0) {
+
+						console.log('in +30');
+						$(".timepicker option[value='00:00']").remove();
+					}
+
+				}
+				else if (adjustmentvalue == "+1D") {
+
+					$('#daytoggle').bootstrapToggle('disable');
+					$('#btnAdd').attr('disabled', true);
+					var msg = "TIme Booking is locked for today.";
+					$('#myModal').modal('show');
+					$('#succMsg').html(msg);
+
+				}
+
+				else if (adjustmentvalue == "-1D") {
+					$('#daytoggle').bootstrapToggle('enable');
+					//make it visible
+					//$(".show_hide").show();
+					$('#divdaytoggle').show();
+				}
+				else {
+
+
+					console.log('In 0 adjustment');
+
+					$('#daytoggle').bootstrapToggle('disable');
+
+					if ($(".timepicker option[value='00:00']").length <= 0) {
+						console.log('adding 00 back');
+
+						$('.timepicker').prepend("<option value='00:00'>00:00</option>");
+						//   $(".timepicker option").eq(1).before($("<option></option>").val("00:00").text("00:00")); selected='selected'
+					}
+
+					if ($(".timepicker option[value='00:30']").length <= 0) {
+						$(".timepicker option").eq(2).before($("<option></option>").val("00:30").text("00:30"));
+					}
+				}
+
+				prevAdjustmentValue = adjustmentvalue;
+			});
+
+
+			dfrd.resolve();
+
+			return $.when(dfrd).done(function () {
+				console.log(' tasks in ADDTP are done');
+				// Both asyncs tasks are done
+			}).promise();
+
+
+		}
+
+		function removeTP($els) {
+			$els.html('');
+		}
+
+
+
+		addTP($('select.timepicker'));
+
+		var initflag = true;
+
+		function CheckCompliance() {
+
+			var dfrd2 = $.Deferred();
+			var isPostable = false;
+
+			console.log('In CheckComplaince');
+
+			//clear previous comments
+			$('#Comments').html('');
+
+			//check for compliance
+			var compliancecheckurl = $('#checkcompliance').val();
+			var tsheetdata = [];
+			//run through each row
+			$('.table-responsive tr').not(":first").each(function (i, row) {
+
+				// reference all the stuff you need first
+				var $row = $(row),
+					$stdt = $row.find('select[name*="startdate"]'),
+					$enddt = $row.find('select[name*="enddate"]');
+
+				if ($stdt.val() != '00:00' || $enddt.val() != '00:00') {
+					isPostable = true;
+				}
+
+
+				console.log('In loop');
+				console.log($stdt.val());
+
+				tsheetdata[i] = new Array($stdt.val(), $enddt.val());
+
+
+
+			});
+
+			console.log('In ComplianceCheck');
+			console.log(tsheetdata);
+			console.log(isPostable);
+			//check if there is valid time
+
+			if (isPostable) {
+
+
+
+				CalculateWorkingTime(tsheetdata);
+
+
+
+				//////////////////////////////////////////////
+
+
+
+				var TSheetJsonObject = { WF: [] };
+				TSheetJsonObject.WF.push({ d: tsheetdata });
+				//post
+				$.ajax({
+					url: compliancecheckurl,
+					data: JSON.stringify({ 'timesheetjsondata': JSON.stringify(TSheetJsonObject), crewId: $('#ddlCrew').val(), selectedDate: $('.multiple').val() }),
+					type: "POST",
+					contentType: "application/json;charset=utf-8",
+					dataType: "json",
+					async: "false",
+					success: function (result) {
+
+						//debugger;
+						$('#Comments').html(result);
+
+						// debugger;
+
+						//set calendar color
+						if ($.trim(result).length > 0) {
+
+							Paint('1');
+
+							//Commented by Dheeman
+							$('.ui-datepicker-calendar tr').each(function () {
+
+								//chnage colour of calendar for altered date -- change to red
+								$(this).find('td.ui-datepicker-current-day').each(function () {
+									//console.log('found');
+									initflag = false;
+									//var td = $(this);
+									//$(td).find('a.ui-state-booked').addClass('ui-state-bookednc');
+									//$(td).find('a.ui-state-booked').removeClass('ui-state-booked');
+								});
+							});
+
+
+
+						}
+						else {
+							Paint('0');
+
+							//Commented by Dheeman
+							$('.ui-datepicker-calendar tr').each(function () {
+
+								//chnage colour of calendar for altered date
+								$(this).find('td.ui-datepicker-current-day').each(function () {
+									//console.log('found');
+									initflag = false;
+									//var td = $(this);
+									//$(td).find('a.ui-state-active').addClass('ui-state-booked');
+									//$(td).find('a.ui-state-active').removeClass('ui-state-active');
+
+									//$(td).find('a.ui-state-bookednc').addClass('ui-state-booked');
+									//$(td).find('a.ui-state-bookednc').removeClass('ui-state-bookednc');
+
+								});
+							});
+
+
+						}
+
+
+					},
+					error: function (errormessage) {
+						console.log(errormessage.responseText);
+					}
+				});
+
+
+
+				dfrd2.resolve();
+
+				//Colourise Calendar
+				SetCalendarColor();
+
+				return $.when(dfrd2).done(function () {
+					console.log('tasks in CheckCompliance are done');
+					// Both asyncs tasks are done
+				}).promise();
+			}
+			else {
+				ClearWorkingTime();
+				SetCalendarColor();
+			}
+
+		}
+
+		var thisStartTime = '';
+		var thisEndTime = '';
+		var thisRow;
+		var thisEndTimeSelectedIndex;
+
+		function CalculateWorkingTime(tdata) {
+			var workedhrs = 0;
+			var resthours = 0;
+			var hour = 0;
+			var workhr_hrcomponent = 0;
+			var workhr_mincomponent = 0;
+			//calculate total hours worked
+			for (var i = 0; i < tdata.length; i++) {
+				var s = tdata[i][0].split(':');
+				var e = tdata[i][1].split(':');
+
+				if (e[1] == 59) {
+					e[0] = 24;
+					e[1] = 00;
+				}
+
+				var min = e[1] - s[1];
+				var hour_carry = 0;
+
+				if (min < 0) {
+					min += 60;
+					hour_carry += 1;
+
+				}
+
+				hour = (e[0] - s[0] - hour_carry);
+
+				console.log('Printing Min');
+				console.log(min);
+
+				workhr_hrcomponent += hour;
+				workhr_mincomponent += min;
+
+				if (workhr_mincomponent >= 60) {
+					workhr_hrcomponent += 1;
+					workhr_mincomponent = workhr_mincomponent - 60;
+				}
+
+				s = 0;
+				e = 0;
+				min = 0;
+				hour = 0;
+			}
+
+			workedhrs = workhr_hrcomponent + ':' + workhr_mincomponent;
+			$('#TotalWorkHours').val(workedhrs);
+
+			//calculating total rest hours
+			var rest_hours = '24:00';
+			var e_rest = rest_hours.split(':');
+			var s_rest = workedhrs.split(':');
+
+			var min_rest = e_rest[1] - s_rest[1];
+			console.log('min res prining');
+			console.log(min_rest);
+			var hr_carry_rest = 0;
+
+			if (min_rest < 0) {
+				min_rest += 60;
+				hr_carry_rest += 1;
+			}
+
+			var hour_rest = e_rest[0] - s_rest[0] - hr_carry_rest;
+
+			//if (min_rest == 60)
+			//{
+			//	hour_rest += 1;
+			//	min_rest = 0;
+			//}
+
+			resthours = hour_rest + ':' + min_rest;
+
+			$('#TotalRestHours').val(resthours);
+		}
+
+		function ClearWorkingTime() {
+			$('#TotalWorkHours').val('');
+			$('#TotalRestHours').val('');
+		}
+
+		function changeColor(drpdn) {
+
+			//var this = drpdn;
+			console.log('in change');
+			console.log($(drpdn).attr('id'));
+
+			//Commented by Dheeman
+			$('.ui-datepicker-calendar tr').each(function () {
+
+				//chnage colour of calendar for altered date
+				$(this).find('td.ui-datepicker-current-day').each(function () {
+					//console.log('found');
+					initflag = false;
+					//var td = $(this);
+					//$(td).find('a.ui-state-active').addClass('ui-state-booked');
+					//$(td).find('a.ui-state-active').removeClass('ui-state-active');
+				});
+			});
+
+			//alert(newrowCreated);
+			if (initflag == false && $('#ddlCrew').val().length > 0) {
+
+				//Validation - START
+				thisRow = $(drpdn).parent('td').parent('tr');
+				ValidateTime($(drpdn), thisRow);
+				if (isValidationTripped) {
+					alert('Start time and end time is not correct');
+					$(drpdn).val(timeBackup);
+					isValidationTripped = false;
+					// timeBackup = '';
+					return false;
+				}
+				ValidateSlots(thisRow);
+				if (isValidationTripped) {
+					alert('This time is overlapping with row number ' + validationTrippedForRowIndex);
+					$(drpdn).val(timeBackup);
+					isValidationTripped = false;
+					// timeBackup = '';
+					return false;
+				}
+				//Validation - END
+
+				//	Paint();
+				//CheckCompliance();
+
+				//if id is greater than or equal to 0, then show message
+				//debugger;
+
+				var ctrl = $(drpdn);
+				//debugger;
+
+				//commented by Dheeman as now third control notification is not needed anymore
+				//if (ctrl[0].id != '' && typeof ctrl[0].id != 'undefined') {
+				//	//alert(ctrl[0].id);
+				//	//display message
+				//	if (ctrl[0].id != 'stdt1' && ctrl[0].id != 'enddat0' && ctrl[0].id != 'stdt0' && ctrl[0].id != 'enddat1') {
+				//		//var warningmsg = 'You will be non-compliant. ';
+				//		$(ctrl[0]).css('border-color', 'Red');
+				//		$('.pos').notify("You're Non-Compliant", "warn", { position: "right" });
+
+				//		console.log('Control Id in Change Color');
+				//		console.log(ctrl[0].id);
+				//	}
+				//}
+
+				// if (newrowCreated == true) newrowCreated = false;
+
+
+				//var timecounter = 0;
+				//check for compliance only for  enddt controils . The if below is to stop for start date
+				//debugger;
+				//if (ctrl[0].id != 'stdt0' && ctrl[0].id != 'stdt1' && ctrl[0].id.substr(0, ctrl[0].id.length - 1) != 'startdt')
+				//{
+
+
+				var compliancecheckurl = $('#checkcompliance').val();
+				var tsdata = [];
+				//run through each row
+				$('.table-responsive tr').not(":first").each(function (i, row) {
+
+					// reference all the stuff you need first
+					var $row = $(row),
+						$stdt = $row.find('select[name*="startdate"]'),
+						$enddt = $row.find('select[name*="enddate"]');
+
+					// if ($enddt.val() == '23:59') $enddt = '00:00' ;
+
+					if ($stdt.val() != $enddt.val()) {
+						tsdata[i] = new Array($stdt.val(), $enddt.val());
+					}
+
+					console.log('Prining tsdata');
+					console.log(tsdata);
+
+				})
+
+				var allowpost = false;
+				var startsection = '';
+				var endsection = '';
+				for (var q = 0; q < tsdata.length; q++) {
+					//console.log(tsdata[q]);
+
+					//check if both values are not 0
+					if (tsdata[q] != '00:00,00:00') {
+						// debugger;
+						allowpost = true;
+					}
+					//var arr = tsdata[q].split(',');
+					//console.log('printing 2nd component');
+					//console.log(tsdata[q][1]);
+					if (tsdata[q][1] != '00:00') {
+						allowpost = true;
+					}
+					else {
+						allowpost = false;
+					}
+
+				}
+
+				if (allowpost) {
+
+					CalculateWorkingTime(tsdata);
+
+					//////////////////////////////////////////////
+
+					var TSJsonObject = { WF: [] };
+					TSJsonObject.WF.push({ d: tsdata });
+					//post
+					$.ajax({
+						url: compliancecheckurl,
+						data: JSON.stringify({ 'timesheetjsondata': JSON.stringify(TSJsonObject), crewId: $('#ddlCrew').val(), selectedDate: $('.multiple').val() }),
+						type: "POST",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						async: "false",
+						success: function (result) {
+
+							//debugger;
+							$('#Comments').html(result);
+
+							//set calendar color
+							if ($.trim(result).length > 0) {
+
+								Paint('1');
+
+								//Commented by Dheeman
+								$('.ui-datepicker-calendar tr').each(function () {
+
+									//chnage colour of calendar for altered date -- change to red
+									$(this).find('td.ui-datepicker-current-day').each(function () {
+										//console.log('found');
+										initflag = false;
+										//var td = $(this);
+										//$(td).find('a.ui-state-booked').addClass('ui-state-bookednc');
+										//$(td).find('a.ui-state-booked').removeClass('ui-state-booked');
+									});
+								});
+
+								//chnage color of timepickers to red
+								$('.table-responsive tr').not(":first").each(function (i, row) {
+
+									// reference all the stuff you need first
+									var $row = $(row),
+										$stdt = $row.find('input[name*="startdate"]'),
+										$enddt = $row.find('input[name*="enddate"]');
+
+
+									$($stdt).css('border-color', 'Red');
+									$($enddt).css('border-color', 'Red');
+
+
+								});
+							}
+							else {
+
+								Paint('0');
+
+								//Commented by Dheeman
+								$('.ui-datepicker-calendar tr').each(function () {
+
+									//chnage colour of calendar for altered date
+									$(this).find('td.ui-datepicker-current-day').each(function () {
+										//console.log('found');
+										initflag = false;
+										//var td = $(this);
+										//$(td).find('a.ui-state-active').addClass('ui-state-booked');
+										//$(td).find('a.ui-state-active').removeClass('ui-state-active');
+
+										//$(td).find('a.ui-state-bookednc').addClass('ui-state-booked');
+										//$(td).find('a.ui-state-bookednc').removeClass('ui-state-bookednc');
+
+									});
+								});
+
+								//reset color of timepickers
+								$('.table-responsive tr').not(":first").each(function (i, row) {
+
+									// reference all the stuff you need first
+									var $row = $(row),
+										$stdt = $row.find('input[name*="startdate"]'),
+										$enddt = $row.find('input[name*="enddate"]');
+
+
+									$($stdt).css('border-color', 'black');
+									$($enddt).css('border-color', 'black');
+
+
+								});
+							}
+
+
+						},
+						error: function (errormessage) {
+							console.log(errormessage.responseText);
+						}
+					});
+
+
+				}
+				else {
+					ClearWorkingTime();
+				}
+
+				// }
+
+			} //crew  end
+
+
+
+
+		}
+
+		$('table.table-responsive').on('click', '.addbtn', function () {
+			addCloneMappingRow();
+		});
+
+		$('table.table-responsive').on('click', '.delbtn', function () {
+			//deleteCloneMappingRow(this);
+			if (count <= 1) {
+				alert("No Privilege to Remove");
+				return false;
+			}
+			else {
+
+				$(this).parent().parent().remove();
+				count--;
+
+			}
+			//Paint();
+		});
+
+		function SetCalendarColor() {
+
+			var nc = $('#GetNCForMonth').val();
+
+			if ($('#ddlCrew').val() > 0) {
+
+				$.ajax({
+					url: nc,
+					data: ({ bookDate: $('.multiple').val(), CrewId: $('#ddlCrew').val() }),
+					type: "GET",
+					contentType: "application/json;charset=UTF-8",
+					dataType: "json",
+					async: 'false',
+					success: function (result) {
+
+						//remove all colours first
+						$('.ui-datepicker-calendar tr td').each(function () {
+
+							var blankcell = $(this);
+							//$(blankcell).removeClass('ui-state-bookednc');
+						});
+
+						//for (i = 0; i < result.length; i++) {
+
+
+						$('.ui-datepicker-calendar tr td').each(function () {
+
+							//$(this).find('td').each(function () {
+
+							var cell = $(this);
+
+
+							//console.log('Calendar Data');
+							//	console.log(cell);
+							//console.log($(cell).attr('data-month'));
+							//console.log($(cell).attr('data-year'));
+
+
+
+							$(cell).children().each(function () {
+								//console.log(this);
+								var anchor = this;
+								//console.log($(anchor).text());
+								//console.log('In GetNCDays');
+								//console.log(result);
+								//console.log($.inArray('21', result));
+
+								for (var y = 0; y < result.length; y++) {
+									if (result[y] == $(anchor).text()) {
+										console.log('Coloring Red');
+										$(cell).find('a.ui-state-default').addClass('ui-state-bookednc');
+										$(cell).addClass('ui-state-bookednc');
+									}
+								}
+
+
+							});
+
+
+						});
+
+
+
+
+						//}
+
+					},
+					error: function (errormessage) {
+						//debugger;
+						console.log(errormessage.responseText);
+					}
+				});
+			}
+
+		}
+
+		$(document).ready(function () {
+
+			var nam2 = [];
+			var orderCount = 0;
+			var tsele = 0;
+			var selecteddiv = [];
+			//var uid = 39;
+
+
+			var loggedInUserId = 0;
+			loggedInUserId = $('#hdnCrewId').val();
+
+			if (loggedInUserId > 0) { // user level log in
+
+				console.log('Logged In UserId');
+				console.log(loggedInUserId);
+				$('#ddlCrew').val(loggedInUserId);
+				$("#ddlCrew").prop("disabled", true);
+				//LoadData();
+				SetCalendarColor();
+
+			}
+
+
+
+			$('#daytoggle').bootstrapToggle('disable');
+
+			$('#daytoggle').change(function () {
+				//$('#console-event').html('Toggle: ' + $(this).prop('checked'))
+				console.log('Toggle Status');
+				console.log($(this).prop('checked'));
+
+				if ($(this).prop('checked') == true) {
+					$('#hdnID').val('');
+					$('#hdnNCID').val('');
+					//load day1
+					// you need to do nothing here as day 1 is loaded by default.
+					LoadData();
+				}
+				else if ($(this).prop('checked') == false) {
+					$('#hdnID').val('');
+					$('#hdnNCID').val('');
+					//load day2
+					LoadSecondData();
+				}
+			});
+
+			$('.multiple').datepicker({
+				inline: true,
+				firstDay: 1,
+				showOtherMonths: true,
+				dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+				onSelect: function (date) {
+					// Your CSS changes, just in case you still need them
+					//alert(date);
+					if ($('#ddlCrew').val() != '') {
+						console.log('in if');
+
+						console.log('removing options');
+						//removeTP($('select.timepicker'));
+						// addTP($('select.timepicker'));
+						$('[name=timebox]').removeClass('occupied_red');
+						LoadData();
+						$('#txtComments').val('');
+
+
+					}
+				}
+			});
+
+			$('#ddlCrew').on('change', function () {
+
+				//debugger;
+				if ($('#ddlCrew').val() != '') {
+					$('[name=timebox]').removeClass('occupied_red');
+					LoadData();
+
+					SetCalendarColor();
+
+
+				}
+
+			});
+
+			var startTimeInMinute = 0;
+			var endTimeInMinute = 0;
+			var hour = '';
+			var minute = '';
+
+			//color calendar on load
+			//SetCalendarColor();
+
+			function GetCrewBasicDetails(getcrewInfoPostLink) {
+				return $.ajax({
+					url: getcrewInfoPostLink,
+					data:
+					{
+						ID: $('#ddlCrew').val()
+					},
+					type: "GET",
+					contentType: "application/json;charset=UTF-8",
+					dataType: "json",
+					async: 'false',
+					success: function (result) {
+						//debugger;
+						//alert(result.Name);
+						$('#ID').val(result.ID);
+						$('#FullName').val(result.Name);
+						$('#Rank').val(result.RankName);
+						$('#Coments').val(result.Notes);
+						$('#ServiceTerms1').val(result.ActiveFrom1);
+						$('#ServiceTerms2').val(result.ActiveTo1);
+						var fdt = new Date(result.ActiveFrom1);
+						var tdt = new Date();  //new Date(result.ActiveTo1);
+						$('.multiple').datepicker('option', 'minDate', fdt);
+						//alert(tdt);
+						$('.multiple').datepicker('option', 'maxDate', tdt);
+
+					},
+					error: function (errormessage) {
+						//debugger;
+						console.log(errormessage.responseText);
+					}
+				});
+			}
+
+
+			function GetCrewBookedHours(getCrewBookedHours) {
+
+				return $.ajax({
+					url: getCrewBookedHours,
+					data:
+					{
+						crewId: $('#ddlCrew').val(),
+						bookDate: $('.multiple').val()
+					},
+					type: "GET",
+					contentType: "application/json;charset=UTF-8",
+					dataType: "json",
+					async: 'false',
+					success: function (result) {
+
+						console.log('In getCrewBookedHours');
+						console.log(result);
+						if (result.ID > 0) {
+							$('#hdnID').val(result.ID);
+							$('#hdnNCID').val(result.NCDetailsID);
+						}
+
+
+					},
+					error: function (errormessage) {
+						//debugger;
+						console.log(errormessage.responseText);
+					}
+				});
+			}
+
+
+			function ClearTimePickers() {
+				var rowcounter = 0;
+				//delete extra rows
+				$('.table-responsive tr').not(":first").each(function (i, row) {
+					rowcounter++;
+
+					if (rowcounter > 3) {
+						$(this).remove();
+					}
+				});
+
+				//clear  other sttaic time pickers
+				$('#stdt0').val('00:00');
+				$('#enddat0').val('00:00');
+				$('#stdt1').val('00:00');
+				$('#enddat1').val('00:00');
+				$('#startdt0').val('00:00');
+				$('#enddt0').val('00:00');
+
+				$('#txtComments').val('');
+
+				//reset css
+				$('#startdt0').css('border-color', 'Black');
+				$('#enddt0').css('border-color', 'Black');
+			}
+
+			function SetTimeInPicker(result) {
+
+				var dfrd1 = $.Deferred();
+				var rowcounter = 0;
+
+
+				//delete extra rows
+				$('.table-responsive tr').not(":first").each(function (i, row) {
+					rowcounter++;
+
+					if (rowcounter > 3) {
+						$(this).remove();
+					}
+				});
+
+				//clear  other sttaic time pickers
+				$('#stdt0').val('00:00');
+				$('#enddat0').val('00:00');
+				$('#stdt1').val('00:00');
+				$('#enddat1').val('00:00');
+				$('#startdt0').val('00:00');
+				$('#enddt0').val('00:00');
+
+				$('#txtComments').val('');
+
+				//reset css
+				$('#startdt0').css('border-color', 'Black');
+				$('#enddt0').css('border-color', 'Black');
+				//debugger;
+
+				if (result != 'null') {
+
+					//console.log('result received');
+					var timearray = result.ActualHours.split(',');
+					var stcontrolcounter = 0;
+					var endcontrolcounter = 0;
+
+
+					// alert(result.Comments);
+					$('#txtComments').val(result.Comments);
+
+					//create new time pickers dynamically
+					if (timearray.length > 6) {
+						for (var count = 6; count < timearray.length; count++) {
+							if (count % 2 == 0) addCloneMappingRow();
+						}
+					}
+
+					for (var i = 0; i < timearray.length; i++) {
+
+						hour = timearray[i].split(':')[0];
+						minute = timearray[i].split(':')[1];
+
+						if (i == 0) { $('#stdt0').val(timearray[i]); }
+						if (i == 1) { $('#enddat0').val(timearray[i]); }
+						if (i == 2) { $('#stdt1').val(timearray[i]); }
+						if (i == 3) { $('#enddat1').val(timearray[i]); }
+
+						if (i <= (timearray.length - 2)) {
+							if (i % 2 == 0) {
+								startTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+							}
+							else {
+								endTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+								//  PaintInTimeCalendar(startTimeInMinute, endTimeInMinute, 'occupied');
+							}
+						}
+
+						if (i > 3) {
+							//debugger;
+
+							if (i % 2 == 0) {
+								//debugger;
+								//console.log(stcontrolcounter);
+								var tmp = $('#startdt' + stcontrolcounter);
+								stcontrolcounter = stcontrolcounter + 1;
+								$(tmp).val(timearray[i]);
+
+								$(tmp).css('border-color', 'Red');
+							}
+							else {
+								var tmpend = $('#enddt' + endcontrolcounter);
+								endcontrolcounter = endcontrolcounter + 1;
+								$(tmpend).val(timearray[i]);
+
+								$(tmpend).css('border-color', 'Red');
+							}
+						}
+
+					}
+
+
+
+
+
+				}
+
+				dfrd1.resolve();
+
+				return $.when(dfrd1).done(function () {
+					console.log('tasks in SetTimeInPicker are done');
+					// Both asyncs tasks are done
+				}).promise();
+			}
+
+			function LoadData() {
+				$('[name=timebox]').removeClass('pre-occupied');
+				$('[name=timebox]').removeClass('occupied');
+				var getcrewInfoPostLink = $('#getcrewinfo').val();
+				var isBookingBlocked = false;
+				$('#hdnID').val('');
+				$('#hdnNCID').val('');
+
+				//debugger;
+				var getCrewBookedHours = $('#GetCrewBookedHours').val();
+				//debugger;  //ok
+
+
+
+				//check if there is a minus one day adjustement where this crew ha snot filled his complete double time sheet
+				$.when(GetLastMinusAdjustmentDate($('#ddlCrew').val(), $('.multiple').val())).done(function (result) {
+					console.log('In Minus One check');
+					console.log(result.BookCount);
+					if (result.BookCount == 1) {
+						isBookingBlocked = true;
+						$('#btnAdd').attr('disabled', true);
+						//show message and block booking
+						var msg = "You are not allowed to book time for this date. Please complete your booking for " + result.LastBookDate;
+						$('#myModal').modal('show');
+						$('#succMsg').html(msg);
+					}
+
+
+				});
+
+				if (!isBookingBlocked) {
+					$('#btnAdd').attr('disabled', false);
+					$.when(GetCrewBasicDetails(getcrewInfoPostLink), GetCrewBookedHours(getCrewBookedHours)).done(function (res, res1) {
+
+						console.log('In LoadData');
+						console.log(res1[0].ActualHours);
+
+						var result = res1[0];
+
+						$(function () {
+
+							//addTP($('select.timepicker')).done(function () {
+
+							// console.log('addTP is done!');
+
+							var getters = addTPDynamic($('select.timepicker'));
+
+							//added a check here to ensure done is working
+							if (result != 'null') {
+								$.when.apply(this, getters).then(function () {
+									SetTimeInPicker(result).done(function () {
+										// function1 is done, we can now call function2
+										console.log('SetTimeInPicker is done!');
+
+										CheckCompliance().done(function () {
+											//function2 is done
+											console.log('CheckCompliance is done!');
+
+
+
+										}); //end check compliance
+
+
+									}); //end settimepicker
+
+								}); //end AddTP
+							}
+							else {
+								ClearTimePickers();
+								CheckCompliance();  //.done(function () {
+								//function2 is done
+								console.log('CheckCompliance is done!');
+
+
+
+								//}); //end check compliance
+							}
+
+						});
+
+
+
+
+					});
+
+				}
+
+				return false;
+			}
+
+			function LoadSecondData() {
+				$('[name=timebox]').removeClass('pre-occupied');
+				$('[name=timebox]').removeClass('occupied');
+				var getcrewInfoPostLink = $('#getcrewinfo').val();
+				var isBookingBlocked1 = false;
+				$('#hdnID').val('');
+
+				//debugger;
+				var getCrewBookedHours2 = $('#GetSecondCrewBookedHours').val();
+				//debugger;  //ok
+
+
+
+				//check if there is a minus one day adjustement where this crew ha snot filled his complete double time sheet
+				$.when(GetLastMinusAdjustmentDate($('#ddlCrew').val(), $('.multiple').val())).done(function (result) {
+					console.log('In Minus One check');
+					console.log(result.BookCount);
+					if (result.BookCount == 1) {
+						isBookingBlocked1 = true;
+						$('#btnAdd').attr('disabled', true);
+						//show message and block booking
+						var msg = "You are not allowed to book time for this date. Please complete your booking for " + result.LastBookDate;
+						$('#myModal').modal('show');
+						$('#succMsg').html(msg);
+					}
+
+
+				});
+
+				if (!isBookingBlocked1) {
+					$('#btnAdd').attr('disabled', false);
+					$.when(GetCrewBasicDetails(getcrewInfoPostLink), GetCrewBookedHours(getCrewBookedHours2)).done(function (res, res1) {
+
+						console.log('In LoadData');
+						console.log(res1[0].ActualHours);
+
+						var result = res1[0];
+
+						$(function () {
+
+							//addTP($('select.timepicker')).done(function () {
+
+							// console.log('addTP is done!');
+
+							var getters = addTPDynamic($('select.timepicker'));
+
+							if (result != 'null') {
+								$.when.apply(this, getters).then(function () {
+									SetTimeInPicker(result).done(function () {
+										// function1 is done, we can now call function2
+										console.log('SetTimeInPicker is done!');
+
+										CheckCompliance().done(function () {
+											//function2 is done
+											console.log('CheckCompliance is done!');
+
+
+											//Paint();
+
+											//Paint().done()(function () {
+											//    console.log('Paint is done!');
+											//});
+
+										}); //end check compliance
+
+
+									}); //end settimepicker
+
+								}); //end AddTP
+							}
+							else {
+								ClearTimePickers();
+								CheckCompliance();  //.done(function () {
+								//function2 is done
+								console.log('CheckCompliance is done now!');
+
+
+
+								//}); //end check compliance
+							}
+
+						});
+
+
+
+
+					});
+
+				}
+
+				return false;
+			}
+
+			function validate() {
+				console.log('In Validate');
+				console.log($('#Comments').val().length);
+				if ($('#Comments').val().length > 0) {
+					$('.valid').notify("Comments is Mandatory", "warn", { position: "bottom right" });
+					return false;
+				}
+				else {
+					return true;
+				}
+
+
+
+			}
+
+			$('#btnAdd').click(function () {
+
+				if (validate()) {
+
+					var basicTS = $('#basicTS').val();
+
+					var tsdata = [];
+					//run through each row
+					$('.table-responsive tr').not(":first").each(function (i, row) {
+
+						// reference all the stuff you need first
+						var $row = $(row),
+							$stdt = $row.find('select[name*="startdate"]'),
+							$enddt = $row.find('select[name*="enddate"]');
+
+						if ($stdt.val() != $enddt.val()) {
+							tsdata[i] = new Array($stdt.val(), $enddt.val());
+						}
+
+						//console.log(tsdata);
+
+					})
+
+
+					if ($('#ddlCrew').val().length > 0) {
+						//debugger;
+						var RanksJsonObject = { WF: [] };
+						RanksJsonObject.WF.push({ d: tsdata });
+						//post
+						$.ajax({
+							url: basicTS,
+							data: JSON.stringify({
+								'timesheetjsondata': JSON.stringify(RanksJsonObject), crewId: $('#ddlCrew').val(), selectedDate: $('.multiple').val(), comments: $('#txtComments').val(), adjustmentFactor: adjustmentvalue, ID: $('#hdnID').val(), NcdetailsId: $('#hdnNCID').val()
+							}),
+							type: "POST",
+							contentType: "application/json;charset=utf-8",
+							dataType: "json",
+							async: "false",
+							success: function (result) {
+
+								toastr.options = {
+									"closeButton": false,
+									"debug": false,
+									"newestOnTop": false,
+									"progressBar": false,
+									"positionClass": "toast-bottom-full-width",
+									"preventDuplicates": false,
+									"onclick": null,
+									"showDuration": "300",
+									"hideDuration": "1000",
+									"timeOut": "5000",
+									"extendedTimeOut": "1000",
+									"showEasing": "swing",
+									"hideEasing": "linear",
+									"showMethod": "fadeIn",
+									"hideMethod": "fadeOut"
+								};
+
+								toastr.success("Time Added Successfully");
+
+								//clearTextBox();
+							},
+							error: function (errormessage) {
+								console.log(errormessage.responseText);
+							}
+						});
+					}
+				}
+				else {
+
+				}
+			});
+
+
+			$('#btnCopyTimeSheet').click(function () {
+				var getCrewLastBookedHours = $('#GetCrewLastBookedHours').val();
+				//debugger;  //ok
+				$.ajax({
+					url: getCrewLastBookedHours,
+					data:
+					{
+						crewId: $('#ddlCrew').val(),
+					},
+					type: "GET",
+					contentType: "application/json;charset=UTF-8",
+					dataType: "json",
+					success: function (result) {
+
+						var rowcounter = 0;
+						//delete extra rows
+						$('.table-responsive tr').not(":first").each(function (i, row) {
+							rowcounter++;
+
+							if (rowcounter > 3) {
+								$(this).remove();
+							}
+						})
+
+						//clear  other sttaic time pickers
+						$('#stdt0').val('00:00');
+						$('#enddat0').val('00:00');
+						$('#stdt1').val('00:00');
+						$('#enddat1').val('00:00');
+						$('#startdt0').val('00:00');
+						$('#enddt0').val('00:00');
+
+						//reset css
+						$('#startdt0').css('border-color', 'Black');
+						$('#enddt0').css('border-color', 'Black');
+
+
+						if (result != 'null') {
+
+							//console.log('result received');
+							var timearray = result.split(',');
+							var stcontrolcounter = 0;
+							var endcontrolcounter = 0;
+
+
+
+
+							//create new time pickers dynamically
+							if (timearray.length > 6) {
+								for (var count = 6; count < timearray.length; count++) {
+									if (count % 2 == 0) addCloneMappingRow();
+								}
+							}
+
+							for (var i = 0; i < timearray.length; i++) {
+
+
+
+								if (i == 0) $('#stdt0').val(timearray[i]);
+								if (i == 1) $('#enddat0').val(timearray[i]);
+								if (i == 2) $('#stdt1').val(timearray[i]);
+								if (i == 3) $('#enddat1').val(timearray[i]);
+								//if (i == 4) $('#startdt0').val(timearray[i]);
+
+
+
+
+								if (i > 3) {
+									//debugger;
+
+									if (i % 2 == 0) {
+										//debugger;
+										console.log(stcontrolcounter);
+										var tmp = $('#startdt' + stcontrolcounter);
+										stcontrolcounter = stcontrolcounter + 1;
+										$(tmp).val(timearray[i]);
+
+										$(tmp).css('border-color', 'Red');
+									}
+									else {
+										var tmpend = $('#enddt' + endcontrolcounter);
+										endcontrolcounter = endcontrolcounter + 1;
+										$(tmpend).val(timearray[i]);
+
+										$(tmpend).css('border-color', 'Red');
+									}
+								}
+
+							}
+
+							//check for compliance as now all the values are set for all time pickers
+							//CheckCompliance();
+
+							//Paint();
+						}
+
+					},
+					error: function (errormessage) {
+						//debugger;
+						console.log(errormessage.responseText);
+					}
+				});
+
+			});
+
+			$(document).on('change ', 'select[id^=stdt]', function () {
+				//var value = $('option:selected', this).val();
+				console.log('changed');
+				changeColor($(this));
+			}).keyup();
+
+			$(document).on('change ', 'select[id^=startdt]', function () {
+				//var value = $('option:selected', this).val();
+				console.log('changed');
+				changeColor($(this));
+			}).keyup();
+
+			$(document).on('change ', 'select[id^=enddat]', function () {
+				//var value = $('option:selected', this).val();
+				console.log('changed');
+				changeColor($(this));
+			}).keyup();
+
+			$(document).on('change ', 'select[id^=enddt]', function () {
+				//var value = $('option:selected', this).val();
+				console.log('changed');
+				changeColor($(this));
+			}).keyup();
+		});
+
+		var thisStartTime = '';
+		var thisEndTime = '';
+		var hour, minute, startTimeInMinute, endTimeInMinute;
+
+		function GetModifiedTime() {
+
+
+			console.log('In Modified Time');
+
+			return $.ajax({
+				url: $('#RetrieveTimeChange').val(),
+				type: "POST",
+				contentType: "application/json;charset=utf-8",
+				dataType: "json",
+				async: "false",
+				success: function (result) {
+					timeModified = result;
+					console.log('get time modified');
+					console.log(timeModified);
+				},
+				error: function (errormessage) {
+					console.log(errormessage.responseText);
+				}
+			});
+		}
+
+		function GetModifiedDate() {
+
+			return $.ajax({
+				url: $('#RetrieveTimeChangeDate').val(),
+				type: "POST",
+				contentType: "application/json;charset=utf-8",
+				dataType: "json",
+				async: "false",
+				success: function (result) {
+					dateModified = result;
+					console.log('get date modified');
+					console.log(dateModified);
+				},
+				error: function (errormessage) {
+					console.log(errormessage.responseText);
+				}
+			});
+		}
+
+		function PaintInTimeCalendar(startTimeInMinute, endTimeInMinute, cssClass) {
+			if (endTimeInMinute > startTimeInMinute) {
+				do {
+					$('[name=timebox][time-in-minute=' + startTimeInMinute.toString() + ']').addClass(cssClass);
+					startTimeInMinute = startTimeInMinute + 30;
+				} while (startTimeInMinute < endTimeInMinute);
+			}
+		}
+		var timeCount;
+		function Paint(indicator) {
+
+			var dfrd3 = $.Deferred();
+
+			$('[name=timebox]').removeClass('pre-occupied');
+			$('[name=timebox]').removeClass('occupied');
+			$('[name=timebox]').removeClass('occupied_red');
+			timeCount = 1;
+			$('#cloneTable>tbody>tr').each(function () {
+				if ($(this).find('select[name*="startdate"]').length > 0)
+				//for (var i = 0; i < (savedTime.length / 2); i++)
+				{
+
+					//hour = savedTime[i].split(':')[0];
+					//minute = savedTime[i].split(':')[1];
+
+					thisStartTime = $(this).find('select[name*="startdate"]').val(); //savedTime[i];
+					hour = thisStartTime.split(':')[0];
+					minute = thisStartTime.split(':')[1];
+					startTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+
+					thisEndTime = $(this).find('select[name*="enddate"]').val();//savedTime[i + 1];
+					console.log(thisEndTime);
+					//if (thisEndTime == '23:59') thisEndTime = '00:00';
+					hour = thisEndTime.split(':')[0];
+					minute = thisEndTime.split(':')[1];
+					endTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+
+					//alert($.trim($('#hdnAdjustmentFactor').val()));
+					if ($.trim($('#hdnAdjustmentFactor').val()) == '-1') {
+						if (startTimeInMinute > 0) {
+							startTimeInMinute = startTimeInMinute - 60;
+						}
+						else if (startTimeInMinute == 0 && endTimeInMinute > 0) {
+							startTimeInMinute = startTimeInMinute - 60;
+
+							if ($('[name=timebox][time-in-minute=-60]').length == 0) {
+								var scheduleHeaderHTML = '';
+								scheduleHeaderHTML += '<th id="newro_th" class="tg-amwm" width="18px">00</th>';
+								$('#schedule_header').children('tbody').children('tr').prepend(scheduleHeaderHTML);
+
+								var schedule = '';
+								schedule += '<td id="newro_td1" class="tg-yw4l" height="20px" width="9px" name="timebox" time-in-minute="-60"></td>';
+								schedule += '<td id="newro_td2" class="tg-yw4l" height="20px" width="9px" name="timebox" time-in-minute="-30"></td>';
+								$('#schedule').children('tbody').children('tr').prepend(schedule);
+							}
+						}
+					}
+
+					//alert(startTimeInMinute)
+					//PaintInTimeCalendar(startTimeInMinute, endTimeInMinute, 'occupied');
+
+					//alert(startTimeInMinute)
+					//alert(endTimeInMinute)
+					console.log('Printing text of comments');
+					console.log($('#Comments').html().trim().length);
+					if (indicator == '0') {
+						PaintInTimeCalendar(startTimeInMinute, endTimeInMinute, 'occupied');
+					}
+					else {
+						PaintInTimeCalendar(startTimeInMinute, endTimeInMinute, 'occupied_red');
+					}
+
+					timeCount++;
+				}
+
+			});
+
+			dfrd3.resolve();
+
+			return $.when(dfrd3).done(function () {
+				console.log(' tasks in Paint are done');
+				// Both asyncs tasks are done
+			}).promise();
+		}
+
+		var thisRow;
+		var thisRowIndex;
+		var validatingRow;
+		var validatingRowIndex;
+		var validatingStartTime, validatingStartTimeInMinute;
+		var validatingEndTime, validatingEndTimeInMinute;
+		var isValidationTripped = false;
+		var validationTrippedForRowIndex;
+
+		var thisTextBoxName;
+		var thisTextBoxStartEnd;
+
+		function ValidateTime(thisTextBox, thisRow) {
+			thisRowIndex = $(thisRow).index();
+			thisTextBoxName = $(thisTextBox).attr('name');
+
+			//start time
+			if (thisTextBoxName.indexOf('startdate') >= 0) {
+				thisTextBoxStartEnd = 'S';
+			}
+			//endtime
+			else {
+				thisTextBoxStartEnd = 'E';
+			}
+
+			if (thisRowIndex > 0) {
+				//Start time of this row
+				thisStartTime = $(thisRow).find('select[name*="startdate"]').val();
+				hour = thisStartTime.split(':')[0];
+				minute = thisStartTime.split(':')[1];
+				startTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+
+				//End time of this row
+				thisEndTime = $(thisRow).find('select[name*="enddate"]').val();
+				hour = thisEndTime.split(':')[0];
+				minute = thisEndTime.split(':')[1];
+				endTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+
+				thisEndTimeSelectedIndex = $(thisRow).find('select[name*="enddate"] option:selected').index();
+
+				if (thisTextBoxStartEnd == 'S') {
+					//if (endTimeInMinute > 0) {
+					if (thisEndTimeSelectedIndex > 0) {
+						if (endTimeInMinute < startTimeInMinute) {
+							isValidationTripped = true;
+							return false;
+						}
+					}
+				}
+				else {
+					if (endTimeInMinute < startTimeInMinute) {
+						isValidationTripped = true;
+						return false;
+					}
+				}
+			}
+		}
+
+		function ValidateSlots(thisRow) {
+			thisRowIndex = $(thisRow).index();
+
+			if (thisRowIndex > 0) {
+				//Start time of this row
+				thisStartTime = $(thisRow).find('select[name*="startdate"]').val();
+				hour = thisStartTime.split(':')[0];
+				minute = thisStartTime.split(':')[1];
+				startTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+
+				//End time of this row
+				thisEndTime = $(thisRow).find('select[name*="enddate"]').val();
+				if (thisEndTime != 'undefined') {
+
+					hour = thisEndTime.split(':')[0];
+					minute = thisEndTime.split(':')[1];
+					endTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+
+
+					if (endTimeInMinute > startTimeInMinute) {
+						//Loop for validation
+						$('#cloneTable>tbody>tr').each(function () {
+							validatingRow = $(this);
+							validatingRowIndex = $(this).index();
+							//alert('thisRowIndex: ' + thisRowIndex + ' | validatingRowIndex: ' + validatingRowIndex)
+							if (validatingRowIndex > 0 && validatingRowIndex != thisRowIndex) {
+								if ($(this).find('select[name*="startdate"]').length > 0) {
+									validatingStartTime = $(this).find('select[name*="startdate"]').val();
+									hour = validatingStartTime.split(':')[0];
+									minute = validatingStartTime.split(':')[1];
+									validatingStartTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+
+									validatingEndTime = $(this).find('select[name*="enddate"]').val();
+									hour = validatingEndTime.split(':')[0];
+									minute = validatingEndTime.split(':')[1];
+									validatingEndTimeInMinute = (parseInt(hour) * 60) + parseInt(minute);
+
+									if (validatingStartTimeInMinute != 0 || validatingEndTimeInMinute != 0) {
+										for (var tempTimeInMinute = startTimeInMinute; tempTimeInMinute <= endTimeInMinute && !isValidationTripped; tempTimeInMinute = tempTimeInMinute + 30) {
+											//alert('tempTimeInMinute: ' + tempTimeInMinute + ' | validatingStartTimeInMinute: ' + validatingStartTimeInMinute + ' | validatingEndTimeInMinute: ' + validatingEndTimeInMinute)
+											//if (tempTimeInMinute == validatingStartTimeInMinute) {
+											//    //alert(1);
+											//    isValidationTripped = true;
+											//    validationTrippedForRowIndex = validatingRowIndex;
+											//}
+											//if (tempTimeInMinute == validatingEndTimeInMinute) {
+											//    //alert(2);
+											//    isValidationTripped = true;
+											//    validationTrippedForRowIndex = validatingRowIndex;
+											//}
+											if (tempTimeInMinute > validatingStartTimeInMinute && tempTimeInMinute < validatingEndTimeInMinute) {
+												//alert(3);
+												isValidationTripped = true;
+												validationTrippedForRowIndex = validatingRowIndex;
+											}
+										}
+									}
+								}
+							}
+
+							if (isValidationTripped) { return false; }
+						})
+					}
+
+				} //end
+
+				console.log('Validation');
+				console.log(isValidationTripped);
+
+				if (isValidationTripped) { return false; }
+
+			}
+		}
+
+
+		var timeBackup;
+		$(document).on('click', 'select[name*="startdate"],select[name*="enddate"]', function () {
+			timeBackup = $(this).val();
+		})
+
+
+
+
+	</script>
+
+}

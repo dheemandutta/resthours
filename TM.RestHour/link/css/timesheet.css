@@ -25,18 +25,18 @@
     overflow-y: scroll;
     height: 477px;
     border-radius: 6px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    box-shadow: 0 1px 15px 1px rgba(62,57,107,.07);
 }
 .content {
     min-height: 250px;
-    padding: 0px 15px 0 15px;
+    padding: 0px;
 }
 .bacb {
     padding: 17px 18px;
     background: #fff;
     margin: 0px 0;
     border-radius: 6px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    box-shadow: 0 1px 15px 1px rgba(62,57,107,.07);
 }
 .typeahead__list > li > a, .typeahead__dropdown > li > a {
     display: block;

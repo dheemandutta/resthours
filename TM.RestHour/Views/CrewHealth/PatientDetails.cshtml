@@ -53,17 +53,16 @@
 
 @Html.Hidden("getCrewForCIRMPatientDetailsByCrew", @Url.Action("GetCrewForCIRMPatientDetailsByCrew", "CrewHealth"))
 
-<body style="background-image: url(../background/Doctors.jpg);
-    background-size: cover;">
+<body>
 
     @*@Html.Hidden("saveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))*@
 
-    <div class="row">
-        <div class="col-md-2">
-            <h3 style=" color:#000;">CIRM - Patient Details</h3>
-        </div>
+    <div class="">
+        <div class="head_title">
+            <h1 class="ta">CIRM - Patient Details</h1>
+</div>
 
-        <div class="col-md-10 bacmt">
+        <div class="card bacmt">
 
 
             <div class="clearfix"></div>
@@ -136,7 +135,7 @@
                     </div>
                     <div class="form-group">
                         <label for=" JoiningDate">Joining Date </label>
-                        <input type="text" class="form-control" id="JoiningDate" placeholder="JoiningDate " disabled />
+                        <input type="text" class="form-control" id="JoiningDate" placeholder="JoiningDate " maxlength="4" size="4" />
                     </div>
                 </div>
 
@@ -598,7 +597,7 @@
             $('#FrequencyOfFits').show();
         });
 
-      
+
         $("#JoiningDate").datepicker({
 
             changeMonth: true,
@@ -606,7 +605,7 @@
             dateFormat: 'd-M-yy',
 
         });
-       
+
         $("#SymptomatologyDate").datepicker({
 
             changeMonth: true,

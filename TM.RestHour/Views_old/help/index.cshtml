@@ -1,0 +1,532 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/link/css/static.css" rel="stylesheet" />
+<style>
+</style>
+
+<body style="background-image: url(../background/page1.jpg);
+    background-size: cover;">
+    <div class="row">
+        <div class="col-md-5"><h1 class="ta">Help</h1></div>
+        @*<div class="col-md-8">
+        </div>*@
+
+        <div class="col-md-7 backk">
+
+
+            <div class="">
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Login</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <p>This is the login page of the RestHours  Application. Users can login via this page.</p>
+                                <p><strong>There are three types of users who can log in.</strong></p>
+                                <p><strong>1.</strong>	Super Admin</p>
+                                <p><strong>2.</strong>	Admin.</p>
+                                <p><strong>3.</strong>	Normal Users.</p>
+
+                                <p><strong>A Super Admin User can perform the following:</strong></p>
+                                <p><strong>a)</strong>	Manage Crew</p>
+                                <p><strong>b)</strong>	Create New Department</p>
+                                <p><strong>c)</strong>	Manage Ranks</p>
+                                <p><strong>d)</strong>	Set Default Regime of vessel</p>
+                                <p><strong>e)</strong>	Set Mail Server Details </p>
+                                <p><strong>f)</strong>	Reset Password</p>
+                                <p><strong>g)</strong>	Maintain Time Adjustment </p>
+                                <p><strong>h)</strong>	Manage Vessel Details</p>
+                                <p><strong>i)</strong>	Manage Company Details</p>
+                                <p><strong>j)</strong>	View timesheet data of all users for any date</p>
+                                <p><strong>k)</strong>	View Several Reports</p>
+
+                                <p><strong>An Admin User can perform the following:</strong></p>
+                                <p><strong>a)</strong>	Manage Crew</p>
+                                <p><strong>b)</strong>	Create New Department</p>
+                                <p><strong>c)</strong>	Manage Ranks</p>
+                                <p><strong>d)</strong>	Set Default Regime of vessel</p>
+                                <p><strong>e)</strong>	Reset Password</p>
+                                <p><strong>f)</strong>	Maintain Time Adjustment </p>
+                                <p><strong>g)</strong>	View Vessel Details</p>
+                                <p><strong>h)</strong>	View timesheet data of all users in his department</p>
+                                <p><strong>i)</strong>	View Several Reports</p>
+
+                                <p><strong>A general User can perform the following:</strong></p>
+                                <p><strong>a)</strong>	View Vessel Details</p>
+                                <p><strong>b)</strong>	Reset his own password</p>
+                                <p><strong>c)</strong>	Fill in his own timesheet data</p>
+                                <p><strong>d)</strong>	View Monthly Work Hours and Compliance Report</p>
+                                <img src="~/background/HLogin.png" style="width: 100%; float: right;" width="42" height="300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
+                                    Admin Menu
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTen" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                If the User logged in as an admin.
+                                <img src="~/background/HMnuAdmin.png" style="width: 100%; float: right;" width="42" height="60">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">User Menu</a>
+                            </h4>
+                        </div>
+                        <div id="collapseEleven" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                If the User logged in as a normal user.
+                                <img src="~/background/HMnuUser.png" style="width: 100%; float: right;" width="42" height="60">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseone">Time Sheet For User</a>
+                            </h4>
+                        </div>
+                        <div id="collapseone" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+
+                                <img src="~/background/HTimeSheetUser.png" style="width: 100%; float: right;" width="42" height="400">
+                                <p>
+                                    <strong>1</strong>: User needs to select the date in which he wants to fill his timesheet
+                                </p>
+                                <p>
+                                    <strong>2</strong>: User needs to enter his timesheet data here ( start time and end time ) of the work he has done the selected day. User can enter his work data in three slots is required. For example, in the picture give below the user  has worked on 13th February 2019 for the following hours
+                                </p>
+
+                                <p>
+                                    0500 – 0900 (05:00 AM  to 09:00 AM)
+                                </p>
+                                <p>
+                                    1400 – 1700 ( 02:00 PM to 05:00 PM)
+                                </p>
+                                <p>
+                                    1900 – 2100 (07:00 PM to 09:00 PM)
+                                </p>
+
+                                <p>
+                                    Note :All times must be entered in a 24 hour (hhhh) format.
+                                </p>
+                                <p>
+                                    Note: Start time needs to be less than corresponding end time.
+                                </p>
+
+                                <img src="~/background/sampletimesheet.jpg" style="width: 100%; float: right;" width="42" height="300">
+
+
+                                <p>
+                                    <strong>3</strong> : Clicking this icon give the use a small floating guide on how to fill in the times as mentioned in point 2
+                                </p>
+                                <p>
+                                    <strong>4</strong> :  If any user has more than 3 time rages that he has worked in a day , he can click this button and add another row to enter his time.
+                                </p>
+                                <p>
+                                    <strong>5</strong>. Any extra added rows can be deleted by clicking this button before saving data. You cannot delete the top three rows however.
+                                </p>
+                                <p>
+                                    <strong>7</strong> : This area is read-only for the user. It helps the user to show the non-conformities (if any) with regards to the time that he has entered for the day. Like in the example picture given above we can see 2 non-conformities (N/C) corresponding to the entered time.
+                                </p>
+
+                                <p>
+                                    <strong>8</strong>: User can add any comments as he wished to add for the day.
+                                </p>
+
+                                <p>
+                                    Once filling is done for a certain day, the user will click theAdd button down below to save the changes for that day. A green floating message appears saying that data is successfully saved.
+                                </p>
+
+                                <p>
+                                    <strong>6</strong>: Once a certain day’s changes are saved the user can click the Copy Timesheet button and then click any other in the calendar that he wishes to fill data. Once that date is clicked, the time entry text boxes rest to 0000. Now if the user clicks on Copy Timesheet button again all the data from the previous copied date is filled in the time entry boxes. The user can just save the data as it is for that date or make minor modifications if any. This is similar to a copy-paste feature.
+                                    This feature can also used as follows. The user opens the timesheet and clicks of any date in the calendar that he has already saved data. When data for that day is loaded in the time entry boxes, the user clicks on the Copy Timesheetbutton. This will copy the data from that date. Now the user can click the Copy Timesheet button and then click any other in the calendar that he wishes to fill data. Once that date is clicked, the time entry text boxes rest to 0000. Now if the user clicks on Copy Timesheet button again all the data from the previous copied date is filled in the time entry boxes. The user can just save the data as it is for that date or make minor modifications if any.
+                                </p>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo1">Manage Vessel Details</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page user can view and update the current Vessel, Flag, IMO Number.
+                                <img src="~/background/HManageVesselDetails.png" style="width: 100%; float: right;" width="42" height="300">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo11">Reset Password</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo11" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page user can Reset the Password.
+                                <img src="~/background/HResetPassword.png" style="width: 100%; float: right;" width="42" height="400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo111">Monthly Work Hours(Report)</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo111" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page a crew can view his own Work Hours by Month.
+                                <img src="~/background/HMonthlyWorkHours.png" style="width: 100%; float: right;" width="42" height="300">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo1111">Compliance Report(Report)</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo1111" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page a crew can view his own Compliance Report by Month.
+                                <img src="~/background/HComplianceReport.png" style="width: 100%; float: right;" width="42" height="300">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsethree">
+                                    Crew Import
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsethree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>An Admin user can import multiple crew directly into the system via this facility.  The user first needs to download the excel template by clicking the Download Excel button. On clicking this button, an excel file would be downloaded in the user’s system. User will now fill in details of the crew that needs to be imported into the system in the downloaded excel file.  Once all the crew data are filled in , and the excel is saved, user would need to first click Choose File button and select the saved excel file. Then the user would need to click Upload button in order to import crew data into the system. The user now need to wait a few minutes to let the system import all the data from the excel file into the system before navigating to any other page in the application.</p>
+                                <img src="~/background/HCrewInport.jpg" style="width: 100%; float: right;" width="42" height="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo">Add Crew</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <img src="~/background/HAddCrew.png" style="width: 100%; float: right;" width="42" height="500">
+                                <p>
+                                    An Admin user can add crew via this page. If the Admin user wishes to put the crew in some Department then the admin user will need to first enter a department from the department screen. The Department screen allows entering department name only without selecting any user. Once that is entered, the admin user can come to the above screen and key in the details needed. The admin user will then click Add/Update Crew to save this crew data. Once data is saved the screen automatically redirects to the following screen
+                                </p>
+                                <img src="~/background/HLoginRi.png" style="width: 100%; float: right;" width="42" height="500">
+                                <p>The Username box is prepopulated with a username for the crew just entered in. The admin user can change this username ( this needs to be unique ) . The admin user needs to key in the password and confirm password for the user. The Group dropdown has different groups ( Admin & User) that this crew will belong to. The admin user can select the group as needed . Once all data are keyed in, the user will click Save to save this data. </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsefour">
+                                    Crew List
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsefour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page a Admin can view all Active and InActive Users.
+                                <img src="~/background/HCrewList.png" style="width: 100%; float: right;" width="42" height="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsefive">
+                                    Crew Service Terms
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsefive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                A SuperAdmin/Admin user can update the service terms of the crew via this screen.
+                                <img src="~/background/HCrewServiceTerms.png" style="width: 100%; float: right;" width="42" height="400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsesix">
+                                    Department
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsesix" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can Add, Update and Delete a Department.
+                                <img src="~/background/HDepartment.png" style="width: 100%; float: right;" width="42" height="400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseseven">
+                                    Manage Rank
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseseven" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can Add, Update and Delete a Rank.
+                                <img src="~/background/HManageRank.png" style="width: 100%; float: right;" width="42" height="400">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseight">
+                                    Regime
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseight" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                A Super Admin/Admin user can set the default Regime of a vessel . All compliance calculations will be calculated as per the selected regime.
+                                <img src="~/background/HRegime.png" style="width: 100%; float: right;" width="42" height="400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsenine">
+                                    Mail Server Details
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsenine" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                A Super Admin User can set/update the mail server details that are needed to communicate to the AdminCenter .
+                                <img src="~/background/HMailServerDetails.png" style="width: 100%; float: right;" width="42" height="400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseaa">
+                                    Reset Password
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseaa" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can Reset the Password.
+                                <img src="~/background/HResetPassword.png" style="width: 100%; float: right;" width="42" height="400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsebb">
+                                    Time Adjustment
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsebb" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                The Super Admin/Admin user can modify the time based on which compliance calculations are done
+                                The available time adjustments are a) +1H b) -1H c) +1D d) -1D
+                                <img src="~/background/HTime.png" style="width: 100%; float: right;" width="42" height="400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo1119">Manage Vessel Details(For Admin)</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo1119" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can view and update the current Vessel, Flag, IMO Number.
+                                <img src="~/background/HManageVesselDetails.png" style="width: 100%; float: right;" width="42" height="300">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo11199">Company Details</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo11199" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can get the current Company Details.
+                                <img src="~/background/HCompanyDetails.png" style="width: 100%; float: right;" width="42" height="300">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo1119961">Daily Work and Rest Hour(Report)</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo1119961" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can view Daily Work and Rest Hour by Date.
+                                <img src="~/background/HDailyWorkandRestHour.png" style="width: 100%; float: right;" width="42" height="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo1119962">IMO Crew List(Report)</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo1119962" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can view IMO Crew List and can print.
+                                <img src="~/background/HIMOCrewList.png" style="width: 100%; float: right;" width="42" height="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo1119963">Monthly View(Report)</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo1119963" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can view Monthly Report by Month.
+                                <img src="~/background/HMonthlyView.png" style="width: 100%; float: right;" width="42" height="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo1119964">Monthly Work Hours(Report)</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo1119964" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can view Monthly Work Hours Report by Crew and Date.
+                                <img src="~/background/HMonthlyWorkHours.png" style="width: 100%; float: right;" width="42" height="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo1119965">Compliance Report</a>
+                            </h4>
+                        </div>
+                        <div id="collapsetwo1119965" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                In this page Admin can view Compliance Report by Crew and Date.
+                                <img src="~/background/HComplianceReport.png" style="width: 100%; float: right;" width="42" height="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    @***************************** Snehasish Photo Upload Help ******************************@
+                    @******************************************************************************************@
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseCIRM">CIRM</a>
+                            </h4>
+                        </div>
+                        <div id="collapseCIRM" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p><strong>1.</strong> To tag a human body for ailment positions we have to select the menu from Well Being -> Crew Health -> CIRM and click on <strong>Go to the image </strong>button.</p>
+                                <img src="~/background/CIRM1.png" style="width: 100%; float: right;" width="42" height="300" />
+                                <p><strong>2.</strong> After clicking on the <strong>Go to the image </strong>button a new tab opens up  with a human graphics with four buttons - </p>
+                                <p><strong>a.</strong> Add dot</p>
+                                <p><strong>b.</strong> Rotate</p>
+                                <p><strong>c.</strong> Save</p>
+                                <p><strong>d.</strong> Close</p>
+                                <img src="~/background/CIRM2.png" style="width: 100%; float: right;" width="42" height="300" />
+                                
+                                <p><strong>3. Add dots</strong> button :</p>
+                                <p>Clicking on this button creates a text box  with a red dot connected by a line.  User can rag the line to the selected body part and tag the image. If the user wants more tags , he needs to click the <strong>"Add dots"</strong> button again.</p>
+                                <img src="~/background/CIRM3.png" style="width: 100%; float: right;" width="42" height="300" />
+                                
+                                <p><strong>4. Rotate</strong> button :</p>
+                                <p>By clicking on the <strong>"Rotate" </strong>button you can rotate the image for different postures of human body.</p>
+                                <img src="~/background/CIRM4.png" style="width: 100%; float: right;" width="42" height="300" />
+                                
+                                <p><strong>5. Save</strong> button :</p>
+                                <p>Once tagging is completed for a single image user can click the <strong>"Save"</strong> button  and a new image is saved with existing tags.</p>
+                                <img src="~/background/CIRM5.png" style="width: 100%; float: right;" width="42" height="300" />
+                                
+                                <p><strong>6. Close</strong> button :</p>
+                                <p>To close the page.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

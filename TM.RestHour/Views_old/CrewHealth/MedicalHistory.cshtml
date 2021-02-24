@@ -1,0 +1,217 @@
+﻿@model TM.RestHour.Models.Consultant
+
+@{
+    ViewBag.Title = "MedicalHistory";
+}
+
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<link href="~/link/css/crewlistr.css" rel="stylesheet" />
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<link href="~/link/css/rank.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/CrewHealth.js"></script>
+
+@Html.Hidden("loaddata", @Url.Action("LoadData", "CrewHealth"))
+@*@Html.Hidden("loaddatareport", @Url.Action("LoadData", "CrewHealth"))*@
+@Html.Hidden("loadprintreport", @Url.Action("LoadData2", "CrewHealth"))
+
+<style>
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+    }
+
+    .bac1 {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+        height: 450px;
+    }
+</style>
+
+
+<body style="background-image: url(../background/Medicalrepor_MedicalHistory.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5" style="width: 30.667%;">
+            <h2 class="ta" style="color:#000;">Medical History</h2>
+        </div>
+
+
+
+        <div class="col-md-6 bac1" style="width: 67%;">
+            @*<div class="col-md-6" id="sideform">
+            <button type="button" class="button1" id="btnPrint">Print Report</button>
+        </div>*@
+
+            <div class="form-group">
+                <div>
+                    <div class="form-group">
+                        <div class="col-md-8" id="sideform">
+                            <label for="ReportsDate"> Month & Year</label>
+                            <input name="ReportsDate" class="monthYearPicker form-control" style="width:200px;" id="ReportsDateVal" />
+                        </div>
+                        <div class="form-group" style="float: right; width: 0%;">
+                        </div>
+                        <div class="col-md-2" id="sideform">
+                            <button type="button" class="button1" id="btnAdd" @*disabled="disabled"*@ onclick="return GetHours2();">Show Report</button>
+                        </div>
+                        <div class="col-md-2" id="sideform">
+                            <button type="button" class="button1" id="btnPrint" @*disabled="disabled"*@>Print Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                  
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="margin:0 auto" class="tablecontainer">
+                    <input type="hidden" id="hdnrole" />
+                    <table id="CrewHealthtable" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Crew Name</th>
+                                <th>Weight(Kg)</th>
+                                <th>BMI</th>
+                                @*<th>BP</th>*@
+                                <th>BS Level</th>
+                                <th>Sys(mmHg)</th>
+                                <th>Dia(mmHg)</th>
+                                <th>UrineTest</th>
+                                <th>Unannounced Alcohol</th>
+                                <th>Annual D&H</th>
+                                <th>Month</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+
+                <div id="dvprint2" style="display:none;">
+                    <hr>
+                    <table id="certtable_print" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th align="left">Crew Name</th>
+                                <th align="left">Weight(Kg)</th>
+                                <th align="left">BMI</th>
+
+                                <th align="left">BS Level</th>
+                                <th align="left">Sys(mmHg)</th>
+                                <th align="left">Dia(mmHg)</th>
+                                <th align="left">UrineTest</th>
+                                <th align="left">Unannounced Alcohol</th>
+                                <th align="left">Annual D&H</th>
+                                <th align="left">Month</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+    <script src="~/Scripts/CrewHealth.js"></script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            //SetUpGrid();
+            SetUpPrintGridReport(); //
+
+            $('#btnPrint').attr('disabled', true);
+            $('#btnAdd').attr('disabled', true);
+
+            $(function () {
+                $('.monthYearPicker').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    showButtonPanel: true,
+                    dateFormat: 'MM yy'
+                }).focus(function () {
+                    var thisCalendar = $(this);
+                    $('.ui-datepicker-calendar').detach();
+                    $('.ui-datepicker-close').click(function () {
+                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                        thisCalendar.datepicker('setDate', new Date(year, month, 1));
+
+                        if ($('#ReportsDateVal').val() != '') {
+                            $('#btnPrint').attr('disabled', false);
+                            $('#btnAdd').attr('disabled', false);
+                          
+                            $('#rp').text($("#ui-datepicker-div .ui-datepicker-month :selected").text() + ' ' + year);
+                            
+                            $('#rp_print').text($("#ui-datepicker-div .ui-datepicker-month :selected").text() + ' ' + year);
+                        }
+                        else {
+
+                            $('#btnPrint').attr('disabled', true);
+                            $('#btnAdd').attr('disabled', true);
+
+                        }
+                    });
+                });
+            });
+        });
+
+
+
+
+
+        $("#btnPrint").click(function () {
+            Popup2('');
+        });
+
+        $("#btnAdd").click(function () {
+            SetUpGrid();
+        });
+
+    </script>
+}

@@ -22,7 +22,6 @@
 		border-radius: 0;
 		padding: 2px 20px;
 		background: #fff;
-		margin: 0 -29px;
 		border-radius: 6px;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 		height: 450px;
@@ -37,15 +36,14 @@
 @Html.Hidden("SaveMedicalAdvisory", @Url.Action("SaveMedicalAdvisory", "Consultant"))
 
 
-<body style="background-image: url(../background/MedicalAdvisory.jpg);
-    background-size: cover;">
+<body>
 
 	<div class="row">
-		<div class="col-md-5">
-			<h2 class="ta" style="color:#000;">Monthly Medical Data</h2>
+		<div class="head_title">
+			<h2 class="ta">Monthly Medical Data</h2>
 		</div>
 
-		<div class="col-md-7 bacmma">
+		<div class="card bacmma">
 			<div>
 				<form>
 					<div class="form-group">

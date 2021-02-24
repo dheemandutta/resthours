@@ -1,0 +1,163 @@
+﻿@model TM.RestHour.Models.Groups
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+
+    .ui-state-booked {
+        background-color: greenyellow !important;
+        color: #000 !important;
+        border-color: lightyellow !important;
+    }
+    .row {
+        margin: 10px;
+    }
+</style>
+<style>
+    .button {
+        position: relative;
+        background-color: #22BAA0;
+        border: none;
+        font-size: 14px;
+        color: #FFFFFF;
+        padding: 8px;
+        width: 161px;
+        text-align: center;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+        .button:after {
+            content: "";
+            background: #90EE90;
+            display: block;
+            position: absolute;
+            padding-top: 300%;
+            padding-left: 350%;
+            margin-left: -20px !important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+        }
+
+        .button:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+        }
+
+    a.btn {
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        -webkit-transition-duration: 0.5s;
+        -moz-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+    }
+</style>
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/Groups.js"></script>
+<link href="~/Content/gijgo/combined/gijgo.min.css" rel="stylesheet" />
+
+
+@Html.Hidden("GPNodes", @Url.Action("GetParentNodes", "Groups"))
+@Html.Hidden("Save", @Url.Action("SaveGroups", "Groups"))
+
+
+<form id="example-advanced-form" action="#">
+    <h2>
+        Group
+    </h2>
+    <div class="card" style="border: 0; border-radius: 0; box-shadow: 0 6px 15px 0 rgba(207, 211, 218, 0.35); padding:20px;">
+        <fieldset>
+
+            <label for="userName-2">Group Name *</label>
+            <input id="GroupName" name="userName" type="text" class="required">
+
+            <p>(*) Mandatory</p>
+
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Permissions</legend>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="tree"></div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="container-fluid">
+            <div class="row">
+                <button id="btnSave" class="button">Save Checked Nodes</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+    @section Scripts
+{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Styles.Render("~/Content/themes/base/css")
+
+<script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+        
+        <script type="text/javascript">
+
+            var nodeslist = $('#GPNodes').val();
+            var saveurl = $('#Save').val();
+
+            $(document).ready(function () {
+                var tree = $('#tree').tree({
+                    primaryKey: 'id',
+                    uiLibrary: 'bootstrap',
+                    dataSource: nodeslist,
+                    checkboxes: true
+                });
+
+
+                var GroupsJsonObject = { WF: [] };
+                
+                $('#btnSave').on('click', function () {
+                    var checkedIds = tree.getCheckedNodes();
+
+                    GroupsJsonObject.WF.push({ d: checkedIds.join(",") });
+                    //alert(checkedIds.join(","));   ////////////////////////////////////////////
+                    //debugger;
+
+                    $.ajax({
+                        url: saveurl,
+                        data:
+                         JSON.stringify({
+                             groups: $('#GroupName').val(),
+                             checkedIds: JSON.stringify(GroupsJsonObject)
+                         }),
+                        type: "POST",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+
+                           // debugger;
+                            if (result > 1) {
+                                alert('Data Saved Successfully');
+                            }
+
+
+                        }
+                    });
+
+                       
+                });
+
+            });
+        </script>
+    }

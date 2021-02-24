@@ -19,10 +19,10 @@
 
 
     @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script src="~/src/jquery.image-marker.js"></script>
-    <script src="../src/jquery.image-marker.js"></script>
-    <link rel="stylesheet" type="text/css" href="../src/jquery.image-marker.css">*@
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <script src="~/src/jquery.image-marker.js"></script>
+        <script src="../src/jquery.image-marker.js"></script>
+        <link rel="stylesheet" type="text/css" href="../src/jquery.image-marker.css">*@
 
 
 
@@ -30,6 +30,11 @@
     <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta+Vaani:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
     <script src="~/Scripts/Ranks.js"></script>
     <script src="~/Scripts/CrewList.js"></script>
@@ -45,494 +50,504 @@
 
     <div class="clearfix"></div>
 
-    <div class="">
-        <nav class="navbar navbar-inverse">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <div class="col-md-4 ad" style="padding:0;"><img src="~/images/admin.png" width="83%"></div>
-                    <div class="col-md-4" style="padding:0;">
-                        <P class="weco">
-                            Welcome
-                            <span>
-                                @System.Web.HttpContext.Current.Session["FirstName"].ToString()   @System.Web.HttpContext.Current.Session["LastName"]
-                            </span>
-                        </P>
+    <div class="fullmenu">
+        <div class="container-fluid">
+            <nav class="navbar navbar-inverse">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="navbar-header">
+                            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <div class="col-md-4 ad" style="padding:0;"><img src="~/images/Worth.png" width="70px"></div>
+                               
+                            </a>
+                        </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="collapse navbar-collapse js-navbar-collapse">
+
+                                <ul class="nav navbar-nav navbar-right">
+
+
+
+                                    <!-- Optionally, you can add icons to the links -->
+                                    @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()))
+                                    {
+                                        <li class=""><a href="@Url.Action("NCReportByMonth", "ReportsNCReportByMonth")">Home</a></li>
+
+
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                Well Being<i class="fa fa-angle-down" style="padding: 0 10px;"></i>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu">
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Crew Health<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                        <li><a href="@Url.Action("UploadJoiningMedical", "CrewHealth")" style="border:none;">Upload Joining Medical</a></li>
+                                                        <li><a href="@Url.Action("JoiningMedicalReport", "CrewHealth")" style="border:none;">Joining Medical Report</a></li>
+
+                                                        <li><a href="@Url.Action("MonthlyMedicalAdvisory", "CrewHealth")" style="border:none;">Monthly Medical Data</a></li>
+
+                                                        <li><a href="@Url.Action("MedicalHistory", "CrewHealth")" style="border:none;">Medical History</a></li>
+                                                        <li><a href="@Url.Action("MedicalTreatment", "CrewHealth")" style="border:none;">CIRM</a></li>
+                                                        <li><a href="@Url.Action("DailyTemperatureReading", "CrewHealth")" style="border:none;">Daily Temperature Reading</a></li>
+                                                        @*<li><a href="@Url.Action("MailCIRM", "CrewHealth")" style="border:none;">Mail CIRM</a></li>*@
+                                                    </ul>
+                                                </li>
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Health Management<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                        <li><a href="@Url.Action("StressManagement", "HealthManagement")" style="border:none;">Stress Management</a></li>
+                                                        <li class="dropdown">
+                                                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Health Tips<i class="fa fa-angle-right"></i></a>
+                                                            <ul class="dropdown-menu" role="menu" style="left: 203px; top: 14px;">
+                                                                <li><a href="@Url.Action("Adviceforsafesex", "HeathTips")" style="border:none;">Advice for safe sex</a></li>
+                                                                <li><a href="@Url.Action("Adviseforsafetravel", "HeathTips")" style="border:none;">Advise for safe travel</a></li>
+                                                                <li><a href="@Url.Action("Foodsafetyonboard", "HeathTips")" style="border:none;">Food safety on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingahealthydietonboard", "HeathTips")" style="border:none;">Maintaining a healthy diet on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingahealthyweightonboard", "HeathTips")" style="border:none;">Maintaining a healthy weight on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingdentalhygiene", "HeathTips")" style="border:none;">Maintaining dental hygiene</a></li>
+                                                                <li><a href="@Url.Action("Maintainingfitnessonboard", "HeathTips")" style="border:none;">Maintaining fitness on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingmentalwellbeing", "HeathTips")" style="border:none;">Maintaining mental well being</a></li>
+                                                                <li><a href="@Url.Action("Malariaprevention", "HeathTips")" style="border:none;">Malaria prevention</a></li>
+                                                                <li><a href="@Url.Action("Protectingyourskinonboard", "HeathTips")" style="border:none;">Protecting your skin on board</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                @*<li class="dropdown">
+                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
+                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+                                <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
+                            </ul>
+                        </li>*@
+
+                                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+
+
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Medical Inventory<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                        <li><a href="@Url.Action("Index2", "Equipments")" style="border:none;">Medicine Inventory</a></li>
+                                                        <li><a href="@Url.Action("Index", "Equipments")" style="border:none;">Medical Equipment</a></li>
+                                                    </ul>
+                                                </li>
+
+
+                                                @*<li><a href="@Url.Action("Index", "UploadMedicalInventory")" style="border:none;">Upload Medical Inventory</a></li>*@
+                                                @*<li><a href="@Url.Action("Index", "MentalHealth")" style="border:none;">Mental Health</a></li>*@
+                                            </ul>
+                                        </li>
+
+
+                                        @*<li><a href="@Url.Action("Index", "Vessel")"><i class="fa fa-edit"></i><span> Vessel</span> </a></li>*@
+                                        @*<li><a href='@Url.Action("Index", "Regime")'><i class="fa fa-link"></i><span>Regime</span></a></li>*@
+
+                                        <li>
+
+                                            @*<a href="#">
+                        <i class="fa fa-desktop"></i> <span> Manage Ranks & Crew</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>*@
+
+                                            <ul class="dropdown-menu">
+                                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()))
+                                                {
+                                                    @*<li><a href='@Url.Action("Index", "Groups")'>Manage Permissions Groups</a></li>*@
+
+                                                }
+                                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
+                                                {
+                                                    @*<li><a href='@Url.Action("Index", "RankPermission")'>Add Ranks To Permissions</a></li>*@
+                                                    @*<li><a href='@Url.Action("Index", "CreateNewUserAccount")'>Create New User Account</a></li>*@
+
+
+
+
+                                                }
+
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<i class="fa fa-angle-down" style="padding: 0 10px;"></i></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
+                                                {
+                                                    <li class="dropdown">
+                                                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Crew Management<i class="fa fa-angle-right"></i></a>
+                                                        <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                            <li><a href='@Url.Action("Index", "AddCrew")'> Crew</a></li>
+                                                            <li><a href='@Url.Action("CrewListNew", "CrewList")'>Crew List</a></li>
+                                                            <li><a href="@Url.Action("Index", "CrewImport")">Crew Import</a></li>
+                                                            @*<li><a href="@Url.Action("ServiceTerm", "AddCrew")">Service Terms</a></li>*@
+                                                            <li><a href="@Url.Action("CrewServiceTerms", "CrewHealth")">Service Terms</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="@Url.Action("index", "Department")" style="border:none;">Department</a></li>
+                                                    @*<li><a href="@Url.Action("DepartmentMaster", "Department")" style="border:none;">Add Department</a></li>*@
+
+                                                    <li><a href='@Url.Action("Index", "Ranks")'> Rank</a></li>
+                                                    <li><a href='@Url.Action("Index", "Regime")'>Regime</a></li>
+
+
+                                                    <li class="dropdown">
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#">Settings <i class="fa fa-angle-right" style="margin-left:90px;"></i>@*<span class="caret"></span>*@</a>
+                                                        <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                            <li><a href="@Url.Action("IndexIn", "MailServerDetails")" style="border:none;">Mail Server</a></li>
+                                                            <li><a href='@Url.Action("ResetPassword", "Login")'>Reset Password</a></li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li><a href='@Url.Action("Index", "Options")'>Time Adjustment</a></li>
+                                                    <li><a href='@Url.Action("Index", "Vessel")'> Vessel</a></li>
+                                                    <li><a href='@Url.Action("Index", "CompanyDetails")'> Company Details</a></li>
+
+                                                }
+                                                @*<li><a href='@Url.Action("Index", "RankPermission")'>Add Ranks To Permissions</a></li>*@
+                                                @*<li><a href='@Url.Action("CrewTimeSheet", "TimeSheet")'>Crew Timesheet</a></li>*@
+
+
+                                            </ul>
+                                        </li>
+                                    }
+                                    <!-- Optionally, you can add icons to the links -->
+                                    @if (Convert.ToBoolean(Session["Admin"].ToString()))
+                                    {
+                                        <li class=""><a href="@Url.Action("NCReportByMonth", "ReportsNCReportByMonth")"> Home</a></li>
+
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                Well Being<i class="fa fa-angle-down" style="padding: 0 10px;"></i>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu">
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Crew Health<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                        <li><a href="@Url.Action("UploadJoiningMedical", "CrewHealth")" style="border:none;">Upload Joining Medical</a></li>
+                                                        <li><a href="@Url.Action("JoiningMedicalReport", "CrewHealth")" style="border:none;">Joining Medical Report</a></li>
+                                                        <li><a href="@Url.Action("MonthlyMedicalAdvisory", "CrewHealth")" style="border:none;">Monthly Medical Data</a></li>
+                                                        <li><a href="@Url.Action("MedicalHistory", "CrewHealth")" style="border:none;">Medical History</a></li>
+                                                        <li><a href="@Url.Action("MedicalTreatment", "CrewHealth")" style="border:none;">CIRM</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Health Management<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                        <li><a href="@Url.Action("StressManagement", "HealthManagement")" style="border:none;">Stress Management</a></li>
+                                                        <li class="dropdown">
+                                                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Health Tips<i class="fa fa-angle-right"></i></a>
+                                                            <ul class="dropdown-menu" role="menu" style="left: 203px; top: 14px;">
+                                                                <li><a href="@Url.Action("Adviceforsafesex", "HeathTips")" style="border:none;">Advice for safe sex</a></li>
+                                                                <li><a href="@Url.Action("Adviseforsafetravel", "HeathTips")" style="border:none;">Advise for safe travel</a></li>
+                                                                <li><a href="@Url.Action("Foodsafetyonboard", "HeathTips")" style="border:none;">Food safety on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingahealthydietonboard", "HeathTips")" style="border:none;">Maintaining a healthy diet on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingahealthyweightonboard", "HeathTips")" style="border:none;">Maintaining a healthy weight on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingdentalhygiene", "HeathTips")" style="border:none;">Maintaining dental hygiene</a></li>
+                                                                <li><a href="@Url.Action("Maintainingfitnessonboard", "HeathTips")" style="border:none;">Maintaining fitness on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingmentalwellbeing", "HeathTips")" style="border:none;">Maintaining mental well being</a></li>
+                                                                <li><a href="@Url.Action("Malariaprevention", "HeathTips")" style="border:none;">Malaria prevention</a></li>
+                                                                <li><a href="@Url.Action("Protectingyourskinonboard", "HeathTips")" style="border:none;">Protecting your skin on board</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                @*<li class="dropdown">
+                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
+                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+                                <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
+                            </ul>
+                        </li>*@
+
+                                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+
+
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Medical Inventory<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                        <li><a href="@Url.Action("Index2", "Equipments")" style="border:none;">Medicine Inventory</a></li>
+                                                        <li><a href="@Url.Action("Index", "Equipments")" style="border:none;">Medical Equipment</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                @*<li><a href="@Url.Action("Index", "MentalHealth")" style="border:none;">Mental Health</a></li>*@
+                                            </ul>
+
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<i class="fa fa-angle-down" style="padding: 0 10px;"></i></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
+                                                {
+
+
+                                                    <li class="dropdown">
+                                                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Crew Management<i class="fa fa-angle-right"></i></a>
+                                                        <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                            <li><a tabindex="-1" href='@Url.Action("Index", "AddCrew")'>Crew</a></li>
+                                                            <li><a tabindex="-1" href='@Url.Action("CrewListNew", "CrewList")'>Crew List</a></li>
+
+                                                        </ul>
+                                                    </li>
+
+
+                                                    <li><a href="@Url.Action("index", "Department")" style="border:none;">Department</a></li>
+                                                    <li><a href='@Url.Action("Index", "Ranks")'> Rank</a></li>
+                                                    <li><a href='@Url.Action("Index", "Regime")'>Regime</a></li>
+
+
+                                                    <li class="dropdown">
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#">Settings<i class="fa fa-angle-right"></i></a>
+                                                        <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                            @*<li><a href="@Url.Action("IndexIn", "MailServerDetails")" style="border:none;">Mail Server</a></li>*@
+                                                            <li><a href='@Url.Action("ResetPassword", "Login")'>Reset Password</a></li>
+                                                        </ul>
+                                                    </li>
+
+                                                    @*<li><a href='@Url.Action("Index", "AddCrew")'> Crew</a></li>*@
+                                                    @*<li><a href='@Url.Action("CrewListNew", "CrewList")'>Crew List</a></li>*@
+                                                    <li><a href='@Url.Action("Index", "Options")'>Time Adjustment</a></li>
+                                                    <li><a href='@Url.Action("Index", "Vessel")'> Vessel</a></li>
+
+                                                }
+
+
+                                                @*<li><a href='@Url.Action("CrewTimeSheet", "TimeSheet")'>Crew Timesheet</a></li>*@
+
+                                                @*<li><a href='@Url.Action("Index", "RankPermission")'>Add Ranks To Permissions</a></li>*@
+
+                                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
+                                                {
+
+                                                }
+
+
+
+
+
+
+
+                                            </ul>
+                                        </li>
+
+                                    }
+                                    <!-- Optionally, you can add icons to the links -->
+                                    @if (Convert.ToBoolean(Session["User"].ToString()))
+                                    {
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                Well Being<i class="fa fa-angle-down" style="padding: 0 10px;"></i>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu">
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Crew Health<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+
+                                                        <li><a href="@Url.Action("JoiningMedicalReport", "CrewHealth")" style="border:none;">Joining Medical Report</a></li>
+                                                        @*<li><a href="@Url.Action("MonthlyMedicalAdvisory", "CrewHealth")" style="border:none;">Monthly Medical Data</a></li>*@
+                                                        <li><a href="@Url.Action("MedicalHistory", "CrewHealth")" style="border:none;">Medical History</a></li>
+                                                        <li><a href="@Url.Action("MedicalTreatment", "CrewHealth")" style="border:none;">CIRM</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Health Management<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                        <li><a href="@Url.Action("StressManagement", "HealthManagement")" style="border:none;">Stress Management</a></li>
+                                                        <li class="dropdown">
+                                                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Health Tips<i class="fa fa-angle-right"></i></a>
+                                                            <ul class="dropdown-menu" role="menu" style="left: 203px; top: 14px;">
+                                                                <li><a href="@Url.Action("Adviceforsafesex", "HeathTips")" style="border:none;">Advice for safe sex</a></li>
+                                                                <li><a href="@Url.Action("Adviseforsafetravel", "HeathTips")" style="border:none;">Advise for safe travel</a></li>
+                                                                <li><a href="@Url.Action("Foodsafetyonboard", "HeathTips")" style="border:none;">Food safety on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingahealthydietonboard", "HeathTips")" style="border:none;">Maintaining a healthy diet on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingahealthyweightonboard", "HeathTips")" style="border:none;">Maintaining a healthy weight on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingdentalhygiene", "HeathTips")" style="border:none;">Maintaining dental hygiene</a></li>
+                                                                <li><a href="@Url.Action("Maintainingfitnessonboard", "HeathTips")" style="border:none;">Maintaining fitness on board</a></li>
+                                                                <li><a href="@Url.Action("Maintainingmentalwellbeing", "HeathTips")" style="border:none;">Maintaining mental well being</a></li>
+                                                                <li><a href="@Url.Action("Malariaprevention", "HeathTips")" style="border:none;">Malaria prevention</a></li>
+                                                                <li><a href="@Url.Action("Protectingyourskinonboard", "HeathTips")" style="border:none;">Protecting your skin on board</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                @*<li class="dropdown">
+                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
+                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+                                <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
+                            </ul>
+                        </li>*@
+
+                                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
+
+
+
+                                                <li class="dropdown">
+                                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                        Medical Inventory<i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" style="left: 226px;top: -3px;">
+                                                        <li><a href="@Url.Action("Index2", "Equipments")" style="border:none;">Medicine Inventory</a></li>
+                                                        <li><a href="@Url.Action("Index", "Equipments")" style="border:none;">Medical Equipment</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                @*<li><a href="@Url.Action("Index", "MentalHealth")" style="border:none;">Mental Health</a></li>*@
+                                            </ul>
+                                        </li>
+
+                                        @*<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        On Board Facilities<i class="fa fa-angle-down" style="margin-left:20px;"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("Index", "Equipments")" style="border:none;">Equipments</a></li>
+                        <li><a href="@Url.Action("Index2", "Equipments")" style="border:none;">Medicine</a></li>
+                    </ul>
+                </li>*@
+
+                                        @*<li class=""><a href="@Url.Action("Index", "Home")"> <i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>*@
+                                        <li><a href="@Url.Action("Index", "Vessel")"> Vessel </a></li>
+                                        <li><a href='@Url.Action("ResetPassword", "Login")'>Reset Password</a></li>
+
+
+
+
+
+
+
+                                        @*<li><a href='@Url.Action("Index", "Regime")'><i class="fa fa-link"></i><span>Regime</span></a></li>*@
+                                    }
+
+                                    @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
+                                    {
+                                        @*<li class=""><a href="@Url.Action("Index", "TimeSheet")">Crew Time Sheet</a></li>*@ @*//// this line - Admin can't use the TimeSheet page ///// Deep*@
+                                        <li class=""><a href="@Url.Action("CrewTimeSheet", "TimeSheet")">Crew Time Sheet</a></li>
+                                        @*//// this line - Admin can   use the TimeSheet page ///// Deep*@
+                                    }
+                                    else
+                                    {
+                                        <li class=""><a href="@Url.Action("CrewTimeSheet", "TimeSheet")">Crew Time Sheet</a></li>
+                                    }
+
+
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            Reports<i class="fa fa-angle-down" style="padding: 0 10px;"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+
+
+                                            @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
+                                            {
+
+                                                @*<li><a href='@Url.Action("Index", "Reports")'>Monthly Work Hours</a></li>*@
+                                                <li><a href='@Url.Action("DailyCrewReport", "Reports")'>Day Wise Crew Work Hours</a></li>
+                                                <li><a href='@Url.Action("CrewList", "Reports")'>Crew List</a></li>
+                                                @*<li><a href='@Url.Action("WorkAndRestHours", "Reports")'>Work And Rest Hours</a></li>*@
+                                                <li><a href='@Url.Action("MonthlyView", "ReportsNCReportByMonth")'>Monthly View</a></li>
+
+
+
+                                                @*<li><a href='@Url.Action("CrewList", "Reports")'>Crew Report List </a></li>*@
+                                            }
+                                            <li><a href='@Url.Action("Index", "Reports")'>Monthly Work Hours</a></li>
+                                            <li><a href='@Url.Action("WorkAndRestHours", "Reports")'>Compliance Report</a></li>
+                                            <li><a href='@Url.Action("ReportDailyTemperature", "CrewHealth")'>Crew Temperature Report</a></li>
+                                        </ul>
+                                    </li>
+
+
+                                    <li class=""><a href='@Url.Action("Index", "Plans")'>Plans</a></li>
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            <b style="color:red;">Medical Assist</b><i class="fa fa-angle-down" style="padding: 0 10px;"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href='@Url.Action("VesselDetails", "CrewHealth")'>Vessel Details</a></li>
+                                            <li><a href='@Url.Action("PatientDetails", "CrewHealth")'>Patient Details</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class=""><a href='@Url.Action("Index", "About")'>About</a></li>
+                                    <li class=""><a href='@Url.Action("index", "help")' style="border:none !important;">Help</a></li>
+
+
+                                </ul>
+                                <div class="dropdown">
+                                    <button class="button log" onclick="location.href='@Url.Action("Index", "Login")';return false;"><span><img src="~/images/out.png" style="width:27px;" /></span></button>
+                                    <div class="dropdown-content">
+                                        <h3>Admin</h3>
+                                        <a href="#">Sing Out</a>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                        </div><!-- /.nav-collapse -->
                     </div>
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse js-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-
-
-                    <!-- Optionally, you can add icons to the links -->
-                    @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()))
-                    {
-                        <li class=""><a href="@Url.Action("NCReportByMonth", "ReportsNCReportByMonth")">Home</a></li>
-
-
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Well Being<i class="fa fa-angle-down" style="padding: 0 10px;"></i>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Crew Health<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                        <li><a href="@Url.Action("UploadJoiningMedical", "CrewHealth")" style="border:none;">Upload Joining Medical</a></li>
-                                        <li><a href="@Url.Action("JoiningMedicalReport", "CrewHealth")" style="border:none;">Joining Medical Report</a></li>
-
-                                        <li><a href="@Url.Action("MonthlyMedicalAdvisory", "CrewHealth")" style="border:none;">Monthly Medical Data</a></li>
-
-                                        <li><a href="@Url.Action("MedicalHistory", "CrewHealth")" style="border:none;">Medical History</a></li>
-                                        <li><a href="@Url.Action("MedicalTreatment", "CrewHealth")" style="border:none;">CIRM</a></li>
-                                        <li><a href="@Url.Action("DailyTemperatureReading", "CrewHealth")" style="border:none;">Daily Temperature Reading</a></li>
-                                        @*<li><a href="@Url.Action("MailCIRM", "CrewHealth")" style="border:none;">Mail CIRM</a></li>*@
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Health Management<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                        <li><a href="@Url.Action("StressManagement", "HealthManagement")" style="border:none;">Stress Management</a></li>
-                                        <li class="dropdown">
-                                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Health Tips<i class="fa fa-angle-right" style="margin-left:20px;"></i></a>
-                                            <ul class="dropdown-menu" role="menu" style="left: 203px; top: 14px;">
-                                                <li><a href="@Url.Action("Adviceforsafesex", "HeathTips")" style="border:none;">Advice for safe sex</a></li>
-                                                <li><a href="@Url.Action("Adviseforsafetravel", "HeathTips")" style="border:none;">Advise for safe travel</a></li>
-                                                <li><a href="@Url.Action("Foodsafetyonboard", "HeathTips")" style="border:none;">Food safety on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingahealthydietonboard", "HeathTips")" style="border:none;">Maintaining a healthy diet on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingahealthyweightonboard", "HeathTips")" style="border:none;">Maintaining a healthy weight on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingdentalhygiene", "HeathTips")" style="border:none;">Maintaining dental hygiene</a></li>
-                                                <li><a href="@Url.Action("Maintainingfitnessonboard", "HeathTips")" style="border:none;">Maintaining fitness on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingmentalwellbeing", "HeathTips")" style="border:none;">Maintaining mental well being</a></li>
-                                                <li><a href="@Url.Action("Malariaprevention", "HeathTips")" style="border:none;">Malaria prevention</a></li>
-                                                <li><a href="@Url.Action("Protectingyourskinonboard", "HeathTips")" style="border:none;">Protecting your skin on board</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                @*<li class="dropdown">
-                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                            <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-                            <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
-                        </ul>
-                    </li>*@
-
-                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-
-
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Medical Inventory<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                        <li><a href="@Url.Action("Index2", "Equipments")" style="border:none;">Medicine Inventory</a></li>
-                                        <li><a href="@Url.Action("Index", "Equipments")" style="border:none;">Medical Equipment</a></li>
-                                    </ul>
-                                </li>
-
-
-                                @*<li><a href="@Url.Action("Index", "UploadMedicalInventory")" style="border:none;">Upload Medical Inventory</a></li>*@
-                                @*<li><a href="@Url.Action("Index", "MentalHealth")" style="border:none;">Mental Health</a></li>*@
-                            </ul>
-                        </li>
-
-
-                        @*<li><a href="@Url.Action("Index", "Vessel")"><i class="fa fa-edit"></i><span> Vessel</span> </a></li>*@
-                        @*<li><a href='@Url.Action("Index", "Regime")'><i class="fa fa-link"></i><span>Regime</span></a></li>*@
-
-                        <li>
-
-                            @*<a href="#">
-                    <i class="fa fa-desktop"></i> <span> Manage Ranks & Crew</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>*@
-
-                            <ul class="dropdown-menu">
-                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()))
-                                {
-                                    @*<li><a href='@Url.Action("Index", "Groups")'>Manage Permissions Groups</a></li>*@
-
-                                }
-                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
-                                {
-                                    @*<li><a href='@Url.Action("Index", "RankPermission")'>Add Ranks To Permissions</a></li>*@
-                                    @*<li><a href='@Url.Action("Index", "CreateNewUserAccount")'>Create New User Account</a></li>*@
-
-
-
-
-                                }
-
-
-                            </ul>
-                        </li>
-
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<i class="fa fa-angle-down" style="padding: 0 10px;"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
-                                {
-                                    <li class="dropdown">
-                                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Crew Management<i class="fa fa-angle-right" style="margin-left:20px;"></i></a>
-                                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                            <li><a href='@Url.Action("Index", "AddCrew")'> Crew</a></li>
-                                            <li><a href='@Url.Action("CrewListNew", "CrewList")'>Crew List</a></li>
-                                            <li><a href="@Url.Action("Index", "CrewImport")">Crew Import</a></li>
-                                            @*<li><a href="@Url.Action("ServiceTerm", "AddCrew")">Service Terms</a></li>*@
-                                            <li><a href="@Url.Action("CrewServiceTerms", "CrewHealth")">Service Terms</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="@Url.Action("index", "Department")" style="border:none;">Department</a></li>
-                                    @*<li><a href="@Url.Action("DepartmentMaster", "Department")" style="border:none;">Add Department</a></li>*@
-
-                                    <li><a href='@Url.Action("Index", "Ranks")'> Rank</a></li>
-                                    <li><a href='@Url.Action("Index", "Regime")'>Regime</a></li>
-
-
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#">Settings <i class="fa fa-angle-right" style="margin-left:90px;"></i>@*<span class="caret"></span>*@</a>
-                                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                            <li><a href="@Url.Action("IndexIn", "MailServerDetails")" style="border:none;">Mail Server</a></li>
-                                            <li><a href='@Url.Action("ResetPassword", "Login")'>Reset Password</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href='@Url.Action("Index", "Options")'>Time Adjustment</a></li>
-                                    <li><a href='@Url.Action("Index", "Vessel")'> Vessel</a></li>
-                                    <li><a href='@Url.Action("Index", "CompanyDetails")'> Company Details</a></li>
-
-                                }
-                                @*<li><a href='@Url.Action("Index", "RankPermission")'>Add Ranks To Permissions</a></li>*@
-                                @*<li><a href='@Url.Action("CrewTimeSheet", "TimeSheet")'>Crew Timesheet</a></li>*@
-
-
-                            </ul>
-                        </li>
-                    }
-                    <!-- Optionally, you can add icons to the links -->
-                    @if (Convert.ToBoolean(Session["Admin"].ToString()))
-                    {
-                        <li class=""><a href="@Url.Action("NCReportByMonth", "ReportsNCReportByMonth")"> Home</a></li>
-
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Well Being<i class="fa fa-angle-down" style="padding: 0 10px;"></i>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Crew Health<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                        <li><a href="@Url.Action("UploadJoiningMedical", "CrewHealth")" style="border:none;">Upload Joining Medical</a></li>
-                                        <li><a href="@Url.Action("JoiningMedicalReport", "CrewHealth")" style="border:none;">Joining Medical Report</a></li>
-                                        <li><a href="@Url.Action("MonthlyMedicalAdvisory", "CrewHealth")" style="border:none;">Monthly Medical Data</a></li>
-                                        <li><a href="@Url.Action("MedicalHistory", "CrewHealth")" style="border:none;">Medical History</a></li>
-                                        <li><a href="@Url.Action("MedicalTreatment", "CrewHealth")" style="border:none;">CIRM</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Health Management<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                        <li><a href="@Url.Action("StressManagement", "HealthManagement")" style="border:none;">Stress Management</a></li>
-                                        <li class="dropdown">
-                                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Health Tips<i class="fa fa-angle-right" style="margin-left:20px;"></i></a>
-                                            <ul class="dropdown-menu" role="menu" style="left: 203px; top: 14px;">
-                                                <li><a href="@Url.Action("Adviceforsafesex", "HeathTips")" style="border:none;">Advice for safe sex</a></li>
-                                                <li><a href="@Url.Action("Adviseforsafetravel", "HeathTips")" style="border:none;">Advise for safe travel</a></li>
-                                                <li><a href="@Url.Action("Foodsafetyonboard", "HeathTips")" style="border:none;">Food safety on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingahealthydietonboard", "HeathTips")" style="border:none;">Maintaining a healthy diet on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingahealthyweightonboard", "HeathTips")" style="border:none;">Maintaining a healthy weight on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingdentalhygiene", "HeathTips")" style="border:none;">Maintaining dental hygiene</a></li>
-                                                <li><a href="@Url.Action("Maintainingfitnessonboard", "HeathTips")" style="border:none;">Maintaining fitness on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingmentalwellbeing", "HeathTips")" style="border:none;">Maintaining mental well being</a></li>
-                                                <li><a href="@Url.Action("Malariaprevention", "HeathTips")" style="border:none;">Malaria prevention</a></li>
-                                                <li><a href="@Url.Action("Protectingyourskinonboard", "HeathTips")" style="border:none;">Protecting your skin on board</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                @*<li class="dropdown">
-                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                            <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-                            <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
-                        </ul>
-                    </li>*@
-
-                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-
-
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Medical Inventory<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                        <li><a href="@Url.Action("Index2", "Equipments")" style="border:none;">Medicine Inventory</a></li>
-                                        <li><a href="@Url.Action("Index", "Equipments")" style="border:none;">Medical Equipment</a></li>
-                                    </ul>
-                                </li>
-
-                                @*<li><a href="@Url.Action("Index", "MentalHealth")" style="border:none;">Mental Health</a></li>*@
-                            </ul>
-
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<i class="fa fa-angle-down" style="padding: 0 10px;"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
-                                {
-
-
-                                    <li class="dropdown">
-                                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Crew Management<i class="fa fa-angle-right" style="margin-left:20px;"></i></a>
-                                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                            <li><a tabindex="-1" href='@Url.Action("Index", "AddCrew")'>Crew</a></li>
-                                            <li><a tabindex="-1" href='@Url.Action("CrewListNew", "CrewList")'>Crew List</a></li>
-
-                                        </ul>
-                                    </li>
-
-
-                                    <li><a href="@Url.Action("index", "Department")" style="border:none;">Department</a></li>
-                                    <li><a href='@Url.Action("Index", "Ranks")'> Rank</a></li>
-                                    <li><a href='@Url.Action("Index", "Regime")'>Regime</a></li>
-
-
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#">Settings<i class="fa fa-angle-right" style="margin-left:20px;"></i></a>
-                                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                            @*<li><a href="@Url.Action("IndexIn", "MailServerDetails")" style="border:none;">Mail Server</a></li>*@
-                                            <li><a href='@Url.Action("ResetPassword", "Login")'>Reset Password</a></li>
-                                        </ul>
-                                    </li>
-
-                                    @*<li><a href='@Url.Action("Index", "AddCrew")'> Crew</a></li>*@
-                                    @*<li><a href='@Url.Action("CrewListNew", "CrewList")'>Crew List</a></li>*@
-                                    <li><a href='@Url.Action("Index", "Options")'>Time Adjustment</a></li>
-                                    <li><a href='@Url.Action("Index", "Vessel")'> Vessel</a></li>
-
-                                }
-
-
-                                @*<li><a href='@Url.Action("CrewTimeSheet", "TimeSheet")'>Crew Timesheet</a></li>*@
-
-                                @*<li><a href='@Url.Action("Index", "RankPermission")'>Add Ranks To Permissions</a></li>*@
-
-                                @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
-                                {
-
-                                }
-
-
-
-
-
-
-
-                            </ul>
-                        </li>
-
-                    }
-                    <!-- Optionally, you can add icons to the links -->
-                    @if (Convert.ToBoolean(Session["User"].ToString()))
-                    {
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Well Being<i class="fa fa-angle-down" style="padding: 0 10px;"></i>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Crew Health<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-
-                                        <li><a href="@Url.Action("JoiningMedicalReport", "CrewHealth")" style="border:none;">Joining Medical Report</a></li>
-                                        @*<li><a href="@Url.Action("MonthlyMedicalAdvisory", "CrewHealth")" style="border:none;">Monthly Medical Data</a></li>*@
-                                        <li><a href="@Url.Action("MedicalHistory", "CrewHealth")" style="border:none;">Medical History</a></li>
-                                        <li><a href="@Url.Action("MedicalTreatment", "CrewHealth")" style="border:none;">CIRM</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Health Management<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                        <li><a href="@Url.Action("StressManagement", "HealthManagement")" style="border:none;">Stress Management</a></li>
-                                        <li class="dropdown">
-                                            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Health Tips<i class="fa fa-angle-right" style="margin-left:20px;"></i></a>
-                                            <ul class="dropdown-menu" role="menu" style="left: 203px; top: 14px;">
-                                                <li><a href="@Url.Action("Adviceforsafesex", "HeathTips")" style="border:none;">Advice for safe sex</a></li>
-                                                <li><a href="@Url.Action("Adviseforsafetravel", "HeathTips")" style="border:none;">Advise for safe travel</a></li>
-                                                <li><a href="@Url.Action("Foodsafetyonboard", "HeathTips")" style="border:none;">Food safety on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingahealthydietonboard", "HeathTips")" style="border:none;">Maintaining a healthy diet on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingahealthyweightonboard", "HeathTips")" style="border:none;">Maintaining a healthy weight on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingdentalhygiene", "HeathTips")" style="border:none;">Maintaining dental hygiene</a></li>
-                                                <li><a href="@Url.Action("Maintainingfitnessonboard", "HeathTips")" style="border:none;">Maintaining fitness on board</a></li>
-                                                <li><a href="@Url.Action("Maintainingmentalwellbeing", "HeathTips")" style="border:none;">Maintaining mental well being</a></li>
-                                                <li><a href="@Url.Action("Malariaprevention", "HeathTips")" style="border:none;">Malaria prevention</a></li>
-                                                <li><a href="@Url.Action("Protectingyourskinonboard", "HeathTips")" style="border:none;">Protecting your skin on board</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                @*<li class="dropdown">
-                        <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Medical Consultants <i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                            <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-                            <li><a href="@Url.Action("IndexNew", "Consultant")" style="border:none;">Health Management</a></li>
-                        </ul>
-                    </li>*@
-
-                                <li><a href="@Url.Action("Index", "Consultant")" style="border:none;">Medical Consultant</a></li>
-
-
-
-                                <li class="dropdown">
-                                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Medical Inventory<i class="fa fa-angle-right" style="margin-left:20px;"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu" style="left: 252px;top: -3px;">
-                                        <li><a href="@Url.Action("Index2", "Equipments")" style="border:none;">Medicine Inventory</a></li>
-                                        <li><a href="@Url.Action("Index", "Equipments")" style="border:none;">Medical Equipment</a></li>
-                                    </ul>
-                                </li>
-
-                                @*<li><a href="@Url.Action("Index", "MentalHealth")" style="border:none;">Mental Health</a></li>*@
-                            </ul>
-                        </li>
-
-                        @*<li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                    On Board Facilities<i class="fa fa-angle-down" style="margin-left:20px;"></i>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="@Url.Action("Index", "Equipments")" style="border:none;">Equipments</a></li>
-                    <li><a href="@Url.Action("Index2", "Equipments")" style="border:none;">Medicine</a></li>
-                </ul>
-            </li>*@
-
-                        @*<li class=""><a href="@Url.Action("Index", "Home")"> <i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>*@
-                        <li><a href="@Url.Action("Index", "Vessel")"> Vessel </a></li>
-                        <li><a href='@Url.Action("ResetPassword", "Login")'>Reset Password</a></li>
-
-
-
-
-
-
-
-                        @*<li><a href='@Url.Action("Index", "Regime")'><i class="fa fa-link"></i><span>Regime</span></a></li>*@
-                    }
-
-                    @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
-                    {
-                        @*<li class=""><a href="@Url.Action("Index", "TimeSheet")">Crew Time Sheet</a></li>*@         @*//// this line - Admin can't use the TimeSheet page ///// Deep*@
-                        <li class=""><a href="@Url.Action("CrewTimeSheet", "TimeSheet")">Crew Time Sheet</a></li>     @*//// this line - Admin can   use the TimeSheet page ///// Deep*@
-                    }
-                    else
-                    {
-                        <li class=""><a href="@Url.Action("CrewTimeSheet", "TimeSheet")">Crew Time Sheet</a></li>
-                    }
-
-
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Reports<i class="fa fa-angle-down" style="padding: 0 10px;"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-
-
-                            @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
-                            {
-
-                                @*<li><a href='@Url.Action("Index", "Reports")'>Monthly Work Hours</a></li>*@
-                                <li><a href='@Url.Action("DailyCrewReport", "Reports")'>Day Wise Crew Work Hours</a></li>
-                                <li><a href='@Url.Action("CrewList", "Reports")'>Crew List</a></li>
-                                @*<li><a href='@Url.Action("WorkAndRestHours", "Reports")'>Work And Rest Hours</a></li>*@
-                                <li><a href='@Url.Action("MonthlyView", "ReportsNCReportByMonth")'>Monthly View</a></li>
-
-
-
-                                @*<li><a href='@Url.Action("CrewList", "Reports")'>Crew Report List </a></li>*@
-                            }
-                            <li><a href='@Url.Action("Index", "Reports")'>Monthly Work Hours</a></li>
-                            <li><a href='@Url.Action("WorkAndRestHours", "Reports")'>Compliance Report</a></li>
-                            <li><a href='@Url.Action("ReportDailyTemperature", "CrewHealth")'>Crew Temperature Report</a></li>
-                        </ul>
-                    </li>
-
-
-                    <li class=""><a href='@Url.Action("Index", "Plans")'>Plans</a></li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <b style="color:red;">Medical Assist</b><i class="fa fa-angle-down" style="padding: 0 10px;"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href='@Url.Action("VesselDetails", "CrewHealth")'>Vessel Details</a></li>
-                            <li><a href='@Url.Action("PatientDetails", "CrewHealth")'>Patient Details</a></li>
-                        </ul>
-                    </li>
-
-                    <li class=""><a href='@Url.Action("Index", "About")'>About</a></li>
-                    <li class=""><a href='@Url.Action("index", "help")' style="border:none !important;">Help</a></li>
-
-
-                </ul>
-
-            </div><!-- /.nav-collapse -->
-        </nav>
+</nav>
+        </div>
     </div>
 
     @*<button class="button log">@Html.Partial("_LoginPartial")</button>*@
-    <button class="button log" onclick="location.href='@Url.Action("Index", "Login")';return false;">Log Off</button>
+  
 
     @*<button class="button log1" style="float: right;right: 164px;">About</button>
         <button class="button log1" style="float: right;">Help</button>*@
     <p class="log1" style="width: 541px;"> © 2018,Tech-innology Pte. Ltd. All rights are reserved</p>
-    <div class="wrapper">
+    <div class="">
         <!-- Main Header -->
         <!-- Left side column. contains the logo and sidebar -->
         <!-- Content Wrapper. Contains page content -->
@@ -540,8 +555,33 @@
             <!-- Content Header (Page header) -->
             <!-- Main content -->
             <section class="content container-fluid">
+                <div class="wrapper">
+                   
+                        <div class="sidebar">
+                            <div class="div_vissel">
+                                <img src="~/images/ship-icon-png-22.jpg" />
+                                <h4>Name of the vessel</h4>
+                                <P class="weco">
+                                    
+                                    <span>
+                                        @System.Web.HttpContext.Current.Session["FirstName"].ToString()   @System.Web.HttpContext.Current.Session["LastName"]
+                                    </span>
+                                </P>
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                <p>Page is representing which section</p>
+                                <p>Stress management etc </p>
+                            </div>
+                            
 
-                @RenderBody()
+                        </div>
+
+                   
+                    <div class="content-area">
+                        @RenderBody()
+                    </div>
+                </div>
+
+              
 
             </section>
             <!-- /.content -->

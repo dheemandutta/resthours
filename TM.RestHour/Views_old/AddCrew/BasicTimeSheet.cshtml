@@ -1,0 +1,147 @@
+﻿
+@*@Html.Hidden("basicTS", @Url.Action("AddCrewTimeSheet", "AddCrew"))*@
+
+<link href="~/Content/TimePicker/jquery.timepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/TimePicker/jquery.timepicker.min.js"></script>
+
+
+    <table id="cloneTable" class="table-responsive" style="width:60%">
+    <tr>
+        <td><b>Start Time</b></td>
+        <td><b>End Time</b></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+        <tr class="clonrow">
+            <td style="width:47%"><input type='text' name='startdate' class="form-control timepicker" ></td>
+            <td style="width:47%"><input type='text' name='enddate' class="form-control timepicker" ></td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+    <tr class="clonrow">
+        <td><input type='text' name='startdate' class="form-control timepicker" ></td>
+        <td><input type='text' name='enddate' class="form-control timepicker" ></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+    <tr class="clonrow">
+        <td><input type='text' name='startdate' class="form-control timepicker" ></td>
+        <td><input type='text' name='enddate' class="form-control timepicker" ></td>
+        <td style="width:16%"><a href="#" class="addbtn">Add</a></td>
+        <td style="width:16%"><a href="#" class="delbtn">Delete</a></td>
+    </tr>
+</table>
+
+
+
+
+
+
+<style type="text/css">
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #cdcdcd;
+    }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+        }
+
+    .glyphicon-none:before {
+        content: "\2122";
+        color: transparent !important;
+    }
+
+    .ui-timepicker-container {
+        z-index: 1151 !important;
+    }
+</style>
+
+
+    
+    
+    <script type="text/javascript">
+       
+
+            //debugger;
+            /*Global count to set the attribute id*/
+            var count = 1;
+
+            /*Clone row using the table name*/
+            function addCloneMappingRow() {
+             
+                //create a original copy of the row to clone later
+                var $tr = $('table.table-responsive tr.clonrow:nth-child(4)').clone();
+                var newRow = $tr.clone();//lastRow.cloneNode(true);
+                //add dp to the new row
+                addTP(newRow.find('input.timepicker'));
+
+                //console.log(newRow);
+
+                $(newRow).find('input, hidden, select, textarea, checkbox').each(function () {
+                    var currentNameAttr = $(this).attr('name');
+                    // get the current name attribute
+                    // construct a new name attribute using regular expressions
+                    // the match is divided into three groups (indicated by parentheses)
+                    // p1 will be 'v', p2 will be the number, p3 will be the remainder of the string
+                    var newNameAttr = currentNameAttr.replace(/([^\d]*)(\d*)([^\w]*)/, function (match, p1, p2, p3) {
+                        return p1 + (count) + p3;
+                    });
+                    $(this).attr('name', newNameAttr);
+                    if (newNameAttr.indexOf("id") !== -1) {
+                        $(this).attr('value', '');
+                    } else {
+                    }
+                });
+              
+                //debugger;
+                $('table.table-responsive').append(newRow);
+
+                count++;
+            }
+
+
+
+            function addTP($els) {
+                $els.timepicker({
+                    timeFormat: 'HH:mm',
+                    interval: 30,
+                    defaultTime: '01',
+                    startTime: '10:00',
+                    dynamic: false,
+                    dropdown: true,
+                    scrollbar: true
+
+                });
+            }
+
+            //add dp to existing rows
+            addTP($('input.timepicker'));
+
+            $('table.table-responsive').on('click', '.addbtn', function () {
+                addCloneMappingRow();
+            });
+
+            $('table.table-responsive').on('click', '.delbtn', function () {
+                //deleteCloneMappingRow(this);
+                if (count <= 1) {
+                    alert("No Privilege to Remove");
+                    return false;
+                }
+                else {
+
+                    $(this).parent().parent().remove();
+                    count--;
+                }
+            });
+
+
+            
+    </script>
+

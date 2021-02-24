@@ -1,0 +1,450 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+@{
+    ViewBag.Title = "MedicalTreatment";
+}
+
+<script src="~/Scripts/CIRM.js"></script>
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<body style="background-image: url(../background/Doctors.jpg);
+    background-size: cover;">
+
+    @Html.Hidden("saveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
+
+    @*////////////////////////////////Dheeman da///////////////////////////////////////////////////////*@
+    @Html.Hidden("url", @Url.Action("ControlerMathodName", "Controler"))
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="ta" style="color:#000;">CIRM</h2>
+        </div>
+
+        <div class="col-md-8 bacmt">
+
+            <div class="clearfix"></div>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
+                    @*<a href="@Url.Action("HumanBody", "CrewHealth")" class="button1">Go to the Image</a>*@
+                    <button type="button" class="button1" style="float: right; right: 25px;" data-toggle="modal" data-target="#myModal" onclick="openBody();">Go to the Image</button><br /><br />
+                </div>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="Name Of Vessel">Name Of Vessel</label>
+                        @*<input class="form-control" id="NameOfVessel"/>*@
+                        <div class="form-control">
+                            @System.Web.HttpContext.Current.Session["ShipName"].ToString()
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Radio Call Sign">Radio Call Sign</label>
+                        <input type="text" class="form-control" id="RadioCallSign" placeholder="Radio Call Sign" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Port of Destination">Port of Destination</label>
+                        <input type="text" class="form-control" id="PortofDestination" placeholder="Port of Destination" />
+                    </div>
+                    @*<div class="form-group">
+                            <label for="Route">Route</label>
+                            <input type="text" class="form-control" id="Route" placeholder="Route" />
+                        </div>*@
+
+                </div>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="Location Of Ship">Location Of Ship</label>
+                        <input type="text" class="form-control" id="LocationOfShip" placeholder="Location Of Ship" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Port of Departure">Port of Departure</label>
+                        <input type="text" class="form-control" id="PortofDeparture" placeholder="Port of Departure" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Estimated Time Of arrival">Estimated Time Of arrival (hrs)</label>
+                        <input type="text" class="form-control" id="EstimatedTimeOfarrival" placeholder="Estimated Time Of arrival (hrs)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Speed">Speed (knots)</label>
+                        <input type="text" class="form-control" id="Speed" placeholder="Speed (knots)" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Crew">Crew</label>
+                        @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
+                        @Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Nationality">Nationality</label>
+                        @*<input type="text" class="form-control" id="Nationality" placeholder="Nationality" />*@
+                        @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="Pulse (bpm)">Pulse (bpm)</label>
+                        <input type="text" class="form-control" id="Pulse" placeholder="Pulse (bpm)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Diastolic(mmHg)">Diastolic(mmHg)</label>
+                        <input type="text" class="form-control" id="Diastolic" placeholder="Diastolic(mmHg)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Desease Relevant Information">Disease Relevant Information</label>
+                        <textarea class="form-control" id="RelevantInformationforDesease" cols="7" rows="2"></textarea>
+                    </div>
+                    @*<div>
+                            @using (Html.BeginForm("MedicalTreatment", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <span style="font-size:18px;">Upload Medicines Available:</span>
+                                <br />
+                                <input type="file" name="postedFile" />
+                                <br />
+                                <input type="submit" value="Upload Medicines Available" class="button1" style="width:175px;" />
+                                <br /><br />
+                                <span style="color:green">@ViewBag.Message</span>
+                            }
+                        </div>*@
+                    <div>
+                        <input type="checkbox" name="uploaddoc" id="uploaddoc1" value="1"> Upload Medical Equipemts </br>
+                        <input type="checkbox" name="uploaddoc" id="uploaddoc2" value="1"> Upload Medical Inventory </br>
+                        <input type="checkbox" name="uploaddoc" id="uploaddoc3" value="1"> Upload Joining Report </br>
+                        <input type="checkbox" name="uploaddoc" id="uploaddoc4" value="1"> Upload Medical History </br>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    @*<div class="form-group">
+                            <label for="Qualification">Qualification</label>
+                            <input type="text" class="form-control" id="Qualification" placeholder="Qualification" />
+                        </div>*@
+                    @*<div class="form-group">
+                            <label for="Temperature(F)">Temperature(F)</label>
+                            <input type="text" class="form-control" id="Temperature" placeholder="Temperature(F)" />
+                        </div>*@
+                    <div class="form-group">
+                        <label for="Symptomatology">Symptomatology</label>
+                        <textarea class="form-control" id="Symptomatology" cols="7" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Where and How Accident is occured">Where and How Accident is occured</label>
+                        <input id="WhereandHowAccidentiscausedCHK" type="checkbox" />
+                        <textarea class="form-control" id="WhereandHowAccidentiscausedARA" cols="7" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Medical Products Administered">Medical Products Administered</label>
+                        <textarea class="form-control" id="MedicalProductsAdministered" cols="7" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Respiratory Rate">Respiratory Rate</label>
+                        <input type="text" class="form-control" id="RespiratoryRate" placeholder="Respiratory Rate" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Systolic (mmHg)">Systolic (mmHg)</label>
+                        <input type="text" class="form-control" id="Systolic" placeholder="Systolic (mmHg)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Location and type of pain">Location and type of pain</label>
+                        <textarea class="form-control" id="Locationandtypeofpain" cols="7" rows="2"></textarea>
+                    </div>
+                    @*<div>
+                            @using (Html.BeginForm("MedicalTreatment", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <span style="font-size:18px;">Upload Medical History:</span>
+                                <br />
+                                <input type="file" name="postedFile" />
+                                <br />
+                                <input type="submit" value="Upload Medical History" class="button1" style="width:175px;" />
+                                <br /><br />
+                                <span style="color:green">@ViewBag.Message</span>
+                            }
+                        </div>*@
+
+
+                    <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                        <button type="button" class="button1" id="btnAdd" onclick="return SaveCIRM();">Add</button>
+                        <div> &nbsp; &nbsp; &nbsp; </div>
+                        <button type="button" class="button1" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Upload Photo</button><br /><br />
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <script>
+            function openBody() {
+                window.open("@Url.Action("TestBody", "CrewHealth")");
+            }
+            </script>
+
+
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <div class="col-md-12">
+
+                    @*<h2>   MEDICAL ADVICE</h2>*@
+
+                    <p style="line-height:28px;">
+                        The medical assistance of the International Radio Medical Centre (C.I.R.M.) is guarantee by doctors in continuous service on call (H. 24). The controls of ships in navigation with sick or injured person on board can contact the C.I.R.M. through the following ways:
+
+                        <br />
+
+                        Phone &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>[+39 ] - 06.59290263<br /></strong>
+
+
+                        E-mail &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong> telesoccorso@cirm.it</strong>
+
+                        <br />
+
+                        <strong> Requests must carry the initials MEDRAD or DH-DOCTOR.</strong><br />
+
+                        Note: For reference please visit <a href="http://www.cirm.it/sito_eng/telesoccorso.htm" style="color:blue !important;">www.cirm.it/sito_eng/telesoccorso.htm</a>
+
+
+                        @*<strong> It should be noted that the medical service of the C.I.R.M. is completely free of charge.</strong><br />
+
+
+
+
+
+
+                              Always consult promptly CIRM, as well as in cases of injury or pathological egregious, even for all those symptoms that apparently insignificant, may evolve into pathological complexes. Operating room
+                              <br />
+                            <strong>  INFORMATION TO BE PROVIDED BY A REQUEST FOR MEDICAL ASSISTANCE ADDRESSED TO C.I.R.M.
+                             </strong>
+                                <br />
+                              Name of vessel and radio call sign. <br />
+                              Location of ship, port of departure and destination, estimated time of arrival, route and speed. <br />
+                              Patient's age, nationality, qualification. <br />
+                              Respiratory rate, pulse, temperature and if possible blood pressure. <br />
+                              Symptomatology, location and type of pain, as well as all relevant information relating to the disease. <br />
+                              In case of injury, in addition to the symptoms, you should indicate where and how the accident. <br />
+                              Medical history of the patient. <br />
+                              Medicines available on board. <br />
+                              Medicine products already administered. <br />*@
+
+                    </p>
+                </div>
+
+            </div>
+
+
+            @* /////////////////////////////////////////////////  Popup  ///////////////////////////////////////////////////////////////////*@
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:890px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                        </div>
+
+                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
+                            <fieldset class="for-panel">
+                                <legend>Upload</legend>
+                                <div class="row">
+
+                                    <div class="col-sm-3" style="width: 63%;">
+                                        <div class="form-horizontal">
+                                            <label class="col-xs-5 control-label">Photo:</label>
+                                            @*<div>
+                                                    @using (Html.BeginForm("MedicalTreatment", "CrewHealth", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                    {
+                                                        <span>Select File:</span>
+                                                        <input type="file" name="postedFile" />
+                                                        <hr />
+                                                        <input type="submit" value="Upload" />
+                                                        <br />
+                                                        <span style="color:green">@ViewBag.Message</span>
+                                                    }
+                                                </div>*@
+                                        </div>
+                                    </div>
+
+                                    @*////////////////////////////////Dheeman da///////////////////////////////////////////////////////*@
+                                    <input id="upload" name="upload" type="file" />
+                                    <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
+
+
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                    <div class="col-sm-3" style="width: 63%;"></div>
+
+                                    <div class="form-group">
+                                        <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
+                            @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
+                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script src="dist/dual-listbox.js"></script>
+
+    <script src="~/Scripts/jquery.typeahead.js"></script>
+    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
+    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
+    <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+
+
+
+
+
+    @*@if (Convert.ToBoolean(Session["Admin"].ToString()) || Convert.ToBoolean(Session["User"].ToString()))
+        {*@
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+
+            //$('#ddlCrew').on('change', function () {
+            //    alert(hello);
+
+            //    var ID = $('#ddlCrew').val();
+
+            //    GetCrewDetailsForHealthByID(ID);
+
+            //});
+
+            //GetCrewDetailsForHealthByID();
+
+
+            var loggedInUserId = 0;
+            loggedInUserId = $('#hdnCrewId').val();
+
+            if (loggedInUserId > 0) { // user level log in
+
+                console.log('Logged In UserId');
+                console.log(loggedInUserId);
+                $('#ddlCrew').val(loggedInUserId);
+                $("#ddlCrew").prop("disabled", true);
+                //LoadData();
+                //SetCalendarColor();
+
+            }
+
+        });
+
+
+        function sentEmail() {
+            alert("Hello! I am an alert box!");
+        }
+
+
+
+
+
+        function checkCheckBoxes(theForm) {
+            if (
+                theForm.CHECKBOX_1.checked == false) {
+                alert('Medical Advice Send');
+                return false;
+            } else {
+                alert('Medical Advice Send along with joining Medical Report');
+                return false;
+            }
+        }
+
+
+
+
+
+
+
+        @*////////////////////////////////Dheeman da///////////////////////////////////////////////////////*@
+         //   uploadFile($('#upload'));
+
+
+
+
+        @*////////////////////////////////Dheeman da///////////////////////////////////////////////////////*@
+
+        function uploadFile(element) {
+
+            $(element).fileupload({
+
+                dataType: 'json',
+
+                var posturl = $('#url').val();
+               // url: '../DocumentUpload/upload',
+                url: posturl,
+
+                autoUpload: true,
+                add: function (e, data) {
+                    // write code for implementing, while selecting a file.
+                    // data represents the file data.
+                    //below code triggers the action in mvc controller
+                    data.formData =
+                    {
+                        files: data.files[0]
+                    };
+                    data.submit();
+                },
+                done: function (e, data) {
+                    // after file uploaded
+                },
+                progress: function (e, data) {
+
+                    // progress
+                },
+                fail: function (e, data) {
+
+                    //fail operation
+                },
+                stop: function () {
+
+                    code for cancel operation
+                }
+            });
+
+        };
+
+
+    </script>
+    @*}*@
+}

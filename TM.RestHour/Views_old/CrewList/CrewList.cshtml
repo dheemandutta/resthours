@@ -1,0 +1,125 @@
+﻿@model TM.RestHour.Models.Crew
+
+@{
+    ViewBag.Title = "CrewList";
+}
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+
+@*<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />*@
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/link/css/crewlist.css" rel="stylesheet" />
+
+
+
+
+<body style="background-image: url(../background/crewlist.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="ta" style="color:#000;">Crew List</h2>
+        </div>
+        <div class="col-md-8">
+            <div class="" style="height:450px; overflow-y:scroll;">
+
+
+                <div style="width:80%; margin:0 auto" class="tablecontainer">
+
+                    @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
+                    @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                    @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+
+                    <input type="hidden" id="hdncount" />
+
+                    <input type="hidden" id="hdnrole" />
+
+
+
+                    <table id="CrewListtable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>RankName</th>
+                                <th>StartDate</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+
+
+
+                </div>
+
+
+                @*<div>
+                        <table id="jqGrid"></table>
+                        <div id="jqControls"></div>
+                    </div>*@
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-grid.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-grid.rtl.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-grid.rtl.min.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-reboot.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-reboot.min.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-reboot.rtl.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-reboot.rtl.min.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-utilities.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-utilities.min.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-utilities.rtl.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap-utilities.rtl.min.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="~/bootstrap-5.0.0-beta1-dist/css/bootstrap.rtl.css" rel="stylesheet" />
+
+<script src="~/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.js"></script>
+<script src="~/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/bootstrap-5.0.0-beta1-dist/js/bootstrap.esm.js"></script>
+<script src="~/bootstrap-5.0.0-beta1-dist/js/bootstrap.esm.min.js"></script>
+<script src="~/bootstrap-5.0.0-beta1-dist/js/bootstrap.js"></script>
+<script src="~/bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js"></script>
+
+
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+    <script src="~/Scripts/CrewListing.js"></script>
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            SetUpGrid();
+        });
+
+    </script>
+}

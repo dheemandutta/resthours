@@ -1,14 +1,11 @@
 
 .backk {
    
-    height: 474px;
+    height: 460px;
     border-radius: 10px;
     overflow-y: scroll;
     padding: 18px;
     background: #fff;
-    margin: 0 -29px;
-   
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 2px;
@@ -56,7 +53,4 @@ h1, .h1, h2, .h2, h3, .h3 {
 .pi {
     padding: 10px;
     width: 100%;
-}
-.ta{
-    color:#000 !important;
 }

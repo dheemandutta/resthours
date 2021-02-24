@@ -20,7 +20,7 @@
         background: #fff;
         margin: 0px !important;
         border-radius: 6px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        box-shadow: 0 1px 15px 1px rgba(62,57,107,.07);
         margin-right: 8px;
         height: 470px;
     }
@@ -31,7 +31,7 @@
         background: #fff;
         margin: 0px !important;
         border-radius: 6px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        box-shadow: 0 1px 15px 1px rgba(62,57,107,.07);
         margin-right: 8px;
         width: 30%;
         margin-left: 27px;
@@ -46,17 +46,16 @@
 </style>
 
 
-<body style="background-image: url(../background/managerank.jpg);
-    background-size: cover;">
+<body>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2 class="ta">Manage Rank</h2>
+    <div class="">
+        <div class="head_title">
+            <h1 class="ta">Manage Rank</h1>
         </div>
-        <div class="col-md-8" style="margin-top: -6px;">
+        <div class="">
             <div class="col-md-8 bac">
-                <div class="card">
-                    <div style="width:99%; margin:0 auto" class="tablecontainer">
+                <div class="">
+                    <div class="tablecontainer">
                       
                         @Html.Hidden("myUrl", @Url.Action("GetRanksByID", "Ranks"))
                         @Html.Hidden("addnew", @Url.Action("AddNewRanks", "Ranks"))

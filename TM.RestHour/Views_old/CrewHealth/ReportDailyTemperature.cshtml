@@ -1,0 +1,236 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+
+@{
+    ViewBag.Title = "ReportDailyTemperature";
+}
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
+<link href="~/link/css/rank.css" rel="stylesheet" />
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+<script src="~/Scripts/notify.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/CrewHealth.js"></script>
+<body style="background-image: url(../background/report.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="ta" style="color:#000;">Crew Temperature Report</h2>
+        </div>
+        <div class="col-md-7 bac">
+            <div class="card">
+
+                <div class="row">
+                    @Html.Hidden("getCrewTemperaturePageWiseByCrewID", @Url.Action("GetCrewTemperaturePageWiseByCrewID", "CrewHealth"))
+                    @Html.Hidden("getCrewTemperaturePageWiseByCrewID2", @Url.Action("GetCrewTemperaturePageWiseByCrewID2", "CrewHealth"))
+
+                    @Html.Hidden("getCrewTemperaturePageWise", @Url.Action("GetCrewTemperaturePageWise", "CrewHealth"))
+                    @Html.Hidden("getCrewTemperaturePageWise2", @Url.Action("GetCrewTemperaturePageWise2", "CrewHealth"))
+
+                    <div class="col-md-8" id="sideform">
+                        <div class="card">
+                            <div class="card-block">
+                                <form class="form-horizontal" role="form">
+
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="col-md-6" id="sideform">
+                                                <label for="selectCrew">Crew</label>
+                                                @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="col-md-5" id="sideform">
+                                                @*<button type="button" class="button1" id="btnAdd" onclick="return SetUpGridCrewTemperatureReport(CrewID)">Show Report</button>*@
+                                                <input type="button" class="button1" id="ShowReport" value="Show Report">
+                                            </div>
+                                            <div class="col-md-5" id="sideform">
+                                                <button type="button" class="button1" id="btnPrint" @*disabled="disabled"*@>Print Report</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="col-md-5" id="sideform">
+                                                @*<button type="button" class="button1" id="btnAdd" onclick="return SetUpGridCrewTemperatureReport(CrewID)">Show Report</button>*@
+                                                <input type="button" class="button1" id="ShowReportForAll" value="Show For All">
+                                            </div>
+                                            <div class="col-md-5" id="sideform">
+                                                <button type="button" class="button1" id="btnPrintForAll" @*disabled="disabled"*@>Print For All</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div id="div1" style="display;">
+                    <hr>
+                    <input type="hidden" id="hdnrole" />
+                    <div class="" style="height:210px; overflow-y:scroll;">
+                        <table id="certtableReport2" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Reading Date</th>
+                                    <th>Reading Time</th>
+                                    <th>Full Name</th>
+                                    <th>Rank</th>
+                                    <th>Place</th>
+                                    <th>Temperature Mode</th>
+                                    <th>Body Temperature (NORMAL : 36.0 – 37.5 C)</th>
+                                    <th>Unit</th>
+                                    <th>TEMPERATURE TAKEN THROUGH</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+    <div id="dvprint22" style="display:none;">
+
+        <hr>
+        <table id="certtable_print22" class="display" cellspacing="0" width="100%">
+            <thead align="center">
+                <tr>
+                    <th>Reading Date</th>
+                    <th>Reading Time</th>
+                    <th>Full Name</th>
+                    <th>Rank</th>
+                    <th>Place</th>
+                    <th>Temperature Mode</th>
+                    <th>Body Temperature (NORMAL : 36.0 – 37.5 C)</th>
+                    <th>Unit</th>
+                    <th>TEMPERATURE TAKEN THROUGH</th>
+                </tr>
+            </thead>
+            <tbody align="center">
+            </tbody>
+        </table>
+
+    </div>
+    @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
+    @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+    <div id="dvprint222" style="display:none;">
+
+        <hr>
+        <table id="certtable_print222" class="display" cellspacing="0" width="100%">
+            <thead align="center">
+                <tr>
+                    <th>Reading Date</th>
+                    <th>Reading Time</th>
+                    <th>Full Name</th>
+                    <th>Rank</th>
+                    <th>Place</th>
+                    <th>Temperature Mode</th>
+                    <th>Body Temperature (NORMAL : 36.0 – 37.5 C)</th>
+                    <th>Unit</th>
+                    <th>TEMPERATURE TAKEN THROUGH</th>
+                </tr>
+            </thead>
+            <tbody align="center">
+            </tbody>
+        </table>
+
+    </div>
+    @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
+</body>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    @*<script src="~/Scripts/DataTables/buttons.print.min.js"></script>*@
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        $(document).ready(function () {
+
+            $('#btnPrint').attr('disabled', true);
+            $('#btnPrintForAll').attr('disabled', true);
+        });
+
+
+        $('#ShowReport').click(function () {
+
+            $('#btnPrint').attr('disabled', false);
+            GetCrewTemperaturePageWiseByCrewID();
+        });
+
+
+        $("#btnPrint").click(function () {
+            //PrintWorkAndRestHours();
+            Popup22('');
+        });
+
+
+
+
+
+
+
+        $('#ShowReportForAll').click(function () {
+
+            $('#btnPrintForAll').attr('disabled', false);
+            GetCrewTemperaturePageWise();
+        });
+
+
+        $("#btnPrintForAll").click(function () {
+            //PrintWorkAndRestHours();
+            Popup222('');
+        });
+
+            //$("#btnAdd").click(function () {
+            //    SetUpGridCrewTemperatureReport(CrewID);
+            //});
+
+                //$("#ExpiryDate").datepicker({
+
+                //    changeMonth: true,
+                //    changeYear: true,
+                //    dateFormat: 'd-M-yy',
+
+                //});
+
+    </script>
+
+}
+

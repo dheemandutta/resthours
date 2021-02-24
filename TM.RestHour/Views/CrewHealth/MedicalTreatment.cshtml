@@ -12,20 +12,19 @@
 
 <link href="dist/dual-listbox.css" rel="stylesheet">
 
-<body style="background-image: url(../background/Doctors.jpg);
-    background-size: cover;">
+<body>
 
     @Html.Hidden("saveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
 
     @*////////////////////////////////Dheeman da///////////////////////////////////////////////////////*@
     @Html.Hidden("url", @Url.Action("ControlerMathodName", "Controler"))
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2 class="ta" style="color:#000;">CIRM</h2>
+    <div class="">
+        <div class="head_title">
+            <h2 class="ta">CIRM</h2>
         </div>
 
-        <div class="col-md-8 bacmt">
+        <div class="card bacmt">
 
             <div class="clearfix"></div>
             <div class="row">

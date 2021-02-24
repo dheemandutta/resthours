@@ -1,0 +1,423 @@
+﻿@model TM.RestHour.Models.Crew
+
+@{
+	ViewBag.Title = "DailyCrewReport";
+}
+
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+@Html.Hidden("Reportsadd", @Url.Action("GetMonthlyData", "Reports"))
+@Html.Hidden("Showreport1", @Url.Action("GetDayWiseCrewData", "Reports"))
+
+@Html.Hidden("printReport2", @Url.Action("HTML_Report2", "Reports"))
+
+
+<body style="background-image: url(../background/report.jpg);
+    background-size: cover;">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="ta" style="color:#000; font-size:44px;">Daily Work and Rest Hour</h2>
+        </div>
+        <div class="col-md-7 bac">
+            <div class="card">
+                <div class="row">
+                    @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+
+                    <div class="col-md-6" id="sideform">
+                        <div class="card">
+                            <div class="card-block">
+                                <form class="form-horizontal" role="form">
+
+
+                                    <div class="col-md-7" id="sideform">
+                                        <div class="form-group">
+                                            @*<label for="ReportsDate"> Date</label>*@
+                                            <input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Date" />
+                                        </div>
+                                    </div>
+
+                                    @*<div class="col-md-7" id="sideform" style="float: right; width: 0%;">
+                                        <div class="form-group" style="float: right; width: 0%;">
+                                            <img src="~/companylogo/companylogo.png" />
+                                        </div>
+                                    </div>*@
+
+
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="col-md-6" id="sideform">
+                                                <button type="button" class="button1" id="btnAdd" disabled="disabled" onclick="return GetDayWiseCrewData();">Show Report</button>
+
+                                            </div>
+
+                                            <div class="col-md-6" id="sideform">
+                                                <div class="form-group">
+                                                    <button type="button" class="button1" id="btnPrint" disabled="disabled" onclick="PrintReport2();">Print Report</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <table width="100%">
+                    <tr>
+                        <td align="left" width="75%"><b>HOURS OF WORK AND REST</b></td>
+                        @*<td align="right">    <img src="~/companylogo/companylogo.png" />  </td>*@
+                    </tr>
+
+                    <tr>
+                        <td align="left" width="75%">Form Number : </td>
+                        @*<td align="right"> Page Number : 1 of 1</td>*@
+                    </tr>
+                    <tr style="height:2px;">
+                        <td colspan="2"><hr style="padding:0px; margin:0px;" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table width="100%">
+                                <tr>
+                                    <td align="left" width="40%">Year : <span id="yr"></span></td>
+                                    <td align="left" width="20%"> Vessel Name : @Session["ShipName"].ToString()</td>
+                                    <td align="right" width="75%">  </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" width="50%">Month : <span id="mn"></span> </td>
+                                    <td colspan="2" align="left">IMO Number : @Session["IMONumber"].ToString()</td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Day : <span id="dy"></span></td>
+
+                                 
+                                    <td>Flag : @Session["Flag"].ToString()</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+                <div class="" style="height:190px; overflow-y:scroll;">
+                    <table border="1" style="  border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%;" id="schedule">
+
+						<tr>
+							<th class="tg-v0f9" width="12%">Seafarer Name</th>
+							<th class="tg-v0f9" width="10%">Nationality</th>
+							<th class="tg-v0f9" width="10%">Rank</th>
+							<th class="tg-v0f9" width="10%">Regime</th>
+							<th class="tg-amwm" width="1%">00</th>
+							<th class="tg-amwm" width="1%">00</th>
+							<th class="tg-amwm" width="1%">01</th>
+							<th class="tg-amwm" width="1%">02</th>
+							<th class="tg-amwm" width="1%">03</th>
+							<th class="tg-amwm" width="1%">04</th>
+							<th class="tg-amwm" width="1%">05</th>
+							<th class="tg-amwm" width="1%">06</th>
+							<th class="tg-amwm" width="1%">07</th>
+							<th class="tg-amwm" width="1%">08</th>
+							<th class="tg-amwm" width="1%">09</th>
+							<th class="tg-amwm" width="1%">10</th>
+							<th class="tg-amwm" width="1%">11</th>
+							<th class="tg-amwm" width="1%">12</th>
+							<th class="tg-amwm" width="1%">13</th>
+							<th class="tg-amwm" width="1%">14</th>
+							<th class="tg-amwm" width="1%">15</th>
+							<th class="tg-amwm" width="1%">16</th>
+							<th class="tg-amwm" width="1%">17</th>
+							<th class="tg-amwm" width="1%">18</th>
+							<th class="tg-amwm" width="1%">19</th>
+							<th class="tg-amwm" width="1%">20</th>
+							<th class="tg-amwm" width="1%">21</th>
+							<th class="tg-amwm" width="1%">22</th>
+							<th class="tg-amwm" width="1%">23</th>
+							<th class="tg-amwm" width="6%">Normal</th>
+							<th class="tg-amwm" width="6%">Overtime</th>
+							<th class="tg-amwm" width="6%">Total</th>
+							<th class="tg-amwm" width="6%">Rest</th>
+							<th class="tg-amwm" width="20%">Comments</th>
+						</tr>
+
+						<tr id="trclone" filled="no">
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+							<td class="tg-yw4l"></td>
+						</tr>
+                    </table>
+                </div>
+                <p class="bottom-three"></p>
+
+                <table width="100%">
+                    <tr>
+
+                        <td align="right"></td>
+                        <td align="right">
+                            Signature of Master:  ________________________________________
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td align="right">
+                            @*Singh, Amitabh(HC)*@
+                        </td>
+                    </tr>
+                </table>
+
+                <!----------------------------------------------------------------------------------------------------------->
+                <div id="dvprint2" style="display:none;">
+
+               
+
+                    <table width="100%">
+                        <tr>
+                            <td align="left" width="75%"><b>HOURS OF WORK AND REST zx</b></td>
+                            <td align="right"><img src="~/companylogo/companylogo.png" /></td>
+                        </tr>
+
+                        <tr>
+                            <td align="left" width="75%">Form Number : </td>
+                            @*<td align="right"> Page Number : 1 of 1</td>*@
+                        </tr>
+                        <tr style="height:2px;">
+                            <td colspan="2"><hr style="padding:0px; margin:0px;" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table width="100%">
+                                    <tr>
+                                        <td align="left" width="40%">Year : <span id="yr_d"></span></td>
+                                        <td align="left" width="20%"> Vessel Name :@Session["ShipName"].ToString() </td>
+                                        <td align="right" width="75%">  </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" width="50%">Month : <span id="mn_d"></span> </td>
+                                        <td colspan="2" align="left">IMO Number : @Session["IMONumber"].ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">Day : <span id="dy_d"></span></td>
+
+                                        @*<td>Flag : Liberia</td>*@
+                                        <td>Flag : @Session["Flag"].ToString()</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <table border="1" style="  border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%;" id="schedule_d">
+
+                        <tr>
+                            <th class="tg-v0f9" width="12%">Seafarer Name</th>
+                            <th class="tg-v0f9" width="10%">Nationality</th>
+                            <th class="tg-v0f9" width="10%">Rank</th>
+                            <th class="tg-v0f9" width="10%">Regime</th>
+                            <th class="tg-amwm" width="1%">00</th>
+                            <th class="tg-amwm" width="1%">00</th>
+                            <th class="tg-amwm" width="1%">01</th>
+                            <th class="tg-amwm" width="1%">02</th>
+                            <th class="tg-amwm" width="1%">03</th>
+                            <th class="tg-amwm" width="1%">04</th>
+                            <th class="tg-amwm" width="1%">05</th>
+                            <th class="tg-amwm" width="1%">06</th>
+                            <th class="tg-amwm" width="1%">07</th>
+                            <th class="tg-amwm" width="1%">08</th>
+                            <th class="tg-amwm" width="1%">09</th>
+                            <th class="tg-amwm" width="1%">10</th>
+                            <th class="tg-amwm" width="1%">11</th>
+                            <th class="tg-amwm" width="1%">12</th>
+                            <th class="tg-amwm" width="1%">13</th>
+                            <th class="tg-amwm" width="1%">14</th>
+                            <th class="tg-amwm" width="1%">15</th>
+                            <th class="tg-amwm" width="1%">16</th>
+                            <th class="tg-amwm" width="1%">17</th>
+                            <th class="tg-amwm" width="1%">18</th>
+                            <th class="tg-amwm" width="1%">19</th>
+                            <th class="tg-amwm" width="1%">20</th>
+                            <th class="tg-amwm" width="1%">21</th>
+                            <th class="tg-amwm" width="1%">22</th>
+                            <th class="tg-amwm" width="1%">23</th>
+                            <th class="tg-amwm" width="6%">Normal</th>
+                            <th class="tg-amwm" width="6%">Overtime</th>
+                            <th class="tg-amwm" width="6%">Total</th>
+                            <th class="tg-amwm" width="6%">Rest</th>
+                            <th class="tg-amwm" width="20%">Comments</th>
+                        </tr>
+
+                        <tr id="trclone_d" filled="no">
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                        </tr>
+                    </table>
+
+                    <p class="bottom-three"></p>
+
+                    <table width="100%">
+                        <tr style="float: right;">
+
+                            <td align="right"></td>
+                            <td align="right" style="float: right;">
+                                Signature of Master:  ________________________________________
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td></td>
+                            <td align="right">
+                                @*Singh, Amitabh(HC)*@
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+            </div>
+            </div>
+        </div>
+    </body>
+
+            @section Scripts
+{
+                @Scripts.Render("~/bundles/jqueryval")
+                @Scripts.Render("~/bundles/jqueryui")
+                @Styles.Render("~/Content/themes/base/css")
+
+
+
+                <script src="~/Scripts/vfs_fonts.js"></script>
+                <script src="~/Scripts/Reports.js"></script>
+
+                <script type="text/javascript">
+
+
+                    $(document).ready(function () {          
+
+
+
+                        $("#ReportsDate").datepicker({
+
+                            changeMonth: true,
+                            changeYear: true,
+                            //showButtonPanel: true,
+                            dateFormat: 'd-M-yy',
+                            onClose: function (dateText, inst) {
+
+                                if ($('#ReportsDate').val() != '') {
+                                    //$('#btnPrint').attr('disabled', false);
+                                    $('#btnAdd').attr('disabled', false);
+                                }
+                                else {
+
+                                    $('#ReportsDate').one('change', function () {
+                                        // $('#btnPrint').attr('disabled', false);
+                                        $('#btnAdd').attr('disabled', false);
+                                    });
+                                }
+                            }
+                        });
+
+
+                    });
+
+
+
+
+                    $("#btnAdd").click(function () {
+                        $('#btnPrint').attr('disabled', false);
+                    });
+
+
+
+
+                    $("#btnPrint").click(function () {
+                        // PrintDayWiseCrewData();
+                    });
+
+
+
+
+
+
+
+
+                    var valA = "Kindly find enclosed list of applicants who have prayed for financial assistance for the above mentioned category in the financial year under reference.";
+
+                    $('#txtbodytext').text(valA);
+
+                </script>
+            }

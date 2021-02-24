@@ -21,25 +21,26 @@
         border-radius: 0;
         padding: 18px 48px;
         background: #fff;
-        margin: 0 -29px;
         border-radius: 6px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
     }
     input, select, textarea {
         max-width: 341px;
     }
+    .card {
+        display: inline-block;
+    }
 </style>
 
 @Html.Hidden("Consultantadd", @Url.Action("SaveDoctorMaster", "Consultant"))
-<body style="background-image: url(../background/doctors.jpg);
-    background-size: cover;">
+<body>
 
     <div class="row">
-        <div class="col-md-5">
-            <h2 class="ta" style="color:#000;">Medical Consultancy</h2>
+        <div class="head_title">
+            <h2 class="ta">Medical Consultancy</h2>
         </div>
 
-        <div class="col-md-7 bac">
+        <div class="card">
 
 
 

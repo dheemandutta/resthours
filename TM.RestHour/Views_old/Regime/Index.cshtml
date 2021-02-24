@@ -1,0 +1,354 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/Regimes.js"></script>
+<link href="~/link/css/tab.css" rel="stylesheet" />
+
+
+@Html.Hidden("Tabadd1", @Url.Action("Add", "Regime"))
+@Html.Hidden("Tabadd2", @Url.Action("Add", "Regime"))
+@Html.Hidden("Tabadd3", @Url.Action("Add", "Regime"))
+@Html.Hidden("Tabadd7", @Url.Action("Add", "Regime"))
+@Html.Hidden("Tabadd4", @Url.Action("Add", "Regime"))
+@Html.Hidden("Tabadd9", @Url.Action("Add", "Regime"))
+
+
+
+<body style="background-image: url(../background/regime.jpg);
+    background-size: cover;">
+    <div class="">
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="ta">Regime</h2>
+            </div>
+            <div class="col-md-7 bac">
+                <div class="">
+
+
+
+                    <div class="row" style="width:100%;">
+                        <div style="min-height:100%;">
+
+                            @Html.Hidden("getDataForRegimes", @Url.Action("GetDataForRegimes", "Regime"))
+                            @Html.Hidden("getisactiveregime", @Url.Action("GetIsActiveRegime", "Regime"))
+
+
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                            <button type="button" class="close" data-dismiss="modal" style="color: #0f5c75;">×</button>
+                                            <h4 class="modal-title" id="myModalLabel"></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3><span id="succMsg"></span></h3>
+                                        </div>
+                                        <div class="modal-footer">
+
+
+                                            <button id="btnCloseModal" type="button" class="button1">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                            <div class="" style="">
+
+
+
+                                <div class="container" style="width:100%;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- Nav tabs -->
+                                            <div class="">
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">  <span>IMO STCW 2010</span></a></li>
+                                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">  <span>ILO Rest (MLC)</span></a></li>
+                                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"> <span>ILO Work (MLC)</span></a></li>
+                                                    <li role="presentation" style="width:90px;"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"> <span>OCIMF</span></a></li>
+                                                    <li role="presentation" style="width:115px;"><a href="#extra" aria-controls="extra" role="tab" data-toggle="tab"> <span>Customised</span></a></li>
+
+                                                    <li role="presentation" style="width:90px;"><a href="#opa90" aria-controls="opa90" role="tab" data-toggle="tab"> <span>OPA-90</span></a></li>
+                                                </ul>
+
+                                                <!-- Tab panes -->
+                                                <div class="tab-content">
+                                                    <div role="tabpanel" class="tab-pane active" id="home">
+                                                        <div class="col-md-12 imo">
+                                                            <label>The 2010 STCW Manila amendments enter into force from the 1st January 2012.</label>
+                                                            <br />
+                                                            <label>STCW 2010 applies to all persons who are assigned duty as afficer in charge of a watch or as a rating forming part of a watch (watchkeepers) and  those whose duties involve designated safety. prevention of pollution and security duties.</label>
+                                                            <br />
+                                                            <ul class="b">
+                                                                <li> <label>Minimum continuous rest in any 24 hour period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinContRestIn24Hours"></p></label></li>
+                                                                <li><label>Minimum total rest in any 24 hour period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinTotalRestIn24Hours"></p></label></li>
+                                                                <li><label>Minimum hours rest in any 7 day period</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinTotalRestIn7Days"></p></label></li>
+                                                            </ul>
+                                                            <label>The minimum of 10 hours rest in any 24 hour period may be divided into no more than 2 periods,one of which shall be at least 6 hours in length, and the interval between consecutive periods of rest shall not exceed 14 hours.</label>
+                                                            <br />
+                                                            @*<input type="checkbox" name="opa" value="opa"> <label>Allow OPA 90 Clause</label>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" id="btnSave">OPA 90 Rule</button>*@
+                                                            <div> &nbsp; </div>
+                                                            @*<input type="checkbox" name="opa" value="opa"> <label>Allow Manila Exceptions</label>
+                                                                <div> &nbsp; </div>*@
+                                                            <button type="button" class="btn btn-link" style="padding:0;">@*Click here to see more information on the regimes*@</button>
+                                                            <div> &nbsp; </div>
+                                                            @*<input type="radio" name="RName" value="1" checked>IMO STCW 2010<br>*@
+                                                            <button type="button" align="center" class="button1 wi" id="btnAdd1" onclick="return AddTab1();">Set Default Regime</button>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="tab-pane" id="profile">
+                                                        <div class="col-md-12 ilo">
+                                                            <ul class="b">
+                                                                <li> <label>Minimum continuous rest in any 24 hour period</label> &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinContRestIn24Hours0"></p></label></li>
+                                                                <li><label>Minimum total rest in any 24 hour period</label> &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinTotalRestIn24Hours0"></p></label></li>
+                                                                <li> <label>Minimum hours rest in any 7 day period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinTotalRestIn7Days0"></p></label></li>
+                                                            </ul>
+
+                                                            <label>The minimum of 10 hours rest in any 24 hour period may be divided into no more than 2 periods,one of which shall be at least 6 hours in length, and the interval between consecutive periods of rest shall not exceed 14 hours.</label>
+                                                            <br />
+                                                            @*<input type="checkbox" name="opa" value="opa"> <label>Allow OPA 90 Clause</label>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" id="btnSave">OPA 90 Rule</button>*@
+
+                                                            <br />
+                                                            <button type="button" class="btn btn-link" style="padding:0;">@*Click here to see more information on the regimes*@</button>
+                                                            <br />
+                                                            @*<input type="radio" name="RName" value="2" checked>ILO Rest<br>*@
+                                                            <button type="button" align="center" class="button1 wi" id="btnAdd2" onclick="return AddTab2();">Set Default Regime</button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="tab-pane" id="messages">
+                                                        <div class="col-md-12 ilo">
+                                                            <ul class="b">
+                                                                <li><label>Minimum continuous rest in any 24 hour period</label>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinContRestIn24Hours1"></p></label></li>
+                                                                <li><label>Maximum total work in any 24 hour period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MaxTotalWorkIn24Hours1"></p></label></li>
+                                                                <li><label>Maximum total work in any 7 day period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MaxTotalWorkIn7Days1"></p></label></li>
+                                                            </ul>
+
+                                                            <label>The hours of rest may be divided into on more than 2 periods,one of which shall be at least 6 hours in length, and the interval between consecutive periods of rest shall not exceed 14 hours.</label>
+                                                            <br />
+                                                            @*<input type="checkbox" name="opa" value="opa"> <label>Allow OPA 90 Clause</label>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" id="btnSave">OPA 90 Rule</button>*@
+
+                                                            <br />
+                                                            <button type="button" class="btn btn-link" style="padding:0;">@*Click here to see more information on the regimes*@</button>
+                                                            <br />
+                                                            @*<input type="radio" name="RName" value="3" checked>ILO Work<br>*@
+                                                            <button type="button" align="center" class="button1 wi" id="btnAdd3" onclick="return AddTab3();">Set Default Regime</button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="tab-pane" id="settings">
+                                                        <div class="col-md-12 oci">
+                                                            <label>This regime complies fully with the OCIMF 'Recommendations Relating to the Application of Requirements Governing Seafarers ' Hours of work and Rest'.</label>
+                                                            <br />
+                                                            <label>These recommendations are minimum expectations to ensure compliance with related provisions and are provided for the information of OCIMF members. managers and the crew of applicable vessels.</label>
+                                                            <br />
+                                                            <button type="button" class="btn btn-link">@*Click here for the full text of the OCIMF recommendations*@</button>
+                                                            <br />
+                                                            <label>Not withstanding anything above. vessels are required to fully comply with their flag state requirements.</label>
+                                                            <br />
+
+                                                            <ul class="b">
+                                                                <li><label>Minimum continuous rest in any 24 hour period</label> &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinContRestIn24Hours2"></p></label></li>
+                                                                <li><label>Minimum total rest in any 24 hour period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinTotalRestIn24Hours2"></p></label></li>
+                                                                <li><label>Minimum hours rest in any 7 day period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinTotalRestIn7Days2"></p></label></li>
+                                                            </ul>
+
+                                                            <label>The minimum of 10 hours rest in any 24 hour period may be divided into no more than 2 periods,one of which shall be at least 6 hours in length, and the interval between consecutive periods of rest shall not exceed 14 hours.</label>
+                                                            <br />
+                                                            @*<input type="checkbox" name="opa" value="opa"> <label>Allow OPA 90 Clause</label>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" id="btnSave">OPA 90 Rule</button>*@
+                                                            <br />
+
+                                                            <button type="button" class="btn btn-link" style="padding:0;">@*Click here to see more information on the regimes*@</button>
+                                                            <br />
+                                                            @*<input type="radio" name="RName" value="7" checked>OCIMF<br>*@
+                                                            <button type="button" align="center" class="button1 wi" id="btnAdd7" onclick="return AddTab7();">Set Default Regime</button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="tab-pane" id="extra">
+                                                        <div class="col-md-12">
+                                                            <ul class="b">
+                                                                <li><label>Minimum continuous rest in any 24 hour period</label>  <input type="number" name="quantity" min="1" max="100" style="margin-left:94px;"></li>
+                                                                <li> <label>Minimum total rest in any 24 hour period</label> <input type="number" name="quantity" min="1" max="100" style="margin-left:132px;"></li>
+                                                                <li><label>Minimum hours rest in any  7 day period </label> <input type="number" name="quantity" min="1" max="100" style="margin-left:136px;"></li>
+                                                            </ul>
+
+
+                                                            @*<input type="checkbox" name="opa" value="opa"> <label>Allow OPA 90 Clause</label>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" id="btnSave">OPA 90 Rule</button>*@
+
+                                                            <br />
+                                                            <button type="button" class="btn btn-link" style="padding:0;">@*Click here to see more information on the regimes*@</button>
+                                                            <br />
+                                                            @*<input type="radio" name="RName" value="4" checked>Customised<br>*@
+                                                            <button type="button" align="center" class="button1 wi" id="btnAdd4" onclick="return AddTab4();">Set Default Regime</button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div role="tabpanel" class="tab-pane" id="opa90">
+                                                        <div class="col-md-12">
+
+
+
+
+
+                                                            <label>This regime complies fully with the OCIMF 'Recommendations Relating to the Application of Requirements Governing Seafarers ' Hours of work and Rest'.</label>
+                                                            <br />
+                                                            <label>These recommendations are minimum expectations to ensure compliance with related provisions and are provided for the information of OCIMF members. managers and the crew of applicable vessels.</label>
+                                                            <br />
+                                                            <button type="button" class="btn btn-link">@*Click here for the full text of the OCIMF recommendations*@</button>
+                                                            <br />
+                                                            <label>Not withstanding anything above. vessels are required to fully comply with their flag state requirements.</label>
+                                                            <br />
+                                                            <ul class="b">
+                                                                <li><label>Minimum continuous rest in any 24 hour period</label> &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinContRestIn24Hours2"></p></label></li>
+                                                                <li><label>Minimum total rest in any 24 hour period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinTotalRestIn24Hours2"></p></label></li>
+                                                                <li><label>Minimum hours rest in any 7 day period</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><p id="MinTotalRestIn7Days2"></p></label></li>
+                                                            </ul>
+                                                            <label>The minimum of 10 hours rest in any 24 hour period may be divided into no more than 2 periods,one of which shall be at least 6 hours in length, and the interval between consecutive periods of rest shall not exceed 14 hours.</label>
+                                                            <br />
+
+
+
+
+                                                            <button type="button" align="center" class="button1 wi" id="btnAdd9" onclick="return AddTab9();">Set Default Regime</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                @*@if (Convert.ToBoolean(Session["XYZ "].ToString()))
+                                    {*@
+
+                                @*}*@
+
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+
+            GetDataForRegimes();
+
+
+            $("#btnCloseModal").on("click", function (event) {
+
+                //CompleteRegistration(event);
+                $('#myModal').modal('hide');
+                //location.href = "/Home/Home1";
+                return false;
+            });
+
+
+        });
+
+
+    </script>
+    <script>
+
+
+        $(document).ready(function () {
+
+
+
+            //$('#btnAdd1').button('onclick', function () {
+            //    $('#btnAdd1').attr('disabled', true);
+            //});
+
+
+            DisableButton();
+
+
+
+
+
+            var numItems = $('li.fancyTab').length;
+
+
+            if (numItems == 12) {
+                $("li.fancyTab").width('8.3%');
+            }
+            if (numItems == 11) {
+                $("li.fancyTab").width('9%');
+            }
+            if (numItems == 10) {
+                $("li.fancyTab").width('10%');
+            }
+            if (numItems == 9) {
+                $("li.fancyTab").width('11.1%');
+            }
+            if (numItems == 8) {
+                $("li.fancyTab").width('12.5%');
+            }
+            if (numItems == 7) {
+                $("li.fancyTab").width('14.2%');
+            }
+            if (numItems == 6) {
+                $("li.fancyTab").width('16.666666666666667%');
+            }
+            if (numItems == 5) {
+                $("li.fancyTab").width('20%');
+            }
+            if (numItems == 4) {
+                $("li.fancyTab").width('25%');
+            }
+            if (numItems == 3) {
+                $("li.fancyTab").width('33.3%');
+            }
+            if (numItems == 2) {
+                $("li.fancyTab").width('50%');
+            }
+
+
+
+
+        });
+
+        $(window).load(function () {
+
+            $('.fancyTabs').each(function () {
+
+                var highestBox = 0;
+                $('.fancyTab a', this).each(function () {
+
+                    if ($(this).height() > highestBox)
+                        highestBox = $(this).height();
+                });
+
+                $('.fancyTab a', this).height(highestBox);
+
+            });
+        });
+    </script>
+}

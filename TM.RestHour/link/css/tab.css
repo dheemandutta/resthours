@@ -89,10 +89,9 @@ label {
 .bac {
     padding: 0px;
     background: #fff;
-    margin: 20px -29px;
     border-radius: 6px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-    height: 450px;
+    height: 440px;
 }
 .nav-tabs > li > a {
     margin-right: 0px;

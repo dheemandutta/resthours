@@ -1,0 +1,263 @@
+﻿@model TM.RestHour.Models.LoginModel
+
+@{
+	/**/
+
+	Layout = "";
+}
+
+
+
+@{
+	ViewBag.Title = "Index";
+}
+
+
+@*<script src="~/Scripts/Login.js"></script>*@
+
+@*<h2 align="center">Welcome Rest Hour</h2>*@
+
+@*@Html.Hidden("myUrl", @Url.Action("GetUserAuthentication", "Login"))*@
+
+
+
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken() // this is for prevent CSRF attack
+	@Html.ValidationSummary(true)
+	if (@ViewBag.Message != null)
+	{
+
+		<div class="divclass"><p style="margin:0;"><strong>  @ViewBag.Message</strong></p> </div>
+	}
+
+
+	<link href="~/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+	<link rel="stylesheet" href="~/css/custom.min.css" type="text/css" media="all">
+	<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<link href="@Url.Content("~/Content/CSS/bootstrap.css")" rel="stylesheet">
+	<script type="text/javascript">
+		$(document).ready(function () {
+			setTimeout(function () {
+				$(".divclass").hide("2000")
+			}, 1000);
+		});
+	</script>
+
+	<style>
+		body {
+			width: 100%;
+			font-family: 'Open Sans',sans-serif;
+			background: #ccc;
+			color: #4E5E6A;
+		}
+
+		.logo-name {
+			display: block;
+			font-size: 22px;
+			font-weight: 700;
+			text-decoration: none;
+			color: #6c6c6c;
+		}
+
+		.page-content {
+			-webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+			-moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+			box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+			background: #f7f8f8;
+			min-height: 100%;
+		}
+
+		.page-inner {
+			padding: 0 0 50px;
+			background: #F1F4F9;
+			position: relative;
+		}
+
+		.center {
+			margin: 0 auto;
+			float: none !important;
+		}
+
+		.login-box {
+			margin: auto;
+			max-width: 400px;
+			font-family: 'Open Sans', sans-serif;
+		}
+
+			.login-box .logo-name {
+				display: block;
+				font-size: 22px;
+				font-weight: 500;
+				text-decoration: none;
+				color: #6c6c6c;
+			}
+
+		p {
+			display: block;
+			font-weight: 400;
+			letter-spacing: normal;
+			line-height: 22px;
+			margin: 0 0 10px;
+			font-style: normal;
+			white-space: normal;
+		}
+
+		button, input, optgroup, select, textarea {
+			width: 100%;
+			background: #fff;
+			border-radius: 0;
+			border: 1px solid #dce1e4;
+			box-shadow: none !important;
+			font-size: 13px;
+			padding: 6px 10px !important;
+			-webkit-transition: all .2s ease-in-out;
+			-moz-transition: all .2s ease-in-out;
+			-o-transition: all .2s ease-in-out;
+			transition: all .2s ease-in-out;
+		}
+
+		.page-content {
+			-webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+			-moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+			box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+			background: #F1F4F9;
+			min-height: 100%;
+		}
+
+		.btn-success {
+			color: #fff;
+			background-color: #22BAA0 !important;
+			border-color: #22BAA0 !important;
+		}
+
+		.m-t-md {
+			margin: 30px;
+		}
+
+		.divclass {
+			background: #d61717;
+			width: 252px;
+			border-radius: 7px;
+			padding: 7px;
+			font-size: 16px;
+			color: #fff;
+			margin: 0 auto;
+			text-align: center;
+		}
+	</style>
+	<body class="page-login pace-done" style="background:#F1F4F9;">
+
+
+		<div class="page-inner">
+			<div id="main-wrapper">
+				<div class="row" style="margin:0;">
+					<div class="col-md-3 center" style="padding:1% 1%;">
+						<div class="login-box">
+							<img src="~/images/pp.png" style="width: 339px;">
+							<a href="index.html" class="logo-name text-lg text-center">Welcome Rest Hour</a>
+							<p class="text-center m-t-md">Please enter your username and<br /> password to log in</p>
+							<div class="m-t-md">
+								<div class="form-group">
+									@Html.TextBoxFor(a => a.Users.Username)
+									@Html.ValidationMessageFor(a => a.Users.Username)
+									@Html.ValidationMessageFor(a => a.Users.Username)
+								</div>
+								<div class="form-group">
+									@Html.PasswordFor(a => a.Users.Password)
+									@Html.ValidationMessageFor(a => a.Users.Password)
+									@Html.ValidationMessageFor(a => a.Users.Password)
+								</div>
+								<div class="form-group">
+									<div id="details"></div>
+									<input type="text" id="Search" data-provide="typeahead" placeholder="Client Name" autocomplete="off" />
+								</div>
+
+
+								@*<div class="form-group">
+										@Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Vessel, "Select", new { @class = "form-control" })
+									</div>*@
+
+
+								<input type="submit" class="btn btn-success" id="Login" value="Login" />
+								@*<a href="forgot.html" class="display-block text-center m-t-md text-sm">Forgot Password?</a>
+									<p class="text-center m-t-xs text-sm">Do not have an account?</p>
+									<a href="register.html" class="btn btn-default btn-block m-t-md">Create an account</a>*@
+							</div>
+							@*<p class="text-center m-t-xs text-sm">2015 © Modern by Steelcoders.</p>*@
+						</div>
+					</div>
+				</div><!-- Row -->
+			</div><!-- Main Wrapper -->
+		</div><!-- Page Inner -->
+
+
+
+
+	</body>
+
+
+
+	<!--//header-->
+
+	<!--//main-->
+
+
+
+
+
+
+}
+
+<!-- js -->
+<!-- //js -->
+
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Scripts/bootstrap3-typeahead.js")"></script>
+
+<script type="text/javascript">
+	$("#Search").typeahead({
+		source: function (query, process) {
+			var countries = [];
+			map = {};
+
+			// This is going to make an HTTP post request to the controller
+			return $.post('/Login/CountryLookup', { query: query }, function (data) {
+
+				// Loop through and push to the array
+				$.each(data, function (i, country) {
+					map[country.Name] = country;
+					countries.push(country.Name);
+				});
+
+				// Process the details
+				process(countries);
+			});
+		},
+		updater: function (item) {
+			var selectedShortCode = map[item].ShortCode;
+
+			// Set the text to our selected id
+			$("#details").text("Selected : " + selectedShortCode);
+			return item;
+		}
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+

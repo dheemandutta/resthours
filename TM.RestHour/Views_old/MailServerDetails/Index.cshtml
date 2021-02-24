@@ -1,0 +1,181 @@
+﻿@*@model TM.RestHour.Models.Vessel*@
+
+@{
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/link/css/rank.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/link/css/layout.css">
+<script src="~/Scripts/Vessel.js"></script>
+<style>
+    .form-group {
+        margin-bottom: 8px;
+        margin: 10px;
+    }
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        margin: 0 -29px;
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        top: 105px;
+    }
+</style>
+<body style="background-image: url(../background/report.jpg);
+    background-size: cover;
+    height: auto;
+    min-height: 100%;">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="ta" style="color:#000;">Mail Server Details</h2>
+        </div>
+        <div class="col-md-7 bac">
+            <div class="">
+                <div style="margin:0 auto" class="tablecontainer">
+                    @*@Html.Hidden("myUrl", @Url.Action("GetShipByID", "Vessel"))
+        @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
+        @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))*@
+
+                    @*@Html.Hidden("mailServer", @Url.Action("xyz", "Vessel"))*@
+                    @Html.Hidden("saveConfigData", @Url.Action("SaveConfigData", "Vessel"))
+
+
+                    @Html.Hidden("gotologin", @Url.Action("Index", "Login"))
+
+                    <input type="hidden" id="hdncount" />
+                    <input type="hidden" id="hdnrole" />
+                    <div class="">
+                        <form>
+                            <div class="form-group">
+                                <input type="hidden" id="ID" />
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="SmptServer">SMTP Server</label>
+                                            <input type="text" class="form-control" id="SmptServer" placeholder="SMTP Server" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="Port">Port</label>
+                                            <input type="text" class="form-control" id="Port" placeholder="Port" />
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="MailFrom">Mail From</label>
+                                            <input type="text" class="form-control" id="MailFrom" placeholder="Mail From" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="MailId">Mail Id</label>
+                                            <input type="text" class="form-control" id="MailId" placeholder="MailId" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="Password">Password</label>
+                                            <input type="password" class="form-control" id="Password" placeholder="Password" />
+                                        </div>
+                                    </div>*@
+                                    @*///////////////////////////////////////////////////////////////////////////*@
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="Ship Email">Ship Email</label>
+                                            <input type="text" class="form-control" id="ShipEmail" placeholder="Ship Email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="Ship Email Password">Ship Email Password</label>
+                                            <input type="password" class="form-control" id="ShipEmailPassword" placeholder="Ship Email Password" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="Admin Center Email">Admin Center Email</label>
+                                            <input type="text" class="form-control" id="AdminCenterEmail" placeholder="Admin Center Email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="POP3">IMAP / POP3 Server</label>
+                                            <input type="text" class="form-control" id="POP3" placeholder="IMAP / POP3" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="POP3 Port">Port</label>
+                                            <input type="text" class="form-control" id="POP3Port" placeholder="Port" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <input type="hidden" id="ID" />
+                                </div>
+
+                            </div>
+
+                            @*<div class="form-group">
+                    <label for="Attachment">Attachment File Size (MB)</label>
+                    <input type="text" class="form-control" id="Attachment" placeholder="Attachment" />
+                </div>*@
+
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <button type="button" class="button1" id="btnAddMailServer" onclick="return SaveConfigData();" style="width:138px; float:right; right:16px;">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @section Scripts
+{
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/jqueryui")
+            @Styles.Render("~/Content/themes/base/css")
+
+            <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+            <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+
+                    //if ($('#isSuperAdminUser').val() == "True") {
+
+                    //    GetShip();
+                    //}
+                    //else {
+
+                    //    GetShip();
+                    //}
+
+                });
+
+            </script>
+        }
+    </div>
+</body>

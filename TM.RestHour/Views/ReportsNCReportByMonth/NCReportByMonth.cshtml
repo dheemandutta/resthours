@@ -3,31 +3,14 @@
 @{
     ViewBag.Title = "NCReportByMonth";
 }
+
 <style>
     table {
-        background-color: #0009;
-        color: #fff;
+        background-color: #065780;
+        color: #000;
         font-size: 21px;
     }
-        table th, table td {
-            padding: 1px;
-            text-align: left;
-            font-size: 16px;
-            font-weight: 400;
-        }
-    .bac {
-        border-radius: 0;
-        padding: 18px;
-        background: rgba(121, 121, 121, 0.4) !important;
-        overflow-y:auto;
-        height: 470px;
-        border-radius: 5px;
-    }
-    table th{
-        font-weight:bold !important;
-    }
 </style>
-
 
 
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
@@ -40,82 +23,83 @@
 @Html.Hidden("GetNonComplianceDetails", @Url.Action("GetNCDetails", "Reports"))
 @Html.Hidden("getNonComplianceInfo", @Url.Action("GetNonComplianceInfo", "Reports"))
 
-<body style="background-image: url(../background/page1.jpg);
-    background-size: cover;">
-    <div class="row">
-        <div class="col-md-4"><h1 class="ta">Monthly View</h1></div>
-        <div class="col-md-8 bac" >
+<body>
+    <div class="">
+        <div class="">
+            <div class="head_title">
+                <h1 class="ta">Monthly View</h1>
+            </div>
             <div>
-                <div class="row">
+                <div class="">
                     @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
 
-                    <div class="col-md-4" id="sideform">
+                    <!-- <div class="col-md-4" id="sideform">
                         <div class="card">
                             <div class="card-block">
                                 <form class="form-horizontal" role="form">
 
 
                                     @*<div class="col-md-7" id="sideform">
-                                    <div class="form-group">
+                            <div class="form-group">
 
-                                        <input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Date" />
-                                    </div>
-                                </div>*@
+                                <input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Date" />
+                            </div>
+                        </div>*@
 
 
                                     @*<div class="form-group">
-                                    <div>
-                                        <div class="col-md-7" id="sideform">
-                                            <button type="button" class="btn btn-primary" id="btnAdd"  onclick="return GetNonComplianceDetails();">Show Report</button>
-                                        </div>
+                            <div>
+                                <div class="col-md-7" id="sideform">
+                                    <button type="button" class="btn btn-primary" id="btnAdd"  onclick="return GetNonComplianceDetails();">Show Report</button>
+                                </div>
 
-                                    </div>
-                                </div>*@
+                            </div>
+                        </div>*@
 
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
                 </div>
 
                 @*<table width="100%">
-                <tr>
-                    <td align="left" width="75%"><b>MONTHLY VIEW</b></td>
-                    <td align="right">Revision Number : 05</td>
-                </tr>
+                    <tr>
+                        <td align="left" width="75%"><b>MONTHLY VIEW</b></td>
+                        <td align="right">Revision Number : 05</td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="75%">Form Number : ILO Rest</td>
-                    <td align="right"> Page Number : 1 of 1</td>
-                </tr>
-                <tr style="height:2px;">
-                    <td colspan="2"><hr style="padding:0px; margin:0px;" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <table width="100%">
-                            <tr>
-                                <td align="left" width="40%">Year : <span id="yr"></span></td>
-                                <td align="left" width="20%"> Vessel Name : OSX 2 </td>
-                                <td align="right" width="75%"> Master : Singh, Amitabh </td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%">Month : <span id="mn"></span> </td>
-                                <td colspan="2" align="left">IMO Number : 8618217</td>
-                            </tr>
-                            <tr>
-                                <td align="left">Day : </td>
+                    <tr>
+                        <td align="left" width="75%">Form Number : ILO Rest</td>
+                        <td align="right"> Page Number : 1 of 1</td>
+                    </tr>
+                    <tr style="height:2px;">
+                        <td colspan="2"><hr style="padding:0px; margin:0px;" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table width="100%">
+                                <tr>
+                                    <td align="left" width="40%">Year : <span id="yr"></span></td>
+                                    <td align="left" width="20%"> Vessel Name : OSX 2 </td>
+                                    <td align="right" width="75%"> Master : Singh, Amitabh </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" width="50%">Month : <span id="mn"></span> </td>
+                                    <td colspan="2" align="left">IMO Number : 8618217</td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Day : </td>
 
-                                <td>Flag : Liberia</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+                                    <td>Flag : Liberia</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
 
-            </table>*@
-
+                </table>*@
+            <div class="card">
 
                 <table border="1" style="  border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%; font-weight: bold;" id="schedule">
                     <thead>
@@ -153,64 +137,65 @@
                             <th class="tg-amwm" width="1%" bgcolor="#d3d3d3" style="color:#000;">30</th>
                             <th class="tg-amwm" width="1%">31</th>
                         </tr>
-                    </thead>  
+                    </thead>
                     <tbody>
-                    <tr id="trclone" filled="no">
-                        <td class="tg-yw4l">&nbsp;</td>
-                        <td class="tg-yw4l" id="01" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="02" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="03"></td>
-                        <td class="tg-yw4l" id="04"></td>
-                        <td class="tg-yw4l" id="05" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="06" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="07"></td>
-                        <td class="tg-yw4l" id="08"></td>
-                        <td class="tg-yw4l" id="09" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="10" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="11"></td>
-                        <td class="tg-yw4l" id="12"></td>
-                        <td class="tg-yw4l" id="13" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="14" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="15"></td>
-                        <td class="tg-yw4l" id="16"></td>
-                        <td class="tg-yw4l" id="17" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="18" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="19"></td>
-                        <td class="tg-yw4l" id="20"></td>
-                        <td class="tg-yw4l" id="21" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="22" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="23"></td>
-                        <td class="tg-yw4l" id="24"></td>
-                        <td class="tg-yw4l" id="25" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="26" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="27"></td>
-                        <td class="tg-yw4l" id="28"></td>
-                        <td class="tg-yw4l" id="29" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="30" bgcolor="#d3d3d3"></td>
-                        <td class="tg-yw4l" id="31"></td>
-                    </tr>
+                        <tr id="trclone" filled="no">
+                            <td class="tg-yw4l">&nbsp;</td>
+                            <td class="tg-yw4l" id="01" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="02" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="03"></td>
+                            <td class="tg-yw4l" id="04"></td>
+                            <td class="tg-yw4l" id="05" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="06" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="07"></td>
+                            <td class="tg-yw4l" id="08"></td>
+                            <td class="tg-yw4l" id="09" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="10" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="11"></td>
+                            <td class="tg-yw4l" id="12"></td>
+                            <td class="tg-yw4l" id="13" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="14" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="15"></td>
+                            <td class="tg-yw4l" id="16"></td>
+                            <td class="tg-yw4l" id="17" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="18" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="19"></td>
+                            <td class="tg-yw4l" id="20"></td>
+                            <td class="tg-yw4l" id="21" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="22" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="23"></td>
+                            <td class="tg-yw4l" id="24"></td>
+                            <td class="tg-yw4l" id="25" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="26" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="27"></td>
+                            <td class="tg-yw4l" id="28"></td>
+                            <td class="tg-yw4l" id="29" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="30" bgcolor="#d3d3d3"></td>
+                            <td class="tg-yw4l" id="31"></td>
+                        </tr>
                     </tbody>
                 </table>
+            </div>
 
                 <p class="bottom-three"></p>
 
                 @*<table width="100%">
-                <tr>
+                    <tr>
 
-                    <td align="right"></td>
-                    <td align="right">
-                        Signature of Master:  ________________________________________
-                    </td>
-                </tr>
+                        <td align="right"></td>
+                        <td align="right">
+                            Signature of Master:  ________________________________________
+                        </td>
+                    </tr>
 
 
-                <tr>
-                    <td></td>
-                    <td align="right">
-                        Singh, Amitabh
-                    </td>
-                </tr>
-            </table>*@
+                    <tr>
+                        <td></td>
+                        <td align="right">
+                            Singh, Amitabh
+                        </td>
+                    </tr>
+                </table>*@
 
                 <div id="dvprint2"></div>
 
