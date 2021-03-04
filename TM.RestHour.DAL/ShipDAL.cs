@@ -12,7 +12,6 @@ namespace TM.RestHour.DAL
 {
     public class ShipDAL
     {
-
 		public int UpdateVessel(ShipPOCO ship/*, int VesselID*/)
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
