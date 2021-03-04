@@ -526,10 +526,10 @@
 
                                 </ul>
                                 <div class="dropdown">
-                                    <button class="button log" onclick="location.href='@Url.Action("Index", "Login")';return false;"><span><img src="~/images/out.png" style="width:27px;" /></span></button>
+                                    <button class="button log" onclick="location.href='#';return false;"><span><img src="~/images/out.png" style="width:27px;" /></span></button>
                                     <div class="dropdown-content">
                                         <h3>Admin</h3>
-                                        <a href="#">Sing Out</a>
+                                        <a onclick="location.href='@Url.Action("Index", "Login")';return false;">Sing Out</a>
                                     </div>
                                 </div>
 
