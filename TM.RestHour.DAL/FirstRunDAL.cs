@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TM.Base.Entities;
 
+
 namespace TM.RestHour.DAL
 {
     public class FirstRunDAL
