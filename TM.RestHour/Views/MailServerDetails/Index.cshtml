@@ -21,31 +21,22 @@
         margin-bottom: 8px;
         margin: 10px;
     }
-    .bac {
-        border-radius: 0;
-        padding: 18px;
-        background: #fff;
-        margin: 0 -29px;
-        border-radius: 6px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-        top: 105px;
+    .card {
+        display: inline-block;
+        margin: 57px 0;
+        padding: 0 34px 34px;
     }
 </style>
-<body style="background-image: url(../background/report.jpg);
-    background-size: cover;
-    height: auto;
-    min-height: 100%;">
+<body>
 
     <div class="row">
-        <div class="col-md-5">
-            <h2 class="ta" style="color:#000;">Mail Server Details</h2>
-        </div>
-        <div class="col-md-7 bac">
-            <div class="">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
                 <div style="margin:0 auto" class="tablecontainer">
                     @*@Html.Hidden("myUrl", @Url.Action("GetShipByID", "Vessel"))
-        @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
-        @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))*@
+                    @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
+                    @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))*@
 
                     @*@Html.Hidden("mailServer", @Url.Action("xyz", "Vessel"))*@
                     @Html.Hidden("saveConfigData", @Url.Action("SaveConfigData", "Vessel"))
@@ -136,14 +127,14 @@
                             </div>
 
                             @*<div class="form-group">
-                    <label for="Attachment">Attachment File Size (MB)</label>
-                    <input type="text" class="form-control" id="Attachment" placeholder="Attachment" />
-                </div>*@
+                                <label for="Attachment">Attachment File Size (MB)</label>
+                                <input type="text" class="form-control" id="Attachment" placeholder="Attachment" />
+                            </div>*@
 
 
                             <div class="col-md-12">
-                                <div class="card">
-                                    <button type="button" class="button1" id="btnAddMailServer" onclick="return SaveConfigData();" style="width:138px; float:right; right:16px;">Add</button>
+                                <div class="">
+                                    <button type="button" class="button1" id="btnAddMailServer" onclick="return SaveConfigData();" style="width:138px;">Add</button>
                                 </div>
                             </div>
                         </form>
@@ -151,6 +142,7 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-2"></div>
 
         @section Scripts
 {

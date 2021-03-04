@@ -19,17 +19,25 @@
         border-top: 1px solid #fff;
         text-align: center;
     }
+    .runp{margin:40px 0;}
+        .runp .card {
+            margin-bottom: 20px;
+            padding: 30px 0;
+        }
+.form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left;
+}
+                                
 </style>
-<body style="background-image: url(../background/password1.jpg);
-    background-size: cover; background-attachment:fixed;">
+<body>
 
     <div class="row">
-        <div class="col-md-4">
-            <h2 class="ta" style="color:#000;"></h2>
-        </div>
-        <div class="col-md-8">
+        
+        <div class="col-md-12">
 
-            <div class="card">
+            <div class="">
 
                 <div style="margin:0 auto" class="tablecontainer">
                     @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
@@ -55,31 +63,34 @@
                     <input type="hidden" id="hdncount" />
 
                     <input type="hidden" id="hdnrole" />
-                    <div class="row" style="margin-top: 74px;">
-                        <div class="col-md-6 bac">
-                            <h3 style="margin-top: 0px;" align="center">Register New Vessel</h3>
-                            <div align="center">
-                                @*<div class="modal-header">
+                    <div class="runp">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <h3 style="margin-top: 0px;" align="center">Register New Vessel</h3>
+                                    <div align="center">
+                                        @*<div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="myModalLabel">Add Vessel</h4>
                     </div>*@
-                                <div class="modal-body" style="width: 60%;">
+                                        <div class="modal-body" style="width: 60%;">
 
-                                    <form>
+                                            <form>
 
-                                        <div>
-                                            <label for="Vessel">Vessel</label>
-                                            <input type="text" class="form-control" id="ShipName" placeholder="Vessel" style="width: 100%;" />
-                                        </div>
-                                        <div>
-                                            <label for="Flag">Flag</label>
-                                            <input type="text" class="form-control" id="FlagOfShip" placeholder="Flag" style="width: 100%;" />
-                                        </div>
-                                        <div>
-                                            <label for="IMO Number">IMO Number</label>
-                                            <input type="text" class="form-control numberinput" maxlength="7" id="IMONumber" placeholder="IMO Number" />
-                                            @*     1)Use "maxlength="7"",    2)Use "numberinput",    3) Copy "javascript" bottom in this page.     *@
-                                        </div>
+                                                <div>
+                                                    <label for="Vessel">Vessel</label>
+                                                    <input type="text" class="form-control" id="ShipName" placeholder="Vessel" style="width: 100%;" />
+                                                </div>
+                                                <div>
+                                                    <label for="Flag">Flag</label>
+                                                    <input type="text" class="form-control" id="FlagOfShip" placeholder="Flag" style="width: 100%;" />
+                                                </div>
+                                                <div>
+                                                    <label for="IMO Number">IMO Number</label>
+                                                    <input type="text" class="form-control numberinput" maxlength="7" id="IMONumber" placeholder="IMO Number" />
+                                                    @*     1)Use "maxlength="7"",    2)Use "numberinput",    3) Copy "javascript" bottom in this page.     *@
+                                                </div>
 
 
 
@@ -127,22 +138,24 @@
                                                     <input type="hidden" id="ID" />
                                                 </div>
 
-                                    </form>
+                                            </form>
 
-                                </div>
-                                <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                         @*<div class="modal-footer">
-                                @*<button type="button" class="button" id="btnAdd" onclick="return NewAdd();" style="width:86px;">Add</button>
-                            </div>*@
+                        @*<button type="button" class="button" id="btnAdd" onclick="return NewAdd();" style="width:86px;">Add</button>
+                    </div>*@
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                                <div class="col-md-6 bac" style="float: right; right: 42px;">
+                            <div class="col-md-6">
+                                <div class="card">
                                     <h3 style="margin-top: 0px;" align="center">Enter Super Admin Details</h3>
                                     <div align="center">
                                         @*<div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel">Add Vessel</h4>
-                            </div>*@
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Add Vessel</h4>
+                    </div>*@
                                         <div class="modal-body" style="width: 60%;">
 
                                             <form>
@@ -174,10 +187,10 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <br />
-
-                                <div class="col-md-6 bac">
+                            <div class="col-md-6">
+                                <div class="card">
                                     <h3 style="margin-top: 0px;" align="center">Upload Company Logo</h3>
                                     <div align="center">
                                         <div class="modal-body" style="width: 60%;">
@@ -206,7 +219,9 @@
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 bac" style="float: right; right: 42px;">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
                                     <h3 style="margin-top: 0px;" align="center">Company Details</h3>
                                     <div align="center">
                                         <div class="modal-body" style="width: 60%;">
@@ -322,7 +337,7 @@
 
                                                 <div class="modal-footer" style="width: 145%;">
                                                     @*<button type="button" class="button1" id="btnAdd" onclick="return Add();" style="width:86px;">Add        </button>
-                                        <button type="button" class="button1" id="btnUpdate" onclick="Add();" style="width:86px;">Update     </button>*@
+                                <button type="button" class="button1" id="btnUpdate" onclick="Add();" style="width:86px;">Update     </button>*@
                                                     <button type="button" class="button1" id="btnNext" disabled="disabled" onclick="return SaveInitialShipValues();" style="width:86px;">Next</button>
                                                     <button type="button" class="button1" id="btnAdd" onclick="return GetCompanyDetailsByID();" style="width:86px;">Get Details</button>
                                                 </div>
@@ -332,8 +347,9 @@
 
                                     </div>
                                 </div>
-
-
+                            </div>
+                        </div>
+                        </div>
 
                             </div>
 
