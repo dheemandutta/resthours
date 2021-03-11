@@ -11,3 +11,4 @@
 2021-03-11 09:01:00.2571|ERROR|TM.RestHour.Export|Directory not found. - Cannot create a file when that file already exists.
  :
 2021-03-11 09:01:00.3040|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:44:36.5774|ERROR|TM.RestHour.Export|Process Started. - 3/11/2021 9:44:36 AM

@@ -27,6 +27,7 @@ namespace TM.RestHour
 
 		public void Execute(IJobExecutionContext context)
 		{
+			logger.Info("Process Started. - {0}", DateTime.Now.ToString());
 			ArchiveZipFiles();
 			if (ZipDirectoryContainsZipFiles())
 			{
@@ -101,7 +102,7 @@ namespace TM.RestHour
 
 				logger.Error("Error in CreateZip. - {0}", ex.Message + " :" + ex.InnerException);
 				logger.Info("Export process terminated unsuccessfully in CreateZip.");
-				Environment.Exit(0);
+				//Environment.Exit(0);
 			}
 		}
 
@@ -133,7 +134,7 @@ namespace TM.RestHour
 
 				logger.Error("Error in ExportData. - {0}", ex.Message + " :" + ex.InnerException);
 				logger.Info("Export process terminated unsuccessfully in ExportData.");
-				Environment.Exit(0);
+				//Environment.Exit(0);
 			}
 		}
 
@@ -162,7 +163,7 @@ namespace TM.RestHour
 
 				logger.Error("Directory not found. - {0}", ex.Message + " :" + ex.InnerException);
 				logger.Info("Export process terminated unsuccessfully in ArchiveZipFiles.");
-				Environment.Exit(0);
+				//Environment.Exit(0);
 			}
 
 
@@ -204,7 +205,7 @@ namespace TM.RestHour
 				isMailSendSuccessful = false;
 				logger.Error("Mail send failed - {0}", ex.Message + " :" + ex.InnerException);
 				logger.Info("Export process terminated unsuccessfully.");
-				Environment.Exit(0);
+				//Environment.Exit(0);
 			}
 
 		}
