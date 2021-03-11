@@ -11,13 +11,16 @@ using System.Globalization;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
+//using System.IO.Compression;
 using Ionic.Zip;
+
 using Quartz;
 
 namespace TM.RestHour
 {
-    public class Export:IJob
+	
+
+	public class Export:IJob
     {
         static String path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "xml");
         static String zippath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "ZipFile");
@@ -28,38 +31,43 @@ namespace TM.RestHour
 		public void Execute(IJobExecutionContext context)
 		{
 			logger.Info("Process Started. - {0}", DateTime.Now.ToString());
-			ArchiveZipFiles();
-			if (ZipDirectoryContainsZipFiles())
-			{
-				SendMail();
-				if (isMailSendSuccessful)
-				{
-					ArchiveZipFiles();
-					//redo the whole process again
-					isMailSendSuccessful = false;
-					ExportData();
-					CreateZip();
-					SendMail();
-					if (isMailSendSuccessful)
-					{
-						ArchiveZipFiles();
-					}
-				}
-			}
-			else
-			{
-				isMailSendSuccessful = false;
-				ExportData();
-				CreateZip();
-				SendMail();
-				if (isMailSendSuccessful)
-				{
-					ArchiveZipFiles();
-				}
-			}
+            //SendMail();
+            //logger.Info("Send Mail Succesfully. - {0}", DateTime.Now.ToString());
 
-			//throw new NotImplementedException();
-		}
+
+            ArchiveZipFiles();
+            if (ZipDirectoryContainsZipFiles())
+            {
+                SendMail();
+                if (isMailSendSuccessful)
+                {
+                    ArchiveZipFiles();
+                    //redo the whole process again
+                    isMailSendSuccessful = false;
+                    ExportData();
+					logger.Info("Export Complete. - {0}", DateTime.Now.ToString());
+					CreateZip();
+                    SendMail();
+                    if (isMailSendSuccessful)
+                    {
+                        ArchiveZipFiles();
+                    }
+                }
+            }
+            else
+            {
+                isMailSendSuccessful = false;
+                ExportData();
+                CreateZip();
+                SendMail();
+                if (isMailSendSuccessful)
+                {
+                    ArchiveZipFiles();
+                }
+            }
+
+            //throw new NotImplementedException();
+        }
 
 
 
@@ -68,6 +76,7 @@ namespace TM.RestHour
 
 			try
 			{
+				logger.Info("Creating zip start. - {0}", DateTime.Now.ToString());
 				SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 				con.Open();
 				SqlCommand cmd = new SqlCommand("stpGetShipDetailsByID", con);
@@ -79,22 +88,27 @@ namespace TM.RestHour
 				fileName = fileName + "_" + DateTime.Now.ToString("MMddyyyyhhmm");
 				fileName = fileName + ".zip";
 
-				using (ZipFile zip = new ZipFile())
-				{
-					zip.AddDirectory(path + "\\");
-					zip.Comment = "This zip was created at " + System.DateTime.Now.ToString("G");
+				//ZipFile.CreateFromDirectory(path,Path.Combine(zippath, fileName));
 
-					zip.MaxOutputSegmentSize = int.Parse(ConfigurationManager.AppSettings["OutputSize"].ToString());
-					zip.Save(zippath + "\\" + fileName);
-					// SegmentsCreated = zip.NumberOfSegmentsForMostRecentSave;
-				}
+                using (ZipFile zip = new ZipFile())
+                {
 
-				//delete xml files 
-				string[] filePaths = Directory.GetFiles(path + "\\");
+                    zip.AddDirectory(path + "\\");
+                    zip.Comment = "This zip was created at " + System.DateTime.Now.ToString("G");
+
+                    zip.MaxOutputSegmentSize = int.Parse(ConfigurationManager.AppSettings["OutputSize"].ToString());
+                    zip.Save(zippath + "\\" + fileName);
+                    // SegmentsCreated = zip.NumberOfSegmentsForMostRecentSave;
+                }
+
+                //delete xml files 
+                string[] filePaths = Directory.GetFiles(path + "\\");
 
 				foreach (string filePath in filePaths)
 
 					File.Delete(filePath);
+
+				logger.Info("zip completed. - {0}", DateTime.Now.ToString());
 			}
 			catch (Exception ex)
 			{
@@ -150,13 +164,17 @@ namespace TM.RestHour
 			{
 				string[] sourceFiles = Directory.GetFiles(sourceFilePath);
 
-				foreach (string sourceFile in sourceFiles)
-				{
-					string fName = Path.GetFileName(sourceFile);
-					string destFile = Path.Combine(destinationFilePath, fName);
+				if(sourceFiles.Length >0 )
+                {
+					foreach (string sourceFile in sourceFiles)
+					{
+						string fName = Path.GetFileName(sourceFile);
+						string destFile = Path.Combine(destinationFilePath, fName);
 
-					File.Move(sourceFile, destFile);
+						File.Move(sourceFile, destFile);
+					}
 				}
+				
 			}
 			catch (Exception ex)
 			{
@@ -179,24 +197,36 @@ namespace TM.RestHour
 			{
 				using (MailMessage mail = new MailMessage())
 				{
-					mail.Subject = GetConfigData("subject");
-					mail.From = new MailAddress(GetConfigData("mailfrom"));
+					//mail.Subject = GetConfigData("subject");
+					//mail.From = new MailAddress(GetConfigData("mailfrom"));
 
-					mail.To.Add(GetConfigData("mailto"));
+					//mail.To.Add(GetConfigData("mailto"));
 
-					if (ZipDirectoryContainsZipFiles())
-					{
-						mail.Attachments.Add(new Attachment(zippath + "\\" + GetZipFileName()));
-					}
+					mail.Subject = "TestBin";
+					mail.From = new MailAddress("cableman24x7@gmail.com");
 
-					SmtpClient smtp = new SmtpClient(GetConfigData("smtp"));
+					mail.To.Add("cableman24x7@gmail.com");
+
+					Attachment att = new Attachment(zippath + "\\" + GetZipFileName());
+					//if (ZipDirectoryContainsZipFiles())
+					//{
+						mail.Attachments.Add(att);
+					//}
+
+					//SmtpClient smtp = new SmtpClient(GetConfigData("smtp"));
+					//smtp.EnableSsl = true;
+					//smtp.Port = int.Parse(GetConfigData("port"));
+					//smtp.Credentials = new System.Net.NetworkCredential(GetConfigData("mailfrom").Trim(), GetConfigData("frompwd").Trim());
+
+					SmtpClient smtp = new SmtpClient("smtp.gmail.com");
 					smtp.EnableSsl = true;
-					smtp.Port = int.Parse(GetConfigData("port"));
-					smtp.Credentials = new System.Net.NetworkCredential(GetConfigData("mailfrom").Trim(), GetConfigData("frompwd").Trim());
+					smtp.Port = int.Parse("587");
+					smtp.Credentials = new System.Net.NetworkCredential("cableman24x7@gmail.com", "cableman24x712345");
 
 					smtp.Send(mail);
 
 					isMailSendSuccessful = true;
+
 				}
 			}
 			catch (Exception ex)
@@ -238,6 +268,7 @@ namespace TM.RestHour
 			if (ZipDirectoryContainsZipFiles())
 			{
 				DirectoryInfo di = new DirectoryInfo(zippath + "\\");
+				string s = di.GetFiles("*.zip")[0].Name;
 				return di.GetFiles("*.zip")[0].Name;
 			}
 			else
