@@ -11,3 +11,20 @@
 2021-03-11 09:01:00.2571|ERROR|TM.RestHour.Export|Directory not found. - Cannot create a file when that file already exists.
  :
 2021-03-11 09:01:00.3040|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:19:00.2476|ERROR|TM.RestHour.Export|Directory not found. - Cannot create a file when that file already exists.
+ :
+2021-03-11 09:19:00.3009|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:19:34.9224|ERROR|TM.RestHour.Export|Directory not found. - Cannot create a file when that file already exists.
+ :
+2021-03-11 09:19:34.9380|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:34:00.2583|ERROR|TM.RestHour.Export|Directory not found. - Cannot create a file when that file already exists.
+ :
+2021-03-11 09:34:00.3052|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:34:05.4719|ERROR|TM.RestHour.Export|Directory not found. - Cannot create a file when that file already exists.
+ :
+2021-03-11 09:34:05.4875|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:35:22.5399|ERROR|TM.RestHour.Export|Directory not found. - Cannot create a file when that file already exists.
+ :
+2021-03-11 09:35:22.5555|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:35:22.7344|ERROR|TM.RestHour.Export|Error in CreateZip. - The process cannot access the file because it is being used by another process. :
+2021-03-11 09:35:22.7500|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in CreateZip.
