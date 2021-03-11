@@ -1,1 +1,56 @@
-2021-03-11 10:02:57.3014|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 10:02:57 AM
+2021-03-11 11:30:07.8809|INFO|Quartz.Impl.StdSchedulerFactory|Default Quartz.NET properties loaded from embedded resource file
+2021-03-11 11:30:07.9729|DEBUG|Quartz.Simpl.TaskSchedulingThreadPool|TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2021-03-11 11:30:08.0009|INFO|Quartz.Core.SchedulerSignalerImpl|Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2021-03-11 11:30:08.0009|INFO|Quartz.Core.QuartzScheduler|Quartz Scheduler v.3.2.4.0 created.
+2021-03-11 11:30:08.0169|INFO|Quartz.Simpl.RAMJobStore|RAMJobStore initialized.
+2021-03-11 11:30:08.0169|INFO|Quartz.Core.QuartzScheduler|Scheduler meta-data: Quartz Scheduler (v3.2.4.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-03-11 11:30:08.0310|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler 'DefaultQuartzScheduler' initialized
+2021-03-11 11:30:08.0310|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler version: 3.2.4.0
+2021-03-11 11:30:08.0509|INFO|Quartz.Core.QuartzScheduler|Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2021-03-11 11:30:08.0509|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:30:08.0941|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:30:37.6099|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:31:02.8923|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:31:31.1063|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 1 triggers
+2021-03-11 11:32:00.0416|DEBUG|Quartz.Simpl.SimpleJobFactory|Producing instance of Job 'DEFAULT.2acbbeb9-1245-48f5-94bd-fa1148f34391', class=TM.RestHour.Export
+2021-03-11 11:32:00.0536|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:32:00.0746|DEBUG|Quartz.Core.JobRunShell|Calling Execute on job DEFAULT.2acbbeb9-1245-48f5-94bd-fa1148f34391
+2021-03-11 11:32:03.2867|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:32:03 AM
+2021-03-11 11:32:03.2867|INFO|TM.RestHour.Export|Archiving Completed. - 3/11/2021 11:32:03 AM
+2021-03-11 11:32:03.2997|INFO|TM.RestHour.Export|Data Export Started. - 3/11/2021 11:32:03 AM
+2021-03-11 11:32:03.3957|INFO|TM.RestHour.Export|Data Export Completed. - 3/11/2021 11:32:03 AM
+2021-03-11 11:48:48.1595|INFO|Quartz.Impl.StdSchedulerFactory|Default Quartz.NET properties loaded from embedded resource file
+2021-03-11 11:48:48.2365|DEBUG|Quartz.Simpl.TaskSchedulingThreadPool|TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2021-03-11 11:48:48.2775|INFO|Quartz.Core.SchedulerSignalerImpl|Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2021-03-11 11:48:48.2885|INFO|Quartz.Core.QuartzScheduler|Quartz Scheduler v.3.2.4.0 created.
+2021-03-11 11:48:48.3026|INFO|Quartz.Simpl.RAMJobStore|RAMJobStore initialized.
+2021-03-11 11:48:48.3155|INFO|Quartz.Core.QuartzScheduler|Scheduler meta-data: Quartz Scheduler (v3.2.4.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-03-11 11:48:48.3155|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler 'DefaultQuartzScheduler' initialized
+2021-03-11 11:48:48.3315|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler version: 3.2.4.0
+2021-03-11 11:48:48.3475|INFO|Quartz.Core.QuartzScheduler|Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2021-03-11 11:48:48.3475|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:48:48.3926|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:49:16.1565|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:49:44.8860|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 1 triggers
+2021-03-11 11:50:00.0271|DEBUG|Quartz.Simpl.SimpleJobFactory|Producing instance of Job 'DEFAULT.632d1d32-22ae-42c8-b85e-764fcbabc475', class=TM.RestHour.Export
+2021-03-11 11:50:00.0462|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:50:00.0711|DEBUG|Quartz.Core.JobRunShell|Calling Execute on job DEFAULT.632d1d32-22ae-42c8-b85e-764fcbabc475
+2021-03-11 11:50:13.4830|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:50:13 AM
+2021-03-11 11:50:14.5931|INFO|TM.RestHour.Export|Archiving Completed. - 3/11/2021 11:50:14 AM
+2021-03-11 11:50:18.9185|INFO|TM.RestHour.Export|Data Export Started. - 3/11/2021 11:50:18 AM
+2021-03-11 11:50:19.4888|INFO|TM.RestHour.Export|Data Export Completed. - 3/11/2021 11:50:19 AM
+2021-03-11 11:50:20.0253|INFO|TM.RestHour.Export|Zip Created. - 3/11/2021 11:50:20 AM
