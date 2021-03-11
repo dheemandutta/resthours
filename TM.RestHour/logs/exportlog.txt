@@ -1,80 +1,56 @@
-2021-03-11 10:02:57.3014|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 10:02:57 AM
-2021-03-11 10:14:00.2568|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 10:14:00 AM
-2021-03-11 10:22:00.2552|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 10:22:00 AM
-2021-03-11 10:30:00.2822|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 10:30:00 AM
-2021-03-11 10:34:00.2519|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 10:34:00 AM
-2021-03-11 11:12:00.2466|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:12:00 AM
-2021-03-11 11:18:00.2150|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:18:00 AM
-2021-03-11 11:22:00.2241|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:22:00 AM
-2021-03-11 11:24:00.2342|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:24:00 AM
-2021-03-11 11:26:00.2196|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:26:00 AM
-2021-03-11 11:28:00.2406|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:28:00 AM
-2021-03-11 11:30:00.2568|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:30:00 AM
-2021-03-11 11:32:00.2187|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:32:00 AM
-2021-03-11 11:34:00.2242|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:34:00 AM
-2021-03-11 11:36:00.2286|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:36:00 AM
-2021-03-11 11:46:00.2616|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:46:00 AM
-2021-03-11 11:50:00.2305|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:50:00 AM
-2021-03-11 11:56:00.2487|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:56:00 AM
-2021-03-11 11:56:48.7781|ERROR|TM.RestHour.Export|Mail send failed - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at :
-2021-03-11 11:56:49.4907|INFO|TM.RestHour.Export|Export process terminated unsuccessfully.
-2021-03-11 12:00:00.8873|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:00:00 PM
-2021-03-11 12:00:34.8693|INFO|TM.RestHour.Export|Send Mail Succesfully. - 3/11/2021 12:00:34 PM
-2021-03-11 12:02:00.0069|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:02:00 PM
-2021-03-11 12:02:04.1454|INFO|TM.RestHour.Export|Send Mail Succesfully. - 3/11/2021 12:02:04 PM
-2021-03-11 12:04:00.0175|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:04:00 PM
-2021-03-11 12:04:06.6717|INFO|TM.RestHour.Export|Send Mail Succesfully. - 3/11/2021 12:04:06 PM
-2021-03-11 12:06:00.0055|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:06:00 PM
-2021-03-11 12:06:05.0914|INFO|TM.RestHour.Export|Send Mail Succesfully. - 3/11/2021 12:06:05 PM
-2021-03-11 12:12:00.2786|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:12:00 PM
-2021-03-11 12:12:13.5323|INFO|TM.RestHour.Export|Send Mail Succesfully. - 3/11/2021 12:12:13 PM
-2021-03-11 12:14:00.0098|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:14:00 PM
-2021-03-11 12:14:05.3930|INFO|TM.RestHour.Export|Send Mail Succesfully. - 3/11/2021 12:14:05 PM
-2021-03-11 12:16:00.0143|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:16:00 PM
-2021-03-11 12:16:06.3543|INFO|TM.RestHour.Export|Send Mail Succesfully. - 3/11/2021 12:16:06 PM
-2021-03-11 12:18:00.0084|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:18:00 PM
-2021-03-11 12:18:05.3623|INFO|TM.RestHour.Export|Send Mail Succesfully. - 3/11/2021 12:18:05 PM
-2021-03-11 12:20:00.0159|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:20:00 PM
-2021-03-11 12:24:00.3517|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:24:00 PM
-2021-03-11 12:40:00.2236|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:40:00 PM
-2021-03-11 12:40:03.1670|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 12:40:03 PM
-2021-03-11 12:48:00.2491|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:48:00 PM
-2021-03-11 12:48:05.0253|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 12:48:05 PM
-2021-03-11 12:50:00.2307|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:50:00 PM
-2021-03-11 12:50:03.2363|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 12:50:03 PM
-2021-03-11 12:52:00.2409|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:52:00 PM
-2021-03-11 12:52:03.1591|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 12:52:03 PM
-2021-03-11 12:58:00.2152|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 12:58:00 PM
-2021-03-11 12:58:02.7904|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 12:58:02 PM
-2021-03-11 13:00:00.2280|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:00:00 PM
-2021-03-11 13:00:04.1227|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:00:04 PM
-2021-03-11 13:14:00.5176|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:14:00 PM
-2021-03-11 13:15:45.5046|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:15:45 PM
-2021-03-11 13:17:16.6879|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:17:16 PM
-2021-03-11 13:17:22.3074|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:17:22 PM
-2021-03-11 13:17:48.2907|INFO|TM.RestHour.Export|zip completed. - 3/11/2021 1:17:48 PM
-2021-03-11 13:26:00.4351|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:26:00 PM
-2021-03-11 13:26:04.5773|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:26:04 PM
-2021-03-11 13:32:00.4226|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:32:00 PM
-2021-03-11 13:32:05.4028|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:32:05 PM
-2021-03-11 13:34:00.2157|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:34:00 PM
-2021-03-11 13:34:02.7201|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:34:02 PM
-2021-03-11 13:36:00.2231|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:36:00 PM
-2021-03-11 13:36:02.5282|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:36:02 PM
-2021-03-11 13:38:00.2367|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:38:00 PM
-2021-03-11 13:38:02.7100|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:38:02 PM
-2021-03-11 13:40:00.2437|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:40:00 PM
-2021-03-11 13:40:04.2891|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:40:04 PM
-2021-03-11 13:56:00.2355|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 1:56:00 PM
-2021-03-11 13:56:02.8624|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 1:56:02 PM
-2021-03-11 14:00:00.2335|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 2:00:00 PM
-2021-03-11 14:00:02.7083|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 2:00:02 PM
-2021-03-11 14:08:00.2331|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 2:08:00 PM
-2021-03-11 14:08:15.7198|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 2:08:15 PM
-2021-03-11 14:10:00.2345|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 2:10:00 PM
-2021-03-11 14:10:03.5317|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 2:10:03 PM
-2021-03-11 14:14:00.2263|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 2:14:00 PM
-2021-03-11 14:14:03.1018|INFO|TM.RestHour.Export|Creating zip start. - 3/11/2021 2:14:03 PM
-2021-03-11 14:26:00.2396|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 2:26:00 PM
-2021-03-11 14:26:15.8216|INFO|TM.RestHour.Export|Export Complete. - 3/11/2021 2:26:15 PM
-2021-03-11 14:30:00.3610|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 2:30:00 PM
+2021-03-11 11:30:07.8809|INFO|Quartz.Impl.StdSchedulerFactory|Default Quartz.NET properties loaded from embedded resource file
+2021-03-11 11:30:07.9729|DEBUG|Quartz.Simpl.TaskSchedulingThreadPool|TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2021-03-11 11:30:08.0009|INFO|Quartz.Core.SchedulerSignalerImpl|Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2021-03-11 11:30:08.0009|INFO|Quartz.Core.QuartzScheduler|Quartz Scheduler v.3.2.4.0 created.
+2021-03-11 11:30:08.0169|INFO|Quartz.Simpl.RAMJobStore|RAMJobStore initialized.
+2021-03-11 11:30:08.0169|INFO|Quartz.Core.QuartzScheduler|Scheduler meta-data: Quartz Scheduler (v3.2.4.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-03-11 11:30:08.0310|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler 'DefaultQuartzScheduler' initialized
+2021-03-11 11:30:08.0310|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler version: 3.2.4.0
+2021-03-11 11:30:08.0509|INFO|Quartz.Core.QuartzScheduler|Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2021-03-11 11:30:08.0509|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:30:08.0941|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:30:37.6099|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:31:02.8923|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:31:31.1063|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 1 triggers
+2021-03-11 11:32:00.0416|DEBUG|Quartz.Simpl.SimpleJobFactory|Producing instance of Job 'DEFAULT.2acbbeb9-1245-48f5-94bd-fa1148f34391', class=TM.RestHour.Export
+2021-03-11 11:32:00.0536|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:32:00.0746|DEBUG|Quartz.Core.JobRunShell|Calling Execute on job DEFAULT.2acbbeb9-1245-48f5-94bd-fa1148f34391
+2021-03-11 11:32:03.2867|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:32:03 AM
+2021-03-11 11:32:03.2867|INFO|TM.RestHour.Export|Archiving Completed. - 3/11/2021 11:32:03 AM
+2021-03-11 11:32:03.2997|INFO|TM.RestHour.Export|Data Export Started. - 3/11/2021 11:32:03 AM
+2021-03-11 11:32:03.3957|INFO|TM.RestHour.Export|Data Export Completed. - 3/11/2021 11:32:03 AM
+2021-03-11 11:48:48.1595|INFO|Quartz.Impl.StdSchedulerFactory|Default Quartz.NET properties loaded from embedded resource file
+2021-03-11 11:48:48.2365|DEBUG|Quartz.Simpl.TaskSchedulingThreadPool|TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2021-03-11 11:48:48.2775|INFO|Quartz.Core.SchedulerSignalerImpl|Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2021-03-11 11:48:48.2885|INFO|Quartz.Core.QuartzScheduler|Quartz Scheduler v.3.2.4.0 created.
+2021-03-11 11:48:48.3026|INFO|Quartz.Simpl.RAMJobStore|RAMJobStore initialized.
+2021-03-11 11:48:48.3155|INFO|Quartz.Core.QuartzScheduler|Scheduler meta-data: Quartz Scheduler (v3.2.4.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-03-11 11:48:48.3155|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler 'DefaultQuartzScheduler' initialized
+2021-03-11 11:48:48.3315|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler version: 3.2.4.0
+2021-03-11 11:48:48.3475|INFO|Quartz.Core.QuartzScheduler|Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2021-03-11 11:48:48.3475|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:48:48.3926|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:49:16.1565|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:49:44.8860|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 1 triggers
+2021-03-11 11:50:00.0271|DEBUG|Quartz.Simpl.SimpleJobFactory|Producing instance of Job 'DEFAULT.632d1d32-22ae-42c8-b85e-764fcbabc475', class=TM.RestHour.Export
+2021-03-11 11:50:00.0462|DEBUG|Quartz.Core.QuartzSchedulerThread|Batch acquisition of 0 triggers
+2021-03-11 11:50:00.0711|DEBUG|Quartz.Core.JobRunShell|Calling Execute on job DEFAULT.632d1d32-22ae-42c8-b85e-764fcbabc475
+2021-03-11 11:50:13.4830|INFO|TM.RestHour.Export|Process Started. - 3/11/2021 11:50:13 AM
+2021-03-11 11:50:14.5931|INFO|TM.RestHour.Export|Archiving Completed. - 3/11/2021 11:50:14 AM
+2021-03-11 11:50:18.9185|INFO|TM.RestHour.Export|Data Export Started. - 3/11/2021 11:50:18 AM
+2021-03-11 11:50:19.4888|INFO|TM.RestHour.Export|Data Export Completed. - 3/11/2021 11:50:19 AM
+2021-03-11 11:50:20.0253|INFO|TM.RestHour.Export|Zip Created. - 3/11/2021 11:50:20 AM
