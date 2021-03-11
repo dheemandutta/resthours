@@ -21,6 +21,7 @@ namespace TM.RestHour.Controllers
     {
         public ActionResult ResetPasswordOfID()
         {
+          
             return View();
         }
         public ActionResult ResetPasswordNew()

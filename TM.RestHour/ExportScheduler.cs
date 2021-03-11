@@ -23,7 +23,8 @@ namespace TM.RestHour
                 .WithDailyTimeIntervalSchedule
                   (s =>
                      //s.WithIntervalInHours(24)
-                    s.WithIntervalInSeconds(30)
+                    //s.WithIntervalInSeconds(45)
+                    s.WithIntervalInMinutes(2)
                     .OnEveryDay()
                     .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
                   )
