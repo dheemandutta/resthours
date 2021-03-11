@@ -27,6 +27,7 @@ namespace TM.RestHour
 
 		public void Execute(IJobExecutionContext context)
 		{
+			logger.Info("Process Started. - {0}", DateTime.Now.ToString());
 			ArchiveZipFiles();
 			if (ZipDirectoryContainsZipFiles())
 			{

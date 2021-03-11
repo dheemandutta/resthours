@@ -62,8 +62,8 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.7.5\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Notify, Version=1.0.2.0, Culture=neutral, PublicKeyToken=60f94bdcb4e14c0b, processorArchitecture=MSIL">
       <HintPath>..\packages\Notify.1.0.2\lib\net40\Notify.dll</HintPath>
@@ -76,8 +76,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -219,6 +222,7 @@
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PatientProblemController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
+    <Compile Include="Controllers\PsychometricsController.cs" />
     <Compile Include="Controllers\RankPermissionController.cs" />
     <Compile Include="Controllers\RanksController.cs" />
     <Compile Include="Controllers\RegimeController.cs" />
@@ -357,6 +361,11 @@
     <Content Include="background\travel\logo.jpg" />
     <Content Include="background\up.png" />
     <Content Include="background\vissel.jpg" />
+    <Content Include="BinaryFile\Ionic.Zip.dll" />
+    <Content Include="BinaryFile\NLog.dll" />
+    <Content Include="BinaryFile\NLog.xml" />
+    <Content Include="BinaryFile\Quartz.dll" />
+    <Content Include="BinaryFile\Quartz.xml" />
     <Content Include="companylogo\Viridian Logo-Small.png" />
     <Content Include="companylogo\Viridian Logo.png" />
     <Content Include="Content\bootstrap-duallistbox.css" />
@@ -2823,7 +2832,12 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="NLog.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\RESTHOUR  Installer.pubxml" />
     <None Include="Properties\PublishProfiles\RESTHOUR Installer.pubxml" />
@@ -3058,6 +3072,7 @@
     <Content Include="Views\CrewHealth\UploadPistures.cshtml" />
     <Content Include="Views\Plans\Index.cshtml" />
     <Content Include="Views\MentalHealth\Index.cshtml" />
+    <Content Include="Views\Psychometrics\Index.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3066,6 +3081,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Equipment\" />
     <Folder Include="JoiningMedical\" />
+    <Folder Include="logs\" />
     <Folder Include="MedicalEquipmentOnBoard\" />
     <Folder Include="MedicalHistoryUpload\" />
     <Folder Include="MedicineAvailableOnBoard\" />
