@@ -17,7 +17,7 @@ namespace TM.RestHour
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ExportScheduler.Start();
+            //ExportScheduler.Start();
         }
 
         protected void Application_EndRequest()
