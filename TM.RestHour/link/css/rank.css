@@ -59,7 +59,7 @@ a.dtMoveUp, a.dtMoveDown {
 
 fieldset.for-panel legend {
     background-color: #fafafa !important;
-    border: 1px solid #22baa0;
+    border: 1px solid #a278fe;
     border-radius: 5px;
     color: #fff !important;
     font-size: 15px;
@@ -69,7 +69,7 @@ fieldset.for-panel legend {
     margin-bottom: inherit;
     padding: 7px;
     width: auto;
-    background-color: #22baa0 !important;
+    background-color: #a278fe !important;
 }
 
 fieldset.for-panel {
@@ -86,7 +86,7 @@ fieldset.for-panel {
 }
 
     fieldset.for-panel legend {
-        border: 1px solid #22baa0;
+        border: 1px solid #a278fe;
         border-radius: 5px;
         font-size: 15px;
         font-weight: bold;
