@@ -222,6 +222,7 @@
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PatientProblemController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
+    <Compile Include="Controllers\PsychometricsController.cs" />
     <Compile Include="Controllers\RankPermissionController.cs" />
     <Compile Include="Controllers\RanksController.cs" />
     <Compile Include="Controllers\RegimeController.cs" />
@@ -3071,6 +3072,7 @@
     <Content Include="Views\CrewHealth\UploadPistures.cshtml" />
     <Content Include="Views\Plans\Index.cshtml" />
     <Content Include="Views\MentalHealth\Index.cshtml" />
+    <Content Include="Views\Psychometrics\Index.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
