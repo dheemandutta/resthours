@@ -10,6 +10,7 @@ using TM.Base.Entities;
 
 namespace TM.RestHour.DAL
 {
+
     public class VesselDetailsDAL
     {
         public int SaveVesselDetails(VesselDetailsPOCO vesselDetails /*, int VesselID*/)
