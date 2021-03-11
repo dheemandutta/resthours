@@ -84,7 +84,7 @@ namespace TM.RestHour
 				SqlDataAdapter da = new SqlDataAdapter(cmd);
 				da.Fill(ds);
 				string fileName = ds.Tables[0].Rows[0]["IMONumber"].ToString();
-				fileName = fileName + "_" + DateTime.Now.ToString("MMddyyyy");
+				fileName = fileName + "_" + DateTime.Now.ToString("MMddyyyyhhmm");
 				fileName = fileName + ".zip";
 
 				using (ZipFile zip = new ZipFile())
