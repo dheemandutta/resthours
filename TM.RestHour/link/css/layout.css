@@ -253,7 +253,7 @@ body {
 
 .buttonpop {
     position: relative;
-    background-color: #22BAA0;
+    background-color: #a278fe;
     border: none;
     font-size: 13px;
     color: #FFFFFF;
@@ -977,8 +977,8 @@ table th, table td {
 }
 
     .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
-        border: 1px solid #22baa0 !important;
-        background: #22baa0 !important;
+        border: 1px solid #a278fe !important;
+        background: #a278fe !important;
         font-weight: normal;
         /* color: #c70000; */
     }

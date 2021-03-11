@@ -11,3 +11,15 @@
 2021-03-11 09:01:00.2571|ERROR|TM.RestHour.Export|Directory not found. - Cannot create a file when that file already exists.
  :
 2021-03-11 09:01:00.3040|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:24:00.2340|ERROR|TM.RestHour.Export|Directory not found. - Could not find a part of the path 'E:\All Projects\RestHour BugFixBranche with Mousumi Work\TM.RestHour\bin\ZipFile'. :
+2021-03-11 09:24:00.2891|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:25:00.2362|ERROR|TM.RestHour.Export|Directory not found. - Could not find a part of the path 'E:\All Projects\RestHour BugFixBranche with Mousumi Work\TM.RestHour\bin\ZipFile'. :
+2021-03-11 09:25:00.3322|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:43:30.3876|ERROR|TM.RestHour.Export|Directory not found. - Could not find a part of the path 'E:\All Projects\RestHour BugFixBranche with Mousumi Work\TM.RestHour\bin\ZipFile'. :
+2021-03-11 09:43:30.4628|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:49:00.3059|ERROR|TM.RestHour.Export|Directory not found. - Could not find a part of the path 'E:\All Projects\RestHour BugFixBranche with Mousumi Work\TM.RestHour\bin\ZipFile'. :
+2021-03-11 09:49:00.3613|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:51:00.1968|ERROR|TM.RestHour.Export|Directory not found. - Could not find a part of the path 'E:\All Projects\RestHour BugFixBranche with Mousumi Work\TM.RestHour\bin\ZipFile'. :
+2021-03-11 09:51:00.2508|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
+2021-03-11 09:51:30.1780|ERROR|TM.RestHour.Export|Directory not found. - Could not find a part of the path 'E:\All Projects\RestHour BugFixBranche with Mousumi Work\TM.RestHour\bin\ZipFile'. :
+2021-03-11 09:51:30.2103|INFO|TM.RestHour.Export|Export process terminated unsuccessfully in ArchiveZipFiles.
