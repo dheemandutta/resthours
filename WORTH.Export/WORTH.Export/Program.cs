@@ -2,6 +2,7 @@
 using Quartz.Impl;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,7 @@ namespace WORTH.Export
                 .WithDailyTimeIntervalSchedule
                   (s =>
                      //s.WithIntervalInHours(24)
-                     s.WithIntervalInSeconds(60)
+                     s.WithIntervalInSeconds(int.Parse(ConfigurationManager.AppSettings["SchedulerTimer"].ToString()))
                     .OnEveryDay()
                     .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
                   )
