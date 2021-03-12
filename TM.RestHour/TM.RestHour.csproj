@@ -251,8 +251,6 @@
     <Compile Include="Controllers\TimeSheetController.cs" />
     <Compile Include="Controllers\UploadMedicalInventoryController.cs" />
     <Compile Include="Controllers\VesselController.cs" />
-    <Compile Include="Export.cs" />
-    <Compile Include="ExportScheduler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
