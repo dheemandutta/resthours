@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using Quartz;
 using Quartz.Impl;
 using System.Web;
@@ -23,6 +24,8 @@ namespace WORTH.Export
 
             await scheduler.Start();
 
+            int intervalTimeInSecond = int.Parse(ConfigurationManager.AppSettings["SchedulerIntervalTime"].ToString());
+
 
             IJobDetail job = JobBuilder.Create<EmailJob>().Build();
 
@@ -30,7 +33,8 @@ namespace WORTH.Export
                 .WithDailyTimeIntervalSchedule
                   (s =>
                      //s.WithIntervalInHours(24)
-                     s.WithIntervalInSeconds(120)
+                     //s.WithIntervalInSeconds(120)
+                     s.WithIntervalInSeconds(intervalTimeInSecond)
                     .OnEveryDay()
                     .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
                   )

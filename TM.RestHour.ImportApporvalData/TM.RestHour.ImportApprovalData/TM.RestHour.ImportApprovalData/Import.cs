@@ -510,25 +510,29 @@ namespace TM.RestHour.ImportApprovalData
             {
                 logger.Info("Import Zip from Mailbox Started. - {0}", DateTime.Now.ToString());
 
+                string mTyp = GetConfigData("protocol");
                 //Creating Mail configuration 
                 MailServiceConfiguration serviceconf = new MailServiceConfiguration
                 {
                     //MailId              = GetShipEmail(),
-                    //MailPassword        = GetConfigData("shipemailpwd"),
-                    //MailServerDomain    = GetConfigData("pop"),
-                    //Port                = int.Parse(GetConfigData("pop3port")),
-                    //AttachmentPath      = _folderPath,
-                    //SubjectLine         = "RHDATASYNC",
-                    //MailServerType      = MailType.POP3
-                    ///---------------------------
-                    MailId              = "cableman24x7@gmail.com",
-                    MailPassword        = "cableman24x712345",
-                    MailServerDomain    = "imap.gmail.com",
-                    Port = 993,
+                    MailId              = GetConfigData("shipemail"),
+                    MailPassword        = GetConfigData("shipemailpwd"),
+                    MailServerDomain    = GetConfigData("imappopServer"),
+                    Port                = int.Parse(GetConfigData("imappopport")),
                     AttachmentPath      = zipPath,
                     SubjectLine         = "RHDATASYNC",
-                    //SubjectLine = "DATASYNCFILE",
-                    MailServerType      = MailType.IMAP
+                    MailServerType      = mTyp
+
+                    ///---------------------------
+                    //MailId              = "cableman24x7@gmail.com",
+                    //MailPassword        = "cableman24x712345",
+                    //MailServerDomain    = "imap.gmail.com",
+                    //Port = 993,
+                    //AttachmentPath      = zipPath,
+                    //SubjectLine         = "RHDATASYNC",
+                    ////SubjectLine = "DATASYNCFILE",
+
+                    //MailServerType      = mTyp
                     //---------------------------------
                 };
 
