@@ -514,14 +514,19 @@ namespace TM.RestHour.ImportApprovalData
                 //Creating Mail configuration 
                 MailServiceConfiguration serviceconf = new MailServiceConfiguration
                 {
+
                     //MailId              = GetShipEmail(),
                     MailId              = GetConfigData("shipemail"),
                     MailPassword        = GetConfigData("shipemailpwd"),
+
+                    //SubjectLine         = "RHDATASYNC",
+                    SubjectLine         = GetConfigData("rhsubject"),
+
                     MailServerDomain    = GetConfigData("imappopServer"),
                     Port                = int.Parse(GetConfigData("imappopport")),
-                    AttachmentPath      = zipPath,
-                    SubjectLine         = "RHDATASYNC",
-                    MailServerType      = mTyp
+                    MailServerType      = mTyp,
+
+                    AttachmentPath      = zipPath
 
                     ///---------------------------
                     //MailId              = "cableman24x7@gmail.com",
