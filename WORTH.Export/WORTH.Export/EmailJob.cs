@@ -477,15 +477,16 @@ namespace WORTH.Export
 			{
 				using (MailMessage mail = new MailMessage())
 				{
-					mail.Subject	= GetConfigData("subject");
+					mail.Subject	= GetConfigData("Subject");
 
 					//mail.From		= new MailAddress(GetConfigData("mailfrom"));
-					mail.From = new MailAddress(GetConfigData("shipemail"));
+					mail.From		= new MailAddress(GetConfigData("shipemail"));
 					logger.Info("Mail Address From Set. - {0}", DateTime.Now.ToString());
 
 					//mail.To.Add(GetConfigData("mailto"));
 					mail.To.Add(GetConfigData("admincenteremail"));
 					logger.Info("Mail Address to Set. - {0}", DateTime.Now.ToString());
+
 					if (ZipDirectoryContainsZipFiles())
 					{
 						logger.Info("Adding Attachments. - {0}", DateTime.Now.ToString());
@@ -502,6 +503,7 @@ namespace WORTH.Export
 					smtp.Credentials = new System.Net.NetworkCredential(GetConfigData("shipemail").Trim(), GetConfigData("shipemailpwd").Trim());
 					//smtp.Credentials = new System.Net.NetworkCredential("cableman24x7@gmail.com", "cableman24x712345");
 					logger.Info("Mail Sending. - {0}", DateTime.Now.ToString());
+
 					smtp.Send(mail);
 					logger.Info("Mail Sent. - {0}", DateTime.Now.ToString());
 
