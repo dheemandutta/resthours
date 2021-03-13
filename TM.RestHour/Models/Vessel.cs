@@ -95,5 +95,7 @@ namespace TM.RestHour.Models
         //13-01-2021 SSG
         public string CreatedOn { get; set; }
 
+        public string IMAPPOP { get; set; }
+
     }
 }

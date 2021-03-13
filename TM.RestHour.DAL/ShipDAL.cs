@@ -650,7 +650,14 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@PopPort", DBNull.Value);
             }
 
-
+            if (!String.IsNullOrEmpty(ship.IMAPPOP))
+            {
+                cmd.Parameters.AddWithValue("@IMAPPOP", ship.IMAPPOP);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@IMAPPOP", DBNull.Value);
+            }
 
             //cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail.ToString());
             //cmd.Parameters.AddWithValue("@ShipEmailPwd", ship.ShipEmailPassword.ToString());

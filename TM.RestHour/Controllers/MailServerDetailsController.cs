@@ -345,6 +345,8 @@ namespace TM.RestHour.Controllers
             shipPC.MailTo = ship.MailTo;
             shipPC.MailPassword = ship.MailPassword;
             //shipPC.AttachmentSize = ship.AttachmentSize;
+
+            shipPC.IMAPPOP = ship.IMAPPOP;
             return Json(shipBL.SaveConfigData(shipPC), JsonRequestBehavior.AllowGet);
         }
 
