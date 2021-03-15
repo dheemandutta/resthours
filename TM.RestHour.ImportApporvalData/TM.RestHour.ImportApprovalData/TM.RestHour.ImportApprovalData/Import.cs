@@ -202,8 +202,10 @@ namespace TM.RestHour.ImportApprovalData
         {
             try
             {
+                string imoNo = GetShipIMO();
                 // Here your xml file
-                string xmlFile = extractPath + "\\" + ConfigurationManager.AppSettings["xmlCrew"].ToString();
+                //string xmlFile = extractPath + "\\" + ConfigurationManager.AppSettings["xmlCrew"].ToString();
+                string xmlFile = extractPath + "\\" + imoNo+".xml";
 
                 DataSet dataSet = new DataSet();
                 dataSet.ReadXmlSchema(xmlFile);
@@ -216,6 +218,8 @@ namespace TM.RestHour.ImportApprovalData
 
                 foreach (DataRow row in dataSet.Tables[0].Rows)
                 {
+
+                    #region Parameters
                     cmd.Parameters.AddWithValue("@ID", int.Parse(row["ID"].ToString()));
 
                     cmd.Parameters.AddWithValue("@Name", row["Name"].ToString());
@@ -461,7 +465,7 @@ namespace TM.RestHour.ImportApprovalData
                     {
                         cmd.Parameters.AddWithValue("@ExpiryDateOfIdentityDocument", DBNull.Value);
                     }
-
+                    #endregion
 
                     cmd.ExecuteNonQuery();
                     cmd.Parameters.Clear();
@@ -499,6 +503,19 @@ namespace TM.RestHour.ImportApprovalData
             }
         }
 
+        private static string GetShipIMO()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            // Prasenjit // "r" is a Typo "stpExportCrewApprovalData" to "stpExpotrCrewApprovalData"
+            SqlCommand cmd = new SqlCommand("GetIMONumber", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            
+            return ds.Tables[0].Rows[0]["IMONumber"].ToString();
+        }
 
         #endregion
 
