@@ -27,7 +27,10 @@ namespace TM.RestHour.ImportApprovalData
             ImportMail();
             if (isMailReadSuccessful)
             {
-                StartImport();
+                if (ZipDirectoryContainsFiles())
+                {
+                    StartImport();
+                }
             }
 
             //throw new NotImplementedException();
@@ -141,6 +144,22 @@ namespace TM.RestHour.ImportApprovalData
             //System.IO.File.Move(sourceFilePath, destinationFilePath);
         }
 
+        public static bool ZipDirectoryContainsFiles()
+        {
+            try
+            {
+                DirectoryInfo di = new DirectoryInfo(zipPath + "\\");
+                return di.GetFiles("*.zip").Length > 0;
+            }
+            catch (Exception ex)
+            {
+
+                logger.Error("Directory not found. - {0}", ex.Message + " :" + ex.InnerException);
+                logger.Info("Import process terminated unsuccessfully in ZipDirectoryContainsZipFiles.");
+                return false;
+                //Environment.Exit(0);
+            }
+        }
         public static void ImportData()
         {
             try
@@ -196,8 +215,7 @@ namespace TM.RestHour.ImportApprovalData
 
         }
 
-
-
+       
         public static void Crew()
         {
             try
@@ -205,7 +223,8 @@ namespace TM.RestHour.ImportApprovalData
                 string imoNo = GetShipIMO();
                 // Here your xml file
                 //string xmlFile = extractPath + "\\" + ConfigurationManager.AppSettings["xmlCrew"].ToString();
-                string xmlFile = extractPath + "\\" + imoNo+".xml";
+                string xmlFile = extractPath + "\\" + imoNo + ".xml";
+
 
                 DataSet dataSet = new DataSet();
                 dataSet.ReadXmlSchema(xmlFile);
@@ -213,259 +232,47 @@ namespace TM.RestHour.ImportApprovalData
 
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("stpImportCrew", con);
+                SqlCommand cmd = new SqlCommand("stpImportWorkSessionsApprovalData", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                //SqlDataAdapter da = new SqlDataAdapter(cmd);
 
+                // Then display informations to test
                 foreach (DataRow row in dataSet.Tables[0].Rows)
                 {
-
-                    #region Parameters
                     cmd.Parameters.AddWithValue("@ID", int.Parse(row["ID"].ToString()));
 
-                    cmd.Parameters.AddWithValue("@Name", row["Name"].ToString());
+                    cmd.Parameters.AddWithValue("@CrewID", row["CrewID"].ToString());
 
-                    if (row["Watchkeeper"] != DBNull.Value)
+                    if (row["VesselID"] != DBNull.Value)
                     {
-                        cmd.Parameters.AddWithValue("@Watchkeeper", Boolean.Parse(row["Watchkeeper"].ToString()));
+                        cmd.Parameters.AddWithValue("@VesselID", row["VesselID"].ToString());
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue("@Watchkeeper", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@VesselID", DBNull.Value);
                     }
 
-                    if (row["Notes"] != DBNull.Value)
+                    if (row["Comments"] != DBNull.Value)
                     {
-                        cmd.Parameters.AddWithValue("@Notes", row["Notes"].ToString());
+                        cmd.Parameters.AddWithValue("@Comments", row["Comments"].ToString());
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue("@Notes", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Comments", DBNull.Value);
                     }
 
-                    if (row["Deleted"] != DBNull.Value)
+                    if (row["isApproved"] != DBNull.Value)
                     {
-                        cmd.Parameters.AddWithValue("@Deleted", Boolean.Parse(row["Deleted"].ToString()));
+                        cmd.Parameters.AddWithValue("@isApproved", Boolean.Parse(row["isApproved"].ToString()));
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue("@Deleted", DBNull.Value);
-                    }
-
-                    if (row["LatestUpdate"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@LatestUpdate", DateTime.Parse(row["LatestUpdate"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@LatestUpdate", DBNull.Value);
-                    }
-
-                    if (row["CompleteHistory"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@CompleteHistory", Boolean.Parse(row["CompleteHistory"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@CompleteHistory", DBNull.Value);
-                    }
-
-                    if (row["PayNum"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@PayNum", row["PayNum"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@PayNum", DBNull.Value);
-                    }
-
-                    if (row["CreatedOn"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@CreatedOn", DateTime.Parse(row["CreatedOn"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@CreatedOn", DBNull.Value);
-                    }
-
-                    if (row["OvertimeEnabled"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@OvertimeEnabled", Boolean.Parse(row["OvertimeEnabled"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@OvertimeEnabled", DBNull.Value);
-                    }
-
-                    if (row["EmployeeNumber"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@EmployeeNumber", row["EmployeeNumber"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@EmployeeNumber", DBNull.Value);
-                    }
-
-                    if (row["NWKHoursMayVary"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@NWKHoursMayVary", Boolean.Parse(row["NWKHoursMayVary"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@NWKHoursMayVary", DBNull.Value);
-                    }
-
-                    if (row["RankID"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@RankID", int.Parse(row["RankID"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@RankID", DBNull.Value);
-                    }
-
-                    if (row["FirstName"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@FirstName", row["FirstName"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@FirstName", DBNull.Value);
-                    }
-
-                    if (row["LastName"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@LastName", row["LastName"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@LastName", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@isApproved", DBNull.Value);
                     }
 
 
-                    if (row["DOB"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@DOB", DateTime.Parse(row["DOB"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@DOB", DBNull.Value);
-                    }
 
-                    if (row["POB"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@POB", row["POB"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@POB", DBNull.Value);
-                    }
 
-                    if (row["CrewIdentity"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@CrewIdentity", row["CrewIdentity"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@CrewIdentity", DBNull.Value);
-                    }
-
-                    if (row["PassportSeamanPassportBook"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@PassportSeamanPassportBook", row["PassportSeamanPassportBook"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@PassportSeamanPassportBook", DBNull.Value);
-                    }
-
-                    if (row["Seaman"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@Seaman", row["Seaman"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@Seaman", DBNull.Value);
-                    }
-
-                    if (row["MiddleName"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@MiddleName", row["MiddleName"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@MiddleName", DBNull.Value);
-                    }
-
-                    if (row["IsActive"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@IsActive", Boolean.Parse(row["IsActive"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@IsActive", DBNull.Value);
-                    }
-
-                    cmd.Parameters.AddWithValue("@VesselID", int.Parse(row["VesselID"].ToString()));
-
-                    if (row["DepartmentMasterID"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@DepartmentMasterID", int.Parse(row["DepartmentMasterID"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@DepartmentMasterID", DBNull.Value);
-                    }
-
-                    if (row["CountryID"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@CountryID", int.Parse(row["CountryID"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@CountryID", DBNull.Value);
-                    }
-                    if (row["DeactivationDate"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@DeactivationDate", DateTime.Parse(row["DeactivationDate"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@DeactivationDate", DBNull.Value);
-                    }
-                    if (row["DeletionDate"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@DeletionDate", DateTime.Parse(row["DeletionDate"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@DeletionDate", DBNull.Value);
-                    }
-                    if (row["Gender"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@Gender", row["Gender"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@Gender", DBNull.Value);
-                    }
-                    if (row["IssuingStateOfIdentityDocument"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@IssuingStateOfIdentityDocument", row["IssuingStateOfIdentityDocument"].ToString());
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@IssuingStateOfIdentityDocument", DBNull.Value);
-                    }
-
-                    if (row["ExpiryDateOfIdentityDocument"] != DBNull.Value)
-                    {
-                        cmd.Parameters.AddWithValue("@ExpiryDateOfIdentityDocument", DateTime.Parse(row["ExpiryDateOfIdentityDocument"].ToString()));
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@ExpiryDateOfIdentityDocument", DBNull.Value);
-                    }
-                    #endregion
 
                     cmd.ExecuteNonQuery();
                     cmd.Parameters.Clear();
