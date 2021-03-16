@@ -1242,6 +1242,7 @@ namespace TM.RestHour.Controllers
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region Upload Section
         public ActionResult UploadJoiningMedical()
         {
             // GetAllCrewForTimeSheet();
@@ -1750,7 +1751,7 @@ namespace TM.RestHour.Controllers
         }
 
 
-
+        #endregion
 
 
         [HttpGet]
