@@ -162,21 +162,21 @@ namespace TM.RestHour.ImportApprovalData
             {
                 LogHelper.Log(LogTarget.EventLog, ex.Message);
             }
-            finally
-            {
-                if (MailServerType == MailType.POP3)
-                {
-                    //pop.Disconnect();
-                    pop_Client.Disconnect(true);
+            //finally
+            //{
+            //    if (MailServerType == MailType.POP3)
+            //    {
+            //        //pop.Disconnect();
+            //        pop_Client.Disconnect(true);
 
-                }
-                else
-                {
-                    //imap.Disconnect();
-                    imap_Client.Disconnect(true);
-                }
-                Dispose();
-            }
+            //    }
+            //    else
+            //    {
+            //        //imap.Disconnect();
+            //        imap_Client.Disconnect(true);
+            //    }
+            //    Dispose();
+            //}
             if (MailServerType == MailType.POP3)
             {
                 //pop.Disconnect();
