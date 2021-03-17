@@ -319,6 +319,8 @@ namespace TM.RestHour.Controllers
             shipPC.POP3 = ship.POP3;
             shipPC.POP3Port = ship.POP3Port;
 
+            shipPC.IMAPPOP = ship.IMAPPOP;
+
             return Json(shipBL.SaveConfigData(shipPC), JsonRequestBehavior.AllowGet);
         }
 
