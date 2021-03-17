@@ -570,40 +570,6 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@SmtpServer", ship.SmtpServer.ToString());
             cmd.Parameters.AddWithValue("@Port", ship.Port.ToString());
             /////////////////////////////////////////////////////////////////////////////////
-            if (!String.IsNullOrEmpty(ship.MailFrom))
-            {
-                cmd.Parameters.AddWithValue("@MailFrom", ship.MailFrom);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@MailFrom", DBNull.Value);
-            }
-
-            if (!String.IsNullOrEmpty(ship.MailTo))
-            {
-                cmd.Parameters.AddWithValue("@MailTo", ship.MailTo);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@MailTo", DBNull.Value);
-            }
-
-            if (!String.IsNullOrEmpty(ship.MailPassword))
-            {
-                cmd.Parameters.AddWithValue("@MailPassword", ship.MailPassword);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@MailPassword", DBNull.Value);
-            }
-            //////////////////////////////////////////////////////////////////////////////////
-            //cmd.Parameters.AddWithValue("@MailFrom", ship.MailFrom.ToString());
-            //cmd.Parameters.AddWithValue("@MailTo", ship.MailTo.ToString());
-            //cmd.Parameters.AddWithValue("@MailPassword", ship.MailPassword.ToString());
-            //////////////////////////////////////////////////////////////////////////////////
-            ///
-            //New  --> /MailServerDetails/Index
-
             if (!String.IsNullOrEmpty(ship.ShipEmail))
             {
                 cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail);
@@ -631,6 +597,24 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@AdminCenterEmail", DBNull.Value);
             }
 
+
+            //////////////////////////////////////////////////////////////////////////////////
+            //cmd.Parameters.AddWithValue("@MailFrom", ship.MailFrom.ToString());
+            //cmd.Parameters.AddWithValue("@MailTo", ship.MailTo.ToString());
+            //cmd.Parameters.AddWithValue("@MailPassword", ship.MailPassword.ToString());
+            //////////////////////////////////////////////////////////////////////////////////
+            ///
+            //New  --> /MailServerDetails/Index         
+
+            if (!String.IsNullOrEmpty(ship.IMAPPOP))
+            {
+                cmd.Parameters.AddWithValue("@IMAPPOP", ship.IMAPPOP);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@IMAPPOP", DBNull.Value);
+            }
+
             if (!String.IsNullOrEmpty(ship.POP3))
             {
                 cmd.Parameters.AddWithValue("@IMAPPOPServer", ship.POP3);
@@ -642,21 +626,14 @@ namespace TM.RestHour.DAL
 
             if (!String.IsNullOrEmpty(ship.POP3Port))
             {
-                cmd.Parameters.AddWithValue("@PopPort", ship.POP3Port);
+                cmd.Parameters.AddWithValue("@IMAPPOPPort", ship.POP3Port);
             }
             else
             {
-                cmd.Parameters.AddWithValue("@PopPort", DBNull.Value);
+                cmd.Parameters.AddWithValue("@IMAPPOPPort", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(ship.IMAPPOP))
-            {
-                cmd.Parameters.AddWithValue("@IMAPPOP", ship.IMAPPOP);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@IMAPPOP", DBNull.Value);
-            }
+          
 
             //cmd.Parameters.AddWithValue("@ShipEmail", ship.ShipEmail.ToString());
             //cmd.Parameters.AddWithValue("@ShipEmailPwd", ship.ShipEmailPassword.ToString());

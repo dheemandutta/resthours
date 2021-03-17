@@ -308,6 +308,7 @@ namespace TM.RestHour.Controllers
         {
             ShipBL shipBL = new ShipBL();
             ShipPOCO shipPC = new ShipPOCO();
+
             shipPC.SmtpServer = ship.SmtpServer;
             shipPC.Port = ship.Port;
             //shipPC.MailFrom = ship.MailFrom;
@@ -316,10 +317,12 @@ namespace TM.RestHour.Controllers
             shipPC.ShipEmail = ship.ShipEmail;
             shipPC.ShipEmailPassword = ship.ShipEmailPassword;
             shipPC.AdminCenterEmail = ship.AdminCenterEmail;
+
+            shipPC.IMAPPOP = ship.IMAPPOP;
             shipPC.POP3 = ship.POP3;
             shipPC.POP3Port = ship.POP3Port;
 
-            shipPC.IMAPPOP = ship.IMAPPOP;
+           
 
             return Json(shipBL.SaveConfigData(shipPC), JsonRequestBehavior.AllowGet);
         }

@@ -939,10 +939,12 @@ function SaveConfigData() {
         ShipEmail: $('#ShipEmail').val(),
         ShipEmailPassword: $('#ShipEmailPassword').val(),
         AdminCenterEmail: $('#AdminCenterEmail').val(),
-        POP3: $('#POP3').val(),
-        POP3Port: $('#POP3Port').val(),
 
-        IMAPPOP: $('#IMAPPOP').val()
+        IMAPPOP: $('#IMAPPOP').val(),
+        POP3: $('#POP3').val(),
+        POP3Port: $('#POP3Port').val()
+
+       
     };
     //debugger;
 
