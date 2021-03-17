@@ -436,7 +436,7 @@ namespace TM.RestHour.DAL
 
             cmd.Parameters.AddWithValue("@AdminUser", ship.AdminUser.ToString());
             cmd.Parameters.AddWithValue("@AdminPassword", ship.AdminPassword.ToString());
-            cmd.Parameters.AddWithValue("@DeactivationDate", ship.DeactivationDate);
+            cmd.Parameters.AddWithValue("@DeactivationDate",DBNull.Value );  // ship.DeactivationDate
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
             cmd.Parameters.AddWithValue("@VesselTypeID", ship.VesselTypeID.ToString());
