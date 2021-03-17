@@ -258,4 +258,142 @@ function GetCrewForCIRMPatientDetailsByCrew(ID) {
 }
 
 
+function UploadFiles() {
+    var res = false;
+    if ($('#ddlCrew').val().length === 0) {
+        $('#ddlCrew').css('border-color', 'Red');
+        res = false;
+    }
+    else {
+        $('#ddlCrew').css('border-color', 'lightgrey');
+        res = true;
+    }
+    
+    if (res == false) {
+        return false;
+    }
+    
+    if (res) {
+        //Checking whether FormData is available in browser  
+        if (window.FormData !== undefined) {
+            var crewId = $("#ddlCrew").val();
+            var fileUpload = $("#uploadCrewHealthImage").get(0);
+            var files = fileUpload.files;
+            // Create FormData object  
+            var fileData = new FormData();
+
+            // Looping over all files and add it to FormData object  
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            // Adding one more key to FormData object
+            fileData.append('crewId', crewId);
+            $.ajax({
+                url: '/CrewHealth/UploadCrewHealthImage',
+                type: "POST",
+                //datatype: "json",
+                //contentType: "application/json; charset=utf-8",
+                contentType: false, // Not to set any content header  
+                processData: false, // Not to process data  
+                data: fileData,
+                success: function (result) {
+                    //alert(result);
+                    $("#lblSuccMsg").text(result[1]);
+                    $("#hdnCrewHealthImagePath").val(result[0]);
+                    $("#lblSuccMsg").removeClass("hidden");
+
+                    //ClearFields();
+                    //toastr.options = {
+                    //    "closeButton": false,
+                    //    "debug": false,
+                    //    "newestOnTop": false,
+                    //    "progressBar": false,
+                    //    "positionClass": "toast-bottom-full-width",
+                    //    "preventDuplicates": false,
+                    //    "onclick": null,
+                    //    "showDuration": "300",
+                    //    "hideDuration": "1000",
+                    //    "timeOut": "5000",
+                    //    "extendedTimeOut": "1000",
+                    //    "showEasing": "swing",
+                    //    "hideEasing": "linear",
+                    //    "showMethod": "fadeIn",
+                    //    "hideMethod": "fadeOut"
+                    //};
+
+                    //toastr.success("Added Successfully");
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+
+    }
+
+}
+
+function SendMail() {
+
+    var crewHealthDetails = {
+        ID                  : $('#ddlCrew').val(),
+        Name                : $('#ddlCrew option:selected').text(),
+        RankID              : $('#ddlRank').val(),
+        RankName            : $('#ddlRank option:selected').text(),
+        Nationality         : $('#Nationality').val(),
+        DOB                 : $('#Age').val(),
+        JoinDate            : $('#JoiningDate').val(),
+        Sex                 : $('#Sex').val(),
+        Adiction            : $('#Addiction').val(),
+        Ethinicity          : $('#Ethinicity').val(),
+        Frequency           : $('#Frequency').val(),
+        Category            : $('#Category').val(),
+        SubCategory         : $('#SubCategory').val(),
+        Pulse               : $('#Pulse').val(),
+        SPO2                : $('#OxygenSaturation').val(),
+        Respiratory         : $('#RespiratoryRate').val(),
+        Systolic            : $('#Systolic').val(),
+        Diastolic           : $('#Diastolic').val(),
+        ObservedDate        : $('#SymptomatologyDate').val(),
+        ObservedTime        : $('#SymptomatologyTime').val(),
+        IsVomiting          : $('#Vomiting').val(),
+        VomitingFrequency   : $('#FrequencyOfVomiting').val(),
+        IsFits              : $('#Fits').val(),
+        FitsFrequency       : $('#FrequencyOfFits').val(),
+        SympDetails         : $('#Details').val(),
+        Medicines           : $('#MedicinesAdministered').val(),
+        OtherInfo           : $('#AnyOtherRelevantInformation').val(),
+        AccidentDesc        : $('#WhereAndHowAccidentOccured').val(),
+        SeverityPain        : $("input[name='SeverityOfPain']:checked").parent('label').text(),
+        InjuryLocation      : $('#LocationAndTypeOfInjuryBurn').val(),
+        FrequencyOfPain     : $('#FrequencyOfPain').val(),
+        FirstAid            : $('#FirstAidGiven').val(),
+        PercentageOfInjury  : $('#PercentageOfBurn').val(),
+        DoctorsMail         : $('#Email').val()
+
+    };
+
+    $.ajax({
+        url: '/CrewHealth/SendMail',
+        type: "POST",
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(crewHealthDetails),
+        success: function (result) {
+            //alert(result);
+            $("#lblSuccMsg").text(result[1]);
+            $("#hdnCrewHealthImagePath").val(result[0]);
+            $("#lblSuccMsg").removeClass("hidden");
+
+        },
+        error: function (err) {
+            alert(err.statusText);
+        }
+    });
+}
+
+
 

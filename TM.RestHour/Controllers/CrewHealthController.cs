@@ -1243,6 +1243,71 @@ namespace TM.RestHour.Controllers
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         #region Upload Section
+        public JsonResult UploadCrewHealthImage(string crewId)
+        {
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    List<string> returnMsg = new List<string>();
+                    string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                    fileName = "CrewHealthImages" + "_" + crewId;
+
+                    
+                    //  Get all files from Request object  
+                    HttpFileCollectionBase files = Request.Files;
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                       
+                        HttpPostedFileBase file = files[i];
+                        string fname;
+                        string extn;
+
+                        // Checking for Internet Explorer  
+                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                        {
+                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                            fname = testfiles[testfiles.Length - 1];
+                            extn = Path.GetExtension(fname);
+                        }
+                        else
+                        {
+                            fname = file.FileName;
+                            extn = Path.GetExtension(file.FileName);
+                        }
+                        string path = Server.MapPath(ConfigurationManager.AppSettings["CrewHealthImagesPath"].ToString());
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        if (System.IO.File.Exists(path + fileName))
+                        {
+                            System.IO.File.Delete(path + fileName);
+                        }
+                        fileName = fileName + extn;
+                        // Get the complete folder path and store the file inside it.  
+                        string fnameWithPath = Path.Combine(path, fileName);
+                        file.SaveAs(fnameWithPath);
+                        returnMsg.Add(fnameWithPath);
+
+                    }
+                    
+                    returnMsg.Add("File Uploaded Successfully!");
+                   
+
+                    return Json(returnMsg,JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json("Error occurred. Error details: " + ex.Message);
+                }
+            }
+            else
+            {
+                return Json("No files selected.");
+            }
+        }
+
         public ActionResult UploadJoiningMedical()
         {
             // GetAllCrewForTimeSheet();
@@ -1943,5 +2008,347 @@ namespace TM.RestHour.Controllers
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SendMail(CrewHealthDetails crewHealthDetails)
+        {
+            CrewBL crewBl = new CrewBL();
+            String path = Server.MapPath("~/");
+            StringBuilder mailBody = new StringBuilder();
+
+            try
+            {
+                string s= GenerateEmailBody(crewHealthDetails);
+                mailBody.Append(s);
+                using (MailMessage mail = new MailMessage())
+                {
+
+                    mail.From = new MailAddress(crewBl.GetConfigData("shipemail"));
+                    mail.To.Add(crewHealthDetails.DoctorsMail);//----
+
+                    mail.Subject = "Patient's Description";
+                    mail.Body = mailBody.ToString();
+                    string cerwHealthaimgPath = path + "\\" + ConfigurationManager.AppSettings["CrewHealthImagesPath"].ToString();
+                    if (FileExistInDirectory(cerwHealthaimgPath, "CrewHealthImages_" + crewHealthDetails.ID))
+                    {
+                        mail.Attachments.Add(new Attachment(cerwHealthaimgPath + "\\" + GetFileName(cerwHealthaimgPath, "CrewHealthImages_" + crewHealthDetails.ID))) ;
+                    }
+                    string joinMedicalImgPath = path + "\\" + ConfigurationManager.AppSettings["JoiningMedicalUploadPath"].ToString();
+                    if (FileExistInDirectory(joinMedicalImgPath, "JoiningMedical_" + crewHealthDetails.ID))
+                    {
+                        mail.Attachments.Add(new Attachment(joinMedicalImgPath + "\\" + GetFileName(cerwHealthaimgPath, "CrewHealthImages_" + crewHealthDetails.ID)));
+                    }
+                    string medicineAvailableImgPath = path + "\\" + ConfigurationManager.AppSettings["MedicineAvailableOnBoardUploadPath"].ToString();
+                    if (FileExistInDirectory(medicineAvailableImgPath, "MedicineAvailableOnBoard_" + crewHealthDetails.ID))
+                    {
+                        mail.Attachments.Add(new Attachment(medicineAvailableImgPath + "\\" + GetFileName(cerwHealthaimgPath, "CrewHealthImages_" + crewHealthDetails.ID)));
+                    }
+                    string equipmentAvailableImgPath = path + "\\" + ConfigurationManager.AppSettings["MedicalEquipmentOnBoardUploadPath"].ToString();
+                    if (FileExistInDirectory(equipmentAvailableImgPath, "MedicalEquipmentOnBoard_" + crewHealthDetails.ID))
+                    {
+                        mail.Attachments.Add(new Attachment(equipmentAvailableImgPath + "\\" + GetFileName(cerwHealthaimgPath, "CrewHealthImages_" + crewHealthDetails.ID)));
+                    }
+                    string medicalHistoryImgPath = path + "\\" + ConfigurationManager.AppSettings["MedicalHistoryUploadUploadPath"].ToString();
+                    if (FileExistInDirectory(medicalHistoryImgPath, "MedicalHistoryUpload" + crewHealthDetails.ID))
+                    {
+                        mail.Attachments.Add(new Attachment(medicalHistoryImgPath + "\\" + GetFileName(cerwHealthaimgPath, "CrewHealthImages_" + crewHealthDetails.ID)));
+                    }
+                    string wRHLatestPath = path + "\\" + ConfigurationManager.AppSettings["WorkAndRestHourLatestRecordUploadPath"].ToString();
+                    if (FileExistInDirectory(wRHLatestPath, "WorkAndRestHourLatestRecord" + crewHealthDetails.ID))
+                    {
+                        mail.Attachments.Add(new Attachment(wRHLatestPath + "\\" + GetFileName(cerwHealthaimgPath, "CrewHealthImages_" + crewHealthDetails.ID)));
+                    }
+
+                    string existingPrescriptionPath = path + "\\" + ConfigurationManager.AppSettings["PreExistingMedicationPrescriptionUploadPath"].ToString();
+                    if (FileExistInDirectory(existingPrescriptionPath, "PreExistingMedicationPrescription" + crewHealthDetails.ID))
+                    {
+                        mail.Attachments.Add(new Attachment(existingPrescriptionPath + "\\" + GetFileName(cerwHealthaimgPath, "CrewHealthImages_" + crewHealthDetails.ID)));
+                    }
+
+                    SmtpClient smtp = new SmtpClient(crewBl.GetConfigData("smtp"));
+                    smtp.EnableSsl = true;
+                    smtp.Port = int.Parse(crewBl.GetConfigData("port"));
+
+                    smtp.Credentials = new System.Net.NetworkCredential(crewBl.GetConfigData("shipemail").Trim(), crewBl.GetConfigData("shipemailpwd").Trim());
+
+                    smtp.Send(mail);
+                }
+                return Json("Send Mail Succesfully!", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                
+                return Json("Mail send failed - {0}", JsonRequestBehavior.AllowGet);
+            }
+
+            
+        }
+       public string GenerateEmailBody(CrewHealthDetails crewHealthDetails)
+        {
+            StringBuilder sb = new StringBuilder();
+            //sb.Append("<div>");//---main div
+            //sb.Append("<div class='head_title'>< h1 class='ta'>CIRM - Patient Details</h1></div>");
+            // sb.Append("<div class='card bacmt'>");//---Card bacmt
+            //sb.Append("<div class='clearfix'></div>");
+            //sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row1
+            //sb.Append("<div class='col-md-3'>");//---Col3 A
+
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Crew'>Crew &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Name);
+            //sb.Append("</div>");
+
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Nationality'>Nationality &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Nationality);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Addiction'>Addiction &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Adiction);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col3 A Close
+
+            //sb.Append("<div class='col-md-3'>");//---Col3 B
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Rank'>Rank &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.RankName);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Ethinicity'>Ethinicity &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Ethinicity);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Frequency'>Frequency &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Frequency);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col3 B Close
+
+            //sb.Append("<div class='col-md-3'>");//---Col3 C
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Sex'>Sex &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Sex);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Age'>Date Of Birth &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.DOB.ToString());
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='JoiningDate'>Joining Date &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.JoinDate.ToString());
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col3 C Close
+
+            //sb.Append("</div>");//---row1 Close
+
+            //sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row2
+            //sb.Append("<h4>Type of Ailment </h4>");
+            //sb.Append("<div class='col-md-4'>");//---Col4 A
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Category'>Category &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Category);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col4 A Close
+
+            //sb.Append("<div class='col-md-4'>");//---Col4 B
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='SubCategory'>Sub Category &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.SubCategory);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col4 B Close
+
+            //sb.Append("</div>");//---row2 Close
+
+            //sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row3
+            //sb.Append("<h4>Vital statistics </h4>");
+            //sb.Append("<div class='col-md-6'>");//---Col6 A
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Pulse'>Pulse (Beats/Minute) &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Pulse);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='OxygenSaturation'>Oxygen Saturation/SpO2 &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.SPO2);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='RespiratoryRate'>Respiratory Rate &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Respiratory);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='BP'>Blood Pressure(mmHg) &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Systolic +"/" + crewHealthDetails.Diastolic);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col6 A Close
+            //sb.Append("</div>");//---row3 Close
+
+            //sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row3
+            //sb.Append("<h4> Medical Condition</h4>");
+            //sb.Append("<div class='col-md-6'>");//---Col6 A
+            //sb.Append("<h4> Symptomology</h4>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='ObservedDateAndTime'>Observed Date And Time &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.ObservedDate.ToString() + "/" + crewHealthDetails.ObservedTime.ToString());
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Vomiting'>Vomiting &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.IsVomiting);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Fits'>Fits &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.IsFits);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col6 A Close
+            //sb.Append("<div class='col-md-6'>");//---Col6 B
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='Details'>Details &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.AccidentDesc);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='MedicinesAdministered'>Medicines Administered &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.Medicines);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='AnyOtherRelevantInformation'>Any Other Relevant Information &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.OtherInfo);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col6 B Close
+            //sb.Append("</div>");//---row3 Close
+
+            //sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row4
+            //sb.Append("<h4> In Case of Accident occured</h4>");
+            //sb.Append("<div class='col-md-6'>");//---Col6 A
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='WhereAndHowAccidentOccured'>Where And How Accident Occured &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.AccidentLocation);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='SeverityOfPain'>Severity Of Pain &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.SeverityPain);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col6 A Close
+            //sb.Append("<div class='col-md-6'>");//---Col6 B
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='LocationAndTypeOfInjuryBurn'>Location And Type Of Injury/Burn &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.InjuryLocation);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='FrequencyOfPain'>Frequency Of Pain &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.FrequencyOfPain);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col6 B Close
+            //sb.Append("<div class='col-md-6'>");//---Col6 C
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='FirstAidGiven'>First Aid Given &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.FirstAid);
+            //sb.Append("</div>");
+            //sb.Append("<div class='form-group'>");
+            //sb.Append("<label for='PercentageOfBurn'>Percentage Of Burn &nbsp;&nbsp; :</label>");
+            //sb.Append(crewHealthDetails.PercentageOfInjury);
+            //sb.Append("</div>");
+            //sb.Append("</div>");//---Col6 C Close
+            //sb.Append("</div>");//---row4 Close
+
+
+            //sb.Append("</div>");//---Card bacmt Close
+            //sb.Append("</div>");//---main div Close
+
+           
+            sb.Append("<h3>CIRM - Patient Details</h3>");
+            sb.Append("\n");
+            sb.AppendLine("");
+            sb.Append("Crew :");
+            sb.Append(crewHealthDetails.Name);
+            sb.AppendLine("");
+
+           
+            sb.AppendLine("Nationality :");
+            sb.Append(crewHealthDetails.Nationality);
+            sb.AppendLine("");
+            sb.Append("<Addiction &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Adiction);
+            sb.AppendLine("");
+
+            sb.Append("Rank:</label>");
+            sb.Append(crewHealthDetails.RankName); 
+            sb.AppendLine("Ethinicity &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Ethinicity);
+            sb.AppendLine("Frequency &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Frequency);
+            sb.AppendLine("Sex &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Sex);
+            sb.AppendLine("Date Of Birth &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.DOB.ToString());
+            sb.AppendLine("Joining Date &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.JoinDate.ToString());
+            sb.AppendLine("<h4>Type of Ailment </h4>"); 
+            sb.AppendLine("Category &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Category); 
+            sb.AppendLine("Sub Category &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.SubCategory);
+            sb.AppendLine("<h4>Vital statistics </h4>");
+            sb.AppendLine("Pulse (Beats/Minute) &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Pulse);
+            sb.AppendLine("Oxygen Saturation/SpO2 &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.SPO2);
+            sb.AppendLine("Respiratory Rate &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Respiratory);
+            sb.AppendLine("Blood Pressure(mmHg) &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Systolic + "/" + crewHealthDetails.Diastolic);
+            sb.AppendLine("<h4> Medical Condition</h4>");
+            sb.AppendLine("<h4> Symptomology</h4>");
+            sb.AppendLine("Observed Date And Time &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.ObservedDate.ToString() + "/" + crewHealthDetails.ObservedTime.ToString());
+            sb.AppendLine("Vomiting &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.IsVomiting);
+            sb.AppendLine("Fits &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.IsFits);
+            sb.AppendLine("Details &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.AccidentDesc);
+            sb.AppendLine("Medicines Administered &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.Medicines);
+            sb.AppendLine("Any Other Relevant Information &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.OtherInfo);
+            sb.AppendLine("<h4> In Case of Accident occured</h4>");
+            sb.AppendLine("Where And How Accident Occured &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.AccidentLocation);
+            sb.AppendLine("Severity Of Pain &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.SeverityPain);
+            sb.AppendLine("Location And Type Of Injury/Burn &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.InjuryLocation);
+            sb.AppendLine("Frequency Of Pain &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.FrequencyOfPain);
+            sb.AppendLine("First Aid Given &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.FirstAid);
+            sb.AppendLine("Percentage Of Burn &nbsp;&nbsp; :");
+            sb.Append(crewHealthDetails.PercentageOfInjury);
+            sb.AppendLine("");
+
+
+
+            return sb.ToString();
+        }
+
+        public bool FileExistInDirectory(string path, string name)
+        {
+            try
+            {
+                
+                    DirectoryInfo di = new DirectoryInfo(path + "\\");
+                    return di.GetFiles(name + ".*").Length > 0;
+               
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+
+        }
+        public string GetFileName(string path,string name)
+        {
+           
+                DirectoryInfo di = new DirectoryInfo(path + "\\");
+                return di.GetFiles(name+".*")[0].Name;
+            
+        }
+        
     }
 }
