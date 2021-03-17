@@ -343,7 +343,7 @@ function SendMail() {
         Name                : $('#ddlCrew option:selected').text(),
         RankID              : $('#ddlRank').val(),
         RankName            : $('#ddlRank option:selected').text(),
-        Nationality         : $('#Nationality').val(),
+        Nationality         : $('#Nationality option:selected').text(),
         DOB                 : $('#Age').val(),
         JoinDate            : $('#JoiningDate').val(),
         Sex                 : $('#Sex').val(),
