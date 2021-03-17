@@ -633,11 +633,11 @@ namespace TM.RestHour.DAL
 
             if (!String.IsNullOrEmpty(ship.POP3))
             {
-                cmd.Parameters.AddWithValue("@Pop", ship.POP3);
+                cmd.Parameters.AddWithValue("@IMAPPOPServer", ship.POP3);
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Pop", DBNull.Value);
+                cmd.Parameters.AddWithValue("@IMAPPOPServer", DBNull.Value);
             }
 
             if (!String.IsNullOrEmpty(ship.POP3Port))
