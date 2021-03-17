@@ -317,17 +317,17 @@ namespace TM.RestHour.Controllers
             /////////////////////////////////////////////////////////
             shipPC.AdminUser = ship.AdminUser;
             shipPC.AdminPassword = ship.AdminPassword;
-            string Key = shipPC.Vessel + shipPC.Flag + shipPC.IMO.ToString() + shipPC.SuperAdminUserName + shipPC.SuperAdminPassword;
+            //string Key = shipPC.Vessel + shipPC.Flag + shipPC.IMO.ToString() + shipPC.SuperAdminUserName + shipPC.SuperAdminPassword;
 
-            if (Key.Length < 24) {
-                Key = Key + Key;
-            }
+            //if (Key.Length < 24) {
+            //    Key = Key + Key;
+            //}
 
 
 
-            string deactivationDate =  CryptoEngine.Encrypt(System.DateTime.Today.AddDays(90).ToString(), Key.Substring(0,24));
+            //string deactivationDate =  CryptoEngine.Encrypt(System.DateTime.Today.AddDays(90).ToString(), Key.Substring(0,24));
 
-            shipPC.DeactivationDate = deactivationDate;
+            //shipPC.DeactivationDate = deactivationDate;
 
          
 
