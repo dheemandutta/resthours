@@ -348,5 +348,11 @@ namespace TM.RestHour.BL
             CrewDAL crew = new CrewDAL();
             return crew.GetCrewPageWise2(pageIndex, ref recordCount, length, VesselID);
         }
+
+        public string GetConfigData(string KeyName)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetConfigData(KeyName);
+        }
     }
 }

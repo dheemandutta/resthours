@@ -259,6 +259,7 @@
     <Compile Include="Models\CompanyDetails.cs" />
     <Compile Include="Models\Consultant.cs" />
     <Compile Include="Models\Crew.cs" />
+    <Compile Include="Models\CrewHealthDetails.cs" />
     <Compile Include="Models\CrewTemperature.cs" />
     <Compile Include="Models\CrewTimesheetViewModel.cs" />
     <Compile Include="Models\CrewViewModel.cs" />

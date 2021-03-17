@@ -1002,13 +1002,6 @@ namespace TM.RestHour.DAL
 
 
 
-
-
-
-
-
-
-
         public int SaveJoiningMedicalFilePath(int crewId, string filepath)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
@@ -1100,15 +1093,6 @@ namespace TM.RestHour.DAL
             return recordsAffected;
         }
 
-
-
-
-
-
-
-
-
-
         public List<CrewPOCO> GetCrewPageWise2(int pageIndex, ref int recordCount, int length, int VesselID)
         {
 
@@ -1150,6 +1134,24 @@ namespace TM.RestHour.DAL
                 }
             }
             return crewPOList;
+        }
+
+
+        public string GetConfigData(string KeyName)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpGetAlltblConfig", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@KeyName", KeyName);
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            con.Close();
+            return ds.Tables[0].Rows[0]["ConfigValue"].ToString();
+
         }
 
     }
