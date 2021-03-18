@@ -932,25 +932,18 @@ function SaveConfigData() {
     }
     var Ship = {
         SmtpServer: $('#SmptServer').val(),
-        Port: $('#Port').val(),
-        //MailFrom: $('#MailFrom').val(),
-        //MailTo: $('#MailId').val(),
-        //MailPassword: $('#Password').val(),         
+        Port: $('#Port').val(),        
         ShipEmail: $('#ShipEmail').val(),
         ShipEmailPassword: $('#ShipEmailPassword').val(),
         AdminCenterEmail: $('#AdminCenterEmail').val(),
-
         IMAPPOP: $('#IMAPPOP').val(),
         POP3: $('#POP3').val(),
         POP3Port: $('#POP3Port').val()
-
-       
     };
     //debugger;
-
-
-    var gotologin = $('#gotologin').val();
-    window.location.href = gotologin;
+    //console.log(Ship);
+    //console.log(posturl);
+    var DataSaved = 0;
 
     $.ajax({
         url: posturl,
@@ -959,20 +952,24 @@ function SaveConfigData() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (response) {
-        
-            if (response.result == 'Redirect') {
-                alert('Data Saved Successfully');
-              //  window.location = response.url;    /////
+            DataSaved = 1;
+           
+            var gotologin = $('#gotologin').val();
+            window.location.href = gotologin;
 
-            }
-            else if (response.result == 'Error') {
-                alert('Data not saved,Please try again');
-            }
+            //console.log(response.result);
         },
         error: function (errormessage) {
             console.log(errormessage.responseText);
         }
+
     });
+    console.log(DataSaved);
+    if (DataSaved === 1) {
+        var gotologin = $('#gotologin').val();
+        window.location.href = gotologin;
+    }
+
 }
 
 

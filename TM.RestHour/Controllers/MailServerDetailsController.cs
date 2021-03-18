@@ -36,27 +36,6 @@ namespace TM.RestHour.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //
         // GET: /Vessel/
         //[TraceFilterAttribute]
@@ -97,18 +76,6 @@ namespace TM.RestHour.Controllers
             companyBL.SaveCompanyDetails(companydetails);
 
             return Json(decryptedCompanyInfo, JsonRequestBehavior.AllowGet);
-
-
-
-            //Console.WriteLine("Company Values Decrypted");
-            //Console.WriteLine("Company ID: " + decryptedCompanyInfo.ID.ToString());
-            //Console.WriteLine("Company Name: " + decryptedCompanyInfo.Name);
-            //Console.WriteLine("Company Address: " + decryptedCompanyInfo.Address);
-            //Console.WriteLine("Company Website: " + decryptedCompanyInfo.Website);
-            //Console.WriteLine("Admin Contact: " + decryptedCompanyInfo.AdminContact);
-            //Console.WriteLine("Admin Contact email: " + decryptedCompanyInfo.AdminContactEmail);
-            //Console.WriteLine("Contact Number: " + decryptedCompanyInfo.ContactNumber);
-            //Console.WriteLine("Company Domain: " + decryptedCompanyInfo.Domain);
 
         }
 
