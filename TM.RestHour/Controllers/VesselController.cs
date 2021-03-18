@@ -21,7 +21,7 @@ using TM.Base.Common;
 
 namespace TM.RestHour.Controllers
 {
-    [TraceFilterAttribute]
+    //[TraceFilterAttribute]
     public class VesselController : BaseController
     {
 		//
