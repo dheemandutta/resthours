@@ -533,7 +533,8 @@
                                 <div class="dropdown">
                                     <button class="button log" onclick="location.href='#';return false;"><span><img src="~/images/out.png" style="width:27px;" /></span></button>
                                     <div class="dropdown-content">
-                                        <h3>Admin</h3>
+                                        @*<h3>Admin</h3>*@
+                                        <h3>@System.Web.HttpContext.Current.Session["LoggedInUserType"].ToString()</h3>
                                         <a onclick="location.href='@Url.Action("Index", "Login")';return false;">Sing Out</a>
                                     </div>
                                 </div>
@@ -565,9 +566,10 @@
                         <div class="sidebar">
                             <div class="div_vissel">
                                 <img src="~/images/ship-icon-png-22.jpg" />
-                                <h4>Name of the vessel</h4>
+                                @*<h4>Name of the vessel</h4>*@
+                            <h4> @System.Web.HttpContext.Current.Session["ShipName"].ToString()</h4>
                                 <P class="weco">
-                                    
+
                                     <span>
                                         @System.Web.HttpContext.Current.Session["FirstName"].ToString()   @System.Web.HttpContext.Current.Session["LastName"]
                                     </span>
