@@ -130,7 +130,7 @@
                 <div class="form-group" style="margin-bottom: 18px;">
                     <label for="Service Term">Service Term</label><br />
                     <input type="text" class="form-control valid" id="CreatedOn" placeholder="From" style="width: 45%; float: left;" />
-                    <input type="text" class="form-control valid1" id="LatestUpdate" placeholder="To" style="width: 45%; float:right;" />
+                    <input onclick="myFunction()" type="text" class="form-control valid1" id="LatestUpdate" placeholder="To" style="width: 45%; float:right;" />
                 </div>
                 <br />
 
@@ -222,6 +222,12 @@
 <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
 <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
 
+
+<script>
+    function myFunction() {
+        alert("Kindly fill up contract date");
+    }
+</script>
 
 
 <script type="text/javascript">
