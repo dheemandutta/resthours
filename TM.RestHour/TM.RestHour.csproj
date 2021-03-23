@@ -811,6 +811,7 @@
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_17.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_17.03.2021_II.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_22.03.2021.sql" />
+    <Content Include="devsqlscripts\Worth_SQL_Script_Initial_23.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_24.02.2021.sql" />
     <Content Include="EquipmentNew\dist\dual-listbox.css" />
     <Content Include="EquipmentNew\dist\dual-listbox.js" />
@@ -2987,6 +2988,7 @@
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_17.03.2021.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_17.03.2021_II.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_22.03.2021.sql" />
+    <Content Include="SQLScripts\Worth_SQL_Script_Initial_23.03.2021.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_24.02.2021.sql" />
     <Content Include="src\jquery.image-marker.css" />
     <Content Include="src\jquery.image-marker.js" />
