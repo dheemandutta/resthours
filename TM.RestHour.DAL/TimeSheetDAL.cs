@@ -367,5 +367,25 @@ namespace TM.RestHour.DAL
 
 
 
+
+        /////////////////////// For GetDaysLeft
+        public int?  GetDaysLeft(int ID)
+        {
+            int? val = null;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetDaysLeft", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", ID);
+                    con.Open();
+                    val = (int?)cmd.ExecuteScalar();
+                    con.Close();
+                               
+                }
+            }
+
+            return val;
+        }
     }
 }

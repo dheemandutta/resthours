@@ -47,476 +47,478 @@
             <h1 class="ta">Crew Time Sheet</h1>
         </div>
         <div class="">
-			<div class="row">
-
-				@Html.Hidden("getcrewinfo", @Url.Action("GetAllCrewByCrewID", "AddCrew"))
-				@Html.Hidden("basicTS", @Url.Action("AddCrewTimeSheet", "TimeSheet"))
-				@Html.Hidden("checkcompliance", @Url.Action("CheckTimeSheetComplance", "TimeSheet"))
-				@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))
-				@Html.Hidden("GetCrewLastBookedHours", @Url.Action("GetCrewLastBookedHours", "TimeSheet"))
-				@Html.Hidden("RetrieveTimeChange", @Url.Action("RetrieveTimeChange", "TimeSheet"))
-				@Html.Hidden("RetrieveTimeChangeDate", Url.Action("RetrieveTimeChangeDate", "TimeSheet"))
-				@Html.Hidden("GetAdjustmentFactor", @Url.Action("GetAdjustmentFactor", "TimeSheet"))
-				@Html.Hidden("GetMinusOneBookStatus", @Url.Action("GetMinusOneBookStatus", "TimeSheet"))
-				@Html.Hidden("GetSecondCrewBookedHours", @Url.Action("GetSecondCrewBookedHours", "TimeSheet"))
-				@Html.Hidden("GetNCForMonth", @Url.Action("GetNCForMonth", "TimeSheet"))
-				@Html.Hidden("RedirectServicePage", @Url.Action("CrewServiceTerms", "CrewHealth"))
-				@Html.Hidden("GetNoNCForMonth", @Url.Action("GetNoNCForMonth", "TimeSheet"))
-				<!-----Screen divided into 4+8 ---------->
-
-				<input type="hidden" id="hdnAdjustmentFactor" />
-				<input type="hidden" id="hdnID" />
-				<input type="hidden" id="hdnNCID" />
-				<div class="col-md-7">
-					<div class="bac card">
-						<div class="card-block">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<div class="col-md-1"></div>
-									<div class="col-md-6" style="width: 50%;padding: 0;">
-										<label for="selectCrew" class="control-label">Select Crew</label><br />
-										@Html.HiddenFor(model => model.AdminStatus, new { id = "hdnAdminstatus", value = Model.AdminStatus })
-										@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
-										@Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
-										<div id="divdaytoggle" style="display: none;">
-											<input id="daytoggle" checked data-toggle="toggle" data-on="Time 1" data-off="Time 2" data-onstyle="success" data-offstyle="danger" type="checkbox">
-										</div>
-									</div>
-									<div class="col-md-4" style=" margin-top:1px;">
-										<label>Total Work Hours:</label>
-										<input type="text" class="form-control" id="TotalWorkHours" placeholder="Total Work Hours" style="width: 150px;" />
-									</div>
-
-									@*<input  id="daytoggle" checked data-toggle="toggle" data-style="android" data-onstyle="success" data-offstyle="danger" type="checkbox">*@
-								</div>
-
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-1 control-label"></label>
-									<div class="col-sm-6" style="padding:0;">
-										@*<label>Days</label>*@
-										<div class="multiple">
-
-										</div>
-									</div>
-
-									<div class="col-md-4" style="padding: 0 0px 0 17px;">
-
-										@*<div class="form-inline">*@
-										@*<div class="form-horizontal" style="margin-bottom:3px;">
-									<br />
-
-								</div>*@
-										<div class="form-horizontal" style="margin-bottom:3px;">
-											<label>Total Rest Hours:</label>
-											<input type="text" class="form-control" id="TotalRestHours" placeholder="Total Rest Hours" style="width: 150px;" />
-										</div>
-										@*</div>*@
-
-									</div>
-
-
-
-
-									<div class="col-md-4" style="margin-top:14px; padding: 0 0px 0 18px;">
-
-										<button class="button1" type="button" id="btnCopyTimeSheet" style="width:148px;">Copy Time Sheet</button>
-
-										@*<div class="form-horizontal" style=" padding:10px 0;">
-
-									Compliant <div class="asia gr" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #2ecc71; float: left; background: #2ecc71; border-radius:50%;"></div>
-								</div>*@
-
-										@*<div class="form-horizontal" style=" padding:0px 0 6px 0;">
-
-									Non Compliant<div class="asia" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #ff0000e6; float: left; background: #ff0000e6; border-radius:50%;"></div>
-								</div>*@
-
-
-
-									</div>
-								</div>
-							</form>
-						</div>
-
-
-						<div>
-
-							<table class="tg" id="schedule_header">
-								<tr id="schedule">
-									<th class="tg-amwm" id="newhead" colspan="2">00</th>
-									<th class="tg-amwm" colspan="2">00</th>
-									<th class="tg-amwm" colspan="2">01</th>
-									<th class="tg-amwm" colspan="2">02</th>
-									<th class="tg-amwm" colspan="2">03</th>
-									<th class="tg-amwm" colspan="2">04</th>
-									<th class="tg-amwm" colspan="2">05</th>
-									<th class="tg-amwm" colspan="2">06</th>
-									<th class="tg-amwm" colspan="2">07</th>
-									<th class="tg-amwm" colspan="2">08</th>
-									<th class="tg-amwm" colspan="2">09</th>
-									<th class="tg-amwm" colspan="2">10</th>
-									<th class="tg-amwm" colspan="2">11</th>
-									<th class="tg-amwm" colspan="2">12</th>
-									<th class="tg-amwm" colspan="2">13</th>
-									<th class="tg-amwm" colspan="2">14</th>
-									<th class="tg-amwm" colspan="2">15</th>
-									<th class="tg-amwm" colspan="2">16</th>
-									<th class="tg-amwm" colspan="2">17</th>
-									<th class="tg-amwm" colspan="2">18</th>
-									<th class="tg-amwm" colspan="2">19</th>
-									<th class="tg-amwm" colspan="2">20</th>
-									<th class="tg-amwm" colspan="2">21</th>
-									<th class="tg-amwm" colspan="2">22</th>
-									<th class="tg-amwm" colspan="2">23</th>
-								</tr>
-
-								<tr id="trclone">
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0000" id="-2"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0000" id="-1"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0030" id="0"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0100" id="1"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0130" id="2"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0200" id="3"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0230" id="4"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0300" id="5"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0330" id="6"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0400" id="7"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0430" id="8"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0500" id="9"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0530" id="10"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0600" id="11"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0630" id="12"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0700" id="13"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0730" id="14"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0800" id="15"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0830" id="16"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0900" id="17"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0930" id="18"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1000" id="19"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1030" id="20"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1100" id="21"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1130" id="22"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1200" id="23"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1230" id="24"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1300" id="25"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1330" id="26"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1400" id="27"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1430" id="28"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1500" id="29"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1530" id="30"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1600" id="31"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1630" id="32"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1700" id="33"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1730" id="34"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1800" id="35"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1830" id="36"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1900" id="37"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1930" id="38"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2000" id="39"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2030" id="40"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2100" id="41"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2130" id="42"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2200" id="43"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2230" id="44"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2300" id="45"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2330" id="46"></td>
-									<td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2400" id="47"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="tg" id="schedule"></div>
-
-						@*<div class="modal-dialog">
-
-				</div>*@
-
-
-
-						<div></div>
-						<div class="js-result-container"></div>
-						<table id="cloneTable" class="table-responsive">
-							<tr>
-								<td><b>Start Time</b></td>
-								<td><b>End Time</b></td>
-								<td>&nbsp;&nbsp;&nbsp;</td>
-								<td>&nbsp;&nbsp;&nbsp;</td>
-							</tr>
-							<tr class="clonrow">
-
-								<td style="width:47%">
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="stdt0"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
-
-										</div>
-									</div>
-								</td>
-								<td style="width:47%">
-
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="enddat0"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
-
-										</div>
-									</div>
-
-								</td>
-								<td>
-									<div class="popup" onclick="myFunction()">
-										<span class="ii">i</span>
-										<span class="popuptext" id="myPopup">
-											&nbsp;&nbsp;  1. Click on the box for entering time in hours format 0000hrs.
-											&nbsp;&nbsp; 2. Use backspace button to delete the existing 0000.
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											&nbsp;
-											&nbsp;  &nbsp;3. Type in the desired hours in XXXX format with XX00 or XX30 as available options.
-											<span style="float: right; margin-right: 15px;"><i class="fa fa-times"></i></span>
-										</span>
-									</div>
-								</td>
-								<td style="width:16%"></td>
-								<td style="width:16%"></td>
-							</tr>
-							<tr class="clonrow">
-
-								<td style="width:47%">
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="stdt1"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
-
-										</div>
-									</div>
-								</td>
-								<td style="width:47%">
-
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="enddat1"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
-
-										</div>
-									</div>
-
-								</td>
-								<td style="width:16%"></td>
-								<td style="width:16%"></td>
-							</tr>
-							<tr class="clonrow">
-
-								<td style="width:47%">
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="stdt2"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
-
-										</div>
-									</div>
-								</td>
-								<td style="width:47%">
-
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="enddat2"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
-
-										</div>
-									</div>
-
-								</td>
-								<td style="width:16%">
-									<a href="#" class="btn btn-primary a-btn-slide-text addbtn" style="background: #a278fe;border: #f66c6c; border-radius: 70%;">
-										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-										<span><strong></strong></span>
-									</a>
-								</td>
-								<td style="width:16%">
-									<a href="#" class="btn btn-primary a-btn-slide-text delbtn" style="background: #df0000;border: #a278fe;border-radius: 70%;">
-										<span class="glyphicon glyphicon-trash"></span>
-										<span><strong></strong></span>
-									</a>
-								</td>
-							</tr>
-						</table>
-
-						@*<span class="pos" style="align-self:center"></span>*@
-						@*<div class="pos" style=""></div>*@
-
-
-
-						<div align="right">
-							@*<span class="pos" style="align-self:center"></span>*@
-							@*<div class="pos" style=""></div>*@
-							<button type="button" class="button1" id="btnAdd" style="margin-right:25px;">Add</button>
-						</div>
-					</div>
-
-				</div>
-				<div class="col-md-5">
-					<div class=" card bacb" style="height: 478px;">
-						<div class="" id="dvuserdetailsn">
-
-							<legend>Crew Information</legend>
-							<div class="row">
-
-								<div class="form-group">
-									<input type="hidden" id="ID" />
-								</div>
-
-
-								<div class="form-horizontal" style="margin-bottom:3px;">
-									<label class="col-md-2 control-label" style="width: 19%;">Name:</label>
-									<div class="col-md-9" style="margin-bottom: 6px;">
-										<input type="text" class="form-control" id="FullName" placeholder="FullName" />
-									</div>
-								</div>
-
-
-
-								<div class="form-horizontal" style="margin-bottom:3px;">
-									<label class="col-md-2 control-label" style="width: 19%;">Rank:</label>
-									<div class="col-md-9" style="margin-bottom: 6px;">
-										<input type="text" class="form-control" id="Rank" placeholder="Rank" />
-									</div>
-								</div>
-
-
-
-
-
-								<div class="form-horizontal" style="margin-bottom:3px;">
-									<label class="col-md-2 control-label" style="width: 19%; margin-right: 14px;">Service:</label>
-									<form>
-										<label style="max-width: 29%;">
-											<input type="text" class="form-control" id="ServiceTerms1" placeholder="From" readonly />
-										</label>
-										<label style="max-width: 13%;">
-											<span>To</span>
-										</label>
-										<label style="max-width: 13%;">
-											<span>&nbsp;</span>
-										</label>
-										<label style="max-width: 29%;">
-											<input type="text" class="form-control" id="ServiceTerms2" placeholder="To" readonly />
-										</label>
-									</form>
-									<button id="btnRedirectCrewServicePage" type="button" class="button1 MS">Modify Service Terms</button>
-								</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							</div>
-						</div>
-
-						<div class="" id="dvuserdetailsn1">
-
-							<legend>Non-Conformities(N/C)</legend>
-							<div class="row">
-
-								<div class="form-group">
-									<input type="hidden" id="ID" />
-								</div>
-
-
-								<div class="form-horizontal">
-
-									@*<input type="text" class="form-control" id="FullName" />*@
-									<div class="form-control" id="Comments" style="width:90%; height: 148px; position: relative; margin-bottom: 11px; margin-left: 18px; color:#f82020;"></div>
-
-
-
-									<div class="form-horizontal" style="margin-left: 18px;">
-										<legend>Comments</legend>
-										<textarea type="text" class="form-control valid" id="txtComments" placeholder="Comments" style="width: 95% !important;"></textarea>
-										@*<input type="text" class="form-control" id="txtComments" placeholder="Comments" />*@
-									</div>
-
-								</div>
-
-							</div>
-
-
-						</div>
-					</div>
-
-
-
-
-					<div>
-
-						<div class="modal-dialog" id="Resulta">
-							@*    For TimePicker     *@
-						</div>
-
-
-
-
-						@*<div class="col-sm-4">*@
-
-						@*</div>*@
-					</div>
-
-
-
-
-				</div>
-				<div id="dvMessageBox" title="Download complete">
-					<p id="pMessageText"></p>
-				</div>
-
-			</div>
+            <div class="row">
+
+                @Html.Hidden("getcrewinfo", @Url.Action("GetAllCrewByCrewID", "AddCrew"))
+                @Html.Hidden("basicTS", @Url.Action("AddCrewTimeSheet", "TimeSheet"))
+                @Html.Hidden("checkcompliance", @Url.Action("CheckTimeSheetComplance", "TimeSheet"))
+                @Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))
+                @Html.Hidden("GetCrewLastBookedHours", @Url.Action("GetCrewLastBookedHours", "TimeSheet"))
+                @Html.Hidden("RetrieveTimeChange", @Url.Action("RetrieveTimeChange", "TimeSheet"))
+                @Html.Hidden("RetrieveTimeChangeDate", Url.Action("RetrieveTimeChangeDate", "TimeSheet"))
+                @Html.Hidden("GetAdjustmentFactor", @Url.Action("GetAdjustmentFactor", "TimeSheet"))
+                @Html.Hidden("GetMinusOneBookStatus", @Url.Action("GetMinusOneBookStatus", "TimeSheet"))
+                @Html.Hidden("GetSecondCrewBookedHours", @Url.Action("GetSecondCrewBookedHours", "TimeSheet"))
+                @Html.Hidden("GetNCForMonth", @Url.Action("GetNCForMonth", "TimeSheet"))
+                @Html.Hidden("RedirectServicePage", @Url.Action("CrewServiceTerms", "CrewHealth"))
+                @Html.Hidden("GetNoNCForMonth", @Url.Action("GetNoNCForMonth", "TimeSheet"))
+
+                @Html.Hidden("getDaysLeft", @Url.Action("GetDaysLeft", "TimeSheet"))
+                <!-----Screen divided into 4+8 ---------->
+
+                <input type="hidden" id="hdnAdjustmentFactor" />
+                <input type="hidden" id="hdnID" />
+                <input type="hidden" id="hdnNCID" />
+                <div class="col-md-7">
+                    <div class="bac card">
+                        <div class="card-block">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-6" style="width: 50%;padding: 0;">
+                                        <label for="selectCrew" class="control-label">Select Crew</label><br />
+                                        @Html.HiddenFor(model => model.AdminStatus, new { id = "hdnAdminstatus", value = Model.AdminStatus })
+                                        @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
+                                        @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                        <div id="divdaytoggle" style="display: none;">
+                                            <input id="daytoggle" checked data-toggle="toggle" data-on="Time 1" data-off="Time 2" data-onstyle="success" data-offstyle="danger" type="checkbox">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" style=" margin-top:1px;">
+                                        <label>Total Work Hours:</label>
+                                        <input type="text" class="form-control" id="TotalWorkHours" placeholder="Total Work Hours" style="width: 150px;" />
+                                    </div>
+
+                                    @*<input  id="daytoggle" checked data-toggle="toggle" data-style="android" data-onstyle="success" data-offstyle="danger" type="checkbox">*@
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-1 control-label"></label>
+                                    <div class="col-sm-6" style="padding:0;">
+                                        @*<label>Days</label>*@
+                                        <div class="multiple">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" style="padding: 0 0px 0 17px;">
+
+                                        @*<div class="form-inline">*@
+                                        @*<div class="form-horizontal" style="margin-bottom:3px;">
+                                    <br />
+
+                                </div>*@
+                                        <div class="form-horizontal" style="margin-bottom:3px;">
+                                            <label>Total Rest Hours:</label>
+                                            <input type="text" class="form-control" id="TotalRestHours" placeholder="Total Rest Hours" style="width: 150px;" />
+                                        </div>
+                                        @*</div>*@
+
+                                    </div>
+
+
+
+
+                                    <div class="col-md-4" style="margin-top:14px; padding: 0 0px 0 18px;">
+
+                                        <button class="button1" type="button" id="btnCopyTimeSheet" style="width:148px;">Copy Time Sheet</button>
+
+                                        @*<div class="form-horizontal" style=" padding:10px 0;">
+
+                                    Compliant <div class="asia gr" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #2ecc71; float: left; background: #2ecc71; border-radius:50%;"></div>
+                                </div>*@
+
+                                        @*<div class="form-horizontal" style=" padding:0px 0 6px 0;">
+
+                                    Non Compliant<div class="asia" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #ff0000e6; float: left; background: #ff0000e6; border-radius:50%;"></div>
+                                </div>*@
+
+
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <div>
+
+                            <table class="tg" id="schedule_header">
+                                <tr id="schedule">
+                                    <th class="tg-amwm" id="newhead" colspan="2">00</th>
+                                    <th class="tg-amwm" colspan="2">00</th>
+                                    <th class="tg-amwm" colspan="2">01</th>
+                                    <th class="tg-amwm" colspan="2">02</th>
+                                    <th class="tg-amwm" colspan="2">03</th>
+                                    <th class="tg-amwm" colspan="2">04</th>
+                                    <th class="tg-amwm" colspan="2">05</th>
+                                    <th class="tg-amwm" colspan="2">06</th>
+                                    <th class="tg-amwm" colspan="2">07</th>
+                                    <th class="tg-amwm" colspan="2">08</th>
+                                    <th class="tg-amwm" colspan="2">09</th>
+                                    <th class="tg-amwm" colspan="2">10</th>
+                                    <th class="tg-amwm" colspan="2">11</th>
+                                    <th class="tg-amwm" colspan="2">12</th>
+                                    <th class="tg-amwm" colspan="2">13</th>
+                                    <th class="tg-amwm" colspan="2">14</th>
+                                    <th class="tg-amwm" colspan="2">15</th>
+                                    <th class="tg-amwm" colspan="2">16</th>
+                                    <th class="tg-amwm" colspan="2">17</th>
+                                    <th class="tg-amwm" colspan="2">18</th>
+                                    <th class="tg-amwm" colspan="2">19</th>
+                                    <th class="tg-amwm" colspan="2">20</th>
+                                    <th class="tg-amwm" colspan="2">21</th>
+                                    <th class="tg-amwm" colspan="2">22</th>
+                                    <th class="tg-amwm" colspan="2">23</th>
+                                </tr>
+
+                                <tr id="trclone">
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0000" id="-2"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0000" id="-1"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0030" id="0"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0100" id="1"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0130" id="2"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0200" id="3"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0230" id="4"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0300" id="5"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0330" id="6"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0400" id="7"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0430" id="8"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0500" id="9"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0530" id="10"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0600" id="11"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0630" id="12"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0700" id="13"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0730" id="14"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0800" id="15"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0830" id="16"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0900" id="17"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="0930" id="18"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1000" id="19"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1030" id="20"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1100" id="21"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1130" id="22"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1200" id="23"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1230" id="24"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1300" id="25"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1330" id="26"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1400" id="27"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1430" id="28"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1500" id="29"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1530" id="30"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1600" id="31"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1630" id="32"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1700" id="33"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1730" id="34"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1800" id="35"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1830" id="36"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1900" id="37"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="1930" id="38"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2000" id="39"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2030" id="40"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2100" id="41"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2130" id="42"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2200" id="43"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2230" id="44"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2300" id="45"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2330" id="46"></td>
+                                    <td class="tg-yw4l" height="20px" name="timebox" time-in-minute="2400" id="47"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="tg" id="schedule"></div>
+
+                        @*<div class="modal-dialog">
+
+                </div>*@
+
+
+
+                        <div></div>
+                        <div class="js-result-container"></div>
+                        <table id="cloneTable" class="table-responsive">
+                            <tr>
+                                <td><b>Start Time</b></td>
+                                <td><b>End Time</b></td>
+                                <td>&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr class="clonrow">
+
+                                <td style="width:47%">
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="stdt0"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width:47%">
+
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="enddat0"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="popup" onclick="myFunction()">
+                                        <span class="ii">i</span>
+                                        <span class="popuptext" id="myPopup">
+                                            &nbsp;&nbsp;  1. Click on the box for entering time in hours format 0000hrs.
+                                            &nbsp;&nbsp; 2. Use backspace button to delete the existing 0000.
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;
+                                            &nbsp;  &nbsp;3. Type in the desired hours in XXXX format with XX00 or XX30 as available options.
+                                            <span style="float: right; margin-right: 15px;"><i class="fa fa-times"></i></span>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td style="width:16%"></td>
+                                <td style="width:16%"></td>
+                            </tr>
+                            <tr class="clonrow">
+
+                                <td style="width:47%">
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="stdt1"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width:47%">
+
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="enddat1"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td style="width:16%"></td>
+                                <td style="width:16%"></td>
+                            </tr>
+                            <tr class="clonrow">
+
+                                <td style="width:47%">
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="stdt2"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width:47%">
+
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="enddat2"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td style="width:16%">
+                                    <a href="#" class="btn btn-primary a-btn-slide-text addbtn" style="background: #a278fe;border: #f66c6c; border-radius: 70%;">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                        <span><strong></strong></span>
+                                    </a>
+                                </td>
+                                <td style="width:16%">
+                                    <a href="#" class="btn btn-primary a-btn-slide-text delbtn" style="background: #df0000;border: #a278fe;border-radius: 70%;">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                        <span><strong></strong></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        @*<span class="pos" style="align-self:center"></span>*@
+                        @*<div class="pos" style=""></div>*@
+
+
+
+                        <div align="right">
+                            @*<span class="pos" style="align-self:center"></span>*@
+                            @*<div class="pos" style=""></div>*@
+                            <button type="button" class="button1" id="btnAdd" style="margin-right:25px;">Add</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5">
+                    <div class=" card bacb" style="height: 478px;">
+                        <div class="" id="dvuserdetailsn">
+
+                            <legend>Crew Information</legend>
+                            <div class="row">
+
+                                <div class="form-group">
+                                    <input type="hidden" id="ID" />
+                                </div>
+
+
+                                <div class="form-horizontal" style="margin-bottom:3px;">
+                                    <label class="col-md-2 control-label" style="width: 19%;">Name:</label>
+                                    <div class="col-md-9" style="margin-bottom: 6px;">
+                                        <input type="text" class="form-control" id="FullName" placeholder="FullName" />
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-horizontal" style="margin-bottom:3px;">
+                                    <label class="col-md-2 control-label" style="width: 19%;">Rank:</label>
+                                    <div class="col-md-9" style="margin-bottom: 6px;">
+                                        <input type="text" class="form-control" id="Rank" placeholder="Rank" />
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="form-horizontal" style="margin-bottom:3px;">
+                                    <label class="col-md-2 control-label" style="width: 19%; margin-right: 14px;">Service:</label>
+                                    <form>
+                                        <label style="max-width: 29%;">
+                                            <input type="text" class="form-control" id="ServiceTerms1" placeholder="From" readonly />
+                                        </label>
+                                        <label style="max-width: 13%;">
+                                            <span>To</span>
+                                        </label>
+                                        <label style="max-width: 13%;">
+                                            <span>&nbsp;</span>
+                                        </label>
+                                        <label style="max-width: 29%;">
+                                            <input type="text" class="form-control" id="ServiceTerms2" placeholder="To" readonly />
+                                        </label>
+                                    </form>
+                                    <button id="btnRedirectCrewServicePage" type="button" class="button1 MS">Modify Service Terms</button>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="" id="dvuserdetailsn1">
+
+                            <legend>Non-Conformities(N/C)</legend>
+                            <div class="row">
+
+                                <div class="form-group">
+                                    <input type="hidden" id="ID" />
+                                </div>
+
+
+                                <div class="form-horizontal">
+
+                                    @*<input type="text" class="form-control" id="FullName" />*@
+                                    <div class="form-control" id="Comments" style="width:90%; height: 148px; position: relative; margin-bottom: 11px; margin-left: 18px; color:#f82020;"></div>
+
+
+
+                                    <div class="form-horizontal" style="margin-left: 18px;">
+                                        <legend>Comments</legend>
+                                        <textarea type="text" class="form-control valid" id="txtComments" placeholder="Comments" style="width: 95% !important;"></textarea>
+                                        @*<input type="text" class="form-control" id="txtComments" placeholder="Comments" />*@
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div>
+
+                        <div class="modal-dialog" id="Resulta">
+                            @*    For TimePicker     *@
+                        </div>
+
+
+
+
+                        @*<div class="col-sm-4">*@
+
+                        @*</div>*@
+                    </div>
+
+
+
+
+                </div>
+                <div id="dvMessageBox" title="Download complete">
+                    <p id="pMessageText"></p>
+                </div>
+
+            </div>
         </div>
 </body>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -567,9 +569,54 @@
 
         $(document).ready(function () {
 
-            alert('Your sign-off date is near. If you want to change please contact your administrator.'); // new deep
+			
+			GetDaysLeft();
         });
-      
+
+
+
+        function GetDaysLeft() {
+            
+            var x = $("#getDaysLeft").val();
+            $.ajax({
+                url: x,
+              
+                type: "GET",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (result) {
+                    //debugger;
+                    //$('#ID').val(result.ID);
+					console.log('hiii');
+					console.log(result);
+					if (result === 1) {
+                        alert('Your sign-off date is near. If you want to change please contact your administrator.'); // new deep
+					}
+                    //$('#myModal').modal('show');
+                    //$('#btnUpdate').show();
+                    //$('#btnAdd').hide();
+                },
+                error: function (errormessage) {
+                    //debugger;
+                    console.log(errormessage.responseText);
+                }
+            });
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 		var count = 1;

@@ -78,5 +78,7 @@ namespace TM.Base.Entities
 
         public DateTime? ExpiryDateOfIdentityDocument { get; set; }
         public string ExpiryDateOfIdentityDocument1 { get; set; }
+
+        public string DaysLeft { get; set; }
     }
 }
