@@ -2876,6 +2876,7 @@
     <None Include="Properties\PublishProfiles\RESTHOUR  Installer.pubxml" />
     <None Include="Properties\PublishProfiles\RESTHOUR Installer.pubxml" />
     <None Include="Properties\PublishProfiles\RestHourPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\worthclient - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />

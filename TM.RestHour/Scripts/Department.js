@@ -175,6 +175,7 @@ function SetUpGrid() {
                     return '<a href="#" class="btn btn-info btn-sm" onclick="Delete(' + d + ')"><i class="glyphicon glyphicon-trash"></i></a>';
 
 
+
                 }
             }
 

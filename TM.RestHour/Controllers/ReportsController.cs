@@ -1412,51 +1412,56 @@ namespace TM.RestHour.Controllers
                                 //get data for second day 
                                 reportdata = reports.FirstOrDefault(j => j.BookDate == ((i + 1).ToString() + "_dup"));
 
+                                if (reportdata != null)
+                                {
 
-                                //create second row for same day
 
-                                sb.AppendLine("    <tr style=\"border:1px solid #000;\">");
-                                if (i + 1 < 10)
-                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + "0" + (i + 1).ToString() + reportdata.RegimeSymbol + "</td>"); // append RegimeSymbol here
-								else
-                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + (i + 1).ToString() + reportdata.RegimeSymbol + "</td>"); // append RegimeSymbol here
+                                    //create second row for same day
 
-								sb.AppendLine("        <td style=\"border:1px solid #000;\"></td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(0, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(1, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(2, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(3, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(4, reportdata) + "</td>");
+                                    sb.AppendLine("    <tr style=\"border:1px solid #000;\">");
+                                    if (i + 1 < 10)
+                                        sb.AppendLine("        <td style=\"border:1px solid #000;\">" + "0" + (i + 1).ToString() + reportdata.RegimeSymbol + "</td>"); // append RegimeSymbol here
+                                    else
+                                        sb.AppendLine("        <td style=\"border:1px solid #000;\">" + (i + 1).ToString() + reportdata.RegimeSymbol + "</td>"); // append RegimeSymbol here
 
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(5, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(6, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(7, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(8, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(9, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(10, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(11, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(12, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(13, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(14, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(15, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(16, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(17, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(18, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(19, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(20, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(21, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(22, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(23, reportdata) + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.NormalWorkingHours.ToString() + "</td>"); //reportdata.NormalWorkingHours.ToString()
-								sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.OvertimeHours.ToString() + "</td>"); //reportdata.OvertimeHours.ToString()
-								sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.TotalWorkedHours.ToString() + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.MinTwentyFourHourrest.ToString() + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.Comment + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.MaxRestPeriodInTwentyFourHours.ToString() + "</td>");
-                                sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.MinSevenDayRest.ToString() + "</td>");
-                                // sb.AppendLine("        <td style=\"border:1px solid #000;\">" + "H" + "</td>");
-                                sb.AppendLine("");
-                                sb.AppendLine("    </tr>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\"></td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(0, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(1, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(2, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(3, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(4, reportdata) + "</td>");
+
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(5, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(6, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(7, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(8, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(9, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(10, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(11, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(12, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(13, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(14, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(15, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(16, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(17, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(18, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(19, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(20, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(21, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(22, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + GetColorHexCode(23, reportdata) + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.NormalWorkingHours.ToString() + "</td>"); //reportdata.NormalWorkingHours.ToString()
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.OvertimeHours.ToString() + "</td>"); //reportdata.OvertimeHours.ToString()
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.TotalWorkedHours.ToString() + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.MinTwentyFourHourrest.ToString() + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.Comment + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.MaxRestPeriodInTwentyFourHours.ToString() + "</td>");
+                                    sb.AppendLine("        <td style=\"border:1px solid #000;\">" + reportdata.MinSevenDayRest.ToString() + "</td>");
+                                    // sb.AppendLine("        <td style=\"border:1px solid #000;\">" + "H" + "</td>");
+
+                                    sb.AppendLine("");
+                                    sb.AppendLine("    </tr>");
+                                }
                             }
 
 
