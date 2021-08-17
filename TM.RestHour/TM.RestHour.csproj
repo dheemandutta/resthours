@@ -3115,6 +3115,13 @@
     <Content Include="Views\MentalHealth\Index.cshtml" />
     <Content Include="Views\Psychometrics\Index.cshtml" />
     <Content Include="Views\PsychologicalEvaluation\LocusOfControl.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\InstructionsForPSSFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\MASSMindfulnessScaleFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\BeckDepressionInventoryIIFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\PSQ30_PERCIEVED_STRESS_QUESTIONAIRE.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\ROSENBERG_SELF_esteem_scale_final.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\EmotionalIntelligenceQuizForLeadership.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

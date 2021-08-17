@@ -31,5 +31,40 @@ namespace TM.RestHour.Controllers
         {
             return View();
         }
+
+        public ActionResult InstructionsForPSSFinal()
+        {
+            return View();
+        }
+
+        public ActionResult MASSMindfulnessScaleFinal()
+        {
+            return View();
+        }
+
+        public ActionResult BeckDepressionInventoryIIFinal()
+        {
+            return View();
+        }
+
+        public ActionResult PSQ30_PERCIEVED_STRESS_QUESTIONAIRE()
+        {
+            return View();
+        }
+
+        public ActionResult ROSENBERG_SELF_esteem_scale_final()
+        {
+            return View();
+        }
+
+        public ActionResult Zhao_ANXIETY()
+        {
+            return View();
+        }
+
+        public ActionResult EmotionalIntelligenceQuizForLeadership()
+        {
+            return View();
+        }
     }
 }
