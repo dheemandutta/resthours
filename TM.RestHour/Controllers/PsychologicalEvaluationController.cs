@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using TM.RestHour.BL;
+using TM.RestHour.Models;
+using TM.Base.Entities;
+using System.Globalization;
+using System.Web.Script.Serialization;
+using System.Collections;
+using TM.Compliance;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Net;
+using ExcelDataReader;
+using System.Configuration;
+
+namespace TM.RestHour.Controllers
+{
+    public class PsychologicalEvaluationController : BaseController
+    {
+        // GET: PsychologicalEvaluation
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult LocusOfControl()
+        {
+            return View();
+        }
+    }
+}
