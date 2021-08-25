@@ -66,5 +66,12 @@ namespace TM.RestHour.Controllers
         {
             return View();
         }
+
+
+        public JsonResult Save_LocusOfControl(CIRMPOCO cIRM)
+        {
+            CIRMBL CIRMBL = new CIRMBL();
+            return Json(CIRMBL.SaveCIRM(cIRM, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
+        }
     }
 }

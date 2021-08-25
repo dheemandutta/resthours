@@ -2906,6 +2906,7 @@
     <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\Options.js" />
     <Content Include="Scripts\pdfmake.min.js" />
+    <Content Include="Scripts\PsychologicalEvaluation.js" />
     <Content Include="Scripts\Ranks.js" />
     <Content Include="Scripts\Regimes.js" />
     <Content Include="Scripts\Reports.js" />

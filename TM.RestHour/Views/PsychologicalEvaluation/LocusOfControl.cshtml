@@ -3,10 +3,14 @@
     ViewBag.Title = "LocusOfControl";
 }
 
+<script src="~/Scripts/PsychologicalEvaluation.js"></script>
+
+@Html.Hidden("Save_LocusOfControl", @Url.Action("Save_LocusOfControl", "PsychologicalEvaluation"))
+
 <div class="row">
     @*<div class="head_title">
-        <h1 class="ta">Page Name</h1>
-    </div>*@
+            <h1 class="ta">Page Name</h1>
+        </div>*@
     <div class="card bacmt" style="height: 600px;">
         <div class="clearfix"></div>
         <div class="row">
@@ -51,14 +55,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q1a" name="q1" value="q1a">
+                                    <input type="radio" id="1_1" name="q1" value="1_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q1b" name="q1" value="q1b">
+                                    <input type="radio" id="1_2" name="q1" value="1_2">
                                 </span>
                             </p>
                         </td>
@@ -75,14 +79,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q2a" name="q2" value="q2a">
+                                    <input type="radio" id="2_1" name="q2" value="2_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q2b" name="q2" value="q2b">
+                                    <input type="radio" id="2_2" name="q2" value="2_2">
                                 </span>
                             </p>
                         </td>
@@ -99,14 +103,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q3a" name="q3" value="q3a">
+                                    <input type="radio" id="3_1" name="q3" value="3_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q3b" name="q3" value="q3b">
+                                    <input type="radio" id="3_2" name="q3" value="3_2">
                                 </span>
                             </p>
                         </td>
@@ -123,14 +127,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q4a" name="q4" value="q4a">
+                                    <input type="radio" id="4_1" name="q4" value="4_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q4b" name="q4" value="q4b">
+                                    <input type="radio" id="4_2" name="q4" value="4_2">
                                 </span>
                             </p>
                         </td>
@@ -147,14 +151,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q5a" name="q5" value="q5a">
+                                    <input type="radio" id="5_1" name="q5" value="5_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q5b" name="q5" value="q5b">
+                                    <input type="radio" id="5_2" name="q5" value="5_2">
                                 </span>
                             </p>
                         </td>
@@ -171,14 +175,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q6a" name="q6" value="q6a">
+                                    <input type="radio" id="6_1" name="q6" value="6_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q6b" name="q6" value="q6b">
+                                    <input type="radio" id="6_2" name="q6" value="6_2">
                                 </span>
                             </p>
                         </td>
@@ -195,14 +199,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q7a" name="q7" value="q7a">
+                                    <input type="radio" id="7_1" name="q7" value="7_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q7b" name="q7" value="q7b">
+                                    <input type="radio" id="7_2" name="q7" value="7_2">
                                 </span>
                             </p>
                         </td>
@@ -219,14 +223,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q8a" name="q8" value="q8a">
+                                    <input type="radio" id="8_1" name="q8" value="8_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q8b" name="q8" value="q8b">
+                                    <input type="radio" id="8_2" name="q8" value="8_2">
                                 </span>
                             </p>
                         </td>
@@ -243,14 +247,14 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q9a" name="q9" value="q9a">
+                                    <input type="radio" id="9_1" name="q9" value="9_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q9b" name="q9" value="q9b">
+                                    <input type="radio" id="9_2" name="q9" value="9_2">
                                 </span>
                             </p>
                         </td>
@@ -270,67 +274,97 @@
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q10a" name="q10" value="q10a">
+                                    <input type="radio" id="10_1" name="q10" value="10_1">
                                 </span>
                             </p>
                         </td>
                         <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
                             <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
                                 <span>
-                                    <input type="radio" id="q10b" name="q10" value="q10b">
+                                    <input type="radio" id="10_2" name="q10" value="10_2">
                                 </span>
                             </p>
                         </td>
                     </tr>
                     @*<tr style="height:30.1pt;">
-                    <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
-                        <p style="margin-left:6.25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
-                            <span style="font-family:Arial;font-size:15.5pt;">SCORE </span>
-                        </p>
-                    </td>
-                    <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:15.5pt;margin-top:0pt;margin-bottom:0pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                    </td>
-                    <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:15.5pt;margin-top:0pt;margin-bottom:0pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                    </td>
-                </tr>*@
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:6.25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:15.5pt;">SCORE </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:15.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>&nbsp;</span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:15.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>&nbsp;</span>
+                                </p>
+                            </td>
+                        </tr>*@
                 </table>
                 @*<p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:11pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:11pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:5.7pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Times;font-size:11.5pt;">This is an abbreviated version of the Nicholson McBride Resilience Questionnaire (NMRQ).</span>
-            </p>
-            <p style="margin-left:6.45pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Arial;font-size:15.5pt;font-weight: bold;">Interpreting your score </span>
-            </p>
-            <p style="margin-left:6.4pt;text-indent:0.15000000000000002pt;margin-right:0pt;line-height:191.67%;font-size:11.5pt;margin-top:13.3pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Arial;font-size:11.5pt;">For questions 2,4,6,9 and 10, score two points for every ‘yes’ and ‘zero’ for ‘no’. &nbsp;For questions 1,3,5,7and 8 score ‘two’ points for every ‘no’ and ‘zero’ for ‘yes’ answer. &nbsp;Now calculate your score for each column, then add these together. &nbsp;</span>
-            </p>
-            <p style="margin-left:5.550000000000001pt;text-indent:0.15000000000000002pt;margin-right:24.200000000000003pt;line-height:95.83%;font-size:11.5pt;margin-top:2.5pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Arial;font-size:11.5pt;">The maximum total score is 20, and the higher your score the greater the extent to which you would take control of your life. &nbsp;</span>
-            </p>
-            <p style="margin-left:5.7pt;margin-right:0pt;margin-top:13.700000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Arial;font-size:11.5pt;">Any score of 14 or above would suggest you have an internal focus of control. &nbsp;</span>
-            </p>
-            <p style="margin-left:6.300000000000001pt;text-indent:-0.25pt;margin-right:21pt;line-height:95.83%;font-size:11.5pt;margin-top:13.25pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Arial;font-size:11.5pt;">Scoring below 14 suggests that you need to get a firmer grip on things; such a score may well indicate an external locus of control. </span>
-            </p>*@
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:11pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:5.7pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Times;font-size:11.5pt;">This is an abbreviated version of the Nicholson McBride Resilience Questionnaire (NMRQ).</span>
+                    </p>
+                    <p style="margin-left:6.45pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:15.5pt;font-weight: bold;">Interpreting your score </span>
+                    </p>
+                    <p style="margin-left:6.4pt;text-indent:0.15000000000000002pt;margin-right:0pt;line-height:191.67%;font-size:11.5pt;margin-top:13.3pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:11.5pt;">For questions 2,4,6,9 and 10, score two points for every ‘yes’ and ‘zero’ for ‘no’. &nbsp;For questions 1,3,5,7and 8 score ‘two’ points for every ‘no’ and ‘zero’ for ‘yes’ answer. &nbsp;Now calculate your score for each column, then add these together. &nbsp;</span>
+                    </p>
+                    <p style="margin-left:5.550000000000001pt;text-indent:0.15000000000000002pt;margin-right:24.200000000000003pt;line-height:95.83%;font-size:11.5pt;margin-top:2.5pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:11.5pt;">The maximum total score is 20, and the higher your score the greater the extent to which you would take control of your life. &nbsp;</span>
+                    </p>
+                    <p style="margin-left:5.7pt;margin-right:0pt;margin-top:13.700000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:11.5pt;">Any score of 14 or above would suggest you have an internal focus of control. &nbsp;</span>
+                    </p>
+                    <p style="margin-left:6.300000000000001pt;text-indent:-0.25pt;margin-right:21pt;line-height:95.83%;font-size:11.5pt;margin-top:13.25pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:11.5pt;">Scoring below 14 suggests that you need to get a firmer grip on things; such a score may well indicate an external locus of control. </span>
+                    </p>*@
             </section>
 
 
             <div class="col-md-3" style="padding: 10px; margin-top:68px;">
-                <button type="button" class="button1" id="btnAddAndSave" onclick="return SaveXYZ();">Next</button>
+                <button type="button" class="button1" id="btnAddAndSave" onclick="return Save_LocusOfControl();">Save And Next</button>
             </div>
 
         </div>
     </div>
 </div>
+
+
+
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        $(document).ready(function () {
+
+            //SetUpGrid();
+          
+        });
+
+
+
+        
+    </script>
+
+}
