@@ -66,6 +66,7 @@
     <Compile Include="OptionsDAL.cs" />
     <Compile Include="PermissionsDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PsychologicalEvaluationDAL.cs" />
     <Compile Include="RanksDAL.cs" />
     <Compile Include="RegimesDAL.cs" />
     <Compile Include="ReportsDAL.cs" />

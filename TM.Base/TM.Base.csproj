@@ -67,6 +67,7 @@
     <Compile Include="Entities\OneDayTimeAdjustmentPOCO.cs" />
     <Compile Include="Entities\OptionsPOCO.cs" />
     <Compile Include="Entities\PermissionsPOCO.cs" />
+    <Compile Include="Entities\PsychologicalEvaluationPOCO.cs" />
     <Compile Include="Entities\RankPermissionPOCO.cs" />
     <Compile Include="Entities\RanksPOCO.cs" />
     <Compile Include="Entities\RegimesPOCO.cs" />
