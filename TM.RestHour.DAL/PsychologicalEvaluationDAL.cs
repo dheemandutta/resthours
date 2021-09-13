@@ -14,11 +14,13 @@ namespace TM.RestHour.DAL
     public class PsychologicalEvaluationDAL
     {
 
-        public int Save_LocusOfControl(string[] arrQuestionNo, string[] arrAnswer, int totalCount, string testResult, int CrewID, int VesselID)
+        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, int totalCount, string testResult, int CrewID, int VesselID, string StoredProcedure)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("stpSaveLocusOfControl", con);
+
+            //SqlCommand cmd = new SqlCommand("stpSaveLocusOfControl", con);
+            SqlCommand cmd = new SqlCommand(StoredProcedure, con);   /////////////// StoredProcedure ///////////////
 
             //string questions = string.Empty;
             //string answers = string.Empty;
@@ -49,7 +51,7 @@ namespace TM.RestHour.DAL
             //        answers = answers + "," + s;
             //    }
             //    cnt++;
-               
+
             //}
             //answers = answers + ",";
 

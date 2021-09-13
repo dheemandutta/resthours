@@ -3,7 +3,7 @@
     ViewBag.Title = "MASSMindfulnessScaleFinal";
 }
 <script src="~/Scripts/PsychologicalEvaluation.js"></script>
-@Html.Hidden("Save_MASSMindfulnessScaleFinal", @Url.Action("Save_MASSMindfulnessScaleFinal", "PsychologicalEvaluation"))
+@Html.Hidden("Save_MASSMindfulnessScaleFinal", @Url.Action("SaveForms", "PsychologicalEvaluation"))
 <form id="myForm1">
 
     <div class="row">
@@ -15,7 +15,10 @@
             <div class="row">
 
 
-                <section>
+                <section id="print-content">
+                    <input type="button" onclick="printDiv('print-content')" value="print a div!" />
+
+
                     <h1 style="margin-left:5pt;margin-right:0pt;margin-top:1.9500000000000002pt;margin-bottom:0pt;padding: 1pt 4pt;mso-outline-level:1;">
                         <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Mindful</span>
                         <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.25pt;"> </span>
@@ -153,7 +156,7 @@
                     </h1>
                     <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
                         <span style="">
-                            <span  />
+                            <span />
                         </span>
                     </p>
                     <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
@@ -221,7 +224,7 @@
                         </tr>
 
 
-                        <tr style="height:39pt;">
+                        <tr style="height:39pt;" id="q1">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:6.300000000000001pt;text-indent:0.35000000000000003pt;margin-right:5.6000000000000005pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">1. I could be experiencing some emotion and not be conscious of it until some time later.</span>
@@ -270,7 +273,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:39pt;">
+                        <tr style="height:39pt;" id="q2">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.75pt;text-indent:0.15000000000000002pt;margin-right:19.75pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">2. I break or spill things because of carelessness, not paying attention, or thinking of something else.</span>
@@ -320,7 +323,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:38.95pt;">
+                        <tr style="height:38.95pt;" id="q3">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:6.25pt;text-indent:-0.35000000000000003pt;margin-right:9.450000000000001pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">3. I find it difficult to stay focused on what’s happening in the present.</span>
@@ -369,7 +372,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:39.1pt;">
+                        <tr style="height:39.1pt;" id="q4">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.9pt;text-indent:-0.05pt;margin-right:29.6pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">4. I tend to walk quickly to get where I’m going without paying attention to what I experience along the way.</span>
@@ -418,7 +421,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:39pt;">
+                        <tr style="height:39pt;" id="q5">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.9pt;margin-right:31.55pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">5. I tend not to notice feelings of physical tension or discomfort until they really grab my attention.</span>
@@ -467,7 +470,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:39pt;">
+                        <tr style="height:39pt;" id="q6">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.7pt;text-indent:0.25pt;margin-right:10.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">6. I forget a person’s name almost as soon as I’ve been told it for the first time.</span>
@@ -516,7 +519,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:39pt;">
+                        <tr style="height:39pt;" id="q7">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:6.15pt;text-indent:-0.05pt;margin-right:19.900000000000002pt;line-height:95%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">7. It seems I am “running on automatic,” without much awareness of what I’m doing.</span>
@@ -565,7 +568,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:39.1pt;">
+                        <tr style="height:39.1pt;" id="q8">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.8500000000000005pt;text-indent:0.05pt;margin-right:8.75pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">8. I rush through activities without being really attentive to them.</span>
@@ -614,7 +617,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:39pt;">
+                        <tr style="height:39pt;" id="q9">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.8500000000000005pt;text-indent:0.05pt;margin-right:8.75pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">9. I get so focused on the goal I want to achieve that I lose touch with what I’m doing right now to get there.</span>
@@ -663,7 +666,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:52.4pt;">
+                        <tr style="height:52.4pt;" id="q10">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">10. I do jobs or tasks automatically, without being aware of what I'm doing.</span>
@@ -712,7 +715,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:52.4pt;">
+                        <tr style="height:52.4pt;" id="q11">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">11. I find myself listening to someone with one ear, doing something else at the same time.</span>
@@ -761,7 +764,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:52.4pt;">
+                        <tr style="height:52.4pt;" id="q12">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">12. I drive places on ‘automatic pilot’ and then wonder why I went there.</span>
@@ -810,7 +813,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:52.4pt;">
+                        <tr style="height:52.4pt;" id="q13">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">13. I find myself preoccupied with the future or the past.</span>
@@ -859,7 +862,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:52.4pt;">
+                        <tr style="height:52.4pt;" id="q14">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">14. I find myself doing things without paying attention.</span>
@@ -908,7 +911,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:52.4pt;">
+                        <tr style="height:52.4pt;" id="q15">
                             <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
                                 <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
                                     <span style="font-family:Arial;font-size:11.5pt;">15. I snack without being aware that I’m eating.</span>
@@ -970,82 +973,82 @@
 
                 @*<section>
 
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                        <p style="text-align:center;margin-left:18.900000000000002pt;margin-right:0pt;margin-top:1.9500000000000002pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.05pt;">MAAS</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.35000000000000003pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.05pt;">Scoring</span>
-                        </p>
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0.45pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                        <p style="margin-left:5pt;margin-right:18.35pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span style="font-family:Times New Roman;font-size:12pt;">To</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">score</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">the</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">scale,</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">simply</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">compute</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">a</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">mean</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">(average)</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">of</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">the</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">15</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">items.</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">Higher</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">scores</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">reflect</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:1.4500000000000002pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">higher</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">levels</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">of</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.35000000000000003pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;">dispositional</span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
-                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">mindfulness.</span>
-                        </p>
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                            <span>&nbsp;</span>
-                        </p>
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" />
-                    </section>*@
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="text-align:center;margin-left:18.900000000000002pt;margin-right:0pt;margin-top:1.9500000000000002pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.05pt;">MAAS</span>
+                <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.35000000000000003pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.05pt;">Scoring</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0.45pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:5pt;margin-right:18.35pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Times New Roman;font-size:12pt;">To</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">score</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">the</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">scale,</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">simply</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">compute</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">a</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">mean</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">(average)</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">of</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">the</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">15</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">items.</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">Higher</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">scores</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">reflect</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:1.4500000000000002pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">higher</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">levels</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">of</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.35000000000000003pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;">dispositional</span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
+                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">mindfulness.</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" />
+        </section>*@
 
 
 
             <div class="col-md-3" style="padding: 10px; margin-top:68px;">
-                <button type="button" class="button1" id="btnAddAndSave" onclick="return Save_MASSMindfulnessScaleFinal();">Save And Next</button>
+                <button type="button" class="button1" id="btnAddAndSave" onclick="return SaveForms('stpSaveMASSMindfulnessScaleFinal', 'validate_MASSMindfulnessScaleFinal');">Save And Next</button>
             </div>
 
             </div>
@@ -1053,3 +1056,42 @@
     </div>
 
 </form>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        $(document).ready(function () {
+
+            //SetUpGrid();
+
+        });
+
+
+
+
+
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            w = window.open();
+            w.document.write(printContents);
+            w.print();
+            w.close();
+        }
+
+
+
+
+    </script>
+
+}

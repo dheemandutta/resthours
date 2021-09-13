@@ -11,7 +11,7 @@ namespace TM.RestHour.BL
     public class PsychologicalEvaluationBL
     {
        
-        public int Save_LocusOfControl(string[] arrLocusOfControl, int CrewID, int VesselID)
+        public int SaveForms(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure)
         {
             string[] arrQuestionNo = new string[10];
             string[] arrAnswer = new string[10];
@@ -72,7 +72,7 @@ namespace TM.RestHour.BL
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.Save_LocusOfControl(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
         }
 
         private int CalculateAnswer1(int answer) 

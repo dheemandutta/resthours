@@ -16,6 +16,7 @@ using System.IO;
 using System.Net;
 using ExcelDataReader;
 using System.Configuration;
+using Newtonsoft.Json;
 
 namespace TM.RestHour.Controllers
 {
@@ -72,82 +73,16 @@ namespace TM.RestHour.Controllers
 
 
 
-        public JsonResult Save_LocusOfControl(string[] LocusOfControl)
+        public JsonResult SaveForms(string LocusOfControl, string StoredProcedure, string Validator)
         {
             PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
+            string[] arr = JsonConvert.DeserializeObject<string[]>(LocusOfControl);
+
             //psychologicalEvaluationBL.Save_LocusOfControl(LocusOfControl);
             //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.Save_LocusOfControl(LocusOfControl, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
+            return Json(psychologicalEvaluationBL.SaveForms(arr, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString()), StoredProcedure/*, Validator*/), JsonRequestBehavior.AllowGet);
 
         }
-
-        public JsonResult Save_BeckDepressionInventoryIIFinal(string[] BeckDepressionInventoryIIFinal)
-        {
-            PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
-            //psychologicalEvaluationBL.Save_BeckDepressionInventoryIIFinal(BeckDepressionInventoryIIFinal);
-            //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.Save_BeckDepressionInventoryIIFinal(BeckDepressionInventoryIIFinal, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult Save_EmotionalIntelligenceQuizForLeadership(string[] EmotionalIntelligenceQuizForLeadership)
-        {
-            PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
-            //psychologicalEvaluationBL.Save_EmotionalIntelligenceQuizForLeadership(EmotionalIntelligenceQuizForLeadership);
-            //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.Save_EmotionalIntelligenceQuizForLeadership(EmotionalIntelligenceQuizForLeadership, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult Save_InstructionsForPSSFinal(string[] InstructionsForPSSFinal)
-        {
-            PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
-            //psychologicalEvaluationBL.Save_InstructionsForPSSFinal(InstructionsForPSSFinal);
-            //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.Save_InstructionsForPSSFinal(InstructionsForPSSFinal, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult Save_MASSMindfulnessScaleFinal(string[] MASSMindfulnessScaleFinal)
-        {
-            PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
-            //psychologicalEvaluationBL.Save_MASSMindfulnessScaleFinal(MASSMindfulnessScaleFinal);
-            //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.Save_MASSMindfulnessScaleFinal(MASSMindfulnessScaleFinal, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult Save_PSQ30_PERCIEVED_STRESS_QUESTIONAIRE(string[] PSQ30_PERCIEVED_STRESS_QUESTIONAIRE)
-        {
-            PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
-            //psychologicalEvaluationBL.Save_PSQ30_PERCIEVED_STRESS_QUESTIONAIRE(PSQ30_PERCIEVED_STRESS_QUESTIONAIRE);
-            //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.Save_PSQ30_PERCIEVED_STRESS_QUESTIONAIRE(PSQ30_PERCIEVED_STRESS_QUESTIONAIRE, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult Save_ROSENBERG_SELF_esteem_scale_final(string[] ROSENBERG_SELF_esteem_scale_final)
-        {
-            PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
-            //psychologicalEvaluationBL.Save_ROSENBERG_SELF_esteem_scale_final(ROSENBERG_SELF_esteem_scale_final);
-            //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.Save_ROSENBERG_SELF_esteem_scale_final(ROSENBERG_SELF_esteem_scale_final, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult Save_Zhao_ANXIETY(string[] Zhao_ANXIETY)
-        {
-            PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
-            //psychologicalEvaluationBL.Save_Zhao_ANXIETY(Zhao_ANXIETY);
-            //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.Save_Zhao_ANXIETY(Zhao_ANXIETY, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-
-        }
-
-
-
-
-
 
         public JsonResult GetLocusOfControl(int VesselID, int CrewId)
         {
