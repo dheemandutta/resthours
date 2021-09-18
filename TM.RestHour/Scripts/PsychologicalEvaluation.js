@@ -1563,6 +1563,10 @@ function SaveForms(sp, val) {
             })
                 .done(function (msg) {
                     alert("Data Saved " /*+ msg*/);
+
+                    window.location = "InstructionsForPSSFinal", "PsychologicalEvaluation";
+
+
                 });
         }
 }
