@@ -80,30 +80,10 @@ namespace TM.RestHour.Controllers
 
             //psychologicalEvaluationBL.Save_LocusOfControl(LocusOfControl);
             //return Json(null, JsonRequestBehavior.AllowGet);
-            return Json(psychologicalEvaluationBL.SaveForms(arr, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString()), StoredProcedure/*, Validator*/), JsonRequestBehavior.AllowGet);
+            return Json(psychologicalEvaluationBL.SaveForms(arr, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString()), StoredProcedure, int.Parse(Validator)), JsonRequestBehavior.AllowGet);
 
         }
 
-        public JsonResult GetLocusOfControl(int VesselID, int CrewId)
-        {
-            PsychologicalEvaluationBL bL = new PsychologicalEvaluationBL();
-            PsychologicalEvaluationPOCO pOCOList = new PsychologicalEvaluationPOCO();
-
-            pOCOList = bL.GetLocusOfControl(int.Parse(Session["VesselID"].ToString()), int.Parse(Session["LoggedInUserId"].ToString()));
-
-            PsychologicalEvaluationPOCO dept = new PsychologicalEvaluationPOCO();
-
-            dept.Id = pOCOList.Id;
-            dept.Question = pOCOList.Question;
-            dept.Answer = pOCOList.Answer;
-            dept.FinalScore = pOCOList.FinalScore;
-            dept.TestResult = pOCOList.TestResult;
-            dept.VesselID = pOCOList.VesselID;
-            dept.CrewId = pOCOList.CrewId;
-
-            var data = dept;
-
-            return Json(data, JsonRequestBehavior.AllowGet);
-        }
+       
     }
 }

@@ -1502,67 +1502,67 @@ function validate_EmotionalIntelligenceQuizForLeadership() {
 function SaveForms(sp, val) {
 
     var posturl = $('#SaveForms').val();
-    var res = validate_LocusOfControl()
-    if (res == false) {
-      return false;
-    }
 
-    if (res) {
         var array = [];
         //var i = 0;
 
-        $("#myForm1 input[type=radio]:checked").each(function () {
-            if (this.checked == true) {
-                array.push(this.value)
-                //i = i + 1;
-            }
-        });
+        
 
-        console.log(posturl);
+        console.log(val);
 
         /////////////////////////////////////
         switch (val) {
-            case 1:
-                validate = "validate_LocusOfControl";
+            case '1':
+                validate = validate_LocusOfControl();
                 break;
-            case 2:
-                validate = "validate_InstructionsForPSSFinal";
+            case '2':
+                validate = validate_InstructionsForPSSFinal();
                 break;
-            case 3:
-                validate = "validate_MASSMindfulnessScaleFinal";
+            case '3':
+                validate = validate_MASSMindfulnessScaleFinal();
                 break;
-            case 4:
-                validate = "validate_BeckDepressionInventoryIIFinal";
+            case '4':
+                validate = validate_BeckDepressionInventoryIIFinal();
                 break;
-            case 5:
-                validate = "validate_PSQ30_PERCIEVED_STRESS_QUESTIONAIRE";
+            case '5':
+                validate = validate_PSQ30_PERCIEVED_STRESS_QUESTIONAIRE();
                 break;
-            case 6:
-                validate = "validate_ROSENBERG_SELF_esteem_scale_final";
+            case '6':
+                validate = validate_ROSENBERG_SELF_esteem_scale_final();
                 break;
-            case 7:
-                validate = "validate_Zhao_ANXIETY";
+            case '7':
+                validate = validate_Zhao_ANXIETY();
                 break;
-            case 8:
-                validate = "validate_EmotionalIntelligenceQuizForLeadership";
+            case '8':
+                validate = validate_EmotionalIntelligenceQuizForLeadership();
                 break;
         }
         ///////////////////////////////////////
+        console.log(validate);
+        //alert('hi');
 
-        $.ajax({
-            method: "POST",
-            url: posturl,
-            datatype: "json",
-            data: {
-                LocusOfControl: JSON.stringify(array),
-                StoredProcedure: sp
-                ////////////////////////
-                ,Validator: val
-                ////////////////////////////////////
-            }
-        })
-            .done(function (msg) {
-                alert("Data Saved: " + msg);
+        if (validate === true) {
+            $("#myForm1 input[type=radio]:checked").each(function () {
+                if (this.checked == true) {
+                    array.push(this.value)
+                    //i = i + 1;
+                }
             });
-    }
+
+            $.ajax({
+                method: "POST",
+                url: posturl,
+                datatype: "json",
+                data: {
+                    LocusOfControl: JSON.stringify(array),
+                    StoredProcedure: sp
+                    ////////////////////////
+                    , Validator: val
+                    ////////////////////////////////////
+                }
+            })
+                .done(function (msg) {
+                    alert("Data Saved " /*+ msg*/);
+                });
+        }
 }
