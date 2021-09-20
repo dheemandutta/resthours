@@ -1562,11 +1562,56 @@ function SaveForms(sp, val) {
                 }
             })
                 .done(function (msg) {
-                    alert("Data Saved " /*+ msg*/);
+                    alert("This form has been saved. " /*+ msg*/);
 
+
+
+
+
+
+                   
+                    /////////////////////////////////////
+            switch (val) {
+                case '1':
+                    //page = LocusOfControl;
                     window.location = "InstructionsForPSSFinal", "PsychologicalEvaluation";
+                    break;
+                case '2':
+                    //page = InstructionsForPSSFinal;
+                    window.location = "MASSMindfulnessScaleFinal", "PsychologicalEvaluation";
+                    break;
+                case '3':
+                    //page = MASSMindfulnessScaleFinal;
+                    window.location = "BeckDepressionInventoryIIFinal", "PsychologicalEvaluation";
+                    break;
+                case '4':
+                    //page = BeckDepressionInventoryIIFinal;
+                    window.location = "PSQ30_PERCIEVED_STRESS_QUESTIONAIRE", "PsychologicalEvaluation";
+                    break;
+                case '5':
+                    //page = PSQ30_PERCIEVED_STRESS_QUESTIONAIRE;
+                    window.location = "ROSENBERG_SELF_esteem_scale_final", "PsychologicalEvaluation";
+                    break;
+                case '6':
+                    //page = ROSENBERG_SELF_esteem_scale_final;
+                    window.location = "Zhao_ANXIETY", "PsychologicalEvaluation";
+                    break;
+                case '7':
+                    //page = Zhao_ANXIETY;
+                    window.location = "EmotionalIntelligenceQuizForLeadership", "PsychologicalEvaluation";
+                    break;
+                case '8':
+                    //page = EmotionalIntelligenceQuizForLeadership;
+                    alert("All forms saved.");
+                    window.location = "NCReportByMonth", "ReportsNCReportByMonth";
+                    break;
+            }
+            ///////////////////////////////////////
+                    //console.log(page);
 
-
+                    //window.location = "ActionName", "ControllerName";
+                    //window.location = "InstructionsForPSSFinal", "PsychologicalEvaluation";
+                    
                 });
         }
 }
