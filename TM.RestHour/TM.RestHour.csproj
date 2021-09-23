@@ -3121,8 +3121,9 @@
     <Content Include="Views\PsychologicalEvaluation\BeckDepressionInventoryIIFinal.cshtml" />
     <Content Include="Views\PsychologicalEvaluation\PSQ30_PERCIEVED_STRESS_QUESTIONAIRE.cshtml" />
     <Content Include="Views\PsychologicalEvaluation\ROSENBERG_SELF_esteem_scale_final.cshtml" />
-    <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y1.cshtml" />
     <Content Include="Views\PsychologicalEvaluation\EmotionalIntelligenceQuizForLeadership.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y2.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -30,8 +30,8 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@Answer", answers);
             cmd.Parameters.AddWithValue("@FinalScore", totalCount);
             cmd.Parameters.AddWithValue("@TestResult", testResult.ToString());
-            cmd.Parameters.AddWithValue("@VesselID", CrewID);
-            cmd.Parameters.AddWithValue("@CrewId", VesselID);
+            cmd.Parameters.AddWithValue("@VesselID", VesselID);
+            cmd.Parameters.AddWithValue("@CrewId", CrewID);
 
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();

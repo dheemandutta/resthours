@@ -452,28 +452,28 @@ namespace TM.RestHour.BL
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 2:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 3:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 4:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 5:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 6:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 7:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 8:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 9:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 10:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
@@ -482,16 +482,16 @@ namespace TM.RestHour.BL
 
             }
 
-            if (totalCount <= 13)
-            {
-                testResult = "Low perceived stress";
-            }
+            //if (totalCount <= 13)
+            //{
+            //    testResult = "Low perceived stress";
+            //}
 
-            else if (totalCount >= 14 && totalCount <= 26)
-                testResult = "Moderate perceived stress";
+            //else if (totalCount >= 14 && totalCount <= 26)
+            //    testResult = "Moderate perceived stress";
 
-            else
-                testResult = "High perceived stress";
+            //else
+            //    testResult = "High perceived stress";
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;

@@ -58,7 +58,7 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
-        public ActionResult Zhao_ANXIETY()
+        public ActionResult Zhao_ANXIETY_Y1()
         {
             return View();
         }
@@ -68,7 +68,10 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
-
+        public ActionResult Zhao_ANXIETY_Y2()
+        {
+            return View();
+        }
 
 
 
