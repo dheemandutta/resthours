@@ -1512,18 +1512,19 @@ function SaveForms(sp, val) {
 
         /////////////////////////////////////
         switch (val) {
-            case '1':
-                validate = validate_LocusOfControl();
-                break;
-            case '2':
-                validate = validate_InstructionsForPSSFinal();
-                break;
-            case '3':
-                validate = validate_MASSMindfulnessScaleFinal();
-                break;
-            case '4':
-                validate = validate_BeckDepressionInventoryIIFinal();
-                break;
+            //case '1':
+            //    validate = validate_LocusOfControl();
+            //    break;
+            //case '2':
+            //    validate = validate_InstructionsForPSSFinal();
+            //    break;
+            //case '3':
+            //    validate = validate_MASSMindfulnessScaleFinal();
+            //    break;
+            //case '4':
+            //    //validate = validate_BeckDepressionInventoryIIFinal();
+            //    validate = true;
+            //    break;
             case '5':
                 validate = validate_PSQ30_PERCIEVED_STRESS_QUESTIONAIRE();
                 break;

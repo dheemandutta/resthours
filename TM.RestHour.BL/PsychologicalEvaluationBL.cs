@@ -187,8 +187,8 @@ namespace TM.RestHour.BL
 
         private int SaveMASSMindfulnessScaleFinal(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
         {
-            string[] arrQuestionNo = new string[10];
-            string[] arrAnswer = new string[10];
+            string[] arrQuestionNo = new string[15];
+            string[] arrAnswer = new string[15];
             int totalCount = 0; // 13578
             string testResult = string.Empty;
 
@@ -203,52 +203,22 @@ namespace TM.RestHour.BL
 
             for (int i = 0; i < arrQuestionNo.Length; i++)
             {
-                switch (int.Parse(arrQuestionNo[i]))
-                {
-                    case 1:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 2:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 3:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 4:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 5:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 6:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 7:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 8:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 9:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 10:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                }
-
+                totalCount = totalCount + int.Parse(arrAnswer[i]);
             }
 
-            if (totalCount <= 13)
-            {
-                testResult = "Low perceived stress";
-            }
+            totalCount = totalCount / arrQuestionNo.Length;
 
-            else if (totalCount >= 14 && totalCount <= 26)
-                testResult = "Moderate perceived stress";
+            //if (totalCount <= 13)
+            //{
+            //    testResult = "Low perceived stress";
+            //}
 
-            else
-                testResult = "High perceived stress";
+            //else if (totalCount >= 14 && totalCount <= 26)
+            //    testResult = "Moderate perceived stress";
+
+            //else
+            //    testResult = "High perceived stress";
+        
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
@@ -329,10 +299,13 @@ namespace TM.RestHour.BL
 
         private int SavePSQ30_PERCIEVED_STRESS_QUESTIONAIRE(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
         {
-            string[] arrQuestionNo = new string[10];
-            string[] arrAnswer = new string[10];
+            string[] arrQuestionNo = new string[30];
+            string[] arrAnswer = new string[30];
             int totalCount = 0; // 13578
             string testResult = string.Empty;
+
+            int psq_mean = 0;
+            decimal psq = 0;
 
             int counter = 0;
             for (int i = 0; i < arrLocusOfControl.Length; i++)
@@ -348,7 +321,7 @@ namespace TM.RestHour.BL
                 switch (int.Parse(arrQuestionNo[i]))
                 {
                     case 1:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        totalCount = totalCount + (5- int.Parse(arrAnswer[i]));
                         break;
                     case 2:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
@@ -357,44 +330,101 @@ namespace TM.RestHour.BL
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 4:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 5:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 6:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 7:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 8:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 9:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 10:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 11:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 12:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 13:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 14:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 15:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 16:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 17:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 18:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 19:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 20:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 21:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 22:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 23:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 24:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 25:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 26:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 27:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 28:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 29:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 30:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                 }
 
             }
 
-            if (totalCount <= 13)
-            {
-                testResult = "Low perceived stress";
-            }
+            psq_mean = totalCount / 30;
+            psq = psq_mean - 1;
+            psq = psq / 3;
+            psq = psq * 100;
 
-            else if (totalCount >= 14 && totalCount <= 26)
-                testResult = "Moderate perceived stress";
 
-            else
-                testResult = "High perceived stress";
+           
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, psq, testResult, CrewID, VesselID, StoredProcedure);
 
         }
 

@@ -22,38 +22,30 @@ namespace TM.RestHour.DAL
             //SqlCommand cmd = new SqlCommand("stpSaveLocusOfControl", con);
             SqlCommand cmd = new SqlCommand(StoredProcedure, con);   /////////////// StoredProcedure ///////////////
 
-            //string questions = string.Empty;
-            //string answers = string.Empty;
-            //int cnt = 0;
-            //foreach(string s in arrQuestionNo)
-            //{
-            //    if(cnt == 0)
-            //    {
-            //        questions =  s;
-            //    }
-            //    else
-            //    {
-            //        questions = questions + "," + s;
-            //    }
-            //    cnt++;
-            //}
-            //questions = questions + ",";
-            //cnt = 0;
-            //foreach (string s in arrAnswer)
+            var questions = string.Join(",", arrQuestionNo);
+            var answers = string.Join(",", arrAnswer);
 
-            //{
-            //    if (cnt == 0)
-            //    {
-            //        answers = s;
-            //    }
-            //    else
-            //    {
-            //        answers = answers + "," + s;
-            //    }
-            //    cnt++;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Question", questions);
+            cmd.Parameters.AddWithValue("@Answer", answers);
+            cmd.Parameters.AddWithValue("@FinalScore", totalCount);
+            cmd.Parameters.AddWithValue("@TestResult", testResult.ToString());
+            cmd.Parameters.AddWithValue("@VesselID", CrewID);
+            cmd.Parameters.AddWithValue("@CrewId", VesselID);
 
-            //}
-            //answers = answers + ",";
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
+
+        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, decimal totalCount, string testResult, int CrewID, int VesselID, string StoredProcedure)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+
+            //SqlCommand cmd = new SqlCommand("stpSaveLocusOfControl", con);
+            SqlCommand cmd = new SqlCommand(StoredProcedure, con);   /////////////// StoredProcedure ///////////////
 
             var questions = string.Join(",", arrQuestionNo);
             var answers = string.Join(",", arrAnswer);
@@ -66,21 +58,14 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@VesselID", CrewID);
             cmd.Parameters.AddWithValue("@CrewId", VesselID);
 
-
-            //if (!String.IsNullOrEmpty(consultant.Comment))
-            //{
-            //    cmd.Parameters.AddWithValue("@Comment", consultant.Comment.ToString());
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
-            //}
-
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
 
             return recordsAffected;
         }
+
+
+
 
         public PsychologicalEvaluationPOCO GetLocusOfControl(int VesselID, int CrewId)
         {
