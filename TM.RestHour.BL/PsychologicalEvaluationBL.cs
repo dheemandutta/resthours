@@ -35,9 +35,12 @@ namespace TM.RestHour.BL
                     result = SaveROSENBERG_SELF_esteem_scale_final(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
                     break;
                 case 7:
-                    result = SaveZhao_ANXIETY(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SaveZhao_ANXIETY_Y1(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
                     break;
                 case 8:
+                    result = SaveZhao_ANXIETY_Y2(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    break;
+                case 9:
                     result = SaveEmotionalIntelligenceQuizForLeadership(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
                     break;
             }
@@ -499,10 +502,10 @@ namespace TM.RestHour.BL
 
         }
 
-        private int SaveZhao_ANXIETY(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SaveZhao_ANXIETY_Y1(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
         {
-            string[] arrQuestionNo = new string[10];
-            string[] arrAnswer = new string[10];
+            string[] arrQuestionNo = new string[20];
+            string[] arrAnswer = new string[20];
             int totalCount = 0; // 13578
             string testResult = string.Empty;
 
@@ -520,33 +523,164 @@ namespace TM.RestHour.BL
                 switch (int.Parse(arrQuestionNo[i]))
                 {
                     case 1:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 2:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 3:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 4:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 5:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 6:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 7:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 8:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
                         break;
                     case 9:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                     case 10:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 11:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 12:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 13:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 14:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 15:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 16:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 17:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 18:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 19:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 20:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                }
+
+            }
+
+            if (totalCount <= 13)
+            {
+                testResult = "Low perceived stress";
+            }
+
+            else if (totalCount >= 14 && totalCount <= 26)
+                testResult = "Moderate perceived stress";
+
+            else
+                testResult = "High perceived stress";
+
+            PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
+            //return 1;
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+
+        }
+
+        private int SaveZhao_ANXIETY_Y2(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        {
+            string[] arrQuestionNo = new string[20];
+            string[] arrAnswer = new string[20];
+            int totalCount = 0; // 13578
+            string testResult = string.Empty;
+
+            int counter = 0;
+            for (int i = 0; i < arrLocusOfControl.Length; i++)
+            {
+                string[] temp = arrLocusOfControl[i].Split('_');
+                arrQuestionNo[counter] = temp[0];
+                arrAnswer[counter] = temp[1];
+                counter++;
+            }
+
+            for (int i = 0; i < arrQuestionNo.Length; i++)
+            {
+                switch (int.Parse(arrQuestionNo[i]))
+                {
+                    case 1:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 2:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 3:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 4:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 5:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 6:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 7:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 8:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 9:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 10:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 11:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 12:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 13:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 14:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 15:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 16:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 17:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 18:
+                        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                        break;
+                    case 19:
+                        totalCount = totalCount + (5 - int.Parse(arrAnswer[i]));
+                        break;
+                    case 20:
                         totalCount = totalCount + int.Parse(arrAnswer[i]);
                         break;
                 }
