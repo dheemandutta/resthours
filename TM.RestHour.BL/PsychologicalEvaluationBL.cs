@@ -586,16 +586,16 @@ namespace TM.RestHour.BL
 
             }
 
-            if (totalCount <= 13)
-            {
-                testResult = "Low perceived stress";
-            }
+            //if (totalCount <= 13)
+            //{
+            //    testResult = "Low perceived stress";
+            //}
 
-            else if (totalCount >= 14 && totalCount <= 26)
-                testResult = "Moderate perceived stress";
+            //else if (totalCount >= 14 && totalCount <= 26)
+            //    testResult = "Moderate perceived stress";
 
-            else
-                testResult = "High perceived stress";
+            //else
+            //    testResult = "High perceived stress";
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
@@ -687,16 +687,16 @@ namespace TM.RestHour.BL
 
             }
 
-            if (totalCount <= 13)
-            {
-                testResult = "Low perceived stress";
-            }
+            //if (totalCount <= 13)
+            //{
+            //    testResult = "Low perceived stress";
+            //}
 
-            else if (totalCount >= 14 && totalCount <= 26)
-                testResult = "Moderate perceived stress";
+            //else if (totalCount >= 14 && totalCount <= 26)
+            //    testResult = "Moderate perceived stress";
 
-            else
-                testResult = "High perceived stress";
+            //else
+            //    testResult = "High perceived stress";
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
