@@ -78,6 +78,15 @@ namespace TM.RestHour.BL
 			TimeSheetDAL timesheetdal = new TimeSheetDAL();
 			return timesheetdal.GetNoNCForMonth(Month, Year, CrewId, VesselID);
 		}
-	}
+
+
+
+
+        public int? GetDaysLeft(int ID)
+        {
+            TimeSheetDAL timesheetdal = new TimeSheetDAL();
+            return timesheetdal.GetDaysLeft(ID);
+        }
+    }
 }
 

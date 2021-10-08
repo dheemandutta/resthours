@@ -4063,10 +4063,18 @@ function GetNonComplianceDetailsByCurrentMonth(monthyr) {
                                 else if (idx == parseInt(day)) {
                                     //console.log('Checking Status');
                                     //console.log(result[index].isNonCompliant);
-                                    if (result[index].isNonCompliant == '1')
-                                        $(this).html('&nbsp;<a href="#" id="myid3" onclick="javascript:GetNCDetails(&quot;' + result[index].NCDetailsID + '&quot;);"> <img src=' + imgpathR+' width="16" height="16"> </a>');  //NC
-                                    else
-                                        $(this).html('&nbsp;<a href="#" id= "' + result[index].NCDetailsID + '"> <img src=' + imgpathG +' width="16" height="16"> </a>');   //NA
+                                    if (result[index].isNonCompliant == '1') {
+                                        //clear
+                                        $(this).html('');
+                                        $(this).html('&nbsp;<a href="#" id="myid3" onclick="javascript:GetNCDetails(&quot;' + result[index].NCDetailsID + '&quot;);"> <img src="/images/R.png" width="16" height="16"> </a>');  //NC
+                                    }
+                                    else {
+                                        //clear
+                                        $(this).html('');
+                                        $(this).html('&nbsp;<a href="#" id= "' + result[index].NCDetailsID + '"> <img src="/images/G.png" width="16" height="16"> </a>');   //NA
+                                        console.log('Checking Status');
+                                        console.log(idx);
+                                    }
                                 }
 
                                 //tdnum++;
@@ -4107,10 +4115,18 @@ function GetNonComplianceDetailsByCurrentMonth(monthyr) {
                                     if (idx == parseInt(day)) {
                                         //console.log('Checking Status');
                                         //console.log(result[index].isNonCompliant);
-                                        if (result[index].isNonCompliant === '1')
-                                            $(this).html('&nbsp;<a href="#" id="myid3" onclick="javascript:GetNCDetails(&quot;' + result[index].NCDetailsID + '&quot;);"> <img src=' + imgpathR +' width="16" height="16"> </a>');  //NC
-                                        else
-                                            $(this).html('&nbsp;<a href="#"  id= "' + result[index].NCDetailsID + '"> <img src=' + imgpathG +' width="16" height="16"> </a>');  //NA
+                                        if (result[index].isNonCompliant == '1') {
+                                            //clear
+                                            $(this).html('');
+                                            $(this).html('&nbsp;<a href="#" id="myid3" onclick="javascript:GetNCDetails(&quot;' + result[index].NCDetailsID + '&quot;);"> <img src=' + imgpathR + ' width="16" height="16"> </a>');  //NC
+                                        }
+                                        else {
+                                            //clear
+                                            $(this).html('');
+                                            $(this).html('&nbsp;<a href="#"  id= "' + result[index].NCDetailsID + '"> <img src=' + imgpathG + ' width="16" height="16"> </a>');  //NA
+                                            console.log('Checking Status2');
+                                            console.log(idx);
+                                        }
                                     }
                                 }
 
@@ -4154,20 +4170,16 @@ function GetNonComplianceDetailsByCurrentMonth(monthyr) {
                                 else if (idx == parseInt(day)) {
                                     //console.log('Checking Status');
                                     //console.log(result[index].isNonCompliant);
-                                    if (result[index].isNonCompliant === '1') {
-                                        $(this).html(
-                                            '&nbsp;<a href="#" id="myid3" onclick="javascript:GetNCDetails(&quot;' +
-                                            result[index].NCDetailsID +
-                                            '&quot;);"> <img src=' +
-                                            imgpathR +
-                                            ' width="16" height="16"> </a>'); //NC
-                                    } else {
-                                        //debugger;
-                                        $(this).html('&nbsp;<a href="#" id= "' +
-                                            result[index].NCDetailsID +
-                                            '"> <img src=' +
-                                            imgpathG +
-                                            ' width="16" height="16"> </a>'); //NA
+                                    if (result[index].isNonCompliant == '1') {
+                                        //clear
+                                        $(this).html('');
+                                        $(this).html('&nbsp;<a href="#" id="myid3" onclick="javascript:GetNCDetails(&quot;' + result[index].NCDetailsID + '&quot;);"> <img src=' + imgpathR + ' width="16" height="16"> </a>');  //NC
+                                    }
+                                    else {
+                                        //clear
+                                        $(this).html('');
+
+                                        $(this).html('&nbsp;<a href="#" id= "' + result[index].NCDetailsID + '"> <img src=' + imgpathG + ' width="16" height="16"> </a>');   //NA
                                     }
                                 }
 

@@ -66,6 +66,7 @@
     <Compile Include="OptionsBL.cs" />
     <Compile Include="PermissionsBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PsychologicalEvaluationBL.cs" />
     <Compile Include="RanksBL.cs" />
     <Compile Include="RegimesBL.cs" />
     <Compile Include="ReportsBL.cs" />

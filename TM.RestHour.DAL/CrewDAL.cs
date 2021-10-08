@@ -777,6 +777,8 @@ namespace TM.RestHour.DAL
             SqlCommand cmd = new SqlCommand("stpSaveCrewTemperature", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@CrewID", crewTemperature.CrewID.ToString());
+
+            cmd.Parameters.AddWithValue("@SPO2Level", crewTemperature.SPO2Level.ToString());
             cmd.Parameters.AddWithValue("@Temperature", crewTemperature.Temperature.ToString());
 
             if (!String.IsNullOrEmpty(crewTemperature.Unit))

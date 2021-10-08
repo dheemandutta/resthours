@@ -1467,5 +1467,24 @@ namespace TM.RestHour.Controllers
 
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
+
+
+
+
+
+
+
+		//[HttpPost]     Super Admin  
+		public JsonResult GetDaysLeft()
+		{
+			TimeSheetBL usersBL = new TimeSheetBL();
+
+			if (Session["LoggedInUserType"].ToString()== "Super Admin") {
+				return Json(10, JsonRequestBehavior.AllowGet);
+			}
+
+			return Json(usersBL.GetDaysLeft(int.Parse(Session["LoggedInUserId"].ToString())), JsonRequestBehavior.AllowGet);
+		}
+
 	}
 }

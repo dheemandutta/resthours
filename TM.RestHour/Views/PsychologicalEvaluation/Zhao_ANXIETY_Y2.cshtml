@@ -1,0 +1,1027 @@
+﻿
+@{
+    ViewBag.Title = "Zhao_ANXIETY_Y2";
+}
+<script src="~/Scripts/PsychologicalEvaluation.js"></script>
+@Html.Hidden("SaveForms", @Url.Action("SaveForms", "PsychologicalEvaluation"))
+<form id="myForm1">
+
+    <div class="row">
+        @*<div class="head_title">
+                <h1 class="ta">Page Name</h1>
+            </div>*@
+        <div class="card bacmt" style="height: 600px;">
+            <div class="clearfix"></div>
+            <div class="row">
+
+
+                <section id="print-content">
+                    <input type="button" onclick="printDiv('print-content')" value="print a div!" />
+
+
+
+                    @*<p style="text-align:center;margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span style="font-family:Arial;font-size:12pt;font-weight: bold;letter-spacing:-0.1pt;">SELF-EVALUATION QUESTIONNAIRE</span>
+        </p>
+        <p style="text-align:center;margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span style="font-family:Arial;font-size:12pt;font-weight: bold;letter-spacing:-0.1pt;">STAI Form Y-1</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span style="font-family:Arial;font-size:12pt;font-weight: bold;letter-spacing:-0.1pt;">Please provide the following information:</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">Name: ___________________________________ Date_______________ S______</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">Age: _________ Gender (Circle) &nbsp; &nbsp; M &nbsp; &nbsp; F &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; T______</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="text-align:center;margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span style="font-family:Arial;font-size:12pt;font-weight: bold;letter-spacing:-0.1pt;">DIRECTIONS:</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">A number of statements which people have used to describe themselves are given below. Read each statement and then blacken the appropriate circle to the right of the statement to indicate how you feel right now, that is, at this moment. &nbsp;There are no right or wrong answers. &nbsp;Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best.</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Not at all &nbsp; &nbsp; Somewhat &nbsp; &nbsp; Moderately so &nbsp; &nbsp; Very much so</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q1">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel calm................... &nbsp; &nbsp; &nbsp; <input type="radio" id="1_1" name="q1" value="1_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="1_2" name="q1" value="1_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="1_3" name="q1" value="1_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="1_4" name="q1" value="1_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q2">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel secure ............... &nbsp; &nbsp; &nbsp; <input type="radio" id="2_1" name="q2" value="2_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="2_2" name="q2" value="2_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="2_3" name="q2" value="2_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="2_4" name="q2" value="2_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q3">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I am tense .................. &nbsp; &nbsp; &nbsp; <input type="radio" id="3_1" name="q3" value="3_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="3_2" name="q3" value="3_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="3_3" name="q3" value="3_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="3_4" name="q3" value="3_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q4">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel strained ............. &nbsp; &nbsp; &nbsp; <input type="radio" id="4_1" name="q4" value="4_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="4_2" name="q4" value="4_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="4_3" name="q4" value="4_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="4_4" name="q4" value="4_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q5">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">5.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel at ease ............... &nbsp; &nbsp; &nbsp; <input type="radio" id="5_1" name="q5" value="5_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="5_2" name="q5" value="5_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="5_3" name="q5" value="5_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="5_4" name="q5" value="5_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q6">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">6.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel upset................... &nbsp; &nbsp; &nbsp; <input type="radio" id="6_1" name="q6" value="6_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="6_2" name="q6" value="6_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="6_3" name="q6" value="6_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="6_4" name="q6" value="6_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q7">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">7.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I am presently </span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q7">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; worrying over </span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q7">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; possible misfortunes ... &nbsp; &nbsp; <input type="radio" id="7_1" name="q7" value="7_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="7_2" name="q7" value="7_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="7_3" name="q7" value="7_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="7_4" name="q7" value="7_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q8">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">8.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel satisfied............... &nbsp; &nbsp; &nbsp; <input type="radio" id="8_1" name="q8" value="8_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="8_2" name="q8" value="8_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="8_3" name="q8" value="8_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="8_4" name="q8" value="8_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q9">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">9.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel frightened............ &nbsp; &nbsp; &nbsp; <input type="radio" id="9_1" name="q9" value="9_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="9_2" name="q9" value="9_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="9_3" name="q9" value="9_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="9_4" name="q9" value="9_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q10">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">10.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel comfortable......... &nbsp; &nbsp; &nbsp; <input type="radio" id="10_1" name="q10" value="10_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="10_2" name="q10" value="10_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="10_3" name="q10" value="10_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="10_4" name="q10" value="10_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q11">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">11.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel self-confident ...... &nbsp; &nbsp; &nbsp; <input type="radio" id="11_1" name="q11" value="11_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="11_2" name="q11" value="11_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="11_3" name="q11" value="11_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="11_4" name="q11" value="11_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q12">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">12.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel nervous ............... &nbsp; &nbsp; &nbsp; <input type="radio" id="12_1" name="q12" value="12_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="12_2" name="q12" value="12_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="12_3" name="q12" value="12_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="12_4" name="q12" value="12_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q13">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">13.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I am jittery..................... &nbsp; &nbsp; &nbsp; <input type="radio" id="13_1" name="q13" value="13_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="13_2" name="q13" value="13_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="13_3" name="q13" value="13_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="13_4" name="q13" value="13_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q14">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">14.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel indecisive ............ &nbsp; &nbsp; &nbsp; <input type="radio" id="14_1" name="q14" value="14_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="14_2" name="q14" value="14_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="14_3" name="q14" value="14_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="14_4" name="q14" value="14_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q15">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">15.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I am relaxed.................. &nbsp; &nbsp; &nbsp; <input type="radio" id="15_1" name="q15" value="15_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="15_2" name="q15" value="15_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="15_3" name="q15" value="15_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="15_4" name="q15" value="15_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q16">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">16.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel content ................ &nbsp; &nbsp; &nbsp; <input type="radio" id="16_1" name="q16" value="16_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="16_2" name="q16" value="16_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="16_3" name="q16" value="16_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="16_4" name="q16" value="16_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q17">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">17.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I am worried ................. &nbsp; &nbsp; &nbsp; <input type="radio" id="17_1" name="q17" value="17_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="17_2" name="q17" value="17_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="17_3" name="q17" value="17_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="17_4" name="q17" value="17_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q18">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">18.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel confused............... &nbsp; &nbsp; &nbsp; <input type="radio" id="18_1" name="q18" value="18_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="18_2" name="q18" value="18_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="18_3" name="q18" value="18_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="18_4" name="q18" value="18_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q19">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">19.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel steady .................. &nbsp; &nbsp; &nbsp; <input type="radio" id="19_1" name="q19" value="19_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="19_2" name="q19" value="19_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="19_3" name="q19" value="19_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="19_4" name="q19" value="19_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q20">
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">20.</span>
+            <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I feel pleasant ................ &nbsp; &nbsp; &nbsp; <input type="radio" id="20_1" name="q20" value="20_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="20_2" name="q20" value="20_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="20_3" name="q20" value="20_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="20_4" name="q20" value="20_4">4</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>
+        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+            <span>&nbsp;</span>
+        </p>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <p style="text-align:center;margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:12pt;font-weight: bold;letter-spacing:-0.1pt;">STAI Form Y-2</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">Name_____________________________________________ Date______________</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="text-align:center;margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:12pt;font-weight: bold;letter-spacing:-0.1pt;">DIRECTIONS:</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">A number of statements which people have used to describe themselves are given below. &nbsp;Read each statement and then blacken in the appropriate circle to the right of the statement to indicate you generally feel.</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Almost never &nbsp; &nbsp; &nbsp; Sometimes &nbsp; &nbsp; &nbsp; Often &nbsp; &nbsp; &nbsp; Almost always</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q1">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1. I feel pleasant ................ &nbsp; &nbsp; &nbsp; <input type="radio" id="1_1" name="q1" value="1_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="1_2" name="q1" value="1_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="1_3" name="q1" value="1_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="1_4" name="q1" value="1_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q2">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2. I feel nervous, restless … &nbsp; &nbsp; &nbsp; <input type="radio" id="2_1" name="q2" value="2_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="2_2" name="q2" value="2_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="2_3" name="q2" value="2_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="2_4" name="q2" value="2_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+
+                    <t id="q3">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q3">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3. I feel satisfied </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q3">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;"> &nbsp; &nbsp; &nbsp;with myself...................... &nbsp; &nbsp; &nbsp; <input type="radio" id="3_1" name="q3" value="3_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="3_2" name="q3" value="3_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="3_3" name="q3" value="3_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="3_4" name="q3" value="3_4">4</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                    </t>
+
+                    <t id="q4">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q4">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4. I wish I could be as</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q4">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;"> &nbsp; &nbsp; &nbsp;happy as others</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q4">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;"> &nbsp; &nbsp; &nbsp;seem to be...................... &nbsp; &nbsp; &nbsp; <input type="radio" id="4_1" name="q4" value="4_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="4_2" name="q4" value="4_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="4_3" name="q4" value="4_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="4_4" name="q4" value="4_4">4</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                    </t>
+
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q5">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">5. I feel like a failure............ &nbsp; &nbsp; &nbsp; <input type="radio" id="5_1" name="q5" value="5_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="5_2" name="q5" value="5_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="5_3" name="q5" value="5_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="5_4" name="q5" value="5_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q6">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">6. I feel rested..................... &nbsp; &nbsp; &nbsp; <input type="radio" id="6_1" name="q6" value="6_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="6_2" name="q6" value="6_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="6_3" name="q6" value="6_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="6_4" name="q6" value="6_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+
+                    <t id="q7">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q7">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">7. I am “calm, cool, </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q7">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">and collected” ....................... &nbsp; &nbsp; &nbsp; <input type="radio" id="7_1" name="q7" value="7_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="7_2" name="q7" value="7_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="7_3" name="q7" value="7_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="7_4" name="q7" value="7_4">4</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                    </t>
+
+                    <t id="q8">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q8">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">8. I feel that difficulties</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q8">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">are piling up so that I</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q8">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">cannot overcome them ......... &nbsp; &nbsp; &nbsp; <input type="radio" id="8_1" name="q8" value="8_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="8_2" name="q8" value="8_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="8_3" name="q8" value="8_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="8_4" name="q8" value="8_4">4</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                    </t>
+
+                    <t id="q9">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q9">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">9. I worry too much </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q9">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">over something that </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q9">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">really doesn’t matter ............. &nbsp; &nbsp; &nbsp; <input type="radio" id="9_1" name="q9" value="9_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="9_2" name="q9" value="9_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="9_3" name="q9" value="9_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="9_4" name="q9" value="9_4">4</span>
+                        </p>
+                    </t>
+
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" />
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q10">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">10. I am happy....................... &nbsp; &nbsp; &nbsp; <input type="radio" id="10_1" name="q10" value="10_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="10_2" name="q10" value="10_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="10_3" name="q10" value="10_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="10_4" name="q10" value="10_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+
+                    <t id="q11">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q11">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">11. I have disturbing </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q11">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">thoughts................................. &nbsp; &nbsp; &nbsp; <input type="radio" id="11_1" name="q11" value="11_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="11_2" name="q11" value="11_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="11_3" name="q11" value="11_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="11_4" name="q11" value="11_4">4</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                    </t>
+
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q12">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">12. I lack self-confidence....... &nbsp; &nbsp; &nbsp; <input type="radio" id="12_1" name="q12" value="12_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="12_2" name="q12" value="12_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="12_3" name="q12" value="12_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="12_4" name="q12" value="12_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q13">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">13. I feel secure .................... &nbsp; &nbsp; &nbsp; <input type="radio" id="13_1" name="q13" value="13_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="13_2" name="q13" value="13_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="13_3" name="q13" value="13_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="13_4" name="q13" value="13_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q14">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">14. I make decisions easily … &nbsp; &nbsp; &nbsp; <input type="radio" id="14_1" name="q14" value="14_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="14_2" name="q14" value="14_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="14_3" name="q14" value="14_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="14_4" name="q14" value="14_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q15">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">15. I feel inadequate.............. &nbsp; &nbsp; &nbsp; <input type="radio" id="15_1" name="q15" value="15_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="15_2" name="q15" value="15_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="15_3" name="q15" value="15_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="15_4" name="q15" value="15_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q16">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">16. I am content..................... &nbsp; &nbsp; &nbsp; <input type="radio" id="16_1" name="q16" value="16_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="16_2" name="q16" value="16_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="16_3" name="q16" value="16_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="16_4" name="q16" value="16_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+
+                    <t id="q17">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q17">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">17. Some unimportant </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q17">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">thought runs through </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q17">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">my mind and bothers me....... &nbsp; &nbsp; &nbsp; <input type="radio" id="17_1" name="q17" value="17_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="17_2" name="q17" value="17_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="17_3" name="q17" value="17_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="17_4" name="q17" value="17_4">4</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                    </t>
+
+                    <t id="q18">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q18">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">18. I take disappointments</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q18">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">so keenly that I can’t put </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q18">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">them out of my mind ............. &nbsp; &nbsp; &nbsp; <input type="radio" id="18_1" name="q18" value="18_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="18_2" name="q18" value="18_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="18_3" name="q18" value="18_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="18_4" name="q18" value="18_4">4</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                    </t>
+
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q19">
+                        <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">19. I am a steady person....... &nbsp; &nbsp; &nbsp; <input type="radio" id="19_1" name="q19" value="19_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="19_2" name="q19" value="19_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="19_3" name="q19" value="19_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="19_4" name="q19" value="19_4">4</span>
+                    </p>
+                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span>&nbsp;</span>
+                    </p>
+
+                    <t id="q20">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q20">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">20. I get in a state of </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q20">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">tension or turmoil as </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q20">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">I think over my recent </span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" id="q20">
+                            <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">concerns and interests........... &nbsp; &nbsp; &nbsp; <input type="radio" id="20_1" name="q20" value="20_1">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="20_2" name="q20" value="20_2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="radio" id="20_3" name="q20" value="20_3">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" id="20_4" name="q20" value="20_4">4</span>
+                        </p>
+
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                    </t>
+
+                        @*<p style="text-align:center;margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;font-weight: bold;letter-spacing:-0.1pt;">State-Trait Anxiety Inventory for Adults Scoring Key (Form Y-1, Y-2)</span>
+            </p>
+            <p style="text-align:center;margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">Developed by Charles D. Spielberger in collaboration with R.L. Gorsuch, R. Lushene, P.R. Vagg, and G.A. Jacobs</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">To use this stencil, fold this sheet in half and line up with the appropriate test side, either Form Y-1 or Form Y-</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2. Simply total the scoring weights shown on the stencil for each response category. For example, for question # 1, if the respondent marked 3, then the weight would be 2. Refer to the manual for appropriate normative data.</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">Form Y-1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">Form Y-2</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">5.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">5.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">6.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">6.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">7.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">7.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">8.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">8.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">9.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">9.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">10.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">10.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">11.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">11.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">12.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">12.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">13.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">13.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">14.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">14.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">15.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">15.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">16.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">16.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">17.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">17.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">18.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">18.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">19.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">19.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">20.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">20.</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">1</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">2</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">3</span>
+                <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span style="font-family:Arial;font-size:12pt;letter-spacing:-0.1pt;">4</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>
+            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                <span>&nbsp;</span>
+            </p>*@
+                </section>
+
+
+
+                <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                    <button type="button" class="button1" id="btnAddAndSave" onclick="return SaveForms('stpSaveZhaoANXIETY_Y2', '8');">Save And Next</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        $(document).ready(function () {
+
+            //SetUpGrid();
+
+        });
+
+
+
+
+
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            w = window.open();
+            w.document.write(printContents);
+            w.print();
+            w.close();
+        }
+
+
+
+
+    </script>
+
+}

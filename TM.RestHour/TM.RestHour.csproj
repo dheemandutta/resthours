@@ -242,6 +242,7 @@
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PatientProblemController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
+    <Compile Include="Controllers\PsychologicalEvaluationController.cs" />
     <Compile Include="Controllers\PsychometricsController.cs" />
     <Compile Include="Controllers\RankPermissionController.cs" />
     <Compile Include="Controllers\RanksController.cs" />
@@ -810,6 +811,8 @@
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_04.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_17.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_17.03.2021_II.sql" />
+    <Content Include="devsqlscripts\Worth_SQL_Script_Initial_22.03.2021.sql" />
+    <Content Include="devsqlscripts\Worth_SQL_Script_Initial_23.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_24.02.2021.sql" />
     <Content Include="EquipmentNew\dist\dual-listbox.css" />
     <Content Include="EquipmentNew\dist\dual-listbox.js" />
@@ -2874,6 +2877,7 @@
     <None Include="Properties\PublishProfiles\RESTHOUR  Installer.pubxml" />
     <None Include="Properties\PublishProfiles\RESTHOUR Installer.pubxml" />
     <None Include="Properties\PublishProfiles\RestHourPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\worthclient - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
@@ -2902,6 +2906,7 @@
     <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\Options.js" />
     <Content Include="Scripts\pdfmake.min.js" />
+    <Content Include="Scripts\PsychologicalEvaluation.js" />
     <Content Include="Scripts\Ranks.js" />
     <Content Include="Scripts\Regimes.js" />
     <Content Include="Scripts\Reports.js" />
@@ -2985,6 +2990,8 @@
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_04.03.2021.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_17.03.2021.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_17.03.2021_II.sql" />
+    <Content Include="SQLScripts\Worth_SQL_Script_Initial_22.03.2021.sql" />
+    <Content Include="SQLScripts\Worth_SQL_Script_Initial_23.03.2021.sql" />
     <Content Include="SQLScripts\Worth_SQL_Script_Initial_24.02.2021.sql" />
     <Content Include="src\jquery.image-marker.css" />
     <Content Include="src\jquery.image-marker.js" />
@@ -3108,6 +3115,15 @@
     <Content Include="Views\Plans\Index.cshtml" />
     <Content Include="Views\MentalHealth\Index.cshtml" />
     <Content Include="Views\Psychometrics\Index.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\LocusOfControl.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\InstructionsForPSSFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\MASSMindfulnessScaleFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\BeckDepressionInventoryIIFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\PSQ30_PERCIEVED_STRESS_QUESTIONAIRE.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\ROSENBERG_SELF_esteem_scale_final.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y1.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\EmotionalIntelligenceQuizForLeadership.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y2.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

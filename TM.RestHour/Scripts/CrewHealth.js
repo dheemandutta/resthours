@@ -610,6 +610,7 @@ function SaveCrewTemperature() {
     if (res) {
     var crewTemperature = {
         CrewID: $('#ddlCrew').val(),
+        SPO2Level: $('#SPO2Level').val(),
         Temperature: $('#Temperature').val(),
         Unit: $('#ddlUnit').val(),
         ReadingDate: $('#ReportsDate').val(),
@@ -635,6 +636,9 @@ function SaveCrewTemperature() {
                 // window.location = response.url;
 
                 $('#ddlCrew').val('');
+
+                $('#SPO2Level').val('');
+
                 $('#Temperature').val('');
                 $('#ddlUnit').val('');
                 $('#ReportsDate').val('');

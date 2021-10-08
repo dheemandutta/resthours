@@ -55,7 +55,7 @@
 
     <div class="row">
         <div class="head_title">
-            <h4 class="ta">Daily Temperature Reading</h4>
+            <h4 class="ta">Daily Temperature And SPO2 Level</h4>
         </div>
 
         <div class="card bacmma">
@@ -157,6 +157,15 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">SPO2 Level</label>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="SPO2Level" placeholder="SPO2 Level" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">Temperature</label>
 
                         <div class="row">
@@ -216,6 +225,60 @@
                     </div>
 
 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Symptoms</label>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                @*<input type="number" class="form-control" id="Symptoms" placeholder="Symptoms" />*@
+                                <input type="checkbox" id="Fever" name="Fever" value="Fever">
+                                <label for="Fever"> Fever</label><br>
+                                <input type="checkbox" id="Cough" name="Cough" value="Cough">
+                                <label for="Cough">Cough</label><br>
+                                <input type="checkbox" id="LossOfTesteOrSmell" name="LossOfTesteOrSmell" value="LossOfTesteOrSmell">
+                                <label for="LossOfTesteOrSmell">Loss Of Teste Or Smell</label><br><br>
+                            </div>
+                            <div class="col-sm-2">
+                                @*<input type="number" class="form-control" id="Symptoms" placeholder="Symptoms" />*@
+                                <input type="checkbox" id="Tiredness" name="Tiredness" value="Tiredness">
+                                <label for="Tiredness">Tiredness</label><br>
+                                <input type="checkbox" id="Headache" name="Headache" value="Headache">
+                                <label for="Headache">Headache</label><br>
+                                <input type="checkbox" id="Diarrhoea" name="Diarrhoea" value="Diarrhoea">
+                                <label for="Diarrhoea"> Diarrhoea</label><br><br>
+                            </div>
+                            <div class="col-sm-2">
+                                @*<input type="number" class="form-control" id="Symptoms" placeholder="Symptoms" />*@
+                                <input type="checkbox" id="Breathlessness " name="Breathlessness" value="Breathlessness">
+                                <label for="Breathlessness">Breathlessness</label><br>
+                                <input type="checkbox" id="Vomiting" name="Vomiting" value="Vomiting">
+                                <label for="Vomiting"> Vomiting</label><br>
+                                <input type="checkbox" id="ChestPain" name="ChestPain" value="ChestPain">
+                                <label for="ChestPain">Chest Pain</label><br><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="OthersChk" name="OthersChk" value="OthersChk" onclick="myFunction()">
+                                <label for="OthersChk">Others</label><br>
+                                <input type="number" class="form-control" id="Others" placeholder="Others" style="display:none" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="row">
+                            <div class="col-sm-4">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
 
 
                     <div class="form-group">
@@ -247,8 +310,22 @@
     @Scripts.Render("~/bundles/jqueryui")
     <script type="text/javascript">
 
+        function myFunction() {
+            var checkBox = document.getElementById("OthersChk");
+            var text = document.getElementById("Others");
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+
+
+
+
+
         $(document).ready(function () {
-           
+
         });
 
         $("#ReportsDate").datepicker({

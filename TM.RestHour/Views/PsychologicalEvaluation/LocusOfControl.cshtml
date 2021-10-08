@@ -1,0 +1,384 @@
+﻿
+@{
+    ViewBag.Title = "LocusOfControl";
+}
+
+<script src="~/Scripts/PsychologicalEvaluation.js"></script>
+
+@Html.Hidden("SaveForms", @Url.Action("SaveForms", "PsychologicalEvaluation"))
+
+<form id="myForm1">
+    <div class="row">
+        @*<div class="head_title">
+                <h1 class="ta">Page Name</h1>
+            </div>*@
+        <div class="card bacmt" style="height: 600px;">
+            <div class="clearfix"></div>
+            <div class="row">
+
+
+                <section id="print-content">
+                    <input type="button" onclick="printDiv('print-content')" value="print a div!" />
+                    <p style="margin-left:6.75pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:15.5pt;">Locus of control questionnaire </span>
+                    </p>
+                    <p style="margin-left:5.7pt;text-indent:0.35000000000000003pt;margin-right:4.05pt;line-height:95%;font-size:11.5pt;margin-top:13.3pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <span style="font-family:Arial;font-size:11.5pt;">Complete the following questionnaire (putting a tick under either the ‘yes’ or ‘no’ column for each question) to see where your locus of control might lie. &nbsp;</span>
+                    </p>
+                    <table style="width:484.35pt;border-collapse:collapse;table-layout:fixed;">
+                        <colgroup>
+                            <col style="width:455px" />
+                            <col style="width:100px" />
+                            <col style="width:89px" />
+                        </colgroup>
+                        <tr style="height:30.1pt;">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:6.6000000000000005pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:13.5pt;">Locus of control questionnaire </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:5.7pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:15.5pt;">Yes </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:6.65pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:15.5pt;">No </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:39pt;" id="q1">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:6.300000000000001pt;text-indent:0.35000000000000003pt;margin-right:5.6000000000000005pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">1. Is there some bad habit, such as smoking, that you would &nbsp; &nbsp; &nbsp; &nbsp;like to break but can’t?</span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="1_1" name="q1" value="1_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="1_2" name="q1" value="1_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:39pt;" id="q2">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:5.75pt;text-indent:0.15000000000000002pt;margin-right:19.75pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">2. Do you take steps, such as exercise and diet to control &nbsp;</span>
+                                </p>
+                                <p style="margin-left:5.75pt;text-indent:0.15000000000000002pt;margin-right:19.75pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp;your weight and fitness? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="2_1" name="q2" value="2_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="2_2" name="q2" value="2_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:38.95pt;" id="q3">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:6.25pt;text-indent:-0.35000000000000003pt;margin-right:9.450000000000001pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">3. Do you believe that your personality was firmly laid down &nbsp;</span>
+                                </p>
+                                <p style="margin-left:6.25pt;text-indent:-0.35000000000000003pt;margin-right:9.450000000000001pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp;in childhood so there is little you can do to change it? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="3_1" name="q3" value="3_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="3_2" name="q3" value="3_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:39.1pt;" id="q4">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:5.9pt;text-indent:-0.05pt;margin-right:29.6pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">4. Do you make your own decisions, regardless of what &nbsp;</span>
+                                </p>
+                                <p style="margin-left:5.9pt;text-indent:-0.05pt;margin-right:29.6pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp;other people say? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="4_1" name="q4" value="4_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="4_2" name="q4" value="4_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:39pt;" id="q5">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:5.9pt;margin-right:31.55pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">5. Do you find it a waste of time to plan ahead </span>
+                                </p>
+                                <p style="margin-left:5.9pt;margin-right:-5.25pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp;because something always causes you to change direction? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="5_1" name="q5" value="5_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="5_2" name="q5" value="5_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:39pt;" id="q6">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:5.7pt;text-indent:0.25pt;margin-right:10.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">6. If something goes wrong, do usually reckon it’s your </span>
+                                </p>
+                                <p style="margin-left:5.7pt;text-indent:0.25pt;margin-right:10.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp;own fault rather than just bad luck? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="6_1" name="q6" value="6_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="6_2" name="q6" value="6_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:39pt;" id="q7">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:6.15pt;text-indent:-0.05pt;margin-right:19.900000000000002pt;line-height:95%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">7. Are most of the things you do designed to please </span>
+                                </p>
+                                <p style="margin-left:6.15pt;text-indent:-0.05pt;margin-right:19.900000000000002pt;line-height:95%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp;other people? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="7_1" name="q7" value="7_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="7_2" name="q7" value="7_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:39.1pt;" id="q8">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:5.8500000000000005pt;text-indent:0.05pt;margin-right:8.75pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">8. Do you often feel you are the victim of outside forces </span>
+                                </p>
+                                <p style="margin-left:5.8500000000000005pt;text-indent:0.05pt;margin-right:8.75pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp;you cannot control? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="8_1" name="q8" value="8_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="8_2" name="q8" value="8_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:39pt;" id="q9">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:5.9pt;margin-right:30.950000000000003pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">9. Do you usually manage to resist being persuaded </span>
+                                </p>
+                                <p style="margin-left:5.9pt;margin-right:30.950000000000003pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp;by other people’s arguments? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="9_1" name="q9" value="9_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="9_2" name="q9" value="9_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:52.4pt;" id="q10">
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;">10. Are you sceptical about the extent to which your </span>
+                                </p>
+                                <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp; &nbsp;horoscope can tell you what you should do and what’s </span>
+                                </p>
+                                <p style="margin-left:5.65pt;text-indent:1pt;margin-right:4.15pt;line-height:95.83%;font-size:11.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span style="font-family:Arial;font-size:11.5pt;"> &nbsp; &nbsp; &nbsp;going to happen to you? </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="10_1" name="q10" value="10_1">
+                                    </span>
+                                </p>
+                            </td>
+                            <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                <p style="margin-left:25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                    <span>
+                                        <input type="radio" id="10_2" name="q10" value="10_2">
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        @*<tr style="height:30.1pt;">
+                                <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:341.5pt;vertical-align:top;">
+                                    <p style="margin-left:6.25pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;">
+                                        <span style="font-family:Arial;font-size:15.5pt;">SCORE </span>
+                                    </p>
+                                </td>
+                                <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:75.4pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:15.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                        <span>&nbsp;</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:1pt solid #000000;border-bottom:1pt solid #000000;border-left:1pt solid #000000;border-right:1pt solid #000000;padding-left:5pt;padding-right:5pt;padding-top:5pt;padding-bottom:5pt;width:67.45pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:15.5pt;margin-top:0pt;margin-bottom:0pt;">
+                                        <span>&nbsp;</span>
+                                    </p>
+                                </td>
+                            </tr>*@
+                    </table>
+                    @*<p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:11pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;line-height:115%;font-size:11pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:5.7pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Times;font-size:11.5pt;">This is an abbreviated version of the Nicholson McBride Resilience Questionnaire (NMRQ).</span>
+                        </p>
+                        <p style="margin-left:6.45pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Arial;font-size:15.5pt;font-weight: bold;">Interpreting your score </span>
+                        </p>
+                        <p style="margin-left:6.4pt;text-indent:0.15000000000000002pt;margin-right:0pt;line-height:191.67%;font-size:11.5pt;margin-top:13.3pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Arial;font-size:11.5pt;">For questions 2,4,6,9 and 10, score two points for every ‘yes’ and ‘zero’ for ‘no’. &nbsp;For questions 1,3,5,7and 8 score ‘two’ points for every ‘no’ and ‘zero’ for ‘yes’ answer. &nbsp;Now calculate your score for each column, then add these together. &nbsp;</span>
+                        </p>
+                        <p style="margin-left:5.550000000000001pt;text-indent:0.15000000000000002pt;margin-right:24.200000000000003pt;line-height:95.83%;font-size:11.5pt;margin-top:2.5pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Arial;font-size:11.5pt;">The maximum total score is 20, and the higher your score the greater the extent to which you would take control of your life. &nbsp;</span>
+                        </p>
+                        <p style="margin-left:5.7pt;margin-right:0pt;margin-top:13.700000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Arial;font-size:11.5pt;">Any score of 14 or above would suggest you have an internal focus of control. &nbsp;</span>
+                        </p>
+                        <p style="margin-left:6.300000000000001pt;text-indent:-0.25pt;margin-right:21pt;line-height:95.83%;font-size:11.5pt;margin-top:13.25pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Arial;font-size:11.5pt;">Scoring below 14 suggests that you need to get a firmer grip on things; such a score may well indicate an external locus of control. </span>
+                        </p>*@
+                </section>
+
+                <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                    <button type="button" class="button1" id="btnAddAndSave" onclick="return SaveForms('stpSaveLocusOfControl', '1');">Save And Next</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        $(document).ready(function () {
+
+            //SetUpGrid();
+
+        });
+
+
+
+
+
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            w = window.open();
+            w.document.write(printContents);
+            w.print();
+            w.close();
+        }
+
+
+
+
+    </script>
+
+}
