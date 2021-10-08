@@ -24,5 +24,7 @@ namespace TM.Base.Entities
         public string CrewName { get; set; }
         public string RankName { get; set; }
 
+
+        public string SPO2Level { get; set; }
     }
 }
