@@ -26,6 +26,56 @@
     }
 
 
+    if ($('#ddlRank').val().length === 0) {
+        $('#ddlRank').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ddlRank').css('border-color', 'lightgrey');
+    }
+
+    if ($('#Ethinicity').val().length === 0) {
+        $('#Ethinicity').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Ethinicity').css('border-color', 'lightgrey');
+    }
+
+    if ($('#Frequency').val().length === 0) {
+        $('#Frequency').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Frequency').css('border-color', 'lightgrey');
+    }
+
+
+    if ($('#Sex').val().length === 0) {
+        $('#Sex').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Sex').css('border-color', 'lightgrey');
+    }
+
+    if ($('#Age').val().length === 0) {
+        $('#Age').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Age').css('border-color', 'lightgrey');
+    }
+
+    if ($('#JoiningDate').val().length === 0) {
+        $('#JoiningDate').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#JoiningDate').css('border-color', 'lightgrey');
+    }
+
+
     return isValid;
 }
 
@@ -75,7 +125,7 @@ function SaveCIRM() {
     // alert(res);
     if (res) {
         var Crew = {
-            CIRMId: $('#CIRMId').val(),
+            //CIRMId: $('#CIRMId').val(),
 
             CrewId: $('#ddlCrew').val(),
             Nationality: $('#Nationality').val(),
@@ -99,34 +149,29 @@ function SaveCIRM() {
             FrequencyOfVomiting: $('#FrequencyOfVomiting').val(),
             Fits: $('#Fits').val(),
             FrequencyOfFits: $('#FrequencyOfFits').val(),
+
             SymptomatologyDetails: $('#SymptomatologyDetails').val(),
             MedicinesAdministered: $('#MedicinesAdministered').val(),
             RelevantInformationForDesease: $('#RelevantInformationForDesease').val(),
-            WhereAndHowAccidentOccured: $('#WhereAndHowAccidentOccured').val(),
 
+            WhereAndHowAccidentOccured: $('#WhereAndHowAccidentOccured').val(),
+            LocationAndTypeOfInjuryOrBurn: $('#LocationAndTypeOfInjuryOrBurn').val(),
+            FrequencyOfPain: $('#FrequencyOfPain').val(),
+            FirstAidGiven: $('#FirstAidGiven').val(),
+            PercentageOfBurn: $('#PercentageOfBurn').val()
 
             //SeverityOfPain: $("input[name='SeverityOfPain']:checked").val(),
 
-            //NoHurt: document.getElementById("NoHurt").checked,
-            //HurtLittleBit: document.getElementById("HurtLittleBit").checked,
-            //HurtsLittleMore: document.getElementById("HurtsLittleMore").checked,
-            //HurtsEvenMore: document.getElementById("HurtsEvenMore").checked,
-            //HurtsWholeLot: document.getElementById("HurtsWholeLot").checked,
-            //HurtsWoest: document.getElementById("HurtsWoest").checked,
+            //PictureUploadPath: $('#PictureUploadPath').val(),
+
+            //JoiningMedical: document.getElementById("JoiningMedical").checked,
+            //MedicineAvailableOnBoard: document.getElementById("MedicineAvailableOnBoard").checked,
+            //MedicalEquipmentOnBoard: document.getElementById("MedicalEquipmentOnBoard").checked,
+            //MedicalHistoryUpload: document.getElementById("MedicalHistoryUpload").checked,
+            //WorkAndRestHourLatestRecord: document.getElementById("WorkAndRestHourLatestRecord").checked,
+            //PreExistingMedicationPrescription: document.getElementById("PreExistingMedicationPrescription").checked,
 
 
-            JoiningMedical: document.getElementById("JoiningMedical").checked,
-            MedicineAvailableOnBoard: document.getElementById("MedicineAvailableOnBoard").checked,
-            MedicalEquipmentOnBoard: document.getElementById("MedicalEquipmentOnBoard").checked,
-            MedicalHistoryUpload: document.getElementById("MedicalHistoryUpload").checked,
-            WorkAndRestHourLatestRecord: document.getElementById("WorkAndRestHourLatestRecord").checked,
-            PreExistingMedicationPrescription: document.getElementById("PreExistingMedicationPrescription").checked,
-
-            LocationAndTypeOfInjuryOrBurn: $('#LocationAndTypeOfInjuryOrBurn').val(),
-            FrequencyOfPain: $('#FrequencyOfPain').val(),
-            PictureUploadPath: $('#PictureUploadPath').val(),
-            FirstAidGiven: $('#FirstAidGiven').val(),
-            PercentageOfBurn: $('#PercentageOfBurn').val()
 
         //CrewId: $('#ddlCrew').val(),
         //IsMedicalHistoryUploaded: document.getElementById("uploaddoc4").checked

@@ -133,7 +133,7 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@OvertimeEnabled", crew.OvertimeEnabled);
 
 
-
+            cmd.Parameters.AddWithValue("@AllowPsychologyForms", crew.AllowPsychologyForms);
 
 
             if (!String.IsNullOrEmpty(crew.IssuingStateOfIdentityDocument))
@@ -467,6 +467,10 @@ namespace TM.RestHour.DAL
 
                     if (item["Watchkeeper"] != System.DBNull.Value)
                         crewtimesheet.Watchkeeper = Convert.ToBoolean(item["Watchkeeper"]);
+
+                    if (item["AllowPsychologyForms"] != System.DBNull.Value)
+                        crewtimesheet.AllowPsychologyForms = Convert.ToBoolean(item["AllowPsychologyForms"]);
+
 
                     if (item["RankID"] != System.DBNull.Value)
                         crewtimesheet.RankID = Convert.ToInt16(item["RankID"]);
@@ -830,6 +834,24 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@Means", DBNull.Value);
             }
 
+            cmd.Parameters.AddWithValue("@Fever", crewTemperature.Fever);
+            cmd.Parameters.AddWithValue("@Cough", crewTemperature.Cough);
+            cmd.Parameters.AddWithValue("@LossOfTesteOrSmell", crewTemperature.LossOfTesteOrSmell);
+            cmd.Parameters.AddWithValue("@Tiredness", crewTemperature.Tiredness);
+            cmd.Parameters.AddWithValue("@Headache", crewTemperature.Headache);
+            cmd.Parameters.AddWithValue("@Diarrhoea", crewTemperature.Diarrhoea);
+            cmd.Parameters.AddWithValue("@Breathlessness", crewTemperature.Breathlessness);
+            cmd.Parameters.AddWithValue("@Vomiting", crewTemperature.Vomiting);
+            cmd.Parameters.AddWithValue("@ChestPain", crewTemperature.ChestPain);
+
+            if (!String.IsNullOrEmpty(crewTemperature.Others))
+            {
+                cmd.Parameters.AddWithValue("@Others", crewTemperature.Others);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Others", DBNull.Value);
+            }
 
 
             cmd.Parameters.AddWithValue("@TemperatureModeID", crewTemperature.TemperatureModeID);
@@ -1154,6 +1176,57 @@ namespace TM.RestHour.DAL
             con.Close();
             return ds.Tables[0].Rows[0]["ConfigValue"].ToString();
 
+        }
+
+
+
+
+
+
+
+
+
+
+
+        public CrewPOCO GetAllowPsychology(int CrewID, int VesselID)
+        {
+            CrewPOCO prodPOList = new CrewPOCO();
+            CrewPOCO prodPO = new CrewPOCO();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["TCCCMSDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetAllowPsychology", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewID", CrewID);
+                    cmd.Parameters.AddWithValue("@VesselID", VesselID);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return ConvertDataTableToAllowPsychologyList(ds);
+        }
+
+        private CrewPOCO ConvertDataTableToAllowPsychologyList(DataSet ds)
+        {
+            CrewPOCO pPOCOPC = new CrewPOCO();
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    //RankPOCO pPOCOPC = new RankPOCO();
+
+                    if (item["AllowPsychologyForms"] != null)
+                        pPOCOPC.AllowPsychologyForms = Convert.ToBoolean(item["AllowPsychologyForms"].ToString());
+
+                    //pcList.Add(pPOCOPC);
+                }
+            }
+            return pPOCOPC;
         }
 
     }

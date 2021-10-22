@@ -142,11 +142,11 @@ namespace TM.RestHour.Controllers
 				System.Web.HttpContext.Current.Session["LoggedInUserId"] = usersPoco.CrewId;
 				System.Web.HttpContext.Current.Session["AdminStatus"] = usersPoco.AdminGroup;
 
+                System.Web.HttpContext.Current.Session["AllowPsychologyForms"] = usersPoco.AllowPsychologyForms;
 
 
 
-
-				UsersBL usersn = new UsersBL();
+                UsersBL usersn = new UsersBL();
                 UsersPOCO usersPocon = usersn.GetShipMaster();
                 if (usersPocon != null)
                     System.Web.HttpContext.Current.Session["Master"] = usersPocon.MName;

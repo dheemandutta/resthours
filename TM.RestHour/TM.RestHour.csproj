@@ -295,6 +295,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="background\1.NoHurt.jpg" />
+    <Content Include="background\2.HurtLittleBit.jpg" />
+    <Content Include="background\3.HurtsLittleMore.jpg" />
+    <Content Include="background\4.HurtsEvenMore.jpg" />
+    <Content Include="background\5.HurtsWholeLot.jpg" />
+    <Content Include="background\6.HurtsWoest.jpg" />
     <Content Include="background\about.jpg" />
     <Content Include="background\addcrew.jpg" />
     <Content Include="background\BodyBg.jpg" />
@@ -339,6 +345,7 @@
     <Content Include="background\HTime.png" />
     <Content Include="background\HTimeSheetUser.png" />
     <Content Include="background\HumanBody.jpg" />
+    <Content Include="background\iBtn.png" />
     <Content Include="background\ilo.png" />
     <Content Include="background\imo.jpg" />
     <Content Include="background\imos.png" />

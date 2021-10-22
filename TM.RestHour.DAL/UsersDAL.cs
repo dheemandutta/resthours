@@ -152,8 +152,11 @@ namespace TM.RestHour.DAL
 					if (item["AdminGroup"] != DBNull.Value)
 						userNameByUserId.AdminGroup = item["AdminGroup"].ToString();
 
+                    if (item["AllowPsychologyForms"] != DBNull.Value)
+                        userNameByUserId.AllowPsychologyForms = Convert.ToBoolean(item["AllowPsychologyForms"].ToString());
 
-					userNameByUserIdList.Add(userNameByUserId);
+
+                    userNameByUserIdList.Add(userNameByUserId);
 
                 }
             }

@@ -78,5 +78,8 @@ namespace TM.RestHour.Models
 
         public DateTime? ExpiryDateOfIdentityDocument { get; set; }
         public string ExpiryDateOfIdentityDocument1 { get; set; }
+
+
+        public Boolean AllowPsychologyForms { get; set; }
     }
 }

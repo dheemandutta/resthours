@@ -19,5 +19,8 @@ namespace TM.Base.Entities
 		public int CrewId { get; set; }
 		public string AdminGroup { get; set; }
 		public string MName { get; set; }
+
+
+        public Boolean AllowPsychologyForms { get; set; }
     }
 }

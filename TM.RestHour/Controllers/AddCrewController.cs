@@ -222,6 +222,8 @@ namespace TM.RestHour.Controllers
             crewPC.Watchkeeper = crew.Watchkeeper;
             crewPC.OvertimeEnabled = crew.OvertimeEnabled;
 
+            crewPC.AllowPsychologyForms = crew.AllowPsychologyForms;
+
             crewPC.ServiceTermsPOCO = serviceTermsPOCO;
 
 
@@ -443,6 +445,9 @@ namespace TM.RestHour.Controllers
             //um.PayNum = crewPC.PayNum;
             um.OvertimeEnabled = crewPC.OvertimeEnabled;
             um.Watchkeeper = crewPC.Watchkeeper;
+
+            um.AllowPsychologyForms = crewPC.AllowPsychologyForms;
+
             um.RankID = crewPC.RankID;
 
             um.DepartmentMasterName = crewPC.DepartmentMasterName;
@@ -546,5 +551,50 @@ namespace TM.RestHour.Controllers
                                             });
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        //public JsonResult GetAllowPsychology(int CrewID, int VesselID)
+        //{
+        //    CrewBL crewBL = new CrewBL();
+        //    CrewPOCO crewPC = new CrewPOCO();
+
+        //    crewPC = crewBL.GetAllowPsychology(int.Parse(CrewID), int.Parse(Session["VesselID"].ToString()));
+
+        //    Crew um = new Crew();
+        //    um.AllowPsychologyForms = crewPC.AllowPsychologyForms;
+           
+        //    var cm = um;
+        //    return Json(cm, JsonRequestBehavior.AllowGet);
+        //}
+
+        public JsonResult GetAllowPsychology(int CrewID, int VesselID)
+        {
+            CrewBL crewBL = new CrewBL();
+            CrewPOCO crewPC = new CrewPOCO();
+
+            crewPC = crewBL.GetAllowPsychology(int.Parse(Session["CrewID"].ToString()), int.Parse(Session["VesselID"].ToString()));
+
+            CrewPOCO dept = new CrewPOCO();
+
+            dept.AllowPsychologyForms = crewPC.AllowPsychologyForms;
+
+            var data = dept;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
     }
 }

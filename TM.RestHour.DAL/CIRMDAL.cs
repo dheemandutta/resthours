@@ -223,6 +223,42 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@WhereAndHowAccidentOccured", DBNull.Value);
             }
 
+            if (!String.IsNullOrEmpty(cIRM.LocationAndTypeOfInjuryOrBurn))
+            {
+                cmd.Parameters.AddWithValue("@LocationAndTypeOfInjuryOrBurn", cIRM.LocationAndTypeOfInjuryOrBurn.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@LocationAndTypeOfInjuryOrBurn", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.FrequencyOfPain))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfPain", cIRM.FrequencyOfPain.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfPain", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.FirstAidGiven))
+            {
+                cmd.Parameters.AddWithValue("@FirstAidGiven", cIRM.FirstAidGiven.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FirstAidGiven", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.PercentageOfBurn))
+            {
+                cmd.Parameters.AddWithValue("@PercentageOfBurn", cIRM.PercentageOfBurn.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PercentageOfBurn", DBNull.Value);
+            }
+
             //if (cIRM.NoHurt.HasValue)
             //{
             //    cmd.Parameters.AddWithValue("@NoHurt", cIRM.NoHurt);
@@ -334,23 +370,9 @@ namespace TM.RestHour.DAL
 
 
 
-            if (!String.IsNullOrEmpty(cIRM.LocationAndTypeOfInjuryOrBurn))
-            {
-                cmd.Parameters.AddWithValue("@LocationAndTypeOfInjuryOrBurn", cIRM.LocationAndTypeOfInjuryOrBurn.ToString());
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@LocationAndTypeOfInjuryOrBurn", DBNull.Value);
-            }
 
-            if (!String.IsNullOrEmpty(cIRM.FrequencyOfPain))
-            {
-                cmd.Parameters.AddWithValue("@FrequencyOfPain", cIRM.FrequencyOfPain.ToString());
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@FrequencyOfPain", DBNull.Value);
-            }
+
+
 
             if (!String.IsNullOrEmpty(cIRM.PictureUploadPath))
             {
@@ -359,24 +381,6 @@ namespace TM.RestHour.DAL
             else
             {
                 cmd.Parameters.AddWithValue("@PictureUploadPath", DBNull.Value);
-            }
-
-            if (!String.IsNullOrEmpty(cIRM.FirstAidGiven))
-            {
-                cmd.Parameters.AddWithValue("@FirstAidGiven", cIRM.FirstAidGiven.ToString());
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@FirstAidGiven", DBNull.Value);
-            }
-
-            if (!String.IsNullOrEmpty(cIRM.PercentageOfBurn))
-            {
-                cmd.Parameters.AddWithValue("@PercentageOfBurn", cIRM.PercentageOfBurn.ToString());
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@PercentageOfBurn", DBNull.Value);
             }
 
             //cmd.Parameters.AddWithValue("@IsEquipmentUploaded", cIRM.IsEquipmentUploaded);

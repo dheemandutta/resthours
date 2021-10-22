@@ -25,6 +25,19 @@ namespace TM.Base.Entities
         public string RankName { get; set; }
 
 
+
         public string SPO2Level { get; set; }
+
+        public Boolean Fever { get; set; }
+        public Boolean Cough { get; set; }
+        public Boolean LossOfTesteOrSmell { get; set; }
+        public Boolean Tiredness { get; set; }
+        public Boolean Headache { get; set; }
+        public Boolean Diarrhoea { get; set; }
+        public Boolean Breathlessness { get; set; }
+        public Boolean Vomiting { get; set; }
+        public Boolean ChestPain { get; set; }
+
+        public string Others { get; set; }
     }
 }

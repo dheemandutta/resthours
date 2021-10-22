@@ -619,7 +619,19 @@ function SaveCrewTemperature() {
         TemperatureModeID: $('#ddlTempModeList').val(),
 
         Place: $('#Place').val(),
-        Means: $('#ddlMeans').val()
+        Means: $('#ddlMeans').val(),
+
+        Fever: document.getElementById("Fever").checked,
+        Cough: document.getElementById("Cough").checked,
+        LossOfTesteOrSmell: document.getElementById("LossOfTesteOrSmell").checked,
+        Tiredness: document.getElementById("Tiredness").checked,
+        Headache: document.getElementById("Headache").checked,
+        Diarrhoea: document.getElementById("Diarrhoea").checked,
+        Breathlessness: document.getElementById("Breathlessness").checked,
+        Vomiting: document.getElementById("Vomiting").checked,
+        ChestPain: document.getElementById("ChestPain").checked,
+
+        Others: $('#Others').val()
     };
     //debugger;
     $.ajax({

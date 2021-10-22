@@ -216,6 +216,7 @@ function AddCrew() {
             Watchkeeper: document.getElementById("Watchkeeper").checked,
             OvertimeEnabled: document.getElementById("OvertimeEnabled").checked,
 
+            AllowPsychologyForms: document.getElementById("AllowPsychologyForms").checked,
 
             IssuingStateOfIdentityDocument: $('#IssuingStateOfIdentityDocument').val(),
             ExpiryDateOfIdentityDocument1: $('#ExpiryDateOfIdentityDocument').val()
@@ -312,6 +313,8 @@ function AddCrewEdit() {
             Notes: $('textarea#Comments').val(),
             Watchkeeper: document.getElementById("Watchkeeper").checked,
             OvertimeEnabled: document.getElementById("OvertimeEnabled").checked,
+
+            AllowPsychologyForms: document.getElementById("AllowPsychologyForms").checked,
 
             IssuingStateOfIdentityDocument: $('#IssuingStateOfIdentityDocument').val(),
             ExpiryDateOfIdentityDocument1: $('#ExpiryDateOfIdentityDocument').val()
@@ -442,6 +445,16 @@ function LoadDataById(id) {
             }
             else {
                 $('#OvertimeEnabled').prop('checked', false);
+            }
+
+
+
+
+            if ((result.AllowPsychologyForms) === true) {
+                $('#AllowPsychologyForms').prop('checked', true);
+            }
+            else {
+                $('#AllowPsychologyForms').prop('checked', false);
             }
 
 

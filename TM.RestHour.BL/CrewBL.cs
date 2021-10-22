@@ -354,5 +354,19 @@ namespace TM.RestHour.BL
             CrewDAL crew = new CrewDAL();
             return crew.GetConfigData(KeyName);
         }
+
+
+
+
+
+
+
+        public CrewPOCO GetAllowPsychology(int CrewID, int VesselID)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetAllowPsychology(CrewID, VesselID);
+        }
+
+
     }
 }

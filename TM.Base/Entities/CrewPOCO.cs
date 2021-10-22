@@ -80,5 +80,10 @@ namespace TM.Base.Entities
         public string ExpiryDateOfIdentityDocument1 { get; set; }
 
         public string DaysLeft { get; set; }
+
+
+        public Boolean AllowPsychologyForms { get; set; }
+
+        public int CrewID { get; set; }
     }
 }
