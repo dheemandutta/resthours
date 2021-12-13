@@ -67,7 +67,8 @@ namespace TM.RestHour.Controllers
                 crew.Name = crewPC.Name;
                 crew.RankName = crewPC.RankName;
                 crew.StartDate = crewPC.StartDate;
-               // crew.LatestUpdate = crewPC.LatestUpdate;
+                crew.EndDate = crewPC.EndDate;
+                //crew.LatestUpdate = crewPC.LatestUpdate;
                 //crew.CreatedOn = crewPC.IMONumber;
                 //crew.CreatedOn = crewPC.IMONumber;
                 crewList.Add(crew);
@@ -119,6 +120,7 @@ namespace TM.RestHour.Controllers
                 crew.Name = crewPC.Name;
                 crew.RankName = crewPC.RankName;
                 crew.StartDate = crewPC.StartDate;
+                crew.EndDate = crewPC.EndDate;
                 // crew.LatestUpdate = crewPC.LatestUpdate;
                 //crew.CreatedOn = crewPC.IMONumber;
                 //crew.CreatedOn = crewPC.IMONumber;

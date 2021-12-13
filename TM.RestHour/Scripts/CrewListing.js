@@ -118,6 +118,9 @@ function SetUpGrid() {
                 "data": "StartDate", "name": "StartDate", "autoWidth": true
             },
             {
+                "data": "EndDate", "name": "EndDate", "autoWidth": true
+            },
+            {
                 "data": "ID", "width": "50px", "render": function (data) {
                     return '<a href="#" onclick="showDetail(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
                 }
@@ -167,6 +170,9 @@ function SetUpGridForInactiv() {
             },
             {
                 "data": "StartDate", "name": "StartDate", "autoWidth": true
+            },
+            {
+                "data": "EndDate", "name": "EndDate", "autoWidth": true
             },
             {
                 "data": "ID", "width": "50px", "render": function (data) {

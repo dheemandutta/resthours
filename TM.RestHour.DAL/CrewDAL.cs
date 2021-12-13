@@ -236,7 +236,7 @@ namespace TM.RestHour.DAL
                             Name = Convert.ToString(dr["Name"]),
                             RankName = Convert.ToString(dr["RankName"]),
                             StartDate = Convert.ToString(dr["StartDate"]),
-                            // EndDate = Convert.ToString(dr["EndDate"]),
+                            EndDate = Convert.ToString(dr["EndDate"]),
                             // DiffDays = Convert.ToString(dr["DiffDays"]),
                             // Active = Convert.ToString(dr["Active"])
                         });
@@ -279,7 +279,7 @@ namespace TM.RestHour.DAL
                             Name = Convert.ToString(dr["Name"]),
                             RankName = Convert.ToString(dr["RankName"]),
                             StartDate = Convert.ToString(dr["StartDate"]),
-                            // EndDate = Convert.ToString(dr["EndDate"]),
+                            EndDate = Convert.ToString(dr["EndDate"]),
                             // DiffDays = Convert.ToString(dr["DiffDays"]),
                             // Active = Convert.ToString(dr["Active"])
                         });

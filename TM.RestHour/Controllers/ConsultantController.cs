@@ -110,7 +110,7 @@ namespace TM.RestHour.Controllers
             consultantPC.UploadExistingPrescriptions = consultant.UploadExistingPrescriptions;
             consultantPC.UploadUrineReport = consultant.UploadUrineReport;
 
-            return Json(consultantBL.SaveMedicalAdvisory(consultantPC, int.Parse(Session["LoggedInUserId"].ToString())  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
+            return Json(consultantBL.SaveMedicalAdvisory(consultantPC, int.Parse(Session["LoggedInUserId"].ToString()), int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -100,7 +100,7 @@ function SetUpGrid() {
         },
         "columns": [
             {
-                "data": "AdjustmentDate1", "name": "AdjustmentDate1", "autoWidth": true
+                "data": "AdjustmentDate1", "name": "AdjustmentDate1", "align=right": true
             },
             {
                 "data": "AdjustmentValue", "name": "AdjustmentValue", "autoWidth": true

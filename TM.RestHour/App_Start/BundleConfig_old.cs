@@ -29,8 +29,6 @@ namespace TM.RestHour
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/css/font-awesome.css",
-                      "~/Content/login_page_WORTH.css",
                       "~/Content/bootstrap-multiselect.css",
                       "~/Content/TimePicker/jquery.timepicker.min.css",
                       "~/Content/jquery.typeahead.min.css"));

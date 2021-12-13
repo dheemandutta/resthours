@@ -13,7 +13,7 @@
 }
 
 
-<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 
 @using (Html.BeginForm())
 {
@@ -25,7 +25,7 @@
         <div class="divclass"><p style="margin:0;"><strong>  @ViewBag.Message</strong></p> </div>
     }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="~/css/custom.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/css/login_page.css" rel="stylesheet" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -39,6 +39,24 @@
             }, 1112000);
         });
     </script>
+    <style>
+        input, select, textarea {
+            max-width: 280px;
+        }
+
+        .log1 {
+            position: relative;
+            font-size: 19px;
+            color: #FFFFFF;
+            padding: -18px;
+            width: 291px;
+            text-align: center;
+            right: 24px;
+            bottom: 10px;
+            position: fixed;
+        }
+    </style>
+
 
     <body class="page-login pace-done ">
 
@@ -47,70 +65,58 @@
         <div class="page-inner">
             <div id="main-wrapper">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8 hidden-xs">
+                    <div class="row" style="margin:0;">
+                        <div class="col-md-7">
+                            <div class="login-box">
+
+                                <!--<a href="index.html" class="logo-name text-lg text-center" style="color:#fff;">Work And Rest Hours</a>-->
+                                <img src="~/images/wlogin.png" />
+                               
+                                <span>
+                                    <img src="~/images/care.png" />
+                                </span>
+                                <img src="~/images/loginimg.png" class="bann" />
+
+                                @*<p class="text-center m-t-xs text-sm">2015 © Modern by Steelcoders.</p>*@
+                            </div>
                         </div>
-                        <div class="col-sm-4 col-xs-12">
+                        <div class="col-md-5">
                             <div class="login_box">
                                 <div class="wh_box">
                                     <div class="lo_text">
-                                        <img src="~/images/logo_Worth.png">
+                                        <img src="~/images/shipicon.png">
+                                        <h3>Sign In</h3>
                                     </div>
-                                    <div class="tagline">Care for seafarer</div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                <div class="pull-left inputIcon">
-                                                    <label><img src="~/images/user_Icon.png" /></label>
-                                                </div>
-                                                <div class="pull-left">
-                                                    @Html.TextBoxFor(a => a.Users.Username)
-                                                    @Html.ValidationMessageFor(a => a.Users.Username)
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                <div class="pull-left inputIcon">
-                                                    <label><img src="~/images/lock_Icon.png" /></label>
-                                                </div>
-                                                <div class="pull-left">
-                                                    @Html.PasswordFor(a => a.Users.Password)
-                                                    @Html.ValidationMessageFor(a => a.Users.Password)
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-12">
-                                            <div class="checkBoxArea">
-                                                <div class="pull-left inputCheckBox">
-                                                    <input type="checkbox" name="remember" value="remember me"/>
-                                                </div>
-                                                <div class="pull-left inputCheckBox">
-                                                    <label for="remember">Remember me</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-12">
-                                            <div class="signup_btn">
-                                                <button type="submit" class="" id="btnAdd" value="Sign In"><img src="~/images/signIn_button.png" /></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-12">
-                                            <div class="forget_Btn_Div">
-                                                @Html.ActionLink("Forgot Password?", "ResetPasswordOfID", "Login", new { @class = "forget_Btn" })
-                                            </div>
-                                        </div>
-                                    </div>   
-                                 </div>
+                                    <div class="form-group">
+                                        <label>ID</label>
+                                        @Html.TextBoxFor(a => a.Users.Username)
+                                        @Html.ValidationMessageFor(a => a.Users.Username)
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        @Html.PasswordFor(a => a.Users.Password)
+                                        @Html.ValidationMessageFor(a => a.Users.Password)
+
+                                    </div>
+                                    <div class="signup_btn">
+                                        <input type="submit" class="" id="btnAdd" value="LOGIN" />
+
+                                    </div>
+                                    @Html.ActionLink("Forgot Password?", "ResetPasswordOfID", "Login", new { @style = "color:red", @class = "text-sm" })
+                                </div>
+                            </div>
+                            <div class="thicon">
+                                <img src="~/images/tech.png" />
                             </div>
                         </div>
+
+                       
                     </div><!-- Row -->
                 </div>
             </div><!-- Main Wrapper -->
         </div><!-- Page Inner -->
 
+        <p class="log1" style="width: 541px;">© 2018,Tech-innology Pte. Ltd., All rights are reserved</p>
 
 
     </body>

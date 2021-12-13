@@ -215,7 +215,7 @@ namespace TM.RestHour.DAL
 
 
 
-        public int SaveMedicalAdvisory(ConsultantPOCO consultant, int CrewID /*,int VesselID*/)
+        public int SaveMedicalAdvisory(ConsultantPOCO consultant, int CrewID, int VesselID)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
@@ -403,7 +403,7 @@ namespace TM.RestHour.DAL
 
 
 
-            //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+            cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
             //if (ship.ID > 0)
             //{

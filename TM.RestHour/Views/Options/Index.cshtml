@@ -211,42 +211,51 @@
                                                 <input type="hidden" id="ID" />
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 @*<div class="form-group">
-                                                        <label for="inputPassword3" class="col-sm-3 control-label"></label>
-                                                        <div class="col-sm-9">
-                                                            <div class="multiple">
+                                                    <label for="inputPassword3" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-9">
+                                                        <div class="multiple">
 
-                                                            </div>
                                                         </div>
-                                                    </div>*@
+                                                    </div>
+                                                </div>*@
                                                 <div class="form-group" style="width: 100%;">
                                                     <label for="AdjustmentDate">Adjustment Date</label>
                                                     <input type="text" class="form-control" id="AdjustmentDate" style="width: 100%;" /><br />
-                                                    <button type="button" class="button1" id="btnAdd" onclick="return AddOptions();">Save</button>
                                                 </div>
                                             </div>
 
 
-                                            <div class="form-group">
-                                                <label for="selectCrew" class="col-sm-3 control-label">@*Select Crew*@</label>
-                                                <div class=" col-md-6" style="padding-top:20px;">
-
-                                                    <select class="form-control" id="AdjustmentValue">
-                                                        <option value="+1">+1 Hour</option>
-                                                        <option value="-1">-1 Hour</option>
-                                                        <option value="+30">+30 Minute</option>
-                                                        <option value="-30">-30 Minute</option>
-                                                        <option value="+1D">+1 Day</option>
-                                                        <option value="-1D">-1 Day</option>
-                                                    </select>
-
-                                                    <br />
-
-                                                   
+                                            <div class="col-md-3">
+                                                <div class="form-group" style="width: 100%;">
+                                                    <label for="selectCrew" class="col-sm-3 control-label">@*Select Crew*@</label>
+                                                    <div class=" col-md-6" style="padding-top:20px;">
+                                                        <select class="form-control" id="AdjustmentValue">
+                                                            <option value="+1">+1 Hour</option>
+                                                            <option value="-1">-1 Hour</option>
+                                                            <option value="+30">+30 Minute</option>
+                                                            <option value="-30">-30 Minute</option>
+                                                            <option value="+1D">+1 Day</option>
+                                                            <option value="-1D">-1 Day</option>
+                                                        </select>
+                                                        <br />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group" style="width: 100%;">
+                                                        <label for="selectCrew" class="col-sm-3 control-label">@*Select Crew*@</label>
+                                                        <div class=" col-md-6" style="padding-top:20px;">
+                                                            <button type="button" class="button1" id="btnAdd" onclick="return AddOptions();">Save</button>
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                     </fieldset>
                                 </div>
                             </div>
@@ -265,10 +274,10 @@
 
                 <input type="hidden" id="hdnrole" />
                 <table id="Mastertable" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>AdjustmentDate</th>
-                            <th>AdjustmentValue</th>
+                    <thead align="left">
+                        <tr >
+                            <th align="left">Adjustment Date</th>
+                            <th>Time Adjusted</th>
 
                         </tr>
                     </thead>

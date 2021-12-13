@@ -42,10 +42,10 @@ namespace TM.RestHour.BL
             return consultantDAL.GetCrewByID(ID).FirstOrDefault();
         }
 
-        public int SaveMedicalAdvisory(ConsultantPOCO consultantPOCO, int CrewID /*,int VesselID*/)
+        public int SaveMedicalAdvisory(ConsultantPOCO consultantPOCO, int CrewID, int VesselID)
         {
             ConsultantDAL consultantDAL = new ConsultantDAL();
-            return consultantDAL.SaveMedicalAdvisory(consultantPOCO, CrewID/*, VesselID*/);
+            return consultantDAL.SaveMedicalAdvisory(consultantPOCO, CrewID, VesselID);
         }
 
         public List<ConsultantPOCO> GetMedicalAdvisoryPageWise(int pageIndex, ref int recordCount, int length,int CrewID/*, int VesselID*/)

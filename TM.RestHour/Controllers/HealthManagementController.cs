@@ -32,5 +32,13 @@ namespace TM.RestHour.Controllers
         {
             return View();
         }
+
+        [TraceFilterAttribute]
+        public ActionResult DoctorVisit()
+        {
+            return View();
+        }
+
+        
     }
 }
