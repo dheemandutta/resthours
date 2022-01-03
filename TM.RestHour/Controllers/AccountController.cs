@@ -46,6 +46,7 @@ namespace TM.RestHour.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
+                Session["SavedOrModifiedCredID"] = null;
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);

@@ -8,7 +8,7 @@
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link href="dist/dual-listbox.css" rel="stylesheet">
 
-<body>
+@*<body>*@
 
     <div class="">
         <div class="head_title">
@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-</body>
+@*</body>*@
 
 
 
@@ -130,6 +130,12 @@
 
         var me = getUrlVars()["CrewID"];
         $("#ddlCrew").val(me);
+
+        if (@Session["SavedOrModifiedCredID"] != '') {
+            var s = @Session["SavedOrModifiedCredID"]
+            $("#ddlCrew").val(@Session["SavedOrModifiedCredID"]);
+        }
+
     });
 
 </script>

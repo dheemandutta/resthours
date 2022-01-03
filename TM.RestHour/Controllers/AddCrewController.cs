@@ -260,6 +260,7 @@ namespace TM.RestHour.Controllers
 
             if (recordsaffected > 0 && crewPC.ID == 0 )
             {
+                Session["SavedOrModifiedCredID"] = recordsaffected;
                 return Json(new { result = "Redirect", url = Url.Action("Index", "CreateNewUserAccount", Request.QueryString.ToRouteValues(new { grp = groupId, username = crewUserId , crewId = recordsaffected })) });
             }
             else if(recordsaffected == 0)
@@ -365,6 +366,51 @@ namespace TM.RestHour.Controllers
 			
 			
 		}
+        /// <summary>
+        /// Added on 19th Dec 2021 @BK
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public JsonResult CreateNewCrewLogin(string ID)
+        {
+            CrewBL crewBL = new CrewBL();
+            CrewPOCO crewPC = new CrewPOCO();
+            crewPC = crewBL.GetAllCrewByCrewID(int.Parse(ID), int.Parse(Session["VesselID"].ToString()));
+            string crewUserId = string.Empty;
+           
+            Random rnd = new Random();
+            crewUserId = crewPC.FirstName.Substring(0, 3) + crewPC.LastName.Substring(0, 3) + rnd.Next(100);
+
+            RanksBL ranks = new RanksBL();
+            int groupId = ranks.GetGroupFromRank(crewPC.RankID, int.Parse(Session["VesselID"].ToString()));
+
+
+
+            return Json(new { result = "Redirect", url = Url.Action("Index", "CreateNewUserAccount", Request.QueryString.ToRouteValues(new { grp = groupId, username = crewUserId, crewId = crewPC.ID })) }, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+        [HttpGet]
+        public JsonResult CreateNewCrewLogin2()
+        {
+            //CrewBL crewBL = new CrewBL();
+            //CrewPOCO crewPC = new CrewPOCO();
+            //crewPC = crewBL.GetAllCrewByCrewID(int.Parse(ID), int.Parse(Session["VesselID"].ToString()));
+            //string crewUserId = string.Empty;
+
+            //Random rnd = new Random();
+            //crewUserId = crewPC.FirstName.Substring(0, 3) + crewPC.LastName.Substring(0, 3) + rnd.Next(100);
+
+            //RanksBL ranks = new RanksBL();
+            //int groupId = ranks.GetGroupFromRank(crewPC.RankID, int.Parse(Session["VesselID"].ToString()));
+
+
+
+            return Json(new { result = "Redirect" }, JsonRequestBehavior.AllowGet);
+
+
+        }
 
         //for Ranks drp
         public void GetAllRanksForDrp()

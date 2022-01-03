@@ -1347,9 +1347,9 @@ namespace TM.RestHour.Controllers
                 string FileExtension = Path.GetExtension(postedFile.FileName);
                 fileName = fileName + FileExtension;
 
-                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif" && FileExtension != ".jpg" && FileExtension != ".png")
                 {
-                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpeg/gif/png";
                     return View();
                 }
 

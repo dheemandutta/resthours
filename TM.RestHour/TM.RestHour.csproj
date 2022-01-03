@@ -3134,6 +3134,7 @@
     <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y2.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\HealthManagement\DoctorVisit.cshtml" />
+    <Content Include="Views\CrewHealth\_pvUploadJoiningMedical.cshtml" />
     <None Include="Web.Installer.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -92,7 +92,8 @@ function loadDataForInactiv() {
 function SetUpGrid() {
 
     SetUpPrintGridReport();
-    var loadposturl = $('#loaddata').val();
+    //var loadposturl = $('#loaddata').val();
+    var loadposturl = $('#loadprintreport').val();
 
     //do not throw error
     $.fn.dataTable.ext.errMode = 'none';
@@ -136,7 +137,8 @@ function SetUpGrid() {
             //},
             {
                 "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="AddCrewEdit(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
+                   // return '<a href="#" onclick="AddCrewEdit(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
+                    return '<a href="#" onclick="CreateNewCrewLogin(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
                 }
             },
             {
@@ -414,4 +416,36 @@ function AddCrewEdit() {
         }
     });
     //  }
+}
+
+
+function CreateNewCrewLogin(crewId) {
+    //var posturl = $('#createNewLogin').val();
+    var posturl = "/AddCrew/CreateNewCrewLogin";
+
+    $.ajax({
+        url: posturl,
+        data: { id: crewId},
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+
+        success: function (response) {
+           // alert(response.result);
+            if (response.result == 'Redirect') {
+
+                
+
+                window.location = response.url;
+            }
+            else if (response.result == 'Error') {
+                alert('Error occured. Please relogin and try again');
+            }
+        },
+
+        error: function (errormessage) {
+            console.log(errormessage.responseText);
+        }
+    });
+
 }
