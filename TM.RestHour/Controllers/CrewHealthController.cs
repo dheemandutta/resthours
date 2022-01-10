@@ -301,8 +301,8 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.MedicineID = equipmentsPC.MedicineID;
                 equipments.MedicineName = equipmentsPC.MedicineName;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                //equipments.Quantity = equipmentsPC.Quantity;
+                //equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -353,8 +353,8 @@ namespace TM.RestHour.Controllers
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
                 equipments.Comment = equipmentsPC.Comment;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                //equipments.Quantity = equipmentsPC.Quantity;
+                //equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);

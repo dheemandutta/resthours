@@ -46,9 +46,9 @@ namespace TM.RestHour.Controllers
             equipmentsPC.EquipmentsID = equipments.EquipmentsID;
             equipmentsPC.EquipmentsName = equipments.EquipmentsName;       
             equipmentsPC.Comment = equipments.Comment;
-            equipmentsPC.Quantity = equipments.Quantity;
+            //equipmentsPC.Quantity = equipments.Quantity;
 
-            equipmentsPC.ExpiryDate = equipments.ExpiryDate;
+            //equipmentsPC.ExpiryDate = equipments.ExpiryDate;
             equipmentsPC.Location = equipments.Location;
 
             return Json(equipmentsBL.SaveEquipments(equipmentsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
@@ -93,8 +93,10 @@ namespace TM.RestHour.Controllers
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
                 equipments.Comment = equipmentsPC.Comment;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
+                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
+                equipments.Unit = equipmentsPC.Unit;
+                //equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -145,8 +147,9 @@ namespace TM.RestHour.Controllers
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
                 equipments.Comment = equipmentsPC.Comment;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
+                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
+                equipments.Unit = equipmentsPC.Unit;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -233,16 +236,17 @@ namespace TM.RestHour.Controllers
 
             equipmentsPOCOList = equipmentsBL.GetMedicalEquipmentByID(EquipmentsID /*, int.Parse(Session["VesselID"].ToString())*/);
 
-            Equipments dept = new Equipments();
+            Equipments equipments = new Equipments();
 
-            dept.EquipmentsID = equipmentsPOCOList.EquipmentsID;
-            dept.EquipmentsName = equipmentsPOCOList.EquipmentsName;
-            dept.Comment = equipmentsPOCOList.Comment;
-            dept.Quantity = equipmentsPOCOList.Quantity;
-            dept.ExpiryDate = equipmentsPOCOList.ExpiryDate;
-            dept.Location = equipmentsPOCOList.Location;
+            equipments.EquipmentsID = equipmentsPOCOList.EquipmentsID;
+            equipments.EquipmentsName = equipmentsPOCOList.EquipmentsName;
+            equipments.Comment = equipmentsPOCOList.Comment;
+            equipments.RequiredQuantity = equipmentsPOCOList.RequiredQuantity;
+            equipments.OnBoardQuantity = equipmentsPOCOList.OnBoardQuantity;
+            equipments.Unit = equipmentsPOCOList.Unit;
+            equipments.Location = equipmentsPOCOList.Location;
 
-            var data = dept;
+            var data = equipments;
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -258,16 +262,17 @@ namespace TM.RestHour.Controllers
 
             equipmentsPOCOList = equipmentsBL.GetMedicineByID(MedicineID /*, int.Parse(Session["VesselID"].ToString())*/);
 
-            Equipments dept = new Equipments();
+            Equipments equipments = new Equipments();
 
-            dept.MedicineID = equipmentsPOCOList.MedicineID;
-            dept.MedicineName = equipmentsPOCOList.MedicineName;
+            equipments.MedicineID = equipmentsPOCOList.MedicineID;
+            equipments.MedicineName = equipmentsPOCOList.MedicineName;
             //dept.Comment = equipmentsPOCOList.Comment;
-            dept.Quantity = equipmentsPOCOList.Quantity;
-            dept.ExpiryDate = equipmentsPOCOList.ExpiryDate;
-            dept.Location = equipmentsPOCOList.Location;
+            equipments.RequiredQuantity = equipmentsPOCOList.RequiredQuantity;
+            equipments.OnBoardQuantity = equipmentsPOCOList.OnBoardQuantity;
+            equipments.Unit = equipmentsPOCOList.Unit;
+            equipments.Location = equipmentsPOCOList.Location;
 
-            var data = dept;
+            var data = equipments;
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -286,9 +291,9 @@ namespace TM.RestHour.Controllers
             //consultantPC.DoctorID = consultant.DoctorID;
             equipmentsPC.MedicineID = equipments.MedicineID;
             equipmentsPC.MedicineName = equipments.MedicineName;
-            equipmentsPC.Quantity = equipments.Quantity;
+            //equipmentsPC.Quantity = equipments.Quantity;
 
-            equipmentsPC.ExpiryDate = equipments.ExpiryDate;
+            //equipmentsPC.ExpiryDate = equipments.ExpiryDate;
             equipmentsPC.Location = equipments.Location;
 
             return Json(equipmentsBL.SaveMedicine(equipmentsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
@@ -332,8 +337,9 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.MedicineID = equipmentsPC.MedicineID;
                 equipments.MedicineName = equipmentsPC.MedicineName;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
+                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
+                equipments.Unit = equipmentsPC.Unit;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -382,8 +388,9 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.MedicineID = equipmentsPC.MedicineID;
                 equipments.MedicineName = equipmentsPC.MedicineName;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
+                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
+                equipments.Unit = equipmentsPC.Unit;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);

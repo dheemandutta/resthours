@@ -10,9 +10,13 @@ namespace TM.RestHour.Models
         public int EquipmentsID { get; set; }
         public string EquipmentsName { get; set; }
         public string Comment { get; set; }
-        public string Quantity { get; set; }
+        public string RequiredQuantity { get; set; }
         //public DateTime ExpiryDate { get; set; }
-        public string ExpiryDate { get; set; }
+        //public string ExpiryDate { get; set; }
+
+        public string OnBoardQuantity { get; set; }
+
+        public string Unit { get; set; }
 
         public int MedicineID { get; set; }
         public string MedicineName { get; set; }
