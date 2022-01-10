@@ -83,6 +83,10 @@
       <Project>{26a454e7-eed1-4911-8ab6-7b527c7f188b}</Project>
       <Name>TM.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TM.RestHour.Entities\TM.RestHour.Entities.csproj">
+      <Project>{a5bf9ce9-0ecb-4af6-af59-0248e031c98d}</Project>
+      <Name>TM.RestHour.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

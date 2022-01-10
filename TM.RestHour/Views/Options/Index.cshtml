@@ -3,6 +3,26 @@
     ViewBag.Title = "Index";
 }
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+
 <script src="~/Scripts/Options.js"></script>
 
 @Html.Hidden("Optionsadd", @Url.Action("Add", "Options"))
@@ -83,10 +103,11 @@
     </div>*@
 
 <style>
-    
+
     .ui-widget.ui-widget-content {
         border: 1px solid #c5c5c5 !important;
     }
+
     .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
         border: 1px solid #c5c5c5;
         background: #26262600;
@@ -94,6 +115,7 @@
         color: #454545;
         color: #000 !important;
     }
+
     .modal-dialog {
         width: 600px;
         margin: 30px 0 0;
@@ -204,7 +226,7 @@
                             <div class="modal-dialog" id="dvuserdetailsn" style="width:100%;">
                                 <div class="card">
                                     <fieldset>
-                                       
+
                                         <div class="row">
 
                                             <div class="form-group">
@@ -213,13 +235,13 @@
 
                                             <div class="col-md-3">
                                                 @*<div class="form-group">
-                                                    <label for="inputPassword3" class="col-sm-3 control-label"></label>
-                                                    <div class="col-sm-9">
-                                                        <div class="multiple">
+                                                        <label for="inputPassword3" class="col-sm-3 control-label"></label>
+                                                        <div class="col-sm-9">
+                                                            <div class="multiple">
 
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>*@
+                                                    </div>*@
                                                 <div class="form-group" style="width: 100%;">
                                                     <label for="AdjustmentDate">Adjustment Date</label>
                                                     <input type="text" class="form-control" id="AdjustmentDate" style="width: 100%;" /><br />
@@ -245,17 +267,17 @@
                                             </div>
 
 
-                                                <div class="col-md-3">
-                                                    <div class="form-group" style="width: 100%;">
-                                                        <label for="selectCrew" class="col-sm-3 control-label">@*Select Crew*@</label>
-                                                        <div class=" col-md-6" style="padding-top:20px;">
-                                                            <button type="button" class="button1" id="btnAdd" onclick="return AddOptions();">Save</button>
-                                                            <br />
-                                                        </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group" style="width: 100%;">
+                                                    <label for="selectCrew" class="col-sm-3 control-label">@*Select Crew*@</label>
+                                                    <div class=" col-md-6" style="padding-top:20px;">
+                                                        <button type="button" class="button1" id="btnAdd" onclick="return AddOptions();">Save</button>
+                                                        <br />
                                                     </div>
                                                 </div>
-
                                             </div>
+
+                                        </div>
                                     </fieldset>
                                 </div>
                             </div>
@@ -275,7 +297,7 @@
                 <input type="hidden" id="hdnrole" />
                 <table id="Mastertable" class="display" style="width:100%">
                     <thead align="left">
-                        <tr >
+                        <tr>
                             <th align="left">Adjustment Date</th>
                             <th>Time Adjusted</th>
 
@@ -283,87 +305,87 @@
                     </thead>
                 </table>
             </div>
-            </div>
         </div>
-    </body>
+    </div>
+</body>
 
-            @*<div class="modal-footer">
+@*<div class="modal-footer">
 
-                   alert(btnAdd);
-                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>*@
-            @*<p><font color=""><i>* These features are only available with ISF Watchkeeper 3 (Network Version)</i></font></p>*@
+       alert(btnAdd);
+        <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>*@
+@*<p><font color=""><i>* These features are only available with ISF Watchkeeper 3 (Network Version)</i></font></p>*@
 
 
-            @section Scripts
+@section Scripts
 {
-                @Scripts.Render("~/bundles/jqueryval")
-                @Styles.Render("~/Content/themes/base/css")
-                <script src="~/Scripts/TimePicker/jquery.timepicker.min.js"></script>
-                <link href="~/Content/TimePicker/jquery.timepicker.min.css" rel="stylesheet" />
-                <script src="~/Scripts/notify.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/themes/base/css")
+    <script src="~/Scripts/TimePicker/jquery.timepicker.min.js"></script>
+    <link href="~/Content/TimePicker/jquery.timepicker.min.css" rel="stylesheet" />
+    <script src="~/Scripts/notify.min.js"></script>
 
 
-                <script src="~/Scripts/toastr.min.js"></script>
-                <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
 
-                <script type="text/javascript">
-
-
-
-
-                    //$("#AdjustmentDate").datepicker({
-
-                    //    changeMonth: true,
-                    //    changeYear: true,
-
-                    //});
+    <script type="text/javascript">
 
 
 
 
+        //$("#AdjustmentDate").datepicker({
 
-                    //$("#AdjustmentDate").datepicker({
-                    //    defaultDate: +2
-                    //});
-                    //// Getter
-                    //var defaultDate = $("#AdjustmentDate").datepicker("option", "defaultDate");
+        //    changeMonth: true,
+        //    changeYear: true,
 
-                    //// Setter
-                    //$("#AdjustmentDate").datepicker("option", "defaultDate", +2);
-
-                    $("#AdjustmentDate").datepicker({
-                        dateFormat: 'd-M-yy',
-                        //minDate: 1,
-                        //maxDate: 1
-                    });
+        //});
 
 
 
 
 
+        //$("#AdjustmentDate").datepicker({
+        //    defaultDate: +2
+        //});
+        //// Getter
+        //var defaultDate = $("#AdjustmentDate").datepicker("option", "defaultDate");
 
-                    $(document).ready(function () {
+        //// Setter
+        //$("#AdjustmentDate").datepicker("option", "defaultDate", +2);
 
-                        SetUpGrid();
+        $("#AdjustmentDate").datepicker({
+            dateFormat: 'd-M-yy',
+            //minDate: 1,
+            //maxDate: 1
+        });
 
 
-                        $('.multiple').datepicker({
-                            inline: true,
-                            firstDay: 1,
-                            showOtherMonths: true,
-                            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                            onSelect: function (date) {
-                                // Your CSS changes, just in case you still need them
-                                //alert(date);
-                                if ($('#ddlCrew').val() != '') {
-                                    LoadData();
 
-                                }
-                            }
-                        });
-                    });
-                </script>
 
-            }
+
+
+        $(document).ready(function () {
+
+            SetUpGrid();
+
+
+            $('.multiple').datepicker({
+                inline: true,
+                firstDay: 1,
+                showOtherMonths: true,
+                dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                onSelect: function (date) {
+                    // Your CSS changes, just in case you still need them
+                    //alert(date);
+                    if ($('#ddlCrew').val() != '') {
+                        LoadData();
+
+                    }
+                }
+            });
+        });
+    </script>
+
+}

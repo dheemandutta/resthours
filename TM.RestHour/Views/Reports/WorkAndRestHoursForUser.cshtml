@@ -1,10 +1,18 @@
 ﻿@model TM.RestHour.Models.CrewTimesheetViewModel
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "WorkAndRestHoursForUser";
+    ViewBag.Title = "WorkAndRestHoursForUser";
 }
+
+
+@*/////////////*@
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*////////////*@
+
 
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
@@ -307,37 +315,37 @@
     <script type="text/javascript">
 
 
-			$(document).ready(function () {
-				$(function () {
-					$('.monthYearPicker').datepicker({
-						changeMonth: true,
-						changeYear: true,
-						showButtonPanel: true,
-						dateFormat: 'MM yy'
-					}).focus(function () {
-						var thisCalendar = $(this);
-						$('.ui-datepicker-calendar').detach();
-						$('.ui-datepicker-close').click(function () {
-							var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-							var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-							thisCalendar.datepicker('setDate', new Date(year, month, 1));
-						});
-					});
-				});
+        $(document).ready(function () {
+            $(function () {
+                $('.monthYearPicker').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    showButtonPanel: true,
+                    dateFormat: 'MM yy'
+                }).focus(function () {
+                    var thisCalendar = $(this);
+                    $('.ui-datepicker-calendar').detach();
+                    $('.ui-datepicker-close').click(function () {
+                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                        thisCalendar.datepicker('setDate', new Date(year, month, 1));
+                    });
+                });
+            });
 
-			});
-
-
+        });
 
 
-			$("#btnPrint").click(function () {
-				//PrintWorkAndRestHours();
-				Popup2('');
-			});
 
-			$("#btnAdd").click(function () {
-				SetUpGrid();
-			});
+
+        $("#btnPrint").click(function () {
+            //PrintWorkAndRestHours();
+            Popup2('');
+        });
+
+        $("#btnAdd").click(function () {
+            SetUpGrid();
+        });
 
     </script>
 }

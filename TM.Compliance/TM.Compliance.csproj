@@ -62,6 +62,10 @@
       <Project>{26A454E7-EED1-4911-8AB6-7B527C7F188B}</Project>
       <Name>TM.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TM.RestHour.Entities\TM.RestHour.Entities.csproj">
+      <Project>{a5bf9ce9-0ecb-4af6-af59-0248e031c98d}</Project>
+      <Name>TM.RestHour.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

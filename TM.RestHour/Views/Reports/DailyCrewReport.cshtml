@@ -1,8 +1,25 @@
 ﻿@model TM.RestHour.Models.Crew
 
 @{
-	ViewBag.Title = "DailyCrewReport";
+    ViewBag.Title = "DailyCrewReport";
 }
+
+@*/////////////*@
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*////////////*@
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
 
 
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
@@ -14,341 +31,389 @@
 @Html.Hidden("printReport2", @Url.Action("HTML_Report2", "Reports"))
 
 
-<body>
 
-    <div class="">
-        <div class="head_title">
-            <h1 class="ta">Daily Work and Rest Hour</h1>
+<div class="">
+    <div class="white_card_header">
+        <div class="box_header m-0">
+            <div class="main-title">
+                <h2 class="mrBTM-10">Daily Work and Rest Hour</h2>
+            </div>
         </div>
-        <div class="card bac">
-            <div class="">
-                <div class="row">
-                    @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+    </div>
+    <div class="card bac">
+        <div class="card">
+            <div class="row">
+                @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
 
-                    <div class="col-md-6" id="sideform">
-                        <div class="card">
-                            <div class="card-block">
-                                <form class="form-horizontal" role="form">
-
-
-                                    <div class="col-md-7" id="sideform">
-                                        <div class="form-group">
+                <div class="col-sm-12 col-xs-12" id="sideform">
+                    <div class="">
+                        <div class="card-block">
+                            <form class="form-horizontal" role="form">
+                                <div class="row">
+                                    <div class="col-sm-3 col-xs-6 mrTP-20" id="sideform">
+                                        <div class="form-group calenderPart">
                                             @*<label for="ReportsDate"> Date</label>*@
-                                            <input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Date" />
+                                            <div>
+                                                <input type="text" class="monthYearPicker form-control mrLFT-10" id="ReportsDate" placeholder="Select Date" />
+                                            </div>
+                                            <div class="calenderIcon">
+                                                <i class="ti-calendar"></i>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    @*<div class="col-md-7" id="sideform" style="float: right; width: 0%;">
-                                        <div class="form-group" style="float: right; width: 0%;">
-                                            <img src="~/companylogo/companylogo.png" />
-                                        </div>
-                                    </div>*@
-
-
-                                    <div class="form-group">
-                                        <div>
-                                            <div class="col-md-6" id="sideform">
-                                                <button type="button" class="button1" id="btnAdd" disabled="disabled" onclick="return GetDayWiseCrewData();">Show Report</button>
-
-                                            </div>
-
-                                            <div class="col-md-6" id="sideform">
-                                                <div class="form-group">
-                                                    <button type="button" class="button1" id="btnPrint" disabled="disabled" onclick="PrintReport2();">Print Report</button>
+                                    <div class="col-sm-9 col-xs-6 mrTP-20">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="">
+                                                        <div id="sideform" class="pull-right">
+                                                            <button type="button" class="btn btn-primary mrRHT-10" id="btnAdd" disabled="disabled" onclick="return GetDayWiseCrewData();"><i class="ti-eye"></i> Show Report</button>
+                                                        </div>
+                                                        <div id="sideform" class="pull-right">
+                                                            <button type="button" class="btn btn-info mrRHT-10" id="btnPrint" disabled="disabled" onclick="PrintReport2();"><i class="ti-printer"></i> Print Report</button>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
-
                 </div>
+            </div>
 
-                <table width="100%">
-                    <tr>
-                        <td align="left" width="75%"><b>HOURS OF WORK AND REST</b></td>
-                        @*<td align="right">    <img src="~/companylogo/companylogo.png" />  </td>*@
-                    </tr>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 mrTP-10">
+                    <div class="mrLFT-10 mrRHT-10 font16">
+                        <div class="mrBTM-10">
+                            <h4 class="mrBTM-10">Hours of Work and Rest</h4>
+                        </div>
+                        <div class="mrBTM-10">
+                            <div class="pull-left color_blue_Dark">
+                                Form Number :
+                            </div>
+                            <div class="pull-right">
 
-                    <tr>
-                        <td align="left" width="75%">Form Number : </td>
-                        @*<td align="right"> Page Number : 1 of 1</td>*@
-                    </tr>
-                    <tr style="height:2px;">
-                        <td colspan="2"><hr style="padding:0px; margin:0px;" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <table width="100%">
-                                <tr>
-                                    <td align="left" width="40%">Year : <span id="yr"></span></td>
-                                    <td align="left" width="20%"> Vessel Name : @Session["ShipName"].ToString()</td>
-                                    <td align="right" width="75%">  </td>
-                                </tr>
-                                <tr>
-                                    <td align="left" width="50%">Month : <span id="mn"></span> </td>
-                                    <td colspan="2" align="left">IMO Number : @Session["IMONumber"].ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td align="left">Day : <span id="dy"></span></td>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="mrBTM-10">
+                            <hr />
+                        </div>
+                        <div class="mrBTM-10">
+                            <div class="pull-left">
+                                <div class="pull-left color_blue_Dark">
+                                    Year :
+                                </div>
+                                <div class="pull-left font_W700">
+                                    &nbsp;
+                                    <span id="yr"></span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="pull-right">
+                                <div class="pull-left color_blue_Dark">
+                                    Vessel Name :
+                                </div>
+                                <div class="pull-left font_W700">
+                                    &nbsp;
+                                    @Session["ShipName"].ToString()
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="mrBTM-10">
+                            <div class="pull-left">
+                                <div class="pull-left color_blue_Dark">
+                                    Month :
+                                </div>
+                                <div class="pull-left font_W700">
+                                    &nbsp;
+                                    <span id="mn"></span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="pull-right">
+                                <div class="pull-left color_blue_Dark">
+                                    IMO Number :
+                                </div>
+                                <div class="pull-left font_W700">
+                                    &nbsp;
+                                    @Session["IMONumber"].ToString()
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="mrBTM-10">
+                            <div class="pull-left">
+                                <div class="pull-left color_blue_Dark">
+                                    Day :
+                                </div>
+                                <div class="pull-left font_W700">
+                                    &nbsp;
+                                    <span id="dy"></span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="pull-right">
+                                <div class="pull-left color_blue_Dark">
+                                    Flag :
+                                </div>
+                                <div class="pull-left font_W700">
+                                    &nbsp;
+                                    @Session["Flag"].ToString()
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                 
-                                    <td>Flag : @Session["Flag"].ToString()</td>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 mrTP-10">
+                    <div class="mrLFT-10 mrRHT-10 font16">
+                        <div class="table-responsive">
+                            <table class="table" id="schedule">
+                                <thead class="blue_Color color_white">
+                                    <tr>
+                                        <th scope="col" class="tg-v0f9" width="12%">Seafarer Name</th>
+                                        <th scope="col" class="tg-v0f9" width="10%">Nationality</th>
+                                        <th scope="col" class="tg-v0f9" width="10%">Rank</th>
+                                        <th scope="col" class="tg-v0f9" width="10%">Regime</th>
+                                        <th scope="col" class="tg-amwm" width="1%">00</th>
+                                        <th scope="col" class="tg-amwm" width="1%">00</th>
+                                        <th scope="col" class="tg-amwm" width="1%">01</th>
+                                        <th scope="col" class="tg-amwm" width="1%">02</th>
+                                        <th scope="col" class="tg-amwm" width="1%">03</th>
+                                        <th scope="col" class="tg-amwm" width="1%">04</th>
+                                        <th scope="col" class="tg-amwm" width="1%">05</th>
+                                        <th scope="col" class="tg-amwm" width="1%">06</th>
+                                        <th scope="col" class="tg-amwm" width="1%">07</th>
+                                        <th scope="col" class="tg-amwm" width="1%">08</th>
+                                        <th scope="col" class="tg-amwm" width="1%">09</th>
+                                        <th scope="col" class="tg-amwm" width="1%">10</th>
+                                        <th scope="col" class="tg-amwm" width="1%">11</th>
+                                        <th scope="col" class="tg-amwm" width="1%">12</th>
+                                        <th scope="col" class="tg-amwm" width="1%">13</th>
+                                        <th scope="col" class="tg-amwm" width="1%">14</th>
+                                        <th scope="col" class="tg-amwm" width="1%">15</th>
+                                        <th scope="col" class="tg-amwm" width="1%">16</th>
+                                        <th scope="col" class="tg-amwm" width="1%">17</th>
+                                        <th scope="col" class="tg-amwm" width="1%">18</th>
+                                        <th scope="col" class="tg-amwm" width="1%">19</th>
+                                        <th scope="col" class="tg-amwm" width="1%">20</th>
+                                        <th scope="col" class="tg-amwm" width="1%">21</th>
+                                        <th scope="col" class="tg-amwm" width="1%">22</th>
+                                        <th scope="col" class="tg-amwm" width="1%">23</th>
+                                        <th scope="col" class="tg-amwm" width="6%">Normal</th>
+                                        <th scope="col" class="tg-amwm" width="6%">Overtime</th>
+                                        <th scope="col" class="tg-amwm" width="6%">Total</th>
+                                        <th scope="col" class="tg-amwm" width="6%">Rest</th>
+                                        <th scope="col" class="tg-amwm" width="20%">Comments</th>
+                                    </tr>
+                                </thead>
+                                <tr id="trclone" filled="no">
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
                                 </tr>
                             </table>
-                        </td>
-                    </tr>
-
-                </table>
-
-
-                <div class="" style="height:190px; overflow-y:scroll;">
-                    <table border="1" style="  border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%;" id="schedule">
-
-						<tr>
-							<th class="tg-v0f9" width="12%">Seafarer Name</th>
-							<th class="tg-v0f9" width="10%">Nationality</th>
-							<th class="tg-v0f9" width="10%">Rank</th>
-							<th class="tg-v0f9" width="10%">Regime</th>
-							<th class="tg-amwm" width="1%">00</th>
-							<th class="tg-amwm" width="1%">00</th>
-							<th class="tg-amwm" width="1%">01</th>
-							<th class="tg-amwm" width="1%">02</th>
-							<th class="tg-amwm" width="1%">03</th>
-							<th class="tg-amwm" width="1%">04</th>
-							<th class="tg-amwm" width="1%">05</th>
-							<th class="tg-amwm" width="1%">06</th>
-							<th class="tg-amwm" width="1%">07</th>
-							<th class="tg-amwm" width="1%">08</th>
-							<th class="tg-amwm" width="1%">09</th>
-							<th class="tg-amwm" width="1%">10</th>
-							<th class="tg-amwm" width="1%">11</th>
-							<th class="tg-amwm" width="1%">12</th>
-							<th class="tg-amwm" width="1%">13</th>
-							<th class="tg-amwm" width="1%">14</th>
-							<th class="tg-amwm" width="1%">15</th>
-							<th class="tg-amwm" width="1%">16</th>
-							<th class="tg-amwm" width="1%">17</th>
-							<th class="tg-amwm" width="1%">18</th>
-							<th class="tg-amwm" width="1%">19</th>
-							<th class="tg-amwm" width="1%">20</th>
-							<th class="tg-amwm" width="1%">21</th>
-							<th class="tg-amwm" width="1%">22</th>
-							<th class="tg-amwm" width="1%">23</th>
-							<th class="tg-amwm" width="6%">Normal</th>
-							<th class="tg-amwm" width="6%">Overtime</th>
-							<th class="tg-amwm" width="6%">Total</th>
-							<th class="tg-amwm" width="6%">Rest</th>
-							<th class="tg-amwm" width="20%">Comments</th>
-						</tr>
-
-						<tr id="trclone" filled="no">
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-							<td class="tg-yw4l"></td>
-						</tr>
-                    </table>
+                        </div>
+                    </div>
                 </div>
-                <p class="bottom-three"></p>
+            </div>
 
-                <table width="100%">
-                    <tr>
-
-                        <td align="right"></td>
-                        <td align="right">
-                            Signature of Master:  ________________________________________
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <td></td>
-                        <td align="right">
-                            @*Singh, Amitabh(HC)*@
-                        </td>
-                    </tr>
-                </table>
-
-                <!----------------------------------------------------------------------------------------------------------->
-                <div id="dvprint2" style="display:none;">
-
-               
-
-                    <table width="100%">
-                        <tr>
-                            <td align="left" width="75%"><b>HOURS OF WORK AND REST zx</b></td>
-                            <td align="right"><img src="~/companylogo/companylogo.png" /></td>
-                        </tr>
-
-                        <tr>
-                            <td align="left" width="75%">Form Number : </td>
-                            @*<td align="right"> Page Number : 1 of 1</td>*@
-                        </tr>
-                        <tr style="height:2px;">
-                            <td colspan="2"><hr style="padding:0px; margin:0px;" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <table width="100%">
-                                    <tr>
-                                        <td align="left" width="40%">Year : <span id="yr_d"></span></td>
-                                        <td align="left" width="20%"> Vessel Name :@Session["ShipName"].ToString() </td>
-                                        <td align="right" width="75%">  </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="left" width="50%">Month : <span id="mn_d"></span> </td>
-                                        <td colspan="2" align="left">IMO Number : @Session["IMONumber"].ToString()</td>
-                                    </tr>
-                                    <tr>
-                                        <td align="left">Day : <span id="dy_d"></span></td>
-
-                                        @*<td>Flag : Liberia</td>*@
-                                        <td>Flag : @Session["Flag"].ToString()</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-
-                    </table>
-
-                    <table border="1" style="  border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%;" id="schedule_d">
-
-                        <tr>
-                            <th class="tg-v0f9" width="12%">Seafarer Name</th>
-                            <th class="tg-v0f9" width="10%">Nationality</th>
-                            <th class="tg-v0f9" width="10%">Rank</th>
-                            <th class="tg-v0f9" width="10%">Regime</th>
-                            <th class="tg-amwm" width="1%">00</th>
-                            <th class="tg-amwm" width="1%">00</th>
-                            <th class="tg-amwm" width="1%">01</th>
-                            <th class="tg-amwm" width="1%">02</th>
-                            <th class="tg-amwm" width="1%">03</th>
-                            <th class="tg-amwm" width="1%">04</th>
-                            <th class="tg-amwm" width="1%">05</th>
-                            <th class="tg-amwm" width="1%">06</th>
-                            <th class="tg-amwm" width="1%">07</th>
-                            <th class="tg-amwm" width="1%">08</th>
-                            <th class="tg-amwm" width="1%">09</th>
-                            <th class="tg-amwm" width="1%">10</th>
-                            <th class="tg-amwm" width="1%">11</th>
-                            <th class="tg-amwm" width="1%">12</th>
-                            <th class="tg-amwm" width="1%">13</th>
-                            <th class="tg-amwm" width="1%">14</th>
-                            <th class="tg-amwm" width="1%">15</th>
-                            <th class="tg-amwm" width="1%">16</th>
-                            <th class="tg-amwm" width="1%">17</th>
-                            <th class="tg-amwm" width="1%">18</th>
-                            <th class="tg-amwm" width="1%">19</th>
-                            <th class="tg-amwm" width="1%">20</th>
-                            <th class="tg-amwm" width="1%">21</th>
-                            <th class="tg-amwm" width="1%">22</th>
-                            <th class="tg-amwm" width="1%">23</th>
-                            <th class="tg-amwm" width="6%">Normal</th>
-                            <th class="tg-amwm" width="6%">Overtime</th>
-                            <th class="tg-amwm" width="6%">Total</th>
-                            <th class="tg-amwm" width="6%">Rest</th>
-                            <th class="tg-amwm" width="20%">Comments</th>
-                        </tr>
-
-                        <tr id="trclone_d" filled="no">
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                            <td class="tg-yw4l"></td>
-                        </tr>
-                    </table>
-
-                    <p class="bottom-three"></p>
-
-                    <table width="100%">
-                        <tr style="float: right;">
-
-                            <td align="right"></td>
-                            <td align="right" style="float: right;">
-                                Signature of Master:  ________________________________________
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td></td>
-                            <td align="right">
-                                @*Singh, Amitabh(HC)*@
-                            </td>
-                        </tr>
-                    </table>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 mrTP-10 mrBTM-10">
+                    <div class="mrLFT-10 mrRHT-10 font16 color_blue_Dark text-right">
+                        Signature of Master:  ________________________________________
+                    </div>
                 </div>
+            </div>
 
 
+                        <!----------------------------------------------------------------------------------------------------------->
+                        <div id="dvprint2" style="display:none;">
+
+
+
+                            <table width="100%">
+                                <tr>
+                                    <td align="left" width="75%"><b>HOURS OF WORK AND REST zx</b></td>
+                                    <td align="right"><img src="~/companylogo/companylogo.png" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td align="left" width="75%">Form Number : </td>
+                                    @*<td align="right"> Page Number : 1 of 1</td>*@
+                                </tr>
+                                <tr style="height:2px;">
+                                    <td colspan="2"><hr style="padding:0px; margin:0px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" width="40%">Year : <span id="yr_d"></span></td>
+                                                <td align="left" width="20%"> Vessel Name :@Session["ShipName"].ToString() </td>
+                                                <td align="right" width="75%">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" width="50%">Month : <span id="mn_d"></span> </td>
+                                                <td colspan="2" align="left">IMO Number : @Session["IMONumber"].ToString()</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">Day : <span id="dy_d"></span></td>
+
+                                                @*<td>Flag : Liberia</td>*@
+                                                <td>Flag : @Session["Flag"].ToString()</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <table border="1" style="  border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%;" id="schedule_d">
+
+                                <tr>
+                                    <th class="tg-v0f9" width="12%">Seafarer Name</th>
+                                    <th class="tg-v0f9" width="10%">Nationality</th>
+                                    <th class="tg-v0f9" width="10%">Rank</th>
+                                    <th class="tg-v0f9" width="10%">Regime</th>
+                                    <th class="tg-amwm" width="1%">00</th>
+                                    <th class="tg-amwm" width="1%">00</th>
+                                    <th class="tg-amwm" width="1%">01</th>
+                                    <th class="tg-amwm" width="1%">02</th>
+                                    <th class="tg-amwm" width="1%">03</th>
+                                    <th class="tg-amwm" width="1%">04</th>
+                                    <th class="tg-amwm" width="1%">05</th>
+                                    <th class="tg-amwm" width="1%">06</th>
+                                    <th class="tg-amwm" width="1%">07</th>
+                                    <th class="tg-amwm" width="1%">08</th>
+                                    <th class="tg-amwm" width="1%">09</th>
+                                    <th class="tg-amwm" width="1%">10</th>
+                                    <th class="tg-amwm" width="1%">11</th>
+                                    <th class="tg-amwm" width="1%">12</th>
+                                    <th class="tg-amwm" width="1%">13</th>
+                                    <th class="tg-amwm" width="1%">14</th>
+                                    <th class="tg-amwm" width="1%">15</th>
+                                    <th class="tg-amwm" width="1%">16</th>
+                                    <th class="tg-amwm" width="1%">17</th>
+                                    <th class="tg-amwm" width="1%">18</th>
+                                    <th class="tg-amwm" width="1%">19</th>
+                                    <th class="tg-amwm" width="1%">20</th>
+                                    <th class="tg-amwm" width="1%">21</th>
+                                    <th class="tg-amwm" width="1%">22</th>
+                                    <th class="tg-amwm" width="1%">23</th>
+                                    <th class="tg-amwm" width="6%">Normal</th>
+                                    <th class="tg-amwm" width="6%">Overtime</th>
+                                    <th class="tg-amwm" width="6%">Total</th>
+                                    <th class="tg-amwm" width="6%">Rest</th>
+                                    <th class="tg-amwm" width="20%">Comments</th>
+                                </tr>
+
+                                <tr id="trclone_d" filled="no">
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l"></td>
+                                </tr>
+                            </table>
+
+                            <p class="bottom-three"></p>
+
+                            <table width="100%">
+                                <tr style="float: right;">
+
+                                    <td align="right"></td>
+                                    <td align="right" style="float: right;">
+                                        Signature of Master:  ________________________________________
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td></td>
+                                    <td align="right">
+                                        @*Singh, Amitabh(HC)*@
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
-    </body>
 
             @section Scripts
 {
@@ -364,7 +429,7 @@
                 <script type="text/javascript">
 
 
-                    $(document).ready(function () {          
+                    $(document).ready(function () {
 
 
 

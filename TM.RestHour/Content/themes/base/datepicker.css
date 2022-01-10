@@ -9,7 +9,7 @@
  * http://api.jqueryui.com/datepicker/#theming
  */
 .ui-datepicker {
-	width: 17em;
+	width: 100%;
 	padding: .2em .2em 0;
 	display: none;
 }
@@ -23,6 +23,7 @@
 	top: 2px;
 	width: 1.8em;
 	height: 1.8em;
+	background:#fff;
 }
 .ui-datepicker .ui-datepicker-prev-hover,
 .ui-datepicker .ui-datepicker-next-hover {
@@ -61,6 +62,8 @@
 .ui-datepicker select.ui-datepicker-month,
 .ui-datepicker select.ui-datepicker-year {
 	width: 45%;
+	padding: 2px 10px;
+	margin: 0 1%;
 }
 .ui-datepicker table {
 	width: 100%;

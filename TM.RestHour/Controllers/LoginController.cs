@@ -164,8 +164,8 @@ namespace TM.RestHour.Controllers
 
             if (user.Users.IsAuthenticated && (MyGroup == "Super Admin" || MyGroup == "Admin"))
             {
-                return RedirectToAction("NCReportByMonth", "ReportsNCReportByMonth");
-                //return RedirectToAction("Index", "Home");
+                //return RedirectToAction("NCReportByMonth", "ReportsNCReportByMonth");
+                return RedirectToAction("Index", "Home");
             }
             else if (user.Users.IsAuthenticated && MyGroup == "User")
             {

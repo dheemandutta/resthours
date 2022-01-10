@@ -5,6 +5,7 @@
 }
 
 <style>
+    .ui-datepicker{width:350px !important; top:210px;}
     h4 {
         padding: 0px;
         margin: 0px;
@@ -19,8 +20,25 @@
     }
 </style>
 
-<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
-<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+@*/////////////*@
+<script src="../Scripts/jquery-3.6.0.min.js"></script>
+<script src="../Scripts/jquery.dataTables.min.js"></script>
+<link href="../Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*////////////*@
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
+
+<link href="../Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="../Content/themes/base/datepicker.css" rel="stylesheet" />
 
 @*@Html.Hidden("Reportsadd9", @Url.Action("GetMonthlyData", "ReportsNCReportByMonth"))
     @Html.Hidden("Showreport19", @Url.Action("GetDayWiseCrewData", "ReportsNCReportByMonth"))
@@ -31,190 +49,167 @@
 
 @Html.Hidden("GetNonComplianceDetailsForMV", @Url.Action("GetNCDetails", "Reports"))
 
-<body>
-
-    <div class="">
-        <div class="head_title">
-            <h1 class="ta">Monthly View</h1>
-        </div>
-      
-            <div class="card">
-                <div class="row">
-                    @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
-
-                    <div class="col-md-4" id="sideform">
-                        <div class="">
-                            <div class="card-block">
-                                <form class="form-horizontal" role="form">
 
 
-                                    <div class="col-md-7" id="sideform">
-                                        <div class="form-group">
-                                            @*<label for="ReportsDate"> Date</label>*@
-                                            <input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Month" />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-7" style="float: right; width: 0%;">
-                                        <div class="form-group">
-                                            @*<img src="~/companylogo/companylogo.png" />*@
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <div style="float: left;">
-                                            <div class="col-md-7" id="sideform">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div style="float: left;">
-                                            <div class="col-md-7" id="sideform">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-7" id="sideform">
-                                        <div class="form-group">
-                                            <button type="button" class="button1" id="btnAdd" @*disabled="disabled"*@ onclick="return GetNonComplianceDetails();">Show Report</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4" id="sideform1">
-                                        <div class="form-group">
-                                            @*<button type="button" class="button1" id="btnPrint" disabled="disabled" onclick="GetNonComplianceDetailsForMV();">Print Report</button>*@
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="card2">
-
-                    <table border="1" style="border-style: solid; border-width: 1px; border-collapse: collapse; border-spacing: 0; width: 100%;" id="schedule">
-                        <thead>
-                            <tr>
-                                <th class="tg-v0f9" width="12%">Seafarer Name</th>
-                                <th class="tg-v0f9" width="12%">Regime</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">01</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">02</th>
-                                <th class="tg-amwm" width="1%">03</th>
-                                <th class="tg-amwm" width="1%">04</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">05</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">06</th>
-                                <th class="tg-amwm" width="1%">07</th>
-                                <th class="tg-amwm" width="1%">08</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">09</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">10</th>
-                                <th class="tg-amwm" width="1%">11</th>
-                                <th class="tg-amwm" width="1%">12</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">13</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">14</th>
-                                <th class="tg-amwm" width="1%">15</th>
-                                <th class="tg-amwm" width="1%">16</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">17</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">18</th>
-                                <th class="tg-amwm" width="1%">19</th>
-                                <th class="tg-amwm" width="1%">20</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">21</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">22</th>
-                                <th class="tg-amwm" width="1%">23</th>
-                                <th class="tg-amwm" width="1%">24</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">25</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">26</th>
-                                <th class="tg-amwm" width="1%">27</th>
-                                <th class="tg-amwm" width="1%">28</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">29</th>
-                                <th class="tg-amwm" width="1%" bgcolor="#d3d3d3">30</th>
-                                <th class="tg-amwm" width="1%">31</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="trclone" filled="no">
-                                <td class="tg-yw4l">&nbsp;</td>
-                                <td class="tg-yw4l">&nbsp;</td>
-                                <td class="tg-yw4l" id="01" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="02" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="03"></td>
-                                <td class="tg-yw4l" id="04"></td>
-                                <td class="tg-yw4l" id="05" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="06" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="07"></td>
-                                <td class="tg-yw4l" id="08"></td>
-                                <td class="tg-yw4l" id="09" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="10" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="11"></td>
-                                <td class="tg-yw4l" id="12"></td>
-                                <td class="tg-yw4l" id="13" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="14" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="15"></td>
-                                <td class="tg-yw4l" id="16"></td>
-                                <td class="tg-yw4l" id="17" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="18" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="19"></td>
-                                <td class="tg-yw4l" id="20"></td>
-                                <td class="tg-yw4l" id="21" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="22" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="23"></td>
-                                <td class="tg-yw4l" id="24"></td>
-                                <td class="tg-yw4l" id="25" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="26" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="27"></td>
-                                <td class="tg-yw4l" id="28"></td>
-                                <td class="tg-yw4l" id="29" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="30" bgcolor="#d3d3d3"></td>
-                                <td class="tg-yw4l" id="31"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p class="bottom-three"></p>
-
-
-                <div id="dvprintForMV"></div>
-
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <h3><span id="succMsg"></span></h3>
-                            </div>
-                            <div class="modal-footer">
-
-
-                                <button id="btnCloseModal" type="button" class="btn btn-default">Close</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div id="dvprintForMV"></div>
+<div class="">
+    <div class="white_card_header">
+        <div class="box_header m-0">
+            <div class="main-title">
+                <h2 class="mrBTM-10">Monthly View</h2>
             </div>
-       
+        </div>
     </div>
-</body>
+
+    <div class="card">
+        <div>
+            @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+
+            <div id="sideform">
+                <div class="">
+                    <div class="card-block">
+                        <form class="form-horizontal" role="form">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-6 mrTP-10" id="sideform">
+                                    <div class="form-group mrLFT-10">
+                                        @*<label for="ReportsDate"> Date</label>*@
+                                        <input type="text" class="monthYearPicker form-control" id="ReportsDate" placeholder="Select Month" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 col-xs-6 mrTP-10" id="sideform">
+                                    <div class="form-group text-right mrRHT-10">
+                                        <button type="button" class="btn btn-primary" id="btnAdd" @*disabled="disabled"*@ onclick="return GetNonComplianceDetails();">Show Report</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="card2 mrLFT-10 mrRHT-10"">
+            <div class="table-responsive">
+                <table class="table" id="schedule">
+                    <thead class="blue_Color color_white">
+                        <tr>
+                            <th class="tg-v0f9" width="12%">Seafarer Name</th>
+                            <th class="tg-v0f9" width="12%">Regime</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">01</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">02</th>
+                            <th class="tg-amwm" width="1%">03</th>
+                            <th class="tg-amwm" width="1%">04</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">05</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">06</th>
+                            <th class="tg-amwm" width="1%">07</th>
+                            <th class="tg-amwm" width="1%">08</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">09</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">10</th>
+                            <th class="tg-amwm" width="1%">11</th>
+                            <th class="tg-amwm" width="1%">12</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">13</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">14</th>
+                            <th class="tg-amwm" width="1%">15</th>
+                            <th class="tg-amwm" width="1%">16</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">17</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">18</th>
+                            <th class="tg-amwm" width="1%">19</th>
+                            <th class="tg-amwm" width="1%">20</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">21</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">22</th>
+                            <th class="tg-amwm" width="1%">23</th>
+                            <th class="tg-amwm" width="1%">24</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">25</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">26</th>
+                            <th class="tg-amwm" width="1%">27</th>
+                            <th class="tg-amwm" width="1%">28</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">29</th>
+                            <th class="tg-amwm" width="1%" bgcolor="#0d417f">30</th>
+                            <th class="tg-amwm" width="1%">31</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="trclone" filled="no">
+                            <td class="tg-yw4l">&nbsp;</td>
+                            <td class="tg-yw4l">&nbsp;</td>
+                            <td class="tg-yw4l" id="01" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="02" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="03"></td>
+                            <td class="tg-yw4l" id="04"></td>
+                            <td class="tg-yw4l" id="05" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="06" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="07"></td>
+                            <td class="tg-yw4l" id="08"></td>
+                            <td class="tg-yw4l" id="09" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="10" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="11"></td>
+                            <td class="tg-yw4l" id="12"></td>
+                            <td class="tg-yw4l" id="13" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="14" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="15"></td>
+                            <td class="tg-yw4l" id="16"></td>
+                            <td class="tg-yw4l" id="17" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="18" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="19"></td>
+                            <td class="tg-yw4l" id="20"></td>
+                            <td class="tg-yw4l" id="21" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="22" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="23"></td>
+                            <td class="tg-yw4l" id="24"></td>
+                            <td class="tg-yw4l" id="25" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="26" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="27"></td>
+                            <td class="tg-yw4l" id="28"></td>
+                            <td class="tg-yw4l" id="29" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="30" bgcolor="#0d417f"></td>
+                            <td class="tg-yw4l" id="31"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+
+        <p class="bottom-three"></p>
+
+
+        <div id="dvprintForMV"></div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3><span id="succMsg"></span></h3>
+                    </div>
+                    <div class="modal-footer">
+
+
+                        <button id="btnCloseModal" type="button" class="btn btn-default">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="dvprintForMV"></div>
+    </div>
+
+</div>
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("../bundles/jqueryval")
+    @Scripts.Render("../bundles/jqueryui")
+    @Styles.Render("../Content/themes/base/css")
 
 
 
-    <script src="~/Scripts/vfs_fonts.js"></script>
-    <script src="~/Scripts/Reports.js"></script>
+    <script src="../Scripts/vfs_fonts.js"></script>
+    <script src="../Scripts/Reports.js"></script>
 
     <script type="text/javascript">
 

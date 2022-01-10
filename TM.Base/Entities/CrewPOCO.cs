@@ -85,8 +85,5 @@ namespace TM.Base.Entities
         public Boolean AllowPsychologyForms { get; set; }
 
         public int CrewID { get; set; }
-
-        public string PassportOrSeaman { get; set; }
-        
     }
 }

@@ -16,18 +16,6 @@ namespace TM.RestHour
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            //ExportScheduler.Start();
         }
-
-        protected void Application_EndRequest()
-        {
-            if (Context.Items["AjaxPermissionDenied"] is bool)
-            {
-                Context.Response.StatusCode = 403;
-                Context.Response.End();
-            }
-        }
-
     }
 }

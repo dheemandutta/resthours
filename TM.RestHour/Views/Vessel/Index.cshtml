@@ -1,16 +1,36 @@
 ﻿
 @model TM.RestHour.Models.Vessel
 
+@*@{
+        ViewBag.Title = "Index";
+    }*@
+
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
 
-<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-@*<link href="~/link/css/vissel.css" rel="stylesheet" />*@
-<link href="~/link/css/rank.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+
+@*////////////////////////////////////////////////*@
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/TimePicker/jquery.timepicker.min.js"></script>
+<link href="~/Content/TimePicker/jquery.timepicker.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+@*////////////////////////////////////////////////*@
 
 <script src="~/Scripts/Vessel.js"></script>
 
@@ -40,7 +60,7 @@
 
                         @Html.Hidden("myUrl", @Url.Action("GetShipByID", "Vessel"))
                         @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
-                        @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))    
+                        @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))
                         @Html.Hidden("Unitadd", @Url.Action("Add", "Vessel"))
                         @Html.Hidden("VesselUpdate", @Url.Action("Update", "Vessel"))
                         @Html.Hidden("loaddata", @Url.Action("LoadData", "Vessel"))
@@ -140,11 +160,36 @@
                                                     <input type="text" class="form-control" id="Mobile2" placeholder="Mobile 2" />
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="PandI">P & I</label>
+                                                    <div class="form-group">
+                                                        <select class="form-control" id="AdjustmentValue">
+                                                            <option value="American Steamship Owners Mutual Protection and Indemnity Association, Inc">American Steamship Owners Mutual Protection and Indemnity Association, Inc</option>
+                                                            <option value="The Britannia Steam Ship Insurance Association Limited">The Britannia Steam Ship Insurance Association Limited</option>
+                                                            <option value="Gard P&I (Bermuda) Ltd.">Gard P&I (Bermuda) Ltd.</option>
+                                                            <option value="The Japan Ship Owners' Mutual Protection & Indemnity Association">The Japan Ship Owners' Mutual Protection & Indemnity Association</option>
+                                                            <option value="The London Steam-Ship Owners' Mutual Insurance Association Limited">The London Steam-Ship Owners' Mutual Insurance Association Limited</option>
+                                                            <option value="The North of England Protecting & Indemnity Association Limited">The North of England Protecting & Indemnity Association Limited</option>
+                                                            <option value="The Shipowners' Mutual Protection & Indemnity Association (Luxembourg)">The Shipowners' Mutual Protection & Indemnity Association (Luxembourg)</option>
+                                                            <option value="Skuld Mutual Protection and Indemnity Association (Bermuda) Ltd. Assuranceforeningen Skuld">Skuld Mutual Protection and Indemnity Association (Bermuda) Ltd. Assuranceforeningen Skuld</option>
+                                                            <option value="The Standard Club Ltd The Steamship Mutual Underwriting Association (Bermuda) Limited">The Standard Club Ltd The Steamship Mutual Underwriting Association (Bermuda) Limited</option>
+                                                            <option value="The Swedish Club / Sveriges Ångfartygs Assurans Förening">The Swedish Club / Sveriges Ångfartygs Assurans Förening</option>
+                                                            <option value="United Kingdom Mutual Steam Ship Assurance Association Ltd">United Kingdom Mutual Steam Ship Assurance Association Ltd</option>
+                                                            <option value="The West of England Ship Owners Mutual Insurance Association (Luxembourg).">The West of England Ship Owners Mutual Insurance Association (Luxembourg).</option>
+                                                        </select>
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
+
+
                                     <div class="col-md-12">
-                                        <div class="card">
+                                        <div class="">
                                             @*<button type="button" class="button1" id="btnAdd" onclick="return GetShipByID();" style="width:138px; float:right; right:16px;">Update</button>*@
                                             <button type="button" class="button1" id="btnUpdate" style="width:86px;" onclick="return Update();">Update</button>
                                         </div>
@@ -284,7 +329,7 @@
                 }
                 else {
                     GetShip();
-                }                            
+                }
                 GetVesselTypeForDrp();
 
                 //$('#VesselTypeID').trigger("change");
@@ -292,23 +337,23 @@
 
             $('#VesselTypeID').on('change', function () {
                 //alert($('option:selected', this).text());
-            
+
                 var VesselTypeID = $('#VesselTypeID').val();
                 console.log('hi');
                 console.log(VesselTypeID);
 
                 GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
             });
-         
+
             $('#VesselSubTypeID').on('change', function () {
                 //alert($('option:selected', this).text());
-        
+
                 var VesselSubTypeID = $('#VesselSubTypeID').val();
                 //console.log('hi');
                 //console.log(VesselSubTypeID);
 
                 GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
-                
+
             });
 
         </script>

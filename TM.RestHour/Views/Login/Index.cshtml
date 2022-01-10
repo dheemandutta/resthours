@@ -22,12 +22,14 @@
     if (@ViewBag.Message != null)
     {
 
-        <div class="divclass"><p style="margin:0;"><strong>  @ViewBag.Message</strong></p> </div>
+        <div class="divclass validate_Error">@ViewBag.Message</div>
     }
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link href="~/css/custom.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="~/css/login_page.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/login_page_WORTH.css" rel="stylesheet" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/custom.min.css" type="text/css" media="all">
@@ -54,16 +56,16 @@
                             <div class="login_box">
                                 <div class="wh_box">
                                     <div class="lo_text">
-                                        <img src="~/images/logo_Worth.png">
+                                        <img src="~/img/logo_Login_Worth.png">
                                     </div>
                                     <div class="tagline">Care for seafarer</div>
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="form-group">
                                                 <div class="pull-left inputIcon">
-                                                    <label><img src="~/images/user_Icon.png" /></label>
+                                                    <label><img src="~/img/user_Icon.png" /></label>
                                                 </div>
-                                                <div class="pull-left">
+                                                <div class="pull-left inputText">
                                                     @Html.TextBoxFor(a => a.Users.Username)
                                                     @Html.ValidationMessageFor(a => a.Users.Username)
                                                 </div>
@@ -73,9 +75,9 @@
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="form-group">
                                                 <div class="pull-left inputIcon">
-                                                    <label><img src="~/images/lock_Icon.png" /></label>
+                                                    <label><img src="~/img/lock_Icon.png" /></label>
                                                 </div>
-                                                <div class="pull-left">
+                                                <div class="pull-left inputText">
                                                     @Html.PasswordFor(a => a.Users.Password)
                                                     @Html.ValidationMessageFor(a => a.Users.Password)
                                                 </div>
@@ -85,7 +87,7 @@
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="checkBoxArea">
                                                 <div class="pull-left inputCheckBox">
-                                                    <input type="checkbox" name="remember" value="remember me"/>
+                                                    <input type="checkbox" name="remember" value="remember me" />
                                                 </div>
                                                 <div class="pull-left inputCheckBox">
                                                     <label for="remember">Remember me</label>
@@ -94,7 +96,7 @@
                                         </div>
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="signup_btn">
-                                                <button type="submit" class="" id="btnAdd" value="Sign In"><img src="~/images/signIn_button.png" /></button>
+                                                <button type="submit" class="" id="btnAdd" value="Sign In"><img src="~/img/signIn_button.png" /></button>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 col-xs-12">
@@ -102,8 +104,8 @@
                                                 @Html.ActionLink("Forgot Password?", "ResetPasswordOfID", "Login", new { @class = "forget_Btn" })
                                             </div>
                                         </div>
-                                    </div>   
-                                 </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div><!-- Row -->

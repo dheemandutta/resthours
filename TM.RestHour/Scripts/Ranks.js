@@ -171,13 +171,13 @@ function SetUpGrid() {
                   },
                   {
                       "data": "ID", "width": "50px", "render": function (data) {
-                          return '<a href="#" class="btn btn-info btn-sm" onclick="GetRanksByID(' + data + ')"><i class="glyphicon glyphicon-edit"></i></a>';
+                          return '<a href="#" class="btn btn-info btn-sm" onclick="GetRanksByID(' + data + ')"><i class="fas fa-edit"></i></a>';
                       }
                   },
                   {
                       "data": "ID", "width": "50px", "render": function (d) {
                           //debugger;
-                          return '<a href="#" class="btn btn-info btn-sm" onclick="Delete(' + d + ')"><i class="glyphicon glyphicon-trash"></i></a>';
+                          return '<a href="#" class="btn btn-info btn-sm" onclick="Delete(' + d + ')"><i class="fas fa-trash"></i></a>';
 
 
                       }

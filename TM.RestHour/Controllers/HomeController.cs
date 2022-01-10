@@ -6,14 +6,9 @@ using System.Web.Mvc;
 
 namespace TM.RestHour.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Dashboard()
         {
             return View();
         }
@@ -31,12 +26,5 @@ namespace TM.RestHour.Controllers
 
             return View();
         }
-
-		public ActionResult TimeoutRedirect()
-		{
-			
-
-			return View();
-		}
-	}
+    }
 }

@@ -174,13 +174,13 @@ function SetUpGrid() {
             },
             {
                 "data": "EquipmentsID", "width": "50px", "render": function (data) {
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicalEquipmentByID(' + data + ')"><i class="glyphicon glyphicon-edit"></i></a>';
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicalEquipmentByID(' + data + ')"><i class="fas fa-edit"></i></a>';
                 }
             },
             {
                 "data": "EquipmentsID", "width": "50px", "render": function (d) {
                     //debugger;
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteEquipments(' + d + ')"><i class="glyphicon glyphicon-trash"></i></a>';
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteEquipments(' + d + ')"><i class="fas fa-trash"></i></a>';
 
 
                 }
@@ -397,20 +397,29 @@ function SetUpGrid2() {
                 "data": "Quantity", "name": "Quantity", "autoWidth": true
             },
             {
+                "data": "BatchNo", "name": "BatchNo", "autoWidth": true
+            },
+            {
+                "data": "BatchQuantity", "name": "BatchQuantity", "autoWidth": true
+            },
+            {
                 "data": "ExpiryDate", "name": "ExpiryDate", "autoWidth": true
             },
             {
                 "data": "Location", "name": "Location", "autoWidth": true
             },
             {
+                "data": "PrescribedFor", "name": "PrescribedFor", "autoWidth": true
+            },
+            {
                 "data": "MedicineID", "width": "50px", "render": function (data) {
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicineByID(' + data + ')"><i class="glyphicon glyphicon-edit"></i></a>';
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicineByID(' + data + ')"><i class="fas fa-edit"></i></a>';
                 }
             },
             {
                 "data": "MedicineID", "width": "50px", "render": function (d) {
                     //debugger;
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteMedicine(' + d + ')"><i class="glyphicon glyphicon-trash"></i></a>';
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteMedicine(' + d + ')"><i class="fas fa-trash"></i></a>';
                 }
             }
 
@@ -601,11 +610,20 @@ function SetUpGridloadData2Print() {
                 "data": "Quantity", "name": "Quantity", "autoWidth": true
             },
             {
+                "data": "BatchNo", "name": "BatchNo", "autoWidth": true
+            },
+            {
+                "data": "BatchQuantity", "name": "BatchQuantity", "autoWidth": true
+            },
+            {
                 "data": "ExpiryDate", "name": "ExpiryDate", "autoWidth": true
             },
             {
                 "data": "Location", "name": "Location", "autoWidth": true
-            }
+            },
+            {
+                "data": "PrescribedFor", "name": "PrescribedFor", "autoWidth": true
+            },
 
         ]
     });

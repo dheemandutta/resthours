@@ -5,6 +5,14 @@
     Layout = null;
 }
 
+
+@*/////////////*@
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*////////////*@
+
+
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
 @*<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />*@
@@ -128,43 +136,43 @@
     <!-----Screen divided into 4+8 ---------->
     <div class="col-md-4" id="sideform">
         @*<div class="card">
-            <div class="card-block">
-                <form class="form-horizontal" role="form">
+                <div class="card-block">
+                    <form class="form-horizontal" role="form">
 
 
-                    <div class="col-md-7" id="sideform">
-                        <div class="form-group">
-                            <label for="selectCrew">Crew</label>
+                        <div class="col-md-7" id="sideform">
+                            <div class="form-group">
+                                <label for="selectCrew">Crew</label>
 
-                            @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-4" id="sideform">
-                        <div class="form-group">
-                            <label for="ReportsDate"> Month & Year</label>
+                        <div class="col-md-4" id="sideform">
+                            <div class="form-group">
+                                <label for="ReportsDate"> Month & Year</label>
 
 
-                            <input name="ReportsDate" class="monthYearPicker form-control" style="width:200px;" id="ReportsDateVal" />
+                                <input name="ReportsDate" class="monthYearPicker form-control" style="width:200px;" id="ReportsDateVal" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-7" id="sideform">
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary" id="btnAdd" disabled="disabled" onclick="return GetHours();">Show Report</button>
+                        <div class="col-md-7" id="sideform">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="btnAdd" disabled="disabled" onclick="return GetHours();">Show Report</button>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-4" id="sideform">
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary" id="btnPrint" disabled="disabled">Print Report</button>
+                        <div class="col-md-4" id="sideform">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="btnPrint" disabled="disabled">Print Report</button>
+                            </div>
                         </div>
-                    </div>
 
-                </form>
-            </div>
-        </div>*@
+                    </form>
+                </div>
+            </div>*@
     </div>
 
 
@@ -1382,7 +1390,7 @@
     <script src="~/Scripts/Reports.js"></script>
 
     <script type="text/javascript">
-        
-        
+
+
     </script>
 }

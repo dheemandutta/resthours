@@ -10,13 +10,9 @@ namespace TM.RestHour.Models
         public int EquipmentsID { get; set; }
         public string EquipmentsName { get; set; }
         public string Comment { get; set; }
-        public string RequiredQuantity { get; set; }
+        public string Quantity { get; set; }
         //public DateTime ExpiryDate { get; set; }
-        //public string ExpiryDate { get; set; }
-
-        public string OnBoardQuantity { get; set; }
-
-        public string Unit { get; set; }
+        public string ExpiryDate { get; set; }
 
         public int MedicineID { get; set; }
         public string MedicineName { get; set; }
@@ -43,5 +39,10 @@ namespace TM.RestHour.Models
         public string JoiningMedicalReportPath { get; set; }
 
         public System.IO.FileStream PdfFile { get; set; }
+
+
+        public string BatchNo { get; set; }
+        public string BatchQuantity { get; set; }
+        public string PrescribedFor { get; set; }
     }
 }

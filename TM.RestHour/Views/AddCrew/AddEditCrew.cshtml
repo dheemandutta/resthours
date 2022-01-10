@@ -1,17 +1,34 @@
 ﻿@model TM.RestHour.Models.Crew
 
-@{
+@*@{
 
-    Layout = "";
+        Layout = "";
+    }*@
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
 
 <link href="dist/dual-listbox.css" rel="stylesheet">
 
-
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/notify.min.js"></script>
 
 <script src="~/Scripts/toastr.min.js"></script>
 <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/Crew.js"></script>
 
 @Html.Hidden("myUrl", @Url.Action("GetCrewByID", "AddCrew"))
 @Html.Hidden("addnew", @Url.Action("AddNewCrew", "AddCrew"))
@@ -30,235 +47,197 @@
             <input type="hidden" id="crewid" />
         </div>
 
-        <div class="col-sm-4">
-            <div class="card">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="FirstName">Given Name</label>
+                            <input type="text" class="form-control" id="FirstName" placeholder="Given Name" />
+                        </div>
+                    </div>
 
-                @*<div class="form-group">
-                    <label for="Name">Name</label>
-                    <input type="text" class="form-control" id="Name" placeholder="Name" />
-                </div>*@
-                <div class="form-group">
-                    <label for="FirstName">Given Name</label>
-                    <input type="text" class="form-control" id="FirstName" placeholder="Given Name" />
-                </div>
-                <div class="form-group">
-                    <label for=" MiddleName">Middle Name</label>
-                    <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
-                </div>
-                <div class="form-group">
-                    <label for="LastName">Family Name</label>
-                    <input type="text" class="form-control" id="LastName" placeholder="Family Name" />
-                </div>
-                <div class="form-group">
-                    <label for="Gender">Gender</label>
-                    @*<input type="text" class="form-control" id="Gender" placeholder="Gender" />*@
-                    <select id="Gender" style="width:100%;" class="form-control">
-                        <option value="">Select</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Rank">Rank</label>
-                    @Html.DropDownListFor(model => model.RankID, (IEnumerable<SelectListItem>)ViewBag.Ranks, "Select", new { @class = "form-control" })
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for=" MiddleName">Middle Name</label>
+                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="LastName">Family Name</label>
+                            <input type="text" class="form-control" id="LastName" placeholder="Family Name" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="Gender">Gender</label>
+                            @*<input type="text" class="form-control" id="Gender" placeholder="Gender" />*@
+                            <select id="Gender" style="width:100%;" class="form-control">
+                                <option value="">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="Rank">Rank</label>
+                            @Html.DropDownListFor(model => model.RankID, (IEnumerable<SelectListItem>)ViewBag.Ranks, "Select", new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="Nationality">Nationality</label>
+                            @*<input type="text" class="form-control" id="Nationality" placeholder="Nationality" />*@
+                            @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="DOB">Date Of Birth</label>
+                            <input type="text" class="form-control" id="DOB" placeholder="Date Of Birth" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="POB">Place Of Birth</label>
+                            <input type="text" class="form-control" id="POB" placeholder="Place Of Birth" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <label for="Service Term">Service Term</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <input type="text" class="form-control valid" id="CreatedOn" placeholder="From" />
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <input onclick="myFunction()" type="text" class="form-control valid1" id="LatestUpdate" placeholder="To" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
 
                 </div>
-
             </div>
         </div>
 
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="form-horizontal">
-                </div>
-                <div class="form-group">
-                    <label for="Nationality">Nationality</label>
-                    @*<input type="text" class="form-control" id="Nationality" placeholder="Nationality" />*@
-                    @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    <label for="DOB">Date Of Birth</label>
-                    <input type="text" class="form-control" id="DOB" placeholder="Date Of Birth" />
-                </div>
-                <div class="form-group">
-                    <label for="POB">Place Of Birth</label>
-                    <input type="text" class="form-control" id="POB" placeholder="Place Of Birth" />
-                </div>
-                @*<div class="form-group">
-                    <label for="CrewIdentity">Identity</label>
-                    <input type="text" class="form-control" id="CrewIdentity" placeholder="Crew Identity" />
-                </div>*@
-                <div class="form-group">
-                    <label for="PassportSeamanPassportBook">Seaman Book / Passport</label>
-                    <div>
+        <div class="row">
 
-                        <input type="radio" name="PassportSeaman" value="1" checked>Seaman Book<br />
-                        <input type="radio" name="PassportSeaman" value="0">Passport <br>
-                    </div><br />
-                    <input type="text" class="form-control" id="PassportSeamanPassportBook" placeholder="Passport/Seaman/PassportBook" />
-                </div>
-
-
-
-
-
-
-                <br />
-                <br />
-                @*<div class="form-group">
-                    <label for="PayrollNo">Payroll No</label>
-                    <input type="text" class="form-control" id="PayNum" placeholder="PayrollNo" />
-                </div>*@
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="card">
-
-
-                @*<div class="form-group">
-            <label for="EmployeeNumber">Employee Number</label>
-            <input type="text" class="form-control" id="EmployeeNumber" placeholder="EmployeeNumber" />
-        </div>*@
+            <div class="col-sm-4 col-xs-12">
                 <div class="form-group">
                     <label for="Department">Department</label>
                     @*@Html.ListBoxFor(model => model.DepartmentMasterID, (IEnumerable<SelectListItem>)ViewBag.Departments, new { @class = "listbox", @multiple = "multiple", @id = "ddlAdmCru" })*@
                     @Html.DropDownListFor(model => model.DepartmentMasterID, (IEnumerable<SelectListItem>)ViewBag.Departments, "Select", new { @class = "form-control" })
-
                 </div>
+            </div>
 
-                <div class="form-group" style="margin-bottom: 18px;">
-                    <label for="Service Term">Service Term</label><br />
-                    <input type="text" class="form-control valid" id="CreatedOn" placeholder="From" style="width: 45%; float: left;" />
-                    <input onclick="myFunction()" type="text" class="form-control valid1" id="LatestUpdate" placeholder="To" style="width: 45%; float:right;" />
-                </div>
-                <br />
-
-
+            <div class="col-sm-4 col-xs-12">
                 <div class="form-group">
                     <label for="POB">Issuing State Of Identity Document</label>
                     <input type="text" class="form-control" id="IssuingStateOfIdentityDocument" placeholder="Issuing State Of Identity Document" />
                 </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
                 <div class="form-group">
                     <label for="DOB">Expiry Date Of Identity Document</label>
                     <input type="text" class="form-control" id="ExpiryDateOfIdentityDocument" placeholder="Expiry Date Of Identity Document" />
                 </div>
+            </div>
 
+        </div>
 
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <label for="PassportSeamanPassportBook">Seaman Book / Passport</label>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 mrBTM-10">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <input type="radio" name="PassportSeaman" value="1" checked> Seaman Book
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <input type="radio" name="PassportSeaman" value="0"> Passport
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" id="PassportSeamanPassportBook" placeholder="Passport/Seaman/PassportBook" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
                 <div class="form-group">
                     <label for="Comments">Comments</label>
                     <textarea class="form-control" id="Comments" cols="7" rows="2"></textarea>
                 </div>
-                <div class="row">
-                    <div class="col-md-12" style="padding-right:0;">
-                        <div class="form-group" style="margin-bottom:2px;">
-                            <label for="Watchkeeper" style="padding:0;">Watch Keeper</label>
-                            <input id="Watchkeeper" type="checkbox" @*class="form-control"*@ />
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding-left:14px;">
-                        <div class="form-group">
-                            <label for="OvertimeEnabled" style="padding:0;">Overtime Enabled</label>
-                            <input id="OvertimeEnabled" type="checkbox" />
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-12" style="padding-left:14px;">
-                        <div class="form-group">
-                            <label for="AllowPsychologyForms" style="padding:0;">Allow Psychology Forms</label>
-                            <input id="AllowPsychologyForms" type="checkbox" />
-
-                        </div>
-                    </div>
-                </div>
-
-                @*<div class="form-group" style="margin-bottom: 18px;">
-            <button type="button" class="button1" id="btnAdd" onclick="return AddCrew();" style="width:130px; float: left;">Add / Update Crew</button>
-            <button type="button" class="button1" id="btnAdd1" onclick="return AddCrewEdit();" style="display:none; width:120px; float: right;">More Settings</button>
-            @using (Html.BeginForm())
-            {
-                <input type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width:130px; float: left;" Close />
-            }
-        </div>*@
-
-
             </div>
         </div>
-        @*<div class="col-sm-6">
-
-            <div class="form-group">
-    <div id="myModalJoiningMedical">
-        <div class="modal-dialog" style="width:500px;">
-            <div class="modal-content">
-                <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Joining Medical</h4>
-    </div>
-    <div class="modal-dialog" id="dvuserdetailsn" style="width: 490px;">
-        <fieldset class="for-panel">
-            <legend>Upload</legend>
-            <div class="row">
-
-                <div class="col-sm-3" style="width: 4%;">
-                    <div class="form-horizontal">
-                        <label class="col-xs-5 control-label"></label>
-                    </div>
-                </div>
-                <input id="upload" name="upload" type="file" accept="application/pdf,image/gif, image/jpeg"/>
-                <button  type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
-                <div class="form-group">
-                    <input type="hidden" id="PhotoUploadID" class="form-control" />
-                </div>
-            </div>
-        </fieldset>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
-           
-            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
-            </div>
-            </div>
-            </div>
-        </div>
-    </div>
             
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-4">
+                        <div class="form-group">
+                            <input id="Watchkeeper" type="checkbox" />
+                            <label for="Watchkeeper" style="padding:0;">Watch Keeper</label>
+                        </div>
+                    </div>
 
-        </div>*@
+                    <div class="col-sm-4 col-xs-4">
+                        <div class="form-group">
+                            <input id="OvertimeEnabled" type="checkbox" />
+                            <label for="OvertimeEnabled" style="padding:0;">Overtime Enabled</label>
+                        </div>
+                    </div>
 
+                    <div class="col-sm-4 col-xs-4">
+                        <div class="form-group">
+                            <input id="AllowPsychologyForms" type="checkbox" />
+                            <label for="AllowPsychologyForms" style="padding:0;">Allow Psychology Forms</label>
 
-
-
-        <div class="col-sm-2">
-            <div class="form-group" style="margin-bottom: 18px;">
-                <button type="button" class="button1" id="btnAdd" onclick="return AddCrew();" style="width:190px;">Add / Update Crew</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>&nbsp;</div>
         </div>
 
-        <div class="col-sm-3">
-            <div class="form-group" style="margin-bottom: 18px;">
-                @using (Html.BeginForm())
-                {
-                    @*<input type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width:130px; float: right;" Close />*@
-                    <button type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width: 120px; float: right;" Close>Clear</button>
-                }
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 mrTP-10">
+                <div class="form-group">
+                    @using (Html.BeginForm())
+                    {
+                        @*<input type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width:130px; float: right;" Close />*@
+                        <button type="submit" class="btn btn-danger pull-right" id="btnClose" onclick="return CloseCrew();" Close>Clear</button>
+                    }
+                    <button type="button" class="btn btn-primary pull-right mrRHT-10" id="btnAdd" onclick="return AddCrew();">Add / Update Crew</button>
+                    <button type="button" class="btn btn-info pull-right mrRHT-10" id="btnAdd1" onclick="return AddCrewEdit();" style="display:;">More Settings</button>
+                </div>
             </div>
-            <div>&nbsp;</div>
         </div>
-
-        @*<div class="col-sm-3">
-            <div class="form-group" style="margin-bottom: 18px;">
-                <button type="button" class="button1" id="btnAdd1" onclick="return AddCrewEdit();" style="display:none; width:120px; float: right;">More Settings</button>
-            </div>
-            <div>&nbsp;</div>
-        </div>*@
-
-
-
-
-
-
 
     </form>
 </div>
@@ -289,7 +268,7 @@
 
     });
 
-    
+
     $("#ExpiryDateOfIdentityDocument").datepicker({
 
         changeMonth: true,
@@ -320,9 +299,7 @@
         //yearRange: "-100:+0",
         yearRange: '1943:2002',
 
-    }); //Koushik: Added year range
-
-    //});
+    });
 
     function GetParameterValues(param) {
         var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -346,10 +323,10 @@
         var pageMode = GetParameterValues("mode");
         //alert(pageMode);
         if (pageMode == "update") {
-           // $('#btnAdd1').show();
+            // $('#btnAdd1').show();
         }
         else {
-           // $('#btnAdd1').hide();
+            // $('#btnAdd1').hide();
         }
 
 

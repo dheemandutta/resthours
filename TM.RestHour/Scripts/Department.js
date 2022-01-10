@@ -161,18 +161,18 @@ function SetUpGrid() {
 
             {
                 "data": "DepartmentMasterID", "width": "50px", "render": function (data) {
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetDepartmentByID(' + data + ')"><i class="glyphicon glyphicon-edit"></i></a>';
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetDepartmentByID(' + data + ')"><i class="fas fa-edit"></i></a>';
                 }
             },
             //{
             //    "data": "DepartmentMasterID", "width": "50px", "render": function (data) {
-            //        return '<a href="#" class="btn btn-info btn-sm" onclick="AdminCrew(' + data + ')"><i class="glyphicon glyphicon-edit"></i></a>';
+            //        return '<a href="#" class="btn btn-info btn-sm" onclick="AdminCrew(' + data + ')"><i class="fas fa-edit"></i></a>';
             //    }
             //},
             {
                 "data": "DepartmentMasterID", "width": "50px", "render": function (d) {
                     //debugger;
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="Delete(' + d + ')"><i class="glyphicon glyphicon-trash"></i></a>';
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="Delete(' + d + ')"><i class="fas fa-trash"></i></a>';
 
 
 

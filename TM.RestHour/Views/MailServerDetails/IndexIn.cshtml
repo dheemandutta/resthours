@@ -8,6 +8,26 @@
     ViewBag.Title = "IndexIn";
 }
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
@@ -41,8 +61,8 @@
             <div class="">
                 <div style="margin:0 auto" class="tablecontainer">
                     @*@Html.Hidden("myUrl", @Url.Action("GetShipByID", "Vessel"))
-        @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
-        @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))*@
+                        @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
+                        @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))*@
 
                     @Html.Hidden("gotologin", @Url.Action("IndexIn", "MailServerDetails"))
                     @Html.Hidden("saveConfigData", @Url.Action("SaveConfigData", "Vessel"))
@@ -70,23 +90,23 @@
                                         </div>
                                     </div>
                                     @*<div class="col-md-3">
-            <div class="form-group">
-                <label for="MailFrom">Mail From</label>
-                <input type="text" class="form-control" id="MailFrom" placeholder="Mail From" />
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="MailId">Mail Id</label>
-                <input type="text" class="form-control" id="MailId" placeholder="MailId" />
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" placeholder="Password" />
-            </div>
-        </div>*@
+                                            <div class="form-group">
+                                                <label for="MailFrom">Mail From</label>
+                                                <input type="text" class="form-control" id="MailFrom" placeholder="Mail From" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="MailId">Mail Id</label>
+                                                <input type="text" class="form-control" id="MailId" placeholder="MailId" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="Password">Password</label>
+                                                <input type="password" class="form-control" id="Password" placeholder="Password" />
+                                            </div>
+                                        </div>*@
 
                                     @*///////////////////////////////////////////////////////////////////////////*@
                                     <div class="col-md-3">
@@ -141,9 +161,9 @@
                             </div>
 
                             @*<div class="form-group">
-                    <label for="Attachment">Attachment File Size (MB)</label>
-                    <input type="text" class="form-control" id="Attachment" placeholder="Attachment" />
-                </div>*@
+                                    <label for="Attachment">Attachment File Size (MB)</label>
+                                    <input type="text" class="form-control" id="Attachment" placeholder="Attachment" />
+                                </div>*@
 
 
                             <div class="col-md-12">
@@ -169,216 +189,216 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     var data = '';
-                 
-
-                        var x = $("#getConfigData").val();
-                      
 
 
-                        $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'smtp'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#SmptServer').val(result);
-
-                               // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                        });
+                    var x = $("#getConfigData").val();
 
 
-                  
-                        $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'port'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#Port').val(result);
-
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                        });
-
-
-                        $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'mailfrom'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#MailFrom').val(result);
-
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                        });
-
-
-                        $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'mailto'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#MailId').val(result);
-
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                        });
-
-
-                        $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'frompwd'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#Password').val(result);
-
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                        });           
 
                     $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'shipemail'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#ShipEmail').val(result);
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'smtp'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#SmptServer').val(result);
 
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                    });           
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
 
-                     $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'shipemailpwd'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#ShipEmailPassword').val(result);
 
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                     });       
-
-                     $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'admincenteremail'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#AdminCenterEmail').val(result);
-
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                     });             
-
-                      $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'pop3'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#POP3').val(result);
-
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                      });         
 
                     $.ajax({
-                            url: x,
-                            data:
-                            {
-                                KeyName: 'pop3port'
-                            },
-                            type: "GET",
-                            contentType: "application/json;charset=UTF-8",
-                            dataType: "json",
-                            success: function (result) {
-                                $('#POP3Port').val(result);
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'port'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#Port').val(result);
 
-                                // return result;
-                            },
-                            error: function (errormessage) {
-                                //debugger;
-                                console.log(errormessage.responseText);
-                            }
-                        });           
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'mailfrom'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#MailFrom').val(result);
+
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'mailto'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#MailId').val(result);
+
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'frompwd'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#Password').val(result);
+
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
+
+                    $.ajax({
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'shipemail'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#ShipEmail').val(result);
+
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
+
+                    $.ajax({
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'shipemailpwd'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#ShipEmailPassword').val(result);
+
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
+
+                    $.ajax({
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'admincenteremail'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#AdminCenterEmail').val(result);
+
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
+
+                    $.ajax({
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'pop3'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#POP3').val(result);
+
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
+
+                    $.ajax({
+                        url: x,
+                        data:
+                        {
+                            KeyName: 'pop3port'
+                        },
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#POP3Port').val(result);
+
+                            // return result;
+                        },
+                        error: function (errormessage) {
+                            //debugger;
+                            console.log(errormessage.responseText);
+                        }
+                    });
                 });
 
             </script>

@@ -4,224 +4,147 @@
 @{
     ViewBag.Title = "CrewListNew";
 }
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
 
-<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-@*<link href="~/link/css/vissel.css" rel="stylesheet" />*@
-<link href="~/link/css/rank.css" rel="stylesheet" />
-<link href="~/link/css/crewlist.css" rel="stylesheet" />
-<link href="~/link/css/tab.css" rel="stylesheet" />
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+<script src="~/Scripts/jquery-ui.js"></script>
 <script src="~/Scripts/CrewListing.js"></script>
 
-
-<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
-<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
-
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
 
 
-<link href="~/link/css/crewlistr.css" rel="stylesheet" />
 
 
 @Html.Hidden("loadprintreport", @Url.Action("LoadData2", "CrewList"))
 
-<body>
 
-    <div class="">
-        <div class="head_title">
-            <h1 class="ta">Crew List</h1>
+
+<div class="">
+    <div class="white_card_header">
+        <div class="box_header m-0">
+            <div class="main-title">
+                <h2 class="mrBTM-10">Crew List</h2>
+            </div>
         </div>
+    </div>
 
+    <div class="card bac">
+        <div class="">
 
-        @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
-        <!-- <div class="col-md-6" id="sideform">
-
-            @*<button type="button" class="button1" id="btnPrint" disabled="disabled">Print Report</button>*@
-
-        </div>-->
-
-
-        <div class="card bac" style=" height: 222px;">
             <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        @using (Html.BeginForm("CrewListNew", "CrewList", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <span style="font-size:20px;">Select File:</span>
-                            <br />
-                            <input type="file" name="postedFile" />
-                            @*<hr />*@
-                            <br />
-                            <input type="submit" value="Upload" class="button1" />
-                            <br /><br />
-                            <span style="color:green">@ViewBag.Message</span>
-                        }
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="box">
-                        <img src="~/background/excel.png" class="img-responsive" style="height:100%; width:100%;" />
-                    </div>
-                    <div class="export-template-label" style="display:inline-block;margin:4px 5px -8px 0px;">
-                        <a href="../../Import/IMOcrewlistForm5.xlsx" target="_self" download>
-                            <img src="#" alt="Download Excel" style="float:left;" class="button1">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <p style="color:blue; font-size:15px;">Important Instructions</p>
-            <p style="color:blue; font-size:12px;">* Data will not be inserted if there is no name</p>
-            <p style="color:blue; font-size:12px;">* If Rank,Country data does not match with any existing data in the system An new Rank and Country will be inserted</p>
-        </div>
+                <div class="col-sm-12 col-xs-12">
+                    <!-- Nav tabs -->
+                    <div class="">
+                        <div class="mrBTM-10">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="nav-item"><a class="nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab">  <span>Active Users</span></a></li>
+                                <li role="presentation" class="nav-item"><a class="nav-link" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">  <span>Inactive Users</span></a></li>
+                            </ul>
+                        </div>
 
+                        <!-- Tab panes -->
+                        <div class="tab-content">
 
-
-
-        <div class="card bac" style=" height: 500px;">
-            <div class="col-md-9">
-                <button type="button" class="button1" id="btnPrint" @*disabled="disabled"*@>Print Report</button>
-            </div>
-            <div class="col-md-3">
-                <button type="button" class="button1" onclick="location.href='@Url.Action("Index", "AddCrew")'">Add Crew</button>
-            </div>
-            <div class="">
-
-                @*<div style="width:90%; margin:0 auto" class="tablecontainer">
-                        @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
-                        @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
-                        @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
-                        @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
-
-
-                        <input type="hidden" id="hdncount" />
-
-                        <input type="hidden" id="hdnrole" />
-
-
-                        <table id="CrewListtable" class="display" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>RankName</th>
-                                    <th>StartDate</th>
-                                    <th>Edit</th>
-                                    <th>Deactivate</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>*@
-
-                <div class="container" style="width:100%;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Nav tabs -->
-                            <div class="">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">  <span>Active Users</span></a></li>
-                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">  <span>Inactive Users</span></a></li>
-                                </ul>
-
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-
-                                    <div role="tabpanel" class="tab-pane active" id="home">
-                                        <div class="col-md-12 imo">
-                                            <div style="width:90%; margin:0 auto" class="tablecontainer">
-                                                @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
-                                                @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
-                                                @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
-                                                @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
-                                                @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
-                                                @Html.Hidden("createNewLogin", @Url.Action("CreateNewCrewLogin", "AddCrew"))
-                                                <input type="hidden" id="hdncount" />
-                                                <input type="hidden" id="hdnrole" />
-                                                <table id="CrewListtable" class="display" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Nationality</th>
-                                                            <th>Rank</th>
-                                                            <th>PassportOrSeaman</th>
-                                                            <th>Create Login</th>
-                                                            <th>Deactivate</th>
-                                                            <th>Deactivate</th>
-                                                            <th>Deactivate</th>
-                                                            <th>Deactivate</th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
-                                            </div>
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="col-sm-12 col-xs-12 imo">
+                                    <div class="">
+                                        @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
+                                        @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
+                                        @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                                        @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+                                        @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+                                        <input type="hidden" id="hdncount" />
+                                        <input type="hidden" id="hdnrole" />
+                                        <div class="table-responsive">
+                                            <table id="CrewListtable" class="table display">
+                                                <thead class="blue_Color color_white">
+                                                    <tr>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">RankName</th>
+                                                        <th scope="col" class="text-center">StartDate</th>
+                                                        <th scope="col" class="text-center">EndDate</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Deactivate</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
                                         </div>
                                     </div>
-
-                                    <div role="tabpanel" class="tab-pane" id="profile">
-                                        <div class="col-md-12 ilo">
-                                            <div style="width:90%; margin:0 auto" class="tablecontainer">
-                                                @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
-                                                @Html.Hidden("loaddataForInactiv", @Url.Action("LoadDataForInactiv", "CrewList"))
-                                                @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
-                                                @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
-                                                @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
-                                                <input type="hidden" id="hdncount" />
-                                                <input type="hidden" id="hdnrole" />
-                                                <table id="CrewListtableloaddataForInactiv" class="display" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>RankName</th>
-                                                            <th>StartDate</th>
-                                                            <th>EndDate</th>
-                                                            <th>Edit</th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
+                            </div>
 
-
+                            <div role="tabpanel" class="tab-pane" id="profile">
+                                <div class="col-sm-12 col-xs-12 ilo">
+                                    <div class="">
+                                        @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
+                                        @Html.Hidden("loaddataForInactiv", @Url.Action("LoadDataForInactiv", "CrewList"))
+                                        @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                                        @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+                                        @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+                                        <input type="hidden" id="hdncount" />
+                                        <input type="hidden" id="hdnrole" />
+                                        <div class="table-responsive">
+                                            <table id="CrewListtableloaddataForInactiv" class="table display">
+                                                <thead class="blue_Color color_white">
+                                                    <tr>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">RankName</th>
+                                                        <th scope="col" class="text-center">StartDate</th>
+                                                        <th scope="col" class="text-center">EndDate</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                <div id="dvprint2" style="display:none;">
-                    <hr>
-                    @Html.Hidden("loadprintreport", @Url.Action("LoadData2", "CrewList"))
-                    <table id="certtable_print" class="display" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th align="left">Name</th>
-                                <th align="left">Rank Name</th>
-                                <th align="left">Start Date</th>
-                            </tr>
-                        </thead>
-                    </table>
 
-                </div>
+            <div id="dvprint2" style="display:none;">
+                <hr>
+                @Html.Hidden("loadprintreport", @Url.Action("LoadData2", "CrewList"))
+                <table id="certtable_print" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th align="left">Name</th>
+                            <th align="left">Rank Name</th>
+                            <th align="left">Start Date</th>
+                        </tr>
+                    </thead>
+                </table>
+
             </div>
         </div>
     </div>
-</body>
+</div>
+
 
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Styles.Render("~/Content/themes/base/css")
+  
 
 
     <script src="~/Scripts/pdfmake.min.js"></script>
-    <script src="~/Scripts/vfs_fonts.js"></script>
-    <script src="~/Scripts/CrewListing.js"></script>
 
-    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
-    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -288,49 +211,5 @@
             });
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        function Popup2(data) {
-            var mywindow = window.open('', '', 'left=0,top=0,width=1600,height=1400');
-
-            var is_chrome = Boolean(mywindow.chrome);
-
-            mywindow.document.write('<html><head><title></title>');
-            mywindow.document.write('</head><body >');
-            mywindow.document.write($('#certtable_print').html());
-            mywindow.document.write('</body></html>');
-            mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
-            is_chrome = false;
-            //alert(is_chrome);
-            if (is_chrome) {
-                mywindow.onload = function () { // wait until all resources loaded 
-                    mywindow.focus(); // necessary for IE >= 10
-                    mywindow.print();  // change window to mywindow
-                    mywindow.close();// change window to mywindow
-                };
-            }
-            else {
-                mywindow.document.close(); // necessary for IE >= 10
-                mywindow.focus(); // necessary for IE >= 10
-                mywindow.print();
-                mywindow.close();
-            }
-
-            return true;
-        }
-
     </script>
-
-
 }

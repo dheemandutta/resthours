@@ -1146,10 +1146,8 @@ namespace TM.RestHour.DAL
                         {
                             ID = Convert.ToInt32(dr["ID"]),
                             Name = Convert.ToString(dr["Name"]),
-                            Nationality = Convert.ToString(dr["CountryName"]),
                             RankName = Convert.ToString(dr["RankName"]),
-                            PassportOrSeaman = Convert.ToString(dr["PassportOrSeaman"])
-                            //StartDate = Convert.ToString(dr["StartDate"]),
+                            StartDate = Convert.ToString(dr["StartDate"]),
                             // EndDate = Convert.ToString(dr["EndDate"]),
                             // DiffDays = Convert.ToString(dr["DiffDays"]),
                             // Active = Convert.ToString(dr["Active"])

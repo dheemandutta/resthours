@@ -1,15 +1,52 @@
-﻿@model TM.RestHour.Models.Equipments
+﻿@model TM.RestHour.Models.Crew
 
 
 @{
     ViewBag.Title = "Index2";
 }
 
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/CrewListing.js"></script>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
 <link href="dist/dual-listbox.css" rel="stylesheet">
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+
+
+
+
+
+
 <link href="~/link/css/rank.css" rel="stylesheet" />
 
 <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
@@ -17,9 +54,6 @@
 <link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
 <link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
 
-<script src="~/Scripts/notify.min.js"></script>
-<script src="~/Scripts/toastr.min.js"></script>
-<link href="~/Content/toastr.min.css" rel="stylesheet" />
 <script src="~/Scripts/Equipments.js"></script>
 
 @Html.Hidden("SaveMedicine", @Url.Action("SaveMedicine", "Equipments"))
@@ -50,8 +84,10 @@
         margin: 10px;
         height: 450px;
     }
+
     .card {
-        display: inline-block;width:100%;
+        display: inline-block;
+        width: 100%;
     }
 </style>
 
@@ -62,7 +98,33 @@
                 <h2 class="ta">Medicine Inventory</h2>
             </div>
             <div class="">
-                <div class="row" >
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="Nationality">Country</label>
+                            @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="Category">Category</label>
+                            <select id="Category" style="width:100%;" class="form-control">
+                                <option value="">Select</option>
+                                <option value="CategoryA">Category A</option>
+                                <option value="CategoryB">Category B</option>
+                                <option value="CategoryC">Category C</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="NoOfCrew">NoOfCrew</label>
+                            <select id="NoOfCrew" style="width:100%;" class="form-control">
+                                <option value="">Select</option>
+                                <option value="10">≤ 10</option>
+                                <option value="20">≤ 20</option>
+                                <option value="30">≤ 30</option>
+                                <option value="40">≤ 40</option>
+                            </select>
+                        </div>
+
+                    </div>
                     <div class="col-md-8">
                         <div class="card">
                             <div style="margin:0 auto" class="tablecontainer">
@@ -73,9 +135,12 @@
                                     <thead>
                                         <tr>
                                             <th>Medicine Name</th>
-                                            <th>Quantity</th>
+                                            <th>QTY</th>
+                                            <th>BatchNo</th>
+                                            <th>Batch QTY</th>
                                             <th>Expiry Date</th>
                                             <th>Location</th>
+                                            <th>Prescribed For</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
@@ -193,9 +258,12 @@
                             <thead>
                                 <tr>
                                     <th align="left">Medicine Name</th>
-                                    <th align="left">Quantity</th>
+                                    <th align="left">QTY</th>
+                                    <th align="left">BatchNo</th>
+                                    <th align="left">Batch QTY</th>
                                     <th align="left">Expiry Date</th>
                                     <th align="left">Location </th>
+                                    <th align="left">Prescribed For </th>
                                 </tr>
                             </thead>
                         </table>
@@ -205,8 +273,8 @@
 
 
                     @*<div class="col-md-7 bac">
-            <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
-        </div>*@
+                            <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
+                        </div>*@
 
 
                     <div class="col-md-4">
@@ -227,7 +295,7 @@
                             </div>
                             <div class="">
                                 <div class="box1">
-                                    @*<img src="~/background/excel.png" class="img-responsive" style="height:100%; width:100%;" />*@
+                                    <img src="~/background/excel.png" class="img-responsive" style="height:25%; width:25%;" />
                                 </div>
                                 <div class="export-template-label" style="display:inline-block;margin:4px 5px -8px 0px;">
                                     <a href="../MedicineNew/MedicineList.xlsx" target="_self" download>
@@ -237,7 +305,7 @@
 
                             </div>
                         </div>
-                        
+
                     </div>
 
 

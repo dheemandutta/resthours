@@ -30,17 +30,17 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
             }
             
-           // cmd.Parameters.AddWithValue("@Quantity", equipments.Quantity);
+            cmd.Parameters.AddWithValue("@Quantity", equipments.Quantity);
 
 
-            //if (!String.IsNullOrEmpty(equipments.ExpiryDate))
-            //{
-            //    cmd.Parameters.AddWithValue("@ExpiryDate", equipments.ExpiryDate);
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@ExpiryDate", DBNull.Value);
-            //}
+            if (!String.IsNullOrEmpty(equipments.ExpiryDate))
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDate", equipments.ExpiryDate);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDate", DBNull.Value);
+            }
 
             if (!String.IsNullOrEmpty(equipments.Location))
             {
@@ -95,9 +95,9 @@ namespace TM.RestHour.DAL
                         {
                             EquipmentsID = Convert.ToInt32(dr["EquipmentsID"]),
                             EquipmentsName = Convert.ToString(dr["EquipmentsName"]),
-                            //Comment = Convert.ToString(dr["Comment"]),
-                            //Quantity = Convert.ToString(dr["Quantity"]),
-                            //ExpiryDate = Convert.ToString(dr["ExpiryDate"]),
+                            Comment = Convert.ToString(dr["Comment"]),
+                            Quantity = Convert.ToString(dr["Quantity"]),
+                            ExpiryDate = Convert.ToString(dr["ExpiryDate"]),
                             Location = Convert.ToString(dr["Location"])
                             //CrewID = Convert.ToInt32(dr["CrewID"])
                         });
@@ -172,18 +172,18 @@ namespace TM.RestHour.DAL
             //    cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
             //}
 
-            //cmd.Parameters.AddWithValue("@Quantity", equipments.Quantity);
+            cmd.Parameters.AddWithValue("@Quantity", equipments.Quantity);
 
 
 
-            //if (!String.IsNullOrEmpty(equipments.ExpiryDate))
-            //{
-            //    cmd.Parameters.AddWithValue("@ExpiryDate", equipments.ExpiryDate);
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@ExpiryDate", DBNull.Value);
-            //}
+            if (!String.IsNullOrEmpty(equipments.ExpiryDate))
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDate", equipments.ExpiryDate);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ExpiryDate", DBNull.Value);
+            }
 
             if (!String.IsNullOrEmpty(equipments.Location))
             {
@@ -242,10 +242,14 @@ namespace TM.RestHour.DAL
                             MedicineID = Convert.ToInt32(dr["MedicineID"]),
                             MedicineName = Convert.ToString(dr["MedicineName"]),
                             //Comment = Convert.ToString(dr["Comment"]),
-                            //Quantity = Convert.ToString(dr["Quantity"]),
-                            //ExpiryDate = Convert.ToString(dr["ExpiryDate"]),
-                            Location = Convert.ToString(dr["Location"])
+                            Quantity = Convert.ToString(dr["Quantity"]),
+                            ExpiryDate = Convert.ToString(dr["ExpiryDate"]),
+                            Location = Convert.ToString(dr["Location"]),
                             //CrewID = Convert.ToInt32(dr["CrewID"])
+
+                            BatchNo = Convert.ToString(dr["BatchNo"]),
+                            BatchQuantity = Convert.ToString(dr["BatchQuantity"]),
+                            PrescribedFor = Convert.ToString(dr["PrescribedFor"])
                         });
                     }
                     recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
@@ -527,11 +531,11 @@ namespace TM.RestHour.DAL
                     if (item["Comment"] != DBNull.Value)
                         departmentPC.Comment = item["Comment"].ToString();
 
-                    //if (item["Quantity"] != DBNull.Value)
-                    //    departmentPC.Quantity = item["Quantity"].ToString();
+                    if (item["Quantity"] != DBNull.Value)
+                        departmentPC.Quantity = item["Quantity"].ToString();
 
-                    //if (item["ExpiryDate"] != DBNull.Value)
-                    //    departmentPC.ExpiryDate = item["ExpiryDate"].ToString();
+                    if (item["ExpiryDate"] != DBNull.Value)
+                        departmentPC.ExpiryDate = item["ExpiryDate"].ToString();
 
                     if (item["Location"] != DBNull.Value)
                         departmentPC.Location = item["Location"].ToString();
@@ -579,11 +583,11 @@ namespace TM.RestHour.DAL
                     if (item["MedicineName"] != DBNull.Value)
                         departmentPC.MedicineName = item["MedicineName"].ToString();
 
-                    //if (item["Quantity"] != DBNull.Value)
-                    //    departmentPC.Quantity = item["Quantity"].ToString();
+                    if (item["Quantity"] != DBNull.Value)
+                        departmentPC.Quantity = item["Quantity"].ToString();
 
-                    //if (item["ExpiryDate"] != DBNull.Value)
-                    //    departmentPC.ExpiryDate = item["ExpiryDate"].ToString();
+                    if (item["ExpiryDate"] != DBNull.Value)
+                        departmentPC.ExpiryDate = item["ExpiryDate"].ToString();
 
                     if (item["Location"] != DBNull.Value)
                         departmentPC.Location = item["Location"].ToString();
@@ -635,8 +639,8 @@ namespace TM.RestHour.DAL
             {
                 MedicineID= m.Field<int>("MedicineID"),
                 MedicineName =m.Field<string>("MedicineName"),
-                //Quantity=m.Field<string>("Quantity"),
-                //ExpiryDate=m.Field<string>("ExpiryDate"),
+                Quantity=m.Field<string>("Quantity"),
+                ExpiryDate=m.Field<string>("ExpiryDate"),
                 Location=m.Field<string>("Location"),
             }).ToList();
             con.Close();
@@ -658,8 +662,8 @@ namespace TM.RestHour.DAL
                 EquipmentsID= m.Field<int>("EquipmentsID"),
                 EquipmentsName= m.Field<string>("EquipmentsName"),
                 Comment=m.Field<string>("Comment"),
-                //Quantity = m.Field<string>("Quantity"),
-                //ExpiryDate = m.Field<string>("ExpiryDate"),
+                Quantity = m.Field<string>("Quantity"),
+                ExpiryDate = m.Field<string>("ExpiryDate"),
                 Location = m.Field<string>("Location"),
             }).ToList();
             con.Close();

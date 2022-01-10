@@ -265,7 +265,7 @@ function AddCrew() {
                     };
 
                     toastr.success("Added Successfully");
-                    ConfirmDialog('Do you want to upload Joining Medical ..?', response.url);
+
                    // clearTextBox();  deep
 
                     //window.location = response.url;
@@ -540,38 +540,5 @@ function LoadDataById2() {
     });
     return false;
 }
-
-function ConfirmDialog(message,url) {
-    $('<div></div>').appendTo('body')
-        .html('<div><h6>' + message + '?</h6></div>')
-        .dialog({
-            modal: true,
-            title: 'Confirmation message',
-            zIndex: 10000,
-            autoOpen: true,
-            width: 'auto',
-            resizable: false,
-            buttons: {
-                Yes: function () {
-                    // $(obj).removeAttr('onclick');                                
-                    // $(obj).parents('.Parent').remove();
-
-                    //$('body').append('<h1>Confirm Dialog Result: <i>Yes</i></h1>');
-                    
-                    $(this).dialog("close");
-                    window.location = '/CrewHealth/UploadJoiningMedical';
-                },
-                No: function () {
-                    //$('body').append('<h1>Confirm Dialog Result: <i>No</i></h1>');
-
-                    $(this).dialog("close");
-                    window.location = url;
-                }
-            },
-            close: function (event, ui) {
-                $(this).remove();
-            }
-        });
-};
 
 

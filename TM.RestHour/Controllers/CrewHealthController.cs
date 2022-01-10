@@ -16,7 +16,7 @@ using System.Configuration;
 
 using System.Net;
 using System.Net.Mail;
-
+using TM.Base.Common;
 
 
 namespace TM.RestHour.Controllers
@@ -301,8 +301,8 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.MedicineID = equipmentsPC.MedicineID;
                 equipments.MedicineName = equipmentsPC.MedicineName;
-                //equipments.Quantity = equipmentsPC.Quantity;
-                //equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -353,8 +353,8 @@ namespace TM.RestHour.Controllers
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
                 equipments.Comment = equipmentsPC.Comment;
-                //equipments.Quantity = equipmentsPC.Quantity;
-                //equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -1347,9 +1347,9 @@ namespace TM.RestHour.Controllers
                 string FileExtension = Path.GetExtension(postedFile.FileName);
                 fileName = fileName + FileExtension;
 
-                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif" && FileExtension != ".jpg" && FileExtension != ".png")
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
                 {
-                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpeg/gif/png";
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
                     return View();
                 }
 

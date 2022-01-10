@@ -23,7 +23,7 @@
     background: #fff;
     margin: 1px 0;
     overflow-y: scroll;
-    height: 477px;
+    height: 900px;
     border-radius: 6px;
     box-shadow: 0 1px 15px 1px rgba(62,57,107,.07);
 }
@@ -69,17 +69,16 @@ input, select, textarea {
     /* The actual popup */
     .popup .popuptext {
         visibility: hidden;
-        width: 160px;
-        background-color: #555;
+        width: 300px;
+        background-color: #0d417f;
         color: #fff;
         text-align: center;
         border-radius: 6px;
         padding: 8px 0;
         position: absolute;
         z-index: 11;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -80px;
+        bottom: 30px;
+        left: -130px;
     }
 
         /* Popup arrow */
@@ -123,7 +122,6 @@ input, select, textarea {
 }
 
 .ii {
-    border-radius: 50%;
     padding: 6px 11px;
     background: #ffee0c;
     font-weight: bolder;

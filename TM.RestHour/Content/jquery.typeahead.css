@@ -233,6 +233,7 @@
 .typeahead__field .typeahead__hint {
   display: block;
   width: 100%;
+  font-size:14px;
   line-height: 1.25;
   min-height: calc(0.5rem * 2 + 1.25rem + 2px);
   padding: 0.5rem 0.75rem;

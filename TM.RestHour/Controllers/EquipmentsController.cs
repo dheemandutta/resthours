@@ -35,6 +35,14 @@ namespace TM.RestHour.Controllers
         [TraceFilterAttribute]
         public ActionResult Index2()
         {
+            GetAllCountryForDrp();
+            return View();
+        }
+
+        
+        [TraceFilterAttribute]
+        public ActionResult MedicalChestCertificate()
+        {
             return View();
         }
 
@@ -46,9 +54,9 @@ namespace TM.RestHour.Controllers
             equipmentsPC.EquipmentsID = equipments.EquipmentsID;
             equipmentsPC.EquipmentsName = equipments.EquipmentsName;       
             equipmentsPC.Comment = equipments.Comment;
-            //equipmentsPC.Quantity = equipments.Quantity;
+            equipmentsPC.Quantity = equipments.Quantity;
 
-            //equipmentsPC.ExpiryDate = equipments.ExpiryDate;
+            equipmentsPC.ExpiryDate = equipments.ExpiryDate;
             equipmentsPC.Location = equipments.Location;
 
             return Json(equipmentsBL.SaveEquipments(equipmentsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
@@ -93,10 +101,8 @@ namespace TM.RestHour.Controllers
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
                 equipments.Comment = equipmentsPC.Comment;
-                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
-                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
-                equipments.Unit = equipmentsPC.Unit;
-                //equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -147,9 +153,8 @@ namespace TM.RestHour.Controllers
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
                 equipments.Comment = equipmentsPC.Comment;
-                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
-                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
-                equipments.Unit = equipmentsPC.Unit;
+                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -236,17 +241,16 @@ namespace TM.RestHour.Controllers
 
             equipmentsPOCOList = equipmentsBL.GetMedicalEquipmentByID(EquipmentsID /*, int.Parse(Session["VesselID"].ToString())*/);
 
-            Equipments equipments = new Equipments();
+            Equipments dept = new Equipments();
 
-            equipments.EquipmentsID = equipmentsPOCOList.EquipmentsID;
-            equipments.EquipmentsName = equipmentsPOCOList.EquipmentsName;
-            equipments.Comment = equipmentsPOCOList.Comment;
-            equipments.RequiredQuantity = equipmentsPOCOList.RequiredQuantity;
-            equipments.OnBoardQuantity = equipmentsPOCOList.OnBoardQuantity;
-            equipments.Unit = equipmentsPOCOList.Unit;
-            equipments.Location = equipmentsPOCOList.Location;
+            dept.EquipmentsID = equipmentsPOCOList.EquipmentsID;
+            dept.EquipmentsName = equipmentsPOCOList.EquipmentsName;
+            dept.Comment = equipmentsPOCOList.Comment;
+            dept.Quantity = equipmentsPOCOList.Quantity;
+            dept.ExpiryDate = equipmentsPOCOList.ExpiryDate;
+            dept.Location = equipmentsPOCOList.Location;
 
-            var data = equipments;
+            var data = dept;
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -262,17 +266,16 @@ namespace TM.RestHour.Controllers
 
             equipmentsPOCOList = equipmentsBL.GetMedicineByID(MedicineID /*, int.Parse(Session["VesselID"].ToString())*/);
 
-            Equipments equipments = new Equipments();
+            Equipments dept = new Equipments();
 
-            equipments.MedicineID = equipmentsPOCOList.MedicineID;
-            equipments.MedicineName = equipmentsPOCOList.MedicineName;
+            dept.MedicineID = equipmentsPOCOList.MedicineID;
+            dept.MedicineName = equipmentsPOCOList.MedicineName;
             //dept.Comment = equipmentsPOCOList.Comment;
-            equipments.RequiredQuantity = equipmentsPOCOList.RequiredQuantity;
-            equipments.OnBoardQuantity = equipmentsPOCOList.OnBoardQuantity;
-            equipments.Unit = equipmentsPOCOList.Unit;
-            equipments.Location = equipmentsPOCOList.Location;
+            dept.Quantity = equipmentsPOCOList.Quantity;
+            dept.ExpiryDate = equipmentsPOCOList.ExpiryDate;
+            dept.Location = equipmentsPOCOList.Location;
 
-            var data = equipments;
+            var data = dept;
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -291,9 +294,9 @@ namespace TM.RestHour.Controllers
             //consultantPC.DoctorID = consultant.DoctorID;
             equipmentsPC.MedicineID = equipments.MedicineID;
             equipmentsPC.MedicineName = equipments.MedicineName;
-            //equipmentsPC.Quantity = equipments.Quantity;
+            equipmentsPC.Quantity = equipments.Quantity;
 
-            //equipmentsPC.ExpiryDate = equipments.ExpiryDate;
+            equipmentsPC.ExpiryDate = equipments.ExpiryDate;
             equipmentsPC.Location = equipments.Location;
 
             return Json(equipmentsBL.SaveMedicine(equipmentsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
@@ -337,10 +340,13 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.MedicineID = equipmentsPC.MedicineID;
                 equipments.MedicineName = equipmentsPC.MedicineName;
-                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
-                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
-                equipments.Unit = equipmentsPC.Unit;
+                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
+
+                equipments.BatchNo = equipmentsPC.BatchNo;
+                equipments.BatchQuantity = equipmentsPC.BatchQuantity;
+                equipments.PrescribedFor = equipmentsPC.PrescribedFor;
 
                 equipmentsList.Add(equipments);
             }
@@ -388,9 +394,8 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.MedicineID = equipmentsPC.MedicineID;
                 equipments.MedicineName = equipmentsPC.MedicineName;
-                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
-                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
-                equipments.Unit = equipmentsPC.Unit;
+                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -495,5 +500,37 @@ namespace TM.RestHour.Controllers
             return Json(recordaffected, JsonRequestBehavior.AllowGet);
 
         }
+
+        //for CountryMaster drp
+        public void GetAllCountryForDrp()
+        {
+            CrewBL crewDAL = new CrewBL();
+            List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+
+            crewpocoList = crewDAL.GetAllCountryForDrp(/*int.Parse(Session["VesselID"].ToString())*/);
+
+
+            List<Crew> itmasterList = new List<Crew>();
+
+            foreach (CrewPOCO up in crewpocoList)
+            {
+                Crew unt = new Crew();
+                unt.CountryID = up.CountryID;
+                unt.CountryName = up.CountryName;
+
+                itmasterList.Add(unt);
+            }
+
+            ViewBag.CountryMaster = itmasterList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.CountryName,
+                                                Value = x.CountryID.ToString()
+                                            });
+
+        }
+
+
+
     }
 }
