@@ -206,6 +206,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ManageRank.cs" />
     <Compile Include="Models\ManageRankViewModel.cs" />
+    <Compile Include="Models\MedicalSymtomology.cs" />
     <Compile Include="Models\OneDayTimeAdjustment.cs" />
     <Compile Include="Models\Options.cs" />
     <Compile Include="Models\Permissions.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Models\Vessel.cs" />
     <Compile Include="Models\VesselDetails.cs" />
     <Compile Include="Models\VesselViewModel.cs" />
+    <Compile Include="Models\VitalStatistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -359,6 +361,9 @@
     <Content Include="background\travel\logo.jpg" />
     <Content Include="background\up.png" />
     <Content Include="background\vissel.jpg" />
+    <Content Include="CIRMPatientMedicalImages\CIRM_JoiningMedical_16.PNG" />
+    <Content Include="CIRMPatientMedicalImages\CIRM_MedicalEquipmentOnBoard_16.PNG" />
+    <Content Include="CIRMPatientMedicalImages\CIRM_MedicineAvailableOnBoard_16.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -1398,6 +1403,7 @@
     <Content Include="Views\PsychologicalEvaluation\ROSENBERG_SELF_esteem_scale_final.cshtml" />
     <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y1.cshtml" />
     <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y2.cshtml" />
+    <Content Include="Views\Shared\_pvActiveInactiveCrew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

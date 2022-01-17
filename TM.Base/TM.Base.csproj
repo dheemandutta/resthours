@@ -62,6 +62,7 @@
     <Compile Include="Entities\GroupsPOCO.cs" />
     <Compile Include="Entities\LoginPOCO.cs" />
     <Compile Include="Entities\ManageRankPOCO.cs" />
+    <Compile Include="Entities\MedicalSymtomologyPOCO.cs" />
     <Compile Include="Entities\NonComplianceInfoPOCO.cs" />
     <Compile Include="Entities\NonCompliancePOCO.cs" />
     <Compile Include="Entities\OneDayTimeAdjustmentPOCO.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Entities\UserGroupsPOCO.cs" />
     <Compile Include="Entities\UsersPOCO.cs" />
     <Compile Include="Entities\VesselDetailsPOCO.cs" />
+    <Compile Include="Entities\VitalStatisticsPOCO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -1,0 +1,155 @@
+﻿
+<style type="text/css">
+
+    .inactivateModal .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+    label {
+        
+        font-weight: bold;
+    }
+</style>
+@Html.Hidden("loadSignOffDate", @Url.Action("UpdateCrewServiceEndDate", "CrewList"))
+<div class="modal fade" id="activeInactiveCrewModal" role="dialog">
+    <div class="inactivateModal modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content modal-dialog" style="border:7px solid;">
+            <div class="modal-header">
+                <h4 class="modal-title " style="text-align:center;">INACTIVATE</h4>
+                @*<button type="button" class="close" data-dismiss="modal" onclick="Closexyz();">&times;</button>*@
+            </div>
+
+
+            <div class="modal-body">
+                @*<form>*@
+                <div class="form-group">
+                    <input type="hidden" id="hdnCrewID" />
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        @*<div class="card">*@
+                        <div class="">
+                            <div class="col-sm-12 col-xs-12 marginTP10">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12" style="align-content:center;">
+                                        <div class="form-group" style="align-content:center;">
+                                            @*<input type="file" id="fileUpload" maxlength="1" />*@
+                                            <label>Enter Sign Off Date </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            @*<input type="file" id="fileUpload" maxlength="1" />*@
+                                            <input type="text" class="monthYearPicker form-control" disabled="disabled" id="SignOffDate" placeholder="Select Date" />
+                                            <div class="multiple">
+
+                                            </div>
+                                            @*<div class="col-sm-6" style="padding:0;">
+
+                                                    <div class="multiple">
+
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        @*</div>*@
+                    </div>
+
+                </div>
+                @*</form>*@
+
+            </div>
+
+
+            <div class="modal-footer" style="background-color:lightgray;">
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-info btn-sm " id="btnCancel" data-dismiss="modal" onclick="return Closexyz();">Cancel</button>
+                </div>
+                <div class="col-sm-6" style="border-left:1px solid #312121">
+                    <button type="button" class="btn btn-info btn-sm " id="btnInactivate" onclick="SaveSignOffDate();">Yes</button>
+                </div>
+                @*<button type="button" class="btn btn-info btn-sm " id="btnCancel" data-dismiss="modal" onclick="return Closexyz();">Cancel</button>*@
+                @*<button type="button" class="btn btn-info btn-sm " id="btnInactivate" onclick="xyz();">Yes</button>*@
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+
+        //$("#SignOffDate").datepicker({
+
+
+        //    changeMonth: true,
+        //    changeYear: true,
+        //    keepOpen: true,
+        //    //showButtonPanel: true,
+        //    dateFormat: 'd-M-yy',
+        //    onClose: function (dateText, inst) {
+
+        //        if ($('#SignOffDate').val() != '') {
+        //            //$('#btnPrint').attr('disabled', false);
+        //            //$('#btnAdd').attr('disabled', false);
+        //        }
+        //        else {
+
+        //            $('#SignOffDate').on('change', function () {
+        //                // $('#btnPrint').attr('disabled', false);
+        //                //$('#btnAdd').attr('disabled', false);
+        //            });
+        //        }
+        //    }, onChangeMonthYear: function (dateText, inst) {
+
+        //        if ($('#SignOffDate').val() != '') {
+        //            //$('#btnPrint').attr('disabled', false);
+        //            //$('#btnAdd').attr('disabled', false);
+        //        }
+        //        else {
+
+        //            $('#SignOffDate').on('change', function () {
+        //                // $('#btnPrint').attr('disabled', false);
+        //                //$('#btnAdd').attr('disabled', false);
+        //            });
+        //        }
+        //    }
+        //});
+
+
+        $('.multiple').datepicker({
+            inline: true,
+            firstDay: 1,
+            showOtherMonths: true,
+            changeMonth: true,
+            changeYear: true,
+            //maxDate: '+0D',
+            dateFormat: 'd-M-yy',
+            minDate: 'today',
+
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            onSelect: function (date) {
+                // Your CSS changes, just in case you still need them
+                //alert(date);
+                $('#SignOffDate').val(date);
+            }
+        });
+
+    });
+
+
+</script>

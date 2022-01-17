@@ -39,5 +39,68 @@ namespace TM.RestHour.BL
             CIRMDAL cIRMDAL = new CIRMDAL();
             return cIRMDAL.GetCrewForCIRMPatientDetailsByCrew(ID).FirstOrDefault();
         }
+        /// <summary>
+        /// Added on 7th Jan 2022 @BK
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="vesselId"></param>
+        /// <returns></returns>
+        public CIRMPOCO GetCIRMPatientDetailsByCrew(int ID,int vesselId)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.GetCIRMPatientDetailsByCrew(ID, vesselId);
+        }
+        /// <summary>
+        ///  Added on 7th Jan 2022 @BK
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public List<VitalStatisticsPOCO> GetVitalStatisticsByCIRM(int ID)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.GetVitalStatisticsByCIRM(ID);
+        }
+
+        /// <summary>
+        ///  Added on 7th Jan 2022 @BK
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public List<MedicalSymtomologyPOCO> GetMedicalSymtomologyByCIRM(int ID)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.GetMedicalSymtomologyByCIRM(ID);
+        }
+        /// <summary>
+        /// Added on 11th Jan 2022 @BK
+        /// </summary>
+        /// <param name="vitaPoco"></param>
+        /// <returns></returns>
+        public int SaveCIRMVitalParams(VitalStatisticsPOCO vitaPoco)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.SaveCIRMVitalParams(vitaPoco);
+        }
+        /// <summary>
+        /// Added on 11th Jan 2022 @BK
+        /// </summary>
+        /// <param name="symPoco"></param>
+        /// <returns></returns>
+        public int SaveCIRMSymtomology(MedicalSymtomologyPOCO symPoco)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.SaveCIRMSymtomology(symPoco);
+        }
+
+        public List<VitalStatisticsPOCO> GetAllCIRMVitalParamsPageWise(int pageIndex, ref int recordCount, int length, int shipId)
+        {
+            CIRMDAL dal = new CIRMDAL();
+            return dal.GetAllCIRMVitalParamsPageWise(pageIndex, ref recordCount, length,  shipId);
+        }
+        public List<MedicalSymtomologyPOCO> GetAllCIRMSymtomologyPageWise(int pageIndex, ref int recordCount, int length, int shipId)
+        {
+            CIRMDAL dal = new CIRMDAL();
+            return dal.GetAllCIRMSymtomologyPageWise(pageIndex, ref recordCount, length,shipId);
+        }
     }
 }

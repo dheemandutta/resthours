@@ -1146,8 +1146,10 @@ namespace TM.RestHour.DAL
                         {
                             ID = Convert.ToInt32(dr["ID"]),
                             Name = Convert.ToString(dr["Name"]),
+                            Nationality = Convert.ToString(dr["CountryName"]),
                             RankName = Convert.ToString(dr["RankName"]),
-                            StartDate = Convert.ToString(dr["StartDate"]),
+                            PassportOrSeaman = Convert.ToString(dr["PassportOrSeaman"])
+                            //StartDate = Convert.ToString(dr["StartDate"]),
                             // EndDate = Convert.ToString(dr["EndDate"]),
                             // DiffDays = Convert.ToString(dr["DiffDays"]),
                             // Active = Convert.ToString(dr["Active"])
@@ -1177,15 +1179,6 @@ namespace TM.RestHour.DAL
             return ds.Tables[0].Rows[0]["ConfigValue"].ToString();
 
         }
-
-
-
-
-
-
-
-
-
 
 
         public CrewPOCO GetAllowPsychology(int CrewID, int VesselID)
@@ -1227,6 +1220,23 @@ namespace TM.RestHour.DAL
                 }
             }
             return pPOCOPC;
+        }
+
+        public int UpdateCrewServiceEndDate(int ID, DateTime signOffDate )
+        {
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpUpdateCrewServiceEndDate", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@CrewId", ID);
+            cmd.Parameters.AddWithValue("@SignOffDate", signOffDate);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+
         }
 
     }

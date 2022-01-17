@@ -3,7 +3,7 @@
     ViewBag.Title = "PatientDetails";
 }
 
-
+<script src="~/Scripts/VesselDetails.js"></script>
 <script src="~/Scripts/CIRM.js"></script>
 
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -45,13 +45,28 @@
     }
 </style>
 
+@*----Added on 4th 2022---Vesses Details Part--*@
+@Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
+@Html.Hidden("myUrlid0", @Url.Action("GetVesselTypeForDrp", "CrewHealth"))
+@Html.Hidden("myUrlid1", @Url.Action("GetVesselSubTypeByVesselTypeIDForDrp", "CrewHealth"))
+@Html.Hidden("myUrlid2", @Url.Action("GetVesselSubSubTypeByVesselSubTypeIDForDrp", "CrewHealth"))
+@Html.Hidden("myUrlGetVesselTypeIDFromShip", @Url.Action("GetVesselTypeIDFromShip", "CrewHealth"))
+@Html.Hidden("myUrlGetVesselSubTypeIDFromShip", @Url.Action("GetVesselSubTypeIDFromShip", "CrewHealth"))
+@Html.Hidden("myUrlGetVesselSubSubTypeIDFromShip", @Url.Action("GetVesselSubSubTypeIDFromShip", "CrewHealth"))
+@*-End---Added on 4th 2022---Vesses Details Part--*@
+
 @Html.Hidden("SaveCIRM", @Url.Action("SaveCIRM", "CrewHealth"))
+@Html.Hidden("SaveCIRMVitalParams", @Url.Action("SaveCIRMVitalParams", "CrewHealth"))
+@Html.Hidden("SaveCIRMSymtomology", @Url.Action("SaveCIRMSymtomology", "CrewHealth"))
 @Html.Hidden("getCrewForCIRMPatientDetails", @Url.Action("GetCrewForCIRMPatientDetails", "CrewHealth"))
+@Html.Hidden("showCIRMVitalParams", @Url.Action("LoadCIRMVitalParamsData", "CrewHealth"))
+@Html.Hidden("showCIRMSymtomology", @Url.Action("LoadCIRMSymtomologyData", "CrewHealth"))
 
 @*@Html.Hidden("uploadPistures", @Url.Action("UploadPistures", "CrewHealth"))*@
 
 
 @Html.Hidden("getCrewForCIRMPatientDetailsByCrew", @Url.Action("GetCrewForCIRMPatientDetailsByCrew", "CrewHealth"))
+@Html.Hidden("getCIRMDetailsByCrew", @Url.Action("GetCIRMPatientDetailsByCrew", "CrewHealth"))
 
 <body>
 
@@ -60,15 +75,80 @@
     <div class="">
         <div class="head_title">
             <h1 class="ta">CIRM - Patient Details</h1>
+            <input type="hidden" id="CIRMId" />
         </div>
 
         <div class="card bacmt">
 
 
             <div class="clearfix"></div>
-
+            @*-----Added On 4th Jan 2022-------------------------------*@
             <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <h4>Vessel Details </h4>
 
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <input type="hidden" id="VesselID" />
+                    </div>
+                    <div class="form-group">
+                        <label for="VesselName">Vessel Name</label>
+                        <input type="text" class="form-control" id="VesselName" placeholder="VesselName" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="PortOfDeparture">Port Of Departure</label>
+                        <input type="text" class="form-control" id="PortOfDeparture" placeholder="Port Of Departure" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Speed">Speed (in knots)</label>
+                        <input type="text" class="form-control" id="Speed" placeholder="Speed (in knots)" />
+                    </div>
+
+                </div>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="Call Sign">Radio Call Sign</label>
+                        <input type="text" class="form-control" id="CallSign" placeholder="Radio Call Sign" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PortOfArrival">Port Of Arrival</label>
+                        <input type="text" class="form-control" id="PortOfArrival" placeholder="Port Of Arrival" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Weather">Weather</label>
+                        <input type="text" class="form-control" id="Weather" placeholder="Weather" />
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="LocationOfShip">Location Of Ship</label>
+                        <input type="text" class="form-control" id="LocationOfShip" placeholder="Location Of Ship" />
+                    </div>
+                    <div class="form-group">
+                        <label for="EstimatedTimeOfArrival">Estimated Time Of Arrival (hrs)</label>
+                        <input type="text" class="form-control" id="EstimatedTimeOfArrival" placeholder="Estimated Time Of Arrival (hrs)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="AgentDetails">Agent Details</label>
+                        <textarea type="text" class="form-control valid" id="AgentDetails" placeholder="Agent Details" style="width: 95% !important;"></textarea>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-3 float-lg-right" style="padding: 10px; ">
+                    <button type="button" class="button1" id="btnAdd" onclick="return SaveVesselDetails();">Add</button>
+                </div>
+            </div>
+            @*--End---Added On 4th Jan 2022-------------------------------*@
+
+            <div class="clearfix"></div>
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <h4>Petient Details </h4>
 
                 <div class="col-md-3">
                     <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
@@ -78,11 +158,11 @@
 
                 <div class="col-md-3">
                     @*<div class="form-group">
-                      <label for="Name Of Vessel">Name Of Vessel</label>
-                      <div class="form-control">
-                      @System.Web.HttpContext.Current.Session["ShipName"].ToString()
-                      </div>
-                </div>*@
+                              <label for="Name Of Vessel">Name Of Vessel</label>
+                              <div class="form-control">
+                              @System.Web.HttpContext.Current.Session["ShipName"].ToString()
+                              </div>
+                        </div>*@
                     <div class="form-group">
                         <label for="Crew">Crew</label>
                         @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
@@ -124,9 +204,9 @@
                     <div class="form-group">
                         <label for="Sex ">Sex </label>
                         @*<select name="Sex" class="form-control" id="Sex">
-                        <option value="M">M</option>
-                        <option value="F">F</option>
-                    </select>*@
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select>*@
                         <input type="text" class="form-control" id="Sex" placeholder=" " disabled />
                     </div>
                     <div class="form-group">
@@ -159,192 +239,447 @@
 
             </div>
 
-            <div class="row">
-
-                <div class="col-md-6" style="border: 1px solid #eee; padding: 10px;">
-                    <h4>Vital statistics</h4>
-
-                    <div class="col-md-6">
-                        @*<div class="form-group" style="width: 100%;">
-                         <label for="Temperature">Temperature</label>
-                     </div>
-                    <div class="form-group" style="width: 100%;">
-                         <div class="col-md-6" id="sideform">
-                             <input type="text" style="width: 150%;" class="form-control" id="Temperature" placeholder="Temperature" />
-                         </div>
-                         <div class="col-md-5" id="sideform">
-                             <select name="Addiction" style="width: 100%;" class="form-control" id="Addiction">
-                                 <option value="C">°C</option>
-                                 <option value="F">°F</option>
-                             </select>
-                         </div>
-                     </div>*@
-                        <div class="form-group" style="width: 100%;">
-                            <label for="Pulse">Pulse (Beats/Minute)</label>
-                            <input type="text" class="form-control" id="Pulse" placeholder="Pulse (bpm)" />
-                        </div>
-                        <div class="form-group" style="width: 100%;">
-                            <label for="OxygenSaturation">Oxygen Saturation/SpO2</label> &nbsp; <b />
-                            <input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myModalForSPO2">
-                            <input type="text" class="form-control" id="OxygenSaturation" placeholder="Oxygen Saturation/SpO2" />
-                        </div>
-                        <div class="form-group" style="width: 100%;">
-                            &nbsp; &nbsp; &nbsp;
-                        </div>
-                        <div style="border: 1px solid #eee; padding: 10px;">
-                            <h4>
-                                Blood Pressure
-                                <input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myModalForBloodPressure">
-                            </h4>
-                            <div class="form-group" style="width: 100%;">
-                                <label for="Systolic">Systolic (mmHg)</label>
-                                <input type="text" class="form-control" id="Systolic" placeholder="Systolic (mmHg)" />
-                            </div>
-                            <div class="form-group" style="width: 100%;">
-                                <label for="Diastolic">Diastolic (mmHg)</label>
-                                <input type="text" class="form-control" id="Diastolic" placeholder="Diastolic (mmHg)" />
-                            </div>
-                        </div>
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <div class="col-md-12">
+                    <div class="col-md-9">
+                        <input type="hidden" id="VitalParamsId" />
+                        <h4>Vital statistics</h4>
                     </div>
 
-                    <div class="col-md-6">
-                        @*<div class="form-group" style="width: 100%;">
-                        <label for="Mode">Mode</label>
-                        <select name="Mode" style="width: 100%;" class="form-control" id="Mode">
-                            <option value="">Select</option>
-                            <option value="Oral">Oral</option>
-                            <option value="Rectum">Rectum</option>
-                            <option value="Forehead">Forehead</option>
-                            <option value="Armpit">Armpit</option>
-                        </select>
-                    </div>*@
-                        <div class="form-group" style="width: 100%;">
-                            <label for="RespiratoryRate">Respiratory Rate</label>
-                            <input type="text" class="form-control" id="RespiratoryRate" placeholder="Respiratory Rate" />
-                        </div>
+                    <div class="col-md-3 float-right" style="padding: 10px; ">
+                        <button type="button" class="button1" onclick="return SaveCIRMVitalParams();" id="btnAddVitalParam">Add</button>
+                        <button type="button" class="button1" onclick="return loadCIRMVitalParamsData();" id="btnShowVitalParams">View</button>
                     </div>
-
                 </div>
 
-                <div class="col-md-6" style="border: 1px solid #eee; padding: 10px;">
-                    <h4> Medical Condition</h4>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ObservedDateAndTime">Observed Date And Time</label>
+                        <input type="text" class="form-control" id="VitalStatisticsDate" placeholder="Date" />
+                        <select name="account" class="form-control" id="VitalStatisticsTime" required="">
+                            <option value="">Select</option>
+                            <option value="00:00">00:00</option>
+                            <option value="00:30">00:30</option>
+                            <option value="01:00">01:00</option>
+                            <option value="01:30">01:30</option>
+                            <option value="02:00">02:00</option>
+                            <option value="02:30">02:30</option>
+                            <option value="03:00">03:00</option>
+                            <option value="03:30">03:30</option>
+                            <option value="04:00">04:00</option>
+                            <option value="04:30">04:30</option>
+                            <option value="05:00">05:00</option>
+                            <option value="05:30">05:30</option>
+                            <option value="06:00">06:00</option>
+                            <option value="06:30">06:30</option>
+                            <option value="07:00">07:00</option>
+                            <option value="07:30">07:30</option>
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:00">23:00</option>
+                            <option value="23:30">23:30</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group" style="width: 100%;">
+                        <label for="OxygenSaturation">Oxygen Saturation/SpO2</label> &nbsp; <b />
+                        <input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myModalForSPO2">
+                        <input type="text" class="form-control" id="OxygenSaturation" placeholder="Oxygen Saturation/SpO2" />
+                    </div>
+
+
+                    <div class="form-group" style="width: 100%;">
+                        <label for="Creatinine">Creatinine</label>
+                        <input type="text" class="form-control" id="Creatinine" placeholder="Creatinine" />
+                    </div>
+
+
+
+
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div style="border: 1px solid #eee; padding: 10px;">
+                        <h4>
+                            Blood Pressure
+                            <input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myModalForBloodPressure">
+                        </h4>
+                        <div class="form-group" style="width: 100%;">
+                            <label for="Systolic">Systolic (mmHg)</label>
+                            <input type="text" class="form-control" id="Systolic" placeholder="Systolic (mmHg)" />
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            <label for="Diastolic">Diastolic (mmHg)</label>
+                            <input type="text" class="form-control" id="Diastolic" placeholder="Diastolic (mmHg)" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group" style="width: 100%;">
+                        <label for="Pulse">Pulse (Beats/Minute)</label>
+                        <input type="text" class="form-control" id="Pulse" placeholder="Pulse (bpm)" />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        <label for="Himoglobin">Himoglobin</label>
+                        <input type="text" class="form-control" id="Himoglobin" placeholder="Himoglobin" />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        <label for="Bilirubin">Bilirubin</label>
+                        <input type="text" class="form-control" id="Bilirubin" placeholder="Bilirubin" />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div style="border: 1px solid #eee; padding: 10px;">
+                        <h4>
+                            Blood Sugar
+                            <input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myModalForBloodPressure">
+                        </h4>
+                        <div class="form-group" style="width: 100%;">
+                            <label for="Fasting">Fasting (mmol/L)</label>
+                            <input type="text" class="form-control" id="Fasting" placeholder="Fasting (mmol/L)" />
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            <label for="Regular">Regular (mmol/L)</label>
+                            <input type="text" class="form-control" id="Regular" placeholder="Regular (mmol/L)" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="form-group" style="width: 100%;">
+                        <label for="RespiratoryRate">Respiratory Rate</label>
+                        <input type="text" class="form-control" id="RespiratoryRate" placeholder="Respiratory Rate" />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        <label for="Temperature">Temperature</label> &nbsp; <b />
+                        <input type="text" class="form-control" id="Temperature" placeholder="Temperature" />
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalCIRMVitalParams" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 90%;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Vital Params Details List</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table id="CIRMVitalParamstable" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ObservationDate/Time</th>
+                                            @*<th>ObservationTime</th>*@
+                                            <th>Puls</th>
+                                            <th>RespiratoryRate</th>
+                                            <th>OxygenSaturation</th>
+                                            <th>Himoglobin</th>
+                                            <th>Creatinine</th>
+                                            <th>Bilirubin</th>
+                                            <th>Temperature</th>
+                                            <th>Systolic</th>
+                                            <th>Diastolic</th>
+                                            <th>Fasting</th>
+                                            <th>Regular</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <div class="col-md-12">
+                    <div class="col-md-9">
+                        <input type="hidden" id="MedicalSymtomologyId" />
+                        <h4> Medical Condition</h4>
+                    </div>
+
+                    <div class="col-md-3 float-right" style="padding: 10px; ">
+                        <button type="button" class="button1" onclick="return SaveCIRMSymtomology();" id="btnAddSytomology">Add</button>
+                        <button type="button" class="button1" onclick=" return loadCIRMSymtomologyData();" id="btnShowSymtomology">View</button>
+                    </div>
+                </div>
+
+                <div class="form-group" style="width: 100%;">
+                    &nbsp; &nbsp; &nbsp;
+                </div>
+
+                <h4>Symptomology </h4>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ObservedDateAndTime">Observed Date And Time</label>
+                        <input type="text" class="form-control" id="SymptomatologyDate" placeholder="Date" />
+                        @*<input type="text" class="form-control" id="SymptomatologyTime" placeholder="Time" />*@
+                        <select name="account" class="form-control" id="SymptomatologyTime" required="">
+                            <option value="">Select</option>
+                            <option value="00:00">00:00</option>
+                            <option value="00:30">00:30</option>
+                            <option value="01:00">01:00</option>
+                            <option value="01:30">01:30</option>
+                            <option value="02:00">02:00</option>
+                            <option value="02:30">02:30</option>
+                            <option value="03:00">03:00</option>
+                            <option value="03:30">03:30</option>
+                            <option value="04:00">04:00</option>
+                            <option value="04:30">04:30</option>
+                            <option value="05:00">05:00</option>
+                            <option value="05:30">05:30</option>
+                            <option value="06:00">06:00</option>
+                            <option value="06:30">06:30</option>
+                            <option value="07:00">07:00</option>
+                            <option value="07:30">07:30</option>
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:00">23:00</option>
+                            <option value="23:30">23:30</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <label for="Vomiting">Vomiting</label>
+                        <select name="Vomiting" style="width: 100%;" class="form-control" id="Vomiting">
+                            <option value="-">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <input type="text" class="form-control" id="FrequencyOfVomiting" placeholder="Frequency Of Vomiting" />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <label for="Fits">Fits</label>
+                        <select name="Fits" style="width: 100%;" class="form-control" id="Fits">
+                            <option value="-">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <input type="text" class="form-control" id="FrequencyOfFits" placeholder="Frequency Of Fits" />
+                    </div>
                     <div class="form-group" style="width: 100%;">
                         &nbsp; &nbsp; &nbsp;
                     </div>
 
-                    <h4>Symptomology </h4>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="ObservedDateAndTime">Observed Date And Time</label>
-                            <input type="text" class="form-control" id="SymptomatologyDate" placeholder="Date" />
-                            @*<input type="text" class="form-control" id="SymptomatologyTime" placeholder="Time" />*@
-                            <select name="account" class="form-control" id="SymptomatologyTime" required="">
-                                <option value="">Select</option>
-                                <option value="00:00">00:00</option>
-                                <option value="00:30">00:30</option>
-                                <option value="01:00">01:00</option>
-                                <option value="01:30">01:30</option>
-                                <option value="02:00">02:00</option>
-                                <option value="02:30">02:30</option>
-                                <option value="03:00">03:00</option>
-                                <option value="03:30">03:30</option>
-                                <option value="04:00">04:00</option>
-                                <option value="04:30">04:30</option>
-                                <option value="05:00">05:00</option>
-                                <option value="05:30">05:30</option>
-                                <option value="06:00">06:00</option>
-                                <option value="06:30">06:30</option>
-                                <option value="07:00">07:00</option>
-                                <option value="07:30">07:30</option>
-                                <option value="08:00">08:00</option>
-                                <option value="08:30">08:30</option>
-                                <option value="09:00">09:00</option>
-                                <option value="09:30">09:30</option>
-                                <option value="10:00">10:00</option>
-                                <option value="10:30">10:30</option>
-                                <option value="11:00">11:00</option>
-                                <option value="11:30">11:30</option>
-                                <option value="12:00">12:00</option>
-                                <option value="12:30">12:30</option>
-                                <option value="13:00">13:00</option>
-                                <option value="13:30">13:30</option>
-                                <option value="14:00">14:00</option>
-                                <option value="14:30">14:30</option>
-                                <option value="15:00">15:00</option>
-                                <option value="15:30">15:30</option>
-                                <option value="16:00">16:00</option>
-                                <option value="16:30">16:30</option>
-                                <option value="17:00">17:00</option>
-                                <option value="17:30">17:30</option>
-                                <option value="18:00">18:00</option>
-                                <option value="18:30">18:30</option>
-                                <option value="19:00">19:00</option>
-                                <option value="19:30">19:30</option>
-                                <option value="20:00">20:00</option>
-                                <option value="20:30">20:30</option>
-                                <option value="21:00">21:00</option>
-                                <option value="21:30">21:30</option>
-                                <option value="22:00">22:00</option>
-                                <option value="22:30">22:30</option>
-                                <option value="23:00">23:00</option>
-                                <option value="23:30">23:30</option>
-
-                            </select>
-                        </div>
-                        <div class="form-group" style="width: 100%;">
-                            &nbsp; &nbsp; &nbsp;
-                        </div>
-                        <div class="form-group">
-                            <label for="Vomiting">Vomiting</label>
-                            <select name="Vomiting" style="width: 100%;" class="form-control" id="Vomiting">
-                                <option value="-">Select</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            <input type="text" class="form-control" id="FrequencyOfVomiting" placeholder="Frequency Of Vomiting" />
-                        </div>
-                        <div class="form-group" style="width: 100%;">
-                            &nbsp; &nbsp; &nbsp;
-                        </div>
-                        <div class="form-group">
-                            <label for="Fits">Fits</label>
-                            <select name="Fits" style="width: 100%;" class="form-control" id="Fits">
-                                <option value="-">Select</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            <input type="text" class="form-control" id="FrequencyOfFits" placeholder="Frequency Of Fits" />
-                        </div>
-                        <div class="form-group" style="width: 100%;">
-                            &nbsp; &nbsp; &nbsp;
-                        </div>
+                    <div class="form-group">
+                        <label for="Giddiness">Giddiness</label>
+                        <select name="Giddiness" style="width: 100%;" class="form-control" id="Giddiness">
+                            <option value="-">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <input type="text" class="form-control" id="FrequencyOfGiddiness" placeholder="Frequency Of Giddiness" />
                     </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <label for="Lethargy">Lethargy</label>
+                        <select name="Lethargy" style="width: 100%;" class="form-control" id="Lethargy">
+                            <option value="-">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <input type="text" class="form-control" id="FrequencyOfLethargy" placeholder="Frequency Of Lethargy" />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="Details">Details</label>
-                            <textarea type="text" class="form-control valid" id="Details" placeholder="Details" style="width: 95% !important;"></textarea>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Details">Details</label>
+                        <textarea type="text" class="form-control valid" id="SymtomologyDetails" placeholder="Details" style="width: 95% !important;"></textarea>
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <label for="MedicinesAdministered">Medicines Administered</label>
+                        <textarea type="text" class="form-control valid" id="MedicinesAdministered" placeholder="Medicines Administered" style="width: 95% !important;"></textarea>
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        &nbsp; &nbsp; &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <label for="AnyOtherRelevantInformation">Any Other Relevant Information</label>
+                        <textarea type="text" class="form-control valid" id="AnyOtherRelevantInformation" placeholder="Any Other Relevant Information" style="width: 95% !important;"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalCIRMSymtomology" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 90%;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Medical Condition (Symtomology) Details List</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table id="CIRMSymtomologytable" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ObservationDate/Time</th>
+                                            @*<th>ObservationTime</th>*@
+                                            <th>Vomiting</th>
+                                            @*<th>FrequencyOfVomiting</th>*@
+                                            <th>Fits</th>
+                                            @*<th>FrequencyOfFits</th>*@
+                                            <th>Giddiness</th>
+                                            @*<th>FrequencyOfGiddiness</th>*@
+                                            <th>Lethargy</th>
+                                            @*<th>FrequencyOfLethargy</th>*@
+                                            <th>SymptomatologyDetails</th>
+                                            <th>MedicinesAdministered</th>
+                                            <th>AnyOtherRelevantInformation</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
-                        <div class="form-group" style="width: 100%;">
-                            &nbsp; &nbsp; &nbsp;
-                        </div>
-                        <div class="form-group">
-                            <label for="MedicinesAdministered">Medicines Administered</label>
-                            <textarea type="text" class="form-control valid" id="MedicinesAdministered" placeholder="Medicines Administered" style="width: 95% !important;"></textarea>
-                        </div>
-                        <div class="form-group" style="width: 100%;">
-                            &nbsp; &nbsp; &nbsp;
-                        </div>
-                        <div class="form-group">
-                            <label for="AnyOtherRelevantInformation">Any Other Relevant Information</label>
-                            <textarea type="text" class="form-control valid" id="AnyOtherRelevantInformation" placeholder="Any Other Relevant Information" style="width: 95% !important;"></textarea>
-                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+            @*-----Added On 4th Jan 2022-------------------------------*@
+            <div class="row" style="border: 1px solid #eee; padding: 10px;">
+                <h4>Past Medical History </h4>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+
+                    <div class="form-group">
+                        <label for="MedicalHostory">Medical Hostory</label>
+                        @*<input type="text" class="form-control" id="Medical Hostory" placeholder="Medical Hostory" />*@
+                        <textarea type="text" class="form-control valid" id="PastMedicalHostory" placeholder="Medical Hostory" style="width: 95% !important;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Remarks">Remarks</label>
+                        @*<input type="text" class="form-control" id="Remarks" placeholder="Remarks" />*@
+                        <textarea type="text" class="form-control valid" id="Remarks" placeholder="Remarks" style="width: 95% !important;"></textarea>
                     </div>
 
 
                 </div>
 
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="Treatment Given">Treatment Given</label>
+                        @*<input type="text" class="form-control" id="TreatmentGiven" placeholder="Treatment Given" />*@
+                        <textarea type="text" class="form-control valid" id="TreatmentGiven" placeholder="Treatment Given" style="width: 95% !important;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="MedicineAdministered">Medicine Administered</label>
+                        @*<input type="text" class="form-control" id="MedicineAdministered" placeholder="Medicine Administered" />*@
+                        <textarea type="text" class="form-control valid" id="PastMedicineAdministered" placeholder="Medicine Administered" style="width: 95% !important;"></textarea>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <label for="LocationOfShip">Tele Medical Advice Received</label>
+                        @*<input type="text" class="form-control" id="TeleMedicalAdviceReceived" placeholder="Tele Medical Advice Received" />*@
+                        <textarea type="text" class="form-control valid" id="TeleMedicalAdviceReceived" placeholder="Tele Medical Advice Received" style="width: 95% !important;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" id="hdnPathCIRMPastMedicalHistory" value="" />
+                        <label for="AttachFile">Attach File</label>
+                        @*<input type="text" class="form-control" id="EstimatedTimeOfArrival" placeholder="Estimated Time Of Arrival (hrs)" />*@
+                        <input id="uploadCIRMPastMedicalHistory" name="upload" type="file" />
+                        <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMPastMedicalHistory','PastMedicalHistory');" style="width:86px;">Upload</button>
+                    </div>
+
+
+
+                </div>
+
+                @*<div class="col-md-3 float-lg-right" style="padding: 10px; ">
+                        <button type="button" class="button1" id="btnAdd" onclick="return SaveVesselDetails();">Add</button>
+                    </div>*@
             </div>
+            @*--End---Added On 4th Jan 2022-------------------------------*@
+
 
             <div class="row" style="border: 1px solid #eee; padding: 10px;">
                 <h4>In Case of Accident occured</h4>
@@ -415,84 +750,10 @@
                         @*<button type="button" class="button1" style="width:90%; margin: 5px;" onclick="return UploadPistures();" id="btnUploadPistures">Upload</button>*@
                         </br>
                     </div>
+
+                    @*-------------------------------Upload Panels----------------------------------------*@
                     <div class="form-group">
-                        <input type="checkbox" name="uploaddocJoiningMedical" id="uploaddocJoiningMedical" value="1" onclick="myFunctionJoiningMedical()"> Upload Joining Medical</br>
-                        <div id="myModalJoiningMedical" style="display:none">
-                            <div class="modal-dialog" style="width:650px;">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                        <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
-                                    </div>
-                                    <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
-                                        <fieldset class="for-panel">
-                                            <legend>Upload</legend>
-                                            <div class="row">
-
-                                                <div class="col-sm-3" style="width: 40%;">
-                                                    <div class="form-horizontal">
-                                                        <label class="col-xs-5 control-label">Photo:</label>
-                                                    </div>
-                                                </div>
-                                                <input id="upload" name="upload" type="file" />
-                                                <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="form-group">
-                                                    <input type="hidden" id="PhotoUploadID" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
-                                        @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <input type="checkbox" name="uploaddocMedicineAvailableOnBoard" id="uploaddocMedicineAvailableOnBoard" value="1" onclick="myFunctionMedicineAvailableOnBoard()"> Upload Medicine Available On Board</br>
-                        <div id="myModalMedicineAvailableOnBoard" style="display:none">
-                            <div class="modal-dialog" style="width:650px;">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                        <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
-                                    </div>
-                                    <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
-                                        <fieldset class="for-panel">
-                                            <legend>Upload</legend>
-                                            <div class="row">
-
-                                                <div class="col-sm-3" style="width: 40%;">
-                                                    <div class="form-horizontal">
-                                                        <label class="col-xs-5 control-label">Photo:</label>
-                                                    </div>
-                                                </div>
-                                                <input id="upload" name="upload" type="file" />
-                                                <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="form-group">
-                                                    <input type="hidden" id="PhotoUploadID" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
-                                        @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <input type="checkbox" name="uploaddocMedicalEquipmentOnBoard" id="uploaddocMedicalEquipmentOnBoard" value="1" onclick="myFunctionMedicalEquipmentOnBoard()"> Upload Medical Equipment On Board </br>
+                        <input type="checkbox" name="uploaddocMedicalEquipmentOnBoard" id="uploaddocMedicalEquipmentOnBoard" value="1" onclick="myFunctionMedicalEquipmentOnBoard()"> Upload Medical Equipment<br />
                         <div id="myModalMedicalEquipmentOnBoard" style="display:none">
                             <div class="modal-dialog" style="width:650px;">
                                 <div class="modal-content">
@@ -510,19 +771,21 @@
                                                         <label class="col-xs-5 control-label">Photo:</label>
                                                     </div>
                                                 </div>
-                                                <input id="upload" name="upload" type="file" />
-                                                <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
+                                                <input id="uploadCIRMMedicalEquipmentOnBoard" name="upload" type="file" />
+                                                <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMMedicalEquipmentOnBoard','MedicalEquipmentOnBoard');" style="width:86px;">Upload</button>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="form-group">
                                                     <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                                    <input type="hidden" id="hdnPathCIRMMedicalEquipmentOnBoard" class="form-control" />
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </div>
                                     <div class="modal-footer">
+                                        <label class="hidden" id="lblSuccMsgCIRMMedicalEquipmentOnBoard"></label>
                                         <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
                                         @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
                                     </div>
@@ -530,7 +793,90 @@
                             </div>
                         </div>
 
-                        <input type="checkbox" name="uploaddocMedicalHistoryUpload" id="uploaddocMedicalHistoryUpload" value="1" onclick="myFunctionMedicalHistoryUpload()"> Upload Medical History Upload </br>
+                        <input type="checkbox" name="uploaddocMedicineAvailableOnBoard" id="uploaddocMedicineAvailableOnBoard" value="1" onclick="myFunctionMedicineAvailableOnBoard()"> Upload Medical Inventory<br />
+                        <div id="myModalMedicineAvailableOnBoard" style="display:none">
+                            <div class="modal-dialog" style="width:650px;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                        <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                                    </div>
+                                    <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
+                                        <fieldset class="for-panel">
+                                            <legend>Upload</legend>
+                                            <div class="row">
+
+                                                <div class="col-sm-3" style="width: 40%;">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">Photo:</label>
+                                                    </div>
+                                                </div>
+                                                <input id="uploadCIRMMedicineAvailableOnBoard" name="upload" type="file" />
+                                                <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMMedicineAvailableOnBoard','MedicineAvailableOnBoard');" style="width:86px;">Upload</button>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="form-group">
+                                                    <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                                    <input type="hidden" id="hdnPathCIRMMedicineAvailableOnBoard" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <label class="hidden" id="lblSuccMsgCIRMMedicineAvailableOnBoard"></label>
+                                        <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
+                                        @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <input type="checkbox" name="uploaddocJoiningMedical" id="uploaddocJoiningMedical" value="1" onclick="myFunctionJoiningMedical()"> Upload Joining Report<br />
+                        <div id="myModalJoiningMedical" style="display:none">
+                            <div class="modal-dialog" style="width:650px;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                        <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                                    </div>
+                                    <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
+                                        <fieldset class="for-panel">
+                                            <legend>Upload</legend>
+                                            <div class="row">
+
+                                                <div class="col-sm-3" style="width: 40%;">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">Photo:</label>
+                                                    </div>
+                                                </div>
+                                                <input id="uploadCIRMJoiningMedical" name="upload" type="file" />
+                                                <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMJoiningMedical','JoiningMedical');" style="width:86px;">Upload</button>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="form-group">
+                                                    <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                                    <input type="hidden" id="hdnPathCIRMJoiningMedical" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <label class="hidden" id="lblSuccMsgCIRMJoiningMedical"></label>
+                                        <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
+                                        @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <input type="checkbox" name="uploaddocMedicalHistoryUpload" id="uploaddocMedicalHistoryUpload" value="1" onclick="myFunctionMedicalHistoryUpload()"> Upload Medical History<br />
                         <div id="myModalMedicalHistoryUpload" style="display:none">
                             <div class="modal-dialog" style="width:650px;">
                                 <div class="modal-content">
@@ -548,19 +894,21 @@
                                                         <label class="col-xs-5 control-label">Photo:</label>
                                                     </div>
                                                 </div>
-                                                <input id="upload" name="upload" type="file" />
-                                                <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
+                                                <input id="uploadCIRMMedicalHistory" name="upload" type="file" />
+                                                <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMMedicalHistory','MedicalHistory');" style="width:86px;">Upload</button>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="form-group">
                                                     <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                                    <input type="hidden" id="hdnPathCIRMMedicalHistory" class="form-control" />
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </div>
                                     <div class="modal-footer">
+                                        <label class="hidden" id="lblSuccMsgCIRMMedicalHistory"></label>
                                         <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
                                         @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
                                     </div>
@@ -568,7 +916,7 @@
                             </div>
                         </div>
 
-                        <input type="checkbox" name="uploaddocWorkAndRestHourLatestRecord" id="uploaddocWorkAndRestHourLatestRecord" value="1" onclick="myFunctionWorkAndRestHourLatestRecord()"> Upload Work And RestHour Latest Record </br>
+                        <input type="checkbox" name="uploaddocWorkAndRestHourLatestRecord" id="uploaddocWorkAndRestHourLatestRecord" value="1" onclick="myFunctionWorkAndRestHourLatestRecord()"> Upload Work And RestHour <br />
                         <div id="myModalWorkAndRestHourLatestRecord" style="display:none">
                             <div class="modal-dialog" style="width:650px;">
                                 <div class="modal-content">
@@ -586,19 +934,21 @@
                                                         <label class="col-xs-5 control-label">Photo:</label>
                                                     </div>
                                                 </div>
-                                                <input id="upload" name="upload" type="file" />
-                                                <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
+                                                <input id="uploadCIRMWorkAndRestHourLatestRecord" name="upload" type="file" />
+                                                <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMWorkAndRestHourLatestRecord','WorkAndRestHourLatestRecord');" style="width:86px;">Upload</button>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="col-sm-3" style="width: 63%;"></div>
                                                 <div class="form-group">
                                                     <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                                    <input type="hidden" id="hdnPathCIRMWorkAndRestHourLatestRecord" class="form-control" />
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </div>
                                     <div class="modal-footer">
+                                        <label class="hidden" id="lblSuccMsgCIRMWorkAndRestHourLatestRecord"></label>
                                         <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
                                         @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
                                     </div>
@@ -606,45 +956,47 @@
                             </div>
                         </div>
 
-                        <input type="checkbox" name="uploaddocPreExistingMedicationPrescription" id="uploaddocPreExistingMedicationPrescription" value="1" onclick="myFunctionPreExistingMedicationPrescription()"> Upload PreExisting Medication Prescription </br>
-                        <div id="myModalPreExistingMedicationPrescription" style="display:none">
-                            <div class="modal-dialog" style="width:650px;">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                        <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
-                                    </div>
-                                    <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
-                                        <fieldset class="for-panel">
-                                            <legend>Upload</legend>
-                                            <div class="row">
+                        @*<input type="checkbox" name="uploaddocPreExistingMedicationPrescription" id="uploaddocPreExistingMedicationPrescription" value="1" onclick="myFunctionPreExistingMedicationPrescription()"> Upload PreExisting Medication Prescription </br>
+                            <div id="myModalPreExistingMedicationPrescription" style="display:none">
+                                <div class="modal-dialog" style="width:650px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                                        </div>
+                                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
+                                            <fieldset class="for-panel">
+                                                <legend>Upload</legend>
+                                                <div class="row">
 
-                                                <div class="col-sm-3" style="width: 40%;">
-                                                    <div class="form-horizontal">
-                                                        <label class="col-xs-5 control-label">Photo:</label>
+                                                    <div class="col-sm-3" style="width: 40%;">
+                                                        <div class="form-horizontal">
+                                                            <label class="col-xs-5 control-label">Photo:</label>
+                                                        </div>
+                                                    </div>
+                                                    <input id="upload" name="upload" type="file" />
+                                                    <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
+                                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                                    <div class="form-group">
+                                                        <input type="hidden" id="PhotoUploadID" class="form-control" />
                                                     </div>
                                                 </div>
-                                                <input id="upload" name="upload" type="file" />
-                                                <button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="form-group">
-                                                    <input type="hidden" id="PhotoUploadID" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
-                                        @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
+                                            </fieldset>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>*@
 
                     </div>
+
+
+                    @*-----------------End--------------Upload Panels----------------------------------------*@
                 </div>
 
                 <div class="col-md-4">
@@ -657,13 +1009,13 @@
                         <input type="text" class="form-control" id="FrequencyOfPain" placeholder="Frequency Of Pain" />
                     </div>
                     @*<div class="form-group">
-                    <span style="font-size:20px;">Upload Pistures:</span>
-                    <br />
-                    <input type="file" name="postedFile" accept="application/pdf,image/gif, image/jpeg" />
-                    <br />
-                    <input type="submit" value="Upload" class="btn btn-warning" />
-                    <br /><br />
-                </div>*@
+                            <span style="font-size:20px;">Upload Pistures:</span>
+                            <br />
+                            <input type="file" name="postedFile" accept="application/pdf,image/gif, image/jpeg" />
+                            <br />
+                            <input type="submit" value="Upload" class="btn btn-warning" />
+                            <br /><br />
+                        </div>*@
                 </div>
 
                 <div class="col-md-4">
@@ -689,8 +1041,8 @@
                         &nbsp; &nbsp; &nbsp;
                     </div>
                     @*<div class="form-group">
-                    <button type="button" class="button1" id="btnAdd" onclick="return SaveCIRM();">Add</button>
-                </div>*@
+                            <button type="button" class="button1" id="btnAdd" onclick="return SaveCIRM();">Add</button>
+                        </div>*@
                 </div>
             </div>
 
@@ -702,13 +1054,13 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="Email"></label>
-                        <input type="text" class="form-control" style="width:90%;" id="CirmEmail" placeholder="telesoccorso@cirm.it" disabled/>
-                    </div>
-                    <button type="button" class="button1" id="" onclick="SendMail()">Send</button>
-                </div>
+                @*<div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Email"></label>
+                            <input type="text" class="form-control" style="width:90%;" id="CirmEmail" placeholder="telesoccorso@cirm.it" disabled />
+                        </div>
+                        <button type="button" class="button1" id="" onclick="SendMail()">Send</button>
+                    </div>*@
 
                 <div class="col-md-4">
                     <div class="form-group">
@@ -952,16 +1304,16 @@
                                         <div class="form-horizontal">
                                             <label class="col-xs-5 control-label">Photo:</label>
                                             @*<div>
-                                            @using (Html.BeginForm("MedicalTreatment", "CrewHealth", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                            {
-                                                <span>Select File:</span>
-                                                <input type="file" name="postedFile" />
-                                                <hr />
-                                                <input type="submit" value="Upload" />
-                                                <br />
-                                                <span style="color:green">@ViewBag.Message</span>
-                                            }
-                                        </div>*@
+                                                    @using (Html.BeginForm("MedicalTreatment", "CrewHealth", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                    {
+                                                        <span>Select File:</span>
+                                                        <input type="file" name="postedFile" />
+                                                        <hr />
+                                                        <input type="submit" value="Upload" />
+                                                        <br />
+                                                        <span style="color:green">@ViewBag.Message</span>
+                                                    }
+                                                </div>*@
                                         </div>
                                     </div>
 
@@ -1085,6 +1437,11 @@
 
         $(document).ready(function () {
 
+            //-------Added On 4th Jan 2022-------------------------------
+            GetVesselTypeForDrp();
+            GetShip();
+            //----End---Added On 4th Jan 2022-------------------------------
+
             SetUpGrid();
             //GetCrewForCIRMPatientDetails();
 
@@ -1093,6 +1450,8 @@
 
             $('#FrequencyOfVomiting').hide();
             $('#FrequencyOfFits').hide();
+            $('#FrequencyOfGiddiness').hide();
+            $('#FrequencyOfLethargy').hide();
 
             $('#btnUploadJoiningMedical').hide();
             $('#btnMedicineAvailableOnBoard').hide();
@@ -1103,15 +1462,65 @@
             $('#btnUploadPistures').hide();
         });
 
+        //----------Added on 4th Jan 2022--------Vessel Details Part-------
+
+        $('#VesselTypeID').on('change', function () {
+            //alert($('option:selected', this).text());
+
+            var VesselTypeID = $('#VesselTypeID').val();
+            console.log('hi');
+            console.log(VesselTypeID);
+
+            GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
+        });
+
+        $('#VesselSubTypeID').on('change', function () {
+            //alert($('option:selected', this).text());
+
+            var VesselSubTypeID = $('#VesselSubTypeID').val();
+            //console.log('hi');
+            //console.log(VesselSubTypeID);
+
+            GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
+
+        });
+
+        $("#DateOfReportingGMT").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+
+        $("#ETADateGMT").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+
+        $("#NearestPortETADateGMT").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+
+        //-----End Added on 4th Jan 2022-------
+
+
         $('#ddlCrew').on('change', function () {
             //alert($('option:selected', this).text());
 
             var ID = $('#ddlCrew').val();
-            console.log('hi');
-            console.log(ID);
+            //console.log('hi');
+            //console.log(ID);
 
             GetCrewForCIRMPatientDetailsByCrew(ID);
-
+            GetCIRMDetailsByCrew(ID);
             //$('#btnUploadJoiningMedical').show();
             //$('#btnMedicineAvailableOnBoard').show();
             //$('#btnMedicalEquipmentOnBoard').show();
@@ -1122,11 +1531,33 @@
         });
 
         $('#Vomiting').change(function () {
-            $('#FrequencyOfVomiting').show();
+            //if(this)
+            var s = this;
+            if (this.options[this.selectedIndex].text == "Yes")
+                $('#FrequencyOfVomiting').show();
+            else
+                $('#FrequencyOfVomiting').hide();
         });
 
         $('#Fits').change(function () {
-            $('#FrequencyOfFits').show();
+            if (this.options[this.selectedIndex].text == "Yes")
+                $('#FrequencyOfFits').show();
+            else
+                $('#FrequencyOfFits').hide();
+        });
+
+        $('#Giddiness').change(function () {
+            if (this.options[this.selectedIndex].text == "Yes")
+                $('#FrequencyOfGiddiness').show();
+            else
+                $('#FrequencyOfGiddiness').hide();
+        });
+
+        $('#Lethargy').change(function () {
+            if (this.options[this.selectedIndex].text == "Yes")
+                $('#FrequencyOfLethargy').show();
+            else
+                $('#FrequencyOfLethargy').hide();
         });
 
 
@@ -1137,7 +1568,13 @@
             dateFormat: 'd-M-yy',
 
         });
+        $("#VitalStatisticsDate").datepicker({
 
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
         $("#SymptomatologyDate").datepicker({
 
             changeMonth: true,

@@ -367,6 +367,10 @@ namespace TM.RestHour.BL
             return crew.GetAllowPsychology(CrewID, VesselID);
         }
 
-
+        public int UpdateCrewServiceEndDate(int ID, DateTime signOffDate)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.UpdateCrewServiceEndDate(ID, signOffDate);
+        }
     }
 }

@@ -16,7 +16,7 @@ using System.Configuration;
 
 using System.Net;
 using System.Net.Mail;
-
+using TM.Base.Common;
 
 
 namespace TM.RestHour.Controllers
@@ -132,6 +132,17 @@ namespace TM.RestHour.Controllers
             vesselDetailsPC.Sea = vesselDetails.Sea;
             vesselDetailsPC.Visibility = vesselDetails.Visibility;
             vesselDetailsPC.Swell = vesselDetails.Swell;
+
+
+
+            vesselDetailsPC.PortOfRegistry = vesselDetails.PortOfRegistry;
+            vesselDetailsPC.HelicopterDeck = vesselDetails.HelicopterDeck;
+            vesselDetailsPC.HelicopterWinchingArea = vesselDetails.HelicopterWinchingArea;
+            vesselDetailsPC.Length = vesselDetails.Length;
+            vesselDetailsPC.Breadth = vesselDetails.Breadth;
+            vesselDetailsPC.PAndIClub = vesselDetails.PAndIClub;
+            vesselDetailsPC.PAndIClubOther = vesselDetails.PAndIClubOther;
+            vesselDetailsPC.ContactDetails = vesselDetails.ContactDetails;
 
             return Json(vesselDetailsBL.SaveVesselDetails(vesselDetailsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
         }
@@ -352,9 +363,9 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
-                equipments.Comment = equipmentsPC.Comment;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
+                equipments.Unit = equipmentsPC.Unit;
+                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -802,7 +813,6 @@ namespace TM.RestHour.Controllers
 
         }
 
-        
         public JsonResult SaveCIRM(CIRMPOCO cIRM)
         {
             CIRMBL CIRMBL = new CIRMBL();
@@ -818,98 +828,6 @@ namespace TM.RestHour.Controllers
             //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
 
             return Json(CIRMBL.SaveCIRM(cIRM, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-        }
-        /// <summary>
-        /// Added on 8th Jan 2022 @BK
-        /// Not Completed
-        /// </summary>
-        /// <param name="cirm"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public JsonResult SaveCIRMDetails(CIRM cirm)
-        {
-            CIRMBL CIRMBL = new CIRMBL();
-            CIRMPOCO CIRMPC = new CIRMPOCO();
-
-            CIRMPC.CIRMId = cirm.CIRMId;
-            CIRMPC.CrewId = cirm.CrewId;
-            CIRMPC.NameOfVessel = cirm.NameOfVessel;
-            CIRMPC.RadioCallSign = cirm.RadioCallSign;
-            CIRMPC.PortofDeparture = cirm.PortofDeparture;
-            CIRMPC.PortofDestination = cirm.PortofDestination;
-            CIRMPC.LocationOfShip = cirm.LocationOfShip;
-            CIRMPC.NameOfVessel = cirm.NameOfVessel;
-            CIRMPC.RadioCallSign = cirm.RadioCallSign;
-            CIRMPC.PortofDeparture = cirm.PortofDeparture;
-            CIRMPC.PortofDestination = cirm.PortofDestination;
-            CIRMPC.LocationOfShip = cirm.LocationOfShip;
-            CIRMPC.EstimatedTimeOfarrivalhrs = cirm.EstimatedTimeOfarrivalhrs;
-            CIRMPC.Speed = cirm.Speed;
-            CIRMPC.Weather = cirm.Weather;
-            CIRMPC.AgentDetails = cirm.AgentDetails;
-
-            CIRMPC.Nationality = cirm.Nationality;
-            CIRMPC.Qualification = cirm.Qualification;
-            CIRMPC.Age = cirm.Age;
-            CIRMPC.Addiction = cirm.Addiction;
-            CIRMPC.Frequency = cirm.Frequency;
-            CIRMPC.Ethinicity = cirm.Ethinicity;
-            CIRMPC.RankID = cirm.RankID;
-            CIRMPC.Sex = cirm.Sex;
-            CIRMPC.Category = cirm.Category;
-            CIRMPC.SubCategory = cirm.SubCategory;
-
-            CIRMPC.WhereAndHowAccidentOccured = cirm.WhereAndHowAccidentOccured;
-            CIRMPC.LocationAndTypeOfInjuryOrBurn = cirm.LocationAndTypeOfInjuryOrBurn;
-            CIRMPC.FrequencyOfPain = cirm.FrequencyOfPain;
-            CIRMPC.FirstAidGiven = cirm.FirstAidGiven;
-            CIRMPC.PercentageOfBurn = cirm.PercentageOfBurn;
-
-            VitalStatisticsPOCO vPoco = new VitalStatisticsPOCO();
-            vPoco.ObservationDate = cirm.VitalStatistics.ObservationDate;
-            vPoco.ObservationTime = cirm.VitalStatistics.ObservationTime;
-            vPoco.Pulse = cirm.VitalStatistics.Pulse;
-            vPoco.RespiratoryRate = cirm.VitalStatistics.RespiratoryRate;
-            vPoco.OxygenSaturation = cirm.VitalStatistics.OxygenSaturation;
-            vPoco.Himoglobin = cirm.VitalStatistics.Himoglobin;
-            vPoco.Creatinine = cirm.VitalStatistics.Creatinine;
-            vPoco.Bilirubin = cirm.VitalStatistics.Bilirubin;
-            vPoco.Temperature = cirm.VitalStatistics.Temperature;
-            vPoco.Systolic = cirm.VitalStatistics.Systolic;
-            vPoco.Diastolic = cirm.VitalStatistics.Diastolic;
-            vPoco.Fasting = cirm.VitalStatistics.Fasting;
-            vPoco.Regular = cirm.VitalStatistics.Regular;
-
-
-
-
-            return Json(CIRMBL.SaveCIRM(CIRMPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Added on 11th Jan 2022 @BK
-        /// </summary>
-        /// <param name="cIRM"></param>
-        /// <returns></returns>
-        [HttpPost]
-       
-        public JsonResult SaveCIRMVitalParams(VitalStatisticsPOCO vitaPoco)
-        {
-            CIRMBL CIRMBL = new CIRMBL();
-            return Json(CIRMBL.SaveCIRMVitalParams(vitaPoco), JsonRequestBehavior.AllowGet);
-
-            //return Json("", JsonRequestBehavior.AllowGet);
-        }
-        /// <summary>
-        /// Added on 11th Jan 2022 @BK
-        /// </summary>
-        /// <param name="cIRM"></param>
-        /// <returns></returns>
-        public JsonResult SaveCIRMSymtomology(MedicalSymtomologyPOCO symPoco)
-        {
-            CIRMBL CIRMBL = new CIRMBL();
-            return Json(CIRMBL.SaveCIRMSymtomology(symPoco), JsonRequestBehavior.AllowGet);
-            //return Json("", JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SaveCrewTemperature(CrewTemperaturePOCO crewTemperature)
@@ -1192,6 +1110,22 @@ namespace TM.RestHour.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public JsonResult GetCrewTemperaturePageWise()
         {
             int draw, start, length;
@@ -1309,6 +1243,15 @@ namespace TM.RestHour.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         #region Upload Section
         public JsonResult UploadCrewHealthImage(string crewId)
@@ -1415,9 +1358,9 @@ namespace TM.RestHour.Controllers
                 string FileExtension = Path.GetExtension(postedFile.FileName);
                 fileName = fileName + FileExtension;
 
-                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif" && FileExtension != ".jpg" && FileExtension != ".png")
+                if (FileExtension != ".pdf" && FileExtension != ".jpeg" && FileExtension != ".gif")
                 {
-                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpeg/gif/png";
+                    ViewBag.UploadMessage = "You can only upload files of type pdf/jpef/gif";
                     return View();
                 }
 
@@ -1883,74 +1826,6 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
-        [HttpPost]
-        public JsonResult UploadCIRMPatientMediclImages(string crewId,string fileType)
-        {
-            if (Request.Files.Count > 0)
-            {
-                try
-                {
-                    List<string> returnMsg = new List<string>();
-                    string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
-                    fileName = "CIRM" + "_" + fileType + "_" + crewId;
-
-
-                    //  Get all files from Request object  
-                    HttpFileCollectionBase files = Request.Files;
-                    for (int i = 0; i < files.Count; i++)
-                    {
-
-                        HttpPostedFileBase file = files[i];
-                        string fname;
-                        string extn;
-
-                        // Checking for Internet Explorer  
-                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
-                        {
-                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
-                            fname = testfiles[testfiles.Length - 1];
-                            extn = Path.GetExtension(fname);
-                        }
-                        else
-                        {
-                            fname = file.FileName;
-                            extn = Path.GetExtension(file.FileName);
-                        }
-                        string path = Server.MapPath(ConfigurationManager.AppSettings["CIRMPatientMedicalImagesPath"].ToString());
-                        string filePath = ConfigurationManager.AppSettings["CIRMPatientMedicalImagesPath"].ToString();
-                        if (!Directory.Exists(path))
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-                        if (System.IO.File.Exists(path + fileName))
-                        {
-                            System.IO.File.Delete(path + fileName);
-                        }
-                        fileName = fileName + extn;
-                        // Get the complete folder path and store the file inside it.  
-                        string fnameWithServerPath = Path.Combine(path, fileName);
-                        string fnameWithPath = Path.Combine(filePath, fileName);
-                        file.SaveAs(fnameWithServerPath);
-                        returnMsg.Add(fnameWithPath);
-
-                    }
-
-                    returnMsg.Add(fileType +" File Uploaded Successfully!");
-
-
-                    return Json(returnMsg, JsonRequestBehavior.AllowGet);
-                }
-                catch (Exception ex)
-                {
-                    return Json("Error occurred. Error details: " + ex.Message);
-                }
-            }
-            else
-            {
-                return Json("No files selected.");
-            }
-        }
-
 
         #endregion
 
@@ -2007,177 +1882,8 @@ namespace TM.RestHour.Controllers
             return Json(cm, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Added on 7th Jan 2022 @BK
-        /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public JsonResult GetCIRMPatientDetailsByCrew(int ID)
-        {
-            CIRMBL cirmBL = new CIRMBL();
-            ShipPOCO shipPC = new ShipPOCO();
-            CIRMPOCO cirmPoco = new CIRMPOCO();
-            VitalStatisticsPOCO cirmVitalsPoco = new VitalStatisticsPOCO();
-            MedicalSymtomologyPOCO cirmSymtomologyPoco = new MedicalSymtomologyPOCO();
-            CIRM cirm = new CIRM();
-            VitalStatistics cirmVitals = new VitalStatistics();
-            MedicalSymtomology cirmSymtomology = new MedicalSymtomology();
-            //shipPC = cirmBL.GetCIRMPatientDetailsByCrew(ID, int.Parse(Session["VesselID"].ToString()));
-
-            cirmPoco = cirmBL.GetCIRMPatientDetailsByCrew(ID, int.Parse(Session["VesselID"].ToString()));
-
-            if(cirmPoco.CIRMId > 0)
-            {
-                cirmVitalsPoco = cirmBL.GetVitalStatisticsByCIRM(cirmPoco.CIRMId).OrderByDescending(c => c.ID).FirstOrDefault();
-                cirmSymtomologyPoco = cirmBL.GetMedicalSymtomologyByCIRM(cirmPoco.CIRMId).OrderByDescending(c => c.ID).FirstOrDefault();
-
-            }
-
-            #region -- CIRM--
-            cirm.CIRMId = cirmPoco.CIRMId;
-            
-
-            #region Vessel Details
-            cirm.VesselId = cirmPoco.VesselId;
-
-            cirm.NameOfVessel = cirmPoco.NameOfVessel;
-            cirm.RadioCallSign = cirmPoco.RadioCallSign;
-            cirm.PortofDeparture = cirmPoco.PortofDeparture;
-            cirm.PortofDestination = cirmPoco.PortofDestination;
-            cirm.Route = cirmPoco.Route;
-            cirm.LocationOfShip = cirmPoco.LocationOfShip;
-            cirm.EstimatedTimeOfarrivalhrs = cirmPoco.EstimatedTimeOfarrivalhrs;
-            cirm.Speed = cirmPoco.Speed;
-            cirm.Weather = cirmPoco.Weather;
-            cirm.AgentDetails = cirmPoco.AgentDetails;
-            #endregion
-
-            #region Crew Details 
-            cirm.CrewId = cirmPoco.CrewId;
-            cirm.Nationality = cirmPoco.Nationality;
-            cirm.Qualification = cirmPoco.Qualification;
-            cirm.Addiction = cirmPoco.Addiction;
-            cirm.Ethinicity = cirmPoco.Ethinicity;
-            cirm.Frequency = cirmPoco.Frequency;
-            cirm.Sex = cirmPoco.Sex;
-            cirm.Age = cirmPoco.Age;
-            cirm.JoiningDate = cirmPoco.JoiningDate;
-
-            #endregion
-
-            #region Others 
-            cirm.LocationAndTypeOfPain = cirmPoco.LocationAndTypeOfPain;
-            cirm.WhereAndHowAccidentIsCausedCHK = cirmPoco.WhereAndHowAccidentIsCausedCHK;
-            cirm.UploadMedicalHistory = cirmPoco.UploadMedicalHistory;
-            cirm.UploadMedicinesAvailable = cirmPoco.UploadMedicinesAvailable;
-            cirm.MedicalProductsAdministered = cirmPoco.MedicalProductsAdministered;
-            cirm.WhereAndHowAccidentIsausedARA = cirmPoco.WhereAndHowAccidentIsausedARA;
-
-            cirm.IsEquipmentUploaded = cirmPoco.IsEquipmentUploaded;
-            cirm.IsJoiningReportUloaded = cirmPoco.IsJoiningReportUloaded;
-            cirm.IsMedicalHistoryUploaded = cirmPoco.IsMedicalHistoryUploaded;
-            cirm.IsmedicineUploaded = cirmPoco.IsmedicineUploaded;
-            
-            cirm.Category = cirmPoco.Category;
-            cirm.SubCategory = cirmPoco.SubCategory;
 
 
-
-            #endregion
-
-            #region Past Medical History
-            cirm.PastMedicalHistory = cirmPoco.PastMedicalHistory;
-            cirm.PastTreatmentGiven = cirmPoco.PastTreatmentGiven;
-            cirm.PastRemarks = cirmPoco.PastRemarks;
-            cirm.PastMedicineAdministered = cirmPoco.PastMedicineAdministered;
-            cirm.PastTeleMedicalAdviceReceived = cirmPoco.PastTeleMedicalAdviceReceived;
-            cirm.PastMedicalHistoryPath = cirmPoco.PastMedicalHistoryPath;
-
-            #endregion
-
-            #region Incase of Accident
-            cirm.WhereAndHowAccidentOccured = cirmPoco.WhereAndHowAccidentOccured;
-            cirm.LocationAndTypeOfInjuryOrBurn = cirmPoco.LocationAndTypeOfInjuryOrBurn;
-            cirm.FrequencyOfPain = cirmPoco.FrequencyOfPain;
-            cirm.FirstAidGiven = cirmPoco.FirstAidGiven;
-            cirm.PercentageOfBurn = cirmPoco.PercentageOfBurn;
-
-            cirm.PictureUploadPath = cirmPoco.PictureUploadPath;
-
-            #endregion
-
-            #region Severity of Pains
-            cirm.NoHurt = cirmPoco.NoHurt;
-            cirm.HurtLittleBit = cirmPoco.HurtLittleBit;
-            cirm.HurtsLittleMore = cirmPoco.HurtsLittleMore;
-            cirm.HurtsEvenMore = cirmPoco.HurtsEvenMore;
-            cirm.HurtsWholeLot = cirmPoco.HurtsWholeLot;
-            cirm.HurtsWoest = cirmPoco.HurtsWoest;
-            cirm.SeverityOfPain = cirmPoco.SeverityOfPain;
-            #endregion
-
-            #region Upload images
-            cirm.JoiningMedical = cirmPoco.JoiningMedical;
-            cirm.JoiningMedicalPath = cirmPoco.JoiningMedicalPath;
-            cirm.MedicineAvailableOnBoard = cirmPoco.MedicineAvailableOnBoard;
-            cirm.MedicineAvailableOnBoardPath = cirmPoco.MedicineAvailableOnBoardPath;
-            cirm.MedicalEquipmentOnBoard = cirmPoco.MedicalEquipmentOnBoard;
-            cirm.MedicalEquipmentOnBoardPath = cirmPoco.MedicalEquipmentOnBoardPath;
-            cirm.MedicalHistoryUpload = cirmPoco.MedicalHistoryUpload;
-            cirm.MedicalHistoryPath = cirmPoco.MedicalHistoryPath;
-            cirm.WorkAndRestHourLatestRecord = cirmPoco.WorkAndRestHourLatestRecord;
-            cirm.WorkAndRestHourLatestRecordPath = cirmPoco.WorkAndRestHourLatestRecordPath;
-            cirm.PreExistingMedicationPrescription = cirmPoco.PreExistingMedicationPrescription;
-            #endregion
-
-            #endregion
-
-            #region -- Vital Params--
-            cirmVitals.ID = cirmVitalsPoco.ID;
-            cirmVitals.CIRMId = cirmVitalsPoco.CIRMId;
-            cirmVitals.ObservationDate = cirmVitalsPoco.ObservationDate;
-            cirmVitals.ObservationTime = cirmVitalsPoco.ObservationTime;
-            cirmVitals.Pulse = cirmVitalsPoco.Pulse;
-            cirmVitals.RespiratoryRate = cirmVitalsPoco.RespiratoryRate;
-            cirmVitals.OxygenSaturation = cirmVitalsPoco.OxygenSaturation;
-            cirmVitals.Himoglobin = cirmVitalsPoco.Himoglobin;
-            cirmVitals.Creatinine = cirmVitalsPoco.Creatinine;
-            cirmVitals.Bilirubin = cirmVitalsPoco.Bilirubin;
-            cirmVitals.Temperature = cirmVitalsPoco.Temperature;
-            cirmVitals.Systolic = cirmVitalsPoco.Systolic;
-            cirmVitals.Diastolic = cirmVitalsPoco.Diastolic;
-            cirmVitals.Fasting = cirmVitalsPoco.Fasting;
-            cirmVitals.Regular = cirmVitalsPoco.Regular;
-            #endregion
-
-
-            #region -- Medical Symtomology --
-
-            cirmSymtomology.ID                          = cirmSymtomologyPoco.ID;
-            cirmSymtomology.CIRMId = cirmSymtomologyPoco.CIRMId;
-            cirmSymtomology.ObservationDate = cirmSymtomologyPoco.ObservationDate;
-            cirmSymtomology.ObservationTime = cirmSymtomologyPoco.ObservationTime;
-            cirmSymtomology.Vomiting = cirmSymtomologyPoco.Vomiting;
-            cirmSymtomology.FrequencyOfVomiting = cirmSymtomologyPoco.FrequencyOfVomiting;
-            cirmSymtomology.Fits = cirmSymtomologyPoco.Fits;
-            cirmSymtomology.FrequencyOfFits = cirmSymtomologyPoco.FrequencyOfFits;
-            cirmSymtomology.Giddiness = cirmSymtomologyPoco.Giddiness;
-            cirmSymtomology.FrequencyOfGiddiness = cirmSymtomologyPoco.FrequencyOfGiddiness;
-            cirmSymtomology.Lethargy = cirmSymtomologyPoco.Lethargy;
-            cirmSymtomology.FrequencyOfLethargy = cirmSymtomologyPoco.FrequencyOfLethargy;
-            cirmSymtomology.SymptomologyDetails = cirmSymtomologyPoco.SymptomologyDetails;
-            cirmSymtomology.MedicinesAdministered = cirmSymtomologyPoco.MedicinesAdministered;
-            cirmSymtomology.AnyOtherRelevantInformation = cirmSymtomologyPoco.AnyOtherRelevantInformation;
-
-            #endregion
-
-            cirm.VitalStatistics = cirmVitals;
-            cirm.Symtomology = cirmSymtomology;          
-
-
-            return Json(cirm, JsonRequestBehavior.AllowGet);
-        }
 
 
 
@@ -2667,586 +2373,6 @@ namespace TM.RestHour.Controllers
                 return di.GetFiles(name+".*")[0].Name;
             
         }
-        /// <summary>
-        /// Added on 12th Jan 2022
-        /// Call Ajax method in CIRMjs refered in PatientDetails under CrewHealth
-        /// </summary>
-        /// <param name="cirmId"></param>
-        /// <returns></returns>
-        public JsonResult LoadCIRMVitalParamsData(string cirmId)
-        {
-            
-            int draw, start, length;
-            int pageIndex = 0;
-
-            if (null != Request.Form.GetValues("draw"))
-            {
-                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
-                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
-                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
-            }
-            else
-            {
-                draw = 1;
-                start = 0;
-                length = 500;
-            }
-
-            if (start == 0)
-            {
-                pageIndex = 1;
-            }
-            else
-            {
-                pageIndex = (start / length) + 1;
-            }
-
-            CIRMBL bL = new CIRMBL();
-            int totalrecords = 0;
-
-            List<VitalStatisticsPOCO> pocoList = new List<VitalStatisticsPOCO>();
-            pocoList = bL.GetAllCIRMVitalParamsPageWise(pageIndex, ref totalrecords, length,  Convert.ToInt32(cirmId));
-            
-            var data = pocoList;
-            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
-        }
-        /// <summary>
-        /// Added on 12th Jan 2022
-        /// Call Ajax method in CIRMjs refered in PatientDetails under CrewHealth
-        /// </summary>
-        /// <param name="cirmId"></param>
-        /// <returns></returns>
-        public JsonResult LoadCIRMSymtomologyData(string cirmId)
-        {
-            
-            int draw, start, length;
-            int pageIndex = 0;
-
-            if (null != Request.Form.GetValues("draw"))
-            {
-                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
-                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
-                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
-            }
-            else
-            {
-                draw = 1;
-                start = 0;
-                length = 500;
-            }
-
-            if (start == 0)
-            {
-                pageIndex = 1;
-            }
-            else
-            {
-                pageIndex = (start / length) + 1;
-            }
-
-            CIRMBL bL = new CIRMBL(); 
-            int totalrecords = 0;
-
-            List<MedicalSymtomologyPOCO> pocoList = new List<MedicalSymtomologyPOCO>();
-            pocoList = bL.GetAllCIRMSymtomologyPageWise(pageIndex, ref totalrecords, length, Convert.ToInt32(cirmId));
-            
-            var data = pocoList;
-            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public JsonResult SendCIRMMail(CrewHealthDetails crewHealthDetails,string cirmId)
-        {
-            CrewBL crewBl = new CrewBL();
-            String path = Server.MapPath("~/");
-            StringBuilder mailBody = new StringBuilder();
-
-            CIRMBL cirmBL = new CIRMBL();
-            ShipPOCO shipPC = new ShipPOCO();
-            CIRMPOCO cirmPoco = new CIRMPOCO();
-            VitalStatisticsPOCO cirmVitalsPoco = new VitalStatisticsPOCO();
-            MedicalSymtomologyPOCO cirmSymtomologyPoco = new MedicalSymtomologyPOCO();
-
-            List<VitalStatisticsPOCO> cirmVitalsPocoList = new List<VitalStatisticsPOCO>();
-            List<MedicalSymtomologyPOCO> cirmSymtomologyPocoList = new List<MedicalSymtomologyPOCO>();
-            CIRM cirm = new CIRM();
-
-            cirmPoco = cirmBL.GetCIRMPatientDetailsByCrew(crewHealthDetails.ID, int.Parse(Session["VesselID"].ToString()));
-
-            if (cirmPoco.CIRMId > 0)
-            {
-                cirmVitalsPocoList = cirmBL.GetVitalStatisticsByCIRM(cirmPoco.CIRMId);
-                cirmSymtomologyPocoList = cirmBL.GetMedicalSymtomologyByCIRM(cirmPoco.CIRMId);
-                
-
-            }
-            cirmPoco.VitalStatisticsList = cirmVitalsPocoList;
-            cirmPoco.SymtomologyList = cirmSymtomologyPocoList;
-
-
-            try
-            {
-                string s = GenerateCIRMEmailBody(crewHealthDetails,cirmPoco);
-                mailBody.Append(s);
-                using (MailMessage mail = new MailMessage())
-                {
-
-                    mail.From = new MailAddress(crewBl.GetConfigData("shipemail"));
-                    mail.To.Add(crewHealthDetails.DoctorsMail);//----
-
-                    mail.Subject = "Patient's Description";
-                    mail.Body = mailBody.ToString();
-                    mail.IsBodyHtml = true;
-                    string cerwHealthaimgPath = Server.MapPath(ConfigurationManager.AppSettings["CrewHealthImagesPath"].ToString());
-                    if (FileExistInDirectory(cerwHealthaimgPath, "CrewHealthImages_" + cirmPoco.CrewId))
-                    {
-                        mail.Attachments.Add(new Attachment(cerwHealthaimgPath + "\\" + GetFileName(cerwHealthaimgPath, "CrewHealthImages_" + cirmPoco.CrewId)));
-                    }
-                    string cirmMedicalImgPath = Server.MapPath(ConfigurationManager.AppSettings["CIRMPatientMedicalImagesPath"].ToString());
-                    if (Convert.ToBoolean(cirmPoco.JoiningMedical))
-                    {
-                        if (FileExistInDirectory(cirmMedicalImgPath, "CIRM_JoiningMedical_" + cirmPoco.CrewId))
-                        {
-                            mail.Attachments.Add(new Attachment(cirmMedicalImgPath + "\\" + GetFileName(cirmMedicalImgPath, "CIRM_JoiningMedical_" + cirmPoco.CrewId)));
-                        }
-                    }
-                    if (Convert.ToBoolean(cirmPoco.MedicineAvailableOnBoard))
-                    {
-                        if (FileExistInDirectory(cirmMedicalImgPath, "CIRM_MedicineAvailableOnBoard_" + cirmPoco.CrewId))
-                        {
-                            mail.Attachments.Add(new Attachment(cirmMedicalImgPath + "\\" + GetFileName(cirmMedicalImgPath, "CIRM_MedicineAvailableOnBoard_" + cirmPoco.CrewId)));
-                        }
-                    }
-                    if (Convert.ToBoolean(cirmPoco.MedicalEquipmentOnBoard))
-                    {
-                        if (FileExistInDirectory(cirmMedicalImgPath, "CIRM_MedicalEquipmentOnBoard_" + cirmPoco.CrewId))
-                        {
-                            mail.Attachments.Add(new Attachment(cirmMedicalImgPath + "\\" + GetFileName(cirmMedicalImgPath, "CIRM_MedicalEquipmentOnBoard_" + cirmPoco.CrewId)));
-                        }
-                    }
-                    if (Convert.ToBoolean(cirmPoco.MedicalHistoryUpload))
-                    {
-                        if (FileExistInDirectory(cirmMedicalImgPath, "CIRM_MedicalHistoryUpload_" + cirmPoco.CrewId))
-                        {
-                            mail.Attachments.Add(new Attachment(cirmMedicalImgPath + "\\" + GetFileName(cirmMedicalImgPath, "CIRM_MedicalHistoryUpload_" + cirmPoco.CrewId)));
-                        }
-                    }
-                    if (Convert.ToBoolean(cirmPoco.WorkAndRestHourLatestRecord))
-                    {
-                        if (FileExistInDirectory(cirmMedicalImgPath, "CIRM_WorkAndRestHourLatestRecord_" + cirmPoco.CrewId))
-                        {
-                            mail.Attachments.Add(new Attachment(cirmMedicalImgPath + "\\" + GetFileName(cirmMedicalImgPath, "CIRM_WorkAndRestHourLatestRecord_" + cirmPoco.CrewId)));
-                        }
-                    }
-
-                    string existingPrescriptionPath = Server.MapPath(ConfigurationManager.AppSettings["PreExistingMedicationPrescriptionUploadPath"].ToString());
-                    if (FileExistInDirectory(existingPrescriptionPath, "PreExistingMedicationPrescription_" + cirmPoco.CrewId))
-                    {
-                        mail.Attachments.Add(new Attachment(existingPrescriptionPath + "\\" + GetFileName(existingPrescriptionPath, "PreExistingMedicationPrescription_" + cirmPoco.CrewId)));
-                    }
-
-                    SmtpClient smtp = new SmtpClient(crewBl.GetConfigData("smtp"));
-                    smtp.EnableSsl = true;
-                    smtp.Port = int.Parse(crewBl.GetConfigData("port"));
-
-                    smtp.Credentials = new System.Net.NetworkCredential(crewBl.GetConfigData("shipemail").Trim(), crewBl.GetConfigData("shipemailpwd").Trim());
-
-                    smtp.Send(mail);
-                }
-                return Json("Send Mail Succesfully!", JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-
-                return Json("Mail send failed - {0}", JsonRequestBehavior.AllowGet);
-            }
-
-
-        }
-        public string GenerateCIRMEmailBody(CrewHealthDetails crewHealthDetails,CIRMPOCO cirm)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<div>");//---main div
-            sb.Append("<div class='head_title'><h1>CIRM - Patient Details</h1></div>");
-            sb.Append("<div class='card bacmt'>");//---Card bacmt
-            sb.Append("<div class='clearfix'></div>");
-
-            #region Vessel Details Part
-            sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row0
-            sb.Append("< h4 > Vessel Details </ h4 >");
-            sb.Append("<div class='col-md-4'>");//---Col4 A
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Vess'>Vessel Name &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.NameOfVessel);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='POD'>Port Of Departure &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.PortofDeparture);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Speed'>Speed (in knots) &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.Speed);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col4 A Close
-
-            sb.Append("<div class='col-md-4'>");//---Col4 B
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Call'>Radio Call Sign &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.RadioCallSign);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='POA'>Port Of Arrival &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.PortofDestination);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Weather'>Weather &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.Weather);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col4 B Close
-
-            sb.Append("<div class='col-md-4'>");//---Col4 B
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Location'>Location Of Ship &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.LocationOfShip);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='ETA'>Estimated Time Of Arrival (hrs) &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.EstimatedTimeOfarrivalhrs);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Agent Details'>Agent Details &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.AgentDetails);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col4 B Close
-
-            sb.Append("</div>");//---row0 Close
-
-            #endregion
-            #region Patient Details ---
-            sb.Append("<div class='clearfix'></div>");
-            sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row1
-            sb.Append("< h4 > Petient Details </ h4 >");
-            sb.Append("<div class='col-md-3'>");//---Col3 A
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Crew'>Crew &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(crewHealthDetails.Name);
-            sb.Append("</div>");
-
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Nationality'>Nationality &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(crewHealthDetails.Nationality);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Addiction'>Addiction &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(crewHealthDetails.Adiction);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col3 A Close
-
-            sb.Append("<div class='col-md-3'>");//---Col3 B
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Rank'>Rank &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(crewHealthDetails.RankName);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Ethinicity'>Ethinicity &nbsp;&nbsp; :</label>");
-            sb.Append(crewHealthDetails.Ethinicity);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Frequency'>Frequency &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(crewHealthDetails.Frequency);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col3 B Close
-
-            sb.Append("<div class='col-md-3'>");//---Col3 C
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Sex'>Sex &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(crewHealthDetails.Sex);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Age'>Date Of Birth &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(crewHealthDetails.DOB.ToString());
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='JoiningDate'>Joining Date &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(crewHealthDetails.JoinDate.ToString());
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col3 C Close
-
-            sb.Append("</div>");//---row1 Close
-
-            #endregion
-
-            #region Type Of Ailment 
-            sb.Append("<div class='clearfix'></div>");
-            sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row2
-            sb.Append("<h4>Type of Ailment </h4>");
-            sb.Append("<div class='col-md-6'>");//---Col6 A
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Category'>Category &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.Category);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col6 A Close
-
-            sb.Append("<div class='col-md-6'>");//---Col6 B
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='SubCategory'>Sub Category &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.SubCategory);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col6 B Close
-
-            sb.Append("</div>");//---row2 Close
-
-            #endregion
-
-            #region Vital Params
-            sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row3
-
-            sb.Append("<table id='CIRMVitalParamstable' style='width: 90 % '>");
-            sb.Append(" <thead><tr><th>ObservationDate/Time</th><th>Puls</th><th>RespiratoryRate</th><th>Himoglobin</th><th>Creatinine</th>");
-            sb.Append("<th>Bilirubin</th><th>Temperature</th><th>Blood Pressure(mmHg)</th><th>Blood Sugar</th></tr></thead>");
-            sb.Append("<tbody>");
-            foreach( VitalStatisticsPOCO vsp in cirm.VitalStatisticsList)
-            {
-                sb.Append("<tr>");
-                sb.Append("<td>");
-                sb.Append(vsp.ObservationDate + "/" + vsp.ObservationTime);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(vsp.Pulse);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(vsp.RespiratoryRate);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(vsp.Himoglobin);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(vsp.Creatinine);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(vsp.Bilirubin);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(vsp.Temperature);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(vsp.Systolic + "/" + vsp.Diastolic);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(vsp.Fasting +"/" + vsp.Regular);
-                sb.Append("</td>");
-                sb.Append("</tr>");
-            }
-            sb.Append("</tbody>");
-            sb.Append("</table>");
-            sb.Append("</div>");//---row3 Close
-            #endregion
-
-            #region Medical Symttomology
-            sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row4
-
-            sb.Append("<table id='myModalCIRMSymtomology' style='width: 90 % '>");
-            sb.Append(" <thead><tr><th>ObservationDate/Time</th><th>Vomiting</th><th>Fits</th><th>Giddiness</th><th>Lethargy</th>");
-            sb.Append("<th>SymptomatologyDetails</th><th>MedicinesAdministered</th><th>AnyOtherRelevantInformation</th></tr></thead>");
-            sb.Append("<tbody>");
-            foreach (MedicalSymtomologyPOCO msp in cirm.SymtomologyList)
-            {
-                sb.Append("<tr>");
-                sb.Append("<td>");
-                sb.Append(msp.ObservationDate + "/" + msp.ObservationTime);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(msp.Vomiting);
-                if (msp.Vomiting == "Yes")
-                {
-                    sb.Append("&nbsp;&nbsp;(" + msp.FrequencyOfVomiting +")");
-                }
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(msp.Fits);
-                if (msp.Vomiting == "Yes")
-                {
-                    sb.Append("&nbsp;&nbsp;(" + msp.FrequencyOfFits + ")");
-                }
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(msp.Giddiness);
-                if (msp.Vomiting == "Yes")
-                {
-                    sb.Append("&nbsp;&nbsp;(" + msp.FrequencyOfGiddiness + ")");
-                }
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(msp.Lethargy);
-                if (msp.Vomiting == "Yes")
-                {
-                    sb.Append("&nbsp;&nbsp;(" + msp.FrequencyOfLethargy + ")");
-                }
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(msp.SymptomologyDetails);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(msp.MedicinesAdministered);
-                sb.Append("</td>");
-                sb.Append("<td>");
-                sb.Append(msp.AnyOtherRelevantInformation );
-                sb.Append("</td>");
-                sb.Append("</tr>");
-            }
-            sb.Append("</tbody>");
-            sb.Append("</table>");
-            sb.Append("</div>");//---row4 Close
-            #endregion
-
-            #region Past Medical History
-
-            sb.Append("<div class='clearfix'></div>");
-            sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row5
-            sb.Append("<h4>Past Medical History</h4>");
-            sb.Append("<div class='col-md-4'>");//---Col4 A
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Category'>Medical Hostory &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.PastMedicalHistory);
-            sb.Append("</div>");
-
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Remarks'>Remarks &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.PastRemarks);
-            sb.Append("</div>");
-           
-            sb.Append("</div>");//---Col4 A Close
-
-            sb.Append("<div class='col-md-4'>");//---Col4 B
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='SubCategory'>Treatment Given &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.PastTreatmentGiven);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Category'>Medicine Administered &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.PastMedicineAdministered);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col4 B Close
-
-            sb.Append("<div class='col-md-4'>");//---Col4 C
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='SubCategory'>Tele Medical Advice Received &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.PastTeleMedicalAdviceReceived);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Category'>Attached File &nbsp;&nbsp; :&nbsp;</label>");
-            if (!String.IsNullOrEmpty(cirm.PastMedicalHistoryPath))
-            {
-                sb.Append("See Attachmenta");
-            }
-            else
-                sb.Append("No Attachment");
-            
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col4 C Close
-
-            sb.Append("</div>");//---row5 Close
-
-            #endregion
-
-            #region Incase of Accident
-
-            sb.Append("<div class='clearfix'></div>");
-            sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row5
-            sb.Append("<h4>Accident</h4>");
-            sb.Append("<div class='col-md-4'>");//---Col4 A
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Category'>Where And How &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.WhereAndHowAccidentOccured);
-            sb.Append("</div>");
-
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Remarks'>Severity Of Pain &nbsp;&nbsp; :&nbsp;</label>");
-            //sb.Append(cirm.PastRemarks);
-            //----------Code Required---------
-            sb.Append("</div>");
-
-            sb.Append("</div>");//---Col4 A Close
-
-            sb.Append("<div class='col-md-4'>");//---Col4 B
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='SubCategory'>Location And Type Of Injury/Burn &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.LocationAndTypeOfInjuryOrBurn);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Category'>Frequency Of Pain &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.FrequencyOfPain);
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col4 B Close
-
-            sb.Append("<div class='col-md-4'>");//---Col4 C
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='SubCategory'>Percentage Of Burn &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.PercentageOfBurn);
-            sb.Append("</div>");
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Category'>First Aid Given &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append(cirm.FirstAidGiven);
-
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col4 C Close
-
-            sb.Append("</div>");//---row5 Close
-
-            #endregion
-
-            #region Document Attached
-            sb.Append("<div class='row' style='border: 1px solid #eee; padding: 10px;'>");//---row6
-            sb.Append("<div class='col-md-4'>");//---Col4 A
-            sb.Append("<div class='form-group'>");
-            sb.Append("<label for='Pulse'>Document Attached &nbsp;&nbsp; :&nbsp;</label>");
-            sb.Append("</div>");
-            sb.Append("</div>");//---Col4 B Close
-            sb.Append("<div class='col-md-4'>");//---Col4 A
-            if (Convert.ToBoolean(cirm.JoiningMedical))
-            {
-                sb.Append("<div class='form-group'>");
-                sb.Append("<label for='Pulse'>Joining Medical &nbsp;&nbsp;&nbsp;</label>");
-                sb.Append("</div>");
-            }
-            if (Convert.ToBoolean(cirm.MedicineAvailableOnBoard))
-            {
-                sb.Append("<div class='form-group'>");
-                sb.Append("<label for='Pulse'> Meical Inventory &nbsp;&nbsp;&nbsp;</label>");
-                sb.Append("</div>");
-            }
-            if (Convert.ToBoolean(cirm.MedicalEquipmentOnBoard))
-            {
-                sb.Append("<div class='form-group'>");
-                sb.Append("<label for='Pulse'>Mecical Equipment list &nbsp;&nbsp;&nbsp;</label>");
-                sb.Append("</div>");
-            }
-            if (Convert.ToBoolean(cirm.MedicalHistoryUpload))
-            {
-                sb.Append("<div class='form-group'>");
-                sb.Append("<label for='Pulse'>Medical History	 &nbsp;&nbsp;&nbsp;</label>");
-                sb.Append("</div>");
-            }
-            if (Convert.ToBoolean(cirm.WorkAndRestHourLatestRecord))
-            {
-                sb.Append("<div class='form-group'>");
-                sb.Append("<label for='Pulse'>Work and Rest hour &nbsp;&nbsp;&nbsp;</label>");
-                sb.Append("</div>");
-            }
-
-            sb.Append("</div>");//---Col4 B Close
-            sb.Append("</div>");//---row6 Close
-
-            #endregion
-
-
-            sb.Append("</div>");//---Card bacmt Close
-            sb.Append("</div>");//---main div Close
-
-
-
-            return sb.ToString();
-        }
-
+        
     }
 }
