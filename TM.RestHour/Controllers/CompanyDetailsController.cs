@@ -52,6 +52,14 @@ namespace TM.RestHour.Controllers
             um.ContactNumber = companydetails.ContactNumber;
             um.Domain = companydetails.Domain;
 
+            um.OwnerName = companydetails.OwnerName;
+            um.OwnerAddress = companydetails.OwnerAddress;
+            um.OwnerWebsite = companydetails.OwnerWebsite;
+            um.OwnerAdminContact = companydetails.OwnerAdminContact;
+            um.OwnerAdminContactEmail = companydetails.OwnerAdminContactEmail;
+            um.OwnerContactNumber = companydetails.OwnerContactNumber;
+            um.OwnerDomain = companydetails.OwnerDomain;
+
             var cm = um;
 
             return Json(cm, JsonRequestBehavior.AllowGet);

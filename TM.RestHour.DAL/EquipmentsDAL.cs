@@ -95,9 +95,9 @@ namespace TM.RestHour.DAL
                         {
                             EquipmentsID = Convert.ToInt32(dr["EquipmentsID"]),
                             EquipmentsName = Convert.ToString(dr["EquipmentsName"]),
-                            Comment = Convert.ToString(dr["Comment"]),
-                            Quantity = Convert.ToString(dr["Quantity"]),
-                            ExpiryDate = Convert.ToString(dr["ExpiryDate"]),
+                            RequiredQuantity = Convert.ToString(dr["RequiredQuantity"]),
+                            Unit = Convert.ToString(dr["Unit"]),
+                            OnBoardQuantity = Convert.ToString(dr["OnBoardQuantity"]),
                             Location = Convert.ToString(dr["Location"])
                             //CrewID = Convert.ToInt32(dr["CrewID"])
                         });

@@ -47,5 +47,21 @@ namespace TM.RestHour.Models
         public string Visibility { get; set; }
 
         public string Swell { get; set; }
+
+
+
+
+
+
+
+
+        public string PortOfRegistry { get; set; }
+        public string HelicopterDeck { get; set; }
+        public string HelicopterWinchingArea { get; set; }
+        public string Length { get; set; }
+        public string Breadth { get; set; }
+        public string PAndIClub { get; set; }
+        public string PAndIClubOther { get; set; }
+        public string ContactDetails { get; set; }
     }
 }

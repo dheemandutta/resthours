@@ -177,6 +177,7 @@
     <Compile Include="Controllers\MvcExtensions.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
+    <Compile Include="Controllers\PsychologicalEvaluationController.cs" />
     <Compile Include="Controllers\RegimeController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ReportsNCReportByMonthController.cs" />
@@ -1307,6 +1308,15 @@
     <Content Include="Views\Equipments\MedicalChestCertificate.cshtml" />
     <Content Include="UploadMedicalInventoryUploads\MedicalInventory.xlsx" />
     <Content Include="WorkAndRestHourLatestRecord\WorkAndRestHourLatestRecord_7.pdf" />
+    <Content Include="Views\PsychologicalEvaluation\BeckDepressionInventoryIIFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\EmotionalIntelligenceQuizForLeadership.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\InstructionsForPSSFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\LocusOfControl.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\MASSMindfulnessScaleFinal.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\PSQ30_PERCIEVED_STRESS_QUESTIONAIRE.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\ROSENBERG_SELF_esteem_scale_final.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y1.cshtml" />
+    <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -675,6 +675,15 @@ function GetCompanyDetailsNew() {
             $('#AdminContactEmail').val(result.AdminContactEmail);
             $('#ContactNumber').val(result.ContactNumber);
             $('#Domain').val(result.Domain);
+
+            $('#OwnerName').val(result.OwnerName);
+            $('#OwnerAddress').val(result.OwnerAddress);
+            $('#OwnerWebsite').val(result.OwnerWebsite);
+            $('#OwnerAdminContact').val(result.OwnerAdminContact);
+            $('#OwnerAdminContactEmail').val(result.OwnerAdminContactEmail);
+            $('#OwnerContactNumber').val(result.OwnerContactNumber);
+            $('#OwnerDomain').val(result.OwnerDomain);
+
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();
             //$('#btnAdd').hide();

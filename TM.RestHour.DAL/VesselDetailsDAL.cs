@@ -165,6 +165,85 @@ namespace TM.RestHour.DAL
             {
                 cmd.Parameters.AddWithValue("@Swell", DBNull.Value);
             }
+
+
+
+
+
+            ///////////////////////////////////////////////////////////////
+            if (!String.IsNullOrEmpty(vesselDetails.PortOfRegistry))
+            {
+                cmd.Parameters.AddWithValue("@PortOfRegistry", vesselDetails.PortOfRegistry);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PortOfRegistry", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(vesselDetails.HelicopterDeck))
+            {
+                cmd.Parameters.AddWithValue("@HelicopterDeck", vesselDetails.HelicopterDeck);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@HelicopterDeck", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(vesselDetails.HelicopterWinchingArea))
+            {
+                cmd.Parameters.AddWithValue("@HelicopterWinchingArea", vesselDetails.HelicopterWinchingArea);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@HelicopterWinchingArea", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(vesselDetails.Length))
+            {
+                cmd.Parameters.AddWithValue("@Length", vesselDetails.Length);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Length", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(vesselDetails.Breadth))
+            {
+                cmd.Parameters.AddWithValue("@Breadth", vesselDetails.Breadth);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Breadth", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(vesselDetails.PAndIClub))
+            {
+                cmd.Parameters.AddWithValue("@PAndIClub", vesselDetails.PAndIClub);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PAndIClub", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(vesselDetails.PAndIClubOther))
+            {
+                cmd.Parameters.AddWithValue("@PAndIClubOther", vesselDetails.PAndIClubOther);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PAndIClubOther", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(vesselDetails.ContactDetails))
+            {
+                cmd.Parameters.AddWithValue("@ContactDetails", vesselDetails.ContactDetails);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ContactDetails", DBNull.Value);
+            }
+            ////////////////////////////////////////////
+
             //cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
             if (vesselDetails.ID > 0)

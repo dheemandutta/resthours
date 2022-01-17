@@ -12,24 +12,41 @@
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
 
-<link href="dist/dual-listbox.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/CrewListing.js"></script>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
 <script src="~/Scripts/notify.min.js"></script>
 
 <script src="~/Scripts/toastr.min.js"></script>
 <link href="~/Content/toastr.min.css" rel="stylesheet" />
 
-<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
-<link href="~/Content/jquery-ui.css" rel="stylesheet" />
 
-<script src="~/Scripts/Crew.js"></script>
 
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-<link href="dist/dual-listbox.css" rel="stylesheet">
+
+
+
+
 <link href="~/link/css/rank.css" rel="stylesheet" />
 
 <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
@@ -37,9 +54,6 @@
 <link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
 <link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
 
-<script src="~/Scripts/notify.min.js"></script>
-<script src="~/Scripts/toastr.min.js"></script>
-<link href="~/Content/toastr.min.css" rel="stylesheet" />
 <script src="~/Scripts/Equipments.js"></script>
 
 <style>
@@ -93,9 +107,9 @@
                                 <thead>
                                     <tr>
                                         <th>Equipment Name</th>
-                                        <th>Quantity</th>
-                                        <th>Comment</th>
-                                        <th>Expiry Date</th>
+                                        <th>Required Quantity</th>
+                                        <th>Unit</th>
+                                        <th>OnBoardQuantity</th>
                                         <th>Location</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
@@ -228,9 +242,9 @@
                         <thead>
                             <tr>
                                 <th align="left">Equipment Name </th>
-                                <th align="left">Quantity</th>
-                                <th align="left">Comment </th>
-                                <th align="left">Expiry Date</th>
+                                <th align="left">Required Quantity</th>
+                                <th align="left">Unit </th>
+                                <th align="left">OnBoardQuantity</th>
                                 <th align="left">Location </th>
                             </tr>
                         </thead>

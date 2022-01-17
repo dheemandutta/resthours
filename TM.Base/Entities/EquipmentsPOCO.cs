@@ -43,5 +43,11 @@ namespace TM.Base.Entities
         public string BatchNo { get; set; }
         public string BatchQuantity { get; set; }
         public string PrescribedFor { get; set; }
+
+
+
+        public string RequiredQuantity { get; set; }
+        public string Unit { get; set; }
+        public string OnBoardQuantity { get; set; }
     }
 }

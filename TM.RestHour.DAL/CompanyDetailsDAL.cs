@@ -230,6 +230,23 @@ namespace TM.RestHour.DAL
                         companyDetailsPC.ContactNumber = item["ContactNumber"].ToString();
                     if (item["Domain"] != DBNull.Value)
                         companyDetailsPC.Domain = item["Domain"].ToString();
+
+
+                    if (item["OwnerName"] != DBNull.Value)
+                        companyDetailsPC.OwnerName = item["OwnerName"].ToString();
+                    if (item["OwnerAddress"] != DBNull.Value)
+                        companyDetailsPC.OwnerAddress = item["OwnerAddress"].ToString();
+                    if (item["OwnerWebsite"] != DBNull.Value)
+                        companyDetailsPC.OwnerWebsite = item["OwnerWebsite"].ToString();
+                    if (item["OwnerAdminContact"] != DBNull.Value)
+                        companyDetailsPC.OwnerAdminContact = item["OwnerAdminContact"].ToString();
+                    if (item["OwnerAdminContactEmail"] != DBNull.Value)
+                        companyDetailsPC.OwnerAdminContactEmail = item["OwnerAdminContactEmail"].ToString();
+                    if (item["OwnerContactNumber"] != DBNull.Value)
+                        companyDetailsPC.OwnerContactNumber = item["OwnerContactNumber"].ToString();
+                    if (item["OwnerDomain"] != DBNull.Value)
+                        companyDetailsPC.OwnerDomain = item["OwnerDomain"].ToString();
+
                     //if (item["SecureKey"] != DBNull.Value)
                     //    companyDetailsPC.SecureKey = item["SecureKey"].ToString();
 

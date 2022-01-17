@@ -133,6 +133,17 @@ namespace TM.RestHour.Controllers
             vesselDetailsPC.Visibility = vesselDetails.Visibility;
             vesselDetailsPC.Swell = vesselDetails.Swell;
 
+
+
+            vesselDetailsPC.PortOfRegistry = vesselDetails.PortOfRegistry;
+            vesselDetailsPC.HelicopterDeck = vesselDetails.HelicopterDeck;
+            vesselDetailsPC.HelicopterWinchingArea = vesselDetails.HelicopterWinchingArea;
+            vesselDetailsPC.Length = vesselDetails.Length;
+            vesselDetailsPC.Breadth = vesselDetails.Breadth;
+            vesselDetailsPC.PAndIClub = vesselDetails.PAndIClub;
+            vesselDetailsPC.PAndIClubOther = vesselDetails.PAndIClubOther;
+            vesselDetailsPC.ContactDetails = vesselDetails.ContactDetails;
+
             return Json(vesselDetailsBL.SaveVesselDetails(vesselDetailsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
         }
 
@@ -352,9 +363,9 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
-                equipments.Comment = equipmentsPC.Comment;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
+                equipments.Unit = equipmentsPC.Unit;
+                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);

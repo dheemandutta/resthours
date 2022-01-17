@@ -30,13 +30,7 @@
 @Html.Hidden("loaddata", @Url.Action("LoadData", "Options"))
 
 @*<h2 style="margin-top:0;">Application General Options</h2>*@
-<link href="~/link/css/rank.css" rel="stylesheet" />
 
-<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
-<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
-
-<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
-<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
 
 
 @*<div class="modal-dialog" id="dvuserdetailsn" style="width: 100%;">
@@ -223,10 +217,10 @@
 
                     <div class="row">
                         <div class="col-sm-12">
+                            <input type="text" class="form-control" id="AdjustmentDate" placeholder="Adjustment Date" />
                             <div class="modal-dialog" id="dvuserdetailsn" style="width:100%;">
                                 <div class="card">
                                     <fieldset>
-
                                         <div class="row">
 
                                             <div class="form-group">
@@ -235,16 +229,17 @@
 
                                             <div class="col-md-3">
                                                 @*<div class="form-group">
-                                                        <label for="inputPassword3" class="col-sm-3 control-label"></label>
-                                                        <div class="col-sm-9">
-                                                            <div class="multiple">
+                                <label for="inputPassword3" class="col-sm-3 control-label"></label>
+                                <div class="col-sm-9">
+                                    <div class="multiple">
 
-                                                            </div>
-                                                        </div>
-                                                    </div>*@
+                                    </div>
+                                </div>
+                            </div>*@
                                                 <div class="form-group" style="width: 100%;">
                                                     <label for="AdjustmentDate">Adjustment Date</label>
-                                                    <input type="text" class="form-control" id="AdjustmentDate" style="width: 100%;" /><br />
+                                                    @*<input type="text" class="form-control" id="AdjustmentDate" style="width: 100%;" /><br />*@
+                                                    <input type="text" class="form-control" id="AdjustmentDate" placeholder="Adjustment Date" />
                                                 </div>
                                             </div>
 
@@ -307,6 +302,10 @@
             </div>
         </div>
     </div>
+
+
+
+
 </body>
 
 @*<div class="modal-footer">
@@ -320,15 +319,10 @@
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Styles.Render("~/Content/themes/base/css")
-    <script src="~/Scripts/TimePicker/jquery.timepicker.min.js"></script>
-    <link href="~/Content/TimePicker/jquery.timepicker.min.css" rel="stylesheet" />
-    <script src="~/Scripts/notify.min.js"></script>
+    <script src="dist/dual-listbox.js"></script>
 
-
-    <script src="~/Scripts/toastr.min.js"></script>
-    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
+    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
 
     <script type="text/javascript">
 
@@ -355,13 +349,27 @@
         //// Setter
         //$("#AdjustmentDate").datepicker("option", "defaultDate", +2);
 
+        //$("#AdjustmentDate").datepicker({
+        //    dateFormat: 'd-M-yy',
+        //    //minDate: 1,
+        //    //maxDate: 1
+        //});
+
         $("#AdjustmentDate").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
             dateFormat: 'd-M-yy',
-            //minDate: 1,
-            //maxDate: 1
+
         });
 
+        $("#DOB").datepicker({
 
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
 
 
 

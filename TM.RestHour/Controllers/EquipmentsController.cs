@@ -100,9 +100,9 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
-                equipments.Comment = equipmentsPC.Comment;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
+                equipments.Unit = equipmentsPC.Unit;
+                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);
@@ -152,9 +152,9 @@ namespace TM.RestHour.Controllers
                 Equipments equipments = new Equipments();
                 equipments.EquipmentsID = equipmentsPC.EquipmentsID;
                 equipments.EquipmentsName = equipmentsPC.EquipmentsName;
-                equipments.Comment = equipmentsPC.Comment;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.RequiredQuantity = equipmentsPC.RequiredQuantity;
+                equipments.Unit = equipmentsPC.Unit;
+                equipments.OnBoardQuantity = equipmentsPC.OnBoardQuantity;
                 equipments.Location = equipmentsPC.Location;
 
                 equipmentsList.Add(equipments);

@@ -17,5 +17,14 @@ namespace TM.Base.Entities
         public string ContactNumber { get; set; }
         public string Domain { get; set; }
         public string SecureKey { get; set; }
+
+
+        public string OwnerName { get; set; }
+        public string OwnerAddress { get; set; }
+        public string OwnerWebsite { get; set; }
+        public string OwnerAdminContact { get; set; }
+        public string OwnerAdminContactEmail { get; set; }
+        public string OwnerContactNumber { get; set; }
+        public string OwnerDomain { get; set; }
     }
 }

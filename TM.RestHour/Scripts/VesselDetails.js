@@ -41,6 +41,16 @@ function clearTextBox() {
     $('#Visibility').val("");
     $('#Swell').val("");
 
+
+    $('#PortOfRegistry').val("");
+    $('#HelicopterDeck').val("");
+    $('#HelicopterWinchingArea').val("");
+    $('#Length').val("");
+    $('#Breadth').val("");
+    $('#PAndIClub').val("");
+    $('#PAndIClubOther').val("");
+    $('#ContactDetails').val("");
+
 }
 
 function SaveVesselDetails() {
@@ -76,7 +86,18 @@ function SaveVesselDetails() {
             WindSpeed: $('#WindSpeed').val(),
             Sea: $('#Sea').val(),
             Visibility: $('#Visibility').val(),
-            Swell: $('#Swell').val()
+            Swell: $('#Swell').val(),
+
+
+
+            PortOfRegistry: $('#PortOfRegistry').val(),
+            HelicopterDeck: $('#HelicopterDeck').val(),
+            HelicopterWinchingArea: $('#HelicopterWinchingArea').val(),
+            Length: $('#Length').val(),
+            Breadth: $('#Breadth').val(),
+            PAndIClub: $('#PAndIClub').val(),
+            PAndIClubOther: $('#PAndIClubOther').val(),
+            ContactDetails: $('#ContactDetails').val()
 
         };
 
@@ -338,6 +359,19 @@ function GetShip() {
             $('#ID').val(result.ID);
 
             $('#VesselName').val(result.ShipName);
+            $('#FlagOfShip').val(result.FlagOfShip);
+            $('#IMONumber').val(result.IMONumber);
+
+            $('#ShipEmail').val(result.ShipEmail);
+            $('#ShipEmail2').val(result.ShipEmail2);
+            $('#Voices1').val(result.Voices1);
+            $('#Voices2').val(result.Voices2);
+            $('#Fax1').val(result.Fax1);
+            $('#Fax2').val(result.Fax2);
+            $('#VOIP1').val(result.VOIP1);
+            $('#VOIP2').val(result.VOIP2);
+            $('#Mobile1').val(result.Mobile1);
+            $('#Mobile2').val(result.Mobile2);
 
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();

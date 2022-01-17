@@ -161,13 +161,13 @@ function SetUpGrid() {
                 "data": "EquipmentsName", "name": "EquipmentsName", "autoWidth": true
             },
             {
-                "data": "Quantity", "name": "Quantity", "autoWidth": true
+                "data": "RequiredQuantity", "name": "RequiredQuantity", "autoWidth": true
             },
             {
-                "data": "Comment", "name": "Comment", "autoWidth": true
+                "data": "Unit", "name": "Unit", "autoWidth": true
             },
             {
-                "data": "ExpiryDate", "name": "ExpiryDate", "autoWidth": true
+                "data": "OnBoardQuantity", "name": "OnBoardQuantity", "autoWidth": true
             },
             {
                 "data": "Location", "name": "Location", "autoWidth": true
@@ -210,9 +210,9 @@ function GetMedicalEquipmentByID(EquipmentsID) {
             //debugger;
             $('#EquipmentsID').val(result.EquipmentsID);
             $('#EquipmentsName').val(result.EquipmentsName);
-            $('#Comment').val(result.Comment);
-            $('#Quantity').val(result.Quantity);
-            $('#ExpiryDate').val(result.ExpiryDate);
+            $('#RequiredQuantity').val(result.RequiredQuantity);
+            $('#Unit').val(result.Unit);
+            $('#OnBoardQuantity').val(result.OnBoardQuantity);
             $('#Location').val(result.Location);
 
             $('#myModal').modal('show');
@@ -714,13 +714,13 @@ function SetUpGridloadDataPrint() {
                 "data": "EquipmentsName", "name": "EquipmentsName", "autoWidth": true
             },
             {
-                "data": "Quantity", "name": "Quantity", "autoWidth": true
+                "data": "RequiredQuantity", "name": "RequiredQuantity", "autoWidth": true
             },
             {
-                "data": "Comment", "name": "Comment", "autoWidth": true
+                "data": "Unit", "name": "Unit", "autoWidth": true
             },
             {
-                "data": "ExpiryDate", "name": "ExpiryDate", "autoWidth": true
+                "data": "OnBoardQuantity", "name": "OnBoardQuantity", "autoWidth": true
             },
             {
                 "data": "Location", "name": "Location", "autoWidth": true
