@@ -2,6 +2,27 @@
 @{
     ViewBag.Title = "ROSENBERG_SELF_esteem_scale_final";
 }
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
 <script src="~/Scripts/PsychologicalEvaluation.js"></script>
 @Html.Hidden("SaveForms", @Url.Action("SaveForms", "PsychologicalEvaluation"))
 <form id="myForm1">
@@ -637,121 +658,121 @@
                         <span>&nbsp;</span>
                     </p>
                     @*<p style="margin-left:40.95pt;margin-right:19.8pt;line-height:149.58%;font-size:14pt;margin-top:6.550000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Century Schoolbook;font-size:14pt;font-weight: bold;">Scoring</span>
-            </p>
-            <p style="margin-left:40.95pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <table style="border-collapse:collapse;margin-left:40.95pt;">
-                <colgroup>
-                    <col style="width:162px" />
-                    <col style="width:159px" />
-                    <col style="width:163px" span="2" />
-                </colgroup>
-                <tr>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:10pt;">Strongly Agree</span>
+                            <span style="font-family:Century Schoolbook;font-size:14pt;font-weight: bold;">Scoring</span>
                         </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">Agree</span>
+                        <p style="margin-left:40.95pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
                         </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:10pt;">Disagree</span>
+                        <table style="border-collapse:collapse;margin-left:40.95pt;">
+                            <colgroup>
+                                <col style="width:162px" />
+                                <col style="width:159px" />
+                                <col style="width:163px" span="2" />
+                            </colgroup>
+                            <tr>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:10pt;">Strongly Agree</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">Agree</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:10pt;">Disagree</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:10pt;">Strongly Disagree</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">4</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">3</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">2</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">1</span>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="margin-left:40.95pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Century Schoolbook;font-size:11pt;">But item numbers 2</span>
+                            <span style="font-family:Century Schoolbook;font-size:11pt;font-weight: bold;">, 5, 6, 8, 9 are </span>
+                            <span style="font-family:Century Schoolbook;font-size:11pt;">to be scored in reverse order</span>
                         </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:10pt;">Strongly Disagree</span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">4</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">3</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">2</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">1</span>
-                        </p>
-                    </td>
-                </tr>
-            </table>
-            <p style="margin-left:40.95pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Century Schoolbook;font-size:11pt;">But item numbers 2</span>
-                <span style="font-family:Century Schoolbook;font-size:11pt;font-weight: bold;">, 5, 6, 8, 9 are </span>
-                <span style="font-family:Century Schoolbook;font-size:11pt;">to be scored in reverse order</span>
-            </p>
-            <table style="border-collapse:collapse;margin-left:40.95pt;">
-                <colgroup>
-                    <col style="width:162px" />
-                    <col style="width:159px" />
-                    <col style="width:163px" span="2" />
-                </colgroup>
-                <tr>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:10pt;">Strongly Agree</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">Agree</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:10pt;">Disagree</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:10pt;">Strongly Disagree</span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">1</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">2</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">3</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
-                            <span style="font-family:Century Schoolbook;font-size:11pt;">4</span>
-                        </p>
-                    </td>
-                </tr>
-            </table>
-            <p style="margin-left:40.95pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Century Schoolbook;font-size:11pt;">Find out total score for all items. Keep scores on a continuous scale. Higher score indicate higher self esteem</span>
-            </p>*@
+                        <table style="border-collapse:collapse;margin-left:40.95pt;">
+                            <colgroup>
+                                <col style="width:162px" />
+                                <col style="width:159px" />
+                                <col style="width:163px" span="2" />
+                            </colgroup>
+                            <tr>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:10pt;">Strongly Agree</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">Agree</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:10pt;">Disagree</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:10pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:10pt;">Strongly Disagree</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">1</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">2</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">3</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:134.70000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;">
+                                        <span style="font-family:Century Schoolbook;font-size:11pt;">4</span>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="margin-left:40.95pt;margin-right:19.8pt;line-height:149.58%;font-size:11pt;margin-top:6.550000000000001pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Century Schoolbook;font-size:11pt;">Find out total score for all items. Keep scores on a continuous scale. Higher score indicate higher self esteem</span>
+                        </p>*@
                 </section>
 
 

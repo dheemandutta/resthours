@@ -2,6 +2,30 @@
 @{
     ViewBag.Title = "MASSMindfulnessScaleFinal";
 }
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
 <script src="~/Scripts/PsychologicalEvaluation.js"></script>
 @Html.Hidden("SaveForms", @Url.Action("SaveForms", "PsychologicalEvaluation"))
 <form id="myForm1">
@@ -973,83 +997,83 @@
 
                 @*<section>
 
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="text-align:center;margin-left:18.900000000000002pt;margin-right:0pt;margin-top:1.9500000000000002pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.05pt;">MAAS</span>
-                <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.35000000000000003pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.05pt;">Scoring</span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0.45pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:5pt;margin-right:18.35pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Times New Roman;font-size:12pt;">To</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">score</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">the</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">scale,</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">simply</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">compute</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">a</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">mean</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">(average)</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">of</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">the</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">15</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">items.</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">Higher</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">scores</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">reflect</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:1.4500000000000002pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">higher</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">levels</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">of</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.35000000000000003pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;">dispositional</span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
-                <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">mindfulness.</span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" />
-        </section>*@
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="text-align:center;margin-left:18.900000000000002pt;margin-right:0pt;margin-top:1.9500000000000002pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.05pt;">MAAS</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.35000000000000003pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;font-weight: bold;letter-spacing:-0.05pt;">Scoring</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0.45pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:5pt;margin-right:18.35pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Times New Roman;font-size:12pt;">To</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">score</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">the</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">scale,</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">simply</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">compute</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">a</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">mean</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">(average)</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">of</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">the</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">15</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">items.</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">Higher</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.15000000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">scores</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.1pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">reflect</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:1.4500000000000002pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">higher</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">levels</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">of</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.35000000000000003pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;">dispositional</span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.4pt;"> </span>
+                            <span style="font-family:Times New Roman;font-size:12pt;letter-spacing:-0.05pt;">mindfulness.</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;" />
+                    </section>*@
 
 
 
-            <div class="col-md-3" style="padding: 10px; margin-top:68px;">
-                <button type="button" class="button1" id="btnAddAndSave" onclick="return SaveForms('stpSaveMASSMindfulnessScaleFinal', '3');">Save And Next</button>
-            </div>
+                <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                    <button type="button" class="button1" id="btnAddAndSave" onclick="return SaveForms('stpSaveMASSMindfulnessScaleFinal', '3');">Save And Next</button>
+                </div>
 
             </div>
         </div>

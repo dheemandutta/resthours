@@ -2,6 +2,26 @@
 @{
     ViewBag.Title = "BeckDepressionInventoryIIFinal";
 }
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+
 
 <script src="~/Scripts/PsychologicalEvaluation.js"></script>
 @Html.Hidden("Save_BeckDepressionInventoryIIFinal", @Url.Action("SaveForms", "PsychologicalEvaluation"))
@@ -716,113 +736,113 @@
                     </p>
 
                     @*<p style="margin-left:32.45pt;margin-right:0pt;margin-top:0.2pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Candara;font-size:14pt;">Total</span>
-                <span style="font-family:Candara;font-size:14pt;letter-spacing:-0.7000000000000001pt;"> </span>
-                <span style="font-family:Candara;font-size:14pt;">Score: &nbsp;</span>
-                <span style="font-family:Candara;font-size:14pt;text-decoration: underline;"> </span>
-            </p>
-            <p style="margin-left:0pt;margin-right:0pt;margin-top:0.35000000000000003pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scoring Standard for BDI</span>
-            </p>
-            <table style="border-collapse:collapse;margin-left:-1.7000000000000002pt;">
-                <colgroup>
-                    <col style="width:87px" />
-                    <col style="width:69px" />
-                    <col style="width:230px" />
-                </colgroup>
-                <tr style="height:17.5pt;">
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:65.8pt;vertical-align:top;">
-                        <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scores</span>
+                            <span style="font-family:Candara;font-size:14pt;">Total</span>
+                            <span style="font-family:Candara;font-size:14pt;letter-spacing:-0.7000000000000001pt;"> </span>
+                            <span style="font-family:Candara;font-size:14pt;">Score: &nbsp;</span>
+                            <span style="font-family:Candara;font-size:14pt;text-decoration: underline;"> </span>
                         </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:51.95pt;vertical-align:top;">
-                        <p style="margin-left:0.05pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">0 – 13</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:172.85000000000002pt;vertical-align:top;">
-                        <p style="margin-left:4.05pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Minimal depression</span>
-                        </p>
-                    </td>
-                </tr>
-                <tr style="height:19.4pt;">
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:65.8pt;vertical-align:top;">
-                        <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scores</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:51.95pt;vertical-align:top;">
-                        <p style="margin-left:0.05pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">14 – 19</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:172.85000000000002pt;vertical-align:top;">
-                        <p style="margin-left:3.4000000000000004pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Mild depression</span>
-                        </p>
-                    </td>
-                </tr>
-                <tr style="height:15pt;">
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:65.8pt;vertical-align:top;">
-                        <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scores</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:51.95pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">20 –28</span>
-                        </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:172.85000000000002pt;vertical-align:top;">
-                        <p style="margin-left:4.6000000000000005pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Moderate depression</span>
-                        </p>
-                    </td>
-                </tr>
-                <tr style="height:25.65pt;">
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:65.8pt;vertical-align:top;">
-                        <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scores</span>
-                        </p>
-                        <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0.35000000000000003pt;margin-bottom:0pt;padding: 1pt 4pt;">
                             <span>&nbsp;</span>
                         </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:51.95pt;vertical-align:top;">
-                        <p style="margin-left:0pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">29 –63</span>
+                        <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
                         </p>
-                    </td>
-                    <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:172.85000000000002pt;vertical-align:top;">
-                        <p style="margin-left:4pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
-                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Severe depression</span>
+                        <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
                         </p>
-                    </td>
-                </tr>
-            </table>
-            <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>
-            <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                <span>&nbsp;</span>
-            </p>*@
+                        <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scoring Standard for BDI</span>
+                        </p>
+                        <table style="border-collapse:collapse;margin-left:-1.7000000000000002pt;">
+                            <colgroup>
+                                <col style="width:87px" />
+                                <col style="width:69px" />
+                                <col style="width:230px" />
+                            </colgroup>
+                            <tr style="height:17.5pt;">
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:65.8pt;vertical-align:top;">
+                                    <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scores</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:51.95pt;vertical-align:top;">
+                                    <p style="margin-left:0.05pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">0 – 13</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:172.85000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:4.05pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Minimal depression</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="height:19.4pt;">
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:65.8pt;vertical-align:top;">
+                                    <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scores</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:51.95pt;vertical-align:top;">
+                                    <p style="margin-left:0.05pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">14 – 19</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:172.85000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:3.4000000000000004pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Mild depression</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="height:15pt;">
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:65.8pt;vertical-align:top;">
+                                    <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scores</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:51.95pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">20 –28</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:172.85000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:4.6000000000000005pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Moderate depression</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="height:25.65pt;">
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:65.8pt;vertical-align:top;">
+                                    <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Scores</span>
+                                    </p>
+                                    <p style="margin-left:2.35pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span>&nbsp;</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:51.95pt;vertical-align:top;">
+                                    <p style="margin-left:0pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">29 –63</span>
+                                    </p>
+                                </td>
+                                <td style="border-top:0.75pt solid #000000;border-bottom:0.75pt solid #000000;border-left:0.75pt solid #000000;border-right:0.75pt solid #000000;padding-left:5.4pt;padding-right:5.4pt;width:172.85000000000002pt;vertical-align:top;">
+                                    <p style="margin-left:4pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;">
+                                        <span style="font-family:Candara;font-size:14pt;font-weight: bold;letter-spacing:0.05pt;">Severe depression</span>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:5.800000000000001pt;margin-right:0pt;margin-top:0.65pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>
+                        <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                            <span>&nbsp;</span>
+                        </p>*@
                 </section>
 
 
