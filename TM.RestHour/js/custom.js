@@ -35,7 +35,7 @@ $( "#sidebar_menu" ).find( "li" ).removeClass("mm-active");
 $( "#sidebar_menu" ).find( "li ul" ).removeClass("mm-show");
 
 var current = window.location.pathname
-$("#sidebar_menu >li a").filter(function() {
+$("#sidebar_menu li a").filter(function() {
 
     var link = $(this).attr("href");
     if(link){
