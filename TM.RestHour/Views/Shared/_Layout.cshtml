@@ -44,10 +44,11 @@
             </div>
         </div>
         <ul id="sidebar_menu">
+
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <div class="nav_icon_small">
-                        <img src="../img/menu-icon/icon_Crew.png" alt="">
+                        <img src="../img/menu-icon/health.png" alt="">
                     </div>
                     <div class="nav_title">
                         <span>Crew Management</span>
@@ -58,7 +59,6 @@
                     <li><a href="@Url.Action("CrewListNew", "CrewList" )">Crew List</a></li>
                 </ul>
             </li>
-
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <div class="nav_icon_small">
@@ -123,6 +123,7 @@
                 </ul>
             </li>
 
+
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <div class="nav_icon_small">
@@ -138,7 +139,6 @@
                     <li><a href="@Url.Action("MedicalChestCertificate", "Equipments" )">Medical Chest Certificate</a></li>
                 </ul>
             </li>
-
             <li class="">
                 <a href="@Url.Action("Index", "Regime" )" aria-expanded="false">
                     <div class="nav_icon_small">
@@ -244,48 +244,50 @@
         <div class="container-fluid no-gutters">
             <div class="row">
                 <div class="col-lg-12 p-0 ">
-                    <div class="header_iner d-flex justify-content-between align-items-center">
-                        <div class="sidebar_icon d-lg-none">
-                            <i class="ti-menu"></i>
-                        </div>
-                        <div class="line_icon open_miniSide d-none d-lg-block">
-                            <img src="../img/line_img.png" alt="">
-                        </div>
-                        <div class="header_right d-flex justify-content-between align-items-center">
-                            <div class="header_notification_warp d-flex align-items-center">
-                                <li>
-                                    <a class="" href="#"> <img src="../img/icon/question_icon.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a class="" href="#"> <img src="../img/icon/ticket_icon.png" class="ticketIcon" alt=""></a>
-                                </li>
-                                <li>
-                                    <a class="bell_notification_clicker nav-link-notify" href="#">
-                                        <img src="../img/icon/bell.svg" alt="">
-                                        <!-- <span>2</span> -->
-                                    </a>
-                                    <!-- Menu_NOtification_Wrap  -->
-                                    <!--/ Menu_NOtification_Wrap  -->
-                                </li>
-
+                    <div class="head-position">
+                        <div class="header_iner d-flex justify-content-between align-items-center">
+                            <div class="sidebar_icon d-lg-none">
+                                <i class="ti-menu"></i>
                             </div>
-                            <div class="profile_info d-flex align-items-center">
-                                <div class="profile_thumb mr_20">
-                                    <img src="../img/transfer/user_Worth.png" alt="#">
+                            <div class="line_icon open_miniSide d-none d-lg-block">
+                                <img src="../img/line_img.png" alt="">
+                            </div>
+                            <div class="header_right d-flex justify-content-between align-items-center">
+                                <div class="header_notification_warp d-flex align-items-center">
+                                    <li>
+                                        <a class="" href="#"> <img src="../img/icon/question_icon.png" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="#"> <img src="../img/icon/ticket_icon.png" class="ticketIcon" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a class="bell_notification_clicker nav-link-notify" href="#">
+                                            <img src="../img/icon/bell.svg" alt="">
+                                            <!-- <span>2</span> -->
+                                        </a>
+                                        <!-- Menu_NOtification_Wrap  -->
+                                        <!--/ Menu_NOtification_Wrap  -->
+                                    </li>
+
                                 </div>
-                                <div class="author_name">
-                                    <h4 class="f_s_15 f_w_500 mb-0">User name</h4>
-                                    <p class="f_s_12 f_w_400">Admin</p>
-                                </div>
-                                <div class="profile_info_iner">
-                                    <!-- <div class="profile_author_name">
-                                        <p>Manager</p>
-                                        <h5>Jiue Anderson</h5>
-                                    </div> -->
-                                    <div class="profile_info_details">
-                                        <a href="#">My Profile </a>
-                                        <a href="#">Settings</a>
-                                        <a href="#">Log Out </a>
+                                <div class="profile_info d-flex align-items-center">
+                                    <div class="profile_thumb mr_20">
+                                        <img src="../img/transfer/user_Worth.png" alt="#">
+                                    </div>
+                                    <div class="author_name">
+                                        <h4 class="f_s_15 f_w_500 mb-0">User name</h4>
+                                        <p class="f_s_12 f_w_400">Admin</p>
+                                    </div>
+                                    <div class="profile_info_iner">
+                                        <!-- <div class="profile_author_name">
+                        <p>Manager</p>
+                        <h5>Jiue Anderson</h5>
+                    </div> -->
+                                        <div class="profile_info_details">
+                                            <a href="#">My Profile </a>
+                                            <a href="#">Settings</a>
+                                            <a href="#">Log Out </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -322,6 +324,7 @@
             $("#sidebar_menu li").removeClass('mm-active');
             $("#sidebar_menu li ul.mm-collapse").removeClass('mm-show');
         });
+
     </script>
 </body>
 </html>

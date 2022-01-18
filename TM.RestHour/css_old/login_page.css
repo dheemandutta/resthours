@@ -31,11 +31,15 @@ body {
 }
 
 .login-box {
-    margin: auto;
-    max-width: 400px;
+    /* max-width: 400px; */
     font-family: 'Open Sans', sans-serif;
-    padding: 186px 0px 0px;
+    /* padding: 186px 0px 0px;*/
 }
+
+    .login-box .bann {
+        width: 100%;
+        padding: 14px 0 0;
+    }
 
     .login-box .logo-name {
         display: block;
@@ -44,8 +48,6 @@ body {
         text-decoration: none;
         color: #6c6c6c;
         text-align: center;
-        
-        
         padding-bottom: 20px;
         padding-right: 30px;
     }
@@ -84,13 +86,12 @@ button, input, optgroup, select, textarea {
 
 .btn-success {
     color: #fff;
-    background-color: #22BAA0 !important;
-    border-color: #22BAA0 !important;
+    background-color: #a278fe !important;
+    border-color: #a278fe !important;
 }
 
 .m-t-md {
-    padding: 1px 58px;
-   
+    padding: 0;
 }
 
 .divclass {
@@ -104,10 +105,10 @@ button, input, optgroup, select, textarea {
     text-align: center;
 }
 
-.back {
+/*.back {
     background-image: url(../background/login.jpg);
     background-size: cover;
-}
+}*/
 
 .btn {
     display: inline-block;
@@ -120,7 +121,7 @@ button, input, optgroup, select, textarea {
     padding: 18px 0 66PX;
 }
 /* The container */
-.container {
+/*.container {
     display: block;
     position: relative;
     padding-left: 30px !important;
@@ -136,17 +137,17 @@ button, input, optgroup, select, textarea {
     float: left;
     padding-right: 0 !important;
     padding-left: -4px !important;
-}
+}*/
 
 label {
     font-weight: 300 !important;
 }
 
 /* Hide the browser's default checkbox */
-.container input {
+/*.container input {
     opacity: 0;
     cursor: pointer;
-}
+}*/
 
 /* Create a custom checkbox */
 .checkmark {
@@ -192,14 +193,83 @@ label {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
 .reg {
     width: 45%;
     float: right;
 }
+
 input, select, textarea {
     max-width: 91% !important;
 }
+
 .field-validation-error {
     color: #ffc10c !important;
     font-weight: bold !important;
+}
+
+.login_box {
+    padding: 31px;
+    background: #f4f5f7;
+    margin: 42px 0 10px !important;
+    font-family: 'Mukta Vaani', sans-serif;
+}
+
+.lo_text {
+    text-align: center;
+    padding: 10px 0 17px 0;
+}
+
+    .lo_text h3 {
+        display: inline-block;
+        font-size: 22px;
+        color: #555353;
+        font-weight: 300;
+        padding: 0 0 0 14px;
+    }
+
+.login-box span {
+    display: block;
+    text-align: right;
+    padding: 0 7% 0 0;
+}
+
+    .login-box span img {
+        /* width: 49%; */
+    }
+
+.login_box label {
+    color: #8c8c8c;
+    font-weight: 300;
+    font-size: 16px;
+    padding: 0 0 0 14px;
+}
+
+.login_box .form-group input {
+    border-radius: 23px;
+    font-size: 15px;
+    height: 41px;
+}
+
+.signup_btn input {
+    background: #a57dd0;
+    border: 0;
+    color: #fff;
+    padding: 10px 33px !important;
+    border-radius: 24px;
+    font-size: 15px;
+    width: 162px;
+    margin: 0 0 19px 0;
+}
+
+.wh_box {
+    background: #fff;
+    padding: 28px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 14px #d0d0d0;
+}
+
+.thicon img {
+    width: 42%;
+    float: right;
 }

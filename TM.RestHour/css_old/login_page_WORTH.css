@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+body.page-login {
+    width: 100%;
+    padding: 55px 0 0;
+    font-family: 'Open Sans',sans-serif;
+    background: url(../img/login_BG.png);
+    background-size: cover;
+    font-family: 'Source Sans Pro', sans-serif;
+    position: relative;
+}
+.pull-left {
+    float: left !important;
+}
+.pull-right {
+    float: right !important;
+}
+.validate_Error {
+    background: #d61717;
+    width: 252px;
+    border-radius: 7px;
+    padding: 7px;
+    font-size: 16px;
+    color: #fff;
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    right: 40%;
+}
+
+.login_box {
+    padding: 0;
+    background: transparent;
+    margin-top:50px;
+}
+
+
+.wh_box {
+    background: #fff;
+    padding: 28px;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+.tagline {
+    text-align: center;
+    font: italic normal normal 22px/26px 'Source Sans Pro', sans-serif;
+    letter-spacing: 0px;
+    color: #3779c9;
+    margin-bottom:30px;
+}
+.inputIcon{width:15%;}
+.inputText{width:80%;}
+.login_box .form-group {
+    border: 1px solid #ebebeb;
+    background: #ebebeb;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+.login_box .form-group input {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 45px;
+    outline:none;
+}
+.login_box .form-group.inputIcon{
+    text-align:center;
+
+}
+.login_box label {
+    color: #8c8c8c;
+    font-weight: 300;
+    font-size: 16px;
+    padding: 0 0 0 10px;
+}
+.lo_text {
+    text-align: center;
+    padding: 10px 0 17px 0;
+}
+.inputIcon {
+    width: 15%;
+}
+.inputText {
+    width: 80%;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 100;
+    font-size: 14px;
+}
+.inputIcon label {
+    padding: 10px;
+    border-right: 1px solid #d5d5d5;
+    margin-bottom: 0;
+}
+.inputCheckBox input {
+    width: auto;
+}
+input[type="radio"], input[type="checkbox"] {
+    margin: 7px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+.signup_btn {
+    text-align: center;
+}
+.signup_btn button {
+    background: transparent;
+    border: none;
+    width: auto;
+    padding: 0 !important;
+    display: inline-block;
+    margin: 30px 0 20px;
+    outline:none;
+}
+.forget_Btn_Div {
+    text-align: center;
+}
+.forget_Btn_Div .forget_Btn {
+    text-align: left;
+    font: normal normal normal 16px/20px 'Source Sans Pro', sans-serif;
+    letter-spacing: 0px;
+    color: #0B3F7E;
+}
+.field-validation-error {
+    color: #b94a48 !important;
+    position: absolute;
+    bottom:5px;
+    left: 18%;
+}
+
+@media screen and (max-width: 767px) {
+    body{
+        background-position: right;
+        padding:0;
+    }
+}

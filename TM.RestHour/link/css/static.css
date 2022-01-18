@@ -1,24 +1,25 @@
 
 .backk {
-   
     height: 460px;
     border-radius: 10px;
     overflow-y: scroll;
     padding: 18px;
     background: #fff;
 }
+
 h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 2px;
     margin-bottom: 10px;
 }
+
 .faqHeader {
     font-size: 27px;
     margin: 20px;
 }
 
 .panel-heading [data-toggle="collapse"]:after {
-    font-family: 'fontawesome';
-    content: "\f067"; /* "play" icon */
+    font-family: 'themify';
+    content: "\e64b"; /* "play" icon */
     float: right;
     color: #F58723;
     font-size: 15px;
@@ -28,7 +29,7 @@ h1, .h1, h2, .h2, h3, .h3 {
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
-    transform: rotate(-90deg);
+    transform: rotate(0deg);
 }
 
 .panel-heading [data-toggle="collapse"].collapsed:after {
@@ -37,9 +38,10 @@ h1, .h1, h2, .h2, h3, .h3 {
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
-    transform: rotate(90deg);
+    transform: rotate(180deg);
     color: #454444;
 }
+
 .panel-title > a, .panel-title > small, .panel-title > .small, .panel-title > small > a, .panel-title > .small > a {
     color: #9e1d1d !important;
     font-size: 18px;
@@ -50,6 +52,7 @@ h1, .h1, h2, .h2, h3, .h3 {
     border-top: 1px solid #ddd;
     text-align: justify;
 }
+
 .pi {
     padding: 10px;
     width: 100%;
