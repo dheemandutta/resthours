@@ -88,6 +88,8 @@
     .card {
         display: inline-block;
         width: 100%;
+        padding: 10px;
+        margin: 0 0 19px 0;
     }
 </style>
 
@@ -98,40 +100,124 @@
                 <h2 class="ta">Medicine Inventory</h2>
             </div>
             <div class="">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Nationality">Country</label>
+                                @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Category">Category<span class="myDIV"><i class="fa fa-info-circle" aria-hidden="true"></i><div class="hide">
+    <table>
+        <tr>
+            <td>Category A</td>
+            <td>Lignocaine Hydrochloride Anhydrous (vials) 10mg/20ml 
+            </td>
+        </tr>
+        <tr>
+            <td>Category B</td>
+            <td>Lignocaine Hydrochloride Anhydrous (vials) 10mg/20ml
+           </td>
+        </tr>
+        <tr>
+            <td>Category C</td>
+            <td>Lignocaine Hydrochloride Anhydrous
+            10mg/20ml Lignocaine</td>
+        </tr>
+    </table>
+</div></span></label>
+                                
+                                <select id="Category" style="width:100%;" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="CategoryA">Category A</option>
+                                    <option value="CategoryB">Category B</option>
+                                    <option value="CategoryC">Category C</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="NoOfCrew">NoOfCrew</label>
+                                <select id="NoOfCrew" style="width:100%;" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="10">≤ 10</option>
+                                    <option value="20">≤ 20</option>
+                                    <option value="30">≤ 30</option>
+                                    <option value="40">≤ 40</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-md-8">
-                        <div class="form-group">
-                            <label for="Nationality">Country</label>
-                            @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label for="Category">Category</label>
-                            <select id="Category" style="width:100%;" class="form-control">
-                                <option value="">Select</option>
-                                <option value="CategoryA">Category A</option>
-                                <option value="CategoryB">Category B</option>
-                                <option value="CategoryC">Category C</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="NoOfCrew">NoOfCrew</label>
-                            <select id="NoOfCrew" style="width:100%;" class="form-control">
-                                <option value="">Select</option>
-                                <option value="10">≤ 10</option>
-                                <option value="20">≤ 20</option>
-                                <option value="30">≤ 30</option>
-                                <option value="40">≤ 40</option>
-                            </select>
-                        </div>
+                    <div class="col-md-12">
+                        <div class="card marin">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="upload-file">
+                                        @using (Html.BeginForm("Index2", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            <span style="font-size:20px;">Select File:</span>
+                                            <br />
+                                            <br />
+                                            <input type="file" name="postedFile" />
+                                            @*<hr />*@
+
+                                            <input type="submit" value="Upload" class="button1 upload-btn" />
+                                            <br /><br />
+                                            <span style="color:green">@ViewBag.Message</span>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="upload-file">
+                                        <div class="box1">
+                                            <img src="../img/excel-file-open.png" class="img-responsive" />
+                                        </div>
+                                        <div class="export-template-label" style="display:inline-block;margin:4px 5px -8px 0px;">
+                                            <a href="../MedicineNew/MedicineList.xlsx" target="_self" class="downexcel" download >
+                                                Download Template
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
 
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
+                            <div class="crew-div">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <ul class="bottom-pls">
+                                            <li><a href="#"><i class="fa fa-file-excel" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-file-pdf" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="medi-add">
+                                            <div class="form-group">
+                                                <label>Search</label>
+                                                </br>
+                                                <input type="text" class="form-control">
+                                                <a href="#" data-toggle="modal" data-target="#myModal" onclick="clearTextBox2();"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div style="margin:0 auto" class="tablecontainer">
-                                <button type="button" class="button1" data-toggle="modal" data-target="#myModal" onclick="clearTextBox2();">Add Medicine</button><br /><br />
+                                <!--<button type="button" class="button1" data-toggle="modal" data-target="#myModal" onclick="clearTextBox2();">Add Medicine</button><br /><br />-->
 
                                 <input type="hidden" id="hdnrole" />
-                                <table id="Medicinetable" class="display" cellspacing="0" width="100%">
+                                <table id="Medicinetable" class="display medic-table1" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
                                             <th>Medicine Name</th>
@@ -273,40 +359,11 @@
 
 
                     @*<div class="col-md-7 bac">
-                            <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
-                        </div>*@
+            <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
+        </div>*@
 
 
-                    <div class="col-md-4">
-                        <div class="card">
 
-                            <div>
-                                @using (Html.BeginForm("Index2", "Equipments", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
-                                    <span style="font-size:20px;">Select File:</span>
-                                    <br />
-                                    <input type="file" name="postedFile" />
-                                    @*<hr />*@
-                                    <br />
-                                    <input type="submit" value="Upload" class="button1" />
-                                    <br /><br />
-                                    <span style="color:green">@ViewBag.Message</span>
-                                }
-                            </div>
-                            <div class="">
-                                <div class="box1">
-                                    <img src="~/background/excel.png" class="img-responsive" style="height:25%; width:25%;" />
-                                </div>
-                                <div class="export-template-label" style="display:inline-block;margin:4px 5px -8px 0px;">
-                                    <a href="../MedicineNew/MedicineList.xlsx" target="_self" download>
-                                        <img src="#" alt="Download Template" style="float:left; width:160px;" class="button1">
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
 
 
 

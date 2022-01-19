@@ -15634,7 +15634,7 @@ button:disabled {
         color: #fff;
         border: 0;
         border-radius: 4px;
-        padding: 7px 25px;
+        padding: 7px 18px;
         margin: 0 0 7px 0;
         display: inline-block;
     }
@@ -15658,5 +15658,72 @@ button:disabled {
         margin: 20px 0 10px 0;
         color: #a7a7a7;
     }
-.head_title{width:100%;}
-.card.backk{width:100%;}
+
+.head_title {
+    width: 100%;
+}
+
+.card.backk {
+    width: 100%;
+}
+
+.marin .upload-file {
+    margin: 0;
+}
+
+    .marin .upload-file form {
+        margin: 0;
+    }
+
+.medi-add .form-control {
+    display: inline-block;
+    width: 75%;
+}
+
+.medic-table1 {
+    border-bottom: 1px solid #e6dddd !important;
+}
+
+    .medic-table1 tr {
+        background: #121e36;
+    }
+
+#btnDownloadInventory, .downbtnt {
+    background: #0c2b48;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    padding: 5px 14px;
+}
+
+.bottom-pls {
+    margin: 50px 0 0 0;
+}
+
+.hide {
+    display: none;
+    background: #fff;
+    position: absolute;
+    padding: 4px;
+    z-index: 99;
+    top: 17px;
+    box-shadow: 2px 2px 8px rgb(0 0 0 / 6%);
+}
+
+.myDIV:hover .hide {
+    display: block;
+}
+
+.myDIV .fa {
+    padding: 0px 0 0 6px;
+    cursor: pointer;
+}
+
+.myDIV table tr td {
+    border: 1px solid #eee;
+    padding: 7px;
+}
+
+    .myDIV table tr td:first-child {
+        width: 84px;
+    }
