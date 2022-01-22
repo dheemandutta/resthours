@@ -16,10 +16,10 @@ namespace TM.RestHour.BL
             return equipmentsDAL.SaveEquipments(equipmentsPOCO/*, VesselID*/);
         }
 
-        public List<EquipmentsPOCO> GetEquipmentsPageWise(int pageIndex, ref int recordCount, int length/*, int VesselID*/)
+        public List<EquipmentsPOCO> GetEquipmentsPageWise(int pageIndex, ref int recordCount, int length, string Country, string Category, string NoOfCrew/*, int VesselID*/)
         {
             EquipmentsDAL equipmentsDAL = new EquipmentsDAL();
-            return equipmentsDAL.GetEquipmentsPageWise(pageIndex, ref recordCount, length/*, VesselID*/);
+            return equipmentsDAL.GetEquipmentsPageWise(pageIndex, ref recordCount, length, Country, Category, NoOfCrew/*, VesselID*/);
         }
 
 
@@ -42,10 +42,10 @@ namespace TM.RestHour.BL
             return equipmentsDAL.SaveMedicine(equipmentsPOCO/*, VesselID*/);
         }
 
-        public List<EquipmentsPOCO> GetMedicinePageWise(int pageIndex, ref int recordCount, int length/*, int VesselID*/)
+        public List<EquipmentsPOCO> GetMedicinePageWise(int pageIndex, ref int recordCount, int length, string Country, string Category, string NoOfCrew/*, int VesselID*/)
         {
             EquipmentsDAL equipmentsDAL = new EquipmentsDAL();
-            return equipmentsDAL.GetMedicinePageWise(pageIndex, ref recordCount, length/*, VesselID*/);
+            return equipmentsDAL.GetMedicinePageWise(pageIndex, ref recordCount, length, Country, Category, NoOfCrew/*, VesselID*/);
         }
 
         public EquipmentsPOCO GetCrewDetailsForHealthByID(int ID)

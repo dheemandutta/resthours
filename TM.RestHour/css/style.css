@@ -15727,3 +15727,70 @@ button:disabled {
     .myDIV table tr td:first-child {
         width: 84px;
     }
+
+.container--tabs {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+    .container--tabs .tab {
+        min-height: 2em;
+        padding: 15px 18px;
+        box-sizing: border-box;
+        width: 100%;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: #192848;
+        color: white;
+        transition: background-color 0.25s;
+        font-size: 21px;
+    }
+
+        .container--tabs .tab:hover {
+            background-color: rgba(0, 0, 0, 0.25);
+            transition: background-color 0.25s;
+            color: white;
+        }
+
+    .container--tabs .tabs--active {
+        background-color: #fff;
+        color: #486dcf;
+        pointer-events: none;
+    }
+
+.content {
+    display: none;
+    padding: 2em 21px;
+    /* text-align: center; */
+    border: 0;
+    border-top: 1px solid #cdcdcd;
+}
+
+.content--active {
+    display: block;
+}
+
+.add-btn {
+    text-align: right;
+}
+
+    .add-btn button {
+        color: #fff;
+        background: #192848;
+        border: 0;
+        padding: 7px 38px;
+        font-size: 15px;
+        border-radius: 26px;
+    }
+
+.card-box {
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+}
+
+    .card-box h5 {
+        font-weight: 600;
+    }

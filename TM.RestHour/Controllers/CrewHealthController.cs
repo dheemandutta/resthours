@@ -263,7 +263,7 @@ namespace TM.RestHour.Controllers
 
 
 
-        public JsonResult LoadData22()
+        public JsonResult LoadData22(string Country, string Category, string NoOfCrew)
         {
             int draw, start, length;
             int pageIndex = 0;
@@ -294,7 +294,7 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<EquipmentsPOCO> equipmentspocoList = new List<EquipmentsPOCO>();
-            equipmentspocoList = equipmentsBL.GetMedicinePageWise(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+            equipmentspocoList = equipmentsBL.GetMedicinePageWise(pageIndex, ref totalrecords, length, Country, Category, NoOfCrew/*, int.Parse(Session["VesselID"].ToString())*/);
             List<Equipments> equipmentsList = new List<Equipments>();
             foreach (EquipmentsPOCO equipmentsPC in equipmentspocoList)
             {
@@ -314,7 +314,7 @@ namespace TM.RestHour.Controllers
         }
 
 
-        public JsonResult LoadData33()
+        public JsonResult LoadData33(string Country, string Category, string NoOfCrew)
         {
             int draw, start, length;
             int pageIndex = 0;
@@ -345,7 +345,7 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<EquipmentsPOCO> equipmentspocoList = new List<EquipmentsPOCO>();
-            equipmentspocoList = equipmentsBL.GetEquipmentsPageWise(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+            equipmentspocoList = equipmentsBL.GetEquipmentsPageWise(pageIndex, ref totalrecords, length, Country, Category, NoOfCrew/*, int.Parse(Session["VesselID"].ToString())*/);
             List<Equipments> equipmentsList = new List<Equipments>();
             foreach (EquipmentsPOCO equipmentsPC in equipmentspocoList)
             {

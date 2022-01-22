@@ -67,7 +67,7 @@ namespace TM.RestHour.DAL
             return recordsAffected;
         }
 
-        public List<EquipmentsPOCO> GetEquipmentsPageWise(int pageIndex, ref int recordCount, int length/*, int VesselID*/)
+        public List<EquipmentsPOCO> GetEquipmentsPageWise(int pageIndex, ref int recordCount, int length, string Country, string Category, string NoOfCrew)
         {
             List<EquipmentsPOCO> equipmentsPOList = new List<EquipmentsPOCO>();
             List<EquipmentsPOCO> equipmentsPO = new List<EquipmentsPOCO>();
@@ -82,6 +82,11 @@ namespace TM.RestHour.DAL
                     cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
                     cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
                     //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+
+                    cmd.Parameters.AddWithValue("@Country", Country);
+                    cmd.Parameters.AddWithValue("@Category", Category);
+                    cmd.Parameters.AddWithValue("@NoOfCrew", NoOfCrew);
+
                     con.Open();
 
                     DataSet ds = new DataSet();
@@ -211,7 +216,7 @@ namespace TM.RestHour.DAL
             return recordsAffected;
         }
 
-        public List<EquipmentsPOCO> GetMedicinePageWise(int pageIndex, ref int recordCount, int length/*, int VesselID*/)
+        public List<EquipmentsPOCO> GetMedicinePageWise(int pageIndex, ref int recordCount, int length, string Country, string Category, string NoOfCrew)
         {
             List<EquipmentsPOCO> equipmentsPOList = new List<EquipmentsPOCO>();
             List<EquipmentsPOCO> equipmentsPO = new List<EquipmentsPOCO>();
@@ -226,6 +231,10 @@ namespace TM.RestHour.DAL
                     cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
                     cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
                     //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+
+                    cmd.Parameters.AddWithValue("@Country", Country);
+                    cmd.Parameters.AddWithValue("@Category", Category);
+                    cmd.Parameters.AddWithValue("@NoOfCrew", NoOfCrew);
                     con.Open();
 
                     DataSet ds = new DataSet();
@@ -241,14 +250,13 @@ namespace TM.RestHour.DAL
                         {
                             MedicineID = Convert.ToInt32(dr["MedicineID"]),
                             MedicineName = Convert.ToString(dr["MedicineName"]),
-                            //Comment = Convert.ToString(dr["Comment"]),
-                            Quantity = Convert.ToString(dr["Quantity"]),
-                            ExpiryDate = Convert.ToString(dr["ExpiryDate"]),
-                            Location = Convert.ToString(dr["Location"]),
-                            //CrewID = Convert.ToInt32(dr["CrewID"])
-
+                            ReqQty = Convert.ToString(dr["ReqQty"]),
+                            Unit = Convert.ToString(dr["Unit"]),
                             BatchNo = Convert.ToString(dr["BatchNo"]),
                             BatchQuantity = Convert.ToString(dr["BatchQuantity"]),
+                            PresentQuantity = Convert.ToString(dr["PresentQTY"]),
+                            ExpiryDate = Convert.ToString(dr["ExpiryDate"]),
+                            Location = Convert.ToString(dr["Location"]),
                             PrescribedFor = Convert.ToString(dr["PrescribedFor"])
                         });
                     }
