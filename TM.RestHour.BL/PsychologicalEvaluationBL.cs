@@ -195,6 +195,8 @@ namespace TM.RestHour.BL
             int totalCount = 0; // 13578
             string testResult = string.Empty;
 
+            decimal score = 0; // Added on 19th Jan 2022 @BK
+
             int counter = 0;
             for (int i = 0; i < arrLocusOfControl.Length; i++)
             {
@@ -208,8 +210,12 @@ namespace TM.RestHour.BL
             {
                 totalCount = totalCount + int.Parse(arrAnswer[i]);
             }
+            //score = totalCount / arrQuestionNo.Length;
 
+            score = Math.Round(decimal.Divide(Convert.ToDecimal( totalCount),Convert.ToDecimal( arrQuestionNo.Length)),2); // Added on 19th Jan 2022 @BK
             totalCount = totalCount / arrQuestionNo.Length;
+
+            
 
             //if (totalCount <= 13)
             //{
@@ -221,18 +227,19 @@ namespace TM.RestHour.BL
 
             //else
             //    testResult = "High perceived stress";
-        
+
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            //return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);// Commented on 19th Jan 2022 @BK
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, score, testResult, CrewID, VesselID, StoredProcedure); // Added on 19th Jan 2022 @BK
 
         }
 
         private int SaveBeckDepressionInventoryIIFinal(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
         {
-            string[] arrQuestionNo = new string[10];
-            string[] arrAnswer = new string[10];
+            string[] arrQuestionNo = new string[21];
+            string[] arrAnswer = new string[21];
             int totalCount = 0; // 13578
             string testResult = string.Empty;
 
@@ -247,52 +254,96 @@ namespace TM.RestHour.BL
 
             for (int i = 0; i < arrQuestionNo.Length; i++)
             {
-                switch (int.Parse(arrQuestionNo[i]))
-                {
-                    case 1:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 2:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 3:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 4:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 5:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 6:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 7:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 8:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 9:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 10:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                }
+                totalCount = totalCount + (int.Parse(arrAnswer[i]) +1);
+
+                #region Switch Case 
+
+                //switch (int.Parse(arrQuestionNo[i]))
+                //{
+                //    case 1:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 2:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 3:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 4:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 5:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 6:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 7:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 8:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 9:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 10:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 11:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 12:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 13:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 14:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 15:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 16:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 17:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 18:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 19:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 20:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 21:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 22:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //}
+
+                #endregion
 
             }
 
             if (totalCount <= 13)
             {
-                testResult = "Low perceived stress";
+                testResult = "Minimal depression";
             }
 
-            else if (totalCount >= 14 && totalCount <= 26)
-                testResult = "Moderate perceived stress";
+            else if (totalCount >= 14 && totalCount <= 19)
+                testResult = "Mild depression";
+            else if (totalCount >= 20 && totalCount <= 28)
+                testResult = "Moderate depression";
 
             else
-                testResult = "High perceived stress";
+                testResult = "Severe depression";
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
@@ -309,6 +360,8 @@ namespace TM.RestHour.BL
 
             int psq_mean = 0;
             decimal psq = 0;
+
+            int scaleRank = 0;// Added on 19th Jan 2022 @BK
 
             int counter = 0;
             for (int i = 0; i < arrLocusOfControl.Length; i++)
@@ -422,12 +475,14 @@ namespace TM.RestHour.BL
             psq = psq / 3;
             psq = psq * 100;
 
+            scaleRank = Convert.ToInt32( Math.Round(psq));// Added on 19th Jan 2022 @BK
 
-           
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, psq, testResult, CrewID, VesselID, StoredProcedure);
+            //return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, psq, testResult, CrewID, VesselID, StoredProcedure);// Commented on 19th Jan 2022 @BK
+
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, scaleRank, testResult, CrewID, VesselID, StoredProcedure);// Added on 19th Jan 2022 @BK
 
         }
 
@@ -706,9 +761,17 @@ namespace TM.RestHour.BL
 
         private int SaveEmotionalIntelligenceQuizForLeadership(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
         {
-            string[] arrQuestionNo = new string[10];
-            string[] arrAnswer = new string[10];
+            string[] arrQuestionNo = new string[40];
+            string[] arrAnswer = new string[40];
             int totalCount = 0; // 13578
+            int[] totalScore = new int[4];
+            string[] allResults = new string[4];
+
+            int totalOfSelfAwerness = 0;
+            int totalOfSelfControl = 0;
+            int totalOfEmpathy = 0;
+            int totalOfRespondingIntegrity = 0;
+
             string testResult = string.Empty;
 
             int counter = 0;
@@ -722,56 +785,111 @@ namespace TM.RestHour.BL
 
             for (int i = 0; i < arrQuestionNo.Length; i++)
             {
-                switch (int.Parse(arrQuestionNo[i]))
+                #region Switch Case Commented
+                //switch (int.Parse(arrQuestionNo[i]))
+                //{
+                //    case 1:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 2:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 3:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 4:
+                //        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                //        break;
+                //    case 5:
+                //        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                //        break;
+                //    case 6:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 7:
+                //        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                //        break;
+                //    case 8:
+                //        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
+                //        break;
+                //    case 9:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //    case 10:
+                //        totalCount = totalCount + int.Parse(arrAnswer[i]);
+                //        break;
+                //}
+
+                #endregion
+
+                totalCount = totalCount + int.Parse(arrAnswer[i]);
+
+                if (int.Parse(arrQuestionNo[i]) <= 10)
                 {
-                    case 1:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 2:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 3:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 4:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 5:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 6:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 7:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 8:
-                        totalCount = totalCount + CalculateAnswerForPSSFinal(int.Parse(arrAnswer[i]));
-                        break;
-                    case 9:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
-                    case 10:
-                        totalCount = totalCount + int.Parse(arrAnswer[i]);
-                        break;
+                    totalOfSelfAwerness = totalOfSelfAwerness + int.Parse(arrAnswer[i]);
+                }
+                else if (int.Parse(arrQuestionNo[i]) >= 11 && int.Parse(arrQuestionNo[i]) <= 20)
+                {
+                    totalOfSelfControl = totalOfSelfControl + int.Parse(arrAnswer[i]);
+                }
+                else if (int.Parse(arrQuestionNo[i]) >= 21 && int.Parse(arrQuestionNo[i]) <= 30)
+                {
+                    totalOfEmpathy = totalOfEmpathy + int.Parse(arrAnswer[i]);
+                }
+                else if (int.Parse(arrQuestionNo[i]) >= 31 && int.Parse(arrQuestionNo[i]) <= 40)
+                {
+                    totalOfRespondingIntegrity = totalOfRespondingIntegrity + int.Parse(arrAnswer[i]);
                 }
 
+
             }
 
-            if (totalCount <= 13)
-            {
-                testResult = "Low perceived stress";
-            }
-
-            else if (totalCount >= 14 && totalCount <= 26)
-                testResult = "Moderate perceived stress";
-
+            #region SA
+            totalScore[0] = totalOfSelfAwerness;
+            if (totalOfSelfAwerness <= 24)
+                allResults[0] = "Area for Enrichment: Requires attention and development";
+            else if (totalOfSelfAwerness >= 25 && totalOfSelfAwerness <= 34)
+                allResults[0] = "Effective Functioning: Consider Strengthenin";
             else
-                testResult = "High perceived stress";
+                allResults[0] = "Enhanced Skills: Use as leverage to develop weaker area";
+
+            #endregion
+
+            #region SC
+
+            totalScore[1] = totalOfSelfControl;
+            if (totalOfSelfControl <= 24)
+                allResults[1] = "Area for Enrichment: Requires attention and development";
+            else if (totalOfSelfControl >= 25 && totalOfSelfControl <= 34)
+                allResults[1] = "Effective Functioning: Consider Strengthenin";
+            else
+                allResults[1] = "Enhanced Skills: Use as leverage to develop weaker area";
+            #endregion
+
+            #region Empathy
+            totalScore[2] = totalOfEmpathy;
+            if (totalOfEmpathy <= 24)
+                allResults[2] = "Area for Enrichment: Requires attention and development";
+            else if (totalOfEmpathy >= 25 && totalOfEmpathy <= 34)
+                allResults[2] = "Effective Functioning: Consider Strengthenin";
+            else
+                allResults[2] = "Enhanced Skills: Use as leverage to develop weaker area";
+            #endregion
+
+            #region RI
+            totalScore[3] = totalOfRespondingIntegrity;
+            if (totalOfRespondingIntegrity <= 24)
+                allResults[3] = "Area for Enrichment: Requires attention and development";
+            else if (totalOfRespondingIntegrity >= 25 && totalOfRespondingIntegrity <= 34)
+                allResults[3] = "Effective Functioning: Consider Strengthenin";
+            else
+                allResults[3] = "Enhanced Skills: Use as leverage to develop weaker area";
+
+            #endregion
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalScore, allResults, CrewID, VesselID, StoredProcedure);
 
         }
 
