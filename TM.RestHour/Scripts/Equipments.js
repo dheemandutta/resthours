@@ -111,86 +111,6 @@ function SaveEquipments() {
      }
 }
 
-function loadData() {
-    var loadposturl = $('#loaddata').val();
-    $.ajax({
-        url: loadposturl,
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            SetUpGrid();
-
-        },
-        error: function (errormessage) {
-            console.log(errormessage.responseText);
-        }
-    });
-}
-
-function SetUpGrid() {
-    var loadposturl = $('#loaddata').val();
-
-    //do not throw error
-    $.fn.dataTable.ext.errMode = 'none';
-
-    //check if datatable is already created then destroy iy and then create it
-    if ($.fn.dataTable.isDataTable('#Equipmentstable')) {
-        table = $('#Equipmentstable').DataTable();
-        table.destroy();
-    }
-
-
-    // alert('hh');
-    var table = $("#Equipmentstable").DataTable({
-        "dom": 'Bfrtip',
-        "rowReorder": false,
-        "ordering": false,
-        "filter": false, // this is for disable filter (search box)
-
-        "ajax": {
-            "url": loadposturl,
-            "type": "POST",
-            "datatype": "json"
-        },
-        "columns": [
-            //{
-            //    "data": "Order", "name": "Order", "autoWidth": true, "className": 'reorder'
-            //},
-            {
-                "data": "EquipmentsName", "name": "EquipmentsName", "autoWidth": true
-            },
-            {
-                "data": "RequiredQuantity", "name": "RequiredQuantity", "autoWidth": true
-            },
-            {
-                "data": "Unit", "name": "Unit", "autoWidth": true
-            },
-            {
-                "data": "OnBoardQuantity", "name": "OnBoardQuantity", "autoWidth": true
-            },
-            {
-                "data": "Location", "name": "Location", "autoWidth": true
-            },
-            {
-                "data": "EquipmentsID", "width": "50px", "render": function (data) {
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicalEquipmentByID(' + data + ')"><i class="fas fa-edit"></i></a>';
-                }
-            },
-            {
-                "data": "EquipmentsID", "width": "50px", "render": function (d) {
-                    //debugger;
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteEquipments(' + d + ')"><i class="fas fa-trash"></i></a>';
-
-
-                }
-            }
-
-        ],
-        "rowId": "EquipmentsID",
-        "dom": "Bfrtip"
-    });
-}
 
 function GetMedicalEquipmentByID(EquipmentsID) {
     $('#EquipmentsName').css('border-color', 'lightgrey');
@@ -227,6 +147,337 @@ function GetMedicalEquipmentByID(EquipmentsID) {
     });
     return false;
 }
+
+function loadData2() {
+    //var loadposturl = $('#loaddata2').val();
+    //$.ajax({
+    //    url: loadposturl,
+    //    type: "GET",
+    //    contentType: "application/json;charset=utf-8",
+    //    dataType: "json",
+    //    success: function (result) {
+    //        SetUpGrid2();
+
+    //    },
+    //    error: function (errormessage) {
+    //        console.log(errormessage.responseText);
+    //    }
+    //});
+    SetUpGrid2();
+}
+
+function SetUpGrid2() {
+    var loadposturl = $('#loaddata2').val();
+
+    var Country = $('#CountryID').val();
+    var Category = $('#Category').val();
+    var NoOfCrew = $('#NoOfCrew').val();
+
+    //do not throw error
+    $.fn.dataTable.ext.errMode = 'none';
+
+    //check if datatable is already created then destroy iy and then create it
+    if ($.fn.dataTable.isDataTable('#Medicinetable')) {
+        table = $('#Medicinetable').DataTable();
+        table.destroy();
+    }
+
+
+    // alert('hh');
+    var table = $("#Medicinetable").DataTable({
+        "dom": 'Bfrtip',
+        "rowReorder": false,
+        "ordering": false,
+        "filter": false, // this is for disable filter (search box)
+
+        "ajax": {
+            "url": loadposturl,
+            "type": "POST",
+            "datatype": "json",
+            "data": {
+                Country: Country,
+                Category: Category,
+                NoOfCrew: NoOfCrew
+            },
+        },
+        "columns": [
+            //{
+            //    "data": "Order", "name": "Order", "autoWidth": true, "className": 'reorder'
+            //},
+            {
+                "data": "MedicineName", "name": "MedicineName", "autoWidth": true
+            },
+            {
+                "data": "ReqQty", "name": "ReqQty", "autoWidth": true
+            },
+            {
+                "data": "BatchNo", "name": "BatchNo", "autoWidth": true
+            },
+            {
+                "data": "BatchQuantity", "name": "BatchQuantity", "autoWidth": true
+            },
+            {
+                "data": "Quantity", "name": "Quantity", "autoWidth": true
+            },
+            {
+                "data": "ExpiryDate", "name": "ExpiryDate", "autoWidth": true
+            },
+            {
+                "data": "Location", "name": "Location", "autoWidth": true
+            },
+            {
+                "data": "PrescribedFor", "name": "PrescribedFor", "autoWidth": true
+            },
+            {
+                "data": "MedicineID", "width": "50px", "render": function (data) {
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicineByID(' + data + ')"><i class="fas fa-edit"></i></a>';
+                }
+            },
+            {
+                "data": "MedicineID", "width": "50px", "render": function (d) {
+                    //debugger;
+                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteMedicine(' + d + ')"><i class="fas fa-trash"></i></a>';
+                }
+            }
+
+        ],
+        "rowId": "MedicineID",
+        "dom": "Bfrtip"
+    });
+}
+
+function loadData() {
+    //var loadposturl = $('#loaddata').val();
+
+
+
+    //$.ajax({
+    //    url: loadposturl,
+    //    type: "GET",
+    //    contentType: "application/json;charset=utf-8",
+    //    dataType: "json",
+    //    success: function (result) {
+    //        SetUpGrid();
+
+    //    },
+    //    error: function (errormessage) {
+    //        console.log(errormessage.responseText);
+    //    }
+    //});
+    SetUpGrid();
+    loadDataPrint();
+}
+
+function SetUpGrid() {
+    var loadposturl = $('#loaddata').val();
+
+    var Country = $('#CountryID').val();
+    var Category = $('#Category').val();
+    var NoOfCrew = $('#NoOfCrew').val();
+
+    //debugger;
+    //console.log(Country);
+    //do not throw error
+    $.fn.dataTable.ext.errMode = 'none';
+
+    //check if datatable is already created then destroy iy and then create it
+    if ($.fn.dataTable.isDataTable('#Equipmentstable')) {
+        table = $('#Equipmentstable').DataTable();
+        table.destroy();
+    }
+
+
+    // alert('hh');
+    var table = $("#Equipmentstable").DataTable({
+        "dom": 'Bfrtip',
+        "rowReorder": false,
+        "ordering": false,
+        "filter": false, // this is for disable filter (search box)
+
+        "ajax": {
+            "url": loadposturl,
+            "type": "POST",
+            "datatype": "json",
+            "data": {
+                Country: Country,
+                Category: Category,
+                NoOfCrew: NoOfCrew
+            },
+        },
+            "columns": [
+                //{
+                //    "data": "Order", "name": "Order", "autoWidth": true, "className": 'reorder'
+                //},
+                {
+                    "data": "EquipmentsName", "name": "EquipmentsName", "autoWidth": true
+                },
+                {
+                    "data": "RequiredQuantity", "name": "RequiredQuantity", "autoWidth": true
+                },
+                {
+                    "data": "Unit", "name": "Unit", "autoWidth": true
+                },
+                {
+                    "data": "OnBoardQuantity", "name": "OnBoardQuantity", "autoWidth": true
+                },
+                {
+                    "data": "Location", "name": "Location", "autoWidth": true
+                }
+                //,{
+                //    "data": "EquipmentsID", "width": "50px", "render": function (data) {
+                //        return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicalEquipmentByID(' + data + ')"><i class="fas fa-edit"></i></a>';
+                //    }
+                //},
+                //{
+                //    "data": "EquipmentsID", "width": "50px", "render": function (d) {
+                //        //debugger;
+                //        return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteEquipments(' + d + ')"><i class="fas fa-trash"></i></a>';
+
+
+                //    }
+                //}
+
+            ],
+            "rowId": "EquipmentsID",
+            "dom": "Bfrtip"
+        });
+}
+
+
+
+function loadDataPrint() {
+    //var loadposturl = $('#loaddata').val();
+
+
+
+    //$.ajax({
+    //    url: loadposturl,
+    //    type: "GET",
+    //    contentType: "application/json;charset=utf-8",
+    //    dataType: "json",
+    //    success: function (result) {
+    //        SetUpGrid();
+
+    //    },
+    //    error: function (errormessage) {
+    //        console.log(errormessage.responseText);
+    //    }
+    //});
+    SetUpGridPrint();
+}
+
+function SetUpGridPrint() {
+    var loadposturl = $('#loaddataPrint').val();
+
+    var Country = $('#CountryID').val();
+    var Category = $('#Category').val();
+    var NoOfCrew = $('#NoOfCrew').val();
+
+    //debugger;
+    //console.log(Country);
+    //do not throw error
+    $.fn.dataTable.ext.errMode = 'none';
+
+    //check if datatable is already created then destroy iy and then create it
+    if ($.fn.dataTable.isDataTable('#certtable_print')) {
+        table = $('#certtable_print').DataTable();
+        table.destroy();
+    }
+
+
+    // alert('hh');
+    var table = $("#certtable_print").DataTable({
+        "dom": 'Bfrtip',
+        "rowReorder": false,
+        "ordering": false,
+        "filter": false, // this is for disable filter (search box)
+
+        "ajax": {
+            "url": loadposturl,
+            "type": "POST",
+            "datatype": "json",
+            "data": {
+                Country: Country,
+                Category: Category,
+                NoOfCrew: NoOfCrew
+            },
+        },
+        "columns": [
+            //{
+            //    "data": "Order", "name": "Order", "autoWidth": true, "className": 'reorder'
+            //},
+            {
+                "data": "EquipmentsName", "name": "EquipmentsName", "autoWidth": true
+            },
+            {
+                "data": "RequiredQuantity", "name": "RequiredQuantity", "autoWidth": true
+            },
+            {
+                "data": "Unit", "name": "Unit", "autoWidth": true
+            },
+            {
+                "data": "OnBoardQuantity", "name": "OnBoardQuantity", "autoWidth": true
+            },
+            {
+                "data": "Location", "name": "Location", "autoWidth": true
+            }
+            //,{
+            //    "data": "EquipmentsID", "width": "50px", "render": function (data) {
+            //        return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicalEquipmentByID(' + data + ')"><i class="fas fa-edit"></i></a>';
+            //    }
+            //},
+            //{
+            //    "data": "EquipmentsID", "width": "50px", "render": function (d) {
+            //        //debugger;
+            //        return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteEquipments(' + d + ')"><i class="fas fa-trash"></i></a>';
+
+
+            //    }
+            //}
+
+        ],
+        "rowId": "EquipmentsID",
+        "dom": "Bfrtip"
+    });
+}
+
+
+
+function Popup(data) {
+    var mywindow = window.open('', '', 'left=0,top=0,width=1600,height=1400');
+
+    var is_chrome = Boolean(mywindow.chrome);
+
+    mywindow.document.write('<html><head><title></title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write($('#dvprint').html());
+    mywindow.document.write('</body></html>');
+    mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
+    is_chrome = false;
+    //alert(is_chrome);
+    if (is_chrome) {
+        mywindow.onload = function () { // wait until all resources loaded 
+            mywindow.focus(); // necessary for IE >= 10
+            mywindow.print();  // change window to mywindow
+            mywindow.close();// change window to mywindow
+        };
+    }
+    else {
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+        mywindow.print();
+        mywindow.close();
+    }
+
+    return true;
+}
+
+
+
+
+
+
+
 
 
 
@@ -344,90 +595,6 @@ function SaveMedicine() {
     }
 }
 
-function loadData2() {
-    var loadposturl = $('#loaddata2').val();
-    $.ajax({
-        url: loadposturl,
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            SetUpGrid2();
-
-        },
-        error: function (errormessage) {
-            console.log(errormessage.responseText);
-        }
-    });
-}
-
-function SetUpGrid2() {
-    var loadposturl = $('#loaddata2').val();
-
-    //do not throw error
-    $.fn.dataTable.ext.errMode = 'none';
-
-    //check if datatable is already created then destroy iy and then create it
-    if ($.fn.dataTable.isDataTable('#Medicinetable')) {
-        table = $('#Medicinetable').DataTable();
-        table.destroy();
-    }
-
-
-    // alert('hh');
-    var table = $("#Medicinetable").DataTable({
-        "dom": 'Bfrtip',
-        "rowReorder": false,
-        "ordering": false,
-        "filter": false, // this is for disable filter (search box)
-
-        "ajax": {
-            "url": loadposturl,
-            "type": "POST",
-            "datatype": "json"
-        },
-        "columns": [
-            //{
-            //    "data": "Order", "name": "Order", "autoWidth": true, "className": 'reorder'
-            //},
-            {
-                "data": "MedicineName", "name": "MedicineName", "autoWidth": true
-            },
-            {
-                "data": "Quantity", "name": "Quantity", "autoWidth": true
-            },
-            {
-                "data": "BatchNo", "name": "BatchNo", "autoWidth": true
-            },
-            {
-                "data": "BatchQuantity", "name": "BatchQuantity", "autoWidth": true
-            },
-            {
-                "data": "ExpiryDate", "name": "ExpiryDate", "autoWidth": true
-            },
-            {
-                "data": "Location", "name": "Location", "autoWidth": true
-            },
-            {
-                "data": "PrescribedFor", "name": "PrescribedFor", "autoWidth": true
-            },
-            {
-                "data": "MedicineID", "width": "50px", "render": function (data) {
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="GetMedicineByID(' + data + ')"><i class="fas fa-edit"></i></a>';
-                }
-            },
-            {
-                "data": "MedicineID", "width": "50px", "render": function (d) {
-                    //debugger;
-                    return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteMedicine(' + d + ')"><i class="fas fa-trash"></i></a>';
-                }
-            }
-
-        ],
-        "rowId": "MedicineID",
-        "dom": "Bfrtip"
-    });
-}
 
 function GetMedicineByID(MedicineID) {
     $('#MedicineName').css('border-color', 'lightgrey');

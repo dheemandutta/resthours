@@ -49,5 +49,10 @@ namespace TM.Base.Entities
         public string RequiredQuantity { get; set; }
         public string Unit { get; set; }
         public string OnBoardQuantity { get; set; }
+
+        public string PresentQuantity { get; set; }
+
+        public string ReqQty { get; set; }
+
     }
 }

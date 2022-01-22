@@ -24,9 +24,9 @@ table.dataTable thead th, table.dataTable thead td {
     border: none !important;
     font-size: 16px !important;
 }
-table.dataTable.no-footer {
+/*table.dataTable.no-footer {
     border-bottom: 1px solid #1110 !important;
-}
+}*/
 .table-bordered {
     border: 1px solid #ddd0 !important;
     border-bottom-color: rgba(221, 221, 221, 0);
@@ -114,6 +114,6 @@ table.dataTable.display tbody tr:hover > .sorting_1, table.dataTable.order-colum
 table.row-border.dataTable tbody th, table.row-border.dataTable tbody td, table.display.dataTable tbody th, table.display.dataTable tbody td {
     border-top: 1px solid transparent;
 }
-table.dataTable.no-footer {
+/*table.dataTable.no-footer {
     border-bottom: 1px solid #fff !important;
-}
+}*/

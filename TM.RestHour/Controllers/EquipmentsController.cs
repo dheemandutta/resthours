@@ -29,6 +29,7 @@ namespace TM.RestHour.Controllers
         [TraceFilterAttribute]
         public ActionResult Index()
         {
+            GetAllCountryForDrp();
             return View();
         }
 
@@ -62,7 +63,7 @@ namespace TM.RestHour.Controllers
             return Json(equipmentsBL.SaveEquipments(equipmentsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult LoadData()
+        public JsonResult LoadData(string Country, string Category, string NoOfCrew)
         {
             int draw, start, length;
             int pageIndex = 0;
@@ -93,7 +94,7 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<EquipmentsPOCO> equipmentspocoList = new List<EquipmentsPOCO>();
-            equipmentspocoList = equipmentsBL.GetEquipmentsPageWise(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+            equipmentspocoList = equipmentsBL.GetEquipmentsPageWise(pageIndex, ref totalrecords, length, Country, Category, NoOfCrew/*, int.Parse(Session["VesselID"].ToString())*/);
             List<Equipments> equipmentsList = new List<Equipments>();
             foreach (EquipmentsPOCO equipmentsPC in equipmentspocoList)
             {
@@ -114,7 +115,7 @@ namespace TM.RestHour.Controllers
         }
 
 
-        public JsonResult LoadDataPrint()
+        public JsonResult LoadDataPrint(string Country, string Category, string NoOfCrew)
         {
             int draw, start, length;
             int pageIndex = 0;
@@ -145,7 +146,7 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<EquipmentsPOCO> equipmentspocoList = new List<EquipmentsPOCO>();
-            equipmentspocoList = equipmentsBL.GetEquipmentsPageWise(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+            equipmentspocoList = equipmentsBL.GetEquipmentsPageWise(pageIndex, ref totalrecords, length, Country, Category, NoOfCrew/*, int.Parse(Session["VesselID"].ToString())*/);
             List<Equipments> equipmentsList = new List<Equipments>();
             foreach (EquipmentsPOCO equipmentsPC in equipmentspocoList)
             {
@@ -302,7 +303,7 @@ namespace TM.RestHour.Controllers
             return Json(equipmentsBL.SaveMedicine(equipmentsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult LoadData2()
+        public JsonResult LoadData2(string Country, string Category, string NoOfCrew)
         {
             int draw, start, length;
             int pageIndex = 0;
@@ -333,30 +334,29 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<EquipmentsPOCO> equipmentspocoList = new List<EquipmentsPOCO>();
-            equipmentspocoList = equipmentsBL.GetMedicinePageWise(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+            equipmentspocoList = equipmentsBL.GetMedicinePageWise(pageIndex, ref totalrecords, length, Country, Category, NoOfCrew);
             List<Equipments> equipmentsList = new List<Equipments>();
             foreach (EquipmentsPOCO equipmentsPC in equipmentspocoList)
             {
                 Equipments equipments = new Equipments();
                 equipments.MedicineID = equipmentsPC.MedicineID;
                 equipments.MedicineName = equipmentsPC.MedicineName;
-                equipments.Quantity = equipmentsPC.Quantity;
-                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
-                equipments.Location = equipmentsPC.Location;
-
+                equipments.ReqQty = equipmentsPC.ReqQty;
+                equipments.Unit = equipmentsPC.Unit;
                 equipments.BatchNo = equipmentsPC.BatchNo;
                 equipments.BatchQuantity = equipmentsPC.BatchQuantity;
+                equipments.PresentQuantity = equipmentsPC.PresentQuantity;
+                equipments.ExpiryDate = equipmentsPC.ExpiryDate;
+                equipments.Location = equipmentsPC.Location;
                 equipments.PrescribedFor = equipmentsPC.PrescribedFor;
 
                 equipmentsList.Add(equipments);
             }
-
             var data = equipmentsList;
-
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult LoadData2Print()
+        public JsonResult LoadData2Print(string Country, string Category, string NoOfCrew)
         {
             int draw, start, length;
             int pageIndex = 0;
@@ -387,16 +387,21 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<EquipmentsPOCO> equipmentspocoList = new List<EquipmentsPOCO>();
-            equipmentspocoList = equipmentsBL.GetMedicinePageWise(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+            equipmentspocoList = equipmentsBL.GetMedicinePageWise(pageIndex, ref totalrecords, length, Country, Category, NoOfCrew/*, int.Parse(Session["VesselID"].ToString())*/);
             List<Equipments> equipmentsList = new List<Equipments>();
             foreach (EquipmentsPOCO equipmentsPC in equipmentspocoList)
             {
                 Equipments equipments = new Equipments();
                 equipments.MedicineID = equipmentsPC.MedicineID;
                 equipments.MedicineName = equipmentsPC.MedicineName;
-                equipments.Quantity = equipmentsPC.Quantity;
+                equipments.ReqQty = equipmentsPC.ReqQty;
+                equipments.Unit = equipmentsPC.Unit;
+                equipments.BatchNo = equipmentsPC.BatchNo;
+                equipments.BatchQuantity = equipmentsPC.BatchQuantity;
+                equipments.PresentQuantity = equipmentsPC.PresentQuantity;
                 equipments.ExpiryDate = equipmentsPC.ExpiryDate;
                 equipments.Location = equipmentsPC.Location;
+                equipments.PrescribedFor = equipmentsPC.PrescribedFor;
 
                 equipmentsList.Add(equipments);
             }
@@ -525,7 +530,7 @@ namespace TM.RestHour.Controllers
                                             new SelectListItem()
                                             {
                                                 Text = x.CountryName,
-                                                Value = x.CountryID.ToString()
+                                                Value = x.CountryName
                                             });
 
         }
