@@ -248,6 +248,8 @@ namespace TM.RestHour.Controllers
                 draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
                 start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
                 length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+                //if (length < 0)
+                //    length = 100;
             }
             else
             {

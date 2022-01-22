@@ -10,6 +10,10 @@
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
 
+<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
+
 <link href="dist/dual-listbox.css" rel="stylesheet">
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
@@ -17,9 +21,12 @@
 
 <script src="~/Scripts/toastr.min.js"></script>
 <link href="~/Content/toastr.min.css" rel="stylesheet" />
-
-<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+@*<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>*@
 <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
 
 
 
@@ -217,8 +224,8 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="AdjustmentDate" placeholder="Adjustment Date" />
-                            <div class="modal-dialog" id="dvuserdetailsn" style="width:100%;">
+                            @*<input type="text" class="form-control" id="AdjustmentDate" placeholder="Adjustment Date" />*@
+                            <div class="" id="dvuserdetailsn" style="width:100%;">
                                 <div class="card">
                                     <fieldset>
                                         <div class="row">
@@ -229,13 +236,13 @@
 
                                             <div class="col-md-3">
                                                 @*<div class="form-group">
-                                <label for="inputPassword3" class="col-sm-3 control-label"></label>
-                                <div class="col-sm-9">
-                                    <div class="multiple">
+                                                        <label for="inputPassword3" class="col-sm-3 control-label"></label>
+                                                        <div class="col-sm-9">
+                                                            <div class="multiple">
 
-                                    </div>
-                                </div>
-                            </div>*@
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
                                                 <div class="form-group" style="width: 100%;">
                                                     <label for="AdjustmentDate">Adjustment Date</label>
                                                     @*<input type="text" class="form-control" id="AdjustmentDate" style="width: 100%;" /><br />*@
@@ -290,11 +297,11 @@
                 <input type="hidden" id="hdncount" />
 
                 <input type="hidden" id="hdnrole" />
-                <table id="Mastertable" class="display" style="width:100%">
-                    <thead align="left">
+                <table id="Mastertable" class="table display" style="width:100%">
+                    <thead align="left" class="blue_Color color_white">
                         <tr>
-                            <th align="left">Adjustment Date</th>
-                            <th>Time Adjusted</th>
+                            <th scope="col" align="left">Adjustment Date</th>
+                            <th scope="col">Time Adjusted</th>
 
                         </tr>
                     </thead>
@@ -356,7 +363,7 @@
         //});
 
         $("#AdjustmentDate").datepicker({
-
+            /*defaultDate: +2,*/
             changeMonth: true,
             changeYear: true,
             dateFormat: 'd-M-yy',
