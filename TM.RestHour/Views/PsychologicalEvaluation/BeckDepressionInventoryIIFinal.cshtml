@@ -24,7 +24,8 @@
 
 
 <script src="~/Scripts/PsychologicalEvaluation.js"></script>
-@Html.Hidden("Save_BeckDepressionInventoryIIFinal", @Url.Action("SaveForms", "PsychologicalEvaluation"))
+@*@Html.Hidden("Save_BeckDepressionInventoryIIFinal", @Url.Action("SaveForms", "PsychologicalEvaluation"))*@
+@Html.Hidden("SaveForms", @Url.Action("SaveForms", "PsychologicalEvaluation"))
 <form id="myForm1">
     <div class="row">
         @*<div class="head_title">
@@ -537,33 +538,46 @@
                         <span style="font-family:Candara;font-size:14pt;font-weight: bold;">Changes in Sleeping Pattern</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <input type="radio" id="17_0" name="q17" value="17_0">
                         <span style="font-family:Candara;font-size:14pt;">1.</span>
                         <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                         <span style="font-family:Candara;font-size:14pt;">I have not experienced any change in my sleeping. </span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="17_1_1" name="q17_1" value="17_1_1">
-                        <span style="font-family:Candara;font-size:14pt;">1a. I sleep somewhat more than usual.</span>
+                        @*<input type="radio" id="17_1_1" name="q17_1" value="17_1_1">
+                            <span style="font-family:Candara;font-size:14pt;">1a. I sleep somewhat more than usual.</span>*@
+                        <input type="radio" id="17_1_1" name="q17" value="17_1">
+                        <span style="font-family:Candara;font-size:14pt;">2a. I sleep somewhat more than usual.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="17_1_2" name="q17_1" value="17_1_2">
-                        <span style="font-family:Candara;font-size:14pt;">1b. I sleep somewhat less than usual.</span>
+                        @*<input type="radio" id="17_1_2" name="q17_1" value="17_1_2">
+                            <span style="font-family:Candara;font-size:14pt;">1b. I sleep somewhat less than usual.</span>*@
+                        <input type="radio" id="17_1_2" name="q17" value="17_1">
+                        <span style="font-family:Candara;font-size:14pt;">2b. I sleep somewhat less than usual.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="17_2_1" name="q17_2" value="17_2_1">
-                        <span style="font-family:Candara;font-size:14pt;">2a. I sleep a lot more than usual.</span>
+                        @*<input type="radio" id="17_2_1" name="q17_2" value="17_2_1">
+                            <span style="font-family:Candara;font-size:14pt;">2a. I sleep a lot more than usual.</span>*@
+                        <input type="radio" id="17_2_1" name="q17" value="17_2">
+                        <span style="font-family:Candara;font-size:14pt;">3a. I sleep a lot more than usual.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="17_2_2" name="q17_2" value="17_2_2">
-                        <span style="font-family:Candara;font-size:14pt;">2b. I sleep a lot less than usual.</span>
+                        @*<input type="radio" id="17_2_2" name="q17_2" value="17_2_2">
+                            <span style="font-family:Candara;font-size:14pt;">2b. I sleep a lot less than usual.</span>*@
+                        <input type="radio" id="17_2_2" name="q17" value="17_2">
+                        <span style="font-family:Candara;font-size:14pt;">3b. I sleep a lot less than usual.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="17_3_1" name="q17_3" value="17_3_1">
-                        <span style="font-family:Candara;font-size:14pt;">3a. I sleep most of the day.</span>
+                        @*<input type="radio" id="17_3_1" name="q17_3" value="17_3_1">
+                            <span style="font-family:Candara;font-size:14pt;">3a. I sleep most of the day.</span>*@
+                        <input type="radio" id="17_3_1" name="q17" value="17_3">
+                        <span style="font-family:Candara;font-size:14pt;">4a. I sleep most of the day.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="17_3_2" name="q17_3" value="17_3_2">
-                        <span style="font-family:Candara;font-size:14pt;">3b. I wake up 1-2 hours early and can't get back to sleep.</span>
+                        @*<input type="radio" id="17_3_2" name="q17_3" value="17_3_2">
+                            <span style="font-family:Candara;font-size:14pt;">3b. I wake up 1-2 hours early and can't get back to sleep.</span>*@
+                        <input type="radio" id="17_3_2" name="q17" value="17_3">
+                        <span style="font-family:Candara;font-size:14pt;">4b. I wake up 1-2 hours early and can't get back to sleep.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
                         <span>&nbsp;</span>
@@ -607,33 +621,46 @@
                         <span style="font-family:Candara;font-size:14pt;font-weight: bold;">Changes in Appetite</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
+                        <input type="radio" id="19_0" name="q19" value="19_0">
                         <span style="font-family:Candara;font-size:14pt;">1.</span>
                         <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                         <span style="font-family:Candara;font-size:14pt;">I have not experienced any change in my appetite.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="19_1_1" name="q19_1" value="19_1_1">
-                        <span style="font-family:Candara;font-size:14pt;">1a. My appetite is somewhat less than usual. </span>
+                        @*<input type="radio" id="19_1_1" name="q19_1" value="19_1_1">
+                            <span style="font-family:Candara;font-size:14pt;">1a. My appetite is somewhat less than usual. </span>*@
+                        <input type="radio" id="19_1_1" name="q19" value="19_1">
+                        <span style="font-family:Candara;font-size:14pt;">2a. My appetite is somewhat less than usual. </span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="19_1_2" name="q19_1" value="19_1_2">
-                        <span style="font-family:Candara;font-size:14pt;">1b. My appetite is somewhat greater than usual.</span>
+                        @*<input type="radio" id="19_1_2" name="q19_1" value="19_1_2">
+                            <span style="font-family:Candara;font-size:14pt;">1b. My appetite is somewhat greater than usual.</span>*@
+                        <input type="radio" id="19_1_2" name="q19" value="19_1">
+                        <span style="font-family:Candara;font-size:14pt;">2b. My appetite is somewhat greater than usual.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="19_2_1" name="q19_2" value="19_2_1">
-                        <span style="font-family:Candara;font-size:14pt;">2a. My appetite is much less than before.</span>
+                        @*<input type="radio" id="19_2_1" name="q19_2" value="19_2_1">
+                            <span style="font-family:Candara;font-size:14pt;">2a. My appetite is much less than before.</span>*@
+                        <input type="radio" id="19_2_1" name="q19" value="19_2">
+                        <span style="font-family:Candara;font-size:14pt;">3a. My appetite is much less than before.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="19_2_2" name="q19_2" value="19_2_2">
-                        <span style="font-family:Candara;font-size:14pt;">2b. My appetite is much greater than usual. </span>
+                        @*<input type="radio" id="19_2_2" name="q19_2" value="19_2_2">
+                            <span style="font-family:Candara;font-size:14pt;">2b. My appetite is much greater than usual. </span>*@
+                        <input type="radio" id="19_2_2" name="q19" value="19_2">
+                        <span style="font-family:Candara;font-size:14pt;">3b. My appetite is much greater than usual. </span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="19_3_1" name="q19_3" value="19_3_1">
-                        <span style="font-family:Candara;font-size:14pt;">3a. I have no appetite at all.</span>
+                        @*<input type="radio" id="19_3_1" name="q19_3" value="19_3_1">
+                            <span style="font-family:Candara;font-size:14pt;">3a. I have no appetite at all.</span>*@
+                        <input type="radio" id="19_3_1" name="q19" value="19_3">
+                        <span style="font-family:Candara;font-size:14pt;">4a. I have no appetite at all.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
-                        <input type="radio" id="19_3_2" name="q19_3" value="19_3_2">
-                        <span style="font-family:Candara;font-size:14pt;">3b. I crave food all the time.</span>
+                        @*<input type="radio" id="19_3_2" name="q19_3" value="19_3_2">
+                            <span style="font-family:Candara;font-size:14pt;">3b. I crave food all the time.</span>*@
+                        <input type="radio" id="19_3_2" name="q19" value="19_3">
+                        <span style="font-family:Candara;font-size:14pt;">4b. I crave food all the time.</span>
                     </p>
                     <p style="margin-left:32.45pt;text-indent:-18pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt;padding: 1pt 4pt;">
                         <span>&nbsp;</span>

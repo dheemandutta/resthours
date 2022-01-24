@@ -324,13 +324,13 @@ function validate_BeckDepressionInventoryIIFinal() {
         $('#q3').css('color', 'Black');
     }
 
-    if ($('input[type=radio][name="q4"]:checked').length == 0) {
-        $('#q4').css('color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#q4').css('color', 'Black');
-    }
+    //if ($('input[type=radio][name="q4"]:checked').length == 0) {
+    //    $('#q4').css('color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#q4').css('color', 'Black');
+    //}
 
     if ($('input[type=radio][name="q5"]:checked').length == 0) {
         $('#q5').css('color', 'Red');
@@ -428,28 +428,36 @@ function validate_BeckDepressionInventoryIIFinal() {
         $('#q16').css('color', 'Black');
     }
 
-    if ($('input[type=radio][name="q17_1"]:checked').length == 0) {
-        $('#q17_1').css('color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#q17_1').css('color', 'Black');
-    }
+    //if ($('input[type=radio][name="q17_1"]:checked').length == 0) {
+    //    $('#q17_1').css('color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#q17_1').css('color', 'Black');
+    //}
 
-    if ($('input[type=radio][name="q17_2"]:checked').length == 0) {
-        $('#q17_2').css('color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#q17_2').css('color', 'Black');
-    }
+    //if ($('input[type=radio][name="q17_2"]:checked').length == 0) {
+    //    $('#q17_2').css('color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#q17_2').css('color', 'Black');
+    //}
 
-    if ($('input[type=radio][name="q17_3"]:checked').length == 0) {
-        $('#q17_3').css('color', 'Red');
+    //if ($('input[type=radio][name="q17_3"]:checked').length == 0) {
+    //    $('#q17_3').css('color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#q17_3').css('color', 'Black');
+    //}
+
+    if ($('input[type=radio][name="q17"]:checked').length == 0) {
+        $('#q17').css('color', 'Red');
         isValid = false;
     }
     else {
-        $('#q17_3').css('color', 'Black');
+        $('#q17').css('color', 'Black');
     }
 
     if ($('input[type=radio][name="q18"]:checked').length == 0) {
@@ -460,28 +468,37 @@ function validate_BeckDepressionInventoryIIFinal() {
         $('#q18').css('color', 'Black');
     }
 
-    if ($('input[type=radio][name="q19_1"]:checked').length == 0) {
-        $('#q19_1').css('color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#q19_1').css('color', 'Black');
-    }
+    //if ($('input[type=radio][name="q19_1"]:checked').length == 0) {
+    //    $('#q19_1').css('color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#q19_1').css('color', 'Black');
+    //}
 
-    if ($('input[type=radio][name="q19_2"]:checked').length == 0) {
-        $('#q19_2').css('color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#q19_2').css('color', 'Black');
-    }
+    //if ($('input[type=radio][name="q19_2"]:checked').length == 0) {
+    //    $('#q19_2').css('color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#q19_2').css('color', 'Black');
+    //}
 
-    if ($('input[type=radio][name="q19_3"]:checked').length == 0) {
-        $('#q19_3').css('color', 'Red');
+    //if ($('input[type=radio][name="q19_3"]:checked').length == 0) {
+    //    $('#q19_3').css('color', 'Red');
+    //    isValid = false;
+    //}
+    //else {
+    //    $('#q19_3').css('color', 'Black');
+    //}
+
+
+    if ($('input[type=radio][name="q19"]:checked').length == 0) {
+        $('#q19').css('color', 'Red');
         isValid = false;
     }
     else {
-        $('#q19_3').css('color', 'Black');
+        $('#q19').css('color', 'Black');
     }
 
     if ($('input[type=radio][name="q20"]:checked').length == 0) {

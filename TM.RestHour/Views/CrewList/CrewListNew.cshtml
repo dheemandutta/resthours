@@ -80,23 +80,51 @@
             <div class="">
 
                 <div class="row">
-                    <div class="col-sm-12 col-xs-12">
-                        <!-- Nav tabs -->
+                    <div class="col-sm-12 col-xs-12 imo">
                         <div class="">
+
+                            @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
+                            @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                            @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+                            @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+                            <input type="hidden" id="hdncount" />
+                            <input type="hidden" id="hdnrole" />
+                            <div class="table-responsive">
+                                <table id="CrewListtable" class="table display">
+                                    <thead class="blue_Color color_white">
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">RankName</th>
+                                            <th scope="col" class="text-center">StartDate</th>
+                                            <th scope="col" class="text-center">EndDate</th>
+                                            <th scope="col" class="text-center">Edit</th>
+                                            <th scope="col" class="text-center">Deactivate</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*------------Old Table Code---------------*@
+
+                    <!--<div class="col-sm-12 col-xs-12">-->
+                        <!-- Nav tabs -->
+                        <!--<div class="">
                             <div class="mrBTM-10">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="nav-item"><a class="nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab">  <span>Active Users</span></a></li>
                                     <li role="presentation" class="nav-item"><a class="nav-link" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">  <span>Inactive Users</span></a></li>
                                 </ul>
-                            </div>
+                            </div>-->
 
                             <!-- Tab panes -->
-                            <div class="tab-content">
+                            <!--<div class="tab-content">
 
                                 <div role="tabpanel" class="tab-pane active" id="home">
                                     <div class="col-sm-12 col-xs-12 imo">
                                         <div class="">
-                                            @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
+
                                             @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
                                             @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
                                             @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
@@ -124,7 +152,7 @@
                                 <div role="tabpanel" class="tab-pane" id="profile">
                                     <div class="col-sm-12 col-xs-12 ilo">
                                         <div class="">
-                                            @*<button type="button" class="button" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Vessel</button><br /><br />*@
+
                                             @Html.Hidden("loaddataForInactiv", @Url.Action("LoadDataForInactiv", "CrewList"))
                                             @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
                                             @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
@@ -149,7 +177,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
+
+                    @*--------End----Old Table Code---------------*@
                 </div>
 
 

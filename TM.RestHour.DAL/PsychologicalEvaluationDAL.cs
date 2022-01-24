@@ -65,7 +65,36 @@ namespace TM.RestHour.DAL
         }
 
 
+        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, int[] totalScore, string[] testResult, int CrewID, int VesselID, string StoredProcedure)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
 
+            //SqlCommand cmd = new SqlCommand("stpSaveLocusOfControl", con);
+            SqlCommand cmd = new SqlCommand(StoredProcedure, con);   /////////////// StoredProcedure ///////////////
+
+            var questions = string.Join(",", arrQuestionNo);
+            var answers = string.Join(",", arrAnswer);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Question", questions);
+            cmd.Parameters.AddWithValue("@Answer", answers);
+            cmd.Parameters.AddWithValue("@SAScore", totalScore[0]);
+            cmd.Parameters.AddWithValue("@SCScore", totalScore[1]);
+            cmd.Parameters.AddWithValue("@EmpathyScore", totalScore[2]);
+            cmd.Parameters.AddWithValue("@RIScore", totalScore[3]);
+            cmd.Parameters.AddWithValue("@SATestResult", testResult[0].ToString());
+            cmd.Parameters.AddWithValue("@SCTestResult", testResult[1].ToString());
+            cmd.Parameters.AddWithValue("@EmpathyTestResult", testResult[2].ToString());
+            cmd.Parameters.AddWithValue("@RITestResult", testResult[3].ToString());
+            cmd.Parameters.AddWithValue("@VesselID", VesselID);
+            cmd.Parameters.AddWithValue("@CrewId", CrewID);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
 
         public PsychologicalEvaluationPOCO GetLocusOfControl(int VesselID, int CrewId)
         {
