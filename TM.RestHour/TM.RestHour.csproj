@@ -1438,6 +1438,8 @@
     <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y1.cshtml" />
     <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y2.cshtml" />
     <Content Include="Views\Shared\_pvActiveInactiveCrew.cshtml" />
+    <Content Include="Views\Shared\_pvPatientDetails.cshtml" />
+    <Content Include="Views\Shared\_pvVesselDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

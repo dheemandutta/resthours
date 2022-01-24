@@ -3,6 +3,81 @@
     ViewBag.Title = "CIRM";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/VesselDetails.js"></script>
+<script src="~/Scripts/CIRM.js"></script>
 
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
 <h2>CIRM</h2>
 
+<div class="">
+    <div class="card bac">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 imo">
+                <!-- Nav tabs -->
+                <div class="">
+                    <div class="mrBTM-10">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="nav-item"><a class="nav-link " href="#cirm" aria-controls="cirm" role="tab" data-toggle="tab">  <span>CIRM Details</span></a></li>
+                            <li role="presentation" class="nav-item"><a class="nav-link active" href="#patientDetails" aria-controls="patientDetails" role="tab" data-toggle="tab">  <span>Patient Details</span></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="cirm">
+                        <div class="col-sm-12 col-xs-12 imo">
+                            <div class="">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane active" id="patientDetails">
+                        <div class="col-sm-12 col-xs-12 imo">
+                            <div class="">
+                                <div class="card">
+                                    <div class="clearfix"></div>
+                                    @Html.Partial("_pvVesselDetails")
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+}
