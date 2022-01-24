@@ -15794,3 +15794,29 @@ button:disabled {
     .card-box h5 {
         font-weight: 600;
     }
+
+.com-deatis-frm {
+}
+
+    .com-deatis-frm label {
+        width: 154px;
+        text-align: right;
+        margin-right: 100px;
+    }
+
+    .com-deatis-frm .form-control {
+        display: inline-block;
+        width: 30%;
+        margin: 0 0 10px 0;
+    }
+.com-deatis-frm h3{}
+.vessel-detl .card{padding:20px; margin:0 0 20px 0;}
+.addbtn button {
+    border: 0;
+    background: #192848;
+    color: #fff;
+    padding: 7px 48px;
+    border-radius: 20px;
+    font-size: 17px;
+}
+.ui-widget.ui-widget-content{width:300px;}
