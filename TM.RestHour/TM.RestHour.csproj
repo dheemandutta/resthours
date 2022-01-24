@@ -1438,6 +1438,10 @@
     <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y1.cshtml" />
     <Content Include="Views\PsychologicalEvaluation\Zhao_ANXIETY_Y2.cshtml" />
     <Content Include="Views\Shared\_pvActiveInactiveCrew.cshtml" />
+    <Content Include="Views\MedicalAssistance\MediVac_VesselDeatils.cshtml" />
+    <Content Include="Views\MedicalAssistance\MediVac_VoyageDeatils.cshtml" />
+    <Content Include="Views\MedicalAssistance\MediVac_WeatherDeatils.cshtml" />
+    <Content Include="Views\MedicalAssistance\MediVac_PatientDeatils.cshtml" />
     <Content Include="Views\Shared\_pvPatientDetails.cshtml" />
     <Content Include="Views\Shared\_pvVesselDetails.cshtml" />
   </ItemGroup>

@@ -40,10 +40,32 @@ namespace TM.RestHour.Controllers
             //CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
             return View();
         }
+
+
+
         public ActionResult MediVac()
         {
             return View();
         }
+        public ActionResult MediVac_VesselDeatils()
+        {
+            return PartialView();
+        }
+        public ActionResult MediVac_VoyageDeatils()
+        {
+            return PartialView();
+        }
+        public ActionResult MediVac_WeatherDeatils()
+        {
+            return PartialView();
+        }
+        public ActionResult MediVac_PatientDeatils()
+        {
+            return PartialView();
+        }
+
+
+
         public ActionResult MedicalAdvice()
         {
             return View();

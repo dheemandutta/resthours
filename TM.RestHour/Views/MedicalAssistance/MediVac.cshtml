@@ -4,5 +4,79 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MediVac</h2>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
 
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<div class="">
+    <ul class="container--tabs">
+        <li class="tab tabs--active">Vessel Deatils</li>
+        <li class="tab">Voyage Deatils</li>
+        <li class="tab">Weather Deatils</li>
+        <li class="tab">Patient Deatils</li>
+    </ul>
+
+    <div class="container--content">
+        <div class="content content--active card">
+            @*<h1>This is tab 1</h1>*@
+            @Html.Partial("~/Views/MedicalAssistance/MediVac_VesselDeatils.cshtml")
+
+        </div>
+
+        <div class="content">
+            @*<h1>This is tab 2</h1>*@
+            @Html.Partial("~/Views/MedicalAssistance/MediVac_VoyageDeatils.cshtml")
+        </div>
+
+        <div class="content">
+            @*<h1>This is tab 3</h1>*@
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur doloribus necessitatibus possimus. Sapiente aspernatur neque atque in eum tenetur id!</p>
+        </div>
+
+        <div class="content">
+            @*<h1>This is tab 4</h1>*@
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur doloribus necessitatibus possimus. Sapiente aspernatur neque atque in eum tenetur id!</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const tabs = document.querySelectorAll(".tab");
+    const contents = document.querySelectorAll(".content");
+
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener("click", () => {
+            for (let j = 0; j < contents.length; j++) {
+                contents[j].classList.remove("content--active");
+            }
+            for (let jj = 0; jj < tabs.length; jj++) {
+                tabs[jj].classList.remove("tabs--active");
+            }
+            contents[i].classList.add("content--active");
+            tabs[i].classList.add("tabs--active");
+        });
+    }
+
+</script>

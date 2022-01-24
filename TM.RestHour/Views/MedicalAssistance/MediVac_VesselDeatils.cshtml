@@ -1,0 +1,259 @@
+﻿@model TM.RestHour.Models.CrewTimesheetViewModel
+
+
+@*@{
+        ViewBag.Title = "MediVac_VesselDeatils";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+@{
+
+    Layout = "";
+}
+
+<style>
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+    }
+
+    .bac1 {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+        height: 450px;
+    }
+</style>
+
+<body>
+
+    @Html.Hidden("myUrlNew", @Url.Action("GetShipByID", "Vessel"))
+
+    @Html.Hidden("SaveVesselDetails", @Url.Action("SaveVesselDetails", "CrewHealth"))
+
+
+    @Html.Hidden("myUrlGetVesselTypeIDFromShip", @Url.Action("GetVesselTypeIDFromShip", "CrewHealth"))
+    @Html.Hidden("myUrlGetVesselSubTypeIDFromShip", @Url.Action("GetVesselSubTypeIDFromShip", "CrewHealth"))
+    @Html.Hidden("myUrlGetVesselSubSubTypeIDFromShip", @Url.Action("GetVesselSubSubTypeIDFromShip", "CrewHealth"))
+
+    @Html.Hidden("myUrlid0", @Url.Action("GetVesselTypeForDrp", "CrewHealth"))
+    @Html.Hidden("myUrlid1", @Url.Action("GetVesselSubTypeByVesselTypeIDForDrp", "CrewHealth"))
+    @Html.Hidden("myUrlid2", @Url.Action("GetVesselSubSubTypeByVesselSubTypeIDForDrp", "CrewHealth"))
+
+    <div class="row">
+
+        <div class="head_title">
+            <h1 class="ta">Vessel Details</h1>
+        </div>
+        <div class="card bacmt">
+
+
+            <div class="clearfix"></div>
+            <div class="row">
+
+                @*<div class="col-md-4">
+                        <img src="~/background/HumanBody.jpg" style="width: 100%; float: right;" />
+                        <button type="button" class="button1" style="float: right; right: 25px;" data-toggle="modal" data-target="#myModal" onclick="openBody();">Go to the Image</button><br /><br />
+                    </div>*@
+                <div class="col-md-12" style="padding:0 0 20px 0;">
+                    <div class="">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VesselType">Vessel Type</label>
+                                @*@Html.DropDownListFor(model => model.VesselTypeID, (IEnumerable<SelectListItem>)ViewBag.VesselType, "Select", new { @class = "form-control" })*@
+                                <select id="VesselTypeID" name="VesselTypeID" class="form-control" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VesselSubType">Vessel Sub Type</label>
+                                <select id="VesselSubTypeID" name="VesselSubTypeID" class="form-control" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VesselSubSubType">Vessel Sub Sub Type</label>
+                                <select id="VesselSubSubTypeID" name="VesselSubSubTypeID" class="form-control" disabled></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VesselName">Vessel Name</label>
+                                @*@System.Web.HttpContext.Current.Session["ShipName"].ToString()*@
+                                <input type="text" class="form-control" id="VesselName" placeholder="VesselName" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="FlagOfShip">Flag Of Ship</label>
+                                @*@System.Web.HttpContext.Current.Session["ShipName"].ToString()*@
+                                <input type="text" class="form-control" id="FlagOfShip" placeholder="FlagOfShip" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="IMONumber">IMO Number</label>
+                                @*@System.Web.HttpContext.Current.Session["ShipName"].ToString()*@
+                                <input type="text" class="form-control" id="IMONumber" placeholder="IMONumber" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+                    <div class="form-group">
+                        <input type="hidden" id="ID" />
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="Call Sign">Call Sign</label>
+                        <input type="text" class="form-control" id="CallSign" placeholder="Call Sign" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Port Of Registry">Port Of Registry</label>
+                        <input type="text" class="form-control" id="PortOfRegistry" placeholder="Port Of Registry" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Helicopter Deck">Helicopter Deck</label>
+                        <input type="text" class="form-control" id="HelicopterDeck" placeholder="Helicopter Deck" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Helicopter Winching Area">Helicopter Winching Area</label>
+                        <input type="text" class="form-control" id="HelicopterWinchingArea" placeholder="Helicopter Winching Area" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Length">Length</label>
+                        <input type="text" class="form-control" id="Length" placeholder="Length" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Breadth">Breadth</label>
+                        <input type="text" class="form-control" id="Breadth" placeholder="Breadth" />
+                    </div>
+                    <div class="form-group">
+                        <label for="P And I Club">P&I Club</label>
+                        <select id="PAndIClub" style="width:100%;" class="form-control">
+                            <option value="">Select</option>
+                            <option value="AmericanSteamshipOwners">AmericanSteamshipOwners</option>
+                            <option value="TheBritanniaSteamShip">TheBritanniaSteamShip</option>
+                            <option value="GardPAndIBermudaLtd">GardPAndI(Bermuda)Ltd</option>
+                            <option value="TheJapanShipOwnersMutual">TheJapanShipOwnersMutual</option>
+                            <option value="TheLondonSteamShipOwnersMutual">TheLondonSteamShipOwnersMutual</option>
+                            <option value="TheNorthOfEngland">TheNorthOfEngland</option>
+                            <option value="TheShipOwnersMutual">TheShipOwnersMutual</option>
+                            <option value="SkuldMutualAssuranceforeningenSkuld">SkuldMutualAssuranceforeningenSkuld</option>
+                            <option value="TheStandardClubLtd">TheStandardClubLtd</option>
+                            <option value="TheSteamShipMutual">TheSteamShipMutual</option>
+                            <option value="TheSwedishClub">TheSwedishClub</option>
+                            <option value="UnitedKingdomMutual">UnitedKingdomMutual</option>
+                            <option value="TheWestOfEnglandShipOwnersMutual">TheWestOfEnglandShipOwnersMutual</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="P And I Club Other">Other P&I Club</label>
+                        <input type="text" class="form-control" id="PAndIClubOther" placeholder="Other P&I Club" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Contact Details">Contact Details</label>
+                        <textarea type="text" class="form-control" id="ContactDetails" placeholder="Contact Details"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12" style="padding:0 0 20px 0;">
+                    <div class="">
+                        Communication Resources
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ShipEmail">Ship Email</label>
+                                <input type="text" class="form-control" id="ShipEmail" placeholder="ShipEmail" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ShipEmail2">Ship Email2</label>
+                                <input type="text" class="form-control" id="ShipEmail2" placeholder="ShipEmail2" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Voices1">Voices1</label>
+                                <input type="text" class="form-control" id="Voices1" placeholder="Voices1" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Voices2">Voices2</label>
+                                <input type="text" class="form-control" id="Voices2" placeholder="Voices2" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Fax1">Fax1</label>
+                                <input type="text" class="form-control" id="Fax1" placeholder="Fax1" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Fax2">Fax2</label>
+                                <input type="text" class="form-control" id="Fax2" placeholder="Fax2" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VOIP1">VOIP1</label>
+                                <input type="text" class="form-control" id="VOIP1" placeholder="VOIP1" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="VOIP2">VOIP2</label>
+                                <input type="text" class="form-control" id="VOIP2" placeholder="VOIP2" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Mobile1">Mobile1</label>
+                                <input type="text" class="form-control" id="Mobile1" placeholder="Mobile1" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Mobile2">Mobile2</label>
+                                <input type="text" class="form-control" id="Mobile2" placeholder="Mobile2" disabled />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                    <button type="button" class="button1" id="btnAdd" onclick="return SaveVesselDetails();">Add</button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
