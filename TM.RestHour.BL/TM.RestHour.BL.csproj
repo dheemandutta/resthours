@@ -71,6 +71,7 @@
     <Compile Include="RegimesBL.cs" />
     <Compile Include="ReportsBL.cs" />
     <Compile Include="RestHourExtensions.cs" />
+    <Compile Include="RightsBL.cs" />
     <Compile Include="ShipBL.cs" />
     <Compile Include="TimeAdjustmentBL.cs" />
     <Compile Include="TimeSheetBL.cs" />

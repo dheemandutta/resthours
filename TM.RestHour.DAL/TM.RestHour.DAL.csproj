@@ -70,6 +70,7 @@
     <Compile Include="RanksDAL.cs" />
     <Compile Include="RegimesDAL.cs" />
     <Compile Include="ReportsDAL.cs" />
+    <Compile Include="RightsDAL.cs" />
     <Compile Include="ShipDAL.cs" />
     <Compile Include="TimeAdjustmentDAL.cs" />
     <Compile Include="TimeSheetDAL.cs" />

@@ -181,6 +181,7 @@
     <Compile Include="Controllers\RegimeController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ReportsNCReportByMonthController.cs" />
+    <Compile Include="Controllers\RightsController.cs" />
     <Compile Include="Controllers\TestGRDController.cs" />
     <Compile Include="Controllers\TimeSheetController.cs" />
     <Compile Include="Controllers\VesselController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\Regimes.cs" />
     <Compile Include="Models\RegimesViewModel.cs" />
     <Compile Include="Models\Reports.cs" />
+    <Compile Include="Models\Rights.cs" />
     <Compile Include="Models\SearchTypeAheadEntity.cs" />
     <Compile Include="Models\ServiceTerms.cs" />
     <Compile Include="Models\TimeAdjustment.cs" />
@@ -1445,6 +1447,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Rights\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
