@@ -1446,10 +1446,10 @@
     <Content Include="Views\MedicalAssistance\MediVac_PatientDeatils.cshtml" />
     <Content Include="Views\Shared\_pvPatientDetails.cshtml" />
     <Content Include="Views\Shared\_pvVesselDetails.cshtml" />
+    <Content Include="Views\Rights\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Rights\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
