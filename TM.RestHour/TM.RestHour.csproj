@@ -1444,6 +1444,8 @@
     <Content Include="Views\MedicalAssistance\MediVac_VoyageDeatils.cshtml" />
     <Content Include="Views\MedicalAssistance\MediVac_WeatherDeatils.cshtml" />
     <Content Include="Views\MedicalAssistance\MediVac_PatientDeatils.cshtml" />
+    <Content Include="Views\Shared\_pvPatientDetails.cshtml" />
+    <Content Include="Views\Shared\_pvVesselDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
