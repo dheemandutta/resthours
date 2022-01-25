@@ -18,55 +18,134 @@
             <input type="hidden" id="VesselID" />
         </div>
         <div class="form-group">
+            <label for="VesselType">Vessel Type</label>
+            @*@Html.DropDownListFor(model => model.VesselTypeID, (IEnumerable<SelectListItem>)ViewBag.VesselType, "Select", new { @class = "form-control" })*@
+            <select id="VesselTypeID" name="VesselTypeID" class="form-control" disabled></select>
+        </div>
+        <div class="form-group">
             <label for="VesselName">Vessel Name</label>
             <input type="text" class="form-control" id="VesselName" placeholder="VesselName" disabled />
         </div>
-        <div class="form-group">
+        @*<div class="form-group">
             <label for="PortOfDeparture">Port Of Departure</label>
             <input type="text" class="form-control" id="PortOfDeparture" placeholder="Port Of Departure" />
-        </div>
-        <div class="form-group">
+        </div>*@
+        @*<div class="form-group">
             <label for="Speed">Speed (in knots)</label>
             <input type="text" class="form-control" id="Speed" placeholder="Speed (in knots)" />
-        </div>
-
-    </div>
-
-    <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+        </div>*@
         <div class="form-group">
             <label for="Call Sign">Radio Call Sign</label>
             <input type="text" class="form-control" id="CallSign" placeholder="Radio Call Sign" />
         </div>
-
         <div class="form-group">
+            <label for="Length">Length</label>
+            <input type="text" class="form-control" id="Length" placeholder="Length" />
+        </div>
+    </div>
+
+    <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+        <div class="form-group">
+            <label for="VesselSubType">Vessel Sub Type</label>
+            <select id="VesselSubTypeID" name="VesselSubTypeID" class="form-control" disabled></select>
+        </div>
+        <div class="form-group">
+            <label for="Flag">Flag</label>
+            <input type="text" class="form-control" id="Flag" placeholder="Flag Of Ship" />
+        </div>
+        <div class="form-group">
+            <label for="PortOfRegistry">Port of Registry</label>
+            <input type="text" class="form-control" id="PortOfRegistry" placeholder="Port of Registry" />
+        </div>
+        <div class="form-group">
+            <label for="Breadth">Breadth</label>
+            <input type="text" class="form-control" id="Breadth" placeholder="Breadth" />
+        </div>
+
+        @*<div class="form-group">
             <label for="PortOfArrival">Port Of Arrival</label>
             <input type="text" class="form-control" id="PortOfArrival" placeholder="Port Of Arrival" />
-        </div>
-        <div class="form-group">
+        </div>*@
+        @*<div class="form-group">
             <label for="Weather">Weather</label>
             <input type="text" class="form-control" id="Weather" placeholder="Weather" />
-        </div>
+        </div>*@
 
 
     </div>
 
     <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
         <div class="form-group">
+            <label for="VesselSubSubType">Vessel Sub Sub Type</label>
+            <select id="VesselSubSubTypeID" name="VesselSubSubTypeID" class="form-control" disabled></select>
+        </div>
+        <div class="form-group">
+            <label for="IMONumber">IMO Number</label>
+            <input type="text" class="form-control" id="IMONumber" placeholder="IMO Number" />
+        </div>
+        @*<div class="form-group">
             <label for="LocationOfShip">Location Of Ship</label>
             <input type="text" class="form-control" id="LocationOfShip" placeholder="Location Of Ship" />
-        </div>
-        <div class="form-group">
+        </div>*@
+        @*<div class="form-group">
             <label for="EstimatedTimeOfArrival">Estimated Time Of Arrival (hrs)</label>
             <input type="text" class="form-control" id="EstimatedTimeOfArrival" placeholder="Estimated Time Of Arrival (hrs)" />
+        </div>*@
+        <div class="form-group">
+            <label for="Helicopter Deck">Helicopter Deck</label>
+            <input type="text" class="form-control" id="HelicopterDeck" placeholder="Helicopter Deck" />
         </div>
         <div class="form-group">
+            <label for="Helicopter Winching Area">Helicopter Winching Area</label>
+            <input type="text" class="form-control" id="HelicopterWinchingArea" placeholder="Helicopter Winching Area" />
+        </div>
+        @*<div class="form-group">
             <label for="AgentDetails">Agent Details</label>
             <textarea type="text" class="form-control valid" id="AgentDetails" placeholder="Agent Details" style="width: 95% !important;"></textarea>
-        </div>
+        </div>*@
 
 
     </div>
 
+    
+</div>
+
+<div class="row" style="border: 1px solid #eee; padding: 10px;">
+    <div class="col-md-12"><h4>Communication Resources </h4></div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="ShipEmail">Ship Email</label>
+            <input type="text" class="form-control" id="ShipEmail" placeholder="ShipEmail" disabled />
+            <input type="text" class="form-control" id="ShipEmail2" placeholder="ShipEmail2" disabled />
+        </div>
+        <div class="form-group">
+            <label for="VOIP1">VOIP1</label>
+            <input type="text" class="form-control" id="VOIP1" placeholder="VOIP1" disabled />
+            <input type="text" class="form-control" id="VOIP2" placeholder="VOIP2" disabled />
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Voices1">Voices1</label>
+            <input type="text" class="form-control" id="Voices1" placeholder="Voices1" disabled />
+            <input type="text" class="form-control" id="Voices2" placeholder="Voices2" disabled />
+        </div>
+        <div class="form-group">
+            <label for="Mobile1">Mobile1</label>
+            <input type="text" class="form-control" id="Mobile1" placeholder="Mobile1" disabled />
+            <input type="text" class="form-control" id="Mobile2" placeholder="Mobile2" disabled />
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Fax1">Fax1</label>
+            <input type="text" class="form-control" id="Fax1" placeholder="Fax1" disabled />
+            <input type="text" class="form-control" id="Fax2" placeholder="Fax2" disabled />
+        </div>
+    </div>
+    
     <div class="col-md-3 float-lg-right" style="padding: 10px; ">
         <button type="button" class="button1" id="btnAdd" onclick="return SaveVesselDetails();">Add</button>
     </div>

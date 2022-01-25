@@ -9,19 +9,13 @@ namespace TM.RestHour.Models
     {
         public int CIRMId { get; set; }
 
+        public string MedicalAssitanceType { get; set; }
+
         #region Vessel Details
         public int VesselId { get; set; }
         public string NameOfVessel { get; set; }
         public string RadioCallSign { get; set; }
-        public string PortofDestination { get; set; }
-        public string Route { get; set; }
-        public string LocationOfShip { get; set; }
-        public string PortofDeparture { get; set; }
-        public string EstimatedTimeOfarrivalhrs { get; set; }
-        public string Speed { get; set; }
-        public string Weather { get; set; }
-
-        public string AgentDetails { get; set; }
+       
 
         #endregion
 
@@ -45,6 +39,7 @@ namespace TM.RestHour.Models
         public string JoiningDate { get; set; }
 
         #endregion
+        
         #region -- Other Properties
         public string RespiratoryRate { get; set; }
         public string Pulse { get; set; }
@@ -160,6 +155,48 @@ namespace TM.RestHour.Models
 
         #endregion
 
+        #region Voyage Details
+        public int VoyageId { get; set; }
+        public string Route { get; set; }
+        public string DateOfReportingGMT { get; set; }
+        public string TimeOfReportingGMT { get; set; }
+        public string LocationOfShip { get; set; }
+        public string Cousre { get; set; }
+        public string Speed { get; set; }
+        public string PortofDeparture { get; set; }
+        public string DateOfDeparture { get; set; }
+        public string TimeOfDeparture { get; set; }
+        public string PortofDestination { get; set; }
+        public string ETADateGMT { get; set; }
+        public string ETATimeGMT { get; set; }
+        public string EstimatedTimeOfarrivalhrs { get; set; }
+        public string AgentDetails { get; set; }
+
+        public string NearestPort { get; set; }
+        public string NearestPortETADateGMT { get; set; }
+        public string NearestPortETATimeGMT { get; set; }
+        public string OtherPossiblePort { get; set; }
+        public string OtherPortETADateGMT { get; set; }
+        public string OtherPortETATimeGMT { get; set; }
+
+
+        #endregion
+
+
+        #region Weather Details
+
+        public int WeatherId { get; set; }
+        public string WindDirection { get; set; }
+        public string BeaufortScale { get; set; }
+        public string WindSpeed { get; set; }
+        public string SeaState { get; set; }
+        public string WaveHeight { get; set; }
+        public string Swell { get; set; }
+        public string WeatherCondition { get; set; }
+        public string WeatherVisibility { get; set; }
+        public string Weather { get; set; }
+
+        #endregion
 
     }
 }

@@ -803,22 +803,7 @@ namespace TM.RestHour.Controllers
         }
 
         
-        public JsonResult SaveCIRM(CIRMPOCO cIRM)
-        {
-            CIRMBL CIRMBL = new CIRMBL();
-            //CIRMPOCO CIRMPC = new CIRMPOCO();
-
-            //CIRMPC.CIRMId = cIRM.CIRMId;
-
-            //CIRMPC.CrewId = cIRM.CrewId;
-            /////////CIRMPC.NameOfVessel = Session["ShipName"].ToString();
-            //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
-            //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
-            //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
-            //CIRMPC.RadioCallSign = cIRM.RadioCallSign;
-
-            return Json(CIRMBL.SaveCIRM(cIRM, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
-        }
+       
         /// <summary>
         /// Added on 8th Jan 2022 @BK
         /// Not Completed
@@ -886,32 +871,7 @@ namespace TM.RestHour.Controllers
             return Json(CIRMBL.SaveCIRM(CIRMPC, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Added on 11th Jan 2022 @BK
-        /// </summary>
-        /// <param name="cIRM"></param>
-        /// <returns></returns>
-        [HttpPost]
        
-        public JsonResult SaveCIRMVitalParams(VitalStatisticsPOCO vitaPoco)
-        {
-            CIRMBL CIRMBL = new CIRMBL();
-            return Json(CIRMBL.SaveCIRMVitalParams(vitaPoco), JsonRequestBehavior.AllowGet);
-
-            //return Json("", JsonRequestBehavior.AllowGet);
-        }
-        /// <summary>
-        /// Added on 11th Jan 2022 @BK
-        /// </summary>
-        /// <param name="cIRM"></param>
-        /// <returns></returns>
-        public JsonResult SaveCIRMSymtomology(MedicalSymtomologyPOCO symPoco)
-        {
-            CIRMBL CIRMBL = new CIRMBL();
-            return Json(CIRMBL.SaveCIRMSymtomology(symPoco), JsonRequestBehavior.AllowGet);
-            //return Json("", JsonRequestBehavior.AllowGet);
-        }
-
         public JsonResult SaveCrewTemperature(CrewTemperaturePOCO crewTemperature)
         {
             CrewBL crewBl = new CrewBL();
@@ -1979,208 +1939,6 @@ namespace TM.RestHour.Controllers
             return Json(cm, JsonRequestBehavior.AllowGet);
         }
 
-
-
-
-        [HttpGet]
-        public JsonResult GetCrewForCIRMPatientDetailsByCrew(int ID)
-        {
-            CIRMBL shipBL = new CIRMBL();
-            ShipPOCO shipPC = new ShipPOCO();
-
-            shipPC = shipBL.GetCrewForCIRMPatientDetailsByCrew(ID);
-
-            Vessel um = new Vessel();
-
-            um.ID = shipPC.ID;
-
-            //um.CrewName = shipPC.CrewName;
-            um.RankID = shipPC.RankID;
-            um.Gender = shipPC.Gender;
-            um.CountryID = shipPC.CountryID;
-            um.DOB = shipPC.DOB;
-            //13-01-2021 SSG
-            um.CreatedOn = shipPC.CreatedOn;
-
-            var cm = um;
-
-            return Json(cm, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Added on 7th Jan 2022 @BK
-        /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public JsonResult GetCIRMPatientDetailsByCrew(int ID)
-        {
-            CIRMBL cirmBL = new CIRMBL();
-            ShipPOCO shipPC = new ShipPOCO();
-            CIRMPOCO cirmPoco = new CIRMPOCO();
-            VitalStatisticsPOCO cirmVitalsPoco = new VitalStatisticsPOCO();
-            MedicalSymtomologyPOCO cirmSymtomologyPoco = new MedicalSymtomologyPOCO();
-            CIRM cirm = new CIRM();
-            VitalStatistics cirmVitals = new VitalStatistics();
-            MedicalSymtomology cirmSymtomology = new MedicalSymtomology();
-            //shipPC = cirmBL.GetCIRMPatientDetailsByCrew(ID, int.Parse(Session["VesselID"].ToString()));
-
-            cirmPoco = cirmBL.GetCIRMPatientDetailsByCrew(ID, int.Parse(Session["VesselID"].ToString()));
-
-            if(cirmPoco.CIRMId > 0)
-            {
-                cirmVitalsPoco = cirmBL.GetVitalStatisticsByCIRM(cirmPoco.CIRMId).OrderByDescending(c => c.ID).FirstOrDefault();
-                cirmSymtomologyPoco = cirmBL.GetMedicalSymtomologyByCIRM(cirmPoco.CIRMId).OrderByDescending(c => c.ID).FirstOrDefault();
-
-            }
-
-            #region -- CIRM--
-            cirm.CIRMId = cirmPoco.CIRMId;
-            
-
-            #region Vessel Details
-            cirm.VesselId = cirmPoco.VesselId;
-
-            cirm.NameOfVessel = cirmPoco.NameOfVessel;
-            cirm.RadioCallSign = cirmPoco.RadioCallSign;
-            cirm.PortofDeparture = cirmPoco.PortofDeparture;
-            cirm.PortofDestination = cirmPoco.PortofDestination;
-            cirm.Route = cirmPoco.Route;
-            cirm.LocationOfShip = cirmPoco.LocationOfShip;
-            cirm.EstimatedTimeOfarrivalhrs = cirmPoco.EstimatedTimeOfarrivalhrs;
-            cirm.Speed = cirmPoco.Speed;
-            cirm.Weather = cirmPoco.Weather;
-            cirm.AgentDetails = cirmPoco.AgentDetails;
-            #endregion
-
-            #region Crew Details 
-            cirm.CrewId = cirmPoco.CrewId;
-            cirm.Nationality = cirmPoco.Nationality;
-            cirm.Qualification = cirmPoco.Qualification;
-            cirm.Addiction = cirmPoco.Addiction;
-            cirm.Ethinicity = cirmPoco.Ethinicity;
-            cirm.Frequency = cirmPoco.Frequency;
-            cirm.Sex = cirmPoco.Sex;
-            cirm.Age = cirmPoco.Age;
-            cirm.JoiningDate = cirmPoco.JoiningDate;
-
-            #endregion
-
-            #region Others 
-            cirm.LocationAndTypeOfPain = cirmPoco.LocationAndTypeOfPain;
-            cirm.WhereAndHowAccidentIsCausedCHK = cirmPoco.WhereAndHowAccidentIsCausedCHK;
-            cirm.UploadMedicalHistory = cirmPoco.UploadMedicalHistory;
-            cirm.UploadMedicinesAvailable = cirmPoco.UploadMedicinesAvailable;
-            cirm.MedicalProductsAdministered = cirmPoco.MedicalProductsAdministered;
-            cirm.WhereAndHowAccidentIsausedARA = cirmPoco.WhereAndHowAccidentIsausedARA;
-
-            cirm.IsEquipmentUploaded = cirmPoco.IsEquipmentUploaded;
-            cirm.IsJoiningReportUloaded = cirmPoco.IsJoiningReportUloaded;
-            cirm.IsMedicalHistoryUploaded = cirmPoco.IsMedicalHistoryUploaded;
-            cirm.IsmedicineUploaded = cirmPoco.IsmedicineUploaded;
-            
-            cirm.Category = cirmPoco.Category;
-            cirm.SubCategory = cirmPoco.SubCategory;
-
-
-
-            #endregion
-
-            #region Past Medical History
-            cirm.PastMedicalHistory = cirmPoco.PastMedicalHistory;
-            cirm.PastTreatmentGiven = cirmPoco.PastTreatmentGiven;
-            cirm.PastRemarks = cirmPoco.PastRemarks;
-            cirm.PastMedicineAdministered = cirmPoco.PastMedicineAdministered;
-            cirm.PastTeleMedicalAdviceReceived = cirmPoco.PastTeleMedicalAdviceReceived;
-            cirm.PastMedicalHistoryPath = cirmPoco.PastMedicalHistoryPath;
-
-            #endregion
-
-            #region Incase of Accident
-            cirm.WhereAndHowAccidentOccured = cirmPoco.WhereAndHowAccidentOccured;
-            cirm.LocationAndTypeOfInjuryOrBurn = cirmPoco.LocationAndTypeOfInjuryOrBurn;
-            cirm.FrequencyOfPain = cirmPoco.FrequencyOfPain;
-            cirm.FirstAidGiven = cirmPoco.FirstAidGiven;
-            cirm.PercentageOfBurn = cirmPoco.PercentageOfBurn;
-
-            cirm.PictureUploadPath = cirmPoco.PictureUploadPath;
-
-            #endregion
-
-            #region Severity of Pains
-            cirm.NoHurt = cirmPoco.NoHurt;
-            cirm.HurtLittleBit = cirmPoco.HurtLittleBit;
-            cirm.HurtsLittleMore = cirmPoco.HurtsLittleMore;
-            cirm.HurtsEvenMore = cirmPoco.HurtsEvenMore;
-            cirm.HurtsWholeLot = cirmPoco.HurtsWholeLot;
-            cirm.HurtsWoest = cirmPoco.HurtsWoest;
-            cirm.SeverityOfPain = cirmPoco.SeverityOfPain;
-            #endregion
-
-            #region Upload images
-            cirm.JoiningMedical = cirmPoco.JoiningMedical;
-            cirm.JoiningMedicalPath = cirmPoco.JoiningMedicalPath;
-            cirm.MedicineAvailableOnBoard = cirmPoco.MedicineAvailableOnBoard;
-            cirm.MedicineAvailableOnBoardPath = cirmPoco.MedicineAvailableOnBoardPath;
-            cirm.MedicalEquipmentOnBoard = cirmPoco.MedicalEquipmentOnBoard;
-            cirm.MedicalEquipmentOnBoardPath = cirmPoco.MedicalEquipmentOnBoardPath;
-            cirm.MedicalHistoryUpload = cirmPoco.MedicalHistoryUpload;
-            cirm.MedicalHistoryPath = cirmPoco.MedicalHistoryPath;
-            cirm.WorkAndRestHourLatestRecord = cirmPoco.WorkAndRestHourLatestRecord;
-            cirm.WorkAndRestHourLatestRecordPath = cirmPoco.WorkAndRestHourLatestRecordPath;
-            cirm.PreExistingMedicationPrescription = cirmPoco.PreExistingMedicationPrescription;
-            #endregion
-
-            #endregion
-
-            #region -- Vital Params--
-            cirmVitals.ID = cirmVitalsPoco.ID;
-            cirmVitals.CIRMId = cirmVitalsPoco.CIRMId;
-            cirmVitals.ObservationDate = cirmVitalsPoco.ObservationDate;
-            cirmVitals.ObservationTime = cirmVitalsPoco.ObservationTime;
-            cirmVitals.Pulse = cirmVitalsPoco.Pulse;
-            cirmVitals.RespiratoryRate = cirmVitalsPoco.RespiratoryRate;
-            cirmVitals.OxygenSaturation = cirmVitalsPoco.OxygenSaturation;
-            cirmVitals.Himoglobin = cirmVitalsPoco.Himoglobin;
-            cirmVitals.Creatinine = cirmVitalsPoco.Creatinine;
-            cirmVitals.Bilirubin = cirmVitalsPoco.Bilirubin;
-            cirmVitals.Temperature = cirmVitalsPoco.Temperature;
-            cirmVitals.Systolic = cirmVitalsPoco.Systolic;
-            cirmVitals.Diastolic = cirmVitalsPoco.Diastolic;
-            cirmVitals.Fasting = cirmVitalsPoco.Fasting;
-            cirmVitals.Regular = cirmVitalsPoco.Regular;
-            #endregion
-
-
-            #region -- Medical Symtomology --
-
-            cirmSymtomology.ID                          = cirmSymtomologyPoco.ID;
-            cirmSymtomology.CIRMId = cirmSymtomologyPoco.CIRMId;
-            cirmSymtomology.ObservationDate = cirmSymtomologyPoco.ObservationDate;
-            cirmSymtomology.ObservationTime = cirmSymtomologyPoco.ObservationTime;
-            cirmSymtomology.Vomiting = cirmSymtomologyPoco.Vomiting;
-            cirmSymtomology.FrequencyOfVomiting = cirmSymtomologyPoco.FrequencyOfVomiting;
-            cirmSymtomology.Fits = cirmSymtomologyPoco.Fits;
-            cirmSymtomology.FrequencyOfFits = cirmSymtomologyPoco.FrequencyOfFits;
-            cirmSymtomology.Giddiness = cirmSymtomologyPoco.Giddiness;
-            cirmSymtomology.FrequencyOfGiddiness = cirmSymtomologyPoco.FrequencyOfGiddiness;
-            cirmSymtomology.Lethargy = cirmSymtomologyPoco.Lethargy;
-            cirmSymtomology.FrequencyOfLethargy = cirmSymtomologyPoco.FrequencyOfLethargy;
-            cirmSymtomology.SymptomologyDetails = cirmSymtomologyPoco.SymptomologyDetails;
-            cirmSymtomology.MedicinesAdministered = cirmSymtomologyPoco.MedicinesAdministered;
-            cirmSymtomology.AnyOtherRelevantInformation = cirmSymtomologyPoco.AnyOtherRelevantInformation;
-
-            #endregion
-
-            cirm.VitalStatistics = cirmVitals;
-            cirm.Symtomology = cirmSymtomology;          
-
-
-            return Json(cirm, JsonRequestBehavior.AllowGet);
-        }
-
-
-
         public JsonResult GetVesselTypeForDrp()
         {
             ShipBL shipBL = new ShipBL();
@@ -2249,10 +2007,6 @@ namespace TM.RestHour.Controllers
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
 
         public JsonResult GetVesselTypeIDFromShip()
         {
@@ -2667,92 +2421,7 @@ namespace TM.RestHour.Controllers
                 return di.GetFiles(name+".*")[0].Name;
             
         }
-        /// <summary>
-        /// Added on 12th Jan 2022
-        /// Call Ajax method in CIRMjs refered in PatientDetails under CrewHealth
-        /// </summary>
-        /// <param name="cirmId"></param>
-        /// <returns></returns>
-        public JsonResult LoadCIRMVitalParamsData(string cirmId)
-        {
-            
-            int draw, start, length;
-            int pageIndex = 0;
-
-            if (null != Request.Form.GetValues("draw"))
-            {
-                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
-                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
-                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
-            }
-            else
-            {
-                draw = 1;
-                start = 0;
-                length = 500;
-            }
-
-            if (start == 0)
-            {
-                pageIndex = 1;
-            }
-            else
-            {
-                pageIndex = (start / length) + 1;
-            }
-
-            CIRMBL bL = new CIRMBL();
-            int totalrecords = 0;
-
-            List<VitalStatisticsPOCO> pocoList = new List<VitalStatisticsPOCO>();
-            pocoList = bL.GetAllCIRMVitalParamsPageWise(pageIndex, ref totalrecords, length,  Convert.ToInt32(cirmId));
-            
-            var data = pocoList;
-            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
-        }
-        /// <summary>
-        /// Added on 12th Jan 2022
-        /// Call Ajax method in CIRMjs refered in PatientDetails under CrewHealth
-        /// </summary>
-        /// <param name="cirmId"></param>
-        /// <returns></returns>
-        public JsonResult LoadCIRMSymtomologyData(string cirmId)
-        {
-            
-            int draw, start, length;
-            int pageIndex = 0;
-
-            if (null != Request.Form.GetValues("draw"))
-            {
-                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
-                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
-                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
-            }
-            else
-            {
-                draw = 1;
-                start = 0;
-                length = 500;
-            }
-
-            if (start == 0)
-            {
-                pageIndex = 1;
-            }
-            else
-            {
-                pageIndex = (start / length) + 1;
-            }
-
-            CIRMBL bL = new CIRMBL(); 
-            int totalrecords = 0;
-
-            List<MedicalSymtomologyPOCO> pocoList = new List<MedicalSymtomologyPOCO>();
-            pocoList = bL.GetAllCIRMSymtomologyPageWise(pageIndex, ref totalrecords, length, Convert.ToInt32(cirmId));
-            
-            var data = pocoList;
-            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
-        }
+        
 
 
         public JsonResult SendCIRMMail(CrewHealthDetails crewHealthDetails,string cirmId)
