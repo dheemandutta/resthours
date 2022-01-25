@@ -1,0 +1,155 @@
+﻿@model List<TM.Base.Entities.RightsPOCO>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*/////////////*@
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*////////////*@
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+
+
+
+
+
+<div class="">
+    <div class="white_card_header">
+        <div class="box_header m-0">
+            <div class="main-title">
+                <h2 class="mrBTM-10">Rights</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card bac">
+
+        <div class="card">
+            <div class="row">
+                @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+
+                <!-----Screen divided into 4+8 ---------->
+                <div class="col-sm-12 col-xs-12" id="sideform">
+                    <div class="mrTP-10 mrRHT-10 mrLFT-10">
+                        <div class="card-block">
+                            <form class="form-horizontal" role="form">
+                                <div class="row">
+                                    <div class="col-sm-4 col-xs-12" id="sideform">
+                                        <div class="form-group">
+                                            <label for="selectCrew">Crew</label>
+                                            @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
+                                            @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })*@
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4 col-xs-12">
+                                        <div class="text-right pull-right mrTP-30">
+                                            <div class="">
+                                                <div class="pull-right" id="sideform">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary mrRHT-10" id="btnAdd"><i class="ti-eye"></i> Show Report</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="table-responsive">
+                        <table id="schedule" class="table display">
+                            <thead class="blue_Color color_white">
+                                <tr>
+                                    <th class="tg-v0f9" width="2%">Resource</th>
+                                    <th class="tg-amwm" width="1%" id="h0">Access Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Count; i++)
+                                {
+                               
+                                <tr id="1" filled="no">
+                                    @if (Model[i].ParentId == null) {
+                                    <td class="tg-s4h7">Model[i].ResourceName<sup><span class="super"></span></sup></td>
+                                    }
+                                    else
+                                    {
+                                    <td class="tg-s4h7">Model[i].ResourceName<sup><span class="super"></span></sup></td>
+                                    }
+                                    <td class="tg-yw4l"><input type="checkbox" id="Reports" name="Reports" value="Reports"></td>
+                                </tr>
+                                <tr id="2" filled="no">
+                                    <td class="tg-s4h7">Report1<sup><span class="super"></span></sup></td>
+                                    <td class="tg-yw4l"><input type="checkbox" id="Report1" name="Report1" value="Report1"></td>
+                                </tr>
+                                }
+                            </tbody>
+                           
+                        </table>
+
+
+
+                      
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div id="dvprint"></div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+    @*<script src="~/Scripts/Reports.js"></script>*@
+
+    <script type="text/javascript">
+
+
+                    //$('#btnPrint').attr('disabled', false);
+                    $(document).ready(function () {
+
+                    });
+
+    </script>
+}
+
+
