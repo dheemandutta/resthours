@@ -28,8 +28,9 @@ namespace TM.RestHour.DAL
             {
                 cmd.Parameters.AddWithValue("@CIRMId", DBNull.Value);
             }
+            cmd.Parameters.AddWithValue("@MedicalAssistanceType", cIRM.MedicalAssitanceType.ToString());
 
-            #region Vessel Details 
+            #region Vessel Details 4
             cmd.Parameters.AddWithValue("@VesselID", VesselID);
             cmd.Parameters.AddWithValue("@NameOfVessel", cIRM.NameOfVessel.ToString());
             if (!String.IsNullOrEmpty(cIRM.RadioCallSign))
@@ -40,22 +41,36 @@ namespace TM.RestHour.DAL
             {
                 cmd.Parameters.AddWithValue("@RadioCallSign", DBNull.Value);
             }
-            if (!String.IsNullOrEmpty(cIRM.PortofDeparture))
+            
+            if (!String.IsNullOrEmpty(cIRM.Weather))
             {
-                cmd.Parameters.AddWithValue("@PortofDeparture", cIRM.PortofDeparture.ToString());
+                cmd.Parameters.AddWithValue("@Weather", cIRM.Weather.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@PortofDeparture", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Weather", DBNull.Value);
             }
             
-            if (!String.IsNullOrEmpty(cIRM.PortofDestination))
+
+            #endregion
+
+            #region Voyage Details
+
+            if (!String.IsNullOrEmpty(cIRM.DateOfReportingGMT.ToString()))
             {
-                cmd.Parameters.AddWithValue("@PortofDestination", cIRM.PortofDestination.ToString());
+                cmd.Parameters.AddWithValue("@DateOfReportingGMT", cIRM.DateOfReportingGMT);
             }
             else
             {
-                cmd.Parameters.AddWithValue("@PortofDestination", DBNull.Value);
+                cmd.Parameters.AddWithValue("@DateOfReportingGMT", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TimeOfReportingGMT.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@TimeOfReportingGMT", cIRM.TimeOfReportingGMT);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TimeOfReportingGMT", DBNull.Value);
             }
 
             if (!String.IsNullOrEmpty(cIRM.LocationOfShip))
@@ -67,15 +82,14 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@LocationOfShip", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.EstimatedTimeOfarrivalhrs))
+            if (!String.IsNullOrEmpty(cIRM.Cousre))
             {
-                cmd.Parameters.AddWithValue("@EstimatedTimeOfarrivalhrs", cIRM.EstimatedTimeOfarrivalhrs.ToString());
+                cmd.Parameters.AddWithValue("@Cousre", cIRM.Cousre.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@EstimatedTimeOfarrivalhrs", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Cousre", DBNull.Value);
             }
-
             if (!String.IsNullOrEmpty(cIRM.Speed))
             {
                 cmd.Parameters.AddWithValue("@Speed", cIRM.Speed.ToString());
@@ -85,14 +99,70 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@Speed", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(cIRM.Weather))
+            if (!String.IsNullOrEmpty(cIRM.PortofDeparture))
             {
-                cmd.Parameters.AddWithValue("@Weather", cIRM.Weather.ToString());
+                cmd.Parameters.AddWithValue("@PortofDeparture", cIRM.PortofDeparture.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Weather", DBNull.Value);
+                cmd.Parameters.AddWithValue("@PortofDeparture", DBNull.Value);
             }
+
+            if (!String.IsNullOrEmpty(cIRM.DateOfDeparture))
+            {
+                cmd.Parameters.AddWithValue("@DateOfDeparture", cIRM.DateOfDeparture.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DateOfDeparture", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.TimeOfDeparture))
+            {
+                cmd.Parameters.AddWithValue("@TimeOfDeparture", cIRM.TimeOfDeparture.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TimeOfDeparture", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.PortofDestination))
+            {
+                cmd.Parameters.AddWithValue("@PortofDestination", cIRM.PortofDestination.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PortofDestination", DBNull.Value);
+            }
+
+
+            if (!String.IsNullOrEmpty(cIRM.ETADateGMT))
+            {
+                cmd.Parameters.AddWithValue("@ETADateGMT", cIRM.ETADateGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ETADateGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.ETATimeGMT))
+            {
+                cmd.Parameters.AddWithValue("@ETATimeGMT", cIRM.ETATimeGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ETATimeGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.EstimatedTimeOfarrivalhrs))
+            {
+                cmd.Parameters.AddWithValue("@EstimatedTimeOfarrivalhrs", cIRM.EstimatedTimeOfarrivalhrs.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@EstimatedTimeOfarrivalhrs", DBNull.Value);
+            }
+
             if (!String.IsNullOrEmpty(cIRM.AgentDetails))
             {
                 cmd.Parameters.AddWithValue("@AgentDetails", cIRM.AgentDetails.ToString());
@@ -102,9 +172,141 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@AgentDetails", DBNull.Value);
             }
 
+            if (!String.IsNullOrEmpty(cIRM.NearestPort))
+            {
+                cmd.Parameters.AddWithValue("@NearestPort", cIRM.NearestPort.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NearestPort", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.NearestPortETADateGMT))
+            {
+                cmd.Parameters.AddWithValue("@NearestPortETADateGMT", cIRM.NearestPortETADateGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NearestPortETADateGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.NearestPortETATimeGMT))
+            {
+                cmd.Parameters.AddWithValue("@NearestPortETATimeGMT", cIRM.NearestPortETATimeGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NearestPortETATimeGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.OtherPossiblePort))
+            {
+                cmd.Parameters.AddWithValue("@OtherPossiblePort", cIRM.OtherPossiblePort.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@OtherPossiblePort", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.OtherPortETADateGMT))
+            {
+                cmd.Parameters.AddWithValue("@OtherPortETADateGMT", cIRM.OtherPortETADateGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@OtherPortETADateGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.OtherPortETATimeGMT))
+            {
+                cmd.Parameters.AddWithValue("@OtherPortETATimeGMT", cIRM.OtherPortETATimeGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@OtherPortETATimeGMT", DBNull.Value);
+            }
+
             #endregion
 
-            #region Crew Details
+
+            #region Weather Details
+
+            if (!String.IsNullOrEmpty(cIRM.WindDirection))
+            {
+                cmd.Parameters.AddWithValue("@WindDirection", cIRM.WindDirection.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WindDirection", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.BeaufortScale))
+            {
+                cmd.Parameters.AddWithValue("@BeaufortScale", cIRM.BeaufortScale.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@BeaufortScale", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.WindSpeed))
+            {
+                cmd.Parameters.AddWithValue("@WindSpeed", cIRM.WindSpeed.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WindSpeed", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.SeaState))
+            {
+                cmd.Parameters.AddWithValue("@SeaState", cIRM.SeaState.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SeaState", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.WaveHeight))
+            {
+                cmd.Parameters.AddWithValue("@WaveHeight", cIRM.WaveHeight.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WaveHeight", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Swell))
+            {
+                cmd.Parameters.AddWithValue("@Swell", cIRM.Swell.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Swell", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.WeatherCondition))
+            {
+                cmd.Parameters.AddWithValue("@WeatherCondition", cIRM.WeatherCondition.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WeatherCondition", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.WeatherVisibility))
+            {
+                cmd.Parameters.AddWithValue("@WeatherVisibility", cIRM.WeatherVisibility.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WeatherVisibility", DBNull.Value);
+            }
+
+            
+
+            #endregion
+
+            #region Crew Details 9
             cmd.Parameters.AddWithValue("@CrewId", cIRM.CrewId);
             cmd.Parameters.AddWithValue("@Nationality", cIRM.Nationality.ToString());
             cmd.Parameters.AddWithValue("@Addiction", cIRM.Addiction.ToString());
@@ -156,8 +358,8 @@ namespace TM.RestHour.DAL
             }
 
             #endregion
-            
-            #region Other Part 1
+
+            #region Other Part 1 (2)
             if (!String.IsNullOrEmpty(cIRM.Category))
             {
                 cmd.Parameters.AddWithValue("@Category", cIRM.Category.ToString());
@@ -177,7 +379,7 @@ namespace TM.RestHour.DAL
             }
             #endregion
             
-            #region Vital Parameters
+            #region Vital Parameters 13
             if (!String.IsNullOrEmpty(cIRM.VitalParams.ObservationDate.ToString()))
             {
                 cmd.Parameters.AddWithValue("@ObservationDate", cIRM.VitalParams.ObservationDate);
@@ -294,7 +496,7 @@ namespace TM.RestHour.DAL
 
             #endregion
 
-            #region Symtomology
+            #region Symtomology 13
             if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.ObservationDate.ToString()))
             {
                 cmd.Parameters.AddWithValue("@SymptomatologyDate", cIRM.MedicalSymtomology.ObservationDate.ToString());
@@ -413,7 +615,7 @@ namespace TM.RestHour.DAL
 
             #endregion
 
-            #region Past Medical History
+            #region Past Medical History 6
             if (!String.IsNullOrEmpty(cIRM.PastMedicalHistory))
             {
                 cmd.Parameters.AddWithValue("@PastMedicalHistory", cIRM.PastMedicalHistory.ToString());
@@ -471,7 +673,7 @@ namespace TM.RestHour.DAL
 
             #endregion
 
-            #region Other Part 2
+            #region Other Part 2 (6)
             if (!String.IsNullOrEmpty(cIRM.WhereAndHowAccidentOccured))
             {
                 cmd.Parameters.AddWithValue("@WhereAndHowAccidentOccured", cIRM.WhereAndHowAccidentOccured.ToString());
@@ -527,7 +729,7 @@ namespace TM.RestHour.DAL
 
             #endregion
 
-            #region Other Part 3 Severity of Pain /Hurt
+            #region Other Part 3 Severity of Pain /Hurt 1
             //if (cIRM.NoHurt.HasValue)
             //{
             //    cmd.Parameters.AddWithValue("@NoHurt", cIRM.NoHurt);
@@ -584,7 +786,7 @@ namespace TM.RestHour.DAL
 
             if (cIRM.SeverityOfPain > 0)
             {
-                cmd.Parameters.AddWithValue("@SeverityOfPain", cIRM.HurtsWoest);
+                cmd.Parameters.AddWithValue("@SeverityOfPain", cIRM.SeverityOfPain);
             }
             else
             {
@@ -593,7 +795,7 @@ namespace TM.RestHour.DAL
 
             #endregion
 
-            #region Other Part 4 Upload
+            #region Other Part 4 Upload 12
             if (cIRM.JoiningMedical.HasValue)
             {
                 cmd.Parameters.AddWithValue("@JoiningMedical", cIRM.JoiningMedical);
@@ -938,22 +1140,71 @@ namespace TM.RestHour.DAL
                     cirm.NameOfVessel = ds.Tables[0].Rows[0]["NameOfVessel"].ToString();
                 if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["RadioCallSign"].ToString()))
                     cirm.RadioCallSign = ds.Tables[0].Rows[0]["RadioCallSign"].ToString();
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["PortofDeparture"].ToString()))
-                    cirm.PortofDeparture = ds.Tables[0].Rows[0]["PortofDeparture"].ToString();
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["PortofDestination"].ToString()))
-                    cirm.PortofDestination = ds.Tables[0].Rows[0]["PortofDestination"].ToString();
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Route"].ToString()))
-                    cirm.Route = ds.Tables[0].Rows[0]["Route"].ToString();
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["LocationOfShip"].ToString()))
-                    cirm.LocationOfShip = ds.Tables[0].Rows[0]["LocationOfShip"].ToString();
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["EstimatedTimeOfarrivalhrs"].ToString()))
-                    cirm.EstimatedTimeOfarrivalhrs = ds.Tables[0].Rows[0]["EstimatedTimeOfarrivalhrs"].ToString();
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Speed"].ToString()))
-                    cirm.Speed = ds.Tables[0].Rows[0]["Speed"].ToString();
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Weather"].ToString()))
-                    cirm.Weather = ds.Tables[0].Rows[0]["Weather"].ToString();
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["AgentDetails"].ToString()))
-                    cirm.AgentDetails = ds.Tables[0].Rows[0]["AgentDetails"].ToString();
+
+
+                #endregion
+
+                #region Voyage Details
+
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["DateOfReportingGMT"].ToString()))
+                    cirm.DateOfReportingGMT = ds.Tables[3].Rows[0]["DateOfReportingGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["TimeOfReportingGMT"].ToString()))
+                    cirm.TimeOfReportingGMT = ds.Tables[3].Rows[0]["TimeOfReportingGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["LocationOfShip"].ToString()))
+                    cirm.LocationOfShip = ds.Tables[3].Rows[0]["LocationOfShip"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["Cousre"].ToString()))
+                    cirm.Cousre = ds.Tables[3].Rows[0]["Cousre"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["Speed"].ToString()))
+                    cirm.Speed = ds.Tables[3].Rows[0]["Speed"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["PortofDeparture"].ToString()))
+                    cirm.PortofDeparture = ds.Tables[3].Rows[0]["PortofDeparture"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["DateOfDeparture"].ToString()))
+                    cirm.DateOfDeparture = ds.Tables[3].Rows[0]["DateOfDeparture"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["TimeOfDeparture"].ToString()))
+                    cirm.TimeOfDeparture = ds.Tables[3].Rows[0]["TimeOfDeparture"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["PortofDestination"].ToString()))
+                    cirm.PortofDestination = ds.Tables[3].Rows[0]["PortofDestination"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["ETADateGMT"].ToString()))
+                    cirm.ETADateGMT = ds.Tables[3].Rows[0]["ETADateGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["ETATimeGMT"].ToString()))
+                    cirm.ETATimeGMT = ds.Tables[3].Rows[0]["ETATimeGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["EstimatedTimeOfarrivalhrs"].ToString()))
+                    cirm.EstimatedTimeOfarrivalhrs = ds.Tables[3].Rows[0]["EstimatedTimeOfarrivalhrs"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["AgentDetails"].ToString()))
+                    cirm.AgentDetails = ds.Tables[3].Rows[0]["AgentDetails"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["NearestPort"].ToString()))
+                    cirm.NearestPort = ds.Tables[3].Rows[0]["NearestPort"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["NearestPortETADateGMT"].ToString()))
+                    cirm.NearestPortETADateGMT = ds.Tables[3].Rows[0]["NearestPortETADateGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["NearestPortETATimeGMT"].ToString()))
+                    cirm.NearestPortETATimeGMT = ds.Tables[3].Rows[0]["NearestPortETATimeGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["OtherPossiblePort"].ToString()))
+                    cirm.OtherPossiblePort = ds.Tables[3].Rows[0]["OtherPossiblePort"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["OtherPortETADateGMT"].ToString()))
+                    cirm.OtherPortETADateGMT = ds.Tables[3].Rows[0]["OtherPortETADateGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["OtherPortETATimeGMT"].ToString()))
+                    cirm.OtherPortETATimeGMT = ds.Tables[3].Rows[0]["OtherPortETATimeGMT"].ToString();
+
+                #endregion
+
+                #region Weather Details
+
+                if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WindDirection"].ToString()))
+                    cirm.WindDirection = ds.Tables[4].Rows[0]["WindDirection"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["BeaufortScale"].ToString()))
+                    cirm.BeaufortScale = ds.Tables[4].Rows[0]["BeaufortScale"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WindSpeed"].ToString()))
+                    cirm.WindSpeed = ds.Tables[4].Rows[0]["WindSpeed"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["SeaState"].ToString()))
+                    cirm.SeaState = ds.Tables[4].Rows[0]["SeaState"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WaveHeight"].ToString()))
+                    cirm.WaveHeight = ds.Tables[4].Rows[0]["WaveHeight"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["Swell"].ToString()))
+                    cirm.Swell = ds.Tables[4].Rows[0]["Swell"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WeatherCondition"].ToString()))
+                    cirm.WeatherCondition = ds.Tables[4].Rows[0]["WeatherCondition"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WeatherVisibility"].ToString()))
+                    cirm.WeatherVisibility = ds.Tables[4].Rows[0]["WeatherVisibility"].ToString();
 
                 #endregion
 
@@ -1091,7 +1342,7 @@ namespace TM.RestHour.DAL
 
                 #region Upload section
 
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["JoiningMedical"].ToString()))
+                if (Convert.ToBoolean(ds.Tables[0].Rows[0]["JoiningMedical"].ToString()))
                 {
                     cirm.JoiningMedical = Convert.ToBoolean(ds.Tables[0].Rows[0]["JoiningMedical"].ToString());
                     //cirm.JoiningMedicalPath = dsUploadedImages.Tables[0].Select("FilePath")
@@ -1101,7 +1352,7 @@ namespace TM.RestHour.DAL
                                                         .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
                 }
                     
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["MedicineAvailableOnBoard"].ToString()))
+                if (Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicineAvailableOnBoard"].ToString()))
                 {
                     cirm.MedicineAvailableOnBoard = Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicineAvailableOnBoard"].ToString());
                     //cirm.JoiningMedicalPath = dsUploadedImages.Tables[0].Select("FilePath")
@@ -1111,7 +1362,7 @@ namespace TM.RestHour.DAL
                                                         .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
                 }
                    
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["MedicalEquipmentOnBoard"].ToString()))
+                if (Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalEquipmentOnBoard"].ToString()))
                 {
                     cirm.MedicalEquipmentOnBoard = Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalEquipmentOnBoard"].ToString());
                     //cirm.MedicalEquipmentOnBoardPath = dsUploadedImages.Tables[0].AsEnumerable().Select(r => r.Field<string>("FilePath"))
@@ -1121,7 +1372,7 @@ namespace TM.RestHour.DAL
                                                         .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
                 }
                     
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["MedicalHistoryUpload"].ToString()))
+                if (Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalHistoryUpload"].ToString()))
                 {
                     cirm.MedicalHistoryUpload = Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalHistoryUpload"].ToString());
                     //cirm.MedicalHistoryPath = dsUploadedImages.Tables[0].Select("FilePath")
@@ -1131,7 +1382,7 @@ namespace TM.RestHour.DAL
                                                         .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
                 }
                     
-                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["WorkAndRestHourLatestRecord"].ToString()))
+                if (Convert.ToBoolean(ds.Tables[0].Rows[0]["WorkAndRestHourLatestRecord"].ToString()))
                 {
                     cirm.WorkAndRestHourLatestRecord = Convert.ToBoolean(ds.Tables[0].Rows[0]["WorkAndRestHourLatestRecord"].ToString());
                     //cirm.WorkAndRestHourLatestRecordPath = dsUploadedImages.Tables[0].Select("FilePath")

@@ -113,7 +113,7 @@ function clearTextBox() {
     $('#PercentageOfBurn').val("");
 }
 
-function SaveCIRM() {
+function SaveCIRM(medicalAssistanceType) {
 
     //alert($('textarea#Comments').val());
     //debugger;
@@ -161,18 +161,48 @@ function SaveCIRM() {
         };                              
         var Crew = {
             CIRMId: $('#CIRMId').val(),
+            MedicalAssitanceType:       medicalAssistanceType, //Added on 25th Jan 2022
 
             NameOfVessel:               $('#VesselName').val(),
             RadioCallSign:              $('#CallSign').val(),
-            PortofDeparture:            $('#PortOfDeparture').val(),
-            PortofDestination:          $('#PortOfArrival').val(),
+
+            
+            //#region Voyage Details
+            DateOfReportingGMT:         $('#DateOfReportingGMT').val(),
+            TimeOfReportingGMT:         $('#TimeOfReportingGMT').val(),
             LocationOfShip:             $('#LocationOfShip').val(),
-            EstimatedTimeOfarrivalhrs:  $('#EstimatedTimeOfArrival').val(),
+            Cousre:                     $('#Cousre').val(),
             Speed:                      $('#Speed').val(),
-            Weather:                    $('#Weather').val(),
+            PortofDeparture:            $('#PortOfDeparture').val(),
+            DateOfDeparture:            $('#DateOfDeparture').val(),
+            TimeOfDeparture:            $('#TimeOfDeparture').val(),
+            PortofDestination:          $('#PortOfArrival').val(),
+            ETADateGMT:                 $('#ETADateGMT').val(),
+            ETATimeGMT:                 $('#ETATimeGMT').val(),
+            EstimatedTimeOfarrivalhrs:  $('#EstimatedTimeOfArrival').val(),
             AgentDetails:               $('#AgentDetails').val(),
+            NearestPort:                $('#NearestPort').val(),
+            NearestPortETADateGMT:      $('#NearestPortETADateGMT').val(),
+            NearestPortETATimeGMT:      $('#NearestPortETATimeGMT').val(),
+            OtherPossiblePort:          $('#OtherPossiblePort').val(),
+            OtherPortETADateGMT:        $('#OtherPortETADateGMT').val(),
+            OtherPortETATimeGMT:        $('#OtherPortETATimeGMT').val(),
 
+            //#endregion
 
+            //#region Weather Details
+            WindDirection:              $('#Direction').val(),
+            BeaufortScale:              $('#BeaufortScale').val(),
+            WindSpeed:                  $('#WindSpeed').val(),
+            SeaState:                   $('#SeaState').val(),
+            WaveHeight:                 $('#WaveHeight').val(),
+            Swell:                      $('#Swell').val(),
+            WeatherCondition:           $('#WeatherCondition').val(),
+            WeatherVisibility:          $('#Visibility').val(),
+            Weather:                    $('#WeatherCondition').val(),
+            //#endregion 
+
+            //#region Crew Details
             CrewId:                     $('#ddlCrew').val(),
             Nationality:                $('#Nationality').val(),
             Addiction:                  $('#Addiction').val(),
@@ -182,8 +212,12 @@ function SaveCIRM() {
             Sex:                        $('#Sex').val(),
             Age:                        $('#Age').val(),
             JoiningDate:                $('#JoiningDate').val(),
+            //#endregion
+
+            //#region Type of Ailment
             Category:                   $('#Category').val(),
             SubCategory:                $('#SubCategory').val(),
+            //#endregion
 
             //Pulse: $('#Pulse').val(),
             //OxygenSaturation: $('#OxygenSaturation').val(),
@@ -202,13 +236,16 @@ function SaveCIRM() {
             //MedicinesAdministered: $('#MedicinesAdministered').val(),
             //RelevantInformationForDesease: $('#RelevantInformationForDesease').val(),
 
+            //#region Past Medical History
             PastMedicalHistory: $('#PastMedicalHostory').val(),
             PastTreatmentGiven: $('#TreatmentGiven').val(),
             PastTeleMedicalAdviceReceived: $('#TeleMedicalAdviceReceived').val(),
             PastRemarks: $('#Remarks').val(),
             PastMedicineAdministered: $('#PastMedicineAdministered').val(),
             PastMedicalHistoryPath: $('#hdnPathCIRMPastMedicalHistory').val(),
+            //#endregion
 
+            //#region Incase of Injury/Sevierty of Pain
             WhereAndHowAccidentOccured:         $('#WhereAndHowAccidentOccured').val(),
             LocationAndTypeOfInjuryOrBurn:      $('#LocationAndTypeOfInjuryOrBurn').val(),
             FrequencyOfPain:                    $('#FrequencyOfPain').val(),
@@ -216,7 +253,9 @@ function SaveCIRM() {
             PercentageOfBurn:                   $('#PercentageOfBurn').val(),
 
             SeverityOfPain: $("input[name='SeverityOfPain']:checked").val(),
+            //#endregion
 
+            //#region Upload section
             //PictureUploadPath: $('#PictureUploadPath').val(),
 
             //JoiningMedical: document.getElementById("JoiningMedical").checked,
@@ -239,11 +278,11 @@ function SaveCIRM() {
             WorkAndRestHourLatestRecord: $("input[name='uploaddocWorkAndRestHourLatestRecord']:checked").val() ? true : false,
             WorkAndRestHourLatestRecordPath: $('#hdnPathCIRMWorkAndRestHourLatestRecord').val(),
             //PreExistingMedicationPrescription: document.getElementById("PreExistingMedicationPrescription").checked,
+            //#endregion
 
 
-
-        //CrewId: $('#ddlCrew').val(),
-        //IsMedicalHistoryUploaded: document.getElementById("uploaddoc4").checked
+            //CrewId: $('#ddlCrew').val(),
+            //IsMedicalHistoryUploaded: document.getElementById("uploaddoc4").checked
 
             VitalParams: VitalParams,
             MedicalSymtomology: Symtomology
@@ -785,22 +824,54 @@ function GetCIRMDetailsByCrew(id) {
         success: function (result) {
             //debugger;
             $('#CIRMId').val(result.CIRMId);
-            $('#PortOfDeparture').val(result.PortofDeparture);
-            $('#PortOfArrival').val(result.PortofDestination);
-            $('#Speed').val(result.Speed);
             $('#CallSign').val(result.RadioCallSign);
-            $('#Weather').val(result.Weather);
+            //#region Voyage Details
+            $('#DateOfReportingGMT').val(result.DateOfReportingGMT);
+            $('#TimeOfReportingGMT').val(result.TimeOfReportingGMT);
             $('#LocationOfShip').val(result.LocationOfShip);
+            $('#Cousre').val(result.Cousre);
+            $('#Speed').val(result.Speed);
+            $('#PortOfDeparture').val(result.PortofDeparture);
+            $('#DateOfDeparture').val(result.DateOfDeparture);
+            $('#TimeOfDeparture').val(result.TimeOfDeparture);
+            $('#PortOfArrival').val(result.PortofDestination);
+            $('#ETADateGMT').val(result.ETADateGMT);
+            $('#ETATimeGMT').val(result.ETATimeGMT);
             $('#EstimatedTimeOfArrival').val(result.EstimatedTimeOfarrivalhrs);
             $('#AgentDetails').val(result.AgentDetails);
+            $('#NearestPort').val(result.NearestPort);
+            $('#NearestPortETADateGMT').val(result.NearestPortETADateGMT);
+            $('#NearestPortETATimeGMT').val(result.NearestPortETATimeGMT);
+            $('#OtherPossiblePort').val(result.OtherPossiblePort);
+            $('#OtherPortETADateGMT').val(result.OtherPortETADateGMT);
+            $('#OtherPortETATimeGMT').val(result.OtherPortETATimeGMT);
+            //#endregion 
 
+            //#region Weather Details
+            $('#Direction').val(result.WindDirection);
+            $('#BeaufortScale').val(result.BeaufortScale);
+            $('#WindSpeed').val(result.WindSpeed);
+            $('#SeaState').val(result.SeaState);
+            $('#WaveHeight').val(result.WaveHeight);
+            $('#Swell').val(result.Swell);
+            $('#WeatherCondition').val(result.WeatherCondition);
+            $('#Visibility').val(result.WeatherVisibility);
+            //#endregion
+
+            //#region Crew Details
             $('#Addiction').val(result.Addiction);
             $('#Ethinicity').val(result.Ethinicity);
             $('#Frequency').val(result.Frequency);
 
+            //#endregion
+
+            //#region Type of Ailment
             $('#Category').val(result.Category);
             $('#SubCategory').val(result.SubCategory);
 
+            //#endregion
+
+            //#region Vital Statistica
             //$('#VitalStatisticsDate').val(convertJsonDateToShortDate(result.VitalStatistics.ObservationDate));
             //$('#VitalStatisticsTime').val(convertJsonDateToShortTime(result.VitalStatistics.ObservationTime));
             $('#VitalStatisticsDate').val(result.VitalStatistics.ObservationDate);
@@ -817,7 +888,9 @@ function GetCIRMDetailsByCrew(id) {
             $('#Fasting').val(result.VitalStatistics.Fasting);
             $('#Regular').val(result.VitalStatistics.Regular);
 
-            
+            //#endregion
+
+            //#region Symtomology
             $('#SymptomatologyDate').val(result.Symtomology.ObservationDate);
             $('#SymptomatologyTime').val((result.Symtomology.ObservationTime));
             $('#Vomiting').val(result.Symtomology.Vomiting);
@@ -832,12 +905,19 @@ function GetCIRMDetailsByCrew(id) {
             $('#MedicinesAdministered').val(result.Symtomology.MedicinesAdministered);
             $('#AnyOtherRelevantInformation').val(result.Symtomology.AnyOtherRelevantInformation);
 
+            //#endregion
+
+            //#region Past Medical History
             $('#PastMedicalHostory').val(result.PastMedicalHistory);
             $('#Remarks').val(result.PastRemarks);
             $('#TreatmentGiven').val(result.PastTreatmentGiven);
             $('#PastMedicineAdministered').val(result.PastMedicineAdministered);
             $('#TeleMedicalAdviceReceived').val(result.PastTeleMedicalAdviceReceived);
             $('#hdnPathCIRMPastMedicalHistory').val(result.PastMedicalHistoryPath);
+
+            //#endregion
+
+            //#region Incase of Injury/Sevierty of Pain
 
             $('#WhereAndHowAccidentOccured').val(result.WhereAndHowAccidentOccured);
             $('#LocationAndTypeOfInjuryBurn').val(result.LocationAndTypeOfInjuryOrBurn);
@@ -865,6 +945,9 @@ function GetCIRMDetailsByCrew(id) {
 
             //}
 
+            //#endregion
+
+            //#region Upload section
 
             if (result.MedicalEquipmentOnBoard) {
                 $("#uploaddocMedicalEquipmentOnBoard").prop("checked", true);
@@ -892,6 +975,7 @@ function GetCIRMDetailsByCrew(id) {
                 HideCIRMUploadModal();
             }
 
+            //#endregion
 
 
             //$('#myModal').modal('show');

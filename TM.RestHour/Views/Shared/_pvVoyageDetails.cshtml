@@ -1,0 +1,433 @@
+﻿
+
+<div class="row" style="border: 1px solid #eee; padding: 10px;">
+    <div class="col-md-12"><h4>Vessel Details </h4></div>
+
+
+    <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+        <div class="form-group">
+            <input type="hidden" id="VoyageID" />
+        </div>
+        <div class="form-group">
+            <label for="DateOfReportingGMT">Date of Reporting GMT</label>
+            <input type="text" class="form-control" id="DateOfReportingGMT" placeholder="Date of Reporting GMT" />
+        </div>
+        <div class="form-group">
+            <label for="Cousre">Cousre (0.359 Deg)</label>
+            <input type="text" class="form-control" id="Cousre" placeholder="Cousre" />
+        </div>
+
+
+    </div>
+    <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+        
+        <div class="form-group">
+            <label for="TimeOfReportingGMT">Time of Reporting GMT</label>
+            @*<input type="text" class="form-control" id="TimeOfReportingGMT" placeholder="Time of Reporting GMT" />*@
+            <select name="account" class="form-control" id="TimeOfReportingGMT" required="">
+                <option value="">Select</option>
+                <option value="00:00">00:00</option>
+                <option value="00:30">00:30</option>
+                <option value="01:00">01:00</option>
+                <option value="01:30">01:30</option>
+                <option value="02:00">02:00</option>
+                <option value="02:30">02:30</option>
+                <option value="03:00">03:00</option>
+                <option value="03:30">03:30</option>
+                <option value="04:00">04:00</option>
+                <option value="04:30">04:30</option>
+                <option value="05:00">05:00</option>
+                <option value="05:30">05:30</option>
+                <option value="06:00">06:00</option>
+                <option value="06:30">06:30</option>
+                <option value="07:00">07:00</option>
+                <option value="07:30">07:30</option>
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
+                <option value="23:30">23:30</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Speed">Speed (in knots)</label>
+            <input type="text" class="form-control" id="Speed" placeholder="Speed" />
+        </div>
+
+
+    </div>
+    <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+        
+        <div class="form-group">
+            <label for="PresentLocation">Present Location</label>
+            @*<input type="text" class="form-control" id="PresentLocation" placeholder="Present Location" />*@
+            <input type="text" class="form-control" id="LocationOfShip" placeholder="Present Location" />
+        </div>
+        
+
+
+    </div>
+</div>
+
+<div class="row" style="border: 1px solid #eee; padding: 10px;">
+    
+    <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+
+        <div class="form-group">
+            <label for="PortOfDeparture">Port Of Departure</label>
+            <input type="text" class="form-control" id="PortOfDeparture" placeholder="Port Of Departure" />
+        </div>
+        <div class="form-group">
+            <label for="PortOfArrival">Port Of Arrival</label>
+            <input type="text" class="form-control" id="PortOfArrival" placeholder="Port Of Arrival" />
+        </div>
+        <div class="form-group">
+            <label for="NearestPort">Nearest Port</label>
+            <input type="text" class="form-control" id="NearestPort" placeholder="Nearest Port" />
+        </div>
+        <div class="form-group">
+            <label for="OtherPossiblePort">Other Possible Port</label>
+            <input type="text" class="form-control" id="OtherPossiblePort" placeholder="Other Possible Port" />
+        </div>
+        <div class="form-group">
+            <label for="EstimatedTimeOfArrival">Estimated Time Of Arrival (hrs)</label>
+            <input type="text" class="form-control" id="EstimatedTimeOfArrival" placeholder="Estimated Time Of Arrival (hrs)" />
+        </div>
+        
+
+    </div>
+
+    <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+        <div class="form-group">
+            <label for="DateOfDeparture">Date Of Departure</label>
+            <input type="text" class="form-control" id="DateOfDeparture" placeholder="Date Of Departure" />
+        </div>
+
+        <div class="form-group">
+            <label for="ETADateGMT">ETA Date GMT</label>
+            <input type="text" class="form-control" id="ETADateGMT" placeholder="ETA Date GMT" />
+        </div>
+        <div class="form-group">
+            <label for="NearestPortETADateGMT">Nearest Port ETA Date GMT</label>
+            <input type="text" class="form-control" id="NearestPortETADateGMT" placeholder="Nearest Port ETA Date GMT" />
+        </div>
+        <div class="form-group">
+            <label for="OtherPortETADateGMT">Other Port ETA Date GMT</label>
+            <input type="text" class="form-control" id="OtherPortETADateGMT" placeholder="Other Port ETA Date GMT" />
+        </div>
+        <div class="form-group">
+            <label for="AgentDetails">Agent Details</label>
+            <textarea type="text" class="form-control valid" id="AgentDetails" placeholder="Agent Details" style="width: 95% !important;"></textarea>
+        </div>
+
+    </div>
+
+    <div class="col-md-4" style="border: 1px solid #eee; padding: 10px;">
+        <div class="form-group">
+            <label for="TimeOfDeparture">Time Of Departure</label>
+            @*<input type="text" class="form-control" id="TimeOfDeparture" placeholder="Time Of Departure" />*@
+            <select name="account" class="form-control" id="TimeOfDeparture" required="">
+                <option value="">Select</option>
+                <option value="00:00">00:00</option>
+                <option value="00:30">00:30</option>
+                <option value="01:00">01:00</option>
+                <option value="01:30">01:30</option>
+                <option value="02:00">02:00</option>
+                <option value="02:30">02:30</option>
+                <option value="03:00">03:00</option>
+                <option value="03:30">03:30</option>
+                <option value="04:00">04:00</option>
+                <option value="04:30">04:30</option>
+                <option value="05:00">05:00</option>
+                <option value="05:30">05:30</option>
+                <option value="06:00">06:00</option>
+                <option value="06:30">06:30</option>
+                <option value="07:00">07:00</option>
+                <option value="07:30">07:30</option>
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
+                <option value="23:30">23:30</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ETATimeGMT">ETA Time GMT</label>
+            @*<input type="text" class="form-control" id="ETATimeGMT" placeholder="ETA Time GMT" />*@
+            <select name="account" class="form-control" id="ETATimeGMT" required="">
+                <option value="">Select</option>
+                <option value="00:00">00:00</option>
+                <option value="00:30">00:30</option>
+                <option value="01:00">01:00</option>
+                <option value="01:30">01:30</option>
+                <option value="02:00">02:00</option>
+                <option value="02:30">02:30</option>
+                <option value="03:00">03:00</option>
+                <option value="03:30">03:30</option>
+                <option value="04:00">04:00</option>
+                <option value="04:30">04:30</option>
+                <option value="05:00">05:00</option>
+                <option value="05:30">05:30</option>
+                <option value="06:00">06:00</option>
+                <option value="06:30">06:30</option>
+                <option value="07:00">07:00</option>
+                <option value="07:30">07:30</option>
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
+                <option value="23:30">23:30</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="NearestPortETATimeGMT">Nearest Port ETA Time GMT</label>
+            @*<input type="text" class="form-control" id="NearestPortETATimeGMT" placeholder="Nearest Port ETA Time GMT" />*@
+            <select name="account" class="form-control" id="NearestPortETATimeGMT" required="">
+                <option value="">Select</option>
+                <option value="00:00">00:00</option>
+                <option value="00:30">00:30</option>
+                <option value="01:00">01:00</option>
+                <option value="01:30">01:30</option>
+                <option value="02:00">02:00</option>
+                <option value="02:30">02:30</option>
+                <option value="03:00">03:00</option>
+                <option value="03:30">03:30</option>
+                <option value="04:00">04:00</option>
+                <option value="04:30">04:30</option>
+                <option value="05:00">05:00</option>
+                <option value="05:30">05:30</option>
+                <option value="06:00">06:00</option>
+                <option value="06:30">06:30</option>
+                <option value="07:00">07:00</option>
+                <option value="07:30">07:30</option>
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
+                <option value="23:30">23:30</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="OtherPortETATimeGMT">Other Port ETA Time GMT</label>
+            @*<input type="text" class="form-control" id="OtherPortETATimeGMT" placeholder="Other Port ETA Time GMT" />*@
+            <select name="account" class="form-control" id="OtherPortETATimeGMT" required="">
+                <option value="">Select</option>
+                <option value="00:00">00:00</option>
+                <option value="00:30">00:30</option>
+                <option value="01:00">01:00</option>
+                <option value="01:30">01:30</option>
+                <option value="02:00">02:00</option>
+                <option value="02:30">02:30</option>
+                <option value="03:00">03:00</option>
+                <option value="03:30">03:30</option>
+                <option value="04:00">04:00</option>
+                <option value="04:30">04:30</option>
+                <option value="05:00">05:00</option>
+                <option value="05:30">05:30</option>
+                <option value="06:00">06:00</option>
+                <option value="06:30">06:30</option>
+                <option value="07:00">07:00</option>
+                <option value="07:30">07:30</option>
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
+                <option value="23:30">23:30</option>
+
+            </select>
+        </div>
+
+
+
+    </div>
+
+    <div class="col-md-3 float-lg-right" style="padding: 10px; ">
+        <button type="button" class="button1" id="btnAdd" onclick="return SaveVesselDetails();">Add</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $("#DateOfReportingGMT").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
+
+    });
+
+    $("#DateOfDeparture").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
+
+    });
+    $("#ETADateGMT").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
+
+    });
+    $("#NearestPortETADateGMT").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
+
+    });
+    $("#OtherPortETADateGMT").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
+
+    });
+
+    
+
+    
+
+        //-----End Added on 4th Jan 2022-------
+
+</script>

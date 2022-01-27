@@ -6,63 +6,119 @@
 <script src="~/Scripts/VesselDetails.js"></script>
 <script src="~/Scripts/CIRM.js"></script>
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link href="dist/dual-listbox.css" rel="stylesheet">
 
-
 <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
-
 <link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
 <link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
 
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
 
 <script src="~/Scripts/toastr.min.js"></script>
 <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
 <h2>CIRM</h2>
 
 <div class="">
+    <div class="head_title">
+        <h1 class="ta">CIRM - Patient Details</h1>
+        <input type="hidden" id="CIRMId" />
+    </div>
     <div class="card bac">
         <div class="row">
             <div class="col-sm-12 col-xs-12 imo">
                 <!-- Nav tabs -->
                 <div class="">
                     <div class="mrBTM-10">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="nav-item"><a class="nav-link " href="#cirm" aria-controls="cirm" role="tab" data-toggle="tab">  <span>CIRM Details</span></a></li>
-                            <li role="presentation" class="nav-item"><a class="nav-link active" href="#patientDetails" aria-controls="patientDetails" role="tab" data-toggle="tab">  <span>Patient Details</span></a></li>
+                        @*<ul class="nav nav-tabs" role="tablist">*@
+                        <ul class="container--tabs">
+                            <li role="presentation" class="tab tabs--active">  <span>CIRM Details</span></li>
+                            <li role="presentation" class="tab"><span>Vessel Details</span></li>
+                            <li role="presentation" class="tab">  <span>Voyage Details</span></li>
+                            <li role="presentation" class="tab"><span>Weather Details</span></li>
+                            <li role="presentation" class="tab">  <span>Petaint  Details</span></li>
                         </ul>
                     </div>
+                    <!-- Tab panes -->
+                    <div class="container--content">
+                        <div class="content content--active card" id="cirm">
+                            <div class="col-sm-12 col-xs-12 imo">
+                                <div class="">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur doloribus necessitatibus possimus. Sapiente aspernatur neque atque in eum tenetur id!</p>
+                                </div>
 
-                </div>
+                            </div>
+                        </div>
+                        <div class="content " id="vesselDetails">
+                            <div class="col-sm-12 col-xs-12 imo">
+                                <div class="">
+                                    @Html.Partial("_pvVesselDetails")
+                                </div>
 
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="cirm">
-                        <div class="col-sm-12 col-xs-12 imo">
-                            <div class="">
+                            </div>
+                        </div>
+                        <div class="content " id="voyageDetails">
+                            <div class="col-sm-12 col-xs-12 imo">
+                                <div class="">
+                                    @Html.Partial("_pvVoyageDetails")
+
+                                </div>
 
                             </div>
 
+
                         </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane active" id="patientDetails">
-                        <div class="col-sm-12 col-xs-12 imo">
-                            <div class="">
-                                <div class="card">
-                                    <div class="clearfix"></div>
-                                    @Html.Partial("_pvVesselDetails")
+                        <div class="content " id="weatherDetails">
+                            <div class="col-sm-12 col-xs-12 imo">
+                                <div class="">
+                                    @Html.Partial("_pvWeatherDetails")
+                                </div>
 
+                            </div>
+                        </div>
+                        <div class="content" id="patientDetails">
+                            <div class="col-sm-12 col-xs-12 imo">
+                                <div class="">
+                                    @Html.Partial("_pvPatientDetails")
+                                   
+                                    <div class="row" style="border: 1px solid #eee; padding: 10px;">
 
+                                        <div class="col-md-4">
+                                            <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                                                <button type="button" class="button1" id="btnAdd" onclick="return SaveCIRM('CIRM');">Add</button>
+                                            </div>
+                                        </div>
 
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="Email"></label>
+                                                <input type="text" class="form-control" style="width:90%;" id="Email" placeholder="Enter the Email for Doctors / Hospitals" />
+                                            </div>
+                                            <button type="button" class="button1" id="" onclick="SendMail()">Send</button>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+
 
             </div>
         </div>
@@ -70,7 +126,7 @@
 
 </div>
 
-
+ </div>
 
 @section Scripts
 {
@@ -78,6 +134,78 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/themes/base/css")
 
-    <script src="~/Scripts/toastr.min.js"></script>
-    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <script>
+        const tabs = document.querySelectorAll(".tab");
+        const contents = document.querySelectorAll(".content");
+
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].addEventListener("click", () => {
+                for (let j = 0; j < contents.length; j++) {
+                    contents[j].classList.remove("content--active");
+                }
+                for (let jj = 0; jj < tabs.length; jj++) {
+                    tabs[jj].classList.remove("tabs--active");
+                }
+                contents[i].classList.add("content--active");
+                tabs[i].classList.add("tabs--active");
+            });
+        }
+
+        $(document).ready(function () {
+
+            //-------Added On 4th Jan 2022-------------------------------
+            GetVesselTypeForDrp();
+            GetShip();
+            //$('#VesselTypeID').on('change', function () {
+            //    //alert($('option:selected', this).text());
+
+            //    var VesselTypeID = $('#VesselTypeID').val();
+            //    console.log('hi');
+            //    console.log(VesselTypeID);
+
+            //    GetVesselSubTypeByVesselTypeIDForDrp(VesselTypeID);
+            //});
+
+            //$('#VesselSubTypeID').on('change', function () {
+            //    //alert($('option:selected', this).text());
+
+            //    var VesselSubTypeID = $('#VesselSubTypeID').val();
+            //    //console.log('hi');
+            //    //console.log(VesselSubTypeID);
+
+            //    GetVesselSubSubTypeByVesselSubTypeIDForDrp(VesselSubTypeID);
+
+            //});
+            //----End---Added On 4th Jan 2022-------------------------------
+
+            //SetUpGrid();
+            //GetCrewForCIRMPatientDetails();
+
+            document.getElementById("Nationality").disabled = true;
+            document.getElementById("ddlRank").disabled = true;
+
+            $('#FrequencyOfVomiting').hide();
+            $('#FrequencyOfFits').hide();
+            $('#FrequencyOfGiddiness').hide();
+            $('#FrequencyOfLethargy').hide();
+
+            $('#btnUploadJoiningMedical').hide();
+            $('#btnMedicineAvailableOnBoard').hide();
+            $('#btnMedicalEquipmentOnBoard').hide();
+            $('#btnMedicalHistoryUpload').hide();
+            $('#btnWorkAndRestHourLatestRecord').hide();
+            $('#btnPreExistingMedicationPrescription').hide();
+            $('#btnUploadPistures').hide();
+
+            $("#Direction").attr("placeholder", "Direction N/A");
+            $("#BeaufortScale").attr("placeholder", "Beaufort Scale N/A");
+            $("#WindSpeed").attr("placeholder", "Wind Speed N/A");
+            $("#SeaState").attr("placeholder", "Sea State N/A");
+            $("#WaveHeight").attr("placeholder", "Wave Height N/A");
+            $("#Swell").attr("placeholder", "Swell N/A");
+            $("#Visibility").attr("placeholder", "Visibility N/A");
+
+        });
+
+    </script>
 }

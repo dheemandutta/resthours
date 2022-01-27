@@ -1448,6 +1448,8 @@
     <Content Include="Views\Shared\_pvPatientDetails.cshtml" />
     <Content Include="Views\Shared\_pvVesselDetails.cshtml" />
     <Content Include="Views\Rights\Index.cshtml" />
+    <Content Include="Views\Shared\_pvVoyageDetails.cshtml" />
+    <Content Include="Views\Shared\_pvWeatherDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
