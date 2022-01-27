@@ -73,6 +73,7 @@
     <Compile Include="Entities\RanksPOCO.cs" />
     <Compile Include="Entities\RegimesPOCO.cs" />
     <Compile Include="Entities\ReportsPOCO.cs" />
+    <Compile Include="Entities\RightsListPOCO.cs" />
     <Compile Include="Entities\RightsPOCO.cs" />
     <Compile Include="Entities\ServiceTermsPOCO.cs" />
     <Compile Include="Entities\ShipPOCO.cs" />

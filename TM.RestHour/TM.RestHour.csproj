@@ -218,6 +218,7 @@
     <Compile Include="Models\RegimesViewModel.cs" />
     <Compile Include="Models\Reports.cs" />
     <Compile Include="Models\Rights.cs" />
+    <Compile Include="Models\RightsList.cs" />
     <Compile Include="Models\SearchTypeAheadEntity.cs" />
     <Compile Include="Models\ServiceTerms.cs" />
     <Compile Include="Models\TimeAdjustment.cs" />

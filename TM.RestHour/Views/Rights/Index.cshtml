@@ -1,134 +1,144 @@
-﻿@model List<TM.Base.Entities.RightsPOCO>
+﻿@model TM.Base.Entities.RightsPOCO
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-@*/////////////*@
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
 <script src="~/Scripts/jquery.dataTables.min.js"></script>
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-@*////////////*@
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="../css/bootstrap.min.css" />
 
-<!-- style CSS -->
-<link rel="stylesheet" href="../css/style.css" />
-<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+@*////////////////////////////////////////////////*@
 
-<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
-<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
-<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
-
-<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
 
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/TimePicker/jquery.timepicker.min.js"></script>
+<link href="~/Content/TimePicker/jquery.timepicker.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+@*////////////////////////////////////////////////*@
+
+@Html.Hidden("GetAllCrewForDrp", @Url.Action("GetAllCrewForDrp", "Rights"))
+
+
+@using (Html.BeginForm())
+{
 
 
 
-
-
-<div class="">
-    <div class="white_card_header">
-        <div class="box_header m-0">
-            <div class="main-title">
-                <h2 class="mrBTM-10">Rights</h2>
+    <div class="">
+        <div class="white_card_header">
+            <div class="box_header m-0">
+                <div class="main-title">
+                    <h2 class="mrBTM-10">Rights</h2>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card bac">
+        <div class="card bac">
 
-        <div class="card">
-            <div class="row">
-                @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
+            <div class="card">
+                <div class="row">
+                    @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
 
-                <!-----Screen divided into 4+8 ---------->
-                <div class="col-sm-12 col-xs-12" id="sideform">
-                    <div class="mrTP-10 mrRHT-10 mrLFT-10">
-                        <div class="card-block">
-                            <form class="form-horizontal" role="form">
-                                <div class="row">
-                                    <div class="col-sm-4 col-xs-12" id="sideform">
-                                        <div class="form-group">
-                                            <label for="selectCrew">Crew</label>
-                                            @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
-                                            @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })*@
-
+                    <!-----Screen divided into 4+8 ---------->
+                    <div class="col-sm-12 col-xs-12" id="sideform">
+                        <div class="mrTP-10 mrRHT-10 mrLFT-10">
+                            <div class="card-block">
+                                <form class="form-horizontal" role="form">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-xs-12" id="sideform">
+                                            <div class="form-group">
+                                                <label for="selectCrew">Crew</label>
+                                                @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
+                                                    @Html.DropDownListFor(model => model.CrewId, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                                @*<input id="PageName" type="text" class="searchTerm" placeholder="Search....">*@
+                                                @Html.TextBoxFor(m => m.PageName, new { @class = "searchTerm" })
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-4 col-xs-12">
-                                        <div class="text-right pull-right mrTP-30">
-                                            <div class="">
-                                                <div class="pull-right" id="sideform">
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary mrRHT-10" id="btnAdd"><i class="ti-eye"></i> Show Report</button>
+                                        <div class="col-sm-4 col-xs-12">
+                                            <div class="text-right pull-right mrTP-30">
+                                                <div class="">
+                                                    <div class="pull-right" id="sideform">
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary mrRHT-10" id="btnAdd"><i class="ti-eye"></i> Show Report</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                </div>
-                            </form>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <div class="table-responsive">
-                        <table id="schedule" class="table display">
-                            <thead class="blue_Color color_white">
-                                <tr>
-                                    <th class="tg-v0f9" width="2%">Resource</th>
-                                    <th class="tg-amwm" width="1%" id="h0">Access Level</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (int i = 0; i < Model.Count; i++)
-                                {
-                               
-                                <tr id="1" filled="no">
-                                    @if (Model[i].ParentId == null) {
-                                    <td class="tg-s4h7">Model[i].ResourceName<sup><span class="super"></span></sup></td>
-                                    }
-                                    else
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="table-responsive">
+                            <table id="schedule" class="table display">
+                                <thead class="blue_Color color_white">
+                                    <tr>
+                                        <th class="tg-v0f9" width="2%">Resource</th>
+                                        <th class="tg-amwm" width="1%" id="h0">Access Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.RightsList.Count; i++)
                                     {
-                                    <td class="tg-s4h7">Model[i].ResourceName<sup><span class="super"></span></sup></td>
+                                        @Html.HiddenFor(m => m.RightsList[i].Id)
+                                        <tr id="1" filled="no">
+                                            @if (Model.RightsList[i].ParentId == null)
+                                            {
+                                                <td class="tg-s4h7"><b>@Model.RightsList[i].ResourceName</b> <sup><span class="super"></span></sup></td>
+                                            }
+                                            else
+                                            {
+                                                <td class="tg-s4h7">&nbsp;&nbsp;&nbsp;&nbsp; @Model.RightsList[i].ResourceName<sup><span class="super"></span></sup></td>
+                                            }
+                                            <td class="tg-yw4l">
+                                                @Html.CheckBoxFor(m => m.RightsList[i].HasAccess, new { @checked = "checked" })
+
+                                            </td>
+                                        </tr>
+                                        @*<tr id="2" filled="no">
+                <td class="tg-s4h7">Report1<sup><span class="super"></span></sup></td>
+                <td class="tg-yw4l"><input type="checkbox" id="Report1" name="Report1" value="Report1"></td>
+            </tr>*@
                                     }
-                                    <td class="tg-yw4l"><input type="checkbox" id="Reports" name="Reports" value="Reports"></td>
-                                </tr>
-                                <tr id="2" filled="no">
-                                    <td class="tg-s4h7">Report1<sup><span class="super"></span></sup></td>
-                                    <td class="tg-yw4l"><input type="checkbox" id="Report1" name="Report1" value="Report1"></td>
-                                </tr>
-                                }
-                            </tbody>
-                           
-                        </table>
+                                </tbody>
+
+                            </table>
 
 
 
-                      
+
+                        </div>
+
+
                     </div>
-
-
                 </div>
+
+
+                <div id="dvprint"></div>
+
+
             </div>
-
-
-            <div id="dvprint"></div>
-
-
         </div>
     </div>
-</div>
-
+}
 
 @section Scripts
 {
@@ -144,10 +154,52 @@
     <script type="text/javascript">
 
 
-                    //$('#btnPrint').attr('disabled', false);
-                    $(document).ready(function () {
+        //$('#btnPrint').attr('disabled', false);
+        $(document).ready(function () {
 
-                    });
+            console.log("hi");
+
+
+            //GetAllCrewForDrp();
+
+        });
+
+
+        function GetAllCrewForDrp() {
+            //debugger;
+            var ld = $('#GetAllCrewForDrp').val();
+            //alert(id);
+            //alert(ld);
+            $.ajax({
+
+                url: ld,
+                //data:
+                //{
+                //    id: id
+                //},
+                type: "GET",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (result) {
+                    //debugger;
+                    //$('#ID').val(result.ID);
+                    //$('#Name').val(result.Name);
+                    console.log("success");
+                    console.log(JSON.parse(result));
+
+                    //console.log($('#result'));
+
+                },
+                error: function (jqXHR, errormessage) {
+                    //debugger;
+                    console.log("error");
+                    console.log(jqXHR);
+                }
+            });
+            return false;
+        }
+
+
 
     </script>
 }
