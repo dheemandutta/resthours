@@ -62,6 +62,7 @@
     <Compile Include="Entities\GroupsPOCO.cs" />
     <Compile Include="Entities\LoginPOCO.cs" />
     <Compile Include="Entities\ManageRankPOCO.cs" />
+    <Compile Include="Entities\MedicalChestPOCO.cs" />
     <Compile Include="Entities\MedicalSymtomologyPOCO.cs" />
     <Compile Include="Entities\NonComplianceInfoPOCO.cs" />
     <Compile Include="Entities\NonCompliancePOCO.cs" />

@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "MedicalChestCertificate";
+}
+<script src="~/Scripts/MedicalChest.js"></script>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+@Html.Hidden("saveMedicalChestCertificate", @Url.Action("SaveMedicalChestCertificate", "MedicalChest"))
+@Html.Hidden("getMedicalChestCertificate", @Url.Action("GetLatestMedicalChestCertificate", "MedicalChest"))
+@Html.Hidden("loadMedicalChestCertificate", @Url.Action("GetLatestMedicalChestCertificate", "MedicalChest"))
+@*<h2>MedicalChestCertificate</h2>*@
+<style>
+    .geeks {
+        width: 60%;
+        height: 300px;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<div class="card">
+    <div class="head_title">
+        <h1 class="ta">Medical Chest Certificate</h1>
+        <input type="hidden" id="ChestId" />
+    </div>
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+        <div class="col-lg-4 col-sm-12">
+            <div class="form-group">
+                <label for="IssuingAuthorityName">Name</label>
+                <input type="text" class="form-control" style="width:90%;" id="IssuingAuthorityName" placeholder="Issuing Authority Name" />
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+            <div class="form-group">
+                <label for="IssuedDate">Issued Date</label>
+                <input type="text" class="form-control" style="width:90%;" id="IssuedDate" placeholder="Issued Date" />
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+            <div class="form-group">
+                <label for="ExpiryDate">Expiry Date</label>
+                <input type="text" class="form-control" style="width:90%;" id="ExpiryDate" placeholder="ExpiryDate" />
+            </div>
+        </div>
+    </div>
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+        <div class="col-lg-8 col-sm-12">
+            <div class="form-group">
+                <img id="imgCertificate" src="~/images/NoImage.jpg">
+
+                @*<label for="IssuingAuthorityName">Name</label>
+                    <input type="text" class="form-control" style="width:90%;" id="IssuingAuthorityName" placeholder="Issuing Authority Name" />*@
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+            <div class="form-group geeks">
+                <input type="hidden" id="hdnPathMedicalChestCertificateImage" value="" />
+                <input type="hidden" id="hdnMedicalChestCertificateImageName" value="" />
+                <label for="AttachFile">Select File</label>
+                @*<input type="text" class="form-control" id="EstimatedTimeOfArrival" placeholder="Estimated Time Of Arrival (hrs)" />*@
+                <input id="uploadMedicalChestCertificate" name="upload" type="file" accept="image/*" />
+                <button type="button" class="buttonpop" onclick="  UploadMedicalChestCertificateFile(); " style="width:86px;">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script>
+
+        $("#IssuedDate").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+        $("#ExpiryDate").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+        $(document).ready(function () {
+
+            LoadCerticate();
+
+
+        });
+    </script>
+
+
+}
+
