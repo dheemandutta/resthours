@@ -15809,8 +15809,15 @@ button:disabled {
         width: 30%;
         margin: 0 0 10px 0;
     }
-.com-deatis-frm h3{}
-.vessel-detl .card{padding:20px; margin:0 0 20px 0;}
+
+    .com-deatis-frm h3 {
+    }
+
+.vessel-detl .card {
+    padding: 20px;
+    margin: 0 0 20px 0;
+}
+
 .addbtn button {
     border: 0;
     background: #192848;
@@ -15819,4 +15826,23 @@ button:disabled {
     border-radius: 20px;
     font-size: 17px;
 }
-.ui-widget.ui-widget-content{width:300px;}
+
+.ui-widget.ui-widget-content {
+    width: 300px;
+}
+
+.form-horizontal {
+    text-align: center;
+}
+
+    .form-horizontal .form-control {
+        width: 44%;
+        margin: 0 0 6px 0;
+        display: inline-block;
+    }
+
+    .form-horizontal label {
+        display: inline-block;
+        width: 196px;
+        text-align: left;
+    }

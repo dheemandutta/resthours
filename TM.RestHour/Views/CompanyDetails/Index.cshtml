@@ -36,6 +36,9 @@
         border-top: 1px solid #fff;
         text-align: center;
     }
+    .card {
+        margin: 0 0 31px 0;
+    }
 </style>
 <body>
 
@@ -45,7 +48,7 @@
         </div>
         <div class="">
 
-            <div class="card">
+            <div class="">
 
                 <div style="margin:0 auto" class="tablecontainer">
                     @Html.Hidden("myUrl", @Url.Action("GetCompanyDetails", "Vessel"))
@@ -68,98 +71,60 @@
                                 <div class="modal-body">
                                     <form>
                                         @*////////////// Owner /////////////*@
-                                        <div>
+                                        <div class="card">
                                             <h1 class="">Owner</h1>
                                             <div class="row">
-
-                                                <div class="col-sm-3" style="width: 105%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-lg-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Owner Name:</label>
                                                         <input type="text" class="form-control" id="OwnerName" placeholder="Owner Name" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
 
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-lg-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Owner Address:</label>
                                                         <input type="text" class="form-control" id="OwnerAddress" placeholder="Owner Address" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
 
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-lg-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Owner Website:</label>
                                                         <input type="text" class="form-control" id="OwnerWebsite" placeholder="Owner Website" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-lg-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Owner AdminContact:</label>
                                                         <input type="text" class="form-control" id="OwnerAdminContact" placeholder="Owner AdminContact" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Owner AdminContactEmail:</label>
                                                         <input type="text" class="form-control" id="OwnerAdminContactEmail" placeholder="Owner AdminContactEmail" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                              
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Owner ContactNumber:</label>
                                                         <input type="text" class="form-control" id="OwnerContactNumber" placeholder="Owner ContactNumber" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Owner Domain:</label>
                                                         <input type="text" class="form-control" id="OwnerDomain" placeholder="Owner Domain" disabled />
                                                     </div>
                                                 </div>
-
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
 
                                                 @*<div class="col-sm-3" style="width: 63%;">
                 <div class="form-horizontal">
@@ -179,98 +144,54 @@
                                         @*////////////////////////////////*@
 
 
-                                        <div>
+                                        <div class="card">
                                             <div class="row">
 
-                                                <div class="col-sm-3" style="width: 105%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Name:</label>
                                                         <input type="text" class="form-control" id="Name" placeholder="Name" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Address:</label>
                                                         <input type="text" class="form-control" id="Address" placeholder="Address" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Website:</label>
                                                         <input type="text" class="form-control" id="Website" placeholder="Website" disabled />
                                                     </div>
                                                 </div>
-
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12" >
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">AdminContact:</label>
                                                         <input type="text" class="form-control" id="AdminContact" placeholder="AdminContact" disabled />
                                                     </div>
                                                 </div>
-
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">AdminContactEmail:</label>
                                                         <input type="text" class="form-control" id="AdminContactEmail" placeholder="AdminContactEmail" disabled />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">ContactNumber:</label>
                                                         <input type="text" class="form-control" id="ContactNumber" placeholder="ContactNumber" disabled />
                                                     </div>
                                                 </div>
-
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
-                                                <div class="col-sm-3" style="width: 63%;">
+                                                <div class="col-sm-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">Domain:</label>
                                                         <input type="text" class="form-control" id="Domain" placeholder="Domain" disabled />
                                                     </div>
                                                 </div>
-
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-                                                <div class="col-sm-3" style="width: 63%;"></div>
-
                                                 @*<div class="col-sm-3" style="width: 63%;">
                     <div class="form-horizontal">
                         <label class="col-xs-5 control-label">SecureKey:</label>
