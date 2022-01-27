@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Configuration;
 using ExcelDataReader;
+using Newtonsoft.Json;
 
 namespace TM.RestHour.Controllers
 {
@@ -18,7 +19,19 @@ namespace TM.RestHour.Controllers
         // GET: Rights
         public ActionResult Index()
         {
-            List<RightsPOCO> rightsPC = new List<RightsPOCO>();
+            RightsBL rightsBL = new RightsBL();
+            RightsPOCO rightsPC = new RightsPOCO();
+            int CrewId = 0;
+            string PageName = "";
+            rightsPC = rightsBL.GetRightsByCrewId(CrewId, PageName, int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
+
+            ViewBag.Crew = rightsPC.CrewList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.Name,
+                                                Value = x.ID.ToString()
+                                            });
+
             return View(rightsPC);
         }
 
@@ -26,14 +39,22 @@ namespace TM.RestHour.Controllers
         public ActionResult Index(RightsPOCO pOCO)
         {
             RightsBL rightsBL = new RightsBL();
-            List<RightsPOCO> rightsPC = new List<RightsPOCO>();
-            int CrewId = 42;
+            RightsPOCO rightsPC = new RightsPOCO();
+            int CrewId = pOCO.CrewId;
+            string PageName = pOCO.PageName;
 
-            rightsPC = rightsBL.GetRightsByCrewId(CrewId);
+            rightsPC = rightsBL.GetRightsByCrewId(CrewId, PageName, int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
 
             //Rights um = new Rights();
 
             var cm = rightsPC;
+
+            ViewBag.Crew = rightsPC.CrewList.Select(x =>
+                                           new SelectListItem()
+                                           {
+                                               Text = x.Name,
+                                               Value = x.ID.ToString()
+                                           });
 
             return View(cm);
 
@@ -100,7 +121,7 @@ namespace TM.RestHour.Controllers
         }
 
         // for Crew drp
-        public void GetAllCrewForDrp()
+        public JsonResult GetAllCrewForDrp()
         {
             TimeSheetBL crewDAL = new TimeSheetBL();
             List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
@@ -118,13 +139,15 @@ namespace TM.RestHour.Controllers
                 itmasterList.Add(unt);
             }
 
-            ViewBag.Crew = itmasterList.Select(x =>
-                                            new SelectListItem()
-                                            {
-                                                Text = x.Name,
-                                                Value = x.ID.ToString()
-                                            });
+            string json = JsonConvert.SerializeObject(itmasterList);
 
+            //ViewBag.Crew = itmasterList.Select(x =>
+            //                                new SelectListItem()
+            //                                {
+            //                                    Text = x.Name,
+            //                                    Value = x.ID.ToString()
+            //                                });
+            return Json(json, JsonRequestBehavior.AllowGet); 
         }
     }
 }

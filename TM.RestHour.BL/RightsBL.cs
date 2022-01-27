@@ -10,10 +10,10 @@ namespace TM.RestHour.BL
 {
     public class RightsBL
     {
-        public List<RightsPOCO> GetRightsByCrewId(int CrewId)
+        public RightsPOCO GetRightsByCrewId(int CrewId, string PageName, int VesselID, int UserID)
         {
             RightsDAL rightsDAL = new RightsDAL();
-            return rightsDAL.GetRightsByCrewId(CrewId);
+            return rightsDAL.GetRightsByCrewId(CrewId, PageName, VesselID, UserID);
         }
     }
 }

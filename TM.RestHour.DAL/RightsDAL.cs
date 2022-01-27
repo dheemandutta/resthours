@@ -13,7 +13,7 @@ namespace TM.RestHour.DAL
 {
     public class RightsDAL
     {
-        public List<RightsPOCO> GetRightsByCrewId(int CrewId)
+        public RightsPOCO GetRightsByCrewId(int CrewId, string PageName, int VesselID, int UserID)
         {
             List<RightsPOCO> prodPOList = new List<RightsPOCO>();
             List<RightsPOCO> prodPO = new List<RightsPOCO>();
@@ -24,6 +24,7 @@ namespace TM.RestHour.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CrewId", CrewId);
+                    cmd.Parameters.AddWithValue("@PageName", PageName);
                     con.Open();
 
 
@@ -34,38 +35,52 @@ namespace TM.RestHour.DAL
 
                 }
             }
-            return ConvertDataTableToRightsByCrewIdList(ds);
+            return ConvertDataTableToRightsByCrewIdList(ds, VesselID, UserID);
         }
 
-        private List<RightsPOCO> ConvertDataTableToRightsByCrewIdList(DataSet ds)
+        public List<CrewPOCO> AppendCrew(int VesselID, int UserID)
         {
-            List<RightsPOCO> crewtimesheetList = new List<RightsPOCO>();
+            List<CrewPOCO> crewPOCOs = new List<CrewPOCO>();
+            
+            TimeSheetDAL timesheetdal = new TimeSheetDAL();
+            crewPOCOs = timesheetdal.GetAllCrewForDrp(VesselID, UserID);
+
+            return crewPOCOs;
+        }
+
+        private RightsPOCO ConvertDataTableToRightsByCrewIdList(DataSet ds, int VesselID, int UserID)
+        {
+            RightsPOCO rightsPOCO = new RightsPOCO();
+            List<RightsListPOCO> rightsListPOCO = new List<RightsListPOCO>();
             //check if there is at all any data
             if (ds.Tables.Count > 0)
             {
                 foreach (DataRow item in ds.Tables[0].Rows)
                 {
-                    RightsPOCO crewtimesheet = new RightsPOCO();
+                    RightsListPOCO rightsList = new RightsListPOCO();
 
                     if (item["Id"] != System.DBNull.Value)
-                        crewtimesheet.Id = Convert.ToInt32(item["Id"].ToString());
+                        rightsList.Id = Convert.ToInt32(item["Id"].ToString());
 
                     if (item["ResourceName"] != System.DBNull.Value)
-                        crewtimesheet.ResourceName = item["ResourceName"].ToString();
+                        rightsList.ResourceName = item["ResourceName"].ToString();
 
                     if (item["ParentId"] != System.DBNull.Value)
-                        crewtimesheet.ParentId = Convert.ToInt32(item["ParentId"].ToString());
+                        rightsList.ParentId = Convert.ToInt32(item["ParentId"].ToString());
 
                     if (item["HasAccess"] != System.DBNull.Value)
-                        crewtimesheet.HasAccess = Convert.ToBoolean(item["HasAccess"].ToString());
+                        rightsList.HasAccess = Convert.ToBoolean(item["HasAccess"].ToString());
 
 
-                    crewtimesheetList.Add(crewtimesheet);
+                    rightsListPOCO.Add(rightsList);
                 }
             }
+            rightsPOCO.RightsList = rightsListPOCO;
+            List<CrewPOCO> crewPOCOs = new List<CrewPOCO>();
+            crewPOCOs = AppendCrew(VesselID, UserID);
+            rightsPOCO.CrewList = crewPOCOs;
 
-
-            return crewtimesheetList;
+            return rightsPOCO;
         }
 
     }
