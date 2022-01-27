@@ -651,6 +651,7 @@
     <Content Include="css\style.css" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Full_12.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_04.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_17.03.2021.sql" />
@@ -1320,6 +1321,7 @@
     <Content Include="sqlscripts\09-Create-SPs\dbo.usp_GetAllUsersForDrp.StoredProcedure.sql" />
     <Content Include="sqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\22-01-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\27-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\Worth_SQL_Script_Full_12.03.2021.sql" />
     <Content Include="sqlscripts\Worth_SQL_Script_Full_18.12.2021%28usk%29.sql" />
     <Content Include="sqlscripts\Worth_SQL_Script_Initial_04.03.2021.sql" />
