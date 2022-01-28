@@ -71,8 +71,9 @@
                                                 <div class="">
                                                     <div class="pull-right" id="sideform">
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary mrRHT-10" id="btnAdd"><i class="ti-eye"></i> Show Report</button>
-                                                        </div>
+                                                            <button type="submit" class="btn btn-primary mrRHT-10" value="Index" name="action"><i class="ti-eye"></i> Search</button>
+                                                            <button type="submit" class="btn btn-primary mrRHT-10" value="Save" name="action"><i class="ti-eye"></i> Save Changes</button>
+                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,20 +100,28 @@
                                     @for (int i = 0; i < Model.RightsList.Count; i++)
                                     {
                                         @Html.HiddenFor(m => m.RightsList[i].Id)
-                                        <tr id="1" filled="no">
-                                            @if (Model.RightsList[i].ParentId == null)
-                                            {
-                                                <td class="tg-s4h7"><b>@Model.RightsList[i].ResourceName</b> <sup><span class="super"></span></sup></td>
-                                            }
-                                            else
-                                            {
-                                                <td class="tg-s4h7">&nbsp;&nbsp;&nbsp;&nbsp; @Model.RightsList[i].ResourceName<sup><span class="super"></span></sup></td>
-                                            }
-                                            <td class="tg-yw4l">
-                                                @Html.CheckBoxFor(m => m.RightsList[i].HasAccess, new { @checked = "checked" })
+                                    <tr id="1" filled="no">
+                                        @if (Model.RightsList[i].ParentId == null)
+                                        {
+                                            <td class="tg-s4h7"><b>@Model.RightsList[i].ResourceName</b> <sup><span class="super"></span></sup></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="tg-s4h7">&nbsp;&nbsp;&nbsp;&nbsp; @Model.RightsList[i].ResourceName<sup><span class="super"></span></sup></td>
+                                        }
 
-                                            </td>
-                                        </tr>
+                                        @if (Model.RightsList[i].ParentId == null && Model.RightsList[i].HasChildren)
+                                        {
+                                            <td class="tg-yw4l">&nbsp;</td>
+                                            @*<td class="tg-s4h7"><b>@Model.RightsList[i].ResourceName</b> <sup><span class="super"></span></sup></td>*@
+                                        }
+                                        else
+                                        {
+                                            <td class="tg-yw4l"> @Html.CheckBoxFor(m => m.RightsList[i].HasAccess, new { @checked = "checked" })</td>
+                                        }
+                                       
+
+                                    </tr>
                                         @*<tr id="2" filled="no">
                 <td class="tg-s4h7">Report1<sup><span class="super"></span></sup></td>
                 <td class="tg-yw4l"><input type="checkbox" id="Report1" name="Report1" value="Report1"></td>

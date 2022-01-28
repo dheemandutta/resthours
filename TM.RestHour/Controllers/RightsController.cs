@@ -17,6 +17,7 @@ namespace TM.RestHour.Controllers
     public class RightsController : Controller
     {
         // GET: Rights
+        [HttpGet]
         public ActionResult Index()
         {
             RightsBL rightsBL = new RightsBL();
@@ -36,6 +37,40 @@ namespace TM.RestHour.Controllers
         }
 
         [HttpPost]
+        [AllowMultipleButton(Name = "action", Argument = "Save")]
+        public ActionResult Save(RightsPOCO pOCO)
+        {
+            RightsBL rightsBL = new RightsBL();
+            RightsPOCO rightsPC = new RightsPOCO();
+            int CrewId = pOCO.CrewId;
+            string PageName = pOCO.PageName;
+            ViewBag.CrewId = CrewId;
+            ViewBag.PageName = PageName;
+
+            //save data
+            string pageIds = string.Join(",", pOCO.RightsList.Select(x => x.Id.ToString()).ToArray());
+            string accessString = string.Join(",", pOCO.RightsList.Select(x => x.HasAccess.ToString()).ToArray());
+
+            rightsBL.SaveAccess(pageIds, accessString, CrewId);
+
+            rightsPC = rightsBL.GetRightsByCrewId(ViewBag.CrewId, ViewBag.PageName, int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
+
+            var cm = rightsPC;
+
+            ViewBag.Crew = rightsPC.CrewList.Select(x =>
+                                           new SelectListItem()
+                                           {
+                                               Text = x.Name,
+                                               Value = x.ID.ToString()
+                                           });
+
+            return View(rightsPC);
+        }
+
+
+
+        [HttpPost]
+        [AllowMultipleButton(Name = "action", Argument = "Index")]
         public ActionResult Index(RightsPOCO pOCO)
         {
             RightsBL rightsBL = new RightsBL();

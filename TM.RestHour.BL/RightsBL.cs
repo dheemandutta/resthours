@@ -15,5 +15,26 @@ namespace TM.RestHour.BL
             RightsDAL rightsDAL = new RightsDAL();
             return rightsDAL.GetRightsByCrewId(CrewId, PageName, VesselID, UserID);
         }
+
+        public void SaveAccess(string pageId, string hasAccess, int crewId)
+        {
+            RightsDAL rightsDAL = new RightsDAL();
+            rightsDAL.SaveAccess(pageId, hasAccess, crewId);
+
+        }
+
+
+        public RightsPOCO GetRightsByCrewIdAndPageName(int CrewId, string PageName)
+        {
+            RightsDAL rightsDAL = new RightsDAL();
+            return rightsDAL.GetRightsByCrewIdAndPageName(CrewId, PageName);
+        }
+
+
+        public RightsPOCO GetRightsByCrewIdAndPageId(int CrewId, int PageId)
+        {
+            RightsDAL rightsDAL = new RightsDAL();
+            return rightsDAL.GetRightsByCrewIdAndPageId(CrewId, PageId);
+        }
     }
 }

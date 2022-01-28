@@ -11,5 +11,6 @@ namespace TM.RestHour.Models
         public string ResourceName { get; set; }
         public int? ParentId { get; set; }
         public Boolean HasAccess { get; set; }
+        public Boolean HasChildren { get; set; }
     }
 }
