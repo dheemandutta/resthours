@@ -178,6 +178,7 @@
     <Compile Include="Controllers\MedicalChestController.cs" />
     <Compile Include="Controllers\MvcExtensions.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
+    <Compile Include="Controllers\OvertimeCalculationController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\PsychologicalEvaluationController.cs" />
     <Compile Include="Controllers\RegimeController.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Models\MedicalSymtomology.cs" />
     <Compile Include="Models\OneDayTimeAdjustment.cs" />
     <Compile Include="Models\Options.cs" />
+    <Compile Include="Models\OvertimeCalculation.cs" />
     <Compile Include="Models\Permissions.cs" />
     <Compile Include="Models\RankPermission.cs" />
     <Compile Include="Models\Ranks.cs" />
@@ -233,6 +235,7 @@
     <Compile Include="Models\VesselDetails.cs" />
     <Compile Include="Models\VesselViewModel.cs" />
     <Compile Include="Models\VitalStatistics.cs" />
+    <Compile Include="Models\WorkingHours.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1229,6 +1232,7 @@
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.timepicker.js" />
     <Content Include="Scripts\jquery.timepicker.min.js" />
+    <Content Include="Scripts\jquery.tristate.js" />
     <Content Include="Scripts\jquery.typeahead.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1243,6 +1247,7 @@
     <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\old\jquery-3.5.1.js" />
     <Content Include="Scripts\Options.js" />
+    <Content Include="Scripts\OvertimeCalculation.js" />
     <Content Include="Scripts\pdfmake.min.js" />
     <Content Include="Scripts\PsychologicalEvaluation.js" />
     <Content Include="Scripts\Ranks.js" />
@@ -1459,6 +1464,7 @@
     <Content Include="Views\Shared\_pvVoyageDetails.cshtml" />
     <Content Include="Views\Shared\_pvWeatherDetails.cshtml" />
     <Content Include="Views\MedicalChest\MedicalChestCertificate.cshtml" />
+    <Content Include="Views\OvertimeCalculation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -68,6 +68,7 @@
     <Compile Include="Entities\NonCompliancePOCO.cs" />
     <Compile Include="Entities\OneDayTimeAdjustmentPOCO.cs" />
     <Compile Include="Entities\OptionsPOCO.cs" />
+    <Compile Include="Entities\OvertimeCalculationPOCO.cs" />
     <Compile Include="Entities\PermissionsPOCO.cs" />
     <Compile Include="Entities\PsychologicalEvaluationPOCO.cs" />
     <Compile Include="Entities\RankPermissionPOCO.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Entities\UsersPOCO.cs" />
     <Compile Include="Entities\VesselDetailsPOCO.cs" />
     <Compile Include="Entities\VitalStatisticsPOCO.cs" />
+    <Compile Include="Entities\WorkingHoursPOCO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

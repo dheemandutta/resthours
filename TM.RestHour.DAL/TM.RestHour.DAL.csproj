@@ -65,6 +65,7 @@
     <Compile Include="MedicalChestDAL.cs" />
     <Compile Include="NonComplianceInfoDAL.cs" />
     <Compile Include="OptionsDAL.cs" />
+    <Compile Include="OvertimeCalculationDAL.cs" />
     <Compile Include="PermissionsDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PsychologicalEvaluationDAL.cs" />
