@@ -18,34 +18,18 @@ namespace TM.RestHour.Controllers
         // GET: OvertimeCalculation
         public ActionResult Index()
         {
-            return View();
+            OvertimeCalculationPOCO overtimeCalculationPOCO = new OvertimeCalculationPOCO();
+            return View(overtimeCalculationPOCO);
         }
 
-        public JsonResult GetOvertimeCalculation(int Id)
+        public JsonResult GetOvertimeCalculation()
         {
             OvertimeCalculationBL overtimeCalculationBL = new OvertimeCalculationBL();
             OvertimeCalculationPOCO overtimeCalculationPOCO = new OvertimeCalculationPOCO();
 
-            overtimeCalculationPOCO = overtimeCalculationBL.GetOvertimeCalculation(Id, int.Parse(Session["VesselID"].ToString()));
+            overtimeCalculationPOCO = overtimeCalculationBL.GetOvertimeCalculation();
 
-            OvertimeCalculation dept = new OvertimeCalculation();
-
-            dept.Id = overtimeCalculationPOCO.Id;
-            dept.DailyWorkHours = overtimeCalculationPOCO.DailyWorkHours;
-            dept.HourlyRate = overtimeCalculationPOCO.HourlyRate;
-            dept.HoursPerWeekOrMonth = overtimeCalculationPOCO.HoursPerWeekOrMonth;
-            dept.FixedOvertime = overtimeCalculationPOCO.FixedOvertime;
-            //dept.SunDay = overtimeCalculationPOCO.SunDay;
-            //dept.MonDay = overtimeCalculationPOCO.MonDay;
-            //dept.TueDay = overtimeCalculationPOCO.TueDay;
-            //dept.WedDay = overtimeCalculationPOCO.WedDay;
-            //dept.ThuDay = overtimeCalculationPOCO.ThuDay;
-            //dept.FriDay = overtimeCalculationPOCO.FriDay;
-            //dept.SatDay = overtimeCalculationPOCO.SatDay;
-
-            var data = dept;
-
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(overtimeCalculationPOCO, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SaveOvertimeCalculation(OvertimeCalculation overtimeCalculation)
@@ -55,6 +39,15 @@ namespace TM.RestHour.Controllers
 
             WorkingHoursPOCO workingHoursPOCO = new WorkingHoursPOCO();
             overtimeCalculationPOCO.WorkingHoursPOCO = workingHoursPOCO;
+
+            if (overtimeCalculation.FixedOvertime.HasValue)
+            {
+                overtimeCalculationPOCO.IsWeekly = false;
+            }
+            else 
+            {
+                overtimeCalculationPOCO.IsWeekly = true;
+            }
 
             overtimeCalculationPOCO.Id = overtimeCalculation.Id;
             overtimeCalculationPOCO.DailyWorkHours = overtimeCalculation.DailyWorkHours;

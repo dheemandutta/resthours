@@ -8,13 +8,13 @@ namespace TM.Base.Entities
 {
     public class WorkingHoursPOCO
     {
-        public int SunDay { get; set; }
-        public int MonDay { get; set; }
-        public int TueDay { get; set; }
-        public int WedDay { get; set; }
-        public int ThuDay { get; set; }
-        public int FriDay { get; set; }
-        public int SatDay { get; set; }
+        public int? SunDay { get; set; }
+        public int? MonDay { get; set; }
+        public int? TueDay { get; set; }
+        public int? WedDay { get; set; }
+        public int? ThuDay { get; set; }
+        public int? FriDay { get; set; }
+        public int? SatDay { get; set; }
 
 
 

@@ -10,10 +10,10 @@ namespace TM.RestHour.BL
 {
     public class OvertimeCalculationBL
     {
-        public OvertimeCalculationPOCO GetOvertimeCalculation(int Id, int VesselID)
+        public OvertimeCalculationPOCO GetOvertimeCalculation(/*int Id, int VesselID*/)
         {
             OvertimeCalculationDAL overtimeCalculationDAL = new OvertimeCalculationDAL();
-            return overtimeCalculationDAL.GetOvertimeCalculation(Id, VesselID);
+            return overtimeCalculationDAL.GetOvertimeCalculation(/*Id, VesselID*/);
         }
 
         public int SaveOvertimeCalculation(OvertimeCalculationPOCO overtimeCalculationPOCO, int VesselID)
