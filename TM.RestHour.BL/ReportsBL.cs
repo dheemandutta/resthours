@@ -347,14 +347,26 @@ namespace TM.RestHour.BL
 
 		private string CalculateOvertimeHours(decimal workedHours, string workDate)
 		{
-			DateTime dt = workDate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), "/", ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
-			
+            bool isWeekly = true;
+            decimal overtimeHours=0;
 
-			int day = ((int)dt.DayOfWeek == 0) ? 7 : (int)dt.DayOfWeek;
+            if (isWeekly)
+            {
+                DateTime dt = workDate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), "/", ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+                int day = ((int)dt.DayOfWeek == 0) ? 7 : (int)dt.DayOfWeek;
+                int normalworkingHours = GetWorkingHours(day, 0);
+                overtimeHours = workedHours - normalworkingHours;
+            }
+            else
+            {
+                decimal weeklyworkedhrs = 0;
+                
+                //weeklyworkedhr
+                    
 
-			int normalworkingHours = GetWorkingHours(day,0);
-
-			decimal overtimeHours = workedHours - normalworkingHours;
+            }
+            
+            
 
 			if (overtimeHours > 0)
 				return overtimeHours.ToString();
