@@ -66,6 +66,7 @@
     <Compile Include="MedicalChestBL.cs" />
     <Compile Include="NonComplianceInfoBL.cs" />
     <Compile Include="OptionsBL.cs" />
+    <Compile Include="OvertimeCalculationBL.cs" />
     <Compile Include="PermissionsBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PsychologicalEvaluationBL.cs" />
