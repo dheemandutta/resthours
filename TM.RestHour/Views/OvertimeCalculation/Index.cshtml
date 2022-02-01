@@ -92,7 +92,7 @@
                                         <option value="">Select</option>
                                         <option value="7">7 hours</option>
                                         <option value="8">8 hours</option>
-                                        <option value="9">9 hours</option>
+                                        <option value="12">12 hours</option>
                                     </select>
                                 </div>
                             </div>
@@ -177,18 +177,18 @@
 
         //
 
-        $('input[name="HoursPerWeekOrMonth"]').on('click', function () {
-            var x = $('input[name="HoursPerWeekOrMonth"]:checked').val();
+        //$('input[name="HoursPerWeekOrMonth"]').on('click', function () {
+        //    var x = $('input[name="HoursPerWeekOrMonth"]:checked').val();
 
-            if (x === '0') {
-                EnableWeek();
-                //$('#FixedOvertime').prop('disabled', false);
-            } else {
-                EnableMonth();
-            }
+        //    if (x === '0') {
+        //        EnableWeek();
+        //        //$('#FixedOvertime').prop('disabled', false);
+        //    } else {
+        //        EnableMonth();
+        //    }
 
-            console.log(x);
-        });
+        //    console.log(x);
+        //});
 
 
 

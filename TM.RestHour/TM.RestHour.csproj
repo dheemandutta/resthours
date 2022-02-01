@@ -20,8 +20,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44376</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -654,6 +653,7 @@
     <Content Include="css\popuo-box.css" />
     <Content Include="css\preloader.html" />
     <Content Include="css\style.css" />
+    <Content Include="devsqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
@@ -1264,6 +1264,7 @@
     <Content Include="Scripts\UploadMedicalInventory.js" />
     <Content Include="Scripts\Vessel.js" />
     <Content Include="Scripts\VesselDetails.js" />
+    <Content Include="sqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\01-CreateTable\CreateTable_RestHour.sql" />
     <Content Include="sqlscripts\03-UpdateDB\01-UpdateDB.sql" />
     <Content Include="sqlscripts\04-CreateFunction\ufn_CSVToTable.sql" />

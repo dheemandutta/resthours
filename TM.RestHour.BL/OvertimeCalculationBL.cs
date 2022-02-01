@@ -38,5 +38,18 @@ namespace TM.RestHour.BL
             OvertimeCalculationDAL overtimeCalculationDAL = new OvertimeCalculationDAL();
             return overtimeCalculationDAL.SaveWorkingHours(overtimeCalculationPOCO/*, VesselID*/);
         }
+
+
+        public bool GetIsWeeklyFromOvertimeCalculation()
+        {
+            OvertimeCalculationDAL overtimeCalculationDAL = new OvertimeCalculationDAL();
+            return overtimeCalculationDAL.GetIsWeeklyFromOvertimeCalculation();
+        }
+
+        public decimal GetFixedOvertimeFromOvertimeCalculation()
+        {
+            OvertimeCalculationDAL overtimeCalculationDAL = new OvertimeCalculationDAL();
+            return overtimeCalculationDAL.GetFixedOvertimeFromOvertimeCalculation();
+        }
     }
 }

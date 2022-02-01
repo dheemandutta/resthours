@@ -123,7 +123,7 @@ namespace TM.RestHour.DAL
                         overtimeCalculationPOCOPC.HoursPerWeekOrMonth = Convert.ToBoolean(item["HoursPerWeekOrMonth"].ToString());
 
                     if (item["FixedOvertime"] != DBNull.Value)
-                        overtimeCalculationPOCOPC.FixedOvertime = Convert.ToInt32(item["FixedOvertime"].ToString());
+                        overtimeCalculationPOCOPC.FixedOvertime = Convert.ToDecimal(item["FixedOvertime"].ToString());
 
                     //if (item["SunDay"] != DBNull.Value)
                     //    overtimeCalculationPOCOPC.WorkingHoursPOCO.SunDay = Convert.ToInt32(item["SunDay"].ToString());
@@ -494,5 +494,47 @@ namespace TM.RestHour.DAL
             }
             return workingHoursPOCO;
         }
+
+
+
+
+
+        public bool GetIsWeeklyFromOvertimeCalculation()
+        {
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetIsWeeklyFromOvertimeCalculation", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return Convert.ToBoolean(ds.Tables[0].Rows[0]["IsWeekly"].ToString());
+        }
+
+
+        public decimal GetFixedOvertimeFromOvertimeCalculation()
+        {
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetFixedOvertimeFromOvertimeCalculation", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return Convert.ToDecimal(ds.Tables[0].Rows[0]["FixedOvertime"].ToString());
+        }
+
     }
 }
