@@ -345,6 +345,15 @@ namespace TM.RestHour.BL
 			return reportsDAL.GetCrewOverTimeStatus(crewId);
 		}
 
+        private string CalculateNormalWorkingHours(string workDate)
+        {
+            DateTime dt = workDate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), "/", ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+            int day = ((int)dt.DayOfWeek == 0) ? 7 : (int)dt.DayOfWeek;
+            int normalworkingHours = GetWorkingHours(day, 0);
+
+            return normalworkingHours.ToString();
+        }
+
 		private string CalculateOvertimeHours(decimal workedHours, string workDate)
 		{
             bool isWeekly = true;
