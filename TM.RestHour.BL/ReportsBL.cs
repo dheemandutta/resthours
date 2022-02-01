@@ -220,7 +220,7 @@ namespace TM.RestHour.BL
 				if (hasOverTime)
 					item.OvertimeHours = CalculateOvertimeHours(Convert.ToDecimal(item.TotalWorkedHours), item.WorkDate); //GetOvertimeHours(item.ComplianceInfo);
 				else
-					item.OvertimeHours = "0";
+					item.OvertimeHours = "0";      // deep
 				item.NormalWorkingHours = Convert.ToDouble(item.TotalWorkedHours) - Convert.ToDouble(item.OvertimeHours);
 				totalNormal += item.NormalWorkingHours;
                 totalOvertime += double.Parse(item.OvertimeHours);
