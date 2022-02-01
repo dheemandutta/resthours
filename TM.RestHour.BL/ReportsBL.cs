@@ -348,23 +348,34 @@ namespace TM.RestHour.BL
 		private string CalculateOvertimeHours(decimal workedHours, string workDate)
 		{
             bool isWeekly = true;
+            OvertimeCalculationBL overtimeCalculationBL = new OvertimeCalculationBL();
+            isWeekly = overtimeCalculationBL.GetIsWeeklyFromOvertimeCalculation();
             decimal overtimeHours=0;
+            decimal fixedOvertime = 0;
 
-            if (isWeekly)
-            {
+            //if (isWeekly)
+            //{
                 DateTime dt = workDate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), "/", ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
                 int day = ((int)dt.DayOfWeek == 0) ? 7 : (int)dt.DayOfWeek;
                 int normalworkingHours = GetWorkingHours(day, 0);
-                overtimeHours = workedHours - normalworkingHours;
-            }
-            else
-            {
-                decimal weeklyworkedhrs = 0;
-                
-                //weeklyworkedhr
-                    
+            if (normalworkingHours == 1)
+                normalworkingHours = 8;
+            else if (normalworkingHours == 2)
+                normalworkingHours = 4;
+            else if (normalworkingHours == 0)
+                normalworkingHours = 0;
 
-            }
+            overtimeHours = workedHours - normalworkingHours;
+            //}
+            //else
+            //{
+            //    decimal weeklyworkedhrs = 0;
+            //    fixedOvertime = overtimeCalculationBL.GetFixedOvertimeFromOvertimeCalculation();
+            //    overtimeHours = workedHours - fixedOvertime;
+            //    //weeklyworkedhr
+
+
+            //}
             
             
 

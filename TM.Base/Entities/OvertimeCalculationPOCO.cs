@@ -12,7 +12,7 @@ namespace TM.Base.Entities
         public int? DailyWorkHours { get; set; }
         public int? HourlyRate { get; set; }
         public Boolean? HoursPerWeekOrMonth { get; set; }
-        public int? FixedOvertime { get; set; }
+        public decimal? FixedOvertime { get; set; }
         public int VesselId { get; set; }
 
 

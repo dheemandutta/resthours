@@ -63,12 +63,12 @@ function GetOvertimeCalculation() {
             if ($('#isWeekly').val() === 'true') {
                 console.log("hi");
                 $('input:radio[id=Week]').prop('checked', true);
-                EnableMonth();
+                //EnableMonth();
                
             }
             else {
                 $('input:radio[id=Month]').prop('checked', true);
-                EnableWeek();
+               // EnableWeek();
             }
 
             //debugger;
@@ -252,13 +252,13 @@ function SaveOvertimeCalculation() {
     if (res == false) {
         return false;
     }
-    var dwh = $('#DailyWorkHours').val();
-    var fwh = $('#FixedWorkHour').val();
-    var ed = parseInt(fwh / dwh);
-    if ($('#Mon-value').text() === '0')
-    {
-        $('#Mon-value').text(ed);
-    }
+    //var dwh = $('#DailyWorkHours').val();
+    //var fwh = $('#FixedWorkHour').val();
+    //var ed = parseInt(fwh / dwh);
+    //if ($('#Mon-value').text() === '0')
+    //{
+    //    $('#Mon-value').text('1');
+    //}
     // alert(res);
     if (res) {
         var WH = {
@@ -273,18 +273,19 @@ function SaveOvertimeCalculation() {
             WorkHours: $('#DailyWorkHours').val()
         };
 
-
+        var test = $("input[name ='HoursPerWeekOrMonth']:checked").val();
+        console.log(test);
         var OvertimeCalculation = {
             DailyWorkHours: $('#DailyWorkHours').val(),
             HourlyRate: $('#HourlyRate').val(),
             HoursPerWeekOrMonth: $('#HoursPerWeekOrMonth').val(),
             FixedOvertime: $('#FixedOvertime').val(),
-
+            IsWeekly: $("input[name ='HoursPerWeekOrMonth']:checked").val(),
             WorkingHours: WH
         };
-
+        console.log(OvertimeCalculation);
         var x = JSON.stringify(OvertimeCalculation);
-
+        
         $.ajax({
             url: posturl,
             data: JSON.stringify(OvertimeCalculation),

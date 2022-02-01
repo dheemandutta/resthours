@@ -40,14 +40,14 @@ namespace TM.RestHour.Controllers
             WorkingHoursPOCO workingHoursPOCO = new WorkingHoursPOCO();
             overtimeCalculationPOCO.WorkingHoursPOCO = workingHoursPOCO;
 
-            if (overtimeCalculation.FixedOvertime.HasValue)
-            {
-                overtimeCalculationPOCO.IsWeekly = false;
-            }
-            else 
-            {
-                overtimeCalculationPOCO.IsWeekly = true;
-            }
+            //if (overtimeCalculation.FixedOvertime.HasValue)
+            //{
+            //    overtimeCalculationPOCO.IsWeekly = false;
+            //}
+            //else 
+            //{
+            //    overtimeCalculationPOCO.IsWeekly = true;
+            //}
 
             overtimeCalculationPOCO.Id = overtimeCalculation.Id;
             overtimeCalculationPOCO.DailyWorkHours = overtimeCalculation.DailyWorkHours;
@@ -62,6 +62,7 @@ namespace TM.RestHour.Controllers
             overtimeCalculationPOCO.WorkingHoursPOCO.FriDay = overtimeCalculation.WorkingHours.FriDay;
             overtimeCalculationPOCO.WorkingHoursPOCO.SatDay = overtimeCalculation.WorkingHours.SatDay;
             overtimeCalculationPOCO.WorkingHoursPOCO.RegimeID = int.Parse(Session["Regime"].ToString());
+            overtimeCalculationPOCO.IsWeekly = Convert.ToBoolean(Convert.ToInt32(overtimeCalculation.IsWeekly));
 
             return Json(overtimeCalculationBL.SaveOvertimeCalculation(overtimeCalculationPOCO, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
