@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CIRM.cs" />
+    <Compile Include="Models\CIRMMedicationTaken.cs" />
     <Compile Include="Models\CompanyDetails.cs" />
     <Compile Include="Models\Consultant.cs" />
     <Compile Include="Models\Crew.cs" />
@@ -1454,6 +1455,8 @@
     <Content Include="Views\Shared\_pvVoyageDetails.cshtml" />
     <Content Include="Views\Shared\_pvWeatherDetails.cshtml" />
     <Content Include="Views\MedicalChest\MedicalChestCertificate.cshtml" />
+    <Content Include="Views\Shared\_pvPatientDetails1.cshtml" />
+    <Content Include="Views\Shared\_pvPatientDetails2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

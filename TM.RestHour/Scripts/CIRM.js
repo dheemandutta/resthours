@@ -1,4 +1,5 @@
-﻿function validate() {
+﻿var IsNewCIRM = false;
+function validate() {
     var isValid = true;
 
     if ($('#ddlCrew').val().length === 0) {
@@ -111,6 +112,54 @@ function clearTextBox() {
     $('#PictureUploadPath').val("");
     $('#FirstAidGiven').val("");
     $('#PercentageOfBurn').val("");
+}
+
+function ClearSymtomology() {
+   $('#MedicalSymtomologyId').val("");
+    $('#CIRMId').val("");
+    $('#SymptomatologyDate').val("");
+    $('#SymptomatologyTime').val("");
+    $('#Vomiting').val("");
+    $('#FrequencyOfVomiting').val("");
+    $('#Fits').val("");
+    $('#FrequencyOfFits').val("");
+    $('#Giddiness').val("");
+    $('#FrequencyOfGiddiness').val("");
+    $('#Lethargy').val("");
+    $('#FrequencyOfLethargy').val("");
+    //SymptomologyDetails: $('#SymtomologyDetails').val("");
+    //MedicinesAdministered: $('#MedicinesAdministered').val("");
+    $('#AnyOtherRelevantInformation').val("");
+}
+
+function ClearAccidentDetails() {
+   $('#WhereAndHowAccidentOccured').val("");
+   $('#LocationAndTypeOfInjuryOrBurn').val("");
+   $('#FirstAidGiven').val("");
+   $('#FrequencyOfPain').val("");
+   $('#TypeOfBurn').val("");
+   $('#TypeOfBurn').val("");
+   $('#DegreeOfBurn').val("");
+   $('#PercentageOfBurn').val("");
+   //$("input[name='SeverityOfPain']:checked").val(0);
+}
+
+function ClearTelemedicalConsuotationDetails() {
+    $('#TeleMedicalContactDate').val("");
+    $('#TeleMedicalContactTime').val("");
+    $('#ModeOfCommunication').val("");
+    $('#NameOfTelemedicalConsultant').val("");
+    $('#DetailsOfTreatmentAdvised').val("");
+}
+function ClearMedicalTreatmentGivenOnboardDetails() {
+    $('#PriorRadioMedicalAdvice').val("");
+    $('#AfterRadioMedicalAdvice').val("");
+    $('#HowIsPatientRespondingToTreatmentGiven').val("");
+    $("input:checkbox.DoesPatientNeedRemoveFromVessel").prop("checked", false);
+    $("#dvPatientNeedRemoveFromVessel").hide();
+    $("#NeedRemovalDesc").val("");
+    $("#NeedRemovalToPort").val("");
+    $('#AdditionalNotes').val("");
 }
 
 function SaveCIRM(medicalAssistanceType) {
@@ -309,6 +358,245 @@ function SaveCIRM(medicalAssistanceType) {
                 $('#myModal').modal('hide');
                 // alert('Added Successfully');
                 HideCIRMUploadModal();
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-full-width",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+
+                toastr.success("Added Successfully");
+
+                clearTextBox();
+            },
+            error: function (errormessage) {
+                console.log(errormessage.responseText);
+            }
+        });
+    }
+}
+
+function SaveCIRMNew(medicalAssistanceType) {
+    //Created on 29th Jan 2022
+    //alert($('textarea#Comments').val());
+    //debugger;
+    var posturl = $('#SaveCIRM').val();
+    var res = validate();
+    if (res == false) {
+        return false;
+    }
+    // alert(res);
+    if (res) {
+
+        var VitalParams = {
+            ID: $('#VitalParamsId').val(),
+            CIRMId: $('#CIRMId').val(),
+            ObservationDate: $('#VitalStatisticsDate').val(),
+            ObservationTime: $('#VitalStatisticsTime').val(),
+            Pulse: $('#Pulse').val(),
+            RespiratoryRate: $('#RespiratoryRate').val(),
+            OxygenSaturation: $('#OxygenSaturation').val(),
+            Himoglobin: $('#Himoglobin').val(),
+            Creatinine: $('#Creatinine').val(),
+            Bilirubin: $('#Bilirubin').val(),
+            Temperature: $('#Temperature').val(),
+            Systolic: $('#Systolic').val(),
+            Diastolic: $('#Diastolic').val(),
+            Fasting: $('#Fasting').val(),
+            Regular: $('#Regular').val()
+        };
+        var Symtomology = {
+            ID:                             $('#MedicalSymtomologyId').val(),
+            CIRMId:                         $('#CIRMId').val(),
+            ObservationDate:                $('#SymptomatologyDate').val(),
+            ObservationTime:                $('#SymptomatologyTime').val(),
+            Vomiting:                       $('#Vomiting').val(),
+            FrequencyOfVomiting:            $('#FrequencyOfVomiting').val(),
+            Fits:                           $('#Fits').val(),
+            FrequencyOfFits:                $('#FrequencyOfFits').val(),
+            Giddiness:                      $('#Giddiness').val(),
+            FrequencyOfGiddiness:           $('#FrequencyOfGiddiness').val(),
+            Lethargy:                       $('#Lethargy').val(),
+            FrequencyOfLethargy:            $('#FrequencyOfLethargy').val(),
+            //SymptomologyDetails: $('#SymtomologyDetails').val(),
+            //MedicinesAdministered: $('#MedicinesAdministered').val(),
+            AnyOtherRelevantInformation:    $('#AnyOtherRelevantInformation').val(),
+            Ailment:                        $('#Ailment').val()
+        };
+        var Crew = {
+            CIRMId:                     $('#CIRMId').val(),
+            MedicalAssitanceType:       medicalAssistanceType, 
+
+            NameOfVessel:               $('#VesselName').val(),
+            RadioCallSign:              $('#CallSign').val(),
+                    
+
+            //#region Voyage Details
+            DateOfReportingGMT:         $('#DateOfReportingGMT').val(),
+            TimeOfReportingGMT:         $('#TimeOfReportingGMT').val(),
+            LocationOfShip:             $('#LocationOfShip').val(),
+            Cousre:                     $('#Cousre').val(),
+            Speed:                      $('#Speed').val(),
+            PortofDeparture:            $('#PortOfDeparture').val(),
+            DateOfDeparture:            $('#DateOfDeparture').val(),
+            TimeOfDeparture:            $('#TimeOfDeparture').val(),
+            PortofDestination:          $('#PortOfArrival').val(),
+            ETADateGMT:                 $('#ETADateGMT').val(),
+            ETATimeGMT:                 $('#ETATimeGMT').val(),
+            EstimatedTimeOfarrivalhrs:  $('#EstimatedTimeOfArrival').val(),
+            AgentDetails:               $('#AgentDetails').val(),
+            NearestPort:                $('#NearestPort').val(),
+            NearestPortETADateGMT:      $('#NearestPortETADateGMT').val(),
+            NearestPortETATimeGMT:      $('#NearestPortETATimeGMT').val(),
+            OtherPossiblePort:          $('#OtherPossiblePort').val(),
+            OtherPortETADateGMT:        $('#OtherPortETADateGMT').val(),
+            OtherPortETATimeGMT:        $('#OtherPortETATimeGMT').val(),
+
+            //#endregion
+
+            //#region Weather Details
+            WindDirection:              $('#Direction').val(),
+            BeaufortScale:              $('#BeaufortScale').val(),
+            WindSpeed:                  $('#WindSpeed').val(),
+            SeaState:                   $('#SeaState').val(),
+            WaveHeight:                 $('#WaveHeight').val(),
+            Swell:                      $('#Swell').val(),
+            WeatherCondition:           $('#WeatherCondition').val(),
+            WeatherVisibility:          $('#Visibility').val(),
+            Weather:                    $('#WeatherCondition').val(),
+            //#endregion 
+
+            //#region Crew Details
+            CrewId:                 $('#ddlCrew').val(),
+            Nationality:            $('#Nationality').val(),
+            Addiction:              $('#Addiction').val(),
+            RankID:                 $('#ddlRank').val(),
+            Ethinicity:             $('#Ethinicity').val(),
+            Frequency:              $('#Frequency').val(),
+            Sex:                    $('#Sex').val(),
+            Age:                    $('#Age').val(),
+            JoiningDate:            $('#JoiningDate').val(),
+            DateOfOffWork:          $('#DateOffWork').val(),
+            TimeOfOffWork:          $('#TImeOffWork').val(),
+            DateOfResumeWork:       $('#DateResumeWork').val(),
+            TimeOfResumeWork:       $('#TimeResumeWork').val(),
+
+            //#endregion
+
+            //#region Incase of Injury/Sevierty of Pain
+
+            DateOfInjuryOrIllness:          $('#DateOfInjuryOrIllness').val(),
+            TimeOfInjuryOrIllness:          $('#TImeOfInjuryOrIllness').val(),
+            DateOfFirstExamination:         $('#DateOfFirstExaminationOnboard').val(),
+            TimeOfFirstExamination:         $('#TimeOfFirstExaminationOnboard').val(),
+            IsInjuryorIllnessWorkRelated:   $("input[name='IsInjuryWorkRelated']:checked").val(),
+            IsUnconsciousByInjuryOrIllness: $("input[name='IsUnconscious']:checked").val(),
+            HowLongWasUnconscious:          $('#UnconsciousPeriod').val(),
+            LevelOfConsciousness:           $("input[name='LevelOfConsciousness']:checked").val(),
+            IsAccidentOrIlness:             $("input[name='AccidentOrIllness']:checked").val(),
+
+            WhereAndHowAccidentOccured:     $('#WhereAndHowAccidentOccured').val(),
+            LocationAndTypeOfInjuryOrBurn:  $('#LocationAndTypeOfInjuryOrBurn').val(),
+            FirstAidGiven:                  $('#FirstAidGiven').val(),
+            TypeOfBurn:                     $('#TypeOfBurn').val(),
+            DegreeOfBurn:                   $('#DegreeOfBurn').val(),
+            PercentageOfBurn:               $('#PercentageOfBurn').val(),
+
+            MedicalSymtomology: Symtomology,
+
+            SeverityOfPain: $("input[name='SeverityOfPain']:checked").val(),
+            FrequencyOfPain: $('#FrequencyOfPain').val(),
+
+            //#endregion
+            
+            //#region  History and Medication Taken
+            PastMedicalHistory: $('#RelaventMedicalHistory').val(),
+
+            //#endregion
+
+            VitalParams: VitalParams,
+
+            //#region Findings of Affected Areas
+            AffectedParts: $('#AffectedParts').val(),
+            BloodType: $('#BloodType').val(),
+            BloodQuantity: $('#BloodQuantity').val(),
+            FluidType: $('#FluidType').val(),
+            FluidQuantity: $('#FluidQuantity').val(),
+            SkinDetails: $('#SkinDetails').val(),
+            PupilsDetails: $('#PupilsDetails').val(),
+
+            //#endregion
+
+            //#region Telemedical Consultation
+            TeleMedicalConsultation: $("input[name='TeleMedicalConsultation']:checked").val() ? true : false,
+            TeleMedicalContactDate: $('#TeleMedicalContactDate').val(),
+            TeleMedicalContactTime: $('#TeleMedicalContactTime').val(),
+            ModeOfCommunication: $('#ModeOfCommunication').val(),
+            NameOfTelemedicalConsultant: $('#NameOfTelemedicalConsultant').val(),
+            DetailsOfTreatmentAdvised: $('#DetailsOfTreatmentAdvised').val(),
+
+            //#endregion
+
+            //#region Medical Treatment Given Onboard
+            MedicalTreatmentGivenOnboard: $("input[name='MedicalTreatmentGivenOnboard']:checked").val() ? true : false,
+            PriorRadioMedicalAdvice: $('#PriorRadioMedicalAdvice').val(),
+            AfterRadioMedicalAdvice: $('#AfterRadioMedicalAdvice').val(),
+            HowIsPatientRespondingToTreatmentGiven: $('#HowIsPatientRespondingToTreatmentGiven').val(),
+            //DoesPatientNeedRemoveFromVessel: $('#DoesPatientNeedRemoveFromVessel').val(),
+            DoesPatientNeedRemoveFromVessel: $("input[name='DoesPatientNeedRemoveFromVessel']:checked").val(),
+            NeedRemovalDesc: $('#NeedRemovalDesc').val(),
+            NeedRemovalToPort: $('#NeedRemovalToPort').val(),
+            AdditionalNotes: $('#AdditionalNotes').val(),
+
+            //#endregion
+            
+            //#region Upload Section
+            JoiningMedical: $("input[name='uploaddocJoiningMedical']:checked").val() ? true : false,
+            JoiningMedicalPath: $('#lblSuccMsgCIRMJoiningMedical').val(),
+
+            //MedicineAvailableOnBoard: document.getElementById("MedicineAvailableOnBoard").checked,
+            MedicineAvailableOnBoard: $("input[name='uploaddocMedicineAvailableOnBoard']:checked").val() ? true : false,
+            MedicineAvailableOnBoardPath: $('#hdnPathCIRMMedicineAvailableOnBoard').val(),
+
+            //MedicalEquipmentOnBoard: document.getElementById("MedicalEquipmentOnBoard").checked,
+            MedicalEquipmentOnBoard: $("input[name='uploaddocMedicalEquipmentOnBoard']:checked").val() ? true : false,
+            MedicalEquipmentOnBoardPath: $('#hdnPathCIRMMedicalEquipmentOnBoard').val(),
+
+            //MedicalHistoryUpload: document.getElementById("MedicalHistoryUpload").checked,
+            MedicalHistoryUpload: $("input[name='uploaddocMedicalHistoryUpload']:checked").val() ? true : false,
+            MedicalHistoryPath: $('#hdnPathCIRMMedicalHistory').val(),
+
+            //WorkAndRestHourLatestRecord: document.getElementById("WorkAndRestHourLatestRecord").checked,
+            WorkAndRestHourLatestRecord: $("input[name='uploaddocWorkAndRestHourLatestRecord']:checked").val() ? true : false,
+            WorkAndRestHourLatestRecordPath: $('#hdnPathCIRMWorkAndRestHourLatestRecord').val(),
+
+            //#endregion
+            
+        };
+
+        $.ajax({
+            url: posturl,
+            data: JSON.stringify(Crew),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+
+            success: function (result) {
+                //loadData();
+                $('#myModal').modal('hide');
+                // alert('Added Successfully');
+                //HideCIRMUploadModal();
                 toastr.options = {
                     "closeButton": false,
                     "debug": false,
@@ -908,12 +1196,7 @@ function GetCIRMDetailsByCrew(id) {
             //#endregion
 
             //#region Past Medical History
-            $('#PastMedicalHostory').val(result.PastMedicalHistory);
-            $('#Remarks').val(result.PastRemarks);
-            $('#TreatmentGiven').val(result.PastTreatmentGiven);
-            $('#PastMedicineAdministered').val(result.PastMedicineAdministered);
-            $('#TeleMedicalAdviceReceived').val(result.PastTeleMedicalAdviceReceived);
-            $('#hdnPathCIRMPastMedicalHistory').val(result.PastMedicalHistoryPath);
+            $('#RelaventMedicalHistory').val(result.PastMedicalHistory);
 
             //#endregion
 
@@ -945,6 +1228,253 @@ function GetCIRMDetailsByCrew(id) {
 
             //}
 
+            //#endregion
+
+            //#region Upload section
+
+            if (result.MedicalEquipmentOnBoard) {
+                $("#uploaddocMedicalEquipmentOnBoard").prop("checked", true);
+                $("#hdnPathCIRMMedicalEquipmentOnBoard").val(result.MedicalEquipmentOnBoardPath);
+                HideCIRMUploadModal();
+            }
+            if (result.MedicineAvailableOnBoard) {
+                $("#uploaddocMedicineAvailableOnBoard").prop("checked", true);
+                $("#hdnPathCIRMMedicineAvailableOnBoard").val(result.MedicineAvailableOnBoardPath);
+                HideCIRMUploadModal();
+            }
+            if (result.JoiningMedical) {
+                $("#uploaddocJoiningMedical").prop("checked", true);
+                $("#hdnPthCIRMJoiningMedical").val(result.JoiningMedicalPath);
+                HideCIRMUploadModal();
+            }
+            if (result.MedicalHistoryUpload) {
+                $("#uploaddocMedicalHistoryUpload").prop("checked", true);
+                $("#hdnPathCIRMMedicalHistory").val(result.MedicalHistoryPath);
+                HideCIRMUploadModal();
+            }
+            if (result.WorkAndRestHourLatestRecord) {
+                $("#uploaddocWorkAndRestHourLatestRecord").prop("checked", true);
+                $("#hdnPathCIRMWorkAndRestHourLatestRecord").val(result.WorkAndRestHourLatestRecordPath);
+                HideCIRMUploadModal();
+            }
+
+            //#endregion
+
+
+            //$('#myModal').modal('show');
+            //$('#btnUpdate').show();
+            //$('#btnAdd').hide();
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
+}
+
+function GetCIRMDetailsByCrewNew(id) {
+    var x = $("#getCIRMDetailsByCrew").val();
+    $.ajax({
+        url: x,
+        data:
+        {
+            ID: id
+        },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            if (IsNewCIRM)
+                $('#CIRMId').val('0');
+            else
+                $('#CIRMId').val(result.CIRMId);
+                
+            $('#CallSign').val(result.RadioCallSign);
+            //#region Voyage Details
+            $('#DateOfReportingGMT').val(result.DateOfReportingGMT);
+            $('#TimeOfReportingGMT').val(result.TimeOfReportingGMT);
+            $('#LocationOfShip').val(result.LocationOfShip);
+            $('#Cousre').val(result.Cousre);
+            $('#Speed').val(result.Speed);
+            $('#PortOfDeparture').val(result.PortofDeparture);
+            $('#DateOfDeparture').val(result.DateOfDeparture);
+            $('#TimeOfDeparture').val(result.TimeOfDeparture);
+            $('#PortOfArrival').val(result.PortofDestination);
+            $('#ETADateGMT').val(result.ETADateGMT);
+            $('#ETATimeGMT').val(result.ETATimeGMT);
+            $('#EstimatedTimeOfArrival').val(result.EstimatedTimeOfarrivalhrs);
+            $('#AgentDetails').val(result.AgentDetails);
+            $('#NearestPort').val(result.NearestPort);
+            $('#NearestPortETADateGMT').val(result.NearestPortETADateGMT);
+            $('#NearestPortETATimeGMT').val(result.NearestPortETATimeGMT);
+            $('#OtherPossiblePort').val(result.OtherPossiblePort);
+            $('#OtherPortETADateGMT').val(result.OtherPortETADateGMT);
+            $('#OtherPortETATimeGMT').val(result.OtherPortETATimeGMT);
+            //#endregion 
+
+            //#region Weather Details
+            $('#Direction').val(result.WindDirection);
+            $('#BeaufortScale').val(result.BeaufortScale);
+            $('#WindSpeed').val(result.WindSpeed);
+            $('#SeaState').val(result.SeaState);
+            $('#WaveHeight').val(result.WaveHeight);
+            $('#Swell').val(result.Swell);
+            $('#WeatherCondition').val(result.WeatherCondition);
+            $('#Visibility').val(result.WeatherVisibility);
+            //#endregion
+
+            //#region Crew Details
+            $('#Addiction').val(result.Addiction);
+            $('#Ethinicity').val(result.Ethinicity);
+            $('#Frequency').val(result.Frequency);
+            $('#DateOffWork').val(result.DateOfOffWork);
+            $('#TImeOffWork').val(result.TimeOfOffWork);
+            $('#DateResumeWork').val(result.DateOfResumeWork);
+            $('#TimeResumeWork').val(result.TimeOfResumeWork);
+            //#endregion
+
+           
+
+            //#region Incase of Injury or Illness 
+
+            $('#DateOfInjuryOrIllness').val(result.DateOfInjuryOrIllness);
+            $('#TImeOfInjuryOrIllness').val(result.TimeOfInjuryOrIllness);
+            $('#DateOfFirstExaminationOnboard').val(result.DateOfFirstExamination);
+            $('#TimeOfFirstExaminationOnboard').val(result.TimeOfFirstExamination);
+            //$("input[name='IsInjuryWorkRelated']:checked").val(result.IsInjuryorIllnessWorkRelated);
+            if (result.IsInjuryorIllnessWorkRelated != null) {
+                var value = result.IsInjuryorIllnessWorkRelated;
+                $("input[name=IsInjuryWorkRelated][value=" + value + "]").prop('checked', true);
+            }
+            //$("input[name='IsUnconscious']:checked").val(result.IsUnconsciousByInjuryOrIllness);
+            if (result.IsUnconsciousByInjuryOrIllness != null) {
+                var value = result.IsUnconsciousByInjuryOrIllness;
+                $("input[name=IsUnconscious][value=" + value + "]").prop('checked', true);
+            }
+            $('#UnconsciousPeriod').val(result.HowLongWasUnconscious);
+            //$("input[name='LevelOfConsciousness']:checked").val(result.LevelOfConsciousness);
+            if (result.LevelOfConsciousness > 0 || result.LevelOfConsciousness != null) {
+                var value = result.LevelOfConsciousness;
+                $("input[name=LevelOfConsciousness][value=" + value + "]").prop('checked', true);
+            }
+            //$("input[name='AccidentOrIllness']:checked").val(result.IsAccidentOrIlness);
+            if (result.IsAccidentOrIlness > 0 || result.IsAccidentOrIlness != null) {
+                var value = result.IsAccidentOrIlness;
+                $("input[name=AccidentOrIllness][value=" + value + "]").prop('checked', true);
+            }
+
+            //------Accident
+            if (result.IsAccidentOrIlness == 1) {
+                $('#WhereAndHowAccidentOccured').val(result.WhereAndHowAccidentOccured);
+                $('#LocationAndTypeOfInjuryBurn').val(result.LocationAndTypeOfInjuryOrBurn);
+                $('#FirstAidGiven').val(result.FirstAidGiven);
+                $('#TypeOfBurn').val(result.TypeOfBurn);
+                $('#DegreeOfBurn').val(result.FirstAidGiven);
+                $('#PercentageOfBurn').val(result.PercentageOfBurn);
+
+                $("#myModalAccident").show();
+            }
+            
+
+            ////----------Illness------(Symtomology)--------------
+            if (result.IsAccidentOrIlness == 2) {
+                $('#SymptomatologyDate').val(result.Symtomology.ObservationDate);
+                $('#SymptomatologyTime').val((result.Symtomology.ObservationTime));
+                $('#Vomiting').val(result.Symtomology.Vomiting);
+                $('#FrequencyOfVomiting').val(result.Symtomology.FrequencyOfVomiting);
+                $('#Fits').val(result.Symtomology.Fits);
+                $('#FrequencyOfFits').val(result.Symtomology.FrequencyOfFits);
+                $('#Giddiness').val(result.Symtomology.Giddiness);
+                $('#FrequencyOfGiddiness').val(result.Symtomology.FrequencyOfGiddiness);
+                $('#Lethargy').val(result.Symtomology.Lethargy);
+                $('#FrequencyOfLethargy').val(result.Symtomology.FrequencyOfLethargy);
+                //$('#SymtomologyDetails').val(result.Symtomology.SymptomologyDetails);
+                //$('#MedicinesAdministered').val(result.Symtomology.MedicinesAdministered);
+                $('#AnyOtherRelevantInformation').val(result.Symtomology.AnyOtherRelevantInformation);
+                $('#Ailment').val(result.Symtomology.Ailment);
+
+                $("#myModalIllness").show();
+            }
+            ////--------End--Illness----------------------
+
+
+            if (result.SeverityOfPain > 0 || result.SeverityOfPain != null) {
+                var value = result.SeverityOfPain;
+                $("input[name=SeverityOfPain][value=" + value + "]").prop('checked', true);
+            }
+            $('#FrequencyOfPain').val(result.FrequencyOfPain);
+           
+            //#endregion
+
+            //#region History and Medication Taken
+            $('#PastMedicalHostory').val(result.PastMedicalHistory);
+
+            //#endregion
+
+            //#region Vital Statistica
+            $('#VitalStatisticsDate').val(convertJsonDateToShortDate(result.VitalStatistics.ObservationDate));
+            $('#VitalStatisticsTime').val(convertJsonDateToShortTime(result.VitalStatistics.ObservationTime));
+            $('#VitalStatisticsDate').val(result.VitalStatistics.ObservationDate);
+            $('#VitalStatisticsTime').val(result.VitalStatistics.ObservationTime);
+            $('#RespiratoryRate').val(result.VitalStatistics.RespiratoryRate);
+            $('#Temperature').val(result.VitalStatistics.Temperature);
+            $('#Pulse').val(result.VitalStatistics.Pulse);
+            $('#OxygenSaturation').val(result.VitalStatistics.OxygenSaturation);
+            $('#Creatinine').val(result.VitalStatistics.Creatinine);
+            $('#Himoglobin').val(result.VitalStatistics.Himoglobin);
+            $('#Bilirubin').val(result.VitalStatistics.Bilirubin);
+            $('#Systolic').val(result.VitalStatistics.Systolic);
+            $('#Diastolic').val(result.VitalStatistics.Diastolic);
+            $('#Fasting').val(result.VitalStatistics.Fasting);
+            $('#Regular').val(result.VitalStatistics.Regular);
+
+            //#endregion
+
+            //#region Findings of Affected Areas
+            $('#AffectedParts').val(result.AffectedParts);
+            $('#BloodType').val(result.BloodType);
+            $('#BloodQuantity').val(result.BloodQuantity);
+            $('#FluidType').val(result.FluidType);
+            $('#FluidQuantity').val(result.FluidQuantity);
+            $('#SkinDetails').val(result.SkinDetails);
+            $('#PupilsDetails').val(result.PupilsDetails);
+
+            //#endregion
+
+            //#region Telemedical Consultation
+            if (result.TeleMedicalConsultation) {
+                $("#TeleMedicalConsultation").prop("checked", true);
+                $('#TeleMedicalContactDate').val(result.TeleMedicalContactDate);
+                $('#TeleMedicalContactTime').val(result.TeleMedicalContactTime);
+                $('#ModeOfCommunication').val(result.ModeOfCommunication);
+                $('#NameOfTelemedicalConsultant').val(result.NameOfTelemedicalConsultant);
+                $('#DetailsOfTreatmentAdvised').val(result.DetailsOfTreatmentAdvised);
+                $("#dvTeleMedicalConsultation").show();
+            }
+            
+            //#endregion
+
+            //#region Medical Treatment Given Onboard
+            if (result.TeleMedicalConsultation) {
+                $("#MedicalTreatmentGivenOnboard").prop("checked", true);
+                $('#PriorRadioMedicalAdvice').val(result.PriorRadioMedicalAdvice);
+                $('#AfterRadioMedicalAdvice').val(result.AfterRadioMedicalAdvice);
+                $('#HowIsPatientRespondingToTreatmentGiven').val(result.HowIsPatientRespondingToTreatmentGiven);
+                if (result.DoesPatientNeedRemoveFromVessel) {
+                    //"#DoesPatientNeedRemoveFromVessel").prop("checked", true);
+                    var value = result.DoesPatientNeedRemoveFromVessel;
+                    $("input[name=DoesPatientNeedRemoveFromVessel][value=" + value + "]").prop('checked', true);
+                    //$('#DoesPatientNeedRemoveFromVessel').val(result.DoesPatientNeedRemoveFromVessel);
+                    $('#NeedRemovalDesc').val(result.NeedRemovalDesc);
+                    $('#NeedRemovalToPort').val(result.NeedRemovalToPort);
+                    $("#dvPatientNeedRemoveFromVessel").show();
+                }
+                
+                $('#AdditionalNotes').val(result.AdditionalNotes);
+                $("#dvMedicalTreatmentGivenOnboard").show();
+            }
             //#endregion
 
             //#region Upload section
@@ -1258,3 +1788,42 @@ function SetUpCIRMSymtomologyGrid(cirmId) {
 }
 
 
+function ConfirmDialog(message) {
+    var retn = false;
+    $('<div></div>').appendTo('body')
+        .html('<div><h6>' + message + '?</h6></div>')
+        .dialog({
+            modal: true,
+            title: 'Confirm message',
+            zIndex: 10000,
+            autoOpen: true,
+            width: 'auto',
+            resizable: false,
+            buttons: {
+                Yes: function () {
+                    // $(obj).removeAttr('onclick');                                
+                    // $(obj).parents('.Parent').remove();
+
+                   // $('body').append('<h1>Confirm Dialog Result: <i>Yes</i></h1>');
+
+                    $(this).dialog("close");
+                    //retn = true;
+                    IsNewCIRM = true;
+                    $('#CIRMId').val('0');
+                },
+                No: function () {
+                    //$('body').append('<h1>Confirm Dialog Result: <i>No</i></h1>');
+
+                    $(this).dialog("close");
+                    //retn = false;
+                    //GetCIRMDetailsByCrewNew(ID, 0);
+                    IsNewCIRM = false;
+                }
+            },
+            close: function (event, ui) {
+                $(this).remove();
+            }
+        });
+
+    //return retn;
+};

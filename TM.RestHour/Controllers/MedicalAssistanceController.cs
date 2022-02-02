@@ -176,6 +176,12 @@ namespace TM.RestHour.Controllers
 
             return Json(CIRMBL.SaveCIRM(cIRM, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
+        public JsonResult SaveCIRMNew(CIRMPOCO cIRM)
+        {
+            CIRMBL CIRMBL = new CIRMBL();
+
+            return Json(CIRMBL.SaveCIRMNew(cIRM, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
+        }
 
         /// <summary>
         /// Added on 11th Jan 2022 @BK
@@ -433,6 +439,241 @@ namespace TM.RestHour.Controllers
 
             return Json(cirm, JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// Added on 29th Jan 2022 @BK
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult GetCIRMPatientDetailsByCrewNew(int ID)
+        {
+            CIRMBL cirmBL                               = new CIRMBL();
+            CIRMPOCO cirmPoco                           = new CIRMPOCO();
+            VitalStatisticsPOCO cirmVitalsPoco          = new VitalStatisticsPOCO();
+            MedicalSymtomologyPOCO cirmSymtomologyPoco  = new MedicalSymtomologyPOCO();
+            CIRM cirm                                   = new CIRM();
+            VitalStatistics cirmVitals                  = new VitalStatistics();
+            MedicalSymtomology cirmSymtomology          = new MedicalSymtomology();
+            cirmPoco                                    = cirmBL.GetCIRMPatientDetailsByCrewNew(ID, int.Parse(Session["VesselID"].ToString()));
+
+            if (cirmPoco.CIRMId > 0)
+            {
+                cirmVitalsPoco = cirmBL.GetVitalStatisticsByCIRM(cirmPoco.CIRMId).OrderByDescending(c => c.ID).FirstOrDefault();
+                //cirmSymtomologyPoco = cirmBL.GetMedicalSymtomologyByCIRM(cirmPoco.CIRMId).OrderByDescending(c => c.ID).FirstOrDefault();
+
+            }
+
+            cirm.CIRMId = cirmPoco.CIRMId;
+            #region  CIRM
+
+            #region Vessel Details
+            cirm.VesselId = cirmPoco.VesselId;
+
+            cirm.NameOfVessel = cirmPoco.NameOfVessel;
+            cirm.RadioCallSign = cirmPoco.RadioCallSign;
+
+            #endregion
+
+            #region Voyage Details
+            cirm.DateOfReportingGMT = cirmPoco.DateOfReportingGMT;
+            cirm.TimeOfReportingGMT = cirmPoco.TimeOfReportingGMT;
+            cirm.LocationOfShip = cirmPoco.LocationOfShip;
+            cirm.Cousre = cirmPoco.Cousre;
+            cirm.Speed = cirmPoco.Speed;
+            cirm.PortofDeparture = cirmPoco.PortofDeparture;
+            cirm.DateOfDeparture = cirmPoco.DateOfDeparture;
+            cirm.TimeOfReportingGMT = cirmPoco.TimeOfReportingGMT;
+            cirm.PortofDestination = cirmPoco.PortofDestination;
+            cirm.ETADateGMT = cirmPoco.ETADateGMT;
+            cirm.ETATimeGMT = cirmPoco.ETATimeGMT;
+            cirm.EstimatedTimeOfarrivalhrs = cirmPoco.EstimatedTimeOfarrivalhrs;
+            cirm.AgentDetails = cirmPoco.AgentDetails;
+            cirm.NearestPort = cirmPoco.NearestPort;
+            cirm.NearestPortETADateGMT = cirmPoco.NearestPortETADateGMT;
+            cirm.NearestPortETATimeGMT = cirmPoco.NearestPortETATimeGMT;
+            cirm.OtherPossiblePort = cirmPoco.OtherPossiblePort;
+            cirm.OtherPortETADateGMT = cirmPoco.OtherPortETADateGMT;
+            cirm.OtherPortETATimeGMT = cirmPoco.OtherPortETATimeGMT;
+            #endregion
+
+            #region Weather Details
+
+            cirm.WindDirection = cirmPoco.WindDirection;
+            cirm.BeaufortScale = cirmPoco.BeaufortScale;
+            cirm.WindSpeed = cirmPoco.WindSpeed;
+            cirm.SeaState = cirmPoco.SeaState;
+            cirm.WaveHeight = cirmPoco.WaveHeight;
+            cirm.Swell = cirmPoco.Swell;
+            cirm.WeatherCondition = cirmPoco.WeatherCondition;
+            cirm.WeatherVisibility = cirmPoco.WeatherVisibility;
+            cirm.Weather = cirmPoco.Weather;
+            #endregion
+
+            #region Crew Details 
+            cirm.CrewId = cirmPoco.CrewId;
+            cirm.Nationality = cirmPoco.Nationality;
+            cirm.Qualification = cirmPoco.Qualification;
+            cirm.Addiction = cirmPoco.Addiction;
+            cirm.Ethinicity = cirmPoco.Ethinicity;
+            cirm.Frequency = cirmPoco.Frequency;
+            cirm.Sex = cirmPoco.Sex;
+            cirm.Age = cirmPoco.Age;
+            cirm.JoiningDate = cirmPoco.JoiningDate;
+            cirm.DateOfOffWork = cirmPoco.DateOfOffWork;
+            cirm.TimeOfOffWork = cirmPoco.TimeOfOffWork;
+            cirm.DateOfResumeWork = cirmPoco.DateOfResumeWork;
+            cirm.TimeOfResumeWork = cirmPoco.TimeOfResumeWork;
+
+            #endregion
+
+            #region Injury or Illness
+
+            cirm.DateOfInjuryOrIllness = cirmPoco.DateOfInjuryOrIllness;
+            cirm.TimeOfInjuryOrIllness = cirmPoco.TimeOfInjuryOrIllness;
+            cirm.DateOfFirstExamination = cirmPoco.DateOfFirstExamination;
+            cirm.TimeOfFirstExamination = cirmPoco.TimeOfFirstExamination;
+            cirm.IsInjuryorIllnessWorkRelated = cirmPoco.IsInjuryorIllnessWorkRelated;
+            cirm.IsUnconsciousByInjuryOrIllness = cirmPoco.IsUnconsciousByInjuryOrIllness;
+            cirm.HowLongWasUnconscious = cirmPoco.HowLongWasUnconscious;
+            cirm.LevelOfConsciousness = cirmPoco.LevelOfConsciousness;
+            cirm.IsAccidentOrIlness = cirmPoco.IsAccidentOrIlness;
+
+            #region Incase of Accident
+            if (cirm.IsAccidentOrIlness == 1)
+            {
+
+                cirm.WhereAndHowAccidentOccured = cirmPoco.WhereAndHowAccidentOccured;
+                cirm.LocationAndTypeOfInjuryOrBurn = cirmPoco.LocationAndTypeOfInjuryOrBurn;
+                cirm.FirstAidGiven = cirmPoco.FirstAidGiven;
+                cirm.TypeOfBunrn = cirmPoco.TypeOfBurn;
+                cirm.DegreeOfBurn = cirmPoco.DegreeOfBurn;
+                cirm.PercentageOfBurn = cirmPoco.PercentageOfBurn;
+
+
+            }
+            //cirm.PictureUploadPath = cirmPoco.PictureUploadPath;
+
+            #endregion
+            #region Illness
+            if (cirm.IsAccidentOrIlness == 2)
+            {
+                #region -- Medical Symtomology --
+                cirmSymtomologyPoco = cirmBL.GetMedicalSymtomologyByCIRM(cirmPoco.CIRMId).OrderByDescending(c => c.ID).FirstOrDefault();
+                cirmSymtomology.ID = cirmSymtomologyPoco.ID;
+                cirmSymtomology.CIRMId = cirmSymtomologyPoco.CIRMId;
+                cirmSymtomology.ObservationDate = cirmSymtomologyPoco.ObservationDate;
+                cirmSymtomology.ObservationTime = cirmSymtomologyPoco.ObservationTime;
+                cirmSymtomology.Vomiting = cirmSymtomologyPoco.Vomiting;
+                cirmSymtomology.FrequencyOfVomiting = cirmSymtomologyPoco.FrequencyOfVomiting;
+                cirmSymtomology.Fits = cirmSymtomologyPoco.Fits;
+                cirmSymtomology.FrequencyOfFits = cirmSymtomologyPoco.FrequencyOfFits;
+                cirmSymtomology.Giddiness = cirmSymtomologyPoco.Giddiness;
+                cirmSymtomology.FrequencyOfGiddiness = cirmSymtomologyPoco.FrequencyOfGiddiness;
+                cirmSymtomology.Lethargy = cirmSymtomologyPoco.Lethargy;
+                cirmSymtomology.FrequencyOfLethargy = cirmSymtomologyPoco.FrequencyOfLethargy;
+                cirmSymtomology.SymptomologyDetails = cirmSymtomologyPoco.SymptomologyDetails;
+                cirmSymtomology.MedicinesAdministered = cirmSymtomologyPoco.MedicinesAdministered;
+                cirmSymtomology.AnyOtherRelevantInformation = cirmSymtomologyPoco.AnyOtherRelevantInformation;
+                cirmSymtomology.Ailment = cirmSymtomologyPoco.Ailment;
+
+                #endregion
+                cirm.Symtomology = cirmSymtomology;
+
+            }
+
+            #endregion
+            #region Severity of Pains
+            //cirm.NoHurt = cirmPoco.NoHurt;
+            //cirm.HurtLittleBit = cirmPoco.HurtLittleBit;
+            //cirm.HurtsLittleMore = cirmPoco.HurtsLittleMore;
+            //cirm.HurtsEvenMore = cirmPoco.HurtsEvenMore;
+            //cirm.HurtsWholeLot = cirmPoco.HurtsWholeLot;
+            //cirm.HurtsWoest = cirmPoco.HurtsWoest;
+            cirm.SeverityOfPain = cirmPoco.SeverityOfPain;
+            cirm.FrequencyOfPain = cirmPoco.FrequencyOfPain;
+            #endregion
+
+            #endregion
+
+            #region History and Medication Taken
+            cirm.PastMedicalHistory = cirmPoco.PastMedicalHistory;
+
+            #endregion
+
+            #region Vital Params--
+            cirmVitals.ID = cirmVitalsPoco.ID;
+            cirmVitals.CIRMId = cirmVitalsPoco.CIRMId;
+            cirmVitals.ObservationDate = cirmVitalsPoco.ObservationDate;
+            cirmVitals.ObservationTime = cirmVitalsPoco.ObservationTime;
+            cirmVitals.Pulse = cirmVitalsPoco.Pulse;
+            cirmVitals.RespiratoryRate = cirmVitalsPoco.RespiratoryRate;
+            cirmVitals.OxygenSaturation = cirmVitalsPoco.OxygenSaturation;
+            cirmVitals.Himoglobin = cirmVitalsPoco.Himoglobin;
+            cirmVitals.Creatinine = cirmVitalsPoco.Creatinine;
+            cirmVitals.Bilirubin = cirmVitalsPoco.Bilirubin;
+            cirmVitals.Temperature = cirmVitalsPoco.Temperature;
+            cirmVitals.Systolic = cirmVitalsPoco.Systolic;
+            cirmVitals.Diastolic = cirmVitalsPoco.Diastolic;
+            cirmVitals.Fasting = cirmVitalsPoco.Fasting;
+            cirmVitals.Regular = cirmVitalsPoco.Regular;
+
+            cirm.VitalStatistics = cirmVitals;
+            #endregion
+
+            #region Findings Affected Areas
+            cirm.AffectedParts  = cirmPoco.AffectedParts;
+            cirm.BloodType      = cirmPoco.BloodType;
+            cirm.BloodQuantity  = cirmPoco.BloodQuantity;
+            cirm.FluidType      = cirmPoco.FluidType;
+            cirm.FluidQuantity  = cirmPoco.FluidQuantity;
+            cirm.SkinDetails    = cirmPoco.SkinDetails;
+            cirm.PupilsDetails  = cirmPoco.PupilsDetails;
+
+            #endregion
+
+            #region Telemedical Consultation
+
+            cirm.TeleMedicalConsultation        = cirmPoco.TeleMedicalConsultation;
+            cirm.TeleMedicalContactDate         = cirmPoco.TeleMedicalContactDate;
+            cirm.TeleMedicalContactTime         = cirmPoco.TeleMedicalContactTime;
+            cirm.ModeOfCommunication            = cirmPoco.ModeOfCommunication;
+            cirm.NameOfTelemedicalConsultant    = cirmPoco.NameOfTelemedicalConsultant;
+            cirm.DetailsOfTreatmentAdvised      = cirmPoco.DetailsOfTreatmentAdvised;
+            #endregion
+
+            #region Medical Treatment Given Onboard
+
+            cirm.MedicalTreatmentGivenOnboard           = cirmPoco.MedicalTreatmentGivenOnboard;
+            cirm.PriorRadioMedicalAdvice                = cirmPoco.PriorRadioMedicalAdvice;
+            cirm.AfterRadioMedicalAdvice                = cirmPoco.AfterRadioMedicalAdvice;
+            cirm.HowIsPatientRespondingToTreatmentGiven = cirmPoco.HowIsPatientRespondingToTreatmentGiven;
+            cirm.DoesPatientNeedRemoveFromVessel        = cirmPoco.DoesPatientNeedRemoveFromVessel;
+            cirm.NeedRemovalDesc                        = cirmPoco.NeedRemovalDesc;
+            cirm.NeedRemovalToPort                      = cirmPoco.NeedRemovalToPort;
+            cirm.AdditionalNotes                        = cirmPoco.AdditionalNotes;
+            #endregion
+
+            #region Upload images
+            cirm.JoiningMedical                     = cirmPoco.JoiningMedical;
+            cirm.JoiningMedicalPath                 = cirmPoco.JoiningMedicalPath;
+            cirm.MedicineAvailableOnBoard           = cirmPoco.MedicineAvailableOnBoard;
+            cirm.MedicineAvailableOnBoardPath       = cirmPoco.MedicineAvailableOnBoardPath;
+            cirm.MedicalEquipmentOnBoard            = cirmPoco.MedicalEquipmentOnBoard;
+            cirm.MedicalEquipmentOnBoardPath        = cirmPoco.MedicalEquipmentOnBoardPath;
+            cirm.MedicalHistoryUpload               = cirmPoco.MedicalHistoryUpload;
+            cirm.MedicalHistoryPath                 = cirmPoco.MedicalHistoryPath;
+            cirm.WorkAndRestHourLatestRecord        = cirmPoco.WorkAndRestHourLatestRecord;
+            cirm.WorkAndRestHourLatestRecordPath    = cirmPoco.WorkAndRestHourLatestRecordPath;
+            cirm.PreExistingMedicationPrescription = cirmPoco.PreExistingMedicationPrescription;
+            #endregion
+
+            #endregion CIRM
+
+
+            return Json(cirm, JsonRequestBehavior.AllowGet);
+        }
+
 
         /// <summary>
         /// Added on 12th Jan 2022
