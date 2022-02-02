@@ -24,7 +24,7 @@ namespace TM.RestHour.BL
         }
 
 
-        public RightsPOCO GetRightsByCrewIdAndPageName(int CrewId, string PageName)
+        public bool GetRightsByCrewIdAndPageName(int CrewId, string PageName)
         {
             RightsDAL rightsDAL = new RightsDAL();
             return rightsDAL.GetRightsByCrewIdAndPageName(CrewId, PageName);
@@ -35,6 +35,13 @@ namespace TM.RestHour.BL
         {
             RightsDAL rightsDAL = new RightsDAL();
             return rightsDAL.GetRightsByCrewIdAndPageId(CrewId, PageId);
+        }
+
+
+        public List<AccessRightsPOCO> GetAccessRightsByCrewId(int CrewId)
+        {
+            RightsDAL rightsDAL = new RightsDAL();
+            return rightsDAL.GetAccessRightsByCrewId(CrewId);
         }
     }
 }

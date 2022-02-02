@@ -116,8 +116,9 @@ namespace TM.RestHour.DAL
 
 
 
-        public RightsPOCO GetRightsByCrewIdAndPageName(int CrewId, string PageName)
+        public bool GetRightsByCrewIdAndPageName(int CrewId, string PageName)
         {
+            bool hasAccess = false;
             List<RightsPOCO> prodPOList = new List<RightsPOCO>();
             List<RightsPOCO> prodPO = new List<RightsPOCO>();
             DataSet ds = new DataSet();
@@ -139,14 +140,15 @@ namespace TM.RestHour.DAL
                     con.Open();
 
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(ds);
+                    //SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    //da.Fill(ds);
+                    hasAccess = (bool)cmd.ExecuteScalar();
                     //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
                     con.Close();
 
                 }
             }
-            return ConvertDataTableToRightsByCrewIdAndPageNameList(ds);
+            return hasAccess;
         }
 
         private RightsPOCO ConvertDataTableToRightsByCrewIdAndPageNameList(DataSet ds)
@@ -234,6 +236,58 @@ namespace TM.RestHour.DAL
             rightsPOCO.CrewList = crewPOCOs;
 
             return rightsPOCO;
+        }
+
+
+
+
+        public List<AccessRightsPOCO> GetAccessRightsByCrewId(int CrewId)
+        {
+            List<AccessRightsPOCO> prodPOList = new List<AccessRightsPOCO>();
+            List<AccessRightsPOCO> prodPO = new List<AccessRightsPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetAccessRightsByCrewId", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewId", CrewId);
+                    con.Open();
+
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+                    con.Close();
+
+                }
+            }
+            return ConvertDataTableToAccessRightsByCrewIdList(ds);
+        }
+
+        private List<AccessRightsPOCO> ConvertDataTableToAccessRightsByCrewIdList(DataSet ds)
+        {
+            List<AccessRightsPOCO> prodPOList = new List<AccessRightsPOCO>();
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    AccessRightsPOCO prodPO = new AccessRightsPOCO();
+
+                    if (item["CrewId"] != System.DBNull.Value)
+                        prodPO.CrewId = Convert.ToInt32(item["CrewId"].ToString());
+
+                    if (item["HasAccess"] != System.DBNull.Value)
+                        prodPO.HasAccess = Convert.ToBoolean(item["HasAccess"].ToString());
+
+                    if (item["ResourceName"] != System.DBNull.Value)
+                        prodPO.ResourceName = item["ResourceName"].ToString();
+
+                    prodPOList.Add(prodPO);
+                }
+            }
+            return prodPOList;
         }
 
     }

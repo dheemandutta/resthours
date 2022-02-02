@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\CryptoEngine.cs" />
+    <Compile Include="Entities\AccessRightsPOCO.cs" />
     <Compile Include="Entities\CIRMPOCO.cs" />
     <Compile Include="Entities\CompanyDetailsPOCO.cs" />
     <Compile Include="Entities\ConfigPOCO.cs" />
