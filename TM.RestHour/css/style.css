@@ -15893,3 +15893,31 @@ button:disabled {
     padding: 0 !important;
 }
 .modal-content img{width:100%;}
+.card-block .form-horizontal .form-control, .bacb .form-horizontal .form-control {
+    width: 100%
+}
+.card-block .form-horizontal, .bacb .form-horizontal {
+    text-align: left;
+}
+.savebtn {
+    float: right;
+    color: #fff;
+    background-color: #2077bd;
+    border-color: #2077bd;
+    border: 0;
+    font-size: 17px;
+    padding: 7px 30px;
+    border-radius: 6px;
+    text-align: center;
+}
+.onelinecheckbox div {
+    display: inline-block;
+    width: 73px;
+}
+.cardpadd{padding:23px;}
+.itemlist{}
+    .itemlist li {
+        display: inline-block;
+        padding: 5px 19px 8px;
+    }
+.paddbotton{margin:0 0 30px 0;}

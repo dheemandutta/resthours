@@ -47,9 +47,9 @@
         </div>
     </div>
 
-    <div class="card bac">
+    <div class="bac card cardpadd">
 
-        <div class="card">
+        <div class="">
             <div class="row">
                 @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
 
@@ -104,12 +104,12 @@
                                             <h4 class="mrBTM-10">HOURS OF WORK AND REST</h4>
                                         </div>
                                         <div class="mrBTM-10">
-                                            @*<div class="pull-left color_blue_Dark">
+                                            <div class="pull-left color_blue_Dark">
                                                 Form Number :
                                             </div>
                                             <div class="pull-right color_blue_Dark">
                                                 Revision Number :
-                                            </div>*@
+                                            </div>
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="mrBTM-10">
@@ -229,13 +229,14 @@
 
 
             <div class="row desi">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                ILO Work @*#*@ &#9819; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                ILO Rest @*^*@ &#9820; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                OCIMF @***@ &#9822; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Customised @*$*@ &#9827; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                IMO STCW 2010 @*&*@ &#9829;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                OPA-90 @*!*@ &#9828;
+               <ul class="itemlist">
+                   <li>ILO Work @*#*@ &#9819;</li>
+                   <li>ILO Rest @*^*@ &#9820;</li>
+                   <li>OCIMF @***@ &#9822;</li>
+                   <li>Customised @*$*@ &#9827;</li>
+                   <li>IMO STCW 2010 @*&*@ &#9829;</li>
+                   <li>OPA-90 @*!*@ &#9828;</li>
+               </ul>
             </div>
 
             <div class="row">
@@ -1553,12 +1554,12 @@
                 <div class="col-sm-12 col-xs-12 font16">
                     <div class="mrRHT-10 mrLFT-10 mrTP-20 mrBTM-10">
                         <div class="row">
-                            <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-12 col-xs-12 paddbotton">
                                 <div class="pull-left color_blue_Dark">Signature of Seaman:</div>
                                 <div class="pull-left">&nbsp;____________________________________</div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-12 col-xs-12">
                                 <div class="pull-left color_blue_Dark">Signature of Master/Person Authorised by the Master :</div>
                                 <div class="pull-left">&nbsp;_________________________</div>
                                 <div class="clearfix"></div>
