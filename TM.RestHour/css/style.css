@@ -5410,7 +5410,7 @@ body::-webkit-scrollbar {
     position: relative;
     background: #F9F9F9;
     margin: 0;
-    z-index: 22;
+    /*z-index: 22;*/
     border-radius: 0px;
     padding: 100px 30px 30px 30px;
 }
@@ -15809,8 +15809,15 @@ button:disabled {
         width: 30%;
         margin: 0 0 10px 0;
     }
-.com-deatis-frm h3{}
-.vessel-detl .card{padding:20px; margin:0 0 20px 0;}
+
+    .com-deatis-frm h3 {
+    }
+
+.vessel-detl .card {
+    padding: 20px;
+    margin: 0 0 20px 0;
+}
+
 .addbtn button {
     border: 0;
     background: #192848;
@@ -15819,4 +15826,98 @@ button:disabled {
     border-radius: 20px;
     font-size: 17px;
 }
-.ui-widget.ui-widget-content{width:300px;}
+
+.ui-widget.ui-widget-content {
+    width: 300px;
+}
+
+.form-horizontal {
+    text-align: center;
+}
+
+    .form-horizontal .form-control {
+        width: 44%;
+        margin: 0 0 6px 0;
+        display: inline-block;
+    }
+
+    .form-horizontal label {
+        display: inline-block;
+        width: 196px;
+        text-align: left;
+    }
+
+.newcard {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    padding: 20px 30px;
+    margin: 0 0 20px 0;
+}
+
+.points-no {
+    font-size: 20px;
+    text-align: center;
+    margin: 31px 0 0;
+}
+
+.imguplodimg img {
+    width:100%;
+}
+
+.imguplodimg a {
+    background: #a479f8;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.uploadbtn a {
+    background: #121d36;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 6px;
+}
+.modal-header .close {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.modal-content img{width:100%;}
+.card-block .form-horizontal .form-control, .bacb .form-horizontal .form-control {
+    width: 100%
+}
+.card-block .form-horizontal, .bacb .form-horizontal {
+    text-align: left;
+}
+.savebtn {
+    float: right;
+    color: #fff;
+    background-color: #2077bd;
+    border-color: #2077bd;
+    border: 0;
+    font-size: 17px;
+    padding: 7px 30px;
+    border-radius: 6px;
+    text-align: center;
+}
+.onelinecheckbox div {
+    display: inline-block;
+    width: 73px;
+}
+.cardpadd{padding:23px;}
+.itemlist{}
+    .itemlist li {
+        display: inline-block;
+        padding: 5px 19px 8px;
+    }
+.paddbotton{margin:0 0 30px 0;}

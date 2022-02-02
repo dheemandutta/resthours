@@ -80,7 +80,7 @@
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-6 col-xs-12">
+                                    <div class="col-sm-4 col-xs-12">
                                         <label for="selectCrew" class="control-label">Select Crew</label><br />
                                         @Html.HiddenFor(model => model.AdminStatus, new { id = "hdnAdminstatus", value = Model.AdminStatus })
                                         @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
@@ -89,11 +89,11 @@
                                             <input id="daytoggle" checked data-toggle="toggle" data-on="Time 1" data-off="Time 2" data-onstyle="success" data-offstyle="danger" type="checkbox">
                                         </div>
                                     </div>
-                                    <div class="col-sm-3 col-xs-6">
+                                    <div class="col-sm-4 col-xs-6">
                                         <label>Total Work Hours:</label>
                                         <input type="text" class="form-control" id="TotalWorkHours" placeholder="Total Work Hours" />
                                     </div>
-                                    <div class="col-sm-3 col-xs-6" >
+                                    <div class="col-sm-4 col-xs-6" >
 
                                         @*<div class="form-inline">*@
                                         @*<div class="form-horizontal" style="margin-bottom:3px;">
@@ -113,14 +113,15 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label for="inputPassword3" class="control-label"></label>
-                                    <div class="col-sm-6 col-xs-12">
+                                   
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label for="inputPassword3" class="control-label"></label>
                                         @*<label>Days</label>*@
                                         <div class="multiple">
                                             @*////////////////////// Deep time peacker ////////////////////////*@
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-xs-12">
+                                    <div class="col-sm-3 col-xs-12">
 
                                         <button class="btn btn-primary pull-right" type="button" id="btnCopyTimeSheet">Copy Time Sheet</button>
 
@@ -423,21 +424,25 @@
                                 <div class="form-horizontal">
                                     <div class="row">
                                         <div class="col-sm-8 col-xs-12">
-                                            <label class="control-label">Service:</label>
+                                           
                                             <form>
-                                                <label>
-                                                    <input type="text" class="form-control" id="ServiceTerms1" placeholder="From" readonly />
-                                                </label>
-                                                <label>
-                                                    <span>To</span>
-                                                </label>
-                                                <label>
-                                                    <span>&nbsp;</span>
-                                                </label>
-                                                <label>
-                                                    <input type="text" class="form-control" id="ServiceTerms2" placeholder="To" readonly />
-                                                </label>
-                                            </form>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <label class="control-label">Service:</label>
+                                                        <label>
+                                                            <input type="text" class="form-control" id="ServiceTerms1" placeholder="From" readonly />
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <label>
+                                                            <span>To</span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="text" class="form-control" id="ServiceTerms2" placeholder="To" readonly />
+                                                        </label>
+														</div>
+                                                    </div>
+</form>
                                         </div>
                                         <div class="col-sm-4 col-xs-12 mrTP-30" style="text-align: right;">
                                             <button id="btnRedirectCrewServicePage" type="button" class="btn btn-primary">Modify Service Terms</button>

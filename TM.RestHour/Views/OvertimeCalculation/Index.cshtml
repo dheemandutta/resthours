@@ -1,0 +1,313 @@
+﻿@model TM.Base.Entities.OvertimeCalculationPOCO
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link rel="stylesheet" href="../css/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="../css/datatable/css/buttons.dataTables.min.css" />
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+<script src="~/Scripts/jquery-ui.js"></script>
+
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<link href="~/link/css/rank.css" rel="stylesheet" />
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+
+
+<script src="~/Scripts/jquery.tristate.js"></script>
+<script src="~/Scripts/OvertimeCalculation.js"></script>
+
+
+<style>
+    .bac {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+    }
+
+    .bac1 {
+        border-radius: 0;
+        padding: 18px;
+        background: #fff;
+        /* margin: 0 -29px; */
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        margin: 10px;
+        height: 450px;
+    }
+
+    .card {
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        margin: 0 0 19px 0;
+    }
+</style>
+
+@Html.Hidden("SaveOvertimeCalculation", @Url.Action("SaveOvertimeCalculation", "OvertimeCalculation"))
+@Html.Hidden("GetOvertimeCalculation", @Url.Action("GetOvertimeCalculation", "OvertimeCalculation"))
+
+<body>
+    <div class="row">
+        <div class="head_title">
+            <h2 class="ta">Overtime Calculation</h2>
+        </div>
+        <div class="">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="DailyWorkHours">Daily Work Hours</label>
+                                    <select id="DailyWorkHours" style="width:100%;" class="form-control">
+                                        <option value="">Select</option>
+                                        <option value="7">7 hours</option>
+                                        <option value="8">8 hours</option>
+                                        <option value="12">12 hours</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="HourlyRate">Hourly Rate</label>
+                                    <input type="number" class="form-control" id="HourlyRate" placeholder="Hourly Rate" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="FixedWorkHour">Fixed Work Hour</label>
+                                    <input type="number" class="form-control" id="FixedWorkHour" value="0" disabled />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="FixedOvertime">Fixed Overtime</label>
+                                    <input type="number" class="labelmax form-control" id="FixedOvertime" placeholder="Fixed Overtime" value='0' min="1" max="160" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="hidden" id="isWeekly" name="isWeekly" value="">
+                                <div class="form-group">
+                                    <label for="HoursPerWeekOrMonth">Hours Per Week/Month</label>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <input type="radio" id="Month" name="HoursPerWeekOrMonth" value="0"> Month
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <input type="radio" id="Week" name="HoursPerWeekOrMonth" value="1" checked> Week
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group onelinecheckbox" id="week">
+                                    <div><input id="Mon" type="checkbox">Mon<span id="Mon-value" class="output" style="color:#fff"></span></div>
+                                    <div><input id="Tue" type="checkbox">Tue<span id="Tue-value" class="output" style="color:#fff"></span></div>
+                                    <div><input id="Wed" type="checkbox">Wed<span id="Wed-value" class="output" style="color:#fff"></span></div>
+                                    <div><input id="Thu" type="checkbox">Thu<span id="Thu-value" class="output" style="color:#fff"></span></div>
+                                    <div><input id="Fri" type="checkbox">Fri<span id="Fri-value" class="output" style="color:#fff"></span></div>
+                                    <div><input id="Sat" type="checkbox">Sat<span id="Sat-value" class="output" style="color:#fff"></span></div>
+                                    <div><input id="Sun" type="checkbox">Sun<span id="Sun-value" class="output" style="color:#fff"></span></div>
+                                    @*<div>Current value returned by <code>$.val()</code>: <span id="tristate-value" class="output"></span></div>*@
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">Save</button>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+        @*<div class="col-md-7 bac">
+                <div><input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" /></div>
+            </div>*@
+
+
+
+
+
+    </div>
+    </div>
+</body>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        //alert('hi');
+
+        //
+
+        //$('input[name="HoursPerWeekOrMonth"]').on('click', function () {
+        //    var x = $('input[name="HoursPerWeekOrMonth"]:checked').val();
+
+        //    if (x === '0') {
+        //        EnableWeek();
+        //        //$('#FixedOvertime').prop('disabled', false);
+        //    } else {
+        //        EnableMonth();
+        //    }
+
+        //    console.log(x);
+        //});
+
+
+
+
+
+        document.getElementsByClassName('labelmax form-control')[0].oninput = function () {
+            var max = parseInt(this.max);
+
+            if (parseInt(this.value) > max) {
+                this.value = max;
+            }
+        }
+
+
+
+
+
+        $(document).ready(function () {
+
+            GetOvertimeCalculation();
+            //SetUpGrid();
+            //SetUpGridloadDataPrint();
+            $("#DailyWorkHours").change(function () {
+                calc();
+            });
+
+
+
+
+        });
+
+
+        $(function () {
+
+            function outputMon(state, value) {
+                $('#Mon-value').text(value);
+            }
+            function outputTue(state, value) {
+                $('#Tue-value').text(value);
+            }
+            function outputWed(state, value) {
+                $('#Wed-value').text(value);
+            }
+            function outputThu(state, value) {
+                $('#Thu-value').text(value);
+            }
+            function outputFri(state, value) {
+                $('#Fri-value').text(value);
+            }
+            function outputSat(state, value) {
+                $('#Sat-value').text(value);
+            }
+            function outputSun(state, value) {
+                $('#Sun-value').text(value);
+            }
+
+
+
+
+
+            var Mon = $('#Mon').tristate({
+                checked: "1",
+                unchecked: "0",
+                indeterminate: "2",
+
+                init: outputMon,
+                change: outputMon
+            });
+            var Tue = $('#Tue').tristate({
+                checked: "1",
+                unchecked: "0",
+                indeterminate: "2",
+
+                init: outputTue,
+                change: outputTue
+            });
+            var Wed = $('#Wed').tristate({
+                checked: "1",
+                unchecked: "0",
+                indeterminate: "2",
+
+                init: outputWed,
+                change: outputWed
+            });
+            var Thu = $('#Thu').tristate({
+                checked: "1",
+                unchecked: "0",
+                indeterminate: "2",
+
+                init: outputThu,
+                change: outputThu
+            });
+            var Fri = $('#Fri').tristate({
+                checked: "1",
+                unchecked: "0",
+                indeterminate: "2",
+
+                init: outputFri,
+                change: outputFri
+            });
+            var Sat = $('#Sat').tristate({
+                checked: "1",
+                unchecked: "0",
+                indeterminate: "2",
+
+                init: outputSat,
+                change: outputSat
+            });
+            var Sun = $('#Sun').tristate({
+                checked: "1",
+                unchecked: "0",
+                indeterminate: "2",
+
+                init: outputSun,
+                change: outputSun
+            });
+        });
+
+    </script>
+
+}
+

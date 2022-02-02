@@ -220,8 +220,8 @@ namespace TM.RestHour.BL
 				if (hasOverTime)
 					item.OvertimeHours = CalculateOvertimeHours(Convert.ToDecimal(item.TotalWorkedHours), item.WorkDate); //GetOvertimeHours(item.ComplianceInfo);
 				else
-					item.OvertimeHours = "0";
-				item.NormalWorkingHours = Convert.ToDouble(item.TotalWorkedHours) - Convert.ToDouble(item.OvertimeHours);
+					item.OvertimeHours = "0";      // deep
+                item.NormalWorkingHours = Convert.ToDouble(CalculateNormalWorkingHours(item.WorkDate));//Convert.ToDouble(item.TotalWorkedHours) - Convert.ToDouble(item.OvertimeHours);
 				totalNormal += item.NormalWorkingHours;
                 totalOvertime += double.Parse(item.OvertimeHours);
                 totalhrs += double.Parse(item.TotalWorkedHours);
@@ -345,16 +345,60 @@ namespace TM.RestHour.BL
 			return reportsDAL.GetCrewOverTimeStatus(crewId);
 		}
 
+        private string CalculateNormalWorkingHours(string workDate)
+        {
+            DateTime dt = workDate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), "/", ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+            int day = ((int)dt.DayOfWeek == 0) ? 7 : (int)dt.DayOfWeek;
+            int normalworkingHours = GetWorkingHours(day, 0);
+            if (normalworkingHours == 1) 
+            {
+                normalworkingHours = 8;
+            }
+            else if (normalworkingHours == 2)
+            {
+                normalworkingHours = 4;
+            }
+            else if (normalworkingHours == 0)
+            {
+                normalworkingHours = 0;
+            }
+
+            return normalworkingHours.ToString();
+        }
+
 		private string CalculateOvertimeHours(decimal workedHours, string workDate)
 		{
-			DateTime dt = workDate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), "/", ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
-			
+            bool isWeekly = true;
+            OvertimeCalculationBL overtimeCalculationBL = new OvertimeCalculationBL();
+            isWeekly = overtimeCalculationBL.GetIsWeeklyFromOvertimeCalculation();
+            decimal overtimeHours=0;
+            decimal fixedOvertime = 0;
 
-			int day = ((int)dt.DayOfWeek == 0) ? 7 : (int)dt.DayOfWeek;
+            //if (isWeekly)
+            //{
+                DateTime dt = workDate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), "/", ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
+                int day = ((int)dt.DayOfWeek == 0) ? 7 : (int)dt.DayOfWeek;
+                int normalworkingHours = GetWorkingHours(day, 0);
+            if (normalworkingHours == 1)
+                normalworkingHours = 8;
+            else if (normalworkingHours == 2)
+                normalworkingHours = 4;
+            else if (normalworkingHours == 0)
+                normalworkingHours = 0;
 
-			int normalworkingHours = GetWorkingHours(day,0);
+            overtimeHours = workedHours - normalworkingHours;
+            //}
+            //else
+            //{
+            //    decimal weeklyworkedhrs = 0;
+            //    fixedOvertime = overtimeCalculationBL.GetFixedOvertimeFromOvertimeCalculation();
+            //    overtimeHours = workedHours - fixedOvertime;
+            //    //weeklyworkedhr
 
-			decimal overtimeHours = workedHours - normalworkingHours;
+
+            //}
+            
+            
 
 			if (overtimeHours > 0)
 				return overtimeHours.ToString();

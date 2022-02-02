@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TM.RestHour</RootNamespace>
     <AssemblyName>TM.RestHour</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -28,6 +28,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,6 +83,7 @@
       <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
@@ -93,11 +95,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -142,6 +141,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -162,8 +162,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\TraceFilterAttribute.cs" />
     <Compile Include="Controllers\AddCrewController.cs" />
+    <Compile Include="Controllers\AllowMultipleButtonAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompanyDetailsController.cs" />
+    <Compile Include="Controllers\CreateNewUserAccountController.cs" />
     <Compile Include="Controllers\CrewHealthController.cs" />
     <Compile Include="Controllers\CrewListController.cs" />
     <Compile Include="Controllers\EquipmentsController.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Controllers\MedicalChestController.cs" />
     <Compile Include="Controllers\MvcExtensions.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
+    <Compile Include="Controllers\OvertimeCalculationController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\PsychologicalEvaluationController.cs" />
     <Compile Include="Controllers\RegimeController.cs" />
@@ -213,6 +216,7 @@
     <Compile Include="Models\MedicalSymtomology.cs" />
     <Compile Include="Models\OneDayTimeAdjustment.cs" />
     <Compile Include="Models\Options.cs" />
+    <Compile Include="Models\OvertimeCalculation.cs" />
     <Compile Include="Models\Permissions.cs" />
     <Compile Include="Models\RankPermission.cs" />
     <Compile Include="Models\Ranks.cs" />
@@ -233,6 +237,7 @@
     <Compile Include="Models\VesselDetails.cs" />
     <Compile Include="Models\VesselViewModel.cs" />
     <Compile Include="Models\VitalStatistics.cs" />
+    <Compile Include="Models\WorkingHours.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -650,8 +655,12 @@
     <Content Include="css\popuo-box.css" />
     <Content Include="css\preloader.html" />
     <Content Include="css\style.css" />
+    <Content Include="devsqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\28-01-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\29-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Full_12.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_04.03.2021.sql" />
     <Content Include="devsqlscripts\Worth_SQL_Script_Initial_17.03.2021.sql" />
@@ -1227,6 +1236,7 @@
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.timepicker.js" />
     <Content Include="Scripts\jquery.timepicker.min.js" />
+    <Content Include="Scripts\jquery.tristate.js" />
     <Content Include="Scripts\jquery.typeahead.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1241,6 +1251,7 @@
     <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\old\jquery-3.5.1.js" />
     <Content Include="Scripts\Options.js" />
+    <Content Include="Scripts\OvertimeCalculation.js" />
     <Content Include="Scripts\pdfmake.min.js" />
     <Content Include="Scripts\PsychologicalEvaluation.js" />
     <Content Include="Scripts\Ranks.js" />
@@ -1255,6 +1266,7 @@
     <Content Include="Scripts\UploadMedicalInventory.js" />
     <Content Include="Scripts\Vessel.js" />
     <Content Include="Scripts\VesselDetails.js" />
+    <Content Include="sqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\01-CreateTable\CreateTable_RestHour.sql" />
     <Content Include="sqlscripts\03-UpdateDB\01-UpdateDB.sql" />
     <Content Include="sqlscripts\04-CreateFunction\ufn_CSVToTable.sql" />
@@ -1321,6 +1333,9 @@
     <Content Include="sqlscripts\09-Create-SPs\dbo.usp_GetAllUsersForDrp.StoredProcedure.sql" />
     <Content Include="sqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\22-01-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\27-01-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\28-01-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\29-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\Worth_SQL_Script_Full_12.03.2021.sql" />
     <Content Include="sqlscripts\Worth_SQL_Script_Full_18.12.2021%28usk%29.sql" />
     <Content Include="sqlscripts\Worth_SQL_Script_Initial_04.03.2021.sql" />
@@ -1457,12 +1472,22 @@
     <Content Include="Views\MedicalChest\MedicalChestCertificate.cshtml" />
     <Content Include="Views\Shared\_pvPatientDetails1.cshtml" />
     <Content Include="Views\Shared\_pvPatientDetails2.cshtml" />
+    <Content Include="Views\OvertimeCalculation\Index.cshtml" />
+    <Content Include="Views\CrewList\CrewListNew_bingshu.cshtml" />
+    <Content Include="Views\CreateNewUserAccount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\dataTables.dataTables.d.ts" />
+    <TypeScriptCompile Include="Scripts\types.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TM.Base\TM.Base.csproj">
@@ -1481,13 +1506,6 @@
       <Project>{a5bf9ce9-0ecb-4af6-af59-0248e031c98d}</Project>
       <Name>TM.RestHour.Entities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Scripts\dataTables.dataTables.d.ts" />
-    <TypeScriptCompile Include="Scripts\types.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1508,7 +1526,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56718</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44376/</IISUrl>
+          <IISUrl>http://localhost:44376/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

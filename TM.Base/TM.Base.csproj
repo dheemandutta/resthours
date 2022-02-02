@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TM.Base</RootNamespace>
     <AssemblyName>TM.Base</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +70,7 @@
     <Compile Include="Entities\NonCompliancePOCO.cs" />
     <Compile Include="Entities\OneDayTimeAdjustmentPOCO.cs" />
     <Compile Include="Entities\OptionsPOCO.cs" />
+    <Compile Include="Entities\OvertimeCalculationPOCO.cs" />
     <Compile Include="Entities\PermissionsPOCO.cs" />
     <Compile Include="Entities\PsychologicalEvaluationPOCO.cs" />
     <Compile Include="Entities\RankPermissionPOCO.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Entities\UsersPOCO.cs" />
     <Compile Include="Entities\VesselDetailsPOCO.cs" />
     <Compile Include="Entities\VitalStatisticsPOCO.cs" />
+    <Compile Include="Entities\WorkingHoursPOCO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
