@@ -221,7 +221,7 @@ namespace TM.RestHour.BL
 					item.OvertimeHours = CalculateOvertimeHours(Convert.ToDecimal(item.TotalWorkedHours), item.WorkDate); //GetOvertimeHours(item.ComplianceInfo);
 				else
 					item.OvertimeHours = "0";      // deep
-				item.NormalWorkingHours = Convert.ToDouble(item.TotalWorkedHours) - Convert.ToDouble(item.OvertimeHours);
+                item.NormalWorkingHours = Convert.ToDouble(CalculateNormalWorkingHours(item.WorkDate));//Convert.ToDouble(item.TotalWorkedHours) - Convert.ToDouble(item.OvertimeHours);
 				totalNormal += item.NormalWorkingHours;
                 totalOvertime += double.Parse(item.OvertimeHours);
                 totalhrs += double.Parse(item.TotalWorkedHours);
@@ -350,6 +350,18 @@ namespace TM.RestHour.BL
             DateTime dt = workDate.FormatDate(ConfigurationManager.AppSettings["InputDateFormat"].ToString(), "/", ConfigurationManager.AppSettings["OutputDateFormat"].ToString(), ConfigurationManager.AppSettings["OutputDateSeperator"].ToString());
             int day = ((int)dt.DayOfWeek == 0) ? 7 : (int)dt.DayOfWeek;
             int normalworkingHours = GetWorkingHours(day, 0);
+            if (normalworkingHours == 1) 
+            {
+                normalworkingHours = 8;
+            }
+            else if (normalworkingHours == 2)
+            {
+                normalworkingHours = 4;
+            }
+            else if (normalworkingHours == 0)
+            {
+                normalworkingHours = 0;
+            }
 
             return normalworkingHours.ToString();
         }

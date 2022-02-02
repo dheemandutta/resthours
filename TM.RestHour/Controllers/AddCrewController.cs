@@ -273,7 +273,27 @@ namespace TM.RestHour.Controllers
         }
 
         //
-        
+
+        public JsonResult CreateNewCrewLogin(string ID)
+        {
+            CrewBL crewBL = new CrewBL();
+            CrewPOCO crewPC = new CrewPOCO();
+            crewPC = crewBL.GetAllCrewByCrewID(int.Parse(ID), int.Parse(Session["VesselID"].ToString()));
+            string crewUserId = string.Empty;
+
+            Random rnd = new Random();
+            crewUserId = crewPC.FirstName.Substring(0, 3) + crewPC.LastName.Substring(0, 3) + rnd.Next(100);
+
+            RanksBL ranks = new RanksBL();
+            int groupId = ranks.GetGroupFromRank(crewPC.RankID, int.Parse(Session["VesselID"].ToString()));
+
+
+
+            return Json(new { result = "Redirect", url = Url.Action("Index", "CreateNewUserAccount", Request.QueryString.ToRouteValues(new { grp = groupId, username = crewUserId, crewId = crewPC.ID })) }, JsonRequestBehavior.AllowGet);
+
+
+        }
+
 
         public JsonResult AddEdit(Crew crew)
         {

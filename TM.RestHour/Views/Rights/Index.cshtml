@@ -61,6 +61,8 @@
                                                 <label for="selectCrew">Crew</label>
                                                 @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
                                                     @Html.DropDownListFor(model => model.CrewId, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                           
+                                            <label for="PageName">Page</label>
                                                 @*<input id="PageName" type="text" class="searchTerm" placeholder="Search....">*@
                                                 @Html.TextBoxFor(m => m.PageName, new { @class = "searchTerm" })
                                             </div>

@@ -165,6 +165,7 @@
     <Compile Include="Controllers\AllowMultipleButtonAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompanyDetailsController.cs" />
+    <Compile Include="Controllers\CreateNewUserAccountController.cs" />
     <Compile Include="Controllers\CrewHealthController.cs" />
     <Compile Include="Controllers\CrewListController.cs" />
     <Compile Include="Controllers\EquipmentsController.cs" />
@@ -1469,6 +1470,8 @@
     <Content Include="Views\Shared\_pvWeatherDetails.cshtml" />
     <Content Include="Views\MedicalChest\MedicalChestCertificate.cshtml" />
     <Content Include="Views\OvertimeCalculation\Index.cshtml" />
+    <Content Include="Views\CrewList\CrewListNew_bingshu.cshtml" />
+    <Content Include="Views\CreateNewUserAccount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

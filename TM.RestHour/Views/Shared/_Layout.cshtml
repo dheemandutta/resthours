@@ -224,7 +224,7 @@
             </li>
 
             <li class="">
-                <a href="@Url.Action("IndexIn", "MailServerDetails" )" aria-expanded="false">
+                <a class="has-arrow" href="#" aria-expanded="false">
                     <div class="nav_icon_small">
                         <img src="../img/menu-icon/icon_Gear.png" alt="">
                     </div>
@@ -232,6 +232,10 @@
                         <span>Settings</span>
                     </div>
                 </a>
+                <ul class="menu_Sub">
+                    <li><a href='@Url.Action("IndexIn", "MailServerDetails")'>Settings</a></li>
+                    <li><a href='@Url.Action("Index", "OvertimeCalculation")'>Set Overtime</a></li>
+                </ul>
             </li>
 
 

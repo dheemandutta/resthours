@@ -30,8 +30,6 @@
 @Html.Hidden("loadprintreport", @Url.Action("LoadData2", "CrewList"))
 
 
-
-
 <div class="">
     <div class="white_card_header">
         <div class="box_header m-0">
@@ -44,31 +42,49 @@
         <div class="row">
             <div class="col-lg-6">
                 <form>
-                    <input type="file" id="myFile" name="filename">
-                    <input type="submit" value="Import Crew List" class="upload-btn">
+                    @*<input type="file" id="myFile" name="filename">
+        <input type="submit" value="Import Crew List" class="upload-btn">*@
+                    @using (Html.BeginForm("CrewListNew", "CrewList", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <span style="font-size:20px;">Select File:</span>
+                        <br />
+                        <input type="file" name="postedFile" />
+                        @*<hr />*@
+                        <br />
+                        <input type="submit" value="Upload" class="upload-btn" />
+                        <br /><br />
+                        <span style="color:green">@ViewBag.Message</span>
+                    }
                 </form>
             </div>
             <div class="col-lg-6">
                 <div class="">
                     <h4><span> <img src="~/img/excel-file-open.png" /></span> Template for Crew list Update</h4>
-                    <a href="#" class="downexcel">Download Excel</a>
+                    <a href="../../Import/IMOcrewlistForm5.xlsx" class="downexcel">Download Excel</a>
+                    @*<a href="../../Import/IMOcrewlistForm5.xlsx" class="downexcel" target="_self" download>
+                        <img src="#" alt="Download Excel" style="float:left;" class="button1">
+                    </a>*@
                 </div>
             </div>
         </div>
         </div>
+
+
+
+
         <div class="card bac">
             <div class="crew-div">
                 <div class="row">
                     <div class="col-lg-9">
-                        <h5>Crew Count:41</h5>
+                        @*<h5>Crew Count:41</h5>*@
                         <ul>
-                            <li><a href="#"><i class="fa fa-file-excel" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-file-pdf" aria-hidden="true"></i></a></li>
+                            @*<li><a href="#"><i class="fa fa-file-excel" aria-hidden="true"></i></a></li>*@
+                            <li><a href="#"><i id="btnPrint" class="fa fa-file-pdf" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3">
                         <div class="">
-                            <a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Crew</a>
+                            <a href="#" onclick="location.href='@Url.Action("Index", "AddCrew")'"><i class="fa fa-plus" aria-hidden="true"></i> Crew</a>
                             <div class="form-group">
                                 <label>Search</label>
                                 <input type="text" class="form-control" />
@@ -81,125 +97,128 @@
             <div class="">
 
                 <div class="row">
-                    <div class="col-sm-12 col-xs-12 imo">
-                        <div class="">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <div class="col-sm-12 col-xs-12 imo">
+                            <div style="width:90%; margin:0 auto" class="tablecontainer">
 
-                            @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
-                            @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
-                            @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
-                            @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
-                            <input type="hidden" id="hdncount" />
-                            <input type="hidden" id="hdnrole" />
-                            <div class="table-responsive">
-                                <table id="CrewListtable" class="table display">
-                                    <thead class="blue_Color color_white">
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">RankName</th>
-                                            <th scope="col" class="text-center">StartDate</th>
-                                            <th scope="col" class="text-center">EndDate</th>
-                                            <th scope="col" class="text-center">Edit</th>
-                                            <th scope="col" class="text-center">Deactivate</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
+                                @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                                @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+                                @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+                                @Html.Hidden("createNewLogin", @Url.Action("CreateNewCrewLogin", "AddCrew"))
+                                <input type="hidden" id="hdncount" />
+                                <input type="hidden" id="hdnrole" />
+                                <div class="table-responsive">
+                                    <table id="CrewListtable" class="table display">
+                                        <thead class="blue_Color color_white">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Nationality</th>
+                                                <th>Rank</th>
+                                                <th>PassportOrSeaman</th>
+                                                <th>Create Login</th>
+                                                <th>View</th>
+                                                <th>Delete</th>
+                                                <th>Assign Rights</th>
+                                                <th>Active / Inactive</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        @*------------Old Table Code---------------*@
+
+                        <!--<div class="col-sm-12 col-xs-12">-->
+                        <!-- Nav tabs -->
+                        <!--<div class="">
+            <div class="mrBTM-10">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="nav-item"><a class="nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab">  <span>Active Users</span></a></li>
+                    <li role="presentation" class="nav-item"><a class="nav-link" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">  <span>Inactive Users</span></a></li>
+                </ul>
+            </div>-->
+                        <!-- Tab panes -->
+                        <!--<div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <div class="col-sm-12 col-xs-12 imo">
+                            <div class="">
+
+                                @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
+                                @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                                @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+                                @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+                                <input type="hidden" id="hdncount" />
+                                <input type="hidden" id="hdnrole" />
+                                <div class="table-responsive">
+                                    <table id="CrewListtable" class="table display">
+                                        <thead class="blue_Color color_white">
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">RankName</th>
+                                                <th scope="col" class="text-center">StartDate</th>
+                                                <th scope="col" class="text-center">EndDate</th>
+                                                <th scope="col" class="text-center">Edit</th>
+                                                <th scope="col" class="text-center">Deactivate</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    @*------------Old Table Code---------------*@
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <div class="col-sm-12 col-xs-12 ilo">
+                            <div class="">
 
-                    <!--<div class="col-sm-12 col-xs-12">-->
-                        <!-- Nav tabs -->
-                        <!--<div class="">
-                            <div class="mrBTM-10">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="nav-item"><a class="nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab">  <span>Active Users</span></a></li>
-                                    <li role="presentation" class="nav-item"><a class="nav-link" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">  <span>Inactive Users</span></a></li>
-                                </ul>
-                            </div>-->
-
-                            <!-- Tab panes -->
-                            <!--<div class="tab-content">
-
-                                <div role="tabpanel" class="tab-pane active" id="home">
-                                    <div class="col-sm-12 col-xs-12 imo">
-                                        <div class="">
-
-                                            @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
-                                            @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
-                                            @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
-                                            @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
-                                            <input type="hidden" id="hdncount" />
-                                            <input type="hidden" id="hdnrole" />
-                                            <div class="table-responsive">
-                                                <table id="CrewListtable" class="table display">
-                                                    <thead class="blue_Color color_white">
-                                                        <tr>
-                                                            <th scope="col">Name</th>
-                                                            <th scope="col">RankName</th>
-                                                            <th scope="col" class="text-center">StartDate</th>
-                                                            <th scope="col" class="text-center">EndDate</th>
-                                                            <th scope="col" class="text-center">Edit</th>
-                                                            <th scope="col" class="text-center">Deactivate</th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div role="tabpanel" class="tab-pane" id="profile">
-                                    <div class="col-sm-12 col-xs-12 ilo">
-                                        <div class="">
-
-                                            @Html.Hidden("loaddataForInactiv", @Url.Action("LoadDataForInactiv", "CrewList"))
-                                            @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
-                                            @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
-                                            @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
-                                            <input type="hidden" id="hdncount" />
-                                            <input type="hidden" id="hdnrole" />
-                                            <div class="table-responsive">
-                                                <table id="CrewListtableloaddataForInactiv" class="table display">
-                                                    <thead class="blue_Color color_white">
-                                                        <tr>
-                                                            <th scope="col">Name</th>
-                                                            <th scope="col">RankName</th>
-                                                            <th scope="col" class="text-center">StartDate</th>
-                                                            <th scope="col" class="text-center">EndDate</th>
-                                                            <th scope="col" class="text-center">Edit</th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                                @Html.Hidden("loaddataForInactiv", @Url.Action("LoadDataForInactiv", "CrewList"))
+                                @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                                @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
+                                @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
+                                <input type="hidden" id="hdncount" />
+                                <input type="hidden" id="hdnrole" />
+                                <div class="table-responsive">
+                                    <table id="CrewListtableloaddataForInactiv" class="table display">
+                                        <thead class="blue_Color color_white">
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">RankName</th>
+                                                <th scope="col" class="text-center">StartDate</th>
+                                                <th scope="col" class="text-center">EndDate</th>
+                                                <th scope="col" class="text-center">Edit</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                    </div>-->
-
-                    @*--------End----Old Table Code---------------*@
-                </div>
-
-
-
-                <div id="dvprint2" style="display:none;">
-                    <hr>
-                    @Html.Hidden("loadprintreport", @Url.Action("LoadData2", "CrewList"))
-                    <table id="certtable_print" class="display" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th align="left">Name</th>
-                                <th align="left">Rank Name</th>
-                                <th align="left">Start Date</th>
-                            </tr>
-                        </thead>
-                    </table>
-
+                    </div>
                 </div>
             </div>
+        </div>-->
+                        @*--------End----Old Table Code---------------*@
+                    </div>
+
+
+
+                    <div id="dvprint2" style="display:none;">
+                        <hr>
+                        @Html.Hidden("loadprintreport", @Url.Action("LoadData2", "CrewList"))
+                        <table id="certtable_print" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th align="left">Name</th>
+                                    <th align="left">Rank Name</th>
+                                    <th align="left">Start Date</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+                </div>
         </div>
     </div>
 

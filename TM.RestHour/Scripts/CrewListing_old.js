@@ -106,11 +106,15 @@ function SetUpGrid() {
 
     $("#CrewListtable").DataTable({
         "processing": true, // for show progress bar
-        "serverSide": true, // for process server side
+        //"serverSide": true, // for process server side
+        "ordering": false,
         "filter": false, // this is for disable filter (search box)
-        "orderMulti": false, // for disable multiple column at once
+        //"orderMulti": false, // for disable multiple column at once
         "bLengthChange": false, //disable entries dropdown
-        "stateSave": true,
+        //"lengthMenu": [[2, 4, 10, -1], [2, 4, 10, "All"]],
+        //"pageLength": 10,
+        //"iDisplayLength": 10,
+        //"stateSave": true,
         "ajax": {
             "url": loadposturl,
             "type": "POST",
@@ -138,31 +142,32 @@ function SetUpGrid() {
             {
                 "data": "ID", "width": "50px", "render": function (data) {
                    // return '<a href="#" onclick="AddCrewEdit(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
-                    return '<a href="#" onclick="CreateNewCrewLogin(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
+                    return '<a href="#" onclick="CreateNewCrewLogin(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
                 }
             },
             {
                 "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="showDetail(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
-                }
-            },
-            {
-                "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="showDelete(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
-                }
-            },
-            {
-                "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="showDetail(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
-                }
-            },
-            {
-                "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="ShowInactiveModal(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
+                    return '<a href="#" onclick="showDelete(' + data + ')"><i class="glyphicon glyphicon-trash" style="color:#000; margin-left: 9px;"></i></a>';
                 }
             }
+            //{
+            //    "data": "ID", "width": "50px", "render": function (data) {
+            //        return '<a href="#" onclick="showDetail(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
+            //    }
+            //},
+            //{
+            //    "data": "ID", "width": "50px", "render": function (data) {
+            //        return '<a href="#" onclick="showDetail(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
+            //    }
+            //},
+            //{
+            //    "data": "ID", "width": "50px", "render": function (data) {
+            //        return '<a href="#" onclick="ShowInactiveModal(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
+            //    }
+            //}
 
-        ]
+        ],
+        "rowId": "ID"
     });
 }
 
