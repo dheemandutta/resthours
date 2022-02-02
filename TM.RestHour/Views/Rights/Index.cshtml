@@ -60,7 +60,7 @@
                                             <div class="form-group">
                                                 <label for="selectCrew">Crew</label>
                                                 @*@Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })*@
-                                                    @Html.DropDownListFor(model => model.CrewId, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                                    @Html.DropDownListFor(model => model.CrewId, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" , @disabled = "true" })
                                            
                                             <label for="PageName">Page</label>
                                                 @*<input id="PageName" type="text" class="searchTerm" placeholder="Search....">*@
@@ -170,7 +170,13 @@
 
             console.log("hi");
 
+            var thequerystring = getParameterByName("crew");
+            console.log(thequerystring);
+            if (thequerystring !== null)
+            {
+                $('#ddlCrew').val(thequerystring);
 
+            }
             //GetAllCrewForDrp();
 
         });
@@ -211,6 +217,15 @@
         }
 
 
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
 
     </script>
 }

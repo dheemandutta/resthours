@@ -153,7 +153,7 @@ function SetUpGrid() {
             },
             {
                 "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="showDetail(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
+                    return '<a href="#" onclick="ShowRights(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
                 }
             },
             {
@@ -165,6 +165,15 @@ function SetUpGrid() {
         ]
     });
 }
+
+function ShowRights(id) {
+
+    //alert(id);
+    var url = $('#showRights').val();
+
+    window.location.href = url + "/Index?mode=update&crew=" + id;
+}
+
 
 function SetUpGridForInactiv() {
     //SetUpPrintGridReport();
