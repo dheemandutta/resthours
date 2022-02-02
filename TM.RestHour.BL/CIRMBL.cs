@@ -15,6 +15,11 @@ namespace TM.RestHour.BL
             CIRMDAL cIRMDAL = new CIRMDAL();
             return cIRMDAL.SaveCIRM(cIRM , VesselID);
         }
+        public int SaveCIRMNew(CIRMPOCO cIRM, int VesselID)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.SaveCIRMNew(cIRM, VesselID);
+        }
 
         public CIRMPOCO GetCIRMByCrewId(int CrewId)
         {
@@ -49,6 +54,17 @@ namespace TM.RestHour.BL
         {
             CIRMDAL cIRMDAL = new CIRMDAL();
             return cIRMDAL.GetCIRMPatientDetailsByCrew(ID, vesselId);
+        }
+        /// <summary>
+        /// Added on 31st Jan 2022 @BK
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="vesselId"></param>
+        /// <returns></returns>
+        public CIRMPOCO GetCIRMPatientDetailsByCrewNew(int ID, int vesselId)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.GetCIRMPatientDetailsByCrewNew(ID, vesselId);
         }
         /// <summary>
         ///  Added on 7th Jan 2022 @BK

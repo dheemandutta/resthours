@@ -23,5 +23,6 @@ namespace TM.Base.Entities
         public string SymptomologyDetails { get; set; }
         public string MedicinesAdministered { get; set; }
         public string AnyOtherRelevantInformation { get; set; }
+        public string Ailment { get; set; }
     }
 }

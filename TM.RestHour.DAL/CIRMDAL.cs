@@ -917,6 +917,1097 @@ namespace TM.RestHour.DAL
 
             return recordsAffected;
         }
+
+
+        public int SaveCIRMNew(CIRMPOCO cIRM, int VesselID)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveCIRMNew", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            if (cIRM.CIRMId > 0)
+            {
+                cmd.Parameters.AddWithValue("@CIRMId", cIRM.CIRMId);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@CIRMId", DBNull.Value);
+            }
+            cmd.Parameters.AddWithValue("@MedicalAssistanceType", cIRM.MedicalAssitanceType.ToString());
+
+            #region Vessel Details 4
+            cmd.Parameters.AddWithValue("@VesselID", VesselID);
+            cmd.Parameters.AddWithValue("@NameOfVessel", cIRM.NameOfVessel.ToString());
+            if (!String.IsNullOrEmpty(cIRM.RadioCallSign))
+            {
+                cmd.Parameters.AddWithValue("@RadioCallSign", cIRM.RadioCallSign.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@RadioCallSign", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Weather))
+            {
+                cmd.Parameters.AddWithValue("@Weather", cIRM.Weather.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Weather", DBNull.Value);
+            }
+
+
+            #endregion
+
+            #region Voyage Details 19
+
+            if (!String.IsNullOrEmpty(cIRM.DateOfReportingGMT))
+            {
+                cmd.Parameters.AddWithValue("@DateOfReportingGMT", cIRM.DateOfReportingGMT);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DateOfReportingGMT", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TimeOfReportingGMT))
+            {
+                cmd.Parameters.AddWithValue("@TimeOfReportingGMT", cIRM.TimeOfReportingGMT);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TimeOfReportingGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.LocationOfShip))
+            {
+                cmd.Parameters.AddWithValue("@LocationOfShip", cIRM.LocationOfShip.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@LocationOfShip", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Cousre))
+            {
+                cmd.Parameters.AddWithValue("@Cousre", cIRM.Cousre.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Cousre", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.Speed))
+            {
+                cmd.Parameters.AddWithValue("@Speed", cIRM.Speed.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Speed", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.PortofDeparture))
+            {
+                cmd.Parameters.AddWithValue("@PortofDeparture", cIRM.PortofDeparture.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PortofDeparture", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.DateOfDeparture))
+            {
+                cmd.Parameters.AddWithValue("@DateOfDeparture", cIRM.DateOfDeparture.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DateOfDeparture", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.TimeOfDeparture))
+            {
+                cmd.Parameters.AddWithValue("@TimeOfDeparture", cIRM.TimeOfDeparture.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TimeOfDeparture", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.PortofDestination))
+            {
+                cmd.Parameters.AddWithValue("@PortofDestination", cIRM.PortofDestination.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PortofDestination", DBNull.Value);
+            }
+
+
+            if (!String.IsNullOrEmpty(cIRM.ETADateGMT))
+            {
+                cmd.Parameters.AddWithValue("@ETADateGMT", cIRM.ETADateGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ETADateGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.ETATimeGMT))
+            {
+                cmd.Parameters.AddWithValue("@ETATimeGMT", cIRM.ETATimeGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ETATimeGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.EstimatedTimeOfarrivalhrs))
+            {
+                cmd.Parameters.AddWithValue("@EstimatedTimeOfarrivalhrs", cIRM.EstimatedTimeOfarrivalhrs.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@EstimatedTimeOfarrivalhrs", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.AgentDetails))
+            {
+                cmd.Parameters.AddWithValue("@AgentDetails", cIRM.AgentDetails.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@AgentDetails", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.NearestPort))
+            {
+                cmd.Parameters.AddWithValue("@NearestPort", cIRM.NearestPort.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NearestPort", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.NearestPortETADateGMT))
+            {
+                cmd.Parameters.AddWithValue("@NearestPortETADateGMT", cIRM.NearestPortETADateGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NearestPortETADateGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.NearestPortETATimeGMT))
+            {
+                cmd.Parameters.AddWithValue("@NearestPortETATimeGMT", cIRM.NearestPortETATimeGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NearestPortETATimeGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.OtherPossiblePort))
+            {
+                cmd.Parameters.AddWithValue("@OtherPossiblePort", cIRM.OtherPossiblePort.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@OtherPossiblePort", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.OtherPortETADateGMT))
+            {
+                cmd.Parameters.AddWithValue("@OtherPortETADateGMT", cIRM.OtherPortETADateGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@OtherPortETADateGMT", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.OtherPortETATimeGMT))
+            {
+                cmd.Parameters.AddWithValue("@OtherPortETATimeGMT", cIRM.OtherPortETATimeGMT.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@OtherPortETATimeGMT", DBNull.Value);
+            }
+
+            #endregion
+
+
+            #region Weather Details 8+1
+
+            if (!String.IsNullOrEmpty(cIRM.WindDirection))
+            {
+                cmd.Parameters.AddWithValue("@WindDirection", cIRM.WindDirection.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WindDirection", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.BeaufortScale))
+            {
+                cmd.Parameters.AddWithValue("@BeaufortScale", cIRM.BeaufortScale.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@BeaufortScale", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.WindSpeed))
+            {
+                cmd.Parameters.AddWithValue("@WindSpeed", cIRM.WindSpeed.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WindSpeed", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.SeaState))
+            {
+                cmd.Parameters.AddWithValue("@SeaState", cIRM.SeaState.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SeaState", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.WaveHeight))
+            {
+                cmd.Parameters.AddWithValue("@WaveHeight", cIRM.WaveHeight.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WaveHeight", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Swell))
+            {
+                cmd.Parameters.AddWithValue("@Swell", cIRM.Swell.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Swell", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.WeatherCondition))
+            {
+                cmd.Parameters.AddWithValue("@WeatherCondition", cIRM.WeatherCondition.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WeatherCondition", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.WeatherVisibility))
+            {
+                cmd.Parameters.AddWithValue("@WeatherVisibility", cIRM.WeatherVisibility.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WeatherVisibility", DBNull.Value);
+            }
+
+
+
+            #endregion
+
+            #region Crew Details 13
+            cmd.Parameters.AddWithValue("@CrewId", cIRM.CrewId);
+            cmd.Parameters.AddWithValue("@Nationality", cIRM.Nationality.ToString());
+            cmd.Parameters.AddWithValue("@Addiction", cIRM.Addiction.ToString());
+            cmd.Parameters.AddWithValue("@RankID", cIRM.RankID);
+
+            if (!String.IsNullOrEmpty(cIRM.Ethinicity))
+            {
+                cmd.Parameters.AddWithValue("@Ethinicity", cIRM.Ethinicity.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Ethinicity", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Frequency))
+            {
+                cmd.Parameters.AddWithValue("@Frequency", cIRM.Frequency.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Frequency", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Sex))
+            {
+                cmd.Parameters.AddWithValue("@Sex", cIRM.Sex.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Sex", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.Age))
+            {
+                cmd.Parameters.AddWithValue("@Age", cIRM.Age.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Age", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.JoiningDate))
+            {
+                cmd.Parameters.AddWithValue("@JoiningDate", cIRM.JoiningDate.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@JoiningDate", DBNull.Value);
+            }
+
+
+            if (!String.IsNullOrEmpty(cIRM.DateOfOffWork.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@DateOfOffWork", cIRM.DateOfOffWork);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DateOfOffWork", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TimeOfOffWork.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@TimeOfOffWork", cIRM.TimeOfOffWork);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TimeOfOffWork", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.DateOfResumeWork.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@DateOfResumeWork", cIRM.DateOfResumeWork);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DateOfResumeWork", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TimeOfResumeWork.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@TimeOfResumeWork", cIRM.TimeOfResumeWork);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TimeOfResumeWork", DBNull.Value);
+            }
+            #endregion
+
+            #region Accident or Illness 9+8+13
+
+            if (!String.IsNullOrEmpty(cIRM.DateOfInjuryOrIllness))
+            {
+                cmd.Parameters.AddWithValue("@DateOfInjuryOrIllness", cIRM.DateOfInjuryOrIllness);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DateOfInjuryOrIllness", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TimeOfInjuryOrIllness))
+            {
+                cmd.Parameters.AddWithValue("@TimeOfInjuryOrIllness", cIRM.TimeOfInjuryOrIllness);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TimeOfInjuryOrIllness", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.DateOfFirstExamination))
+            {
+                cmd.Parameters.AddWithValue("@DateOfFirstExamination", cIRM.DateOfFirstExamination);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DateOfFirstExamination", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TimeOfFirstExamination))
+            {
+                cmd.Parameters.AddWithValue("@TimeOfFirstExamination", cIRM.TimeOfFirstExamination);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TimeOfFirstExamination", DBNull.Value);
+            }
+
+
+            if (!String.IsNullOrEmpty(cIRM.IsInjuryorIllnessWorkRelated))
+            {
+                cmd.Parameters.AddWithValue("@IsInjuryorIllnessWorkRelated", cIRM.IsInjuryorIllnessWorkRelated);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@IsInjuryorIllnessWorkRelated", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.IsUnconsciousByInjuryOrIllness))
+            {
+                cmd.Parameters.AddWithValue("@IsUnconsciousByInjuryOrIllness", cIRM.IsUnconsciousByInjuryOrIllness);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@IsUnconsciousByInjuryOrIllness", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.HowLongWasUnconscious))
+            {
+                cmd.Parameters.AddWithValue("@HowLongWasUnconscious", cIRM.HowLongWasUnconscious);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@HowLongWasUnconscious", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.LevelOfConsciousness.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@LevelOfConsciousness", cIRM.LevelOfConsciousness);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@LevelOfConsciousness", DBNull.Value);
+            }
+
+            cmd.Parameters.AddWithValue("@IsAccidentOrIlness", cIRM.IsAccidentOrIlness);
+
+            #region Accident 7+1
+
+            if (!String.IsNullOrEmpty(cIRM.WhereAndHowAccidentOccured))
+            {
+                cmd.Parameters.AddWithValue("@WhereAndHowAccidentOccured", cIRM.WhereAndHowAccidentOccured.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WhereAndHowAccidentOccured", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.LocationAndTypeOfInjuryOrBurn))
+            {
+                cmd.Parameters.AddWithValue("@LocationAndTypeOfInjuryOrBurn", cIRM.LocationAndTypeOfInjuryOrBurn.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@LocationAndTypeOfInjuryOrBurn", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.FirstAidGiven))
+            {
+                cmd.Parameters.AddWithValue("@FirstAidGiven", cIRM.FirstAidGiven.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FirstAidGiven", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.FrequencyOfPain))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfPain", cIRM.FrequencyOfPain.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfPain", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TypeOfBurn))
+            {
+                cmd.Parameters.AddWithValue("@TypeOfBurn", cIRM.TypeOfBurn.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TypeOfBurn", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.DegreeOfBurn))
+            {
+                cmd.Parameters.AddWithValue("@DegreeOfBurn", cIRM.DegreeOfBurn.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DegreeOfBurn", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.PercentageOfBurn))
+            {
+                cmd.Parameters.AddWithValue("@PercentageOfBurn", cIRM.PercentageOfBurn.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PercentageOfBurn", DBNull.Value);
+            }
+
+            
+
+            #endregion
+
+            #region Illness 14
+            #region Symtomology 14
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.ObservationDate))
+            {
+                cmd.Parameters.AddWithValue("@SymptomatologyDate", cIRM.MedicalSymtomology.ObservationDate.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SymptomatologyDate", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.ObservationTime))
+            {
+                cmd.Parameters.AddWithValue("@SymptomatologyTime", cIRM.MedicalSymtomology.ObservationTime.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SymptomatologyTime", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.Vomiting))
+            {
+                cmd.Parameters.AddWithValue("@Vomiting", cIRM.MedicalSymtomology.Vomiting.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Vomiting", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.FrequencyOfVomiting))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfVomiting", cIRM.MedicalSymtomology.FrequencyOfVomiting.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfVomiting", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.Fits))
+            {
+                cmd.Parameters.AddWithValue("@Fits", cIRM.MedicalSymtomology.Fits.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Fits", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.FrequencyOfFits))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfFits", cIRM.MedicalSymtomology.FrequencyOfFits.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfFits", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.Giddiness))
+            {
+                cmd.Parameters.AddWithValue("@Giddiness", cIRM.MedicalSymtomology.Giddiness.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Giddiness", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.FrequencyOfGiddiness))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfGiddiness", cIRM.MedicalSymtomology.FrequencyOfGiddiness.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfGiddiness", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.Lethargy))
+            {
+                cmd.Parameters.AddWithValue("@Lethargy", cIRM.MedicalSymtomology.Lethargy.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Lethargy", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.FrequencyOfLethargy))
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfLethargy", cIRM.MedicalSymtomology.FrequencyOfLethargy.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FrequencyOfLethargy", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.SymptomologyDetails))
+            {
+                cmd.Parameters.AddWithValue("@SymptomatologyDetails", cIRM.MedicalSymtomology.SymptomologyDetails.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SymptomatologyDetails", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.MedicinesAdministered))
+            {
+                cmd.Parameters.AddWithValue("@MedicinesAdministered", cIRM.MedicalSymtomology.MedicinesAdministered.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicinesAdministered", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.AnyOtherRelevantInformation))
+            {
+                cmd.Parameters.AddWithValue("@RelevantInformationForDesease", cIRM.MedicalSymtomology.AnyOtherRelevantInformation.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@RelevantInformationForDesease", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.MedicalSymtomology.Ailment))
+            {
+                cmd.Parameters.AddWithValue("@Ailment", cIRM.MedicalSymtomology.Ailment.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Ailment", DBNull.Value);
+            }
+
+            #endregion
+
+            #endregion
+
+            #region Other Part 3 Severity of Pain /Hurt 1
+
+
+            if (cIRM.SeverityOfPain > 0)
+            {
+                cmd.Parameters.AddWithValue("@SeverityOfPain", cIRM.SeverityOfPain);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SeverityOfPain", DBNull.Value);
+            }
+
+            #endregion
+            #endregion
+
+
+            #region History and Medication Taken (1)
+
+            if (!String.IsNullOrEmpty(cIRM.PastMedicalHistory))
+            {
+                cmd.Parameters.AddWithValue("@PastMedicalHistory", cIRM.PastMedicalHistory.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PastMedicalHistory", DBNull.Value);
+            }
+
+            //Need to be add more Params--------------
+
+
+
+
+            #endregion
+
+            #region Vital Parameters (13)
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.ObservationDate.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@ObservationDate", cIRM.VitalParams.ObservationDate);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ObservationDate", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.ObservationTime.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@ObservationTime", cIRM.VitalParams.ObservationTime);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ObservationTime", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Pulse))
+            {
+                cmd.Parameters.AddWithValue("@Pulse", cIRM.VitalParams.Pulse.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Pulse", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.OxygenSaturation))
+            {
+                cmd.Parameters.AddWithValue("@OxygenSaturation", cIRM.VitalParams.OxygenSaturation.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@OxygenSaturation", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.RespiratoryRate))
+            {
+                cmd.Parameters.AddWithValue("@RespiratoryRate", cIRM.VitalParams.RespiratoryRate.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@RespiratoryRate", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Systolic))
+            {
+                cmd.Parameters.AddWithValue("@Systolic", cIRM.VitalParams.Systolic.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Systolic", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Diastolic))
+            {
+                cmd.Parameters.AddWithValue("@Diastolic", cIRM.VitalParams.Diastolic.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Diastolic", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Temperature))
+            {
+                cmd.Parameters.AddWithValue("@Temperature", cIRM.VitalParams.Temperature.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Temperature", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Himoglobin))
+            {
+                cmd.Parameters.AddWithValue("@Himoglobin", cIRM.VitalParams.Himoglobin.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Himoglobin", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Creatinine))
+            {
+                cmd.Parameters.AddWithValue("@Creatinine", cIRM.VitalParams.Creatinine.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Creatinine", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Bilirubin))
+            {
+                cmd.Parameters.AddWithValue("@Bilirubin", cIRM.VitalParams.Bilirubin.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Bilirubin", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Fasting))
+            {
+                cmd.Parameters.AddWithValue("@Fasting", cIRM.VitalParams.Fasting.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Fasting", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.VitalParams.Regular))
+            {
+                cmd.Parameters.AddWithValue("@Regular", cIRM.VitalParams.Regular.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Regular", DBNull.Value);
+            }
+
+
+
+            #endregion
+
+            #region Affected Findings
+
+            if (!String.IsNullOrEmpty(cIRM.AffectedParts))
+            {
+                cmd.Parameters.AddWithValue("@AffectedParts", cIRM.AffectedParts);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@AffectedParts", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.BloodType))
+            {
+                cmd.Parameters.AddWithValue("@BloodType", cIRM.BloodType);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@BloodType", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.BloodQuantity))
+            {
+                cmd.Parameters.AddWithValue("@BloodQuantity", cIRM.BloodQuantity);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@BloodQuantity", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.FluidType))
+            {
+                cmd.Parameters.AddWithValue("@FluidType", cIRM.FluidType);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FluidType", DBNull.Value);
+            }
+
+
+            if (!String.IsNullOrEmpty(cIRM.FluidQuantity))
+            {
+                cmd.Parameters.AddWithValue("@FluidQuantity", cIRM.FluidQuantity);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FluidQuantity", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.SkinDetails))
+            {
+                cmd.Parameters.AddWithValue("@SkinDetails", cIRM.SkinDetails);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SkinDetails", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.PupilsDetails))
+            {
+                cmd.Parameters.AddWithValue("@PupilsDetails", cIRM.PupilsDetails);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PupilsDetails", DBNull.Value);
+            }
+
+
+            #endregion
+
+
+            #region Tele-medical Consultation
+            if (!String.IsNullOrEmpty(cIRM.TeleMedicalConsultation.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@TeleMedicalConsultation", cIRM.TeleMedicalConsultation);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TeleMedicalConsultation", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TeleMedicalContactDate))
+            {
+                cmd.Parameters.AddWithValue("@TeleMedicalContactDate", cIRM.TeleMedicalContactDate);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TeleMedicalContactDate", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.TeleMedicalContactTime))
+            {
+                cmd.Parameters.AddWithValue("@TeleMedicalContactTime", cIRM.TeleMedicalContactTime);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TeleMedicalContactTime", DBNull.Value);
+            }
+
+
+            if (!String.IsNullOrEmpty(cIRM.ModeOfCommunication))
+            {
+                cmd.Parameters.AddWithValue("@ModeOfCommunication", cIRM.ModeOfCommunication);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ModeOfCommunication", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.NameOfTelemedicalConsultant))
+            {
+                cmd.Parameters.AddWithValue("@NameOfTelemedicalConsultant", cIRM.NameOfTelemedicalConsultant);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NameOfTelemedicalConsultant", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.DetailsOfTreatmentAdvised))
+            {
+                cmd.Parameters.AddWithValue("@DetailsOfTreatmentAdvised", cIRM.DetailsOfTreatmentAdvised);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DetailsOfTreatmentAdvised", DBNull.Value);
+            }
+
+            #endregion
+
+
+            #region Medical Treatment Given On board
+            if (!String.IsNullOrEmpty(cIRM.MedicalTreatmentGivenOnboard.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@MedicalTreatmentGivenOnboard", cIRM.MedicalTreatmentGivenOnboard);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicalTreatmentGivenOnboard", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.PriorRadioMedicalAdvice))
+            {
+                cmd.Parameters.AddWithValue("@PriorRadioMedicalAdvice", cIRM.PriorRadioMedicalAdvice);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PriorRadioMedicalAdvice", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.AfterRadioMedicalAdvice))
+            {
+                cmd.Parameters.AddWithValue("@AfterRadioMedicalAdvice", cIRM.AfterRadioMedicalAdvice);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@AfterRadioMedicalAdvice", DBNull.Value);
+            }
+
+
+            if (!String.IsNullOrEmpty(cIRM.HowIsPatientRespondingToTreatmentGiven))
+            {
+                cmd.Parameters.AddWithValue("@HowIsPatientRespondingToTreatmentGiven", cIRM.HowIsPatientRespondingToTreatmentGiven);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@HowIsPatientRespondingToTreatmentGiven", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.DoesPatientNeedRemoveFromVessel.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@DoesPatientNeedRemoveFromVessel", cIRM.DoesPatientNeedRemoveFromVessel);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DoesPatientNeedRemoveFromVessel", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.NeedRemovalDesc))
+            {
+                cmd.Parameters.AddWithValue("@NeedRemovalDesc", cIRM.NeedRemovalDesc);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NeedRemovalDesc", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(cIRM.NeedRemovalToPort))
+            {
+                cmd.Parameters.AddWithValue("@NeedRemovalToPort", cIRM.NeedRemovalToPort);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@NeedRemovalToPort", DBNull.Value);
+            }
+            if (!String.IsNullOrEmpty(cIRM.AdditionalNotes))
+            {
+                cmd.Parameters.AddWithValue("@AdditionalNotes", cIRM.AdditionalNotes);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@AdditionalNotes", DBNull.Value);
+            }
+
+
+            #endregion
+
+            #region Other Part 4 Upload 10
+            if (cIRM.JoiningMedical.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@JoiningMedical", cIRM.JoiningMedical);
+                if (!String.IsNullOrEmpty(cIRM.JoiningMedicalPath))
+                {
+                    cmd.Parameters.AddWithValue("@JoiningMedicalPath", cIRM.JoiningMedicalPath.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@JoiningMedicalPath", DBNull.Value);
+                }
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@JoiningMedical", DBNull.Value);
+                cmd.Parameters.AddWithValue("@JoiningMedicalPath", DBNull.Value);
+            }
+
+            if (cIRM.MedicineAvailableOnBoard.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@MedicineAvailableOnBoard", cIRM.MedicineAvailableOnBoard);
+                if (!String.IsNullOrEmpty(cIRM.MedicineAvailableOnBoardPath))
+                {
+                    cmd.Parameters.AddWithValue("@MedicineAvailableOnBoardPath", cIRM.MedicineAvailableOnBoardPath.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@MedicineAvailableOnBoardPath", DBNull.Value);
+                }
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicineAvailableOnBoard", DBNull.Value);
+                cmd.Parameters.AddWithValue("@MedicineAvailableOnBoardPath", DBNull.Value);
+            }
+
+            if (cIRM.MedicalEquipmentOnBoard.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@MedicalEquipmentOnBoard", cIRM.MedicalEquipmentOnBoard);
+                if (!String.IsNullOrEmpty(cIRM.MedicalEquipmentOnBoardPath))
+                {
+                    cmd.Parameters.AddWithValue("@MedicalEquipmentOnBoardPath", cIRM.MedicalEquipmentOnBoardPath.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@MedicalEquipmentOnBoardPath", DBNull.Value);
+                }
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicalEquipmentOnBoard", DBNull.Value);
+                cmd.Parameters.AddWithValue("@MedicalEquipmentOnBoardPath", DBNull.Value);
+            }
+
+            if (cIRM.MedicalHistoryUpload.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@MedicalHistoryUpload", cIRM.MedicalHistoryUpload);
+                if (!String.IsNullOrEmpty(cIRM.MedicalHistoryPath))
+                {
+                    cmd.Parameters.AddWithValue("@MedicalHistoryUploadPath", cIRM.MedicalHistoryPath.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@MedicalHistoryUploadPath", DBNull.Value);
+                }
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@MedicalHistoryUpload", DBNull.Value);
+                cmd.Parameters.AddWithValue("@MedicalHistoryUploadPath", DBNull.Value);
+            }
+
+            if (cIRM.WorkAndRestHourLatestRecord.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@WorkAndRestHourLatestRecord", cIRM.WorkAndRestHourLatestRecord);
+                if (!String.IsNullOrEmpty(cIRM.WorkAndRestHourLatestRecordPath))
+                {
+                    cmd.Parameters.AddWithValue("@WorkAndRestHourLatestRecordPath", cIRM.WorkAndRestHourLatestRecordPath.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@WorkAndRestHourLatestRecordPath", DBNull.Value);
+                }
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@WorkAndRestHourLatestRecord", DBNull.Value);
+                cmd.Parameters.AddWithValue("@WorkAndRestHourLatestRecordPath", DBNull.Value);
+            }
+
+            
+
+            #endregion
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
         public List<CIRMPOCO> GetCIRMByCrewId(int CrewId)
         {
             List<CIRMPOCO> prodPOList = new List<CIRMPOCO>();
@@ -1403,6 +2494,375 @@ namespace TM.RestHour.DAL
 
             return cirm;
         }
+
+        /// <summary>
+        /// Added on 31st Jan 2022 @ BK
+        /// </summary>
+        /// <param name="cewId"></param>
+        /// <param name="VesselId"></param>
+        /// <returns></returns>
+        public CIRMPOCO GetCIRMPatientDetailsByCrewNew(int cewId, int vesselId)
+        {
+            CIRMPOCO cirm = new CIRMPOCO();
+            VitalStatisticsPOCO cirmVitals = new VitalStatisticsPOCO();
+            MedicalSymtomologyPOCO cirmSymtomology = new MedicalSymtomologyPOCO();
+
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpCIRMPatientDetailsByCrew", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewID", cewId);
+                    cmd.Parameters.AddWithValue("@VesselID", vesselId);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+                    con.Close();
+                }
+            }
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+
+                DataSet dsUploadedImages = new DataSet();
+                cirm.CIRMId = Convert.ToInt32(ds.Tables[0].Rows[0]["CIRMId"].ToString());
+                dsUploadedImages = GetCIRMUploadedImages(Convert.ToInt32(ds.Tables[0].Rows[0]["CIRMId"].ToString()));
+
+
+                #region Vessel Details---
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["VesselID"].ToString()))
+                    cirm.VesselId = Convert.ToInt32(ds.Tables[0].Rows[0]["VesselID"].ToString());
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["NameOfVessel"].ToString()))
+                    cirm.NameOfVessel = ds.Tables[0].Rows[0]["NameOfVessel"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["RadioCallSign"].ToString()))
+                    cirm.RadioCallSign = ds.Tables[0].Rows[0]["RadioCallSign"].ToString();
+
+
+                #endregion
+
+                #region Voyage Details
+
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["DateOfReportingGMT"].ToString()))
+                    cirm.DateOfReportingGMT = ds.Tables[3].Rows[0]["DateOfReportingGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["TimeOfReportingGMT"].ToString()))
+                    cirm.TimeOfReportingGMT = ds.Tables[3].Rows[0]["TimeOfReportingGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["LocationOfShip"].ToString()))
+                    cirm.LocationOfShip = ds.Tables[3].Rows[0]["LocationOfShip"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["Cousre"].ToString()))
+                    cirm.Cousre = ds.Tables[3].Rows[0]["Cousre"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["Speed"].ToString()))
+                    cirm.Speed = ds.Tables[3].Rows[0]["Speed"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["PortofDeparture"].ToString()))
+                    cirm.PortofDeparture = ds.Tables[3].Rows[0]["PortofDeparture"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["DateOfDeparture"].ToString()))
+                    cirm.DateOfDeparture = ds.Tables[3].Rows[0]["DateOfDeparture"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["TimeOfDeparture"].ToString()))
+                    cirm.TimeOfDeparture = ds.Tables[3].Rows[0]["TimeOfDeparture"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["PortofDestination"].ToString()))
+                    cirm.PortofDestination = ds.Tables[3].Rows[0]["PortofDestination"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["ETADateGMT"].ToString()))
+                    cirm.ETADateGMT = ds.Tables[3].Rows[0]["ETADateGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["ETATimeGMT"].ToString()))
+                    cirm.ETATimeGMT = ds.Tables[3].Rows[0]["ETATimeGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["EstimatedTimeOfarrivalhrs"].ToString()))
+                    cirm.EstimatedTimeOfarrivalhrs = ds.Tables[3].Rows[0]["EstimatedTimeOfarrivalhrs"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["AgentDetails"].ToString()))
+                    cirm.AgentDetails = ds.Tables[3].Rows[0]["AgentDetails"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["NearestPort"].ToString()))
+                    cirm.NearestPort = ds.Tables[3].Rows[0]["NearestPort"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["NearestPortETADateGMT"].ToString()))
+                    cirm.NearestPortETADateGMT = ds.Tables[3].Rows[0]["NearestPortETADateGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["NearestPortETATimeGMT"].ToString()))
+                    cirm.NearestPortETATimeGMT = ds.Tables[3].Rows[0]["NearestPortETATimeGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["OtherPossiblePort"].ToString()))
+                    cirm.OtherPossiblePort = ds.Tables[3].Rows[0]["OtherPossiblePort"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["OtherPortETADateGMT"].ToString()))
+                    cirm.OtherPortETADateGMT = ds.Tables[3].Rows[0]["OtherPortETADateGMT"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[3].Rows[0]["OtherPortETATimeGMT"].ToString()))
+                    cirm.OtherPortETATimeGMT = ds.Tables[3].Rows[0]["OtherPortETATimeGMT"].ToString();
+
+                #endregion
+
+                #region Weather Details
+                if(ds.Tables[4].Rows.Count > 0)
+                {
+                    if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WindDirection"].ToString()))
+                        cirm.WindDirection = ds.Tables[4].Rows[0]["WindDirection"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["BeaufortScale"].ToString()))
+                        cirm.BeaufortScale = ds.Tables[4].Rows[0]["BeaufortScale"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WindSpeed"].ToString()))
+                        cirm.WindSpeed = ds.Tables[4].Rows[0]["WindSpeed"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["SeaState"].ToString()))
+                        cirm.SeaState = ds.Tables[4].Rows[0]["SeaState"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WaveHeight"].ToString()))
+                        cirm.WaveHeight = ds.Tables[4].Rows[0]["WaveHeight"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["Swell"].ToString()))
+                        cirm.Swell = ds.Tables[4].Rows[0]["Swell"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WeatherCondition"].ToString()))
+                        cirm.WeatherCondition = ds.Tables[4].Rows[0]["WeatherCondition"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[4].Rows[0]["WeatherVisibility"].ToString()))
+                        cirm.WeatherVisibility = ds.Tables[4].Rows[0]["WeatherVisibility"].ToString();
+                }
+                
+
+                #endregion
+
+                #region Crew Details --
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["CrewId"].ToString()))
+                    cirm.CrewId = Convert.ToInt32(ds.Tables[0].Rows[0]["CrewId"].ToString());
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Nationality"].ToString()))
+                    cirm.Nationality = ds.Tables[0].Rows[0]["Nationality"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Qualification"].ToString()))
+                    cirm.Qualification = ds.Tables[0].Rows[0]["Qualification"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Addiction"].ToString()))
+                    cirm.Addiction = ds.Tables[0].Rows[0]["Addiction"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Ethinicity"].ToString()))
+                    cirm.Ethinicity = ds.Tables[0].Rows[0]["Ethinicity"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Frequency"].ToString()))
+                    cirm.Frequency = ds.Tables[0].Rows[0]["Frequency"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Sex"].ToString()))
+                    cirm.Sex = ds.Tables[0].Rows[0]["Sex"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["Age"].ToString()))
+                    cirm.Age = ds.Tables[0].Rows[0]["Age"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["JoiningDate"].ToString()))
+                    cirm.JoiningDate = ds.Tables[0].Rows[0]["JoiningDate"].ToString();
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["DateOfOffWork"].ToString()))
+                    cirm.DateOfOffWork = ds.Tables[0].Rows[0]["DateOfOffWork"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["TimeOfOffWork"].ToString()))
+                    cirm.TimeOfOffWork = ds.Tables[0].Rows[0]["TimeOfOffWork"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["DateOfResumeWork"].ToString()))
+                    cirm.DateOfResumeWork = ds.Tables[0].Rows[0]["DateOfResumeWork"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["TimeOfResumeWork"].ToString()))
+                    cirm.TimeOfResumeWork = ds.Tables[0].Rows[0]["TimeOfResumeWork"].ToString();
+
+                #endregion
+
+
+                
+
+                #region Incase of Accident or Illness
+
+
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["DateOfInjuryOrIllness"].ToString()))
+                    cirm.DateOfInjuryOrIllness = ds.Tables[0].Rows[0]["DateOfInjuryOrIllness"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["TimeOfInjuryOrIllness"].ToString()))
+                    cirm.TimeOfInjuryOrIllness = ds.Tables[0].Rows[0]["TimeOfInjuryOrIllness"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["DateOfFirstExamination"].ToString()))
+                    cirm.DateOfFirstExamination = ds.Tables[0].Rows[0]["DateOfFirstExamination"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["TimeOfFirstExamination"].ToString()))
+                    cirm.TimeOfFirstExamination = ds.Tables[0].Rows[0]["TimeOfFirstExamination"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["IsInjuryorIllnessWorkRelated"].ToString()))
+                    cirm.IsInjuryorIllnessWorkRelated = ds.Tables[0].Rows[0]["IsInjuryorIllnessWorkRelated"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["IsUnconsciousByInjuryOrIllness"].ToString()))
+                    cirm.IsUnconsciousByInjuryOrIllness = ds.Tables[0].Rows[0]["IsUnconsciousByInjuryOrIllness"].ToString();
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["HowLongWasUnconscious"].ToString()))
+                    cirm.HowLongWasUnconscious = ds.Tables[0].Rows[0]["HowLongWasUnconscious"].ToString();
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["LevelOfConsciousness"].ToString()))
+                    cirm.LevelOfConsciousness = Convert.ToInt32( ds.Tables[0].Rows[0]["LevelOfConsciousness"].ToString());
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["IsAccidentOrIlness"].ToString()))
+                    cirm.IsAccidentOrIlness = Convert.ToInt32( ds.Tables[0].Rows[0]["IsAccidentOrIlness"].ToString());
+
+
+
+                #region Accident
+                if (cirm.IsAccidentOrIlness == 1)
+                {
+                    DataSet dsAccident = new DataSet();
+                    dsAccident = GetCirmAccidentDetailsByCirmId(cirm.CIRMId);
+                    if (!String.IsNullOrEmpty(dsAccident.Tables[0].Rows[0]["WhereAndHowAccidentOccured"].ToString()))
+                        cirm.WhereAndHowAccidentOccured = dsAccident.Tables[0].Rows[0]["WhereAndHowAccidentOccured"].ToString();
+                    if (!String.IsNullOrEmpty(dsAccident.Tables[0].Rows[0]["LocationAndTypeOfInjuryOrBurn"].ToString()))
+                        cirm.LocationAndTypeOfInjuryOrBurn = dsAccident.Tables[0].Rows[0]["LocationAndTypeOfInjuryOrBurn"].ToString();
+                    if (!String.IsNullOrEmpty(dsAccident.Tables[0].Rows[0]["FirstAidGiven"].ToString()))
+                        cirm.FirstAidGiven = dsAccident.Tables[0].Rows[0]["FirstAidGiven"].ToString();
+                    if (!String.IsNullOrEmpty(dsAccident.Tables[0].Rows[0]["TypeOfBurn"].ToString()))
+                        cirm.TypeOfBurn = dsAccident.Tables[0].Rows[0]["TypeOfBurn"].ToString();
+                    if (!String.IsNullOrEmpty(dsAccident.Tables[0].Rows[0]["DegreeOfBurn"].ToString()))
+                        cirm.DegreeOfBurn = dsAccident.Tables[0].Rows[0]["DegreeOfBurn"].ToString();
+                    if (!String.IsNullOrEmpty(dsAccident.Tables[0].Rows[0]["PercentageOfBurn"].ToString()))
+                        cirm.PercentageOfBurn = dsAccident.Tables[0].Rows[0]["PercentageOfBurn"].ToString();
+                }
+
+
+                #endregion
+
+                //if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["PictureUploadPath"].ToString()))
+                //    cirm.PictureUploadPath = ds.Tables[0].Rows[0]["PictureUploadPath"].ToString();
+
+                #region Illness
+
+
+
+                #endregion
+                #region Severity of Pain / Hurt
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["NoHurt"].ToString()))
+                    cirm.NoHurt = Convert.ToBoolean(ds.Tables[0].Rows[0]["NoHurt"].ToString());
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["NoHurt"].ToString()))
+                    cirm.HurtLittleBit = Convert.ToBoolean(ds.Tables[0].Rows[0]["HurtLittleBit"].ToString());
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["HurtLittleBit"].ToString()))
+                    cirm.HurtsLittleMore = Convert.ToBoolean(ds.Tables[0].Rows[0]["HurtsLittleMore"].ToString());
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["HurtsLittleMore"].ToString()))
+                    cirm.HurtsEvenMore = Convert.ToBoolean(ds.Tables[0].Rows[0]["HurtsEvenMore"].ToString());
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["HurtsWholeLot"].ToString()))
+                    cirm.HurtsWholeLot = Convert.ToBoolean(ds.Tables[0].Rows[0]["HurtsWholeLot"].ToString());
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["HurtsWoest"].ToString()))
+                    cirm.HurtsWoest = Convert.ToBoolean(ds.Tables[0].Rows[0]["HurtsWoest"].ToString());
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["SeverityOfPain"].ToString()))
+                    cirm.SeverityOfPain = Convert.ToInt32(ds.Tables[0].Rows[0]["SeverityOfPain"].ToString());
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["FrequencyOfPain"].ToString()))
+                    cirm.FrequencyOfPain = ds.Tables[0].Rows[0]["FrequencyOfPain"].ToString();
+
+                #endregion
+                #endregion
+
+                #region History and Meditation Taken
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["PastMedicalHistory"].ToString()))
+                    cirm.PastMedicalHistory = ds.Tables[0].Rows[0]["PastMedicalHistory"].ToString();
+
+
+                #endregion
+
+                #region Findings Affected Areas
+                if(ds.Tables[5].Rows.Count > 0)
+                {
+                    if (!String.IsNullOrEmpty(ds.Tables[5].Rows[0]["AffectedParts"].ToString()))
+                        cirm.AffectedParts = ds.Tables[5].Rows[0]["AffectedParts"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[5].Rows[0]["BloodType"].ToString()))
+                        cirm.BloodType = ds.Tables[5].Rows[0]["BloodType"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[5].Rows[0]["BloodQuantity"].ToString()))
+                        cirm.BloodQuantity = ds.Tables[5].Rows[0]["BloodQuantity"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[5].Rows[0]["FluidType"].ToString()))
+                        cirm.FluidType = ds.Tables[5].Rows[0]["FluidType"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[5].Rows[0]["FluidQuantity"].ToString()))
+                        cirm.FluidQuantity = ds.Tables[5].Rows[0]["FluidQuantity"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[5].Rows[0]["SkinDetails"].ToString()))
+                        cirm.SkinDetails = ds.Tables[5].Rows[0]["SkinDetails"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[5].Rows[0]["PupilsDetails"].ToString()))
+                        cirm.PupilsDetails = ds.Tables[5].Rows[0]["PupilsDetails"].ToString();
+
+
+                }
+
+                #endregion
+
+                #region Telemedical Consultation
+                if (ds.Tables[6].Rows.Count > 0)
+                {
+                    if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["TeleMedicalConsultation"].ToString()))
+                        cirm.TeleMedicalConsultation = Convert.ToBoolean(ds.Tables[6].Rows[0]["TeleMedicalConsultation"].ToString());
+                    if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["TeleMedicalContactDate"].ToString()))
+                        cirm.TeleMedicalContactDate = ds.Tables[6].Rows[0]["TeleMedicalContactDate"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["TeleMedicalContactTime"].ToString()))
+                        cirm.TeleMedicalContactTime = ds.Tables[6].Rows[0]["TeleMedicalContactTime"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["ModeOfCommunication"].ToString()))
+                        cirm.ModeOfCommunication = ds.Tables[6].Rows[0]["ModeOfCommunication"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["NameOfTelemedicalConsultant"].ToString()))
+                        cirm.NameOfTelemedicalConsultant = ds.Tables[6].Rows[0]["NameOfTelemedicalConsultant"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["DetailsOfTreatmentAdvised"].ToString()))
+                        cirm.DetailsOfTreatmentAdvised = ds.Tables[6].Rows[0]["DetailsOfTreatmentAdvised"].ToString();
+                }
+                
+
+                #endregion
+
+                #region Medical Treatment Given Onboard
+                if(ds.Tables[7].Rows.Count > 0)
+                {
+                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["MedicalTreatmentGivenOnboard"].ToString()))
+                        cirm.MedicalTreatmentGivenOnboard = Convert.ToBoolean(ds.Tables[7].Rows[0]["MedicalTreatmentGivenOnboard"].ToString());
+                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["PriorRadioMedicalAdvice"].ToString()))
+                        cirm.PriorRadioMedicalAdvice = ds.Tables[7].Rows[0]["PriorRadioMedicalAdvice"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["AfterRadioMedicalAdvice"].ToString()))
+                        cirm.AfterRadioMedicalAdvice = ds.Tables[7].Rows[0]["AfterRadioMedicalAdvice"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["HowIsPatientRespondingToTreatmentGiven"].ToString()))
+                        cirm.HowIsPatientRespondingToTreatmentGiven = ds.Tables[7].Rows[0]["HowIsPatientRespondingToTreatmentGiven"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["DoesPatientNeedRemoveFromVessel"].ToString()))
+                        cirm.DoesPatientNeedRemoveFromVessel = Convert.ToInt32(ds.Tables[7].Rows[0]["DoesPatientNeedRemoveFromVessel"].ToString());
+                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["NeedRemovalDesc"].ToString()))
+                        cirm.NeedRemovalDesc = ds.Tables[7].Rows[0]["NeedRemovalDesc"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["NeedRemovalToPort"].ToString()))
+                        cirm.NeedRemovalToPort = ds.Tables[7].Rows[0]["NeedRemovalToPort"].ToString();
+                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["AdditionalNotes"].ToString()))
+                        cirm.AdditionalNotes = ds.Tables[7].Rows[0]["AdditionalNotes"].ToString();
+
+                }
+
+
+                #endregion
+
+                #region Upload section
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["JoiningMedical"].ToString()) && Convert.ToBoolean(ds.Tables[0].Rows[0]["JoiningMedical"].ToString()))
+                {
+                    cirm.JoiningMedical = Convert.ToBoolean(ds.Tables[0].Rows[0]["JoiningMedical"].ToString());
+                    //cirm.JoiningMedicalPath = dsUploadedImages.Tables[0].Select("FilePath")
+                    //                                    .Where(e => e.ItemArray[2].ToString().Equals("JoiningMedical")).FirstOrDefault().ToString();
+                    cirm.JoiningMedicalPath = dsUploadedImages.Tables[0].AsEnumerable()
+                                                        .Where(r => r.Field<string>("FileType") == "JoiningMedical")
+                                                        .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
+                }
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["MedicineAvailableOnBoard"].ToString()) && Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicineAvailableOnBoard"].ToString()))
+                {
+                    cirm.MedicineAvailableOnBoard = Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicineAvailableOnBoard"].ToString());
+                    //cirm.JoiningMedicalPath = dsUploadedImages.Tables[0].Select("FilePath")
+                    //                                    .Where(e => e.ItemArray[2].ToString().Equals("MedicineAvailableOnBoard")).FirstOrDefault().ToString();
+                    cirm.MedicineAvailableOnBoardPath = dsUploadedImages.Tables[0].AsEnumerable()
+                                                        .Where(r => r.Field<string>("FileType") == "MedicineAvailableOnBoard")
+                                                        .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
+                }
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["MedicalEquipmentOnBoard"].ToString()) && Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalEquipmentOnBoard"].ToString()))
+                {
+                    cirm.MedicalEquipmentOnBoard = Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalEquipmentOnBoard"].ToString());
+                    //cirm.MedicalEquipmentOnBoardPath = dsUploadedImages.Tables[0].AsEnumerable().Select(r => r.Field<string>("FilePath"))
+                    //                                    .Where(e => e.ItemArray[2].ToString().Equals("MedicalEquipmentOnBoard")).FirstOrDefault().ToString();
+                    cirm.MedicalEquipmentOnBoardPath = dsUploadedImages.Tables[0].AsEnumerable()
+                                                        .Where(r => r.Field<string>("FileType") == "MedicalEquipmentOnBoard")
+                                                        .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
+                }
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["MedicalHistoryUpload"].ToString()) && Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalHistoryUpload"].ToString()))
+                {
+                    cirm.MedicalHistoryUpload = Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalHistoryUpload"].ToString());
+                    //cirm.MedicalHistoryPath = dsUploadedImages.Tables[0].Select("FilePath")
+                    //                                    .Where(e => e.ItemArray[2].ToString().Equals("MedicalHistoryUpload")).FirstOrDefault().ToString();
+                    cirm.MedicalHistoryPath = dsUploadedImages.Tables[0].AsEnumerable()
+                                                        .Where(r => r.Field<string>("FileType") == "MedicalHistoryUpload")
+                                                        .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
+                }
+
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["WorkAndRestHourLatestRecord"].ToString()) && Convert.ToBoolean(ds.Tables[0].Rows[0]["WorkAndRestHourLatestRecord"].ToString()))
+                {
+                    cirm.WorkAndRestHourLatestRecord = Convert.ToBoolean(ds.Tables[0].Rows[0]["WorkAndRestHourLatestRecord"].ToString());
+                    //cirm.WorkAndRestHourLatestRecordPath = dsUploadedImages.Tables[0].Select("FilePath")
+                    //                                    .Where(e => e.ItemArray[2].ToString().Equals("WorkAndRestHourLatestRecord")).FirstOrDefault().ToString();
+                    cirm.WorkAndRestHourLatestRecordPath = dsUploadedImages.Tables[0].AsEnumerable()
+                                                        .Where(r => r.Field<string>("FileType") == "WorkAndRestHourLatestRecord")
+                                                        .Select(r => r.Field<string>("FilePath")).FirstOrDefault().ToString();
+                }
+
+                //if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["PreExistingMedicationPrescription"].ToString()))
+                //    cirm.PreExistingMedicationPrescription = Convert.ToBoolean(ds.Tables[0].Rows[0]["PreExistingMedicationPrescription"].ToString());
+
+                #endregion
+
+
+            }
+
+
+            return cirm;
+        }
         /// <summary>
         /// Added on 7th Jan 2022 @ BK
         /// </summary>
@@ -1537,6 +2997,8 @@ namespace TM.RestHour.DAL
                         cirmSymtomology.MedicinesAdministered = item["MedicinesAdministered"].ToString();
                     if (ds.Tables[0].Rows[0]["AnyOtherRelevantInformation"] != null)
                         cirmSymtomology.AnyOtherRelevantInformation = item["AnyOtherRelevantInformation"].ToString();
+                    if (ds.Tables[0].Rows[0]["Ailment"] != null)
+                        cirmSymtomology.Ailment = item["Ailment"].ToString();
 
 
                     cirmSymtomologyList.Add(cirmSymtomology);
@@ -1944,6 +3406,30 @@ namespace TM.RestHour.DAL
                 }
             }
             return symPoList;
+        }
+
+
+        public DataSet GetCirmAccidentDetailsByCirmId(int cirmId)
+        {
+            DataSet ds = new DataSet();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetCIRMAccidentDetailsByCirmId", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;;
+                    cmd.Parameters.AddWithValue("@CirmId", cirmId);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                   
+                    con.Close();
+                }
+            }
+
+
+            return ds;
         }
 
 

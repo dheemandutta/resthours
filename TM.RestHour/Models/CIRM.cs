@@ -15,11 +15,12 @@ namespace TM.RestHour.Models
         public int VesselId { get; set; }
         public string NameOfVessel { get; set; }
         public string RadioCallSign { get; set; }
-       
+
 
         #endregion
 
-        #region Crew Details 
+        #region Crew Details
+
         public int CrewId { get; set; }
         public string Nationality { get; set; }
         public string Qualification { get; set; }
@@ -38,15 +39,20 @@ namespace TM.RestHour.Models
 
         public string JoiningDate { get; set; }
 
+        public string DateOfOffWork { get; set; }
+        public string TimeOfOffWork { get; set; }
+
+        public string DateOfResumeWork { get; set; }
+        public string TimeOfResumeWork { get; set; }
+
         #endregion
-        
+
         #region -- Other Properties
         public string RespiratoryRate { get; set; }
         public string Pulse { get; set; }
         public string Temperature { get; set; }
         public string Systolic { get; set; }
         public string Diastolic { get; set; }
-        public string Symptomatology { get; set; }
         public string LocationAndTypeOfPain { get; set; }
         public string RelevantInformationForDesease { get; set; }
         public Boolean WhereAndHowAccidentIsCausedCHK { get; set; }
@@ -69,52 +75,14 @@ namespace TM.RestHour.Models
 
         public string OxygenSaturation { get; set; }
 
-        public string SymptomatologyDate { get; set; }
-
-        public string SymptomatologyTime { get; set; }
-
-        public string Vomiting { get; set; }
-
-        public string FrequencyOfVomiting { get; set; }
-
-        public string Fits { get; set; }
-
-        public string FrequencyOfFits { get; set; }
-
-        public string SymptomatologyDetails { get; set; }
 
         public string MedicinesAdministered { get; set; }
 
-        public string WhereAndHowAccidentOccured { get; set; }
-
-        
-        public string LocationAndTypeOfInjuryOrBurn { get; set; }
-
-        public string FrequencyOfPain { get; set; }
-
         public string PictureUploadPath { get; set; }
 
-        public string FirstAidGiven { get; set; }
-
-        public string PercentageOfBurn { get; set; }
         #endregion
 
-        #region -- Severity of Pains
-        public Boolean? NoHurt { get; set; }
-
-        public Boolean? HurtLittleBit { get; set; }
-
-        public Boolean? HurtsLittleMore { get; set; }
-
-        public Boolean? HurtsEvenMore { get; set; }
-
-        public Boolean? HurtsWholeLot { get; set; }
-
-        public Boolean? HurtsWoest { get; set; }
-
-        public int SeverityOfPain { get; set; }
-
-        #endregion
+        
 
         #region -- Upload files
         public Boolean? JoiningMedical { get; set; }
@@ -132,8 +100,86 @@ namespace TM.RestHour.Models
 
         #endregion
 
-        public VitalStatistics VitalStatistics { get; set; }
+        #region Accident or Illness
+
+
+
+        public string DateOfInjuryOrIllness { get; set; }
+        public string TimeOfInjuryOrIllness { get; set; }
+        public string DateOfFirstExamination { get; set; }
+        public string TimeOfFirstExamination { get; set; }
+        public string IsInjuryorIllnessWorkRelated { get; set; }
+        public string IsUnconsciousByInjuryOrIllness { get; set; }
+
+        public string HowLongWasUnconscious { get; set; }
+        public int LevelOfConsciousness { get; set; }
+
+        public int IsAccidentOrIlness { get; set; }
+
+        #region Accident
+
+        
+        public string WhereAndHowAccidentOccured { get; set; }
+        public string LocationAndTypeOfInjuryOrBurn { get; set; }
+
+        public string FirstAidGiven { get; set; }
+
+        public string FrequencyOfPain { get; set; }
+
+        public string TypeOfBunrn { get; set; }
+        public string DegreeOfBurn { get; set; }
+
+        public string PercentageOfBurn { get; set; }
+
+        #region Severity Of Pains
+        public Boolean? NoHurt { get; set; }
+
+        public Boolean? HurtLittleBit { get; set; }
+
+        public Boolean? HurtsLittleMore { get; set; }
+
+        public Boolean? HurtsEvenMore { get; set; }
+
+        public Boolean? HurtsWholeLot { get; set; }
+
+        public Boolean? HurtsWoest { get; set; }
+
+        public int SeverityOfPain { get; set; }
+
+        #endregion
+
+
+        #endregion
+
+
+        #region Illness
+
+        
+        #region Symtomology
+        public string SymptomatologyDate { get; set; }
+
+        public string SymptomatologyTime { get; set; }
+        public string Symptomatology { get; set; }
+        public string Vomiting { get; set; }
+
+        public string FrequencyOfVomiting { get; set; }
+
+        public string Fits { get; set; }
+
+        public string FrequencyOfFits { get; set; }
+
+        public string SymptomatologyDetails { get; set; }
+
+        #endregion
+
         public MedicalSymtomology Symtomology { get; set; }
+
+        #endregion
+
+        #endregion
+
+        public VitalStatistics VitalStatistics { get; set; }
+       
 
         public List<VitalStatistics> VitalStatisticsList { get; set; }
         public List<MedicalSymtomology> SymtomologyList { get; set; }
@@ -182,7 +228,6 @@ namespace TM.RestHour.Models
 
         #endregion
 
-
         #region Weather Details
 
         public int WeatherId { get; set; }
@@ -195,6 +240,50 @@ namespace TM.RestHour.Models
         public string WeatherCondition { get; set; }
         public string WeatherVisibility { get; set; }
         public string Weather { get; set; }
+
+        #endregion
+
+        #region Examination Findings
+        public int FindingsId { get; set; }
+        public string AffectedParts { get; set; }
+        public string BloodType { get; set; }
+        public string BloodQuantity { get; set; }
+        public string FluidType { get; set; }
+        public string FluidQuantity { get; set; }
+        public string SkinDetails { get; set; }
+        public string PupilsDetails { get; set; }
+
+        #endregion
+
+        #region Telemedical Consultation
+        public Boolean TeleMedicalConsultation { get; set; }
+        public int ConsultId { get; set; }
+        public string TeleMedicalContactDate { get; set; }
+        public string TeleMedicalContactTime { get; set; }
+        public string ModeOfCommunication { get; set; }
+        public string NameOfTelemedicalConsultant { get; set; }
+        public string DetailsOfTreatmentAdvised { get; set; }
+
+        #endregion
+
+        #region Medical Treatment Given Onboard
+        public Boolean MedicalTreatmentGivenOnboard { get; set; }
+        public int TreatmentGivenId { get; set; }
+        public string PriorRadioMedicalAdvice { get; set; }
+        public string AfterRadioMedicalAdvice { get; set; }
+        public string HowIsPatientRespondingToTreatmentGiven { get; set; }
+        public int DoesPatientNeedRemoveFromVessel { get; set; }
+        public string NeedRemovalDesc { get; set; }
+        public string NeedRemovalToPort { get; set; }
+        public string AdditionalNotes { get; set; }
+
+        #endregion
+
+        #region Medication Taken
+
+        public CIRMMedicationTaken MedicationTahen { get; set; }
+
+        public List<CIRMMedicationTaken> MedicationTahenList { get; set; }
 
         #endregion
 
