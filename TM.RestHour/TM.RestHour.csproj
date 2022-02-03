@@ -1269,6 +1269,7 @@
     <Content Include="Scripts\UploadMedicalInventory.js" />
     <Content Include="Scripts\Vessel.js" />
     <Content Include="Scripts\VesselDetails.js" />
+    <Content Include="Scripts\WellBeing.js" />
     <Content Include="sqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\01-CreateTable\CreateTable_RestHour.sql" />
     <Content Include="sqlscripts\02-02-2022 resthoursclient Full script.sql" />

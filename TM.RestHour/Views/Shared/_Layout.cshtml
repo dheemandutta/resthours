@@ -83,7 +83,7 @@
                 <ul class="menu_Sub">
                     <li><a class = "@(AccessControl.CheckResourceReadAccess("Health") ? "active" : "disabled")" href="@Url.Action("WellBeingHealth", "WellBeing" )">Health</a></li>
                     <li><a class = "@(AccessControl.CheckResourceReadAccess("Mental Health") ? "active" : "disabled")" href="@Url.Action("WellBeingMentalHealth", "WellBeing" )">Mental Health</a></li>
-                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Work And Rest Hours") ? "active" : "disabled")" href="@Url.Action("WellBeingWorkAndRestHours", "WellBeing" )">Work And Rest Hours</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("WorkAndRestHours") ? "active" : "disabled")" href="@Url.Action("WellBeingWorkAndRestHours", "WellBeing" )">Work And Rest Hours</a></li>
                     @*<li><a href="@Url.Action("CrewListNew", "CrewList" )">Health Tips</a></li>*@
                     <li class="">
                         <a class="has-arrow" href="#" aria-expanded="false">
