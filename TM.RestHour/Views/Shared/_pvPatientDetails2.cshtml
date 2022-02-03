@@ -25,55 +25,36 @@
                 </div>
                 <div class="clearfix"> &nbsp; &nbsp; &nbsp;</div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h6>Medications Presently Taken</h6>
-                    </div>
-
-                    <div class="col-lg-1">
-                        <h5 class="points-no">1</h5>
-                    </div>
-                    <div class="col-lg-3">
-                        <h5>Prescription Name</h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5>Medical Condition Being Treated</h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5>How Often Meditation Taken ?</h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
-                        </div>
-                    </div>
+                    
+                    
                 </div>
                 <div class="row">
-                    <div class="col-lg-1">
-                        <h5 class="points-no">2</h5>
+                    <div class="col-lg-12">
+                        <h6>Medications Presently Taken</h6><button type="button" class="button1" id="addrows">Add Row</button>
                     </div>
-                    <div class="col-lg-3">
-                        <h5>gfsdgsjsgd</h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5>gfsdgsjsgd</h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5>gfsdgsjsgd</h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
-                        </div>
-                    </div>
+                    <table id="tblMedicationTaken" class="display table table-MedicationTaken" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th style="color: #000000;"> <label for="SL">SL</label></th>
+                                <th style="color: #000000;"><label for="">Prescription Name </label></th>
+                                <th style="color: #000000;"> <label for="">Medical Condition Being Treated</label></th>
+                                <th style="color: #000000;"> <label for="">How Often Meditation Taken ?</label></th>
+                                <th style="color: #000000;"> <label for="Delete">Delete</label></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="MedicationDetailRow">
+                                <td>1</td>
+                                <td><input type="text" class="form-control" id="PrescriptionName" name="PrescriptionName" placeholder="Prescription Name" /></td>
+                                <td><input type="text" class="form-control" id="MedicalConditionBeingTreated" name="MedicalConditionBeingTreated" placeholder="Medical Condition Being Treated" /></td>
+                                <td><input type="text" class="form-control" id="HowOftenMedicationTaken" name="HowOftenMedicationTaken" placeholder="How Often Meditation Taken ?" /></td>
+                                <td><button type="button" class="button1" id="" name="DeleteRow">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   
                 </div>
+                
             </div>
             
         </div>
@@ -171,8 +152,8 @@
 
                     <div class="form-group" style="width: 100%;">
                         <label for="OxygenSaturation">Oxygen Saturation/SpO2</label> &nbsp;
-                        @*<input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myModalForSPO2" />*@
-                        <input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myTestModal" />
+                        <input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myModalForSPO2" />
+                        @*<input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myTestModal" />*@
                         <input type="text" class="form-control" id="OxygenSaturation" placeholder="Oxygen Saturation/SpO2" />
                     </div>
 
@@ -293,10 +274,6 @@
                             <div class="modal-dialog" id="dvuserdetailsn" style="width: 700px;">
                                 <fieldset class="for-panel">
                                     <div>
-
-
-
-
 
                                         <section>
                                             <p style="margin-left:0pt;margin-right:0pt;line-height:107.92%;font-size:28pt;margin-top:0pt;margin-bottom:8pt;padding: 1pt 4pt;">
@@ -773,7 +750,7 @@
         <div class="newcard">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         @*<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
         <label for="vehicle2">No</label><br>
         <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
@@ -787,36 +764,38 @@
                         <div class="form-group">
                             <input type="checkbox" name="uploaddocMedicalEquipmentOnBoard" id="uploaddocMedicalEquipmentOnBoard" value="1" onclick="myFunctionMedicalEquipmentOnBoard()"> Upload Medical Equipment<br />
                             <div id="myModalMedicalEquipmentOnBoard" style="display:none">
-                                <div class="modal-dialog" style="width:650px;">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                
+                                <div class=" card" style="width:650px;">
+                                    <div class="">
+                                        <div class="card-header">
                                             @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                                            <h4 class="card-title" id="myModalLabel">Photo Upload</h4>
                                         </div>
-                                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
-                                            <fieldset class="for-panel">
-                                                <legend>Upload</legend>
-                                                <div class="row">
-
-                                                    <div class="col-sm-3" style="width: 40%;">
-                                                        <div class="form-horizontal">
-                                                            <label class="col-xs-5 control-label">Photo:</label>
-                                                        </div>
-                                                    </div>
-                                                    <input id="uploadCIRMMedicalEquipmentOnBoard" name="upload" type="file" />
-                                                    <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMMedicalEquipmentOnBoard','MedicalEquipmentOnBoard');" style="width:86px;">Upload</button>
-                                                    <div class="col-sm-3" style="width: 63%;"></div>
-                                                    <div class="col-sm-3" style="width: 63%;"></div>
-                                                    <div class="col-sm-3" style="width: 63%;"></div>
-                                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                        <div class="card-body" id="dvuserdetailsn" style="width: 500px;">
+                                            
+                                            @*<fieldset class="">*@
+                                            @*<legend>Upload</legend>*@
+                                            <div class="row">
+                                                @*<input id="uploadCIRMMedicalEquipmentOnBoard" name="upload" type="file" />*@
+                                                <div class="col-sm-3" style="width: 40%;">
                                                     <div class="form-group">
-                                                        <input type="hidden" id="PhotoUploadID" class="form-control" />
-                                                        <input type="hidden" id="hdnPathCIRMMedicalEquipmentOnBoard" class="form-control" />
+                                                        <label class="col-xs-5 control-label">Photo:</label>
                                                     </div>
                                                 </div>
-                                            </fieldset>
+                                                <input id="uploadCIRMMedicalEquipmentOnBoard" name="upload" type="file" />
+                                                <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMMedicalEquipmentOnBoard','MedicalEquipmentOnBoard');" style="width:86px;">Upload</button>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="form-group">
+                                                    <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                                    <input type="hidden" id="hdnPathCIRMMedicalEquipmentOnBoard" class="form-control" />
+                                                </div>
+                                            </div>
+                                            @*</fieldset>*@
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="card-footer">
                                             <label class="hidden" id="lblSuccMsgCIRMMedicalEquipmentOnBoard"></label>
                                             <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
                                             @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
@@ -827,36 +806,36 @@
 
                             <input type="checkbox" name="uploaddocMedicineAvailableOnBoard" id="uploaddocMedicineAvailableOnBoard" value="1" onclick="myFunctionMedicineAvailableOnBoard()"> Upload Medical Inventory<br />
                             <div id="myModalMedicineAvailableOnBoard" style="display:none">
-                                <div class="modal-dialog" style="width:650px;">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                <div class="card" style="width:650px;">
+                                    <div class="">
+                                        <div class="card-header">
                                             @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                                            <h4 class="card-title" id="myModalLabel">Photo Upload</h4>
                                         </div>
-                                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
-                                            <fieldset class="for-panel">
-                                                <legend>Upload</legend>
-                                                <div class="row">
+                                        <div class="card-body" id="dvuserdetailsn" style="width: 500px;">
+                                            @*<fieldset class="for-panel">
+                                                <legend>Upload</legend>*@
+                                            <div class="row">
 
-                                                    <div class="col-sm-3" style="width: 40%;">
-                                                        <div class="form-horizontal">
-                                                            <label class="col-xs-5 control-label">Photo:</label>
-                                                        </div>
-                                                    </div>
-                                                    <input id="uploadCIRMMedicineAvailableOnBoard" name="upload" type="file" />
-                                                    <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMMedicineAvailableOnBoard','MedicineAvailableOnBoard');" style="width:86px;">Upload</button>
-                                                    <div class="col-sm-3" style="width: 63%;"></div>
-                                                    <div class="col-sm-3" style="width: 63%;"></div>
-                                                    <div class="col-sm-3" style="width: 63%;"></div>
-                                                    <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 40%;">
                                                     <div class="form-group">
-                                                        <input type="hidden" id="PhotoUploadID" class="form-control" />
-                                                        <input type="hidden" id="hdnPathCIRMMedicineAvailableOnBoard" class="form-control" />
+                                                        <label class="col-xs-5 control-label">Photo:</label>
                                                     </div>
                                                 </div>
-                                            </fieldset>
+                                                <input id="uploadCIRMMedicineAvailableOnBoard" name="upload" type="file" />
+                                                <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMMedicineAvailableOnBoard','MedicineAvailableOnBoard');" style="width:86px;">Upload</button>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="col-sm-3" style="width: 63%;"></div>
+                                                <div class="form-group">
+                                                    <input type="hidden" id="PhotoUploadID" class="form-control" />
+                                                    <input type="hidden" id="hdnPathCIRMMedicineAvailableOnBoard" class="form-control" />
+                                                </div>
+                                            </div>
+                                            @*</fieldset>*@
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="card-footer">
                                             <label class="hidden" id="lblSuccMsgCIRMMedicineAvailableOnBoard"></label>
                                             <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
                                             @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
@@ -867,19 +846,19 @@
 
                             <input type="checkbox" name="uploaddocJoiningMedical" id="uploaddocJoiningMedical" value="1" onclick="myFunctionJoiningMedical()"> Upload Joining Report<br />
                             <div id="myModalJoiningMedical" style="display:none">
-                                <div class="modal-dialog" style="width:650px;">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                <div class="card" style="width:650px;">
+                                    <div class="">
+                                        <div class="card-header">
                                             @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                                            <h4 class="card-title" id="myModalLabel">Photo Upload</h4>
                                         </div>
-                                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
-                                            <fieldset class="for-panel">
-                                                <legend>Upload</legend>
+                                        <div class="card-body" id="dvuserdetailsn" style="width: 500px;">
+                                            @*<fieldset class="for-panel">
+                                                <legend>Upload</legend>*@
                                                 <div class="row">
 
                                                     <div class="col-sm-3" style="width: 40%;">
-                                                        <div class="form-horizontal">
+                                                        <div class="form-group">
                                                             <label class="col-xs-5 control-label">Photo:</label>
                                                         </div>
                                                     </div>
@@ -894,9 +873,9 @@
                                                         <input type="hidden" id="hdnPathCIRMJoiningMedical" class="form-control" />
                                                     </div>
                                                 </div>
-                                            </fieldset>
+                                            @*</fieldset>*@
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="card-footer">
                                             <label class="hidden" id="lblSuccMsgCIRMJoiningMedical"></label>
                                             <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
                                             @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
@@ -907,19 +886,19 @@
 
                             <input type="checkbox" name="uploaddocMedicalHistoryUpload" id="uploaddocMedicalHistoryUpload" value="1" onclick="myFunctionMedicalHistoryUpload()"> Upload Medical History<br />
                             <div id="myModalMedicalHistoryUpload" style="display:none">
-                                <div class="modal-dialog" style="width:650px;">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                <div class="card" style="width:650px;">
+                                    <div class="">
+                                        <div class="card-header">
                                             @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                                            <h4 class="card-title" id="myModalLabel">Photo Upload</h4>
                                         </div>
-                                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
-                                            <fieldset class="for-panel">
-                                                <legend>Upload</legend>
+                                        <div class="card-body" id="dvuserdetailsn" style="width: 500px;">
+                                            @*<fieldset class="for-panel">
+                                                <legend>Upload</legend>*@
                                                 <div class="row">
 
                                                     <div class="col-sm-3" style="width: 40%;">
-                                                        <div class="form-horizontal">
+                                                        <div class="form-group">
                                                             <label class="col-xs-5 control-label">Photo:</label>
                                                         </div>
                                                     </div>
@@ -934,9 +913,9 @@
                                                         <input type="hidden" id="hdnPathCIRMMedicalHistory" class="form-control" />
                                                     </div>
                                                 </div>
-                                            </fieldset>
+                                            @*</fieldset>*@
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="card-footer">
                                             <label class="hidden" id="lblSuccMsgCIRMMedicalHistory"></label>
                                             <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
                                             @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
@@ -947,19 +926,19 @@
 
                             <input type="checkbox" name="uploaddocWorkAndRestHourLatestRecord" id="uploaddocWorkAndRestHourLatestRecord" value="1" onclick="myFunctionWorkAndRestHourLatestRecord()"> Upload Work And RestHour <br />
                             <div id="myModalWorkAndRestHourLatestRecord" style="display:none">
-                                <div class="modal-dialog" style="width:650px;">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                <div class="card" style="width:650px;">
+                                    <div class="">
+                                        <div class="card-header">
                                             @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                            <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
+                                            <h4 class="card-title" id="myModalLabel">Photo Upload</h4>
                                         </div>
-                                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 500px;">
-                                            <fieldset class="for-panel">
-                                                <legend>Upload</legend>
+                                        <div class="card-body" id="dvuserdetailsn" style="width: 500px;">
+                                            @*<fieldset class="for-panel">
+                                                <legend>Upload</legend>*@
                                                 <div class="row">
 
                                                     <div class="col-sm-3" style="width: 40%;">
-                                                        <div class="form-horizontal">
+                                                        <div class="form-group">
                                                             <label class="col-xs-5 control-label">Photo:</label>
                                                         </div>
                                                     </div>
@@ -974,9 +953,9 @@
                                                         <input type="hidden" id="hdnPathCIRMWorkAndRestHourLatestRecord" class="form-control" />
                                                     </div>
                                                 </div>
-                                            </fieldset>
+                                            @*</fieldset>*@
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="card-footer">
                                             <label class="hidden" id="lblSuccMsgCIRMWorkAndRestHourLatestRecord"></label>
                                             <button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>
                                             @*<button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>*@
@@ -990,7 +969,7 @@
 
                         @*-----------------End--------------Upload Panels----------------------------------------*@
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="imguplodimg">
                             @*<img src="https://localhost:44376/img/logo_Worth.png" />
             <a href="#">Go to tha image</a>*@
@@ -1007,26 +986,17 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title" id="myModalLabel">Photo Upload</h4>
                                     </div>
+                                    
+                                    <div class="card-body" id="dvuserdetailsn" style="width: 802px;">
 
-                                    <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
                                         <fieldset class="for-panel">
                                             <legend>Upload</legend>
                                             <div class="row">
 
                                                 <div class="col-sm-3" style="width: 63%;">
-                                                    <div class="form-horizontal">
+                                                    <div class="form-group">
                                                         <label class="col-xs-5 control-label">Photo:</label>
-                                                        @*<div>
-                                            @using (Html.BeginForm("MedicalTreatment", "CrewHealth", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                            {
-                                                <span>Select File:</span>
-                                                <input type="file" name="postedFile" />
-                                                <hr />
-                                                <input type="submit" value="Upload" />
-                                                <br />
-                                                <span style="color:green">@ViewBag.Message</span>
-                                            }
-                                        </div>*@
+
                                                     </div>
                                                 </div>
 
@@ -1060,7 +1030,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="uploadbtn">
                             <a href="#">Upload photo</a>
                         </div>
@@ -1075,7 +1045,13 @@
 </div>
 
 <script>
+    $("#VitalStatisticsDate").datepicker({
 
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
+
+    });
     $("input:checkbox.TeleMedicalConsultation").click(function () {
         
         $("#dvTeleMedicalConsultation").hide();
@@ -1202,5 +1178,27 @@
             text.style.display = "none";
         }
     }
-
+    var trCount = 1;
+    $("#addrows").click(function () {
+        trCount += 1;
+        $("#tblMedicationTaken").each(function () {
+            
+            var tds = '<tr>';
+            var tdCount = 0;
+            jQuery.each($('tr:last td', this), function () {
+                tdCount += 1;
+                if (tdCount == 1)
+                    tds += '<td>' + trCount + '</td>';
+                else
+                    tds += '<td>' + $(this).html() + '</td>';
+            });
+            tds += '</tr>';
+            if ($('tbody', this).length > 0) {
+                $('tbody', this).append(tds);
+            } else {
+                $(this).append(tds);
+            }
+            
+        });
+    });
 </script>

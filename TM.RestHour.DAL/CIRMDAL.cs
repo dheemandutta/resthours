@@ -1593,9 +1593,13 @@ namespace TM.RestHour.DAL
             }
 
             //Need to be add more Params--------------
+            DataTable medicationTable = CreateCIRMMedicationTakenTable();
+            foreach(CIRMMedicationTakenPOCO mtPoco in cIRM.MedicationTakenList)
+            {
+                medicationTable.Rows.Add(mtPoco.MedicationId,mtPoco.CIRMId,mtPoco.PrescriptionName,mtPoco.MedicalConditionBeingTreated,mtPoco.HowOftenMedicationTaken);
+            }
 
-
-
+            cmd.Parameters.AddWithValue("@MedicationTaken", medicationTable);
 
             #endregion
 
@@ -1999,7 +2003,14 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@WorkAndRestHourLatestRecordPath", DBNull.Value);
             }
 
-            
+            if (!String.IsNullOrEmpty(cIRM.PictureUploadPath))
+            {
+                cmd.Parameters.AddWithValue("@PictureUploadPath", cIRM.PictureUploadPath.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@PictureUploadPath", DBNull.Value);
+            }
 
             #endregion
 
@@ -2729,11 +2740,14 @@ namespace TM.RestHour.DAL
                 if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["PastMedicalHistory"].ToString()))
                     cirm.PastMedicalHistory = ds.Tables[0].Rows[0]["PastMedicalHistory"].ToString();
 
+                //List<CIRMMedicationTakenPOCO> mtPoco = new List<CIRMMedicationTakenPOCO>();
+                //mtPoco = GetMedicationTakenByCIRM(cirm.CIRMId);
+                cirm.MedicationTakenList= GetMedicationTakenByCIRM(cirm.CIRMId);
 
                 #endregion
 
                 #region Findings Affected Areas
-                if(ds.Tables[5].Rows.Count > 0)
+                if (ds.Tables[5].Rows.Count > 0)
                 {
                     if (!String.IsNullOrEmpty(ds.Tables[5].Rows[0]["AffectedParts"].ToString()))
                         cirm.AffectedParts = ds.Tables[5].Rows[0]["AffectedParts"].ToString();
@@ -2756,10 +2770,11 @@ namespace TM.RestHour.DAL
                 #endregion
 
                 #region Telemedical Consultation
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["TeleMedicalConsultation"].ToString()))
+                    cirm.TeleMedicalConsultation = Convert.ToBoolean(ds.Tables[0].Rows[0]["TeleMedicalConsultation"].ToString());
                 if (ds.Tables[6].Rows.Count > 0)
                 {
-                    if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["TeleMedicalConsultation"].ToString()))
-                        cirm.TeleMedicalConsultation = Convert.ToBoolean(ds.Tables[6].Rows[0]["TeleMedicalConsultation"].ToString());
+                    
                     if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["TeleMedicalContactDate"].ToString()))
                         cirm.TeleMedicalContactDate = ds.Tables[6].Rows[0]["TeleMedicalContactDate"].ToString();
                     if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["TeleMedicalContactTime"].ToString()))
@@ -2771,15 +2786,16 @@ namespace TM.RestHour.DAL
                     if (!String.IsNullOrEmpty(ds.Tables[6].Rows[0]["DetailsOfTreatmentAdvised"].ToString()))
                         cirm.DetailsOfTreatmentAdvised = ds.Tables[6].Rows[0]["DetailsOfTreatmentAdvised"].ToString();
                 }
-                
+
 
                 #endregion
 
                 #region Medical Treatment Given Onboard
-                if(ds.Tables[7].Rows.Count > 0)
+                if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["MedicalTreatmentGivenOnboard"].ToString()))
+                    cirm.MedicalTreatmentGivenOnboard = Convert.ToBoolean(ds.Tables[0].Rows[0]["MedicalTreatmentGivenOnboard"].ToString());
+                if (ds.Tables[7].Rows.Count > 0)
                 {
-                    if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["MedicalTreatmentGivenOnboard"].ToString()))
-                        cirm.MedicalTreatmentGivenOnboard = Convert.ToBoolean(ds.Tables[7].Rows[0]["MedicalTreatmentGivenOnboard"].ToString());
+                    
                     if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["PriorRadioMedicalAdvice"].ToString()))
                         cirm.PriorRadioMedicalAdvice = ds.Tables[7].Rows[0]["PriorRadioMedicalAdvice"].ToString();
                     if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["AfterRadioMedicalAdvice"].ToString()))
@@ -2787,7 +2803,7 @@ namespace TM.RestHour.DAL
                     if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["HowIsPatientRespondingToTreatmentGiven"].ToString()))
                         cirm.HowIsPatientRespondingToTreatmentGiven = ds.Tables[7].Rows[0]["HowIsPatientRespondingToTreatmentGiven"].ToString();
                     if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["DoesPatientNeedRemoveFromVessel"].ToString()))
-                        cirm.DoesPatientNeedRemoveFromVessel = Convert.ToInt32(ds.Tables[7].Rows[0]["DoesPatientNeedRemoveFromVessel"].ToString());
+                        cirm.DoesPatientNeedRemoveFromVessel = Convert.ToInt32(ds.Tables[7].Rows[0]["DoesPatientNeedRemoveFromVessel"]);
                     if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["NeedRemovalDesc"].ToString()))
                         cirm.NeedRemovalDesc = ds.Tables[7].Rows[0]["NeedRemovalDesc"].ToString();
                     if (!String.IsNullOrEmpty(ds.Tables[7].Rows[0]["NeedRemovalToPort"].ToString()))
@@ -3012,6 +3028,52 @@ namespace TM.RestHour.DAL
             return cirmSymtomologyList;
         }
 
+        public List<CIRMMedicationTakenPOCO> GetMedicationTakenByCIRM(int Id)
+        {
+            List<CIRMMedicationTakenPOCO> cirmMedicationTakenList = new List<CIRMMedicationTakenPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetMedicationTakenByCIRM", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CIRMid", Id);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+                    con.Close();
+                }
+            }
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    CIRMMedicationTakenPOCO cirmMedicationTaken = new CIRMMedicationTakenPOCO();
+                    if (ds.Tables[0].Rows[0]["MedicationId"] != null)
+                        cirmMedicationTaken.MedicationId = Convert.ToInt32(item["MedicationId"].ToString());
+                    if (ds.Tables[0].Rows[0]["CIRMId"] != null)
+                        cirmMedicationTaken.CIRMId = Convert.ToInt32(item["CIRMId"].ToString());
+                    if (ds.Tables[0].Rows[0]["PrescriptionName"] != null)
+                        cirmMedicationTaken.PrescriptionName = item["PrescriptionName"].ToString();
+                    if (ds.Tables[0].Rows[0]["MedicalConditionBeingTreated"] != null)
+                        cirmMedicationTaken.MedicalConditionBeingTreated = item["MedicalConditionBeingTreated"].ToString();
+                    if (ds.Tables[0].Rows[0]["HowOftenMedicationTaken"] != null)
+                        cirmMedicationTaken.HowOftenMedicationTaken = item["HowOftenMedicationTaken"].ToString();
+
+                    cirmMedicationTakenList.Add(cirmMedicationTaken);
+                }
+
+            }
+            else
+            {
+                CIRMMedicationTakenPOCO cirmMedicationTaken = new CIRMMedicationTakenPOCO();
+                cirmMedicationTakenList.Add(cirmMedicationTaken);
+            }
+            return cirmMedicationTakenList;
+        }
         public DataSet GetCIRMUploadedImages(int cirmId)
         {
             DataSet ds = new DataSet();
@@ -3409,6 +3471,7 @@ namespace TM.RestHour.DAL
         }
 
 
+
         public DataSet GetCirmAccidentDetailsByCirmId(int cirmId)
         {
             DataSet ds = new DataSet();
@@ -3432,6 +3495,15 @@ namespace TM.RestHour.DAL
             return ds;
         }
 
-
+        public static DataTable CreateCIRMMedicationTakenTable()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("MedicationId", typeof(Int32));
+            dt.Columns.Add("CIRMId", typeof(Int32));
+            dt.Columns.Add("PrescriptionName", typeof(string));
+            dt.Columns.Add("MedicalConditionBeingTreated", typeof(string));
+            dt.Columns.Add("HowOftenMedicationTaken", typeof(string));
+            return dt;
+        }
     }
 }

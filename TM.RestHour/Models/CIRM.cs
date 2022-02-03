@@ -283,7 +283,7 @@ namespace TM.RestHour.Models
 
         public CIRMMedicationTaken MedicationTahen { get; set; }
 
-        public List<CIRMMedicationTaken> MedicationTahenList { get; set; }
+        public List<CIRMMedicationTaken> MedicationTakenList { get; set; }
 
         #endregion
 

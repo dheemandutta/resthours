@@ -335,6 +335,7 @@ function SaveCIRM(medicalAssistanceType) {
 
             VitalParams: VitalParams,
             MedicalSymtomology: Symtomology
+            
         };
 
         $.ajax({
@@ -392,13 +393,17 @@ function SaveCIRMNew(medicalAssistanceType) {
     //alert($('textarea#Comments').val());
     //debugger;
     var posturl = $('#SaveCIRM').val();
+    var medicationsTaken;
     var res = validate();
     if (res == false) {
         return false;
     }
     // alert(res);
     if (res) {
-
+        if (CreateMedicationTakenDetailsJsonObject()) {
+            /*MedicationTakenList = JSON.stringify({MedicationTakenList});*/
+            MedicationTakenList = MedicationTakenList;
+        }
         var VitalParams = {
             ID: $('#VitalParamsId').val(),
             CIRMId: $('#CIRMId').val(),
@@ -434,84 +439,84 @@ function SaveCIRMNew(medicalAssistanceType) {
             AnyOtherRelevantInformation:    $('#AnyOtherRelevantInformation').val(),
             Ailment:                        $('#Ailment').val()
         };
-        var Crew = {
-            CIRMId:                     $('#CIRMId').val(),
-            MedicalAssitanceType:       medicalAssistanceType, 
+        var cIRM = {
+            CIRMId: $('#CIRMId').val(),
+            MedicalAssitanceType: medicalAssistanceType,
 
-            NameOfVessel:               $('#VesselName').val(),
-            RadioCallSign:              $('#CallSign').val(),
-                    
+            NameOfVessel: $('#VesselName').val(),
+            RadioCallSign: $('#CallSign').val(),
+
 
             //#region Voyage Details
-            DateOfReportingGMT:         $('#DateOfReportingGMT').val(),
-            TimeOfReportingGMT:         $('#TimeOfReportingGMT').val(),
-            LocationOfShip:             $('#LocationOfShip').val(),
-            Cousre:                     $('#Cousre').val(),
-            Speed:                      $('#Speed').val(),
-            PortofDeparture:            $('#PortOfDeparture').val(),
-            DateOfDeparture:            $('#DateOfDeparture').val(),
-            TimeOfDeparture:            $('#TimeOfDeparture').val(),
-            PortofDestination:          $('#PortOfArrival').val(),
-            ETADateGMT:                 $('#ETADateGMT').val(),
-            ETATimeGMT:                 $('#ETATimeGMT').val(),
-            EstimatedTimeOfarrivalhrs:  $('#EstimatedTimeOfArrival').val(),
-            AgentDetails:               $('#AgentDetails').val(),
-            NearestPort:                $('#NearestPort').val(),
-            NearestPortETADateGMT:      $('#NearestPortETADateGMT').val(),
-            NearestPortETATimeGMT:      $('#NearestPortETATimeGMT').val(),
-            OtherPossiblePort:          $('#OtherPossiblePort').val(),
-            OtherPortETADateGMT:        $('#OtherPortETADateGMT').val(),
-            OtherPortETATimeGMT:        $('#OtherPortETATimeGMT').val(),
+            DateOfReportingGMT: $('#DateOfReportingGMT').val(),
+            TimeOfReportingGMT: $('#TimeOfReportingGMT').val(),
+            LocationOfShip: $('#LocationOfShip').val(),
+            Cousre: $('#Cousre').val(),
+            Speed: $('#Speed').val(),
+            PortofDeparture: $('#PortOfDeparture').val(),
+            DateOfDeparture: $('#DateOfDeparture').val(),
+            TimeOfDeparture: $('#TimeOfDeparture').val(),
+            PortofDestination: $('#PortOfArrival').val(),
+            ETADateGMT: $('#ETADateGMT').val(),
+            ETATimeGMT: $('#ETATimeGMT').val(),
+            EstimatedTimeOfarrivalhrs: $('#EstimatedTimeOfArrival').val(),
+            AgentDetails: $('#AgentDetails').val(),
+            NearestPort: $('#NearestPort').val(),
+            NearestPortETADateGMT: $('#NearestPortETADateGMT').val(),
+            NearestPortETATimeGMT: $('#NearestPortETATimeGMT').val(),
+            OtherPossiblePort: $('#OtherPossiblePort').val(),
+            OtherPortETADateGMT: $('#OtherPortETADateGMT').val(),
+            OtherPortETATimeGMT: $('#OtherPortETATimeGMT').val(),
 
             //#endregion
 
             //#region Weather Details
-            WindDirection:              $('#Direction').val(),
-            BeaufortScale:              $('#BeaufortScale').val(),
-            WindSpeed:                  $('#WindSpeed').val(),
-            SeaState:                   $('#SeaState').val(),
-            WaveHeight:                 $('#WaveHeight').val(),
-            Swell:                      $('#Swell').val(),
-            WeatherCondition:           $('#WeatherCondition').val(),
-            WeatherVisibility:          $('#Visibility').val(),
-            Weather:                    $('#WeatherCondition').val(),
+            WindDirection: $('#Direction').val(),
+            BeaufortScale: $('#BeaufortScale').val(),
+            WindSpeed: $('#WindSpeed').val(),
+            SeaState: $('#SeaState').val(),
+            WaveHeight: $('#WaveHeight').val(),
+            Swell: $('#Swell').val(),
+            WeatherCondition: $('#WeatherCondition').val(),
+            WeatherVisibility: $('#Visibility').val(),
+            Weather: $('#WeatherCondition').val(),
             //#endregion 
 
             //#region Crew Details
-            CrewId:                 $('#ddlCrew').val(),
-            Nationality:            $('#Nationality').val(),
-            Addiction:              $('#Addiction').val(),
-            RankID:                 $('#ddlRank').val(),
-            Ethinicity:             $('#Ethinicity').val(),
-            Frequency:              $('#Frequency').val(),
-            Sex:                    $('#Sex').val(),
-            Age:                    $('#Age').val(),
-            JoiningDate:            $('#JoiningDate').val(),
-            DateOfOffWork:          $('#DateOffWork').val(),
-            TimeOfOffWork:          $('#TImeOffWork').val(),
-            DateOfResumeWork:       $('#DateResumeWork').val(),
-            TimeOfResumeWork:       $('#TimeResumeWork').val(),
+            CrewId: $('#ddlCrew').val(),
+            Nationality: $('#Nationality').val(),
+            Addiction: $('#Addiction').val(),
+            RankID: $('#ddlRank').val(),
+            Ethinicity: $('#Ethinicity').val(),
+            Frequency: $('#Frequency').val(),
+            Sex: $('#Sex').val(),
+            Age: $('#Age').val(),
+            JoiningDate: $('#JoiningDate').val(),
+            DateOfOffWork: $('#DateOffWork').val(),
+            TimeOfOffWork: $('#TImeOffWork').val(),
+            DateOfResumeWork: $('#DateResumeWork').val(),
+            TimeOfResumeWork: $('#TimeResumeWork').val(),
 
             //#endregion
 
             //#region Incase of Injury/Sevierty of Pain
 
-            DateOfInjuryOrIllness:          $('#DateOfInjuryOrIllness').val(),
-            TimeOfInjuryOrIllness:          $('#TImeOfInjuryOrIllness').val(),
-            DateOfFirstExamination:         $('#DateOfFirstExaminationOnboard').val(),
-            TimeOfFirstExamination:         $('#TimeOfFirstExaminationOnboard').val(),
-            IsInjuryorIllnessWorkRelated:   $("input[name='IsInjuryWorkRelated']:checked").val(),
+            DateOfInjuryOrIllness: $('#DateOfInjuryOrIllness').val(),
+            TimeOfInjuryOrIllness: $('#TImeOfInjuryOrIllness').val(),
+            DateOfFirstExamination: $('#DateOfFirstExaminationOnboard').val(),
+            TimeOfFirstExamination: $('#TimeOfFirstExaminationOnboard').val(),
+            IsInjuryorIllnessWorkRelated: $("input[name='IsInjuryWorkRelated']:checked").val(),
             IsUnconsciousByInjuryOrIllness: $("input[name='IsUnconscious']:checked").val(),
-            HowLongWasUnconscious:          $('#UnconsciousPeriod').val(),
-            LevelOfConsciousness:           $("input[name='LevelOfConsciousness']:checked").val(),
-            IsAccidentOrIlness:             $("input[name='AccidentOrIllness']:checked").val(),
+            HowLongWasUnconscious: $('#UnconsciousPeriod').val(),
+            LevelOfConsciousness: $("input[name='LevelOfConsciousness']:checked").val(),
+            IsAccidentOrIlness: $("input[name='AccidentOrIllness']:checked").val(),
 
-            WhereAndHowAccidentOccured:     $('#WhereAndHowAccidentOccured').val(),
-            LocationAndTypeOfInjuryOrBurn:  $('#LocationAndTypeOfInjuryOrBurn').val(),
-            FirstAidGiven:                  $('#FirstAidGiven').val(),
-            TypeOfBurn:                     $('#TypeOfBurn').val(),
-            DegreeOfBurn:                   $('#DegreeOfBurn').val(),
-            PercentageOfBurn:               $('#PercentageOfBurn').val(),
+            WhereAndHowAccidentOccured: $('#WhereAndHowAccidentOccured').val(),
+            LocationAndTypeOfInjuryOrBurn: $('#LocationAndTypeOfInjuryOrBurn').val(),
+            FirstAidGiven: $('#FirstAidGiven').val(),
+            TypeOfBurn: $('#TypeOfBurn').val(),
+            DegreeOfBurn: $('#DegreeOfBurn').val(),
+            PercentageOfBurn: $('#PercentageOfBurn').val(),
 
             MedicalSymtomology: Symtomology,
 
@@ -519,10 +524,11 @@ function SaveCIRMNew(medicalAssistanceType) {
             FrequencyOfPain: $('#FrequencyOfPain').val(),
 
             //#endregion
-            
+
             //#region  History and Medication Taken
             PastMedicalHistory: $('#RelaventMedicalHistory').val(),
-
+            MedicationTakenList: MedicationTakenList,
+            
             //#endregion
 
             VitalParams: VitalParams,
@@ -581,13 +587,15 @@ function SaveCIRMNew(medicalAssistanceType) {
             WorkAndRestHourLatestRecord: $("input[name='uploaddocWorkAndRestHourLatestRecord']:checked").val() ? true : false,
             WorkAndRestHourLatestRecordPath: $('#hdnPathCIRMWorkAndRestHourLatestRecord').val(),
 
+
+            PictureUploadPath: $('#hdnCrewHealthImagePath').val(),
             //#endregion
             
         };
 
         $.ajax({
             url: posturl,
-            data: JSON.stringify(Crew),
+            data: JSON.stringify(cIRM),
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -1196,7 +1204,7 @@ function GetCIRMDetailsByCrew(id) {
             //#endregion
 
             //#region Past Medical History
-            $('#RelaventMedicalHistory').val(result.PastMedicalHistory);
+            $('#PastMedicalHostory').val(result.PastMedicalHistory);
 
             //#endregion
 
@@ -1409,8 +1417,8 @@ function GetCIRMDetailsByCrewNew(id) {
             //#endregion
 
             //#region History and Medication Taken
-            $('#PastMedicalHostory').val(result.PastMedicalHistory);
-
+            $('#RelaventMedicalHistory').val(result.PastMedicalHistory);
+            LoadCIRMMedicationTakenDataIntoTable(result.MedicationTakenList);
             //#endregion
 
             //#region Vital Statistica
@@ -1445,7 +1453,7 @@ function GetCIRMDetailsByCrewNew(id) {
 
             //#region Telemedical Consultation
             if (result.TeleMedicalConsultation) {
-                $("#TeleMedicalConsultation").prop("checked", true);
+                $("#chkTeleMedicalConsultation").prop("checked", true);
                 $('#TeleMedicalContactDate').val(result.TeleMedicalContactDate);
                 $('#TeleMedicalContactTime').val(result.TeleMedicalContactTime);
                 $('#ModeOfCommunication').val(result.ModeOfCommunication);
@@ -1458,7 +1466,7 @@ function GetCIRMDetailsByCrewNew(id) {
 
             //#region Medical Treatment Given Onboard
             if (result.TeleMedicalConsultation) {
-                $("#MedicalTreatmentGivenOnboard").prop("checked", true);
+                $("#chkMedicalTreatmentGivenOnboard").prop("checked", true);
                 $('#PriorRadioMedicalAdvice').val(result.PriorRadioMedicalAdvice);
                 $('#AfterRadioMedicalAdvice').val(result.AfterRadioMedicalAdvice);
                 $('#HowIsPatientRespondingToTreatmentGiven').val(result.HowIsPatientRespondingToTreatmentGiven);
@@ -1826,4 +1834,132 @@ function ConfirmDialog(message) {
         });
 
     //return retn;
-};
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+var MedicationTakenDetailsJsonObject = { MedicationTakenDetails: [] };
+var MedicationTakenList = [];
+function CreateMedicationTakenDetailsJsonObject() {
+    //alert(2);
+    MedicationTakenDetailsJsonObject = { MedicationTakenDetails: [] };
+    MedicationTakenList = [];
+    var MedicationTakenDetailRow;
+    var PrescriptionName;
+    var MedicalConditionBeingTreated;
+    var HowOftenMedicationTaken;
+    var MedicationTakenDetailCount = 0;
+
+    //alert(3);
+    var tb = $('.table-MedicationTaken:eq(0) tbody');
+    /*$('.MedicationDetailRow').each(function () {*/
+    tb.find("tr").each(function () {
+        MedicationTakenDetailRow = $(this);// alert(4);
+        //MedicationTakenDetailId = 0;// $(SubPhaseRow).children().children('[name=MedicationTakenDetailId]').val();
+        //PrescriptionName = $(MedicationTakenDetailRow).children.children('[name=PrescriptionName]').attr('value');// alert(5);
+        PrescriptionName = $(MedicationTakenDetailRow).find("input[name='PrescriptionName']").val();
+       // MedicalConditionBeingTreated = $(MedicationTakenDetailRow).children.children('[name=MedicalConditionBeingTreated]').attr('value'); //alert(6);
+        MedicalConditionBeingTreated = $(MedicationTakenDetailRow).find("input[name='MedicalConditionBeingTreated']").val();
+        //HowOftenMedicationTaken = $(MedicationTakenDetailRow).children.children('[name=HowOftenMedicationTaken]').attr('value');// alert(7);
+        HowOftenMedicationTaken = $(MedicationTakenDetailRow).find("input[name='HowOftenMedicationTaken']").val();
+        //receivedAmount = $(MedicationTakenDetailRow).children('[name=ReceivedAmount]').html(); //alert(8);
+        //unit = $(MedicationTakenDetailRow).children('[name=UnitId]').attr('value');// alert(9);
+        //currentlyReceived = $(MedicationTakenDetailRow).children('[name=CurrentlyReceived]').html();// alert(9);
+
+
+        MedicationTakenDetailsJsonObject.MedicationTakenDetails.push({
+            "PrescriptionName": PrescriptionName,
+            "MedicalConditionBeingTreated": MedicalConditionBeingTreated,
+            "HowOftenMedicationTaken": HowOftenMedicationTaken
+        });
+
+        MedicationTakenList.push({
+            PrescriptionName: PrescriptionName,
+            MedicalConditionBeingTreated: MedicalConditionBeingTreated,
+            HowOftenMedicationTaken: HowOftenMedicationTaken
+        });
+        MedicationTakenDetailCount++;
+    });
+
+    //alert(10);
+    if (MedicationTakenDetailCount == 0) {
+        alert('Give at least one Detail');
+        return false;
+    }
+    //alert(11);
+
+    return true;
+}
+
+function LoadCIRMMedicationTakenDataIntoTable(medications) {
+    var MedicationTakenList = [];
+    var MedicationTakenDetailRow;
+    MedicationTakenList = medications;
+    var len = MedicationTakenList.length;
+    var tb = $('.table-MedicationTaken:eq(0) tbody');
+    var trCnt = 0;
+    if (len == 1) {
+        tb.find("tr").each(function () {
+            MedicationTakenDetailRow = $(this);
+            $(MedicationTakenDetailRow).find("input[name='PrescriptionName']").val(MedicationTakenList[0]["PrescriptionName"]);
+            $(MedicationTakenDetailRow).find("input[name='MedicalConditionBeingTreated']").val(MedicationTakenList[0]["MedicalConditionBeingTreated"]);
+            $(MedicationTakenDetailRow).find("input[name='HowOftenMedicationTaken']").val(MedicationTakenList[0]["HowOftenMedicationTaken"]);
+
+        });
+    }
+    else if (MedicationTakenList.length > 1) {
+        for (var i = 1; i < len; i++) {
+            AddRow(i);
+        }
+
+        tb.find("tr").each(function () {
+            MedicationTakenDetailRow = $(this);
+            $(MedicationTakenDetailRow).find("input[name='PrescriptionName']").val(MedicationTakenList[trCnt]["PrescriptionName"]);
+            $(MedicationTakenDetailRow).find("input[name='MedicalConditionBeingTreated']").val(MedicationTakenList[trCnt]["MedicalConditionBeingTreated"]);
+            $(MedicationTakenDetailRow).find("input[name='HowOftenMedicationTaken']").val(MedicationTakenList[trCnt]["HowOftenMedicationTaken"]);
+            //alert(trCnt + ',' + MedicationTakenList[0]["PrescriptionName"]);
+            trCnt++;
+        });
+    }
+}
+function AddRow(trCount) {
+    trCount += 1;
+    $("#tblMedicationTaken").each(function () {
+
+        var tds = '<tr>';
+        var tdCount = 0;
+        jQuery.each($('tr:last td', this), function () {
+            tdCount += 1;
+            if (tdCount == 1)
+                tds += '<td>' + trCount + '</td>';
+            else
+                tds += '<td>' + $(this).html() + '</td>';
+        });
+        tds += '</tr>';
+        if ($('tbody', this).length > 0) {
+            $('tbody', this).append(tds);
+        } else {
+            $(this).append(tds);
+        }
+
+    });
+}
+
+//$("#addrows").click(function () {
+//    $("#mytable").each(function () {
+//        var tds = '<tr>';
+//        jQuery.each($('tr:last td', this), function () {
+//            tds += '<td>' + $(this).html() + '</td>';
+//        });
+//        tds += '</tr>';
+//        if ($('tbody', this).length > 0) {
+//            $('tbody', this).append(tds);
+//        } else {
+//            $(this).append(tds);
+//        }
+//    });
+//});

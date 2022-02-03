@@ -287,9 +287,9 @@ namespace TM.Base.Entities
 
         #region Medication Taken
 
-        public CIRMMedicationTakenPOCO MedicationTahen { get; set; }
+        public CIRMMedicationTakenPOCO MedicationTaken { get; set; }
 
-        public List<CIRMMedicationTakenPOCO> MedicationTahenList { get; set; }
+        public List<CIRMMedicationTakenPOCO> MedicationTakenList { get; set; }
 
         #endregion
 
