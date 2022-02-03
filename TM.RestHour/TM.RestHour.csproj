@@ -552,6 +552,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\images\ui-icons_777620_256x240.png" />
@@ -677,6 +679,8 @@
     <Content Include="Equipment\dist\dual-listbox.css" />
     <Content Include="Equipment\dist\dual-listbox.js" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\banner_Worth.jpg" />
@@ -875,6 +879,15 @@
     <Content Include="Medicine\MedicineList.xls" />
     <Content Include="Medicine\MedicineList.xlsx" />
     <Content Include="MedicineNew\MedicineList.xlsx" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -1480,6 +1493,7 @@
     <Content Include="Views\OvertimeCalculation\Index.cshtml" />
     <Content Include="Views\CrewList\CrewListNew_bingshu.cshtml" />
     <Content Include="Views\CreateNewUserAccount\Index.cshtml" />
+    <Content Include="Views\WellBeing\MonthlyWorkHours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,6 +38,28 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
+        [TraceFilterAttribute]
+        public ActionResult MonthlyWorkHours(string crewId, string monthYear)
+        {
+            //GetAllCrewForTimeSheet();
+
+
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+
+            }
+            else
+                crewtimesheetVM.Crew.ID = 0;
+
+            return View(crewtimesheetVM);
+           // return View();
+        }
+
         public JsonResult GetNCDetails(string monthyear)
         {
             ReportsBL reportsBL = new ReportsBL();
@@ -75,6 +97,76 @@ namespace TM.RestHour.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
             //return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
         }
+
+
+
+        [TraceFilterAttribute]
+        public void GetAllCrewForTimeSheet()
+        {
+            TimeSheetBL crewDAL = new TimeSheetBL();
+            List<CrewPOCO> crewpocoList = new List<CrewPOCO>();
+
+            crewpocoList = crewDAL.GetAllCrewForTimeSheet(int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
+
+            List<Crew> itmasterList = new List<Crew>();
+
+            foreach (CrewPOCO up in crewpocoList)
+            {
+                Crew unt = new Crew();
+                unt.ID = up.ID;
+                unt.Name = up.Name;
+
+                itmasterList.Add(unt);
+            }
+
+            ViewBag.Crew = itmasterList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.Name,
+                                                Value = x.ID.ToString()
+                                            });
+
+        }
+
+
+
+
+        public JsonResult GetMonthlyDataForWeb(Reports reports)
+        {
+            ReportsBL reportsBL = new ReportsBL();
+            ReportsPOCO reportsPC = new ReportsPOCO();
+
+            string month = reports.SelectedMonthYear.Substring(0, reports.SelectedMonthYear.Length - 4);
+
+            reportsPC.Month = (int)((Months)Enum.Parse(typeof(Months), month.Trim()));
+            reportsPC.MonthName = month;
+            reportsPC.Year = int.Parse(Utilities.GetLast(reports.SelectedMonthYear, 4));
+            reportsPC.CrewID = reports.CrewID;
+
+            List<ReportsPOCO> reportsList = new List<ReportsPOCO>();
+            reportsList = reportsBL.GetCrewIDFromWorkSessionsForWeb(reportsPC, int.Parse(Session["VesselID"].ToString()));
+            //32 to 36
+            string[] bookedHours = new string[62];
+            int row = 0;
+            foreach (ReportsPOCO item in reportsList)
+            {
+                bookedHours[row] = item.Hours;
+
+
+                row++;
+            }
+
+
+            var data = reportsList;
+
+
+
+            // return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(new { BookedHours = data }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
     }
 }
