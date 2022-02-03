@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using TM.RestHour.Common;
+<!DOCTYPE html>
 <html lang="eng">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
@@ -32,6 +33,17 @@
 
 
 </head>
+
+<style>
+    a.disabled {
+        pointer-events: none;
+        color: #ccc;
+    }
+    a.active {
+
+    }
+</style>
+
 <body class="crm_body_bg">
     <!-- main content part here -->
     <!-- sidebar  -->
@@ -55,8 +67,8 @@
                     </div>
                 </a>
                 <ul class="menu_Sub">
-                    <li><a href="@Url.Action("AddEditCrew", "AddCrew" )">Add Crew</a></li>
-                    <li><a href="@Url.Action("CrewListNew", "CrewList" )">Crew List</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Add Crew") ? "active" : "disabled") " href="@Url.Action("AddEditCrew", "AddCrew" )">Add Crew</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Crew List") ? "active" : "disabled")" href="@Url.Action("CrewListNew", "CrewList" )">Crew List</a></li>
                 </ul>
             </li>
             <li class="">
@@ -69,9 +81,9 @@
                     </div>
                 </a>
                 <ul class="menu_Sub">
-                    <li><a href="@Url.Action("WellBeingHealth", "WellBeing" )">Health</a></li>
-                    <li><a href="@Url.Action("WellBeingMentalHealth", "WellBeing" )">Mental Health</a></li>
-                    <li><a href="@Url.Action("WellBeingWorkAndRestHours", "WellBeing" )">Work And Rest Hours</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Health") ? "active" : "disabled")" href="@Url.Action("WellBeingHealth", "WellBeing" )">Health</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Mental Health") ? "active" : "disabled")" href="@Url.Action("WellBeingMentalHealth", "WellBeing" )">Mental Health</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("WorkAndRestHours") ? "active" : "disabled")" href="@Url.Action("WellBeingWorkAndRestHours", "WellBeing" )">Work And Rest Hours</a></li>
                     @*<li><a href="@Url.Action("CrewListNew", "CrewList" )">Health Tips</a></li>*@
                     <li class="">
                         <a class="has-arrow" href="#" aria-expanded="false">
@@ -80,14 +92,14 @@
                             </div>
                         </a>
                         <ul class="menu_Sub">
-                            <li><a href="@Url.Action("Adviceforsafesex", "HeathTips" )">Advice for safe sex</a></li>
-                            <li><a href="@Url.Action("Adviseforsafetravel", "HeathTips" )">Advise for safe travel</a></li>
-                            <li><a href="@Url.Action("Maintainingahealthyweightonboard", "HeathTips" )">Healthy weight onboard</a></li>
-                            <li><a href="@Url.Action("Maintainingdentalhygiene", "HeathTips" )">Maintaining dental hygiene</a></li>
-                            <li><a href="@Url.Action("Maintainingfitnessonboard", "HeathTips" )">Maintaining fitness onboard</a></li>
-                            <li><a href="@Url.Action("Maintainingmentalwellbeing", "HeathTips" )">Maintaining mental well being</a></li>
-                            <li><a href="@Url.Action("Malariaprevention", "HeathTips" )">Malaria prevention</a></li>
-                            <li><a href="@Url.Action("Protectingyourskinonboard", "HeathTips" )">Protecting your skin onboard</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Advice for safe sex") ? "active" : "disabled")" href="@Url.Action("Adviceforsafesex", "HeathTips" )">Advice for safe sex</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Advise for safe travel") ? "active" : "disabled")" href="@Url.Action("Adviseforsafetravel", "HeathTips" )">Advise for safe travel</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Healthy weight onboard") ? "active" : "disabled")" href="@Url.Action("Maintainingahealthyweightonboard", "HeathTips" )">Healthy weight onboard</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Maintaining dental hygiene") ? "active" : "disabled")" href="@Url.Action("Maintainingdentalhygiene", "HeathTips" )">Maintaining dental hygiene</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Maintaining fitness onboard") ? "active" : "disabled")" href="@Url.Action("Maintainingfitnessonboard", "HeathTips" )">Maintaining fitness onboard</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Maintaining mental well being") ? "active" : "disabled")" href="@Url.Action("Maintainingmentalwellbeing", "HeathTips" )">Maintaining mental well being</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Malaria prevention") ? "active" : "disabled")" href="@Url.Action("Malariaprevention", "HeathTips" )">Malaria prevention</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Protecting your skin onboard") ? "active" : "disabled")" href="@Url.Action("Protectingyourskinonboard", "HeathTips" )">Protecting your skin onboard</a></li>
                         </ul>
                     </li>
                     @*<li><a href="@Url.Action("AddEditCrew", "AddCrew" )">Food And Nutrition</a></li>*@
@@ -98,8 +110,8 @@
                             </div>
                         </a>
                         <ul class="menu_Sub">
-                            <li><a href="@Url.Action("Foodsafetyonboard", "HeathTips" )">Food safety onboard</a></li>
-                            <li><a href="@Url.Action("Maintainingahealthydietonboard", "HeathTips" )">Healthy diet onboard</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Food safety onboard") ? "active" : "disabled")" href="@Url.Action("Foodsafetyonboard", "HeathTips" )">Food safety onboard</a></li>
+                            <li><a class = "@(AccessControl.CheckResourceReadAccess("Healthy diet onboard") ? "active" : "disabled")" href="@Url.Action("Maintainingahealthydietonboard", "HeathTips" )">Healthy diet onboard</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -115,11 +127,11 @@
                     </div>
                 </a>
                 <ul class="menu_Sub">
-                    <li><a href="@Url.Action("TeleMedicine", "MedicalAssistance" )">Tele Medicine</a></li>
-                    <li><a href="@Url.Action("DoctorVisit", "MedicalAssistance" )">Doctor Visit</a></li>
-                    <li><a href="@Url.Action("CIRM", "MedicalAssistance" )">CIRM</a></li>
-                    <li><a href="@Url.Action("MediVac", "MedicalAssistance" )">Medi Vac</a></li>
-                    <li><a href="@Url.Action("MedicalAdvice", "MedicalAssistance" )">Medical Advise</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Tele Medicine") ? "active" : "disabled")" href="@Url.Action("TeleMedicine", "MedicalAssistance" )">Tele Medicine</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Doctor Visit") ? "active" : "disabled")" href="@Url.Action("DoctorVisit", "MedicalAssistance" )">Doctor Visit</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("CIRM") ? "active" : "disabled")" href="@Url.Action("CIRM", "MedicalAssistance" )">CIRM</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Medi Vac") ? "active" : "disabled")" href="@Url.Action("MediVac", "MedicalAssistance" )">Medi Vac</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Medical Advise") ? "active" : "disabled")" href="@Url.Action("MedicalAdvice", "MedicalAssistance" )">Medical Advise</a></li>
                 </ul>
             </li>
 
@@ -134,14 +146,14 @@
                     </div>
                 </a>
                 <ul class="menu_Sub">
-                    <li><a href="@Url.Action("Index2", "Equipments" )">Medicine</a></li>
-                    <li><a href="@Url.Action("Index", "Equipments" )">Medical Equipment</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Medicine") ? "active" : "disabled")" href="@Url.Action("Index2", "Equipments" )">Medicine</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Medical Equipment") ? "active" : "disabled")" href="@Url.Action("Index", "Equipments" )">Medical Equipment</a></li>
                     @*<li><a href="@Url.Action("MedicalChestCertificate", "Equipments" )">Medical Chest Certificate</a></li>*@
-                    <li><a href="@Url.Action("MedicalChestCertificate", "MedicalChest" )">Medical Chest Certificate</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Medical Chest Certificate") ? "active" : "disabled")" href="@Url.Action("MedicalChestCertificate", "MedicalChest" )">Medical Chest Certificate</a></li>
                 </ul>
             </li>
             <li class="">
-                <a href="@Url.Action("Index", "Regime" )" aria-expanded="false">
+                <a class = "@(AccessControl.CheckResourceReadAccess("Regime") ? "active" : "disabled")" href="@Url.Action("Index", "Regime" )" aria-expanded="false">
                     <div class="nav_icon_small">
                         <img src="../img/menu-icon/icon_Regime.png" alt="">
                     </div>
@@ -152,7 +164,7 @@
             </li>
 
             <li class="">
-                <a href="@Url.Action("Index", "Options" )" aria-expanded="false">
+                <a class = "@(AccessControl.CheckResourceReadAccess("Time Adjustment") ? "active" : "disabled")" href="@Url.Action("Index", "Options" )" aria-expanded="false">
                     <div class="nav_icon_small">
                         <img src="../img/menu-icon/icon_Time.png" alt="">
                     </div>
@@ -174,24 +186,30 @@
                 <ul class="menu_Sub">
                     @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()) || Convert.ToBoolean(Session["Admin"].ToString()))
                     {
+
+
+
+
+
+
                         @*
                     <li><a href='@Url.Action("Index", "Reports")'>Monthly Work Hours</a></li>*@
-                        <li><a href='@Url.Action("DailyCrewReport", "Reports")'>Day Wise Crew Work Hours</a></li>
-                        <li><a href='@Url.Action("CrewList", "Reports")'>Crew List</a></li>
+                        <li><a class = "@(AccessControl.CheckResourceReadAccess("Day Wise Crew Work Hours") ? "active" : "disabled")" href='@Url.Action("DailyCrewReport", "Reports")'>Day Wise Crew Work Hours</a></li>
+                        <li><a class = "@(AccessControl.CheckResourceReadAccess("Crew List") ? "active" : "disabled")" href='@Url.Action("CrewList", "Reports")'>Crew List</a></li>
                         @*
                     <li><a href='@Url.Action("WorkAndRestHours", "Reports")'>Work And Rest Hours</a></li>*@
-                        <li><a href='@Url.Action("MonthlyView", "ReportsNCReportByMonth")'>Monthly View</a></li>
+                        <li><a class = "@(AccessControl.CheckResourceReadAccess("Monthly View") ? "active" : "disabled")" href='@Url.Action("MonthlyView", "ReportsNCReportByMonth")'>Monthly View</a></li>
                         @*
                     <li><a href='@Url.Action("CrewList", "Reports")'>Crew Report List </a></li>*@
                     }
-                    <li><a href='@Url.Action("Index", "Reports")'>Monthly Work Hours</a></li>
-                    <li><a href='@Url.Action("WorkAndRestHours", "Reports")'>Compliance Report</a></li>
-                    <li><a href='@Url.Action("ReportDailyTemperature", "CrewHealth")'>Crew Temperature Report</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Monthly Work Hours") ? "active" : "disabled")" href='@Url.Action("Index", "Reports")'>Monthly Work Hours</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Compliance Report") ? "active" : "disabled")" href='@Url.Action("WorkAndRestHours", "Reports")'>Compliance Report</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Crew Temperature Report") ? "active" : "disabled")" href='@Url.Action("ReportDailyTemperature", "CrewHealth")'>Crew Temperature Report</a></li>
                 </ul>
             </li>
 
             <li class="">
-                <a href="@Url.Action("Index", "Plans" )" aria-expanded="false">
+                <a class = "@(AccessControl.CheckResourceReadAccess("Plan") ? "active" : "disabled")" href="@Url.Action("Index", "Plans" )" aria-expanded="false">
                     <div class="nav_icon_small">
                         <img src="../img/menu-icon/icon_Regime.png" alt="">
                     </div>
@@ -202,7 +220,7 @@
             </li>
 
             <li class="">
-                <a href="@Url.Action("VesselDetails", "CrewHealth" )" aria-expanded="false">
+                <a class = "@(AccessControl.CheckResourceReadAccess("Vessel") ? "active" : "disabled")" href="@Url.Action("VesselDetails", "CrewHealth" )" aria-expanded="false">
                     <div class="nav_icon_small">
                         <img src="../img/menu-icon/icon_Vessel.png" alt="">
                     </div>
@@ -213,7 +231,7 @@
             </li>
 
             <li class="">
-                <a href="@Url.Action("Index", "CompanyDetails" )" aria-expanded="false">
+                <a class = "@(AccessControl.CheckResourceReadAccess("Company Details") ? "active" : "disabled")" href="@Url.Action("Index", "CompanyDetails" )" aria-expanded="false">
                     <div class="nav_icon_small">
                         <img src="../img/menu-icon/icon_Production.png" alt="">
                     </div>
@@ -233,8 +251,8 @@
                     </div>
                 </a>
                 <ul class="menu_Sub">
-                    <li><a href='@Url.Action("IndexIn", "MailServerDetails")'>Settings</a></li>
-                    <li><a href='@Url.Action("Index", "OvertimeCalculation")'>Set Overtime</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Settings") ? "active" : "disabled")" href='@Url.Action("IndexIn", "MailServerDetails")'>Settings</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Set Overtime") ? "active" : "disabled")" href='@Url.Action("Index", "OvertimeCalculation")'>Set Overtime</a></li>
                 </ul>
             </li>
 

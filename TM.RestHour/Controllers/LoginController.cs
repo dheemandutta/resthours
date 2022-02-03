@@ -96,7 +96,8 @@ namespace TM.RestHour.Controllers
         public ActionResult Index(LoginModel user)
         {
             //GetAllShipForDrp();
-
+            List<AccessRightsPOCO> accessRightsPOCOs = new List<AccessRightsPOCO>();
+            RightsBL rightsBL = new RightsBL();
             UsersBL usersBL = new UsersBL();
             int existingUsers = 0;
             UsersPOCO usersPCm = new UsersPOCO();
@@ -144,7 +145,10 @@ namespace TM.RestHour.Controllers
 
                 System.Web.HttpContext.Current.Session["AllowPsychologyForms"] = usersPoco.AllowPsychologyForms;
 
+                accessRightsPOCOs = rightsBL.GetAccessRightsByCrewId(existingUsers);
+                System.Web.HttpContext.Current.Session["AccessRights"] = accessRightsPOCOs;
 
+                System.Web.HttpContext.Current.Session["UserId"] = existingUsers;
 
                 UsersBL usersn = new UsersBL();
                 UsersPOCO usersPocon = usersn.GetShipMaster();
@@ -189,9 +193,10 @@ namespace TM.RestHour.Controllers
         [HttpPost]
 		public ActionResult Login(LoginModel user)
 		{
-			//GetAllShipForDrp();
-
-			UsersBL usersBL = new UsersBL();
+            //GetAllShipForDrp();
+            List<AccessRightsPOCO> accessRightsPOCOs = new List<AccessRightsPOCO>();
+            RightsBL rightsBL = new RightsBL();
+            UsersBL usersBL = new UsersBL();
 			int existingUsers = 0;
 			UsersPOCO usersPCm = new UsersPOCO();
             OptionsBL optionsBL = new OptionsBL();
@@ -203,8 +208,7 @@ namespace TM.RestHour.Controllers
 			{
 				user.Users.IsAuthenticated = true;
 
-
-				FormsAuthentication.SetAuthCookie(user.Users.Username.Trim(), false);
+                FormsAuthentication.SetAuthCookie(user.Users.Username.Trim(), false);
 
 				GetUserDetails(existingUsers);
 
@@ -227,9 +231,10 @@ namespace TM.RestHour.Controllers
 				System.Web.HttpContext.Current.Session["LastName"] = usersPoco.LastName;
 				System.Web.HttpContext.Current.Session["LoggedInUserId"] = usersPoco.CrewId;
 
+                accessRightsPOCOs = rightsBL.GetAccessRightsByCrewId(usersPoco.CrewId);
+                System.Web.HttpContext.Current.Session["AccessRights"] = accessRightsPOCOs;
 
-
-				System.Web.HttpContext.Current.Session["ShipName"] = shipPoco.ShipName;
+                System.Web.HttpContext.Current.Session["ShipName"] = shipPoco.ShipName;
 				System.Web.HttpContext.Current.Session["Regime"] = shipPoco.Regime;
 				System.Web.HttpContext.Current.Session["Flag"] = shipPoco.FlagOfShip;
 

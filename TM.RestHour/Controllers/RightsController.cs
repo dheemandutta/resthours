@@ -42,7 +42,15 @@ namespace TM.RestHour.Controllers
         {
             RightsBL rightsBL = new RightsBL();
             RightsPOCO rightsPC = new RightsPOCO();
-            int CrewId = pOCO.CrewId;
+
+            int CrewId = 0;
+            if (Request.QueryString["crew"] != null)
+            {
+                CrewId = int.Parse(Request.QueryString["crew"].ToString());
+            }
+            else
+                CrewId = pOCO.CrewId;
+
             string PageName = pOCO.PageName;
             ViewBag.CrewId = CrewId;
             ViewBag.PageName = PageName;
@@ -75,7 +83,16 @@ namespace TM.RestHour.Controllers
         {
             RightsBL rightsBL = new RightsBL();
             RightsPOCO rightsPC = new RightsPOCO();
-            int CrewId = pOCO.CrewId;
+
+            int CrewId = 0;
+            if (Request.QueryString["crew"] != null)
+            {
+                CrewId = int.Parse(Request.QueryString["crew"].ToString());
+            }
+            else
+                CrewId = pOCO.CrewId;
+
+
             string PageName = pOCO.PageName;
 
             rightsPC = rightsBL.GetRightsByCrewId(CrewId, PageName, int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
