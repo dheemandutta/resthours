@@ -1304,6 +1304,7 @@ namespace TM.RestHour.Controllers
                             extn = Path.GetExtension(file.FileName);
                         }
                         string path = Server.MapPath(ConfigurationManager.AppSettings["CrewHealthImagesPath"].ToString());
+                        string filePath = ConfigurationManager.AppSettings["CrewHealthImagesPath"].ToString();//Added on 3rd Feb 2022
                         if (!Directory.Exists(path))
                         {
                             Directory.CreateDirectory(path);
@@ -1314,8 +1315,9 @@ namespace TM.RestHour.Controllers
                         }
                         fileName = fileName + extn;
                         // Get the complete folder path and store the file inside it.  
-                        string fnameWithPath = Path.Combine(path, fileName);
-                        file.SaveAs(fnameWithPath);
+                        string fnameWithServerPath = Path.Combine(path, fileName);//Alter on 3rd Feb 2022
+                        string fnameWithPath = Path.Combine(filePath, fileName);//Added on 3rd Feb 2022
+                        file.SaveAs(fnameWithServerPath);
                         returnMsg.Add(fnameWithPath);
 
                     }

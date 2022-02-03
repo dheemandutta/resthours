@@ -598,7 +598,20 @@ namespace TM.RestHour.Controllers
 
             #region History and Medication Taken
             cirm.PastMedicalHistory = cirmPoco.PastMedicalHistory;
+            List<CIRMMedicationTaken> cirmMedicationList = new List<CIRMMedicationTaken>();
+            
+            foreach(CIRMMedicationTakenPOCO mtPoco in cirmPoco.MedicationTakenList)
+            {
+                CIRMMedicationTaken cirmMedication = new CIRMMedicationTaken();
+                cirmMedication.MedicationId = mtPoco.MedicationId;
+                cirmMedication.CIRMId = mtPoco.CIRMId;
+                cirmMedication.PrescriptionName = mtPoco.PrescriptionName;
+                cirmMedication.MedicalConditionBeingTreated = mtPoco.MedicalConditionBeingTreated;
+                cirmMedication.HowOftenMedicationTaken = mtPoco.HowOftenMedicationTaken;
 
+                cirmMedicationList.Add(cirmMedication);
+            }
+            cirm.MedicationTakenList = cirmMedicationList;
             #endregion
 
             #region Vital Params--
@@ -672,6 +685,7 @@ namespace TM.RestHour.Controllers
 
 
             return Json(cirm, JsonRequestBehavior.AllowGet);
+            //return Json(cirmPoco, JsonRequestBehavior.AllowGet);
         }
 
 
