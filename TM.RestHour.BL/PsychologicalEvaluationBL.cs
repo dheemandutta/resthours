@@ -931,5 +931,13 @@ namespace TM.RestHour.BL
         }
 
 
+
+
+
+        public PsychologicalEvaluationPOCO GetLocusOfControlByJoiningCondition(int CrewId, int JoiningCondition)
+        {
+            PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
+            return psychologicalEvaluationDAL.GetLocusOfControlByJoiningCondition(CrewId, JoiningCondition);
+        }
     }
 }

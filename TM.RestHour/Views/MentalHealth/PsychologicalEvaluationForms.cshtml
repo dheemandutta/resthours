@@ -1,0 +1,230 @@
+﻿
+@{
+    ViewBag.Title = "PsychologicalEvaluationForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+<link href="~/css/redioBtn.css" rel="stylesheet" />
+
+
+<link rel="stylesheet" href="~/link/css/layout.css">
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/Vessel.js"></script>
+<style>
+    .modal-footer {
+        padding: 15px;
+        text-align: right;
+        border-top: 1px solid #fff;
+        text-align: center;
+    }
+
+    .card {
+        margin: 0 0 35px 0;
+    }
+</style>
+<body>
+
+    <div class="">
+        <div class="head_title">
+            <h1>Mental Health</h1>
+        </div>
+        <div class="">
+
+            <div class="">
+
+                <div style="margin:0 auto" class="tablecontainer">
+                    @Html.Hidden("myUrl", @Url.Action("GetCompanyDetails", "Vessel"))
+                    @Html.Hidden("myUrl", @Url.Action("GetShipByID", "Vessel"))
+                    @Html.Hidden("addnew", @Url.Action("AddNewVessel", "Vessel"))
+                    @Html.Hidden("NewUnitadd", @Url.Action("NewAdd", "Vessel"))
+                    @Html.Hidden("next", @Url.Action("Index", "MailServerDetails"))
+                    @Html.Hidden("saveInitialShipValues", @Url.Action("SaveInitialShipValues", "Vessel"))
+
+                    @Html.Hidden("myUrlNew", @Url.Action("GetCompanyDetailsNew", "CompanyDetails"))
+
+                    <input type="hidden" id="hdncount" />
+
+                    <input type="hidden" id="hdnrole" />
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <h3 style="margin-top: 0px;" align="center"></h3>
+                            <div align="">
+                                <div class="modal-body">
+                                    <form>
+                                        @*////////////// Owner /////////////*@
+                                        <div class="card">
+                                            <h1>Psychological Evaluation</h1>
+                                            <div class="row">
+
+
+
+
+
+
+
+
+                                                <!-- RADIO BUTTONS BLOCK -->
+                                                <div>
+                                                    <div class="frb-group">
+                                                        <div class="frb frb-primary">
+                                                            <input type="radio" id="PreJoining" name="radio-button" value="1">
+                                                            <label for="PreJoining">
+                                                                <span class="frb-title">Pre Joining</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="frb frb-primary">
+                                                            <input type="radio" id="PostJoining" name="radio-button" value="2">
+                                                            <label for="PostJoining">
+                                                                <span class="frb-title">Post Joining</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="frb frb-primary">
+                                                            <input type="radio" id="PreSignOff" name="radio-button" value="3">
+                                                            <label for="PreSignOff">
+                                                                <span class="frb-title">Pre Sign Off</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- CHECKBOX BUTTON BLOCK -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                <div class="col-lg-12">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">1. LocusOfControl</label>
+                                                        <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">View</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">1. LocusOfControl</label>
+                                                        <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">View</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">1. LocusOfControl</label>
+                                                        <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">View</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">1. LocusOfControl</label>
+                                                        <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">View</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">1. LocusOfControl</label>
+                                                        <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">View</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">1. LocusOfControl</label>
+                                                        <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">View</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">1. LocusOfControl</label>
+                                                        <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">View</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-horizontal">
+                                                        <label class="col-xs-5 control-label">1. LocusOfControl</label>
+                                                        <button type="button" class="button1 savebtn" id="btnShow" onclick="return SaveOvertimeCalculation();" style="width:138px;">View</button>
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="col-sm-3" style="width: 63%;">
+            <div class="form-horizontal">
+                <label class="col-xs-5 control-label">SecureKey:</label>
+                <input type="text" class="form-control" id="SecureKey" placeholder="SecureKey" />
+            </div>
+        </div>*@
+
+
+                                                <div class="form-group">
+                                                    <input type="hidden" id="ID" class="form-control" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer" style="width: 145%;">
+                                            @*<button type="button" class="button1" id="btnNext" onclick="return SaveInitialShipValues();" style="width:86px;">Next</button>
+                                                <button type="button" class="button1" id="btnAdd" onclick="return GetCompanyDetailsByID();" style="width:86px;">Get Details</button>*@
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            //$(".numberinput").forceNumeric();
+            GetCompanyDetailsNew();
+        });
+
+
+    </script>
+}
+
+
+
