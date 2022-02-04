@@ -59,32 +59,31 @@
                 <div class="col-sm-12 col-xs-12" id="sideform">
                     <div class="mrTP-10 mrRHT-10 mrLFT-10">
                         <div class="card-block">
-                            <!--<form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form">
         <div class="row">
             <div class="col-sm-4 col-xs-12" id="sideform">
                 <div class="form-group">
-                    <label for="selectCrew">Crew</label>-->
+                    
                             @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
                             @Html.HiddenFor(model => model.SelectedMonthYear, new { id = "hdnMY", value = Model.SelectedMonthYear })
                             @*@Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })*@
-                            @*<input type="hidden" id="hdnCrewId" name="hdnCrewId" value="">*@
-                            @*<input type="hidden" id="hdnMY" name="hdnMY" value="">*@
+                         
                         </div>
                                     </div>
 
-                                    <div class="col-sm-4 col-xs-12" id="sideform">
+                                    @*<div class="col-sm-4 col-xs-12" id="sideform">
                                         <div class="form-group">
                                             <label for="ReportsDate"> Month & Year</label>
                                             <input name="ReportsDate" class="monthYearPicker form-control" id="ReportsDateVal" />
                                         </div>
-                                    </div>
+                                    </div>*@
 
-                                    <div class="col-sm-4 col-xs-12">
+                                    <!--<div class="col-sm-4 col-xs-12">
                                         <div class="text-right pull-right mrTP-30">
                                             <div class="">
                                                 <div class="pull-right" id="sideform">
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-primary mrRHT-10" id="btnAdd" disabled="disabled" onclick=" return ProcessData();"><i class="ti-eye"></i> Show Report</button>-->
+                                                    <<div class="form-group">-->
+                                                        @*<button type="button" class="btn btn-primary mrRHT-10" id="btnAdd" disabled="disabled" onclick=" return ProcessData();"><i class="ti-eye"></i> Show Report</button>*@
                                                         @*myFunction();*@
                                                         @*clearTable();*@
                                                     <!--</div>
@@ -96,10 +95,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                 </div>
-                            </form>-->
+                            </form>
 
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 mrTP-10">
