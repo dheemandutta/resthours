@@ -43,21 +43,22 @@ namespace TM.RestHour.Controllers
         {
             //GetAllCrewForTimeSheet();
 
+            if(Request.QueryString["crew"] != null && String.IsNullOrEmpty(crewId))
+                crewId = Request.QueryString["crew"].ToString();
+
+            if (Request.QueryString["monthYear"] != null && String.IsNullOrEmpty(monthYear))
+                monthYear = Request.QueryString["monthYear"];
 
             CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
             Crew c = new Crew();
+            c.ID = int.Parse(crewId);
+
             crewtimesheetVM.Crew = c;
+            crewtimesheetVM.SelectedMonthYear = monthYear;
 
-            if (Convert.ToBoolean(Session["User"]) == true)
-            {
-                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
-
-            }
-            else
-                crewtimesheetVM.Crew.ID = 0;
 
             return View(crewtimesheetVM);
-           // return View();
+           
         }
 
         public JsonResult GetNCDetails(string monthyear)

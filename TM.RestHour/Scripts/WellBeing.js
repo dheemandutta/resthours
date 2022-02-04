@@ -279,8 +279,9 @@ function OpenSubReport(crewId, monthYear)
     var url = $('#MonthlyWorkHours').val();
     //$('#myModal').load(url, { crewId: crewId, monthYear: monthYear});
     //$("#myModal").modal('show');
-
-    window.location.href = url + "?mode=update&crew=" + crewId + "&monthYear=" + monthYear;
+    var redirecturl = url + "?mode=update&crew=" + crewId + "&monthYear=" + monthYear;
+    console.log(redirecturl);
+    window.location.href = redirecturl;
 }
 
 
@@ -500,24 +501,24 @@ function GetHours(crewId, monthYear) {
                                 $(this).html(item.MinSevenDayRest);
                                 tdnum++;
                             }
-                            else if (tdnum == 33) { // text area
-                                $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
-                                tdnum++;
-                            }
-                            else if (tdnum == 34) //checkbox
-                            {
-                                if (item.IsApproved) {
-                                    $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                    tdnum++;
-                                }
-                                else {
-                                    $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                    tdnum++;
+                            //else if (tdnum == 33) { // text area
+                            //    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                            //    tdnum++;
+                            //}
+                            //else if (tdnum == 34) //checkbox
+                            //{
+                            //    if (item.IsApproved) {
+                            //        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                            //        tdnum++;
+                            //    }
+                            //    else {
+                            //        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                            //        tdnum++;
 
-                                }
+                            //    }
 
 
-                            }
+                            //}
                         }
                         else if (adjustmentfactor == "-1") {
                             $(tr).attr("filled", "yes");
@@ -580,24 +581,24 @@ function GetHours(crewId, monthYear) {
                                     $(this).html(item.MinSevenDayRest);
                                     tdnum++;
                                 }
-                                else if (tdnum == 33) { // text area
-                                    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
-                                    tdnum++;
-                                }
-                                else if (tdnum == 34) //checkbox
-                                {
-                                    if (item.IsApproved) {
-                                        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
-                                    }
-                                    else {
-                                        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
+                                //else if (tdnum == 33) { // text area
+                                //    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                //    tdnum++;
+                                //}
+                                //else if (tdnum == 34) //checkbox
+                                //{
+                                //    if (item.IsApproved) {
+                                //        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
+                                //    }
+                                //    else {
+                                //        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
 
-                                    }
+                                //    }
 
 
-                                }
+                                //}
                             }
                             else {
                                 //set to false so that only the first time is decreased by 1 hr
@@ -665,24 +666,24 @@ function GetHours(crewId, monthYear) {
                                     $(this).html(item.MinSevenDayRest);
                                     tdnum++;
                                 }
-                                else if (tdnum == 33) { // text area
-                                    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
-                                    tdnum++;
-                                }
-                                else if (tdnum == 34) //checkbox
-                                {
-                                    if (item.IsApproved) {
-                                        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
-                                    }
-                                    else {
-                                        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
+                                //else if (tdnum == 33) { // text area
+                                //    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                //    tdnum++;
+                                //}
+                                //else if (tdnum == 34) //checkbox
+                                //{
+                                //    if (item.IsApproved) {
+                                //        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
+                                //    }
+                                //    else {
+                                //        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
 
-                                    }
+                                //    }
 
 
-                                }
+                                //}
                             }
 
 
@@ -747,24 +748,24 @@ function GetHours(crewId, monthYear) {
                                     $(this).html(item.MinSevenDayRest);
                                     tdnum++;
                                 }
-                                else if (tdnum == 33) { // text area
-                                    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
-                                    tdnum++;
-                                }
-                                else if (tdnum == 34) //checkbox
-                                {
-                                    if (item.IsApproved) {
-                                        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
-                                    }
-                                    else {
-                                        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
+                                //else if (tdnum == 33) { // text area
+                                //    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                //    tdnum++;
+                                //}
+                                //else if (tdnum == 34) //checkbox
+                                //{
+                                //    if (item.IsApproved) {
+                                //        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
+                                //    }
+                                //    else {
+                                //        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
 
-                                    }
+                                //    }
 
 
-                                }
+                                //}
                             }
                             else {
 
@@ -834,24 +835,24 @@ function GetHours(crewId, monthYear) {
                                     $(this).html(item.MinSevenDayRest);
                                     tdnum++;
                                 }
-                                else if (tdnum == 33) { // text area
-                                    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
-                                    tdnum++;
-                                }
-                                else if (tdnum == 34) //checkbox
-                                {
-                                    if (item.IsApproved) {
-                                        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
-                                    }
-                                    else {
-                                        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
+                                //else if (tdnum == 33) { // text area
+                                //    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                //    tdnum++;
+                                //}
+                                //else if (tdnum == 34) //checkbox
+                                //{
+                                //    if (item.IsApproved) {
+                                //        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
+                                //    }
+                                //    else {
+                                //        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
 
-                                    }
+                                //    }
 
 
-                                }
+                                //}
                             }
                         }
                         else if (adjustmentfactor == "-11D") {
@@ -926,24 +927,24 @@ function GetHours(crewId, monthYear) {
                                     $(tr).attr("filled", "yes");
                                     tdnum++;
                                 }
-                                else if (tdnum == 33) { // text area
-                                    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
-                                    tdnum++;
-                                }
-                                else if (tdnum == 34) //checkbox
-                                {
-                                    if (item.IsApproved) {
-                                        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
-                                    }
-                                    else {
-                                        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
-                                        tdnum++;
+                                //else if (tdnum == 33) { // text area
+                                //    $(this).html('<textarea id="Comments_' + item.BookDate.toString() + '" rows="4" cols="50">' + item.Comments + '</textarea>');
+                                //    tdnum++;
+                                //}
+                                //else if (tdnum == 34) //checkbox
+                                //{
+                                //    if (item.IsApproved) {
+                                //        $(this).html('<input checked=checked type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
+                                //    }
+                                //    else {
+                                //        $(this).html('<input type="checkbox" id="Approved_' + item.BookDate.toString() + '"/>');
+                                //        tdnum++;
 
-                                    }
+                                //    }
 
 
-                                }
+                                //}
 
                             }
                             else if (f == "yes") {

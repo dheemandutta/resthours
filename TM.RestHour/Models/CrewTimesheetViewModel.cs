@@ -41,7 +41,7 @@ namespace TM.RestHour.Models
         public int CountryID { get; set; }
         public string CountryName { get; set; }
 
-
+        public string SelectedMonthYear { get; set; }
 
         public int RankID { get; set; }
         public string RankName { get; set; }
