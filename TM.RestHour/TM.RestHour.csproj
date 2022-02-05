@@ -1504,6 +1504,15 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\MentalHealth\Index.cshtml" />
     <Content Include="Views\MentalHealth\PsychologicalEvaluationForms.cshtml" />
+    <Content Include="Views\Shared\_pvBeckDepressionInventoryIIFinal.cshtml" />
+    <Content Include="Views\Shared\_pvEmotionalIntelligenceQuizForLeadership.cshtml" />
+    <Content Include="Views\Shared\_pvLocusOfControl.cshtml" />
+    <Content Include="Views\Shared\_pvMASSMindfulnessScaleFinal.cshtml" />
+    <Content Include="Views\Shared\_pvPSQ30_PERCIEVED_STRESS_QUESTIONAIRE.cshtml" />
+    <Content Include="Views\Shared\_pvROSENBERG_SELF_esteem_scale_final.cshtml" />
+    <Content Include="Views\Shared\_pvZhao_ANXIETY_Y1.cshtml" />
+    <Content Include="Views\Shared\_pvZhao_ANXIETY_Y2.cshtml" />
+    <Content Include="Views\MentalHealth\PsychologicalEvaluationScore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

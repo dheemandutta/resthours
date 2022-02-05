@@ -37,6 +37,13 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
+        public ActionResult PsychologicalEvaluationScore()
+        {
+            return View();
+        }
+
+
+
         public void GetAllCrewForDrp()
         {
             TimeSheetBL crewDAL = new TimeSheetBL();

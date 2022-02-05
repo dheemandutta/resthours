@@ -138,22 +138,22 @@ function SetUpGrid() {
             {
                 "data": "ID", "width": "50px", "render": function (data) {
                    // return '<a href="#" onclick="AddCrewEdit(' + data + ')"><i class="glyphicon glyphicon-edit" style="color:#000; margin-left: 9px;"></i></a>';
-                    return '<a href="#" onclick="CreateNewCrewLogin(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
+                    return '<a href="#" onclick="CreateNewCrewLogin(' + data + ')"><i class="fa fa-user" style="color:#000; margin-left: 9px;"></i></a>';
                 }
             },
             {
                 "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="showDetail(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
+                    return '<a href="#" onclick="showDetail(' + data + ')"><i class="fa fa-eye" style="color:#000; margin-left: 9px;"></i></a>';
                 }
             },
             {
                 "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="showDelete(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
+                    return '<a href="#" onclick="showDelete(' + data + ')"><i class="fa fa-trash" style="color:#000; margin-left: 9px;"></i></a>';
                 }
             },
             {
                 "data": "ID", "width": "50px", "render": function (data) {
-                    return '<a href="#" onclick="ShowRights(' + data + ')"><i class="fa fa-file-pdf" style="color:#000; margin-left: 9px;"></i></a>';
+                    return '<a href="#" onclick="ShowRights(' + data + ')"><i class="fa fa-file" style="color:#000; margin-left: 9px;"></i></a>';
                 }
             },
             {
