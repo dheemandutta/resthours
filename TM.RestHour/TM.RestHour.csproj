@@ -20,7 +20,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44376</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -162,6 +163,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\TraceFilterAttribute.cs" />
     <Compile Include="Common\AccessControl.cs" />
+    <Compile Include="Common\ModelSelector.cs" />
+    <Compile Include="Common\ModelSelectorEnabledRazorViewEngine .cs" />
     <Compile Include="Controllers\AddCrewController.cs" />
     <Compile Include="Controllers\AllowMultipleButtonAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
