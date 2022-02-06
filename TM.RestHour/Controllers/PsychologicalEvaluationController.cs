@@ -33,6 +33,11 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
+        public ActionResult _pvLocusOfControl(string id)
+        {
+            return PartialView();
+        }
+
         public ActionResult InstructionsForPSSFinal()
         {
             return View();

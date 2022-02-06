@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
 
-<link href="dist/dual-listbox.css" rel="stylesheet">
+@*<link href="dist/dual-listbox.css" rel="stylesheet">*@
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/notify.min.js"></script>
@@ -78,12 +78,6 @@
                                             <div class="row">
 
 
-
-
-
-
-
-
                                                 <!-- RADIO BUTTONS BLOCK -->
                                                 <div>
                                                     <div class="frb-group">
@@ -111,21 +105,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
                                                 <div class="col-lg-12">
                                                     <div class="form-horizontal">
                                                         <label class="col-xs-5 control-label">1. Locus Of Control</label>
-                                                        <button type="button" class="button1 savebtn" id="btnShow" data-toggle="modal" data-target="#myModalFor_pvLocusOfControl" style="width:138px;">View</button>
+                                                        @*<button type="button" class="button1 savebtn" id="btnShow" data-toggle="modal" data-target="#myModalFor_pvLocusOfControl" style="width:138px;">View</button>*@
+                                                        @*<button type="button" class="button1 savebtn" id="btnShowL" style="width:138px;">View</button>*@
+                                                        <button type="button" class="button1 savebtn" id="btnShowL" style="width:138px;">View</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -187,7 +172,27 @@
 
                                         </div>
 
+<div id="viewresults">
 
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Details</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -196,14 +201,15 @@
 
 
                                         @*////////////////////////////////////// modal for all PsychologicalEvaluationForms /////////////////////////////////////////////////////*@
-                                        <div class="modal fade" id="myModalFor_pvLocusOfControl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <!--<div class="modal fade" id="myModalFor_pvLocusOfControl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" style="width: 900px;">
-                                                <div class="modal-content">
+                                                <div class="modal-content">-->
                                                     @*@Html.Partial("_pvLocusOfControl")*@
-                                                    @{Html.RenderPartial("_pvLocusOfControl", new { CrewId = 42, JoiningCondition = 1 });}
-                                                </div>
+                                                    @*@{Html.RenderPartial("_pvLocusOfControl", new { CrewId = 42, JoiningCondition = 1 });}*@
+                                                    @*@Html.Action("_pvLocusOfControl", "PsychologicalEvaluation", new { CrewId = 42, JoiningCondition = 1 })*@
+                                                <!--</div>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                         <div class="modal fade" id="myModalFor_pvMASSMindfulnessScaleFinal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" style="width: 900px;">
@@ -297,15 +303,33 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/themes/base/css")
 
-    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
-    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+    
 
     <script type="text/javascript">
 
         $(document).ready(function () {
             //$(".numberinput").forceNumeric();
             GetCompanyDetailsNew();
+
+
+            var url = '@Url.Action("_pvLocusOfControl", "PsychologicalEvaluation")'; //
+            $('#btnShowL').click(function () {
+                //var keyWord = $('#Keyword').val();
+                $('#viewresults').load(url); //load(url, { searchText: keyWord })
+            });
+
+            $('#btnShowL').click(function () {
+                id = 42;
+                $.get("@Url.Action("_pvLocusOfControl", "PsychologicalEvaluation")/" + id,
+                    function (data) {
+                        $('.modal-body').html(data);
+                    });
+
+                $("#myModal").modal("show");
+            });
         });
+
+
 
 
     </script>
