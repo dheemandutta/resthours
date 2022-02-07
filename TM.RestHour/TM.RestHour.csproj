@@ -669,6 +669,7 @@
     <Content Include="devsqlscripts\02-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\03-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\04-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\07-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
@@ -1298,6 +1299,7 @@
     <Content Include="sqlscripts\03-UpdateDB\01-UpdateDB.sql" />
     <Content Include="sqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\04-CreateFunction\ufn_CSVToTable.sql" />
+    <Content Include="sqlscripts\07-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\07-DefaultMasterData\DefaultMasterData_RestHour.sql" />
     <Content Include="sqlscripts\09-Create-SPs\dbo.name.StoredProcedure.sql" />
     <Content Include="sqlscripts\09-Create-SPs\dbo.stpAddUsers.StoredProcedure.sql" />

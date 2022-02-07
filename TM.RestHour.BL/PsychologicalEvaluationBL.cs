@@ -13,35 +13,36 @@ namespace TM.RestHour.BL
         public int SaveForms(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
         {
             int result = 0;
+            string Evaluation = string.Empty;
 
             switch (formId)
             {
                 case 1:
-                    result = SaveLocusOfControl(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SaveLocusOfControl(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
                 case 2:
-                    result = SavePSSFinal(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SavePSSFinal(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
                 case 3:
-                    result = SaveMASSMindfulnessScaleFinal(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SaveMASSMindfulnessScaleFinal(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
                 case 4:
-                    result = SaveBeckDepressionInventoryIIFinal(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SaveBeckDepressionInventoryIIFinal(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
                 case 5:
-                    result = SavePSQ30_PERCIEVED_STRESS_QUESTIONAIRE(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SavePSQ30_PERCIEVED_STRESS_QUESTIONAIRE(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
                 case 6:
-                    result = SaveROSENBERG_SELF_esteem_scale_final(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SaveROSENBERG_SELF_esteem_scale_final(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
                 case 7:
-                    result = SaveZhao_ANXIETY_Y1(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SaveZhao_ANXIETY_Y1(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
                 case 8:
-                    result = SaveZhao_ANXIETY_Y2(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SaveZhao_ANXIETY_Y2(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
                 case 9:
-                    result = SaveEmotionalIntelligenceQuizForLeadership(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId);
+                    result = SaveEmotionalIntelligenceQuizForLeadership(arrLocusOfControl, CrewID, VesselID, StoredProcedure, formId, Evaluation);
                     break;
             }
             return result;
@@ -52,7 +53,7 @@ namespace TM.RestHour.BL
 
 
 
-        private int SaveLocusOfControl(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SaveLocusOfControl(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[10];
             string[] arrAnswer = new string[10];
@@ -107,17 +108,25 @@ namespace TM.RestHour.BL
 
             if (totalCount >= 14)
             {
-                testResult = "you have an internal focus of control.";
+                testResult = "Internal Locus of Control";
+                Evaluation = "The stronger your internal locus of control, the more rewarding you will find life. You will no longer feel the need to blame others or be fearful of doing interesting activities, and you will find those around you will admire your sense of self and how you now are the master of your destiny.";
             }
             else
-                testResult = "you need to get a firmer grip on things";
+            {
+                testResult = "External Locus of Control";
+                Evaluation = "1.Change the blame game : learn to take responsibility of the outcome of a situation rather than shifting the blame to someone or something other than you." +
+                    "2.Take charge: when I make this happen”, “when they see my effort”, or “determination, not luck will take me to my future goals”." +
+                    "3.Embrace failure; Take failure as an opportunity to learn; go out and do something that you know will result in failure.";
+            }
+
+
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure, Evaluation);
         }
 
-        private int SavePSSFinal(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SavePSSFinal(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[10];
             string[] arrAnswer = new string[10];
@@ -184,11 +193,11 @@ namespace TM.RestHour.BL
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure, Evaluation);
 
         }
 
-        private int SaveMASSMindfulnessScaleFinal(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SaveMASSMindfulnessScaleFinal(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[15];
             string[] arrAnswer = new string[15];
@@ -232,11 +241,11 @@ namespace TM.RestHour.BL
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
             //return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);// Commented on 19th Jan 2022 @BK
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, score, testResult, CrewID, VesselID, StoredProcedure); // Added on 19th Jan 2022 @BK
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, score, testResult, CrewID, VesselID, StoredProcedure, Evaluation); // Added on 19th Jan 2022 @BK
 
         }
 
-        private int SaveBeckDepressionInventoryIIFinal(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SaveBeckDepressionInventoryIIFinal(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[21];
             string[] arrAnswer = new string[21];
@@ -347,11 +356,11 @@ namespace TM.RestHour.BL
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure, Evaluation);
 
         }
 
-        private int SavePSQ30_PERCIEVED_STRESS_QUESTIONAIRE(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SavePSQ30_PERCIEVED_STRESS_QUESTIONAIRE(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[30];
             string[] arrAnswer = new string[30];
@@ -482,11 +491,11 @@ namespace TM.RestHour.BL
             //return 1;
             //return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, psq, testResult, CrewID, VesselID, StoredProcedure);// Commented on 19th Jan 2022 @BK
 
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, scaleRank, testResult, CrewID, VesselID, StoredProcedure);// Added on 19th Jan 2022 @BK
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, scaleRank, testResult, CrewID, VesselID, StoredProcedure, Evaluation);// Added on 19th Jan 2022 @BK
 
         }
 
-        private int SaveROSENBERG_SELF_esteem_scale_final(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SaveROSENBERG_SELF_esteem_scale_final(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[10];
             string[] arrAnswer = new string[10];
@@ -553,11 +562,11 @@ namespace TM.RestHour.BL
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure, Evaluation);
 
         }
 
-        private int SaveZhao_ANXIETY_Y1(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SaveZhao_ANXIETY_Y1(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[20];
             string[] arrAnswer = new string[20];
@@ -654,11 +663,11 @@ namespace TM.RestHour.BL
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure, Evaluation);
 
         }
 
-        private int SaveZhao_ANXIETY_Y2(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SaveZhao_ANXIETY_Y2(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[20];
             string[] arrAnswer = new string[20];
@@ -755,11 +764,11 @@ namespace TM.RestHour.BL
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalCount, testResult, CrewID, VesselID, StoredProcedure, Evaluation);
 
         }
 
-        private int SaveEmotionalIntelligenceQuizForLeadership(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId)
+        private int SaveEmotionalIntelligenceQuizForLeadership(string[] arrLocusOfControl, int CrewID, int VesselID, string StoredProcedure, int formId, string Evaluation)
         {
             string[] arrQuestionNo = new string[40];
             string[] arrAnswer = new string[40];
@@ -889,7 +898,7 @@ namespace TM.RestHour.BL
 
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             //return 1;
-            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalScore, allResults, CrewID, VesselID, StoredProcedure);
+            return psychologicalEvaluationDAL.SaveForms(arrQuestionNo, arrAnswer, totalScore, allResults, CrewID, VesselID, StoredProcedure, Evaluation);
 
         }
 

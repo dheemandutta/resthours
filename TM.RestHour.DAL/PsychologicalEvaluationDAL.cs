@@ -14,7 +14,7 @@ namespace TM.RestHour.DAL
     public class PsychologicalEvaluationDAL
     {
 
-        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, int totalCount, string testResult, int CrewID, int VesselID, string StoredProcedure)
+        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, int totalCount, string testResult, int CrewID, int VesselID, string StoredProcedure, string Evaluation)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
@@ -29,9 +29,29 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@Question", questions);
             cmd.Parameters.AddWithValue("@Answer", answers);
             cmd.Parameters.AddWithValue("@FinalScore", totalCount);
-            cmd.Parameters.AddWithValue("@TestResult", testResult.ToString());
+
+            //cmd.Parameters.AddWithValue("@TestResult", testResult.ToString());
+            if (!String.IsNullOrEmpty(testResult))
+            {
+                cmd.Parameters.AddWithValue("@TestResult", testResult.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TestResult", DBNull.Value);
+            }
+
             cmd.Parameters.AddWithValue("@VesselID", VesselID);
             cmd.Parameters.AddWithValue("@CrewId", CrewID);
+
+            //cmd.Parameters.AddWithValue("@Evaluation", Evaluation.ToString());
+            if (!String.IsNullOrEmpty(Evaluation))
+            {
+                cmd.Parameters.AddWithValue("@Evaluation", Evaluation.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Evaluation", DBNull.Value);
+            }
 
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
@@ -39,7 +59,7 @@ namespace TM.RestHour.DAL
             return recordsAffected;
         }
 
-        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, decimal totalCount, string testResult, int CrewID, int VesselID, string StoredProcedure)
+        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, decimal totalCount, string testResult, int CrewID, int VesselID, string StoredProcedure, string Evaluation)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
@@ -54,9 +74,27 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@Question", questions);
             cmd.Parameters.AddWithValue("@Answer", answers);
             cmd.Parameters.AddWithValue("@FinalScore", totalCount);
-            cmd.Parameters.AddWithValue("@TestResult", testResult.ToString());
+            //cmd.Parameters.AddWithValue("@TestResult", testResult.ToString());
+            if (!String.IsNullOrEmpty(testResult))
+            {
+                cmd.Parameters.AddWithValue("@TestResult", testResult.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@TestResult", DBNull.Value);
+            }
+
             cmd.Parameters.AddWithValue("@VesselID", VesselID);
             cmd.Parameters.AddWithValue("@CrewId", CrewID);
+            //cmd.Parameters.AddWithValue("@Evaluation", Evaluation.ToString());
+            if (!String.IsNullOrEmpty(Evaluation))
+            {
+                cmd.Parameters.AddWithValue("@Evaluation", Evaluation.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Evaluation", DBNull.Value);
+            }
 
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
@@ -65,7 +103,7 @@ namespace TM.RestHour.DAL
         }
 
 
-        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, int[] totalScore, string[] testResult, int CrewID, int VesselID, string StoredProcedure)
+        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, int[] totalScore, string[] testResult, int CrewID, int VesselID, string StoredProcedure, string Evaluation)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
@@ -89,6 +127,16 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@RITestResult", testResult[3].ToString());
             cmd.Parameters.AddWithValue("@VesselID", VesselID);
             cmd.Parameters.AddWithValue("@CrewId", CrewID);
+
+            //cmd.Parameters.AddWithValue("@Evaluation", Evaluation.ToString());
+            if (!String.IsNullOrEmpty(Evaluation))
+            {
+                cmd.Parameters.AddWithValue("@Evaluation", Evaluation.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Evaluation", DBNull.Value);
+            }
 
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
