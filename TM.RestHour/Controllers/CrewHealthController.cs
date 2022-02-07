@@ -1859,8 +1859,17 @@ namespace TM.RestHour.Controllers
 
                     //  Get all files from Request object  
                     HttpFileCollectionBase files = Request.Files;
+                    if (fileType == "AccidentOrIllness")
+                    {
+                        returnMsg.Add(files.Count.ToString()); ;
+                    }
                     for (int i = 0; i < files.Count; i++)
                     {
+                        if (fileType == "AccidentOrIllness")
+                        {
+                            fileName = fileName + "_" + i;
+                        }
+                            
 
                         HttpPostedFileBase file = files[i];
                         string fname;

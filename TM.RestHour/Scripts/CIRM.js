@@ -589,6 +589,8 @@ function SaveCIRMNew(medicalAssistanceType) {
 
 
             PictureUploadPath: $('#hdnCrewHealthImagePath').val(),
+
+            AccidentOrIllnessImagePathList: cirmAccidentOrIllnessImagePath
             //#endregion
             
         };
@@ -928,7 +930,7 @@ function UploadFiles() {
     }
 
 }
-
+var cirmAccidentOrIllnessImagePath = [];
 function UploadCIRMFile(control,filetype) {
     var res = false;
     if ($('#ddlCrew').val().length === 0) {
@@ -971,9 +973,19 @@ function UploadCIRMFile(control,filetype) {
                 data: fileData,
                 success: function (result) {
                     //alert(result);
-                    $("#lblSuccMsgCIRM" + filetype).text(result[1]);
-                    $("#hdnPathCIRM" + filetype).val(result[0]);
-                    $("#lblSuccMsgCIRM" + filetype).removeClass("hidden");
+                    if (filetype == "AccidentOrIllness") {
+                        var cnt = result[0];
+                        for (var i = 1; i < cnt; i++) {
+                            cirmAccidentOrIllnessImagePath.push(result[i]);
+                            $("#lblSuccMsgCIRM" + filetype).text(result[cnt]);
+                        }
+                    }
+                    else {
+                        $("#lblSuccMsgCIRM" + filetype).text(result[1]);
+                        $("#hdnPathCIRM" + filetype).val(result[0]);
+                        $("#lblSuccMsgCIRM" + filetype).removeClass("hidden");
+                    }
+                    
 
                     //ClearFields();
                     if (filetype == "PastMedicalHistory") {
@@ -1859,16 +1871,9 @@ function CreateMedicationTakenDetailsJsonObject() {
     /*$('.MedicationDetailRow').each(function () {*/
     tb.find("tr").each(function () {
         MedicationTakenDetailRow = $(this);// alert(4);
-        //MedicationTakenDetailId = 0;// $(SubPhaseRow).children().children('[name=MedicationTakenDetailId]').val();
-        //PrescriptionName = $(MedicationTakenDetailRow).children.children('[name=PrescriptionName]').attr('value');// alert(5);
         PrescriptionName = $(MedicationTakenDetailRow).find("input[name='PrescriptionName']").val();
-       // MedicalConditionBeingTreated = $(MedicationTakenDetailRow).children.children('[name=MedicalConditionBeingTreated]').attr('value'); //alert(6);
         MedicalConditionBeingTreated = $(MedicationTakenDetailRow).find("input[name='MedicalConditionBeingTreated']").val();
-        //HowOftenMedicationTaken = $(MedicationTakenDetailRow).children.children('[name=HowOftenMedicationTaken]').attr('value');// alert(7);
         HowOftenMedicationTaken = $(MedicationTakenDetailRow).find("input[name='HowOftenMedicationTaken']").val();
-        //receivedAmount = $(MedicationTakenDetailRow).children('[name=ReceivedAmount]').html(); //alert(8);
-        //unit = $(MedicationTakenDetailRow).children('[name=UnitId]').attr('value');// alert(9);
-        //currentlyReceived = $(MedicationTakenDetailRow).children('[name=CurrentlyReceived]').html();// alert(9);
 
 
         MedicationTakenDetailsJsonObject.MedicationTakenDetails.push({
