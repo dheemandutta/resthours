@@ -174,7 +174,7 @@ namespace TM.RestHour.Controllers
             else if (user.Users.IsAuthenticated && MyGroup == "User")
             {
                 //GetUserDetails();
-                return RedirectToAction("CrewTimeSheet", "TimeSheet");
+                return RedirectToAction("UserDashboard", "Home");
             }
         
             else

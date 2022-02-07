@@ -20,8 +20,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44376</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -225,6 +224,7 @@
     <Compile Include="Models\Options.cs" />
     <Compile Include="Models\OvertimeCalculation.cs" />
     <Compile Include="Models\Permissions.cs" />
+    <Compile Include="Models\PsychologicalEvaluation.cs" />
     <Compile Include="Models\RankPermission.cs" />
     <Compile Include="Models\Ranks.cs" />
     <Compile Include="Models\RanksViewModel.cs" />
@@ -1516,6 +1516,7 @@
     <Content Include="Views\Shared\_pvZhao_ANXIETY_Y1.cshtml" />
     <Content Include="Views\Shared\_pvZhao_ANXIETY_Y2.cshtml" />
     <Content Include="Views\MentalHealth\PsychologicalEvaluationScore.cshtml" />
+    <Content Include="Views\Home\UserDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

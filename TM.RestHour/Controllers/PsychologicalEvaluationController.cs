@@ -28,14 +28,20 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
-        public ActionResult LocusOfControl()
+        public ActionResult LocusOfControl(string mode, string jc)
         {
-            return View();
-        }
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId= int.Parse(Session["LoggedInUserId"].ToString());
 
-        public ActionResult _pvLocusOfControl(string id)
-        {
-            return PartialView();
+            return View(psychologicalEvaluation);
         }
 
         public ActionResult InstructionsForPSSFinal()
@@ -43,45 +49,122 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
-        public ActionResult MASSMindfulnessScaleFinal()
+        public ActionResult MASSMindfulnessScaleFinal(string mode, string jc)
         {
-            return View();
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
         }
 
-        public ActionResult BeckDepressionInventoryIIFinal()
+        public ActionResult BeckDepressionInventoryIIFinal(string mode, string jc)
         {
-            return View();
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
         }
 
-        public ActionResult PSQ30_PERCIEVED_STRESS_QUESTIONAIRE()
+        public ActionResult PSQ30_PERCIEVED_STRESS_QUESTIONAIRE(string mode, string jc)
         {
-            return View();
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
         }
 
-        public ActionResult ROSENBERG_SELF_esteem_scale_final()
+        public ActionResult ROSENBERG_SELF_esteem_scale_final(string mode, string jc)
         {
-            return View();
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
         }
 
-        public ActionResult Zhao_ANXIETY_Y1()
+        public ActionResult Zhao_ANXIETY_Y1(string mode, string jc)
         {
-            return View();
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
         }
 
-        public ActionResult EmotionalIntelligenceQuizForLeadership()
+        public ActionResult EmotionalIntelligenceQuizForLeadership(string mode, string jc)
         {
-            return View();
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
         }
 
-        public ActionResult Zhao_ANXIETY_Y2()
+        public ActionResult Zhao_ANXIETY_Y2(string mode, string jc)
         {
-            return View();
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
         }
 
 
 
 
-        public JsonResult SaveForms(string LocusOfControl, string StoredProcedure, string Validator)
+        public JsonResult SaveForms(string LocusOfControl, string StoredProcedure, string Validator, string CrewID)
         {
             PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
             string[] arr = JsonConvert.DeserializeObject<string[]>(LocusOfControl);
@@ -92,6 +175,12 @@ namespace TM.RestHour.Controllers
 
         }
 
-       
+
+        //public JsonResult GetLocusOfControl(int CrewId, int JoiningCondition)
+        //{
+        //    PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();           
+        //    return Json(psychologicalEvaluationBL.GetLocusOfControlByJoiningCondition(CrewId, JoiningCondition), JsonRequestBehavior.AllowGet);
+
+        //}
     }
 }

@@ -1,0 +1,55 @@
+﻿@*@{
+        Layout = null;
+    }*@
+
+@{
+    ViewBag.Title = "View";
+}
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="banner_Box">
+            <div class="box_Area">
+                <a href="@Url.Action("Index", "Health" )" style="border:none;">
+                    <div class="pull-left mr-20 mobileBox">
+                        <div class="blue_Color color_box">
+                            <img src="../img/menu-icon/health.png" />
+                        </div>
+                        <div class="color_box1">
+                            Health
+                        </div>
+                    </div>
+                </a>
+                <a href="@Url.Action("PsychologicalEvaluationForms", "MentalHealth" )" style="border:none;">
+                    <div class="pull-left mr-20 mobileBox">
+                        <div class="green_Color color_box">
+                            <img src="../img/menu-icon/health_Mental.png" />
+                        </div>
+                        <div class="color_box1">
+                            Mental Health
+                        </div>
+                    </div>
+                </a>
+                <a href="@Url.Action("WorkAndRestHours", "Health" )" style="border:none;">
+                    <div class="pull-left mr-20 mobileBox">
+                        <div class="pink_Color color_box">
+                            <img src="../img/menu-icon/Work_icon.png" />
+                        </div>
+                        <div class="color_box1">
+                            Work and<br />Rest Hours
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
