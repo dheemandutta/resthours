@@ -293,5 +293,7 @@ namespace TM.Base.Entities
 
         #endregion
 
+        public List<String> AccidentOrIllnessImagePathList { get; set; }
+
     }
 }
