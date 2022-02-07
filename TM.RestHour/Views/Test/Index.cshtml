@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+
+@*////////////////////////////////////////////////*@
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/TimePicker/jquery.timepicker.min.js"></script>
+<link href="~/Content/TimePicker/jquery.timepicker.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+@*////////////////////////////////////////////////*@
+
+
+
+
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/link/css/bootstrap.min.css" rel="stylesheet" />
+
+
+
+<h2>Index</h2>
+
+<input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+<label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+<br>
+
+<input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+<label class="btn btn-outline-secondary" for="btn-check-2-outlined">Checked</label>
+<br>
+
+<input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+<label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
+
+<input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+<label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
+
+
+
+
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="hatchback" autocomplete="off" checked> Hatchback
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" id="sedan" autocomplete="off"> Sedan
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" id="suv" autocomplete="off"> SUV
+        </label>
+    </div>

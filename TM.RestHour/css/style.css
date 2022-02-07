@@ -15622,7 +15622,7 @@ button:disabled {
         }
 
     .upload-file form {
-        margin: 14px 0 0 0;
+        margin: 0;
     }
 
 .crew-div {
@@ -15870,7 +15870,7 @@ button:disabled {
 }
 
 .imguplodimg img {
-    width:100%;
+    width: 100%;
 }
 
 .imguplodimg a {
@@ -15888,17 +15888,24 @@ button:disabled {
     padding: 8px 20px;
     border-radius: 6px;
 }
+
 .modal-header .close {
     margin: 0 !important;
     padding: 0 !important;
 }
-.modal-content img{width:100%;}
+
+.modal-content img {
+    width: 100%;
+}
+
 .card-block .form-horizontal .form-control, .bacb .form-horizontal .form-control {
     width: 100%
 }
+
 .card-block .form-horizontal, .bacb .form-horizontal {
     text-align: left;
 }
+
 .savebtn {
     float: right;
     color: #fff;
@@ -15910,14 +15917,52 @@ button:disabled {
     border-radius: 6px;
     text-align: center;
 }
+
 .onelinecheckbox div {
     display: inline-block;
     width: 73px;
 }
-.cardpadd{padding:23px;}
-.itemlist{}
+
+.cardpadd {
+    padding: 23px;
+}
+
+.itemlist {
+}
+
     .itemlist li {
         display: inline-block;
         padding: 5px 19px 8px;
     }
-.paddbotton{margin:0 0 30px 0;}
+
+.paddbotton {
+    margin: 0 0 30px 0;
+}
+
+.ui-datepicker-calendar td, .ui-datepicker-calendar th {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+.modal-dialog {
+    max-width: 600px;
+}
+
+.ui-datepicker-prev.ui-corner-all {
+    background: #095ec3;
+    color: #fff;
+    padding: 1px 7px;
+    margin: 10px 0px;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.ui-datepicker-next.ui-corner-all {
+    background: #000;
+    color: #fff;
+    padding: 1px 7px;
+    margin: 10px 5px;
+    display: inline-block;
+    border-radius: 2px;
+}
+.card{padding:10px;}

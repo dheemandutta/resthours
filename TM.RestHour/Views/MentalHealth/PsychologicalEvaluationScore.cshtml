@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewBag.Title = "PsychologicalEvaluationScore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/link/css/static.css" rel="stylesheet" />
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/Crew.js"></script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create four equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 25%;
+        padding: 10px;
+         /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+<body>
+
+    <div class="">
+        <div class="head_title">
+            <h2 class="ta">Psychological Evaluation Score</h2>
+        </div>
+
+        <div class="card backk">
+            <div class="">
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#LocusOfControl">Locus Of Control </a>
+                            </h4>
+                        </div>
+                        <div id="LocusOfControl" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="column">
+                                        <P style="font-size: 18px; color: #0d417f;">PERIOD</P>
+                                        <p>POST JOINING</p>
+                                        <p>PRE SIGN OFF</p>
+                                    </div>
+                                    <div class="column">
+                                        <P style="font-size: 18px; color: #0d417f;">DATE COMPLETED</P>
+                                        <input type="text" class="form-control" id="EquipmentsName" placeholder="Equipments Name" />
+                                        <input type="text" class="form-control" id="EquipmentsName" placeholder="Equipments Name" />
+                                    </div>
+                                    <div class="column">
+                                        <P style="font-size: 18px; color: #0d417f;">SCORE</P>
+                                        <input type="text" class="form-control" id="EquipmentsName" placeholder="Equipments Name" />
+                                        <input type="text" class="form-control" id="EquipmentsName" placeholder="Equipments Name" />
+                                    </div>
+                                    <div class="column">
+                                        <P style="font-size: 18px; color: #0d417f;">EVALUATION</P>
+                                        <input type="text" class="form-control" id="EquipmentsName" placeholder="Equipments Name" />
+                                        <input type="text" class="form-control" id="EquipmentsName" placeholder="Equipments Name" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="column">
+                                        <p>ASSESMENT</p>
+                                        <p>SUGGESTION</p>
+                                    </div>
+                                    <div class="column">
+                                        <input type="text" class="form-control" id="EquipmentsName" placeholder="Equipments Name" />
+                                        <input type="text" class="form-control" id="EquipmentsName" placeholder="Equipments Name" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#MASSMindfulnessScaleFinal">MASS Mindfulness Scale Final</a>
+                            </h4>
+                        </div>
+                        <div id="MASSMindfulnessScaleFinal" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                bla bla bla
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#LocusOfControl">Locus Of Control </a>
+                            </h4>
+                        </div>
+                        <div id="LocusOfControl" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                bla bla bla
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#LocusOfControl">Locus Of Control </a>
+                            </h4>
+                        </div>
+                        <div id="LocusOfControl" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                bla bla bla
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#LocusOfControl">Locus Of Control </a>
+                            </h4>
+                        </div>
+                        <div id="LocusOfControl" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                bla bla bla
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#LocusOfControl">Locus Of Control </a>
+                            </h4>
+                        </div>
+                        <div id="LocusOfControl" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                bla bla bla
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#LocusOfControl">Locus Of Control </a>
+                            </h4>
+                        </div>
+                        <div id="LocusOfControl" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                bla bla bla
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#LocusOfControl">Locus Of Control </a>
+                            </h4>
+                        </div>
+                        <div id="LocusOfControl" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                bla bla bla
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+

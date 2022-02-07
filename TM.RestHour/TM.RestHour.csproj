@@ -20,7 +20,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44376</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -162,6 +163,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\TraceFilterAttribute.cs" />
     <Compile Include="Common\AccessControl.cs" />
+    <Compile Include="Common\ModelSelector.cs" />
+    <Compile Include="Common\ModelSelectorEnabledRazorViewEngine .cs" />
     <Compile Include="Controllers\AddCrewController.cs" />
     <Compile Include="Controllers\AllowMultipleButtonAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -178,6 +181,7 @@
     <Compile Include="Controllers\MailServerDetailsController.cs" />
     <Compile Include="Controllers\MedicalAssistanceController.cs" />
     <Compile Include="Controllers\MedicalChestController.cs" />
+    <Compile Include="Controllers\MentalHealthController.cs" />
     <Compile Include="Controllers\MvcExtensions.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\OvertimeCalculationController.cs" />
@@ -187,6 +191,7 @@
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ReportsNCReportByMonthController.cs" />
     <Compile Include="Controllers\RightsController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TestGRDController.cs" />
     <Compile Include="Controllers\TimeSheetController.cs" />
     <Compile Include="Controllers\VesselController.cs" />
@@ -658,9 +663,12 @@
     <Content Include="css\metisMenu.css" />
     <Content Include="css\popuo-box.css" />
     <Content Include="css\preloader.html" />
+    <Content Include="css\redioBtn.css" />
     <Content Include="css\style.css" />
     <Content Include="devsqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\02-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\03-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
@@ -1286,7 +1294,9 @@
     <Content Include="sqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\01-CreateTable\CreateTable_RestHour.sql" />
     <Content Include="sqlscripts\02-02-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\03-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\03-UpdateDB\01-UpdateDB.sql" />
+    <Content Include="sqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\04-CreateFunction\ufn_CSVToTable.sql" />
     <Content Include="sqlscripts\07-DefaultMasterData\DefaultMasterData_RestHour.sql" />
     <Content Include="sqlscripts\09-Create-SPs\dbo.name.StoredProcedure.sql" />
@@ -1494,6 +1504,18 @@
     <Content Include="Views\CrewList\CrewListNew_bingshu.cshtml" />
     <Content Include="Views\CreateNewUserAccount\Index.cshtml" />
     <Content Include="Views\WellBeing\MonthlyWorkHours.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\MentalHealth\Index.cshtml" />
+    <Content Include="Views\MentalHealth\PsychologicalEvaluationForms.cshtml" />
+    <Content Include="Views\Shared\_pvBeckDepressionInventoryIIFinal.cshtml" />
+    <Content Include="Views\Shared\_pvEmotionalIntelligenceQuizForLeadership.cshtml" />
+    <Content Include="Views\Shared\_pvLocusOfControl.cshtml" />
+    <Content Include="Views\Shared\_pvMASSMindfulnessScaleFinal.cshtml" />
+    <Content Include="Views\Shared\_pvPSQ30_PERCIEVED_STRESS_QUESTIONAIRE.cshtml" />
+    <Content Include="Views\Shared\_pvROSENBERG_SELF_esteem_scale_final.cshtml" />
+    <Content Include="Views\Shared\_pvZhao_ANXIETY_Y1.cshtml" />
+    <Content Include="Views\Shared\_pvZhao_ANXIETY_Y2.cshtml" />
+    <Content Include="Views\MentalHealth\PsychologicalEvaluationScore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
