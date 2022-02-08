@@ -15965,4 +15965,76 @@ button:disabled {
     display: inline-block;
     border-radius: 2px;
 }
-.card{padding:10px;}
+
+.card {
+    padding: 10px;
+}
+
+.head_title img {
+    width: 29px;
+    padding: 0 6px 0 0;
+}
+
+.title-arrow {
+    padding: 0 4px 0 0;
+}
+
+    .title-arrow .fa {
+    }
+
+.psychologicalef .form-horizontal {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+    .psychologicalef .form-horizontal label {
+        width: auto;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .psychologicalef .form-horizontal button {
+        background: #23b14d;
+        padding: 7px 0;
+    }
+
+.psychologicalef h1 {
+    margin-bottom: 20px;
+}
+
+.custom-style table {
+    width: 67%;
+    margin: 20px auto;
+}
+
+.custom-style {
+    margin: 20px auto;
+}
+
+.bacmt #btnAddAndSave {
+    background: #00b94a;
+    border: 0;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.bacmt #btnBack {
+    background: #192848;
+    border: 0;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.arrowimg h1 {
+    display: inline-block;
+}
+#print-content input {
+    float: right;
+    margin: 20px;
+    background: #0765b5;
+    border: 0;
+    color: #fff;
+    padding: 9px 19px;
+}

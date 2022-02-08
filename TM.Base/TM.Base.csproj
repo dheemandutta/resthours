@@ -73,6 +73,8 @@
     <Compile Include="Entities\OptionsPOCO.cs" />
     <Compile Include="Entities\OvertimeCalculationPOCO.cs" />
     <Compile Include="Entities\PermissionsPOCO.cs" />
+    <Compile Include="Entities\PostJoiningTestValuesPOCO.cs" />
+    <Compile Include="Entities\PreSignOffTestValuesPOCO.cs" />
     <Compile Include="Entities\PsychologicalEvaluationPOCO.cs" />
     <Compile Include="Entities\RankPermissionPOCO.cs" />
     <Compile Include="Entities\RanksPOCO.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Entities\RightsPOCO.cs" />
     <Compile Include="Entities\ServiceTermsPOCO.cs" />
     <Compile Include="Entities\ShipPOCO.cs" />
+    <Compile Include="Entities\TestValuesPOCO.cs" />
     <Compile Include="Entities\TimeAdjustmentPOCO.cs" />
     <Compile Include="Entities\UserGroupsPOCO.cs" />
     <Compile Include="Entities\UsersPOCO.cs" />

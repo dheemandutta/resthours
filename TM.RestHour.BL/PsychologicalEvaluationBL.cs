@@ -1136,5 +1136,11 @@ namespace TM.RestHour.BL
             PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
             return psychologicalEvaluationDAL.GetLocusOfControlByJoiningCondition(CrewId, JoiningCondition);
         }
+
+        public TestValuesPOCO GetTestValues(int CrewId)
+        {
+            PsychologicalEvaluationDAL psychologicalEvaluationDAL = new PsychologicalEvaluationDAL();
+            return psychologicalEvaluationDAL.GetTestValues(CrewId);
+        }
     }
 }

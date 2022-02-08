@@ -947,5 +947,166 @@ namespace TM.RestHour.DAL
             return pC;
         }
 
+
+
+        
+
+
+        public TestValuesPOCO GetTestValues(int CrewId)
+        {
+            List<PsychologicalEvaluationPOCO> prodPOList = new List<PsychologicalEvaluationPOCO>();
+            List<PsychologicalEvaluationPOCO> prodPO = new List<PsychologicalEvaluationPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetTestValues", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewId", CrewId);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return ConvertDataTableToTestValues(ds);
+        }
+
+        private TestValuesPOCO ConvertDataTableToTestValues(DataSet ds)
+        {
+            TestValuesPOCO pC = new TestValuesPOCO();
+            List<PreSignOffTestValuesPOCO> preSignOffTestValuesList = new List<PreSignOffTestValuesPOCO>();
+            List<PostJoiningTestValuesPOCO> postJoiningTestValuesList = new List<PostJoiningTestValuesPOCO>();
+            
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    PostJoiningTestValuesPOCO postJoiningTestValues = new PostJoiningTestValuesPOCO();
+                    //if (item["Id"] != DBNull.Value)
+                    //    pC.Id = Convert.ToInt32(item["Id"].ToString());
+
+                    if (item["TestResult"] != DBNull.Value)
+                        postJoiningTestValues.TestResult = item["TestResult"].ToString();
+
+                    if (item["Evaluation"] != DBNull.Value)
+                        postJoiningTestValues.Evaluation = item["Evaluation"].ToString();
+
+                    if (item["FinalScore"] != DBNull.Value)
+                        postJoiningTestValues.FinalScore = item["FinalScore"].ToString();
+
+                    if (item["SATestResult"] != DBNull.Value)
+                        postJoiningTestValues.SATestResult = item["SATestResult"].ToString();
+
+                    if (item["SCTestResult"] != DBNull.Value)
+                        postJoiningTestValues.SCTestResult = item["SCTestResult"].ToString();
+
+                    if (item["EmpathyTestResult"] != DBNull.Value)
+                        postJoiningTestValues.EmpathyTestResult = item["EmpathyTestResult"].ToString();
+
+                    if (item["RITestResult"] != DBNull.Value)
+                        postJoiningTestValues.RITestResult = item["RITestResult"].ToString();
+
+                    if (item["SAEvaluation"] != DBNull.Value)
+                        postJoiningTestValues.SAEvaluation = item["SAEvaluation"].ToString();
+
+                    if (item["SCEvaluation"] != DBNull.Value)
+                        postJoiningTestValues.SCEvaluation = item["SCEvaluation"].ToString();
+
+                    if (item["EmpathyEvaluation"] != DBNull.Value)
+                        postJoiningTestValues.EmpathyEvaluation = item["EmpathyEvaluation"].ToString();
+
+                    if (item["RIEvaluation"] != DBNull.Value)
+                        postJoiningTestValues.RIEvaluation = item["RIEvaluation"].ToString();
+
+                    if (item["SAScore"] != DBNull.Value)
+                        postJoiningTestValues.SAScore = item["SAScore"].ToString();
+
+                    if (item["SCScore"] != DBNull.Value)
+                        postJoiningTestValues.SCScore = item["SCScore"].ToString();
+
+                    if (item["EmpathyScore"] != DBNull.Value)
+                        postJoiningTestValues.EmpathyScore = item["EmpathyScore"].ToString();
+
+                    if (item["RIScore"] != DBNull.Value)
+                        postJoiningTestValues.RIScore = item["RIScore"].ToString();
+
+                    if (item["TestCode"] != DBNull.Value)
+                        postJoiningTestValues.TestCode = item["TestCode"].ToString();
+
+                    if (item["TestDate"] != DBNull.Value)
+                        postJoiningTestValues.TestDate = item["TestDate"].ToString().Substring(0, 10);
+
+                    postJoiningTestValuesList.Add(postJoiningTestValues);
+                }
+
+                foreach (DataRow item in ds.Tables[1].Rows)
+                {
+                    PreSignOffTestValuesPOCO preSignOffTestValues = new PreSignOffTestValuesPOCO();
+                    //if (item["Id"] != DBNull.Value)
+                    //    pC.Id = Convert.ToInt32(item["Id"].ToString());
+
+                    if (item["TestResult"] != DBNull.Value)
+                        preSignOffTestValues.TestResult = item["TestResult"].ToString();
+
+                    if (item["Evaluation"] != DBNull.Value)
+                        preSignOffTestValues.Evaluation = item["Evaluation"].ToString();
+
+                    if (item["FinalScore"] != DBNull.Value)
+                        preSignOffTestValues.FinalScore = item["FinalScore"].ToString();
+
+                    if (item["SATestResult"] != DBNull.Value)
+                        preSignOffTestValues.SATestResult = item["SATestResult"].ToString();
+
+                    if (item["SCTestResult"] != DBNull.Value)
+                        preSignOffTestValues.SCTestResult = item["SCTestResult"].ToString();
+
+                    if (item["EmpathyTestResult"] != DBNull.Value)
+                        preSignOffTestValues.EmpathyTestResult = item["EmpathyTestResult"].ToString();
+
+                    if (item["RITestResult"] != DBNull.Value)
+                        preSignOffTestValues.RITestResult = item["RITestResult"].ToString();
+
+                    if (item["SAEvaluation"] != DBNull.Value)
+                        preSignOffTestValues.SAEvaluation = item["SAEvaluation"].ToString();
+
+                    if (item["SCEvaluation"] != DBNull.Value)
+                        preSignOffTestValues.SCEvaluation = item["SCEvaluation"].ToString();
+
+                    if (item["EmpathyEvaluation"] != DBNull.Value)
+                        preSignOffTestValues.EmpathyEvaluation = item["EmpathyEvaluation"].ToString();
+
+                    if (item["RIEvaluation"] != DBNull.Value)
+                        preSignOffTestValues.RIEvaluation = item["RIEvaluation"].ToString();
+
+                    if (item["SAScore"] != DBNull.Value)
+                        preSignOffTestValues.SAScore = item["SAScore"].ToString();
+
+                    if (item["SCScore"] != DBNull.Value)
+                        preSignOffTestValues.SCScore = item["SCScore"].ToString();
+
+                    if (item["EmpathyScore"] != DBNull.Value)
+                        preSignOffTestValues.EmpathyScore = item["EmpathyScore"].ToString();
+
+                    if (item["RIScore"] != DBNull.Value)
+                        preSignOffTestValues.RIScore = item["RIScore"].ToString();
+
+                    if (item["TestCode"] != DBNull.Value)
+                        preSignOffTestValues.TestCode = item["TestCode"].ToString();
+
+                    if (item["TestDate"] != DBNull.Value)
+                        preSignOffTestValues.TestDate = item["TestDate"].ToString().Substring(0,10);
+
+                    preSignOffTestValuesList.Add(preSignOffTestValues);
+                }
+
+            }
+            pC.PostJoiningTestValues = postJoiningTestValuesList;
+            pC.PreSignOffTestValues = preSignOffTestValuesList;
+
+            return pC;
+        }
     }
 }
