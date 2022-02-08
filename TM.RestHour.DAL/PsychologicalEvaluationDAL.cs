@@ -103,7 +103,7 @@ namespace TM.RestHour.DAL
         }
 
 
-        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, int[] totalScore, string[] testResult, int CrewID, int VesselID, string StoredProcedure, string Evaluation)
+        public int SaveForms(string[] arrQuestionNo, string[] arrAnswer, int[] totalScore, string[] testResult, int CrewID, int VesselID, string StoredProcedure, string SAEvaluation, string SCEvaluation, string EmpathyEvaluation, string RIEvaluation)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
@@ -129,13 +129,40 @@ namespace TM.RestHour.DAL
             cmd.Parameters.AddWithValue("@CrewId", CrewID);
 
             //cmd.Parameters.AddWithValue("@Evaluation", Evaluation.ToString());
-            if (!String.IsNullOrEmpty(Evaluation))
+            if (!String.IsNullOrEmpty(SAEvaluation))
             {
-                cmd.Parameters.AddWithValue("@Evaluation", Evaluation.ToString());
+                cmd.Parameters.AddWithValue("@SAEvaluation", SAEvaluation.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Evaluation", DBNull.Value);
+                cmd.Parameters.AddWithValue("@SAEvaluation", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(SCEvaluation))
+            {
+                cmd.Parameters.AddWithValue("@SCEvaluation", SCEvaluation.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SCEvaluation", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(EmpathyEvaluation))
+            {
+                cmd.Parameters.AddWithValue("@EmpathyEvaluation", EmpathyEvaluation.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@EmpathyEvaluation", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(RIEvaluation))
+            {
+                cmd.Parameters.AddWithValue("@RIEvaluation", RIEvaluation.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@RIEvaluation", DBNull.Value);
             }
 
             int recordsAffected = cmd.ExecuteNonQuery();
