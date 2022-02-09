@@ -16030,11 +16030,19 @@ button:disabled {
 .arrowimg h1 {
     display: inline-block;
 }
-#print-content input {
-    float: right;
+#print-content > input {
+
     margin: 20px;
     background: #0765b5;
     border: 0;
     color: #fff;
     padding: 9px 19px;
+}
+.side-space {
+    padding: 0 30px;
+    overflow: hidden;
+}
+.custom-stylel td:last-child {
+    width: 67% !important;
+    display: block;
 }

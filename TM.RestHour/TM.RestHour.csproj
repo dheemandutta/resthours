@@ -692,8 +692,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\arrow.png" />
     <Content Include="img\banner_Worth.jpg" />
     <Content Include="img\banner_Worth.png" />
+    <Content Include="img\brein.png" />
     <Content Include="img\default-skin\default-skin.png" />
     <Content Include="img\default-skin\default-skin.svg" />
     <Content Include="img\excel-file-open.png" />
@@ -765,6 +767,7 @@
     <Content Include="img\progress\design-progress-red.html" />
     <Content Include="img\progress\design-progress-yellow.html" />
     <Content Include="img\progress\progress-bg.html" />
+    <Content Include="img\RArrow.png" />
     <Content Include="img\signIn_button.png" />
     <Content Include="img\staf\1.png" />
     <Content Include="img\staf\2.png" />

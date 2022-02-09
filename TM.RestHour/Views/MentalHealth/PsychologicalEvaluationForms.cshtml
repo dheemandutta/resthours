@@ -46,7 +46,7 @@
 
     <div class="">
         <div class="head_title arrowimg">
-          <span class="title-arrow"><img src="../img/arrow.png" /></span>  <h1><img src="../img/brein.png" /> Mental Health</h1>
+          <a href="@Url.Action("UserDashboard", "Home" )"><span class="title-arrow"><img src="../img/arrow.png" /></span></a> <img src="../img/brein.png" />  <h1> Mental Health</h1>  <a href="@Url.Action("PsychologicalEvaluationScore", "MentalHealth" )"><span class="title-arrow"><img src="../img/RArrow.png" /></span></a>
         </div>
         <div class="">
 
@@ -201,6 +201,7 @@
         $(document).ready(function () {
             //$(".numberinput").forceNumeric();
             //GetCompanyDetailsNew();
+
 
             $('#btnShowL').click(function () {
                 //id = 42;

@@ -39,12 +39,12 @@
         @*<div class="head_title">
                 <h1 class="ta">Page Name</h1>
             </div>*@
-        <div class="card bacmt" style="height: 600px;">
+        <div class="card bacmt">
             <div class="clearfix"></div>
             <div class="row">
 
 
-                <section id="print-content">
+                <section id="print-content" class="side-space">
                     <input type="button" onclick="printDiv('print-content')" value="print a div!" />
 
 
@@ -1006,7 +1006,7 @@
 
 
 
-                <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                <div class="col-md-6" style=" margin-top:30px;">
                     <button type="button" class="button1" id="btnAddAndSave" onclick="return SaveForms('stpSaveZhaoANXIETY_Y2', '8');">Save And Next</button>
                     @if (Model.Mode == "redirect")
                     {

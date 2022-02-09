@@ -35,6 +35,13 @@
         /* Should be removed. Only for demonstration */
     }
 
+    .columnE {
+        float: left;
+        width: 10%;
+        padding: 10px;
+        /* Should be removed. Only for demonstration */
+    }
+
     /* Clear floats after the columns */
     .row:after {
         content: "";
@@ -48,13 +55,14 @@
 <body>
 
     <div class="">
-        <div class="head_title">
-            <h2 class="ta">Psychological Evaluation Score</h2>
+        <div class="head_title arrowimg">
+            <a href="@Url.Action("PsychologicalEvaluationForms", "MentalHealth" )"><span class="title-arrow"><img src="../img/arrow.png"/></span></a> <img src="../img/brein.png"/><h3>Mental Health</h3>
         </div>
 
         <div class="card backk">
             <div class="">
                 <div class="panel-group" id="accordion">
+                    <h4 class="ta">Psychological Evaluation Score</h4>
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -373,35 +381,79 @@
                         <div id="EmotionalIntelligence" class="panel-collapse collapse in">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="column">
-                                        <P style="font-size: 18px; color: #0d417f;">PERIOD</P>
+                                    <div class="columnE" style="width: 8%;">
+                                        <P style="font-size: 18px; color: #0d417f;">PERIOD &nbsp;</P>
                                         <p>Post Joining</p>
                                         <p>Pre Sign Off</p>
                                     </div>
-                                    <div class="column">
+                                    <div class="columnE" style="width: 11%;">
                                         <P style="font-size: 18px; color: #0d417f;">DATE COMPLETED</P>
                                         <input type="text" class="form-control" id="PostJoiningDateE" disabled />
                                         <input type="text" class="form-control" id="PreSignOffDateE" disabled />
                                     </div>
-                                    <div class="column">
-                                        <P style="font-size: 18px; color: #0d417f;">SCORE</P>
-                                        <input type="text" class="form-control" id="PostJoiningScoreE" disabled />
-                                        <input type="text" class="form-control" id="PreSignOffScoreE" disabled />
+                                    <div class="columnE" style="width: 8%;">
+                                        <P style="font-size: 18px; color: #0d417f;">SA Score &nbsp;</P>
+                                        <input type="text" class="form-control" id="PostJoiningSAScoreE" disabled />
+                                        <input type="text" class="form-control" id="PreSignOffSAScoreE" disabled />
                                     </div>
-                                    <div class="column">
-                                        <P style="font-size: 18px; color: #0d417f;">EVALUATION</P>
-                                        <input type="text" class="form-control" id="PostJoiningEvaluationE" disabled />
-                                        <input type="text" class="form-control" id="PreSignOffEvaluationE" disabled />
+                                    <div class="columnE" style="width: 8%;">
+                                        <P style="font-size: 18px; color: #0d417f;">SC Score &nbsp;</P>
+                                        <input type="text" class="form-control" id="PostJoiningSCScoreE" disabled />
+                                        <input type="text" class="form-control" id="PreSignOffSCScoreE" disabled />
+                                    </div>
+                                    <div class="columnE" style="width: 8%;">
+                                        <P style="font-size: 18px; color: #0d417f;">Empathy Score</P>
+                                        <input type="text" class="form-control" id="PostJoiningEScoreE" disabled />
+                                        <input type="text" class="form-control" id="PreSignOffEScoreE" disabled />
+                                    </div>
+                                    <div class="columnE" style="width: 8%;">
+                                        <P style="font-size: 18px; color: #0d417f;">RI Score &nbsp;</P>
+                                        <input type="text" class="form-control" id="PostJoiningRIScoreE" disabled />
+                                        <input type="text" class="form-control" id="PreSignOffRIScoreE" disabled />
+                                    </div>
+                                    <div class="columnE">
+                                        <P style="font-size: 18px; color: #0d417f;">SA Evaluation</P>
+                                        <input type="text" class="form-control" id="PostJoiningSAEvaluationE" disabled />
+                                        <input type="text" class="form-control" id="PreSignOffSAEvaluationE" disabled />
+                                    </div>
+                                    <div class="columnE">
+                                        <P style="font-size: 18px; color: #0d417f;">SC Evaluation</P>
+                                        <input type="text" class="form-control" id="PostJoiningSCEvaluationE" disabled />
+                                        <input type="text" class="form-control" id="PreSignOffSCEvaluationE" disabled />
+                                    </div>
+                                    <div class="columnE">
+                                        <P style="font-size: 18px; color: #0d417f;">Empathy Evaluation</P>
+                                        <input type="text" class="form-control" id="PostJoiningEEvaluationE" disabled />
+                                        <input type="text" class="form-control" id="PreSignOffEEvaluationE" disabled />
+                                    </div>
+                                    <div class="columnE">
+                                        <P style="font-size: 18px; color: #0d417f;">RI Evaluation</P>
+                                        <input type="text" class="form-control" id="PostJoiningRIEvaluationE" disabled />
+                                        <input type="text" class="form-control" id="PreSignOffRIEvaluationE" disabled />
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="column">
+                                    <div class="columnE" style="width: 8%;">
+                                        <P style="font-size: 18px; color: #0d417f;"> &nbsp;</P>
                                         <p>Advice</p>
                                         <p>Suggestion</p>
                                     </div>
-                                    <div class="column">
-                                        <div class="form-control" id="AdviceE"></div>
+                                    <div class="column" style="width: 21%;">
+                                        <P style="font-size: 18px; color: #0d417f;">SA Advice</P>
+                                        <div class="form-control" id="SAAdviceE"></div>
                                         <div class="form-control" id="SuggestionE"></div>
+                                    </div>
+                                    <div class="column" style="width: 21%;">
+                                        <P style="font-size: 18px; color: #0d417f;">SC Advice</P>
+                                        <div class="form-control" id="SCAdviceE"></div>
+                                    </div>
+                                    <div class="column" style="width: 21%;">
+                                        <P style="font-size: 18px; color: #0d417f;">Empathy Advice</P>
+                                        <div class="form-control" id="EAdviceE"></div>
+                                    </div>
+                                    <div class="column" style="width: 21%;">
+                                        <P style="font-size: 18px; color: #0d417f;">RI Advice</P>
+                                        <div class="form-control" id="RIAdviceE"></div>
                                     </div>
                                 </div>
                             </div>
@@ -627,6 +679,55 @@
                         $('#PreSignOffScoreR').val(presLocFilterR[0].FinalScore);
                         $('#PreSignOffEvaluationR').val(presLocFilterR[0].TestResult);
                         //$('#AdviceR').text(presLocFilterR[0].Evaluation);
+                    }
+
+                    /////////////////////// Emotional Intelligence ///////////////////////////
+                    var psLocE = result.PostJoiningTestValues;
+                    var psLocFilterE = $.grep(psLocE, function (n, i) {
+                        return n.TestCode === 'E';
+                    });
+                    console.log(psLocE);
+                    console.log(psLocFilterE[0].Evaluation);
+                    if (psLocFilterE.length > 0) {
+                        $('#PostJoiningDateE').val(psLocFilterE[0].TestDate);
+
+                        $('#PostJoiningSAScoreE').val(psLocFilterE[0].SAScore);
+                        $('#PostJoiningSCScoreE').val(psLocFilterE[0].SCScore);
+                        $('#PostJoiningEScoreE').val(psLocFilterE[0].EmpathyScore);
+                        $('#PostJoiningRIScoreE').val(psLocFilterE[0].RIScore);
+
+                        $('#PostJoiningSAEvaluationE').val(psLocFilterE[0].SATestResult);
+                        $('#PostJoiningSCEvaluationE').val(psLocFilterE[0].SCTestResult);
+                        $('#PostJoiningEEvaluationE').val(psLocFilterE[0].EmpathyTestResult);
+                        $('#PostJoiningRIEvaluationE').val(psLocFilterE[0].RITestResult);
+
+                        $('#SAAdviceE').text(psLocFilterE[0].SAEvaluation);
+                        $('#SCAdviceE').text(psLocFilterE[0].SCEvaluation);
+                        $('#EAdviceE').text(psLocFilterE[0].EmpathyEvaluation);
+                        $('#RIAdviceE').text(psLocFilterE[0].RIEvaluation);
+                    }
+
+                    var presLocE = result.PreSignOffTestValues;
+                    var presLocFilterE = $.grep(presLocE, function (n, i) {
+                        return n.TestCode === 'E';
+                    });
+                    if (presLocFilterE.length > 0) {
+                        $('#PreSignOffDateE').val(presLocFilterE[0].TestDate);
+
+                        $('#PreSignOffSAScoreE').val(presLocFilterE[0].SAScore);
+                        $('#PreSignOffSCScoreE').val(presLocFilterE[0].SCScore);
+                        $('#PreSignOffEScoreE').val(presLocFilterE[0].EmpathyScore);
+                        $('#PreSignOffRIScoreE').val(presLocFilterE[0].RIScore);
+
+                        $('#PreSignOffSAEvaluationE').val(presLocFilterE[0].SATestResult);
+                        $('#PreSignOffSCEvaluationE').val(presLocFilterE[0].SCTestResult);
+                        $('#PreSignOffEEvaluationE').val(presLocFilterE[0].EmpathyTestResult);
+                        $('#PreSignOffRIEvaluationE').val(presLocFilterE[0].RITestResult);
+                     
+                        //$('#SAAdviceE').text(presLocFilterE[0].SAEvaluation);
+                        //$('#SCAdviceE').text(presLocFilterE[0].SCEvaluation);
+                        //$('#EAdviceE').text(presLocFilterE[0].EmpathyEvaluation);
+                        //$('#RIAdviceE').text(presLocFilterE[0].RIEvaluation);
                     }
 
                 },
