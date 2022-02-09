@@ -49,7 +49,7 @@ namespace TM.Base.Entities
 
         public string Swell { get; set; }
 
-
+        public int IMONumber { get; set; }
 
 
 

@@ -67,6 +67,9 @@
     <Compile Include="Entities\ManageRankPOCO.cs" />
     <Compile Include="Entities\MedicalChestPOCO.cs" />
     <Compile Include="Entities\MedicalSymtomologyPOCO.cs" />
+    <Compile Include="Entities\MentalHealthPOCO.cs" />
+    <Compile Include="Entities\MentalHealthPostJoiningPOCO.cs" />
+    <Compile Include="Entities\MentalHealthPreSignOffPOCO.cs" />
     <Compile Include="Entities\NonComplianceInfoPOCO.cs" />
     <Compile Include="Entities\NonCompliancePOCO.cs" />
     <Compile Include="Entities\OneDayTimeAdjustmentPOCO.cs" />

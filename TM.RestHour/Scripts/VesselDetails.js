@@ -68,7 +68,27 @@ function SaveVesselDetails() {
             ID: $('#ID').val(),
 
             VesselName: $('#VesselName').val(),
+
+
+
+
+
             CallSign: $('#CallSign').val(),
+            Length: $('#Length').val(),
+            PortOfRegistry: $('#PortOfRegistry').val(),
+            Breadth: $('#Breadth').val(),
+            HelicopterDeck: $('#HelicopterDeck').val(),
+            HelicopterWinchingArea: $('#HelicopterWinchingArea').val(),
+
+            PAndIClub: $('#PAndIClub').val(),
+            PAndIClubOther: $('#PAndIClubOther').val(),
+            ContactDetails: $('#ContactDetails').val(),
+
+
+
+
+
+
             DateOfReportingGMT: $('#DateOfReportingGMT').val(),
             TimeOfReportingGMT: $('#TimeOfReportingGMT').val(),
             PresentLocation: $('#PresentLocation').val(),
@@ -88,8 +108,6 @@ function SaveVesselDetails() {
             Visibility: $('#Visibility').val(),
             Swell: $('#Swell').val(),
 
-
-
             PortOfRegistry: $('#PortOfRegistry').val(),
             HelicopterDeck: $('#HelicopterDeck').val(),
             HelicopterWinchingArea: $('#HelicopterWinchingArea').val(),
@@ -100,6 +118,8 @@ function SaveVesselDetails() {
             ContactDetails: $('#ContactDetails').val()
 
         };
+
+        console.log(VesselDetails);
 
         $.ajax({
             url: posturl,
@@ -372,6 +392,18 @@ function GetShip() {
             $('#VOIP2').val(result.VOIP2);
             $('#Mobile1').val(result.Mobile1);
             $('#Mobile2').val(result.Mobile2);
+
+
+
+            $('#CallSign').val(result.CallSign);
+            $('#Length').val(result.Length);
+            $('#PortOfRegistry').val(result.PortOfRegistry);
+            $('#Breadth').val(result.Breadth);
+            $('#HelicopterDeck').val(result.HelicopterDeck);
+            $('#HelicopterWinchingArea').val(result.HelicopterWinchingArea);
+            $('#PAndIClub').val(result.PAndIClub);
+            $('#PAndIClubOther').val(result.PAndIClubOther);
+            $('#ContactDetails').val(result.ContactDetails);
 
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();
