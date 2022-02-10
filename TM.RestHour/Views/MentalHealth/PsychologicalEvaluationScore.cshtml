@@ -479,11 +479,12 @@
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
 
     <script type="text/javascript">
-        //alert('hi');
+
 
         $(document).ready(function () {
-
+            //debugger;
             GetTestValues();
+            //alert('hi');
         });
 
 
@@ -503,233 +504,254 @@
                 success: function (result) {
                     //debugger;
                     //$('#EquipmentsID').val(result.EquipmentsID);
-
+                    console.log(result);
                     /////////////////////// LocusOfControl ///////////////////////////
                     var psLoc = result.PostJoiningTestValues;
-                    var psLocFilter = $.grep(psLoc, function (n, i) {
-                        return n.TestCode === 'L';
-                    });
-                    console.log(psLoc);
-                    console.log(psLocFilter[0].Evaluation);
-                    if (psLocFilter.length > 0) {
-                        $('#PostJoiningDateL').val(psLocFilter[0].TestDate);
-                        $('#PostJoiningScoreL').val(psLocFilter[0].FinalScore);
-                        $('#PostJoiningEvaluationL').val(psLocFilter[0].TestResult);
-                        $('#AdviceL').text(psLocFilter[0].Evaluation);
+                    if (result.PostJoiningTestValues.length > 0)
+                    {
+                        var psLocFilter = $.grep(psLoc, function (n, i) {
+                            return n.TestCode === 'L';
+                        });
+                        console.log(psLoc);
+                        console.log(psLocFilter[0].Evaluation);
+                        if (psLocFilter.length > 0) {
+                            $('#PostJoiningDateL').val(psLocFilter[0].TestDate);
+                            $('#PostJoiningScoreL').val(psLocFilter[0].FinalScore);
+                            $('#PostJoiningEvaluationL').val(psLocFilter[0].TestResult);
+                            $('#AdviceL').text(psLocFilter[0].Evaluation);
+                        }
                     }
 
                     var presLoc = result.PreSignOffTestValues;
-                    var presLocFilter = $.grep(presLoc, function (n, i) {
-                        return n.TestCode === 'L';
-                    });
-                    if (presLocFilter.length > 0) {
-                        $('#PreSignOffDateL').val(presLocFilter[0].TestDate);
-                        $('#PreSignOffScoreL').val(presLocFilter[0].FinalScore);
-                        $('#PreSignOffEvaluationL').val(presLocFilter[0].TestResult);
-                        //$('#AdviceL').text(presLocFilter[0].Evaluation);
+                    if (result.PreSignOffTestValues.length > 0) {
+                        console.log(presLoc);
+                        var presLocFilter = $.grep(presLoc, function (n, i) {
+                            return n.TestCode === 'L';
+                        });
+                        if (presLocFilter.length > 0) {
+                            $('#PreSignOffDateL').val(presLocFilter[0].TestDate);
+                            $('#PreSignOffScoreL').val(presLocFilter[0].FinalScore);
+                            $('#PreSignOffEvaluationL').val(presLocFilter[0].TestResult);
+                            //$('#AdviceL').text(presLocFilter[0].Evaluation);
+                        }
                     }
-
                     /////////////////////// Mass ///////////////////////////
                     var psLocM = result.PostJoiningTestValues;
-                    var psLocFilterM = $.grep(psLocM, function (n, i) {
-                        return n.TestCode === 'M';
-                    });
-                    console.log(psLocM);
-                    console.log(psLocFilterM[0].Evaluation);
-                    if (psLocFilterM.length > 0) {
-                        $('#PostJoiningDateM').val(psLocFilterM[0].TestDate);
-                        $('#PostJoiningScoreM').val(psLocFilterM[0].FinalScore);
-                        $('#PostJoiningEvaluationM').val(psLocFilterM[0].TestResult);
-                        $('#AdviceM').text(psLocFilterM[0].Evaluation);
+                    if (result.PostJoiningTestValues.length > 0) {
+                        var psLocFilterM = $.grep(psLocM, function (n, i) {
+                            return n.TestCode === 'M';
+                        });
+                        console.log(psLocM);
+                        console.log(psLocFilterM[0].Evaluation);
+                        if (psLocFilterM.length > 0) {
+                            $('#PostJoiningDateM').val(psLocFilterM[0].TestDate);
+                            $('#PostJoiningScoreM').val(psLocFilterM[0].FinalScore);
+                            $('#PostJoiningEvaluationM').val(psLocFilterM[0].TestResult);
+                            $('#AdviceM').text(psLocFilterM[0].Evaluation);
+                        }
                     }
-
                     var presLocM = result.PreSignOffTestValues;
-                    var presLocFilterM = $.grep(presLocM, function (n, i) {
-                        return n.TestCode === 'M';
-                    });
-                    if (presLocFilterM.length > 0) {
-                        $('#PreSignOffDateM').val(presLocFilterM[0].TestDate);
-                        $('#PreSignOffScoreM').val(presLocFilterM[0].FinalScore);
-                        $('#PreSignOffEvaluationM').val(presLocFilterM[0].TestResult);
-                        //$('#AdviceM').text(presLocFilterM[0].Evaluation);
+                    if (result.PreSignOffTestValues.length > 0) {
+                    {
+                        var presLocFilterM = $.grep(presLocM, function (n, i) {
+                            return n.TestCode === 'M';
+                        });
+                        if (presLocFilterM.length > 0) {
+                            $('#PreSignOffDateM').val(presLocFilterM[0].TestDate);
+                            $('#PreSignOffScoreM').val(presLocFilterM[0].FinalScore);
+                            $('#PreSignOffEvaluationM').val(presLocFilterM[0].TestResult);
+                            //$('#AdviceM').text(presLocFilterM[0].Evaluation);
+                        }
                     }
-
                     /////////////////////// PSQ30 ///////////////////////////
                     var psLocP = result.PostJoiningTestValues;
-                    var psLocFilterP = $.grep(psLocP, function (n, i) {
-                        return n.TestCode === 'P';
-                    });
-                    console.log(psLocP);
-                    console.log(psLocFilterP[0].Evaluation);
-                    if (psLocFilterP.length > 0) {
-                        $('#PostJoiningDateP').val(psLocFilterP[0].TestDate);
-                        $('#PostJoiningScoreP').val(psLocFilterP[0].FinalScore);
-                        $('#PostJoiningEvaluationP').val(psLocFilterP[0].TestResult);
-                        $('#AdviceP').text(psLocFilterP[0].Evaluation);
+                        if (result.PostJoiningTestValues.length > 0) {
+                        var psLocFilterP = $.grep(psLocP, function (n, i) {
+                            return n.TestCode === 'P';
+                        });
+                        console.log(psLocP);
+                        console.log(psLocFilterP[0].Evaluation);
+                        if (psLocFilterP.length > 0) {
+                            $('#PostJoiningDateP').val(psLocFilterP[0].TestDate);
+                            $('#PostJoiningScoreP').val(psLocFilterP[0].FinalScore);
+                            $('#PostJoiningEvaluationP').val(psLocFilterP[0].TestResult);
+                            $('#AdviceP').text(psLocFilterP[0].Evaluation);
+                        }
                     }
-
                     var presLocP = result.PreSignOffTestValues;
-                    var presLocFilterP = $.grep(presLocP, function (n, i) {
-                        return n.TestCode === 'P';
-                    });
-                    if (presLocFilterP.length > 0) {
-                        $('#PreSignOffDateP').val(presLocFilterP[0].TestDate);
-                        $('#PreSignOffScoreP').val(presLocFilterP[0].FinalScore);
-                        $('#PreSignOffEvaluationP').val(presLocFilterP[0].TestResult);
-                        //$('#AdviceP').text(presLocFilterP[0].Evaluation);
+                        if (result.PreSignOffTestValues.length > 0) {
+                        var presLocFilterP = $.grep(presLocP, function (n, i) {
+                            return n.TestCode === 'P';
+                        });
+                        if (presLocFilterP.length > 0) {
+                            $('#PreSignOffDateP').val(presLocFilterP[0].TestDate);
+                            $('#PreSignOffScoreP').val(presLocFilterP[0].FinalScore);
+                            $('#PreSignOffEvaluationP').val(presLocFilterP[0].TestResult);
+                            //$('#AdviceP').text(presLocFilterP[0].Evaluation);
+                        }
                     }
-
 
                     /////////////////////// BECK ///////////////////////////
                     var psLocB = result.PostJoiningTestValues;
-                    var psLocFilterB = $.grep(psLocB, function (n, i) {
-                        return n.TestCode === 'B';
-                    });
-                    console.log(psLocB);
-                    console.log(psLocFilterB[0].Evaluation);
-                    if (psLocFilterB.length > 0) {
-                        $('#PostJoiningDateB').val(psLocFilterB[0].TestDate);
-                        $('#PostJoiningScoreB').val(psLocFilterB[0].FinalScore);
-                        $('#PostJoiningEvaluationB').val(psLocFilterB[0].TestResult);
-                        $('#AdviceB').text(psLocFilterB[0].Evaluation);
+                        if (result.PostJoiningTestValues.length > 0) {
+                        var psLocFilterB = $.grep(psLocB, function (n, i) {
+                            return n.TestCode === 'B';
+                        });
+                        console.log(psLocB);
+                        console.log(psLocFilterB[0].Evaluation);
+                        if (psLocFilterB.length > 0) {
+                            $('#PostJoiningDateB').val(psLocFilterB[0].TestDate);
+                            $('#PostJoiningScoreB').val(psLocFilterB[0].FinalScore);
+                            $('#PostJoiningEvaluationB').val(psLocFilterB[0].TestResult);
+                            $('#AdviceB').text(psLocFilterB[0].Evaluation);
+                        }
                     }
-
                     var presLocB = result.PreSignOffTestValues;
-                    var presLocFilterB = $.grep(presLocB, function (n, i) {
-                        return n.TestCode === 'B';
-                    });
-                    if (presLocFilterB.length > 0) {
-                        $('#PreSignOffDateB').val(presLocFilterB[0].TestDate);
-                        $('#PreSignOffScoreB').val(presLocFilterB[0].FinalScore);
-                        $('#PreSignOffEvaluationB').val(presLocFilterB[0].TestResult);
-                        //$('#AdviceB').text(presLocFilterB[0].Evaluation);
+                        if (result.PreSignOffTestValues.length > 0) {
+                        var presLocFilterB = $.grep(presLocB, function (n, i) {
+                            return n.TestCode === 'B';
+                        });
+                        if (presLocFilterB.length > 0) {
+                            $('#PreSignOffDateB').val(presLocFilterB[0].TestDate);
+                            $('#PreSignOffScoreB').val(presLocFilterB[0].FinalScore);
+                            $('#PreSignOffEvaluationB').val(presLocFilterB[0].TestResult);
+                            //$('#AdviceB').text(presLocFilterB[0].Evaluation);
+                        }
                     }
-
                     /////////////////////// Z1 ///////////////////////////
                     var psLoc1 = result.PostJoiningTestValues;
-                    var psLocFilter1 = $.grep(psLoc1, function (n, i) {
-                        return n.TestCode === '1';
-                    });
-                    console.log(psLoc1);
-                    console.log(psLocFilter1[0].Evaluation);
-                    if (psLocFilter1.length > 0) {
-                        $('#PostJoiningDateZ1').val(psLocFilter1[0].TestDate);
-                        $('#PostJoiningScoreZ1').val(psLocFilter1[0].FinalScore);
-                        $('#PostJoiningEvaluationZ1').val(psLocFilter1[0].TestResult);
-                        $('#AdviceZ1').text(psLocFilter1[0].Evaluation);
+                        if (result.PostJoiningTestValues.length > 0) {
+                        var psLocFilter1 = $.grep(psLoc1, function (n, i) {
+                            return n.TestCode === '1';
+                        });
+                        console.log(psLoc1);
+                        console.log(psLocFilter1[0].Evaluation);
+                        if (psLocFilter1.length > 0) {
+                            $('#PostJoiningDateZ1').val(psLocFilter1[0].TestDate);
+                            $('#PostJoiningScoreZ1').val(psLocFilter1[0].FinalScore);
+                            $('#PostJoiningEvaluationZ1').val(psLocFilter1[0].TestResult);
+                            $('#AdviceZ1').text(psLocFilter1[0].Evaluation);
+                        }
                     }
-
                     var presLoc1 = result.PreSignOffTestValues;
-                    var presLocFilter1 = $.grep(presLoc1, function (n, i) {
-                        return n.TestCode === '1';
-                    });
-                    if (presLocFilter1.length > 0) {
-                        $('#PreSignOffDateZ1').val(presLocFilter1[0].TestDate);
-                        $('#PreSignOffScoreZ1').val(presLocFilter1[0].FinalScore);
-                        $('#PreSignOffEvaluationZ1').val(presLocFilter1[0].TestResult);
-                        //$('#AdviceZ1').text(presLocFilter1[0].Evaluation);
+                        if (result.PreSignOffTestValues.length > 0) {
+                        var presLocFilter1 = $.grep(presLoc1, function (n, i) {
+                            return n.TestCode === '1';
+                        });
+                        if (presLocFilter1.length > 0) {
+                            $('#PreSignOffDateZ1').val(presLocFilter1[0].TestDate);
+                            $('#PreSignOffScoreZ1').val(presLocFilter1[0].FinalScore);
+                            $('#PreSignOffEvaluationZ1').val(presLocFilter1[0].TestResult);
+                            //$('#AdviceZ1').text(presLocFilter1[0].Evaluation);
+                        }
                     }
-
                     /////////////////////// Z2 ///////////////////////////
                     var psLoc2 = result.PostJoiningTestValues;
-                    var psLocFilter2 = $.grep(psLoc2, function (n, i) {
-                        return n.TestCode === '2';
-                    });
-                    console.log(psLoc2);
-                    console.log(psLocFilter2[0].Evaluation);
-                    if (psLocFilter2.length > 0) {
-                        $('#PostJoiningDateZ2').val(psLocFilter2[0].TestDate);
-                        $('#PostJoiningScoreZ2').val(psLocFilter2[0].FinalScore);
-                        $('#PostJoiningEvaluationZ2').val(psLocFilter2[0].TestResult);
-                        $('#AdviceZ2').text(psLocFilter2[0].Evaluation);
+                        if (result.PostJoiningTestValues.length > 0) {
+                        var psLocFilter2 = $.grep(psLoc2, function (n, i) {
+                            return n.TestCode === '2';
+                        });
+                        console.log(psLoc2);
+                        console.log(psLocFilter2[0].Evaluation);
+                        if (psLocFilter2.length > 0) {
+                            $('#PostJoiningDateZ2').val(psLocFilter2[0].TestDate);
+                            $('#PostJoiningScoreZ2').val(psLocFilter2[0].FinalScore);
+                            $('#PostJoiningEvaluationZ2').val(psLocFilter2[0].TestResult);
+                            $('#AdviceZ2').text(psLocFilter2[0].Evaluation);
+                        }
                     }
-
                     var presLoc2 = result.PreSignOffTestValues;
-                    var presLocFilter2 = $.grep(presLoc2, function (n, i) {
-                        return n.TestCode === '2';
-                    });
-                    if (presLocFilter2.length > 0) {
-                        $('#PreSignOffDateZ2').val(presLocFilter2[0].TestDate);
-                        $('#PreSignOffScoreZ2').val(presLocFilter2[0].FinalScore);
-                        $('#PreSignOffEvaluationZ2').val(presLocFilter2[0].TestResult);
-                        //$('#AdviceZ2').text(presLocFilter2[0].Evaluation);
+                        if (result.PreSignOffTestValues.length > 0) {
+                        var presLocFilter2 = $.grep(presLoc2, function (n, i) {
+                            return n.TestCode === '2';
+                        });
+                        if (presLocFilter2.length > 0) {
+                            $('#PreSignOffDateZ2').val(presLocFilter2[0].TestDate);
+                            $('#PreSignOffScoreZ2').val(presLocFilter2[0].FinalScore);
+                            $('#PreSignOffEvaluationZ2').val(presLocFilter2[0].TestResult);
+                            //$('#AdviceZ2').text(presLocFilter2[0].Evaluation);
+                        }
                     }
-
 
                     /////////////////////// ROSE ///////////////////////////
                     var psLocR = result.PostJoiningTestValues;
-                    var psLocFilterR = $.grep(psLocR, function (n, i) {
-                        return n.TestCode === 'R';
-                    });
-                    console.log(psLocR);
-                    console.log(psLocFilterR[0].Evaluation);
-                    if (psLocFilterR.length > 0) {
-                        $('#PostJoiningDateR').val(psLocFilterR[0].TestDate);
-                        $('#PostJoiningScoreR').val(psLocFilterR[0].FinalScore);
-                        $('#PostJoiningEvaluationR').val(psLocFilterR[0].TestResult);
-                        $('#AdviceR').text(psLocFilterR[0].Evaluation);
+                        if (result.PostJoiningTestValues.length > 0) {
+                        var psLocFilterR = $.grep(psLocR, function (n, i) {
+                            return n.TestCode === 'R';
+                        });
+                        console.log(psLocR);
+                        console.log(psLocFilterR[0].Evaluation);
+                        if (psLocFilterR.length > 0) {
+                            $('#PostJoiningDateR').val(psLocFilterR[0].TestDate);
+                            $('#PostJoiningScoreR').val(psLocFilterR[0].FinalScore);
+                            $('#PostJoiningEvaluationR').val(psLocFilterR[0].TestResult);
+                            $('#AdviceR').text(psLocFilterR[0].Evaluation);
+                        }
                     }
-
                     var presLocR = result.PreSignOffTestValues;
-                    var presLocFilterR = $.grep(presLocR, function (n, i) {
-                        return n.TestCode === 'R';
-                    });
-                    if (presLocFilterR.length > 0) {
-                        $('#PreSignOffDateR').val(presLocFilterR[0].TestDate);
-                        $('#PreSignOffScoreR').val(presLocFilterR[0].FinalScore);
-                        $('#PreSignOffEvaluationR').val(presLocFilterR[0].TestResult);
-                        //$('#AdviceR').text(presLocFilterR[0].Evaluation);
+                        if (result.PreSignOffTestValues.length > 0) {
+                        var presLocFilterR = $.grep(presLocR, function (n, i) {
+                            return n.TestCode === 'R';
+                        });
+                        if (presLocFilterR.length > 0) {
+                            $('#PreSignOffDateR').val(presLocFilterR[0].TestDate);
+                            $('#PreSignOffScoreR').val(presLocFilterR[0].FinalScore);
+                            $('#PreSignOffEvaluationR').val(presLocFilterR[0].TestResult);
+                            //$('#AdviceR').text(presLocFilterR[0].Evaluation);
+                        }
                     }
-
                     /////////////////////// Emotional Intelligence ///////////////////////////
                     var psLocE = result.PostJoiningTestValues;
-                    var psLocFilterE = $.grep(psLocE, function (n, i) {
-                        return n.TestCode === 'E';
-                    });
-                    console.log(psLocE);
-                    console.log(psLocFilterE[0].Evaluation);
-                    if (psLocFilterE.length > 0) {
-                        $('#PostJoiningDateE').val(psLocFilterE[0].TestDate);
+                        if (result.PostJoiningTestValues.length > 0) {
+                        var psLocFilterE = $.grep(psLocE, function (n, i) {
+                            return n.TestCode === 'E';
+                        });
+                        console.log(psLocE);
+                        console.log(psLocFilterE[0].Evaluation);
+                        if (psLocFilterE.length > 0) {
+                            $('#PostJoiningDateE').val(psLocFilterE[0].TestDate);
 
-                        $('#PostJoiningSAScoreE').val(psLocFilterE[0].SAScore);
-                        $('#PostJoiningSCScoreE').val(psLocFilterE[0].SCScore);
-                        $('#PostJoiningEScoreE').val(psLocFilterE[0].EmpathyScore);
-                        $('#PostJoiningRIScoreE').val(psLocFilterE[0].RIScore);
+                            $('#PostJoiningSAScoreE').val(psLocFilterE[0].SAScore);
+                            $('#PostJoiningSCScoreE').val(psLocFilterE[0].SCScore);
+                            $('#PostJoiningEScoreE').val(psLocFilterE[0].EmpathyScore);
+                            $('#PostJoiningRIScoreE').val(psLocFilterE[0].RIScore);
 
-                        $('#PostJoiningSAEvaluationE').val(psLocFilterE[0].SATestResult);
-                        $('#PostJoiningSCEvaluationE').val(psLocFilterE[0].SCTestResult);
-                        $('#PostJoiningEEvaluationE').val(psLocFilterE[0].EmpathyTestResult);
-                        $('#PostJoiningRIEvaluationE').val(psLocFilterE[0].RITestResult);
+                            $('#PostJoiningSAEvaluationE').val(psLocFilterE[0].SATestResult);
+                            $('#PostJoiningSCEvaluationE').val(psLocFilterE[0].SCTestResult);
+                            $('#PostJoiningEEvaluationE').val(psLocFilterE[0].EmpathyTestResult);
+                            $('#PostJoiningRIEvaluationE').val(psLocFilterE[0].RITestResult);
 
-                        $('#SAAdviceE').text(psLocFilterE[0].SAEvaluation);
-                        $('#SCAdviceE').text(psLocFilterE[0].SCEvaluation);
-                        $('#EAdviceE').text(psLocFilterE[0].EmpathyEvaluation);
-                        $('#RIAdviceE').text(psLocFilterE[0].RIEvaluation);
+                            $('#SAAdviceE').text(psLocFilterE[0].SAEvaluation);
+                            $('#SCAdviceE').text(psLocFilterE[0].SCEvaluation);
+                            $('#EAdviceE').text(psLocFilterE[0].EmpathyEvaluation);
+                            $('#RIAdviceE').text(psLocFilterE[0].RIEvaluation);
+                        }
                     }
-
                     var presLocE = result.PreSignOffTestValues;
-                    var presLocFilterE = $.grep(presLocE, function (n, i) {
-                        return n.TestCode === 'E';
-                    });
-                    if (presLocFilterE.length > 0) {
-                        $('#PreSignOffDateE').val(presLocFilterE[0].TestDate);
+                        if (result.PreSignOffTestValues.length > 0) {
+                            var presLocFilterE = $.grep(presLocE, function (n, i) {
+                                return n.TestCode === 'E';
+                            });
+                            if (presLocFilterE.length > 0) {
+                                $('#PreSignOffDateE').val(presLocFilterE[0].TestDate);
 
-                        $('#PreSignOffSAScoreE').val(presLocFilterE[0].SAScore);
-                        $('#PreSignOffSCScoreE').val(presLocFilterE[0].SCScore);
-                        $('#PreSignOffEScoreE').val(presLocFilterE[0].EmpathyScore);
-                        $('#PreSignOffRIScoreE').val(presLocFilterE[0].RIScore);
+                                $('#PreSignOffSAScoreE').val(presLocFilterE[0].SAScore);
+                                $('#PreSignOffSCScoreE').val(presLocFilterE[0].SCScore);
+                                $('#PreSignOffEScoreE').val(presLocFilterE[0].EmpathyScore);
+                                $('#PreSignOffRIScoreE').val(presLocFilterE[0].RIScore);
 
-                        $('#PreSignOffSAEvaluationE').val(presLocFilterE[0].SATestResult);
-                        $('#PreSignOffSCEvaluationE').val(presLocFilterE[0].SCTestResult);
-                        $('#PreSignOffEEvaluationE').val(presLocFilterE[0].EmpathyTestResult);
-                        $('#PreSignOffRIEvaluationE').val(presLocFilterE[0].RITestResult);
-                     
-                        //$('#SAAdviceE').text(presLocFilterE[0].SAEvaluation);
-                        //$('#SCAdviceE').text(presLocFilterE[0].SCEvaluation);
-                        //$('#EAdviceE').text(presLocFilterE[0].EmpathyEvaluation);
-                        //$('#RIAdviceE').text(presLocFilterE[0].RIEvaluation);
+                                $('#PreSignOffSAEvaluationE').val(presLocFilterE[0].SATestResult);
+                                $('#PreSignOffSCEvaluationE').val(presLocFilterE[0].SCTestResult);
+                                $('#PreSignOffEEvaluationE').val(presLocFilterE[0].EmpathyTestResult);
+                                $('#PreSignOffRIEvaluationE').val(presLocFilterE[0].RITestResult);
+
+                                //$('#SAAdviceE').text(presLocFilterE[0].SAEvaluation);
+                                //$('#SCAdviceE').text(presLocFilterE[0].SCEvaluation);
+                                //$('#EAdviceE').text(presLocFilterE[0].EmpathyEvaluation);
+                                //$('#RIAdviceE').text(presLocFilterE[0].RIEvaluation);
+                            }
+                        }
                     }
-
                 },
                 error: function (errormessage) {
                     //debugger;

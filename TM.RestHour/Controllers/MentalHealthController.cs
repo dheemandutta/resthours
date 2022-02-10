@@ -32,6 +32,11 @@ namespace TM.RestHour.Controllers
             return View();
         }
 
+        public ActionResult MentalHealthReport()
+        {
+            return View();
+        }
+
         public ActionResult PsychologicalEvaluationForms()
         {
             return View();
@@ -71,5 +76,52 @@ namespace TM.RestHour.Controllers
 
         }
 
+
+        public JsonResult LoadData()
+        {
+            int draw, start, length;
+            int pageIndex = 0;
+
+            if (null != Request.Form.GetValues("draw"))
+            {
+                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+            }
+            else
+            {
+                draw = 1;
+                start = 0;
+                length = 10;
+            }
+
+            if (start == 0)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                pageIndex = (start / length) + 1;
+            }
+
+            MentalHealthBL mentalHealthBL = new MentalHealthBL();
+            int totalrecords = 0;
+
+            List<MentalHealthPOCO> mentalHealthPOCO = new List<MentalHealthPOCO>();
+            mentalHealthPOCO = mentalHealthBL.GetMentalHealthPageWise(pageIndex, ref totalrecords, length, int.Parse(Session["VesselID"].ToString()));
+            List<MentalHealthPOCO> mentalHealthList = new List<MentalHealthPOCO>();
+            foreach (MentalHealthPOCO mentalHealthPC in mentalHealthPOCO)
+            {
+                MentalHealthPOCO mentalHealth = new MentalHealthPOCO();
+                //mentalHealth.MentalHealthPostJoiningList.CrewId = mentalHealthPC.CrewId;
+                //mentalHealth.Name = mentalHealthPC.Name;
+                //mentalHealth.RankName = mentalHealthPC.RankName;
+                //mentalHealth.StartDate = mentalHealthPC.StartDate;
+
+                mentalHealthList.Add(mentalHealth);
+            }
+            var data = mentalHealthList;
+            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

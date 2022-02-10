@@ -1274,6 +1274,7 @@
     <Content Include="Scripts\MailCIRM.js" />
     <Content Include="Scripts\MedicalChest.js" />
     <Content Include="Scripts\Medicine.js" />
+    <Content Include="Scripts\MentalHealthReport.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\notify.min.js" />
@@ -1522,6 +1523,7 @@
     <Content Include="Views\Shared\_pvZhao_ANXIETY_Y2.cshtml" />
     <Content Include="Views\MentalHealth\PsychologicalEvaluationScore.cshtml" />
     <Content Include="Views\Home\UserDashboard.cshtml" />
+    <Content Include="Views\MentalHealth\MentalHealthReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

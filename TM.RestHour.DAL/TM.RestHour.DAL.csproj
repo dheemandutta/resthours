@@ -64,6 +64,7 @@
     <Compile Include="LoginDAL.cs" />
     <Compile Include="ManageRankDAL.cs" />
     <Compile Include="MedicalChestDAL.cs" />
+    <Compile Include="MentalHealthDAL.cs" />
     <Compile Include="NonComplianceInfoDAL.cs" />
     <Compile Include="OptionsDAL.cs" />
     <Compile Include="OvertimeCalculationDAL.cs" />
