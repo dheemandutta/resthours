@@ -801,13 +801,23 @@
 
 </div>
 
+<div class="row"  padding: 10px;">
+
+    <div class="col-md-4" style="float:right">
+        <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+            <button type="button" class="button1" id="btnNext" >Next Page</button>
+        </div>
+    </div>
+
+</div>
+
 
 
 
 <script type="text/javascript">
     $('#ddlCrew').on('change', function () {
         //alert($('option:selected', this).text());
-
+        var pageName = $('#hdnPageName').val();
         var ID = $('#ddlCrew').val();
         //console.log('hi');
         //console.log(ID);
@@ -824,8 +834,22 @@
         //$('#btnUploadPistures').show();
         //var ans = confirm('Do you want to create new CIRM..?');
         //var ans = ConfirmDialog('Do you want to create new CIRM..?');
-        ConfirmDialog('Do you want to create new CIRM..?');
-        GetCIRMDetailsByCrewNew(ID);
+        if (pageName != 'DoctorVisit' && pageName != 'TeleMedicine') {
+            ConfirmDialog('Do you want to create new ' + pageName + '..?');
+            //if (IsNewCIRM) {
+            //    alert("IF yes");
+            //    if (confirm("Do you want to use existing CIRM - Patient Details for " + $('#hdnPageName').val()))
+            //        GetCIRMDetailsByCrewNew(ID);
+            //}
+            //else {
+            //    alert("else no");
+            //    GetCIRMDetailsByCrewNew(ID);
+            //}
+            GetCIRMDetailsByCrewNew(ID);
+        }
+        
+        
+        
         
     });
 
@@ -961,6 +985,13 @@
             $('#FrequencyOfLethargy').show();
         else
             $('#FrequencyOfLethargy').hide();
+    });
+
+    $("#btnNext").click(function () {
+
+        $("#dvPatientDetailsPage1").hide();
+        $("#dvPatientDetailsPage2").show();
+
     });
 
 </script>

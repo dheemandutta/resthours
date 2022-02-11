@@ -261,26 +261,33 @@ namespace TM.RestHour.Controllers
 
             Vessel um = new Vessel();
 
-            um.ID = shipPC.ID;
+            um.ID                       = shipPC.ID;
 
-            um.ShipName = shipPC.ShipName;
-            um.FlagOfShip = shipPC.FlagOfShip;
-            um.IMONumber = shipPC.IMONumber;
+            um.ShipName                 = shipPC.ShipName;
+            um.FlagOfShip               = shipPC.FlagOfShip;
+            um.IMONumber                = shipPC.IMONumber;
 
-            um.VesselTypeID = shipPC.VesselTypeID;
-            um.VesselSubTypeID = shipPC.VesselSubTypeID;
-            um.VesselSubSubTypeID = shipPC.VesselSubSubTypeID;
+            um.VesselTypeID             = shipPC.VesselTypeID;
+            um.VesselSubTypeID          = shipPC.VesselSubTypeID;
+            um.VesselSubSubTypeID       = shipPC.VesselSubSubTypeID;
 
-            um.ShipEmail = shipPC.ShipEmail;
-            um.ShipEmail2 = shipPC.ShipEmail2;
-            um.Voices1 = shipPC.Voices1;
-            um.Voices2 = shipPC.Voices2;
-            um.Fax1 = shipPC.Fax1;
-            um.Fax2 = shipPC.Fax2;
-            um.VOIP1 = shipPC.VOIP1;
-            um.VOIP2 = shipPC.VOIP2;
-            um.Mobile1 = shipPC.Mobile1;
-            um.Mobile2 = shipPC.Mobile2;
+            um.CallSign                 = shipPC.CallSign;
+            um.PortOfRegistry           = shipPC.PortOfRegistry;
+            um.Length                   = shipPC.Length;
+            um.Breadth                  = shipPC.Breadth;
+            um.HelicopterDeck           = shipPC.HelicopterDeck;
+            um.HelicopterWinchingArea   = shipPC.HelicopterWinchingArea;
+
+            um.ShipEmail                = shipPC.ShipEmail;
+            um.ShipEmail2               = shipPC.ShipEmail2;
+            um.Voices1                  = shipPC.Voices1;
+            um.Voices2                  = shipPC.Voices2;
+            um.Fax1                     = shipPC.Fax1;
+            um.Fax2                     = shipPC.Fax2;
+            um.VOIP1                    = shipPC.VOIP1;
+            um.VOIP2                    = shipPC.VOIP2;
+            um.Mobile1                  = shipPC.Mobile1;
+            um.Mobile2                  = shipPC.Mobile2;
 
             var cm = um;
 

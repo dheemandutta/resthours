@@ -62,9 +62,11 @@
     <Compile Include="Entities\CrewTimesheetPOCO.cs" />
     <Compile Include="Entities\DepartmentPOCO.cs" />
     <Compile Include="Entities\EquipmentsPOCO.cs" />
+    <Compile Include="Entities\ExaminationByDoctorAdvisePOCO.cs" />
     <Compile Include="Entities\GroupsPOCO.cs" />
     <Compile Include="Entities\LoginPOCO.cs" />
     <Compile Include="Entities\ManageRankPOCO.cs" />
+    <Compile Include="Entities\MedicalAdvisePOCO.cs" />
     <Compile Include="Entities\MedicalChestPOCO.cs" />
     <Compile Include="Entities\MedicalSymtomologyPOCO.cs" />
     <Compile Include="Entities\NonComplianceInfoPOCO.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Entities\OptionsPOCO.cs" />
     <Compile Include="Entities\OvertimeCalculationPOCO.cs" />
     <Compile Include="Entities\PermissionsPOCO.cs" />
+    <Compile Include="Entities\PlanPOCO.cs" />
     <Compile Include="Entities\PsychologicalEvaluationPOCO.cs" />
     <Compile Include="Entities\RankPermissionPOCO.cs" />
     <Compile Include="Entities\RanksPOCO.cs" />

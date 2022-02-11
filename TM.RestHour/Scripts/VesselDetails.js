@@ -362,6 +362,13 @@ function GetShip() {
             $('#FlagOfShip').val(result.FlagOfShip);
             $('#IMONumber').val(result.IMONumber);
 
+            $('#CallSign').val(result.CallSign);
+            $('#PortOfRegistry').val(result.PortOfRegistry);
+            $('#Length').val(result.Length);
+            $('#Breadth').val(result.Breadth);
+            $('#HelicopterDeck').val(result.HelicopterDeck);
+            $('#HelicopterWinchingArea').val(result.HelicopterWinchingArea);
+
             $('#ShipEmail').val(result.ShipEmail);
             $('#ShipEmail2').val(result.ShipEmail2);
             $('#Voices1').val(result.Voices1);

@@ -131,25 +131,6 @@
                         </select>
                     </div>
 
-
-
-
-                    <div class="modal fade" id="myTestModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-dialog" style="width: 700px;">
-                                    <label>Test Modal Body</label>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
                     <div class="form-group" style="width: 100%;">
                         <label for="OxygenSaturation">Oxygen Saturation/SpO2</label> &nbsp;
                         <input type="image" src="~/background/iBtn.png" alt="Submit" width="15" height="15" data-toggle="modal" data-target="#myModalForSPO2" />
@@ -318,7 +299,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel">BURN TYPE AND PERCENTAGE.</h4>
+                                <h4 class="modal-title" id="myModalLabel">MEASURE BLOOD PRESSURE.</h4>
                             </div>
                             <div class="modal-dialog" id="dvuserdetailsn" style="width: 700px;">
                                 <fieldset class="for-panel">
@@ -395,16 +376,16 @@
 
             </div>
         </div>
-        <div class="clearfix"> &nbsp; &nbsp; &nbsp;</div>
+        @*<div class="clearfix"> &nbsp; &nbsp; &nbsp;</div>*@
         <div class="newcard">
-            <h4>Exanimation Findings</h4>
+            @*<h4>Exanimation Findings</h4>*@
             <div class="row" style="border: 2px solid #eee; padding: 10px;">
                 @*<h4>Examination and Monitoring</h4>*@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for=" FindingAffectedParts">Affected parts()</label>
+                                <label for=" FindingAffectedParts"> Exanimation Findings of Affected parts()</label>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -426,7 +407,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for=" BloodType">Type</label>
-                                        <input type="text" class="form-control" id="BloodType" placeholder="Type" />
+                                        <input type="text" class="form-control" id="BloodType" placeholder="Blood Type" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -439,12 +420,12 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="FluidType" placeholder="Middle Name" />
+                                        <input type="text" class="form-control" id="FluidType" placeholder="Fluid Type" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="FluidQuantity" placeholder="Middle Name" />
+                                        <input type="text" class="form-control" id="FluidQuantity" placeholder="Quantity" />
                                     </div>
                                 </div>
                             </div>
@@ -1033,6 +1014,7 @@
                     <div class="col-lg-3">
                         <div class="uploadbtn">
                             <a href="#">Upload photo</a>
+                            <button type="button" class="btn btn-default" style="width:86px;" data-toggle="modal" data-target="#myModalAccidentOrIllness">Upload photo</button>
                         </div>
 
                         <div class="modal fade" id="myModalAccidentOrIllness" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -1058,7 +1040,7 @@
                                                 </div>
 
                                                 @*////////////////////////////////Dheeman da///////////////////////////////////////////////////////*@
-                                                <input id="uploadCIRMAccidentOrIllnessImage" name="upload" type="file" accept="image/gif, image/png,image/jpeg" />
+                                                <input id="uploadCIRMAccidentOrIllnessImage" multiple maxlength="4" name="upload" type="file" accept="image/gif, image/png,image/jpeg" />
                                                 @*<button type="button" class="buttonpop" onclick="  uploadFile($('#upload'));" style="width:86px;">Upload</button>*@
                                                 <button type="button" class="buttonpop" onclick="  UploadCIRMFile('uploadCIRMAccidentOrIllnessImage','AccidentOrIllness');" style="width:86px;">Upload</button>
 
@@ -1095,6 +1077,16 @@
 
         </div>
     </form>
+</div>
+
+<div class="row" padding: 10px;">
+
+    <div class="col-md-4">
+        <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+            <button type="button" class="button1" id="btnPrevious">Previous Page</button>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -1253,5 +1245,11 @@
             }
             
         });
+    });
+    $("#btnPrevious").click(function () {
+
+        $("#dvPatientDetailsPage1").show();
+        $("#dvPatientDetailsPage2").hide();
+        
     });
 </script>

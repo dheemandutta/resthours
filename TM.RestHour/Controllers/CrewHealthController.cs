@@ -1854,7 +1854,9 @@ namespace TM.RestHour.Controllers
                 {
                     List<string> returnMsg = new List<string>();
                     string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
-                    fileName = "CIRM" + "_" + fileType + "_" + crewId;
+                    fileName = "CIRM" + "_" + fileType + "_" + crewId;//Useless
+                    string fName = String.Empty;
+                    fName = "CIRM" + "_" + fileType + "_" + crewId;
 
 
                     //  Get all files from Request object  
@@ -1865,6 +1867,8 @@ namespace TM.RestHour.Controllers
                     }
                     for (int i = 0; i < files.Count; i++)
                     {
+                        fileName = fName;
+
                         if (fileType == "AccidentOrIllness")
                         {
                             fileName = fileName + "_" + i;
