@@ -365,10 +365,10 @@ namespace TM.RestHour.DAL
                         crewtimesheet.Breadth = item["Breadth"].ToString();
 
                     if (item["HelicopterDeck"] != null)
-                        crewtimesheet.HelicopterDeck = Convert.ToInt32(item["HelicopterDeck"].ToString());
+                        crewtimesheet.HelicopterDeck = item["HelicopterDeck"].ToString();
 
                     if (item["HelicopterWinchingArea"] != null)
-                        crewtimesheet.HelicopterWinchingArea = Convert.ToInt32(item["HelicopterWinchingArea"].ToString());
+                        crewtimesheet.HelicopterWinchingArea = item["HelicopterWinchingArea"].ToString();
 
 
                     if (item["ShipEmail"] != null)

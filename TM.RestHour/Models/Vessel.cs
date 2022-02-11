@@ -83,7 +83,7 @@ namespace TM.RestHour.Models
         public string Length { get; set; }
         public string Breadth { get; set; }
         #endregion
-        public int? HelicopterDeck { get; set; }
+
         //public int? HelicopterDeck { get; set; }
 
         //public int? HelicopterWinchingArea { get; set; }
@@ -106,10 +106,7 @@ namespace TM.RestHour.Models
 
 
 
-        public string CallSign { get; set; }
-        public string Length { get; set; }
-        public string PortOfRegistry { get; set; }
-        public string Breadth { get; set; }
+        
         public string PAndIClub { get; set; }
         public string PAndIClubOther { get; set; }
         public string ContactDetails { get; set; }
