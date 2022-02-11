@@ -10,10 +10,10 @@ namespace TM.RestHour.BL
 {
     public class MentalHealthBL
     {
-        public List<MentalHealthPOCO> GetMentalHealthPageWise(int pageIndex, ref int recordCount, int length, int VesselID)
+        public MentalHealthPOCO GetMentalHealthPageWise(int pageIndex, ref int postJoiningRecordCount, int length, ref int preSignOffRecordCount)
         {
             MentalHealthDAL mentalHealthDAL = new MentalHealthDAL();
-            return mentalHealthDAL.GetMentalHealthPageWise(pageIndex, ref recordCount, length, VesselID);
+            return mentalHealthDAL.GetMentalHealthPageWise(pageIndex, ref postJoiningRecordCount, length, ref preSignOffRecordCount);
         }
     }
 }

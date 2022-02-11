@@ -10,7 +10,7 @@ namespace TM.Base.Entities
     {
         public int CrewId { get; set; }
         public string CrewName { get; set; }
-        public DateTime PreSignOffDate { get; set; }
+        public string PreSignOffDate { get; set; }
         public Boolean IsLocusTested { get; set; }
         public Boolean IsMassTested { get; set; }
         public Boolean IsPSQ30Tested { get; set; }

@@ -670,6 +670,7 @@
     <Content Include="devsqlscripts\03-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\07-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\11-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
@@ -1365,6 +1366,7 @@
     <Content Include="sqlscripts\09-Create-SPs\dbo.usp_GetAllRanksForDrp.StoredProcedure.sql" />
     <Content Include="sqlscripts\09-Create-SPs\dbo.usp_GetAllShipForDrp.StoredProcedure.sql" />
     <Content Include="sqlscripts\09-Create-SPs\dbo.usp_GetAllUsersForDrp.StoredProcedure.sql" />
+    <Content Include="sqlscripts\11-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\22-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\27-01-2022 resthoursclient Full script.sql" />

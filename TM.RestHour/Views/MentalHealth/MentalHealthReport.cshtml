@@ -29,13 +29,12 @@
 
 <div class="">
     <ul class="container--tabs">
-        <li class="tab tabs--active">Tele Medic Details</li>
-        <li class="tab">Patient Deatils</li>
+        <li class="tab tabs--active">Post Joining</li>
+        <li class="tab">Pre Sign Off</li>
     </ul>
 
     <div class="container--content">
         <div class="content content--active card">
-            <h1>This is tab 1</h1>
             <div class="row">
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <div class="col-sm-12 col-xs-12 imo">
@@ -66,12 +65,41 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-        <div class="content">
-            <h1>This is tab 2</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur doloribus necessitatibus possimus. Sapiente aspernatur neque atque in eum tenetur id!</p>
+
+        <div class="content content-- card">
+            <div class="row">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="col-sm-12 col-xs-12 imo">
+                        <div style="width:90%; margin:0 auto" class="tablecontainer">
+                            <input type="hidden" id="hdncount" />
+                            <input type="hidden" id="hdnrole" />
+                            <div class="table-responsive">
+                                <table id="ListtablePreSignOff" class="table display">
+                                    <thead class="blue_Color color_white">
+                                        <tr>
+                                            <th>Crew Name</th>
+
+                                            <th>Locus Of Control</th>
+                                            <th>MASS Mindfulness</th>
+                                            <th>Beck Depression</th>
+                                            <th>PSQ30 Percieved</th>
+                                            <th>Rosenberg Self Esteem</th>
+                                            <th>Zhao Anxiety Y1</th>
+                                            <th>Zhao Anxiety Y2</th>
+                                            <th>Emotional Intelligence</th>
+
+                                            <th>Pre Sign Off Date</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
     </div>
@@ -89,8 +117,9 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            SetUpGrid();
-            
+            //SetUpGrid();
+            GetTableData();
+       
         });
 
 
