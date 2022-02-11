@@ -12,6 +12,11 @@ namespace TM.RestHour.Controllers
         {
             return View();
         }
+        
+        public ActionResult UserDashboard()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {

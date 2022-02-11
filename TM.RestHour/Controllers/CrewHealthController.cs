@@ -109,7 +109,22 @@ namespace TM.RestHour.Controllers
 
             vesselDetailsPC.ID = vesselDetails.ID;
             vesselDetailsPC.VesselName = vesselDetails.VesselName;
+
+
+
+
             vesselDetailsPC.CallSign = vesselDetails.CallSign;
+            vesselDetailsPC.Length = vesselDetails.Length;
+            vesselDetailsPC.PortOfRegistry = vesselDetails.PortOfRegistry;
+            vesselDetailsPC.Breadth = vesselDetails.Breadth;
+            vesselDetailsPC.HelicopterDeck = vesselDetails.HelicopterDeck;
+            vesselDetailsPC.HelicopterWinchingArea = vesselDetails.HelicopterWinchingArea;
+            vesselDetailsPC.PAndIClub = vesselDetails.PAndIClub;
+            vesselDetailsPC.PAndIClubOther = vesselDetails.PAndIClubOther;
+            vesselDetailsPC.ContactDetails = vesselDetails.ContactDetails;
+
+
+
 
             vesselDetailsPC.DateOfReportingGMT = vesselDetails.DateOfReportingGMT;
 
@@ -132,6 +147,8 @@ namespace TM.RestHour.Controllers
             vesselDetailsPC.Sea = vesselDetails.Sea;
             vesselDetailsPC.Visibility = vesselDetails.Visibility;
             vesselDetailsPC.Swell = vesselDetails.Swell;
+
+            vesselDetailsPC.IMONumber = int.Parse(System.Web.HttpContext.Current.Session["VesselID"].ToString());
 
             return Json(vesselDetailsBL.SaveVesselDetails(vesselDetailsPC  /*, int.Parse(Session["VesselID"].ToString())*/  ), JsonRequestBehavior.AllowGet);
         }

@@ -1,4 +1,4 @@
-﻿
+﻿@model TM.RestHour.Models.PsychologicalEvaluation
 @{
     ViewBag.Title = "Zhao_ANXIETY_Y2";
 }
@@ -25,18 +25,26 @@
 
 <script src="~/Scripts/PsychologicalEvaluation.js"></script>
 @Html.Hidden("SaveForms", @Url.Action("SaveForms", "PsychologicalEvaluation"))
+@Html.Hidden("PsychologicalEvaluationForms", @Url.Action("PsychologicalEvaluationForms", "MentalHealth"))
+
+<style>
+    tr.highlighted td {
+        background: red;
+    }
+</style>
+
 <form id="myForm1">
 
     <div class="row">
         @*<div class="head_title">
                 <h1 class="ta">Page Name</h1>
             </div>*@
-        <div class="card bacmt" style="height: 600px;">
+        <div class="card bacmt">
             <div class="clearfix"></div>
             <div class="row">
 
 
-                <section id="print-content">
+                <section id="print-content" class="side-space">
                     <input type="button" onclick="printDiv('print-content')" value="print a div!" />
 
 
@@ -998,8 +1006,12 @@
 
 
 
-                <div class="col-md-3" style="padding: 10px; margin-top:68px;">
+                <div class="col-md-6" style=" margin-top:30px;">
                     <button type="button" class="button1" id="btnAddAndSave" onclick="return SaveForms('stpSaveZhaoANXIETY_Y2', '8');">Save And Next</button>
+                    @if (Model.Mode == "redirect")
+                    {
+                        <button type="button" class="button1" id="btnBack">Back</button>
+                    }
                 </div>
 
             </div>
@@ -1025,20 +1037,23 @@
         $(document).ready(function () {
 
             //SetUpGrid();
-
+            $('#btnBack').click(function () {
+                var url = $('#PsychologicalEvaluationForms').val();
+                window.location.href = url;
+            });
         });
 
 
 
 
 
-        function printDiv(divName) {
-            var printContents = document.getElementById(divName).innerHTML;
-            w = window.open();
-            w.document.write(printContents);
-            w.print();
-            w.close();
-        }
+                //function printDiv(divName) {
+                //    var printContents = document.getElementById(divName).innerHTML;
+                //    w = window.open();
+                //    w.document.write(printContents);
+                //    w.print();
+                //    w.close();
+                //}
 
 
 

@@ -22,66 +22,152 @@ namespace TM.RestHour.Controllers
 {
     public class PsychologicalEvaluationController : BaseController
     {
+
         // GET: PsychologicalEvaluation
+        [TraceFilterAttribute]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult LocusOfControl()
+        [TraceFilterAttribute]
+        public ActionResult LocusOfControl(string mode, string jc)
         {
-            return View();
-        }
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId= int.Parse(Session["LoggedInUserId"].ToString());
 
-        public ActionResult _pvLocusOfControl(string id)
-        {
-            return PartialView();
+            return View(psychologicalEvaluation);
         }
-
+        [TraceFilterAttribute]
         public ActionResult InstructionsForPSSFinal()
         {
             return View();
         }
-
-        public ActionResult MASSMindfulnessScaleFinal()
+        [TraceFilterAttribute]
+        public ActionResult MASSMindfulnessScaleFinal(string mode, string jc)
         {
-            return View();
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
+        }
+        [TraceFilterAttribute]
+        public ActionResult BeckDepressionInventoryIIFinal(string mode, string jc)
+        {
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
+        }
+        [TraceFilterAttribute]
+        public ActionResult PSQ30_PERCIEVED_STRESS_QUESTIONAIRE(string mode, string jc)
+        {
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
+        }
+        [TraceFilterAttribute]
+        public ActionResult ROSENBERG_SELF_esteem_scale_final(string mode, string jc)
+        {
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
+        }
+        [TraceFilterAttribute]
+        public ActionResult Zhao_ANXIETY_Y1(string mode, string jc)
+        {
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
+        }
+        [TraceFilterAttribute]
+        public ActionResult EmotionalIntelligenceQuizForLeadership(string mode, string jc)
+        {
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
+        }
+        [TraceFilterAttribute]
+        public ActionResult Zhao_ANXIETY_Y2(string mode, string jc)
+        {
+            PsychologicalEvaluation psychologicalEvaluation = new PsychologicalEvaluation();
+            if (!string.IsNullOrEmpty(mode))
+            {
+                psychologicalEvaluation.Mode = mode;
+            }
+            if (!string.IsNullOrEmpty(jc))
+            {
+                psychologicalEvaluation.JoiningCondition = int.Parse(jc);
+            }
+            psychologicalEvaluation.CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+
+            return View(psychologicalEvaluation);
         }
 
-        public ActionResult BeckDepressionInventoryIIFinal()
-        {
-            return View();
-        }
-
-        public ActionResult PSQ30_PERCIEVED_STRESS_QUESTIONAIRE()
-        {
-            return View();
-        }
-
-        public ActionResult ROSENBERG_SELF_esteem_scale_final()
-        {
-            return View();
-        }
-
-        public ActionResult Zhao_ANXIETY_Y1()
-        {
-            return View();
-        }
-
-        public ActionResult EmotionalIntelligenceQuizForLeadership()
-        {
-            return View();
-        }
-
-        public ActionResult Zhao_ANXIETY_Y2()
-        {
-            return View();
-        }
 
 
 
-
-        public JsonResult SaveForms(string LocusOfControl, string StoredProcedure, string Validator)
+        public JsonResult SaveForms(string LocusOfControl, string StoredProcedure, string Validator, string CrewID)
         {
             PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
             string[] arr = JsonConvert.DeserializeObject<string[]>(LocusOfControl);
@@ -92,6 +178,12 @@ namespace TM.RestHour.Controllers
 
         }
 
-       
+
+        public JsonResult GetTestValues()
+        {
+            PsychologicalEvaluationBL psychologicalEvaluationBL = new PsychologicalEvaluationBL();
+            return Json(psychologicalEvaluationBL.GetTestValues(int.Parse(Session["LoggedInUserId"].ToString())), JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

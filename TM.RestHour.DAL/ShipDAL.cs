@@ -402,6 +402,36 @@ namespace TM.RestHour.DAL
                         crewtimesheet.Mobile2 = item["Mobile2"].ToString();
 
 
+
+
+                    if (item["CallSign"] != null)
+                        crewtimesheet.CallSign = item["CallSign"].ToString();
+
+                    if (item["Length"] != null)
+                        crewtimesheet.Length = item["Length"].ToString();
+
+                    if (item["PortOfRegistry"] != null)
+                        crewtimesheet.PortOfRegistry = item["PortOfRegistry"].ToString();
+
+                    if (item["Breadth"] != null)
+                        crewtimesheet.Breadth = item["Breadth"].ToString();
+
+                    if (item["HelicopterDeck"] != null)
+                        crewtimesheet.HelicopterDeck = item["HelicopterDeck"].ToString();
+
+                    if (item["HelicopterWinchingArea"] != null)
+                        crewtimesheet.HelicopterWinchingArea = item["HelicopterWinchingArea"].ToString();
+
+                    if (item["PAndIClub"] != null)
+                        crewtimesheet.PAndIClub = item["PAndIClub"].ToString();
+
+                    if (item["PAndIClubOther"] != null)
+                        crewtimesheet.PAndIClubOther = item["PAndIClubOther"].ToString();
+
+                    if (item["ContactDetails"] != null)
+                        crewtimesheet.ContactDetails = item["ContactDetails"].ToString();
+
+
                     crewtimesheetList.Add(crewtimesheet);
                 }
             }

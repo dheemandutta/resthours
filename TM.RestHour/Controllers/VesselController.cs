@@ -289,6 +289,17 @@ namespace TM.RestHour.Controllers
             um.Mobile1                  = shipPC.Mobile1;
             um.Mobile2                  = shipPC.Mobile2;
 
+
+            um.CallSign = shipPC.CallSign;
+            um.Length = shipPC.Length;
+            um.PortOfRegistry = shipPC.PortOfRegistry;
+            um.Breadth = shipPC.Breadth;
+            um.HelicopterDeck = shipPC.HelicopterDeck;
+            um.HelicopterWinchingArea = shipPC.HelicopterWinchingArea;
+            um.PAndIClub = shipPC.PAndIClub;
+            um.PAndIClubOther = shipPC.PAndIClubOther;
+            um.ContactDetails = shipPC.ContactDetails;
+
             var cm = um;
 
             return Json(cm, JsonRequestBehavior.AllowGet);

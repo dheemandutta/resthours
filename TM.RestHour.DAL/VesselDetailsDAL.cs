@@ -243,7 +243,7 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@ContactDetails", DBNull.Value);
             }
             ////////////////////////////////////////////
-
+            cmd.Parameters.AddWithValue("@IMONumber", vesselDetails.IMONumber);
             //cmd.Parameters.AddWithValue("@VesselID", VesselID);
 
             if (vesselDetails.ID > 0)

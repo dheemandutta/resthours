@@ -227,6 +227,7 @@
     <Compile Include="Models\Permissions.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\PlanCategoryVM.cs" />
+    <Compile Include="Models\PsychologicalEvaluation.cs" />
     <Compile Include="Models\RankPermission.cs" />
     <Compile Include="Models\Ranks.cs" />
     <Compile Include="Models\RanksViewModel.cs" />
@@ -671,6 +672,7 @@
     <Content Include="devsqlscripts\02-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\03-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\04-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\07-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
@@ -693,8 +695,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\arrow.png" />
     <Content Include="img\banner_Worth.jpg" />
     <Content Include="img\banner_Worth.png" />
+    <Content Include="img\brein.png" />
     <Content Include="img\default-skin\default-skin.png" />
     <Content Include="img\default-skin\default-skin.svg" />
     <Content Include="img\excel-file-open.png" />
@@ -766,6 +770,7 @@
     <Content Include="img\progress\design-progress-red.html" />
     <Content Include="img\progress\design-progress-yellow.html" />
     <Content Include="img\progress\progress-bg.html" />
+    <Content Include="img\RArrow.png" />
     <Content Include="img\signIn_button.png" />
     <Content Include="img\staf\1.png" />
     <Content Include="img\staf\2.png" />
@@ -1272,6 +1277,7 @@
     <Content Include="Scripts\MailCIRM.js" />
     <Content Include="Scripts\MedicalChest.js" />
     <Content Include="Scripts\Medicine.js" />
+    <Content Include="Scripts\MentalHealthReport.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\notify.min.js" />
@@ -1301,6 +1307,7 @@
     <Content Include="sqlscripts\03-UpdateDB\01-UpdateDB.sql" />
     <Content Include="sqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\04-CreateFunction\ufn_CSVToTable.sql" />
+    <Content Include="sqlscripts\07-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\07-DefaultMasterData\DefaultMasterData_RestHour.sql" />
     <Content Include="sqlscripts\09-Create-SPs\dbo.name.StoredProcedure.sql" />
     <Content Include="sqlscripts\09-Create-SPs\dbo.stpAddUsers.StoredProcedure.sql" />
@@ -1520,6 +1527,8 @@
     <Content Include="Views\Shared\_pvZhao_ANXIETY_Y2.cshtml" />
     <Content Include="Views\MentalHealth\PsychologicalEvaluationScore.cshtml" />
     <Content Include="Views\Plan\Index.cshtml" />
+    <Content Include="Views\Home\UserDashboard.cshtml" />
+    <Content Include="Views\MentalHealth\MentalHealthReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

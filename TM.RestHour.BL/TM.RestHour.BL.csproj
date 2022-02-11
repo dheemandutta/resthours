@@ -64,6 +64,7 @@
     <Compile Include="LoginBL.cs" />
     <Compile Include="ManageRankBL.cs" />
     <Compile Include="MedicalChestBL.cs" />
+    <Compile Include="MentalHealthBL.cs" />
     <Compile Include="NonComplianceInfoBL.cs" />
     <Compile Include="OptionsBL.cs" />
     <Compile Include="OvertimeCalculationBL.cs" />
