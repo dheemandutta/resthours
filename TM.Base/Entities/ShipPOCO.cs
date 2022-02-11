@@ -102,11 +102,13 @@ namespace TM.Base.Entities
 
         public string IMAPPOP { get; set; }
 
-
+        #region properties added on 9th Feb 2022 @ BK
         public string CallSign { get; set; }
-        public string Length { get; set; }
         public string PortOfRegistry { get; set; }
+        public string Length { get; set; }
         public string Breadth { get; set; }
+        #endregion
+
         public string PAndIClub { get; set; }
         public string PAndIClubOther { get; set; }
         public string ContactDetails { get; set; }

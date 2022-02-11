@@ -24,11 +24,23 @@ namespace TM.RestHour.Controllers
         // GET: MedicalAssistance
         public ActionResult TeleMedicine()
         {
-            return View();
+            GetAllRanksForDrp();
+            GetAllCountryForDrp();
+            GetAllCrewForDrp();
+            //GetAllCrewForTimeSheet();
+
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            return View(crewtimesheetVM);
         }
         public ActionResult DoctorVisit()
         {
-            return View();
+            GetAllRanksForDrp();
+            GetAllCountryForDrp();
+            GetAllCrewForDrp();
+            //GetAllCrewForTimeSheet();
+
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            return View(crewtimesheetVM);
         }
         public ActionResult CIRM()
         {
@@ -209,6 +221,14 @@ namespace TM.RestHour.Controllers
             //return Json("", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult SaveCIRMDoctorsEmails(string cirmId,string crewId,string doctorsEmail)
+        {
+            CIRMBL CIRMBL = new CIRMBL();
+            return Json(CIRMBL.SaveCIRMDoctorsEmails(cirmId, crewId, doctorsEmail), JsonRequestBehavior.AllowGet);
+
+            //return Json("", JsonRequestBehavior.AllowGet);
+        }
 
         #endregion
 

@@ -13,6 +13,8 @@ namespace TM.RestHour.DAL
 {
     public class CIRMDAL
     {
+
+        #region Save Methods
         public int SaveCIRM(CIRMPOCO cIRM, int VesselID)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
@@ -41,7 +43,7 @@ namespace TM.RestHour.DAL
             {
                 cmd.Parameters.AddWithValue("@RadioCallSign", DBNull.Value);
             }
-            
+
             if (!String.IsNullOrEmpty(cIRM.Weather))
             {
                 cmd.Parameters.AddWithValue("@Weather", cIRM.Weather.ToString());
@@ -50,7 +52,7 @@ namespace TM.RestHour.DAL
             {
                 cmd.Parameters.AddWithValue("@Weather", DBNull.Value);
             }
-            
+
 
             #endregion
 
@@ -302,7 +304,7 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@WeatherVisibility", DBNull.Value);
             }
 
-            
+
 
             #endregion
 
@@ -378,7 +380,7 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@SubCategory", DBNull.Value);
             }
             #endregion
-            
+
             #region Vital Parameters 13
             if (!String.IsNullOrEmpty(cIRM.VitalParams.ObservationDate.ToString()))
             {
@@ -908,16 +910,15 @@ namespace TM.RestHour.DAL
             //cmd.Parameters.AddWithValue("@IsEquipmentUploaded", cIRM.IsEquipmentUploaded);
 
             #endregion
-            
 
 
-            
+
+
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
 
             return recordsAffected;
         }
-
 
         public int SaveCIRMNew(CIRMPOCO cIRM, int VesselID)
         {
@@ -1264,7 +1265,7 @@ namespace TM.RestHour.DAL
             }
 
 
-            if (!String.IsNullOrEmpty(cIRM.DateOfOffWork.ToString()))
+            if (!String.IsNullOrEmpty(cIRM.DateOfOffWork))
             {
                 cmd.Parameters.AddWithValue("@DateOfOffWork", cIRM.DateOfOffWork);
             }
@@ -1430,7 +1431,7 @@ namespace TM.RestHour.DAL
                 cmd.Parameters.AddWithValue("@PercentageOfBurn", DBNull.Value);
             }
 
-            
+
 
             #endregion
 
@@ -1594,9 +1595,9 @@ namespace TM.RestHour.DAL
 
             //Need to be add more Params--------------
             DataTable medicationTable = CreateCIRMMedicationTakenTable();
-            foreach(CIRMMedicationTakenPOCO mtPoco in cIRM.MedicationTakenList)
+            foreach (CIRMMedicationTakenPOCO mtPoco in cIRM.MedicationTakenList)
             {
-                medicationTable.Rows.Add(mtPoco.MedicationId,mtPoco.CIRMId,mtPoco.PrescriptionName,mtPoco.MedicalConditionBeingTreated,mtPoco.HowOftenMedicationTaken);
+                medicationTable.Rows.Add(mtPoco.MedicationId, mtPoco.CIRMId, mtPoco.PrescriptionName, mtPoco.MedicalConditionBeingTreated, mtPoco.HowOftenMedicationTaken);
             }
 
             cmd.Parameters.AddWithValue("@MedicationTaken", medicationTable);
@@ -2011,7 +2012,22 @@ namespace TM.RestHour.DAL
             {
                 cmd.Parameters.AddWithValue("@PictureUploadPath", DBNull.Value);
             }
+            if (cIRM.AccidentOrIllnessImagePathList.Count > 0)
+            {
+                DataTable imagePaths = new DataTable();
+                imagePaths.Columns.Add("FilePath", typeof(string));
+                foreach(string s in cIRM.AccidentOrIllnessImagePathList)
+                {
+                    imagePaths.Rows.Add(s);
+                }
+                cmd.Parameters.AddWithValue("@AccidentOrIllnessImagePaths", imagePaths);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@AccidentOrIllnessImagePaths", DBNull.Value);
+            }
 
+            
             #endregion
 
             int recordsAffected = cmd.ExecuteNonQuery();
@@ -2019,7 +2035,313 @@ namespace TM.RestHour.DAL
 
             return recordsAffected;
         }
-        public List<CIRMPOCO> GetCIRMByCrewId(int CrewId)
+
+        /// <summary>
+        /// Added on 11th Jan 2022 @BK
+        /// </summary>
+        /// <param name="vitaPoco"></param>
+        /// <returns></returns>
+        public int SaveCIRMVitalParams(VitalStatisticsPOCO vitaPoco)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveCIRMVitalParams", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            if (vitaPoco.CIRMId > 0)
+            {
+                cmd.Parameters.AddWithValue("@CIRMId", vitaPoco.CIRMId);
+                #region Vital Parameters
+                if (!String.IsNullOrEmpty(vitaPoco.ObservationDate.ToString()))
+                {
+                    cmd.Parameters.AddWithValue("@ObservationDate", vitaPoco.ObservationDate);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@ObservationDate", DBNull.Value);
+                }
+                if (!String.IsNullOrEmpty(vitaPoco.ObservationTime.ToString()))
+                {
+                    cmd.Parameters.AddWithValue("@ObservationTime", vitaPoco.ObservationTime);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@ObservationTime", DBNull.Value);
+                }
+                if (!String.IsNullOrEmpty(vitaPoco.Pulse))
+                {
+                    cmd.Parameters.AddWithValue("@Pulse", vitaPoco.Pulse.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Pulse", DBNull.Value);
+                }
+                if (!String.IsNullOrEmpty(vitaPoco.OxygenSaturation))
+                {
+                    cmd.Parameters.AddWithValue("@OxygenSaturation", vitaPoco.OxygenSaturation.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@OxygenSaturation", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(vitaPoco.RespiratoryRate))
+                {
+                    cmd.Parameters.AddWithValue("@RespiratoryRate", vitaPoco.RespiratoryRate.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@RespiratoryRate", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(vitaPoco.Systolic))
+                {
+                    cmd.Parameters.AddWithValue("@Systolic", vitaPoco.Systolic.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Systolic", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(vitaPoco.Diastolic))
+                {
+                    cmd.Parameters.AddWithValue("@Diastolic", vitaPoco.Diastolic.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Diastolic", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(vitaPoco.Temperature))
+                {
+                    cmd.Parameters.AddWithValue("@Temperature", vitaPoco.Temperature.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Temperature", DBNull.Value);
+                }
+                if (!String.IsNullOrEmpty(vitaPoco.Himoglobin))
+                {
+                    cmd.Parameters.AddWithValue("@Himoglobin", vitaPoco.Himoglobin.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Himoglobin", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(vitaPoco.Creatinine))
+                {
+                    cmd.Parameters.AddWithValue("@Creatinine", vitaPoco.Creatinine.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Creatinine", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(vitaPoco.Bilirubin))
+                {
+                    cmd.Parameters.AddWithValue("@Bilirubin", vitaPoco.Bilirubin.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Bilirubin", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(vitaPoco.Fasting))
+                {
+                    cmd.Parameters.AddWithValue("@Fasting", vitaPoco.Fasting.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Fasting", DBNull.Value);
+                }
+                if (!String.IsNullOrEmpty(vitaPoco.Regular))
+                {
+                    cmd.Parameters.AddWithValue("@Regular", vitaPoco.Regular.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Regular", DBNull.Value);
+                }
+
+
+
+                #endregion
+
+                int recordsAffected = cmd.ExecuteNonQuery();
+                con.Close();
+
+                return recordsAffected;
+            }
+            else
+                return 0;
+        }
+        /// <summary>
+        /// Added on 11th Jan 2022 @BK
+        /// </summary>
+        /// <param name="symPoco"></param>
+        /// <returns></returns>
+        public int SaveCIRMSymtomology(MedicalSymtomologyPOCO symPoco)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSaveCIRMSymtomology", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            if (symPoco.CIRMId > 0)
+            {
+                cmd.Parameters.AddWithValue("@CIRMId", symPoco.CIRMId);
+                #region Symtomology
+                if (!String.IsNullOrEmpty(symPoco.ObservationDate.ToString()))
+                {
+                    cmd.Parameters.AddWithValue("@SymptomatologyDate", symPoco.ObservationDate.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@SymptomatologyDate", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.ObservationTime.ToString()))
+                {
+                    cmd.Parameters.AddWithValue("@SymptomatologyTime", symPoco.ObservationTime.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@SymptomatologyTime", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.Vomiting))
+                {
+                    cmd.Parameters.AddWithValue("@Vomiting", symPoco.Vomiting.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Vomiting", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.FrequencyOfVomiting))
+                {
+                    cmd.Parameters.AddWithValue("@FrequencyOfVomiting", symPoco.FrequencyOfVomiting.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@FrequencyOfVomiting", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.Fits))
+                {
+                    cmd.Parameters.AddWithValue("@Fits", symPoco.Fits.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Fits", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.FrequencyOfFits))
+                {
+                    cmd.Parameters.AddWithValue("@FrequencyOfFits", symPoco.FrequencyOfFits.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@FrequencyOfFits", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.Giddiness))
+                {
+                    cmd.Parameters.AddWithValue("@Giddiness", symPoco.Giddiness.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Giddiness", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.FrequencyOfGiddiness))
+                {
+                    cmd.Parameters.AddWithValue("@FrequencyOfGiddiness", symPoco.FrequencyOfGiddiness.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@FrequencyOfGiddiness", DBNull.Value);
+                }
+                if (!String.IsNullOrEmpty(symPoco.Lethargy))
+                {
+                    cmd.Parameters.AddWithValue("@Lethargy", symPoco.Lethargy.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Lethargy", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.FrequencyOfLethargy))
+                {
+                    cmd.Parameters.AddWithValue("@FrequencyOfLethargy", symPoco.FrequencyOfLethargy.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@FrequencyOfLethargy", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.SymptomologyDetails))
+                {
+                    cmd.Parameters.AddWithValue("@SymptomatologyDetails", symPoco.SymptomologyDetails.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@SymptomatologyDetails", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.MedicinesAdministered))
+                {
+                    cmd.Parameters.AddWithValue("@MedicinesAdministered", symPoco.MedicinesAdministered.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@MedicinesAdministered", DBNull.Value);
+                }
+
+                if (!String.IsNullOrEmpty(symPoco.AnyOtherRelevantInformation))
+                {
+                    cmd.Parameters.AddWithValue("@RelevantInformationForDesease", symPoco.AnyOtherRelevantInformation.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@RelevantInformationForDesease", DBNull.Value);
+                }
+
+                #endregion
+
+                int recordsAffected = cmd.ExecuteNonQuery();
+                con.Close();
+
+                return recordsAffected;
+            }
+            else
+                return 0;
+        }
+
+        public int SaveCIRMDoctorsEmails(string cirmId, string crewId, string doctorsEmail)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("stpSaveCIRMDoctorsEmails", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CIRMId", Convert.ToInt32(cirmId));
+                cmd.Parameters.AddWithValue("@CrewId", Convert.ToInt32(crewId));
+                cmd.Parameters.AddWithValue("@DoctorsEmail", doctorsEmail);
+
+                int recordsAffected = cmd.ExecuteNonQuery();
+                con.Close();
+                return recordsAffected;
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+            
+        }
+        #endregion
+
+       public List<CIRMPOCO> GetCIRMByCrewId(int CrewId)
         {
             List<CIRMPOCO> prodPOList = new List<CIRMPOCO>();
             List<CIRMPOCO> prodPO = new List<CIRMPOCO>();
@@ -2330,6 +2652,7 @@ namespace TM.RestHour.DAL
                 if (!String.IsNullOrEmpty(ds.Tables[0].Rows[0]["JoiningDate"].ToString()))
                     cirm.JoiningDate = ds.Tables[0].Rows[0]["JoiningDate"].ToString();
 
+
                 #endregion
 
                 //cirm.RespiratoryRate = ds.Tables[0].Rows[0]["CIRMId"].ToString();
@@ -2517,6 +2840,7 @@ namespace TM.RestHour.DAL
             CIRMPOCO cirm = new CIRMPOCO();
             VitalStatisticsPOCO cirmVitals = new VitalStatisticsPOCO();
             MedicalSymtomologyPOCO cirmSymtomology = new MedicalSymtomologyPOCO();
+            List<CIRMMedicationTakenPOCO> mtPoco = new List<CIRMMedicationTakenPOCO>();
 
             DataSet ds = new DataSet();
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
@@ -2741,8 +3065,8 @@ namespace TM.RestHour.DAL
                     cirm.PastMedicalHistory = ds.Tables[0].Rows[0]["PastMedicalHistory"].ToString();
 
                 //List<CIRMMedicationTakenPOCO> mtPoco = new List<CIRMMedicationTakenPOCO>();
-                //mtPoco = GetMedicationTakenByCIRM(cirm.CIRMId);
-                cirm.MedicationTakenList= GetMedicationTakenByCIRM(cirm.CIRMId);
+                mtPoco = GetMedicationTakenByCIRM(cirm.CIRMId);
+                //cirm.MedicationTakenList= GetMedicationTakenByCIRM(cirm.CIRMId);
 
                 #endregion
 
@@ -2876,7 +3200,7 @@ namespace TM.RestHour.DAL
 
             }
 
-
+            cirm.MedicationTakenList = mtPoco;
             return cirm;
         }
         /// <summary>
@@ -3094,287 +3418,7 @@ namespace TM.RestHour.DAL
             return ds;
         }
 
-        /// <summary>
-        /// Added on 11th Jan 2022 @BK
-        /// </summary>
-        /// <param name="vitaPoco"></param>
-        /// <returns></returns>
-        public int SaveCIRMVitalParams(VitalStatisticsPOCO vitaPoco)
-        {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("stpSaveCIRMVitalParams", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            if (vitaPoco.CIRMId > 0)
-            {
-                cmd.Parameters.AddWithValue("@CIRMId", vitaPoco.CIRMId);
-                #region Vital Parameters
-                if (!String.IsNullOrEmpty(vitaPoco.ObservationDate.ToString()))
-                {
-                    cmd.Parameters.AddWithValue("@ObservationDate", vitaPoco.ObservationDate);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@ObservationDate", DBNull.Value);
-                }
-                if (!String.IsNullOrEmpty(vitaPoco.ObservationTime.ToString()))
-                {
-                    cmd.Parameters.AddWithValue("@ObservationTime", vitaPoco.ObservationTime);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@ObservationTime", DBNull.Value);
-                }
-                if (!String.IsNullOrEmpty(vitaPoco.Pulse))
-                {
-                    cmd.Parameters.AddWithValue("@Pulse", vitaPoco.Pulse.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Pulse", DBNull.Value);
-                }
-                if (!String.IsNullOrEmpty(vitaPoco.OxygenSaturation))
-                {
-                    cmd.Parameters.AddWithValue("@OxygenSaturation", vitaPoco.OxygenSaturation.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@OxygenSaturation", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(vitaPoco.RespiratoryRate))
-                {
-                    cmd.Parameters.AddWithValue("@RespiratoryRate", vitaPoco.RespiratoryRate.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@RespiratoryRate", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(vitaPoco.Systolic))
-                {
-                    cmd.Parameters.AddWithValue("@Systolic", vitaPoco.Systolic.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Systolic", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(vitaPoco.Diastolic))
-                {
-                    cmd.Parameters.AddWithValue("@Diastolic", vitaPoco.Diastolic.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Diastolic", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(vitaPoco.Temperature))
-                {
-                    cmd.Parameters.AddWithValue("@Temperature", vitaPoco.Temperature.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Temperature", DBNull.Value);
-                }
-                if (!String.IsNullOrEmpty(vitaPoco.Himoglobin))
-                {
-                    cmd.Parameters.AddWithValue("@Himoglobin", vitaPoco.Himoglobin.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Himoglobin", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(vitaPoco.Creatinine))
-                {
-                    cmd.Parameters.AddWithValue("@Creatinine", vitaPoco.Creatinine.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Creatinine", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(vitaPoco.Bilirubin))
-                {
-                    cmd.Parameters.AddWithValue("@Bilirubin", vitaPoco.Bilirubin.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Bilirubin", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(vitaPoco.Fasting))
-                {
-                    cmd.Parameters.AddWithValue("@Fasting", vitaPoco.Fasting.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Fasting", DBNull.Value);
-                }
-                if (!String.IsNullOrEmpty(vitaPoco.Regular))
-                {
-                    cmd.Parameters.AddWithValue("@Regular", vitaPoco.Regular.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Regular", DBNull.Value);
-                }
-
-
-
-                #endregion
-
-                int recordsAffected = cmd.ExecuteNonQuery();
-                con.Close();
-
-                return recordsAffected;
-            }
-            else
-                return 0;
-        }
-        /// <summary>
-        /// Added on 11th Jan 2022 @BK
-        /// </summary>
-        /// <param name="symPoco"></param>
-        /// <returns></returns>
-        public int SaveCIRMSymtomology(MedicalSymtomologyPOCO symPoco)
-        {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("stpSaveCIRMSymtomology", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            if (symPoco.CIRMId > 0)
-            {
-                cmd.Parameters.AddWithValue("@CIRMId", symPoco.CIRMId);
-                #region Symtomology
-                if (!String.IsNullOrEmpty(symPoco.ObservationDate.ToString()))
-                {
-                    cmd.Parameters.AddWithValue("@SymptomatologyDate", symPoco.ObservationDate.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@SymptomatologyDate", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.ObservationTime.ToString()))
-                {
-                    cmd.Parameters.AddWithValue("@SymptomatologyTime", symPoco.ObservationTime.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@SymptomatologyTime", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.Vomiting))
-                {
-                    cmd.Parameters.AddWithValue("@Vomiting", symPoco.Vomiting.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Vomiting", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.FrequencyOfVomiting))
-                {
-                    cmd.Parameters.AddWithValue("@FrequencyOfVomiting", symPoco.FrequencyOfVomiting.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@FrequencyOfVomiting", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.Fits))
-                {
-                    cmd.Parameters.AddWithValue("@Fits", symPoco.Fits.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Fits", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.FrequencyOfFits))
-                {
-                    cmd.Parameters.AddWithValue("@FrequencyOfFits", symPoco.FrequencyOfFits.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@FrequencyOfFits", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.Giddiness))
-                {
-                    cmd.Parameters.AddWithValue("@Giddiness", symPoco.Giddiness.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Giddiness", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.FrequencyOfGiddiness))
-                {
-                    cmd.Parameters.AddWithValue("@FrequencyOfGiddiness", symPoco.FrequencyOfGiddiness.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@FrequencyOfGiddiness", DBNull.Value);
-                }
-                if (!String.IsNullOrEmpty(symPoco.Lethargy))
-                {
-                    cmd.Parameters.AddWithValue("@Lethargy", symPoco.Lethargy.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Lethargy", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.FrequencyOfLethargy))
-                {
-                    cmd.Parameters.AddWithValue("@FrequencyOfLethargy", symPoco.FrequencyOfLethargy.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@FrequencyOfLethargy", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.SymptomologyDetails))
-                {
-                    cmd.Parameters.AddWithValue("@SymptomatologyDetails", symPoco.SymptomologyDetails.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@SymptomatologyDetails", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.MedicinesAdministered))
-                {
-                    cmd.Parameters.AddWithValue("@MedicinesAdministered", symPoco.MedicinesAdministered.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@MedicinesAdministered", DBNull.Value);
-                }
-
-                if (!String.IsNullOrEmpty(symPoco.AnyOtherRelevantInformation))
-                {
-                    cmd.Parameters.AddWithValue("@RelevantInformationForDesease", symPoco.AnyOtherRelevantInformation.ToString());
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@RelevantInformationForDesease", DBNull.Value);
-                }
-
-                #endregion
-
-                int recordsAffected = cmd.ExecuteNonQuery();
-                con.Close();
-
-                return recordsAffected;
-            }
-            else
-                return 0;
-        }
-
+       
         public List<VitalStatisticsPOCO> GetAllCIRMVitalParamsPageWise(int pageIndex, ref int recordCount, int length, int cirmId)
         {
             List<VitalStatisticsPOCO> vitaPoList = new List<VitalStatisticsPOCO>();

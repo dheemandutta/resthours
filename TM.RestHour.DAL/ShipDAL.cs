@@ -351,8 +351,24 @@ namespace TM.RestHour.DAL
 
                     if (item["VesselSubSubTypeID"] != DBNull.Value)
                         crewtimesheet.VesselSubSubTypeID = Convert.ToInt32(item["VesselSubSubTypeID"].ToString());
+                    
+                    if (item["CallSign"] != null)
+                        crewtimesheet.CallSign = item["CallSign"].ToString();
 
+                    if (item["PortOfRegistry"] != null)
+                        crewtimesheet.PortOfRegistry = item["PortOfRegistry"].ToString();
 
+                    if (item["Length"] != null)
+                        crewtimesheet.Length = item["Length"].ToString();
+
+                    if (item["Breadth"] != null)
+                        crewtimesheet.Breadth = item["Breadth"].ToString();
+
+                    if (item["HelicopterDeck"] != null)
+                        crewtimesheet.HelicopterDeck = item["HelicopterDeck"].ToString();
+
+                    if (item["HelicopterWinchingArea"] != null)
+                        crewtimesheet.HelicopterWinchingArea = item["HelicopterWinchingArea"].ToString();
 
 
                     if (item["ShipEmail"] != null)

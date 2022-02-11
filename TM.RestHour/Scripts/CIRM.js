@@ -1,4 +1,5 @@
 ﻿var IsNewCIRM = false;
+var IsReuseCIRMData = false;
 function validate() {
     var isValid = true;
 
@@ -80,7 +81,20 @@ function validate() {
     return isValid;
 }
 
+function validateEmail() {
+    var isValid = true;
 
+    if ($('#Email').val().length === 0) {
+        $('#Email').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Email').css('border-color', 'lightgrey');
+    }
+
+
+    return isValid;
+}
 
 function clearTextBox() {
     $('#CIRMId').val("");
@@ -112,6 +126,88 @@ function clearTextBox() {
     $('#PictureUploadPath').val("");
     $('#FirstAidGiven').val("");
     $('#PercentageOfBurn').val("");
+}
+
+function ClearAllFields() {
+    
+    //$('#VesselName').val("");
+    $('#DateOfReportingGMT').val();
+    $('#TimeOfReportingGMT').val();
+    $('#LocationOfShip').val();
+    $('#Cousre').val();
+    $('#Speed').val();
+    $('#PortOfDeparture').val();
+    $('#DateOfDeparture').val();
+    $('#TimeOfDeparture').val();
+    $('#PortOfArrival').val();
+    $('#ETADateGMT').val();
+    $('#ETATimeGMT').val();
+    $('#EstimatedTimeOfArrival').val();
+    $('#AgentDetails').val();
+    $('#NearestPort').val();
+    $('#NearestPortETADateGMT').val();
+    $('#NearestPortETATimeGMT').val();
+    $('#OtherPossiblePort').val();
+    $('#OtherPortETADateGMT').val();
+    $('#OtherPortETATimeGMT').val();
+
+    $('#Direction').val();
+        $('#BeaufortScale').val();
+        $('#WindSpeed').val();
+        $('#SeaState').val();
+        $('#WaveHeight').val();
+        $('#Swell').val();
+        $('#WeatherCondition').val();
+        $('#Visibility').val();
+        $('#WeatherCondition').val();
+
+    
+    $('#Ethinicity').val("");
+    $('#Addiction').val("");
+    $('#Frequency').val("");
+    $('#JoiningDate').val("");
+    $('#DateResumeWork').val();
+    $('#TimeResumeWork').val();
+
+   
+    $('#RelevantInformationForDesease').val("");
+    $('#WhereAndHowAccidentOccured').val("");
+    $('#LocationAndTypeOfInjuryOrBurn').val("");
+    $('#FrequencyOfPain').val("");
+    $('#PictureUploadPath').val("");
+    $('#FirstAidGiven').val("");
+    $('#PercentageOfBurn').val("");
+
+    $('#VitalParamsId').val();
+    $('#CIRMId').val();
+    $('#VitalStatisticsDate').val();
+    $('#VitalStatisticsTime').val();
+    $('#Pulse').val();
+    $('#RespiratoryRate').val();
+    $('#OxygenSaturation').val();
+    $('#Himoglobin').val();
+    $('#Creatinine').val();
+    $('#Bilirubin').val();
+    $('#Temperature').val();
+    $('#Systolic').val();
+    $('#Diastolic').val();
+    $('#Fasting').val();
+    $('#Regular').val();
+
+    $('#MedicalSymtomologyId').val();
+    $('#CIRMId').val();
+    $('#SymptomatologyDate').val();
+    $('#SymptomatologyTime').val();
+    $('#Vomiting').val();
+    $('#FrequencyOfVomiting').val();
+    $('#Fits').val();
+    $('#FrequencyOfFits').val();
+    $('#Giddiness').val();
+    $('#FrequencyOfGiddiness').val();
+    $('#Lethargy').val();
+    $('#FrequencyOfLethargy').val();
+    $('#AnyOtherRelevantInformation').val();
+    $('#Ailment').val();
 }
 
 function ClearSymtomology() {
@@ -405,21 +501,21 @@ function SaveCIRMNew(medicalAssistanceType) {
             MedicationTakenList = MedicationTakenList;
         }
         var VitalParams = {
-            ID: $('#VitalParamsId').val(),
-            CIRMId: $('#CIRMId').val(),
-            ObservationDate: $('#VitalStatisticsDate').val(),
-            ObservationTime: $('#VitalStatisticsTime').val(),
-            Pulse: $('#Pulse').val(),
-            RespiratoryRate: $('#RespiratoryRate').val(),
-            OxygenSaturation: $('#OxygenSaturation').val(),
-            Himoglobin: $('#Himoglobin').val(),
-            Creatinine: $('#Creatinine').val(),
-            Bilirubin: $('#Bilirubin').val(),
-            Temperature: $('#Temperature').val(),
-            Systolic: $('#Systolic').val(),
-            Diastolic: $('#Diastolic').val(),
-            Fasting: $('#Fasting').val(),
-            Regular: $('#Regular').val()
+            ID:                 $('#VitalParamsId').val(),
+            CIRMId:             $('#CIRMId').val(),
+            ObservationDate:    $('#VitalStatisticsDate').val(),
+            ObservationTime:    $('#VitalStatisticsTime').val(),
+            Pulse:              $('#Pulse').val(),
+            RespiratoryRate:    $('#RespiratoryRate').val(),
+            OxygenSaturation:   $('#OxygenSaturation').val(),
+            Himoglobin:         $('#Himoglobin').val(),
+            Creatinine:         $('#Creatinine').val(),
+            Bilirubin:          $('#Bilirubin').val(),
+            Temperature:        $('#Temperature').val(),
+            Systolic:           $('#Systolic').val(),
+            Diastolic:          $('#Diastolic').val(),
+            Fasting:            $('#Fasting').val(),
+            Regular:            $('#Regular').val()
         };
         var Symtomology = {
             ID:                             $('#MedicalSymtomologyId').val(),
@@ -448,38 +544,38 @@ function SaveCIRMNew(medicalAssistanceType) {
 
 
             //#region Voyage Details
-            DateOfReportingGMT: $('#DateOfReportingGMT').val(),
-            TimeOfReportingGMT: $('#TimeOfReportingGMT').val(),
-            LocationOfShip: $('#LocationOfShip').val(),
-            Cousre: $('#Cousre').val(),
-            Speed: $('#Speed').val(),
-            PortofDeparture: $('#PortOfDeparture').val(),
-            DateOfDeparture: $('#DateOfDeparture').val(),
-            TimeOfDeparture: $('#TimeOfDeparture').val(),
-            PortofDestination: $('#PortOfArrival').val(),
-            ETADateGMT: $('#ETADateGMT').val(),
-            ETATimeGMT: $('#ETATimeGMT').val(),
-            EstimatedTimeOfarrivalhrs: $('#EstimatedTimeOfArrival').val(),
-            AgentDetails: $('#AgentDetails').val(),
-            NearestPort: $('#NearestPort').val(),
-            NearestPortETADateGMT: $('#NearestPortETADateGMT').val(),
-            NearestPortETATimeGMT: $('#NearestPortETATimeGMT').val(),
-            OtherPossiblePort: $('#OtherPossiblePort').val(),
-            OtherPortETADateGMT: $('#OtherPortETADateGMT').val(),
-            OtherPortETATimeGMT: $('#OtherPortETATimeGMT').val(),
+            DateOfReportingGMT:         $('#DateOfReportingGMT').val(),
+            TimeOfReportingGMT:         $('#TimeOfReportingGMT').val(),
+            LocationOfShip:             $('#LocationOfShip').val(),
+            Cousre:                     $('#Cousre').val(),
+            Speed:                      $('#Speed').val(),
+            PortofDeparture:            $('#PortOfDeparture').val(),
+            DateOfDeparture:            $('#DateOfDeparture').val(),
+            TimeOfDeparture:            $('#TimeOfDeparture').val(),
+            PortofDestination:          $('#PortOfArrival').val(),
+            ETADateGMT:                 $('#ETADateGMT').val(),
+            ETATimeGMT:                 $('#ETATimeGMT').val(),
+            EstimatedTimeOfarrivalhrs:  $('#EstimatedTimeOfArrival').val(),
+            AgentDetails:               $('#AgentDetails').val(),
+            NearestPort:                $('#NearestPort').val(),
+            NearestPortETADateGMT:      $('#NearestPortETADateGMT').val(),
+            NearestPortETATimeGMT:      $('#NearestPortETATimeGMT').val(),
+            OtherPossiblePort:          $('#OtherPossiblePort').val(),
+            OtherPortETADateGMT:        $('#OtherPortETADateGMT').val(),
+            OtherPortETATimeGMT:        $('#OtherPortETATimeGMT').val(),
 
             //#endregion
 
             //#region Weather Details
-            WindDirection: $('#Direction').val(),
-            BeaufortScale: $('#BeaufortScale').val(),
-            WindSpeed: $('#WindSpeed').val(),
-            SeaState: $('#SeaState').val(),
-            WaveHeight: $('#WaveHeight').val(),
-            Swell: $('#Swell').val(),
-            WeatherCondition: $('#WeatherCondition').val(),
-            WeatherVisibility: $('#Visibility').val(),
-            Weather: $('#WeatherCondition').val(),
+            WindDirection:      $('#Direction').val(),
+            BeaufortScale:      $('#BeaufortScale').val(),
+            WindSpeed:          $('#WindSpeed').val(),
+            SeaState:           $('#SeaState').val(),
+            WaveHeight:         $('#WaveHeight').val(),
+            Swell:              $('#Swell').val(),
+            WeatherCondition:   $('#WeatherCondition').val(),
+            WeatherVisibility:  $('#Visibility').val(),
+            Weather:            $('#WeatherCondition').val(),
             //#endregion 
 
             //#region Crew Details
@@ -501,27 +597,27 @@ function SaveCIRMNew(medicalAssistanceType) {
 
             //#region Incase of Injury/Sevierty of Pain
 
-            DateOfInjuryOrIllness: $('#DateOfInjuryOrIllness').val(),
-            TimeOfInjuryOrIllness: $('#TImeOfInjuryOrIllness').val(),
-            DateOfFirstExamination: $('#DateOfFirstExaminationOnboard').val(),
-            TimeOfFirstExamination: $('#TimeOfFirstExaminationOnboard').val(),
-            IsInjuryorIllnessWorkRelated: $("input[name='IsInjuryWorkRelated']:checked").val(),
+            DateOfInjuryOrIllness:          $('#DateOfInjuryOrIllness').val(),
+            TimeOfInjuryOrIllness:          $('#TImeOfInjuryOrIllness').val(),
+            DateOfFirstExamination:         $('#DateOfFirstExaminationOnboard').val(),
+            TimeOfFirstExamination:         $('#TimeOfFirstExaminationOnboard').val(),
+            IsInjuryorIllnessWorkRelated:   $("input[name='IsInjuryWorkRelated']:checked").val(),
             IsUnconsciousByInjuryOrIllness: $("input[name='IsUnconscious']:checked").val(),
-            HowLongWasUnconscious: $('#UnconsciousPeriod').val(),
-            LevelOfConsciousness: $("input[name='LevelOfConsciousness']:checked").val(),
-            IsAccidentOrIlness: $("input[name='AccidentOrIllness']:checked").val(),
+            HowLongWasUnconscious:          $('#UnconsciousPeriod').val(),
+            LevelOfConsciousness:           $("input[name='LevelOfConsciousness']:checked").val(),
+            IsAccidentOrIlness:             $("input[name='AccidentOrIllness']:checked").val(),
 
-            WhereAndHowAccidentOccured: $('#WhereAndHowAccidentOccured').val(),
-            LocationAndTypeOfInjuryOrBurn: $('#LocationAndTypeOfInjuryOrBurn').val(),
-            FirstAidGiven: $('#FirstAidGiven').val(),
-            TypeOfBurn: $('#TypeOfBurn').val(),
-            DegreeOfBurn: $('#DegreeOfBurn').val(),
-            PercentageOfBurn: $('#PercentageOfBurn').val(),
+            WhereAndHowAccidentOccured:     $('#WhereAndHowAccidentOccured').val(),
+            LocationAndTypeOfInjuryOrBurn:  $('#LocationAndTypeOfInjuryOrBurn').val(),
+            FirstAidGiven:                  $('#FirstAidGiven').val(),
+            TypeOfBurn:                     $('#TypeOfBurn').val(),
+            DegreeOfBurn:                   $('#DegreeOfBurn').val(),
+            PercentageOfBurn:               $('#PercentageOfBurn').val(),
 
             MedicalSymtomology: Symtomology,
 
-            SeverityOfPain: $("input[name='SeverityOfPain']:checked").val(),
-            FrequencyOfPain: $('#FrequencyOfPain').val(),
+            SeverityOfPain:                 $("input[name='SeverityOfPain']:checked").val(),
+            FrequencyOfPain:                $('#FrequencyOfPain').val(),
 
             //#endregion
 
@@ -975,7 +1071,7 @@ function UploadCIRMFile(control,filetype) {
                     //alert(result);
                     if (filetype == "AccidentOrIllness") {
                         var cnt = result[0];
-                        for (var i = 1; i < cnt; i++) {
+                        for (var i = 1; i <= cnt; i++) {
                             cirmAccidentOrIllnessImagePath.push(result[i]);
                             $("#lblSuccMsgCIRM" + filetype).text(result[cnt]);
                         }
@@ -1116,6 +1212,69 @@ function SendMail2() {
     }
 
    
+}
+
+function SendMail3() {
+    var res = validateEmail();
+    if (res) {
+        if ($('#ddlCrew').val().length === 0) {
+            $('#ddlCrew').css('border-color', 'Red');
+            alert("Please Select a Crew...!");
+
+        }
+        else {
+            if ($('#CIRMId').val().length === 0) {
+                alert("There is no CIRM for the selected Crew. Please create a CIRM for Vrew.");
+            }
+            else {
+
+                $.ajax({
+                    url: '/MedicalAssistance/SaveCIRMDoctorsEmails',
+                    type: "POST",
+                    datatype: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+
+                        crewId: $('#ddlCrew').val(),
+                        cirmId: $('#CIRMId').val(),
+                        doctorsMail: $('#Email').val()
+
+                    }),
+                    success: function (result) {
+                        //alert(result);
+                        //$("#lblSuccMsg").text(result[1]);
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-bottom-full-width",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+
+                        toastr.success("Your mail has been posted and will be send ");
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            }
+
+        }
+
+    }
+    
+
 }
 
 function GetCIRMDetailsByCrew(id) {
@@ -1830,6 +1989,8 @@ function ConfirmDialog(message) {
                     //retn = true;
                     IsNewCIRM = true;
                     $('#CIRMId').val('0');
+                    //if (!confirm("Do you want to use existing CIRM - Patient Details for " + $('#hdnPageName').val()))
+                    //    ClearAllFields();
                 },
                 No: function () {
                     //$('body').append('<h1>Confirm Dialog Result: <i>No</i></h1>');

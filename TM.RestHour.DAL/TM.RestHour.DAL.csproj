@@ -69,6 +69,7 @@
     <Compile Include="OptionsDAL.cs" />
     <Compile Include="OvertimeCalculationDAL.cs" />
     <Compile Include="PermissionsDAL.cs" />
+    <Compile Include="PlanDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PsychologicalEvaluationDAL.cs" />
     <Compile Include="RanksDAL.cs" />

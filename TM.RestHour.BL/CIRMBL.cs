@@ -21,6 +21,11 @@ namespace TM.RestHour.BL
             return cIRMDAL.SaveCIRMNew(cIRM, VesselID);
         }
 
+        public int SaveCIRMDoctorsEmails(string cirmId, string crewId, string doctorsEmail)
+        {
+            CIRMDAL cIRMDAL = new CIRMDAL();
+            return cIRMDAL.SaveCIRMDoctorsEmails(cirmId, crewId, doctorsEmail);
+        }
         public CIRMPOCO GetCIRMByCrewId(int CrewId)
         {
             CIRMDAL cIRMDAL = new CIRMDAL();
@@ -107,6 +112,7 @@ namespace TM.RestHour.BL
             CIRMDAL cIRMDAL = new CIRMDAL();
             return cIRMDAL.SaveCIRMSymtomology(symPoco);
         }
+
 
         public List<VitalStatisticsPOCO> GetAllCIRMVitalParamsPageWise(int pageIndex, ref int recordCount, int length, int shipId)
         {
