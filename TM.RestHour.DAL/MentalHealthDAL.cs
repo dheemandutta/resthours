@@ -31,7 +31,7 @@ namespace TM.RestHour.DAL
                     cmd.Parameters.Add("@RecordCountPreSignOff", SqlDbType.Int, 4);
                     cmd.Parameters["@RecordCountPreSignOff"].Direction = ParameterDirection.Output;
 
-                    //cmd.CommandTimeout = 60;
+                    cmd.CommandTimeout = 100;
                     con.Open();
                   
                     SqlDataAdapter da = new SqlDataAdapter(cmd);

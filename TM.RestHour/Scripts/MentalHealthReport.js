@@ -8,7 +8,10 @@ function GetTableData() {
         dataType: "json",
         success: function (result) {
 
+          
             console.log(result);
+            $('#spinnerLoad').hide();
+
 
             console.log(result.data.MentalHealthPostJoiningList);
             SetUpGrid(result.data.MentalHealthPostJoiningList);

@@ -24,6 +24,7 @@
 
 @Html.Hidden("loaddatareport", @Url.Action("LoadData", "MentalHealth"))
 
+
 <h2>Mental Health</h2>
 
 
@@ -103,12 +104,20 @@
         </div>
 
     </div>
+
+    <div id="spinnerLoad" class="ibox-content">
+        <div class="spiner-example">
+            <div class="sk-spinner sk-spinner-wave">
+                <div class="sk-rect1"></div>
+                <div class="sk-rect2"></div>
+                <div class="sk-rect3"></div>
+                <div class="sk-rect4"></div>
+                <div class="sk-rect5"></div>
+            </div>
+        </div>
+    </div>
+
 </div>
-
-<script>
-
-
-</script>
 
 
 
@@ -119,9 +128,7 @@
         $(document).ready(function () {
             //SetUpGrid();
             GetTableData();
-       
         });
-
 
 
         const tabs = document.querySelectorAll(".tab");
