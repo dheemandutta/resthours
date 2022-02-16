@@ -63,6 +63,7 @@
     <Compile Include="GroupsDAL.cs" />
     <Compile Include="LoginDAL.cs" />
     <Compile Include="ManageRankDAL.cs" />
+    <Compile Include="MedicalAdviseDAL.cs" />
     <Compile Include="MedicalChestDAL.cs" />
     <Compile Include="MentalHealthDAL.cs" />
     <Compile Include="NonComplianceInfoDAL.cs" />

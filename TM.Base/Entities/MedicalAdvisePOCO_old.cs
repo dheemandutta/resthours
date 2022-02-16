@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TM.Base.Entities
 {
-    public class MedicalAdvisePOCO
+    public class MedicalAdvisePOCO_old
     {
         public int AdviseId { get; set; }
         public int CIRMId { get; set; }
