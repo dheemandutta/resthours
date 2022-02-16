@@ -8,6 +8,7 @@ namespace TM.Base.Entities
 {
     public class ExaminationByDoctorAdvisePOCO
     {
+
         public int ExaminationId { get; set; }
         public int AdviseId { get; set; }
         public string ExaminationName { get; set; }
