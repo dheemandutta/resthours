@@ -8,37 +8,63 @@ namespace TM.Base.Entities
 {
     public class MedicalAdvisePOCO
     {
-        public int AdviseId { get; set; }
-        public int CIRMId { get; set; }
-        public string MedicalAssitanceType { get; set; }
-        public int CrewId { get; set; }
-        public int VesselId { get; set; }
-        public string Diagnosis { get; set; }
-        public string TreamentPrescribed { get; set; }
-        public string IsIllnessDueAccident { get; set; }
-        public string MedicinePrescribed { get; set; }
-        public string ExaminationName { get; set; }
-        public string ExaminationFilePath { get; set; }
-        
+		public int Id { get; set; }
+		public string Diagnosis { get; set; }
+		public string TreatmentPrescribed { get; set; }
+		public Boolean IsIllnessDueToAnAccident { get; set; }
+		public string MedicinePrescribed { get; set; }
+		public string RequireHospitalisation { get; set; }
+		public string RequireSurgery { get; set; }
+		public Boolean IsFitForDuty { get; set; }
+		public string FitForDutyComments { get; set; }
+		public Boolean IsMayJoinOnBoardButLightDuty { get; set; }
+		public string MayJoinOnBoardDays { get; set; }
+		public string MayJoinOnBoardComments { get; set; }
+		public Boolean IsUnfitForDuty { get; set; }
+		public string UnfitForDutyComments { get; set; }
+		public string FutureFitnessAndRestrictions { get; set; }
+		public string DischargeSummary { get; set; }
+		public string FollowUpAction { get; set; }
+		public string DoctorName { get; set; }
+		public string DoctorContactNo { get; set; }
+		public string DoctorEmail { get; set; }
+		public string DoctorSpeciality { get; set; }
+		public string DoctorMedicalRegNo { get; set; }
+		public string DoctorCountry { get; set; }
+		public string NameOfHospital { get; set; }
+		public string Path { get; set; }
+		public DateTime TestDate { get; set; }
+		public int CrewId { get; set; }
 
-        public string RequireHospitalisation { get; set; }
-        public string RequireSergery { get; set; }
-        public string IsFitForDuty { get; set; }
-        public string FitComment { get; set; }
-        public string IsJoinOnBoard { get; set; }
-        public string JoinOnBoardDays { get; set; }
-        public string JoinOnBoardComment { get; set; }
-        public string FutureFitnessToWorkAndRestrictions { get; set; }
-        public string DischargeSummary { get; set; }
-        public string FollowUpAction { get; set; }
 
-        public string NameOfDoctor { get; set; }
-        public string ContactNo { get; set; }
-        public string DoctorEmail { get; set; }
+		public string CrewName { get; set; }
+		public string RankName { get; set; }
+		public string Gender { get; set; }
+		public string Nationality { get; set; }
+		public DateTime DOB { get; set; }
+		public string PassportOrSeaman { get; set; }
+		public string VesselName { get; set; }
+		public string VesselSubType { get; set; }
+		public string FlagOfShip { get; set; }
+		public string IMONumber { get; set; }
+		public string CompanyOwner { get; set; }
 
-        public string Spaciality { get; set; }
-        public string MedicalRegNo { get; set; }
-        public string Country { get; set; }
-        public string NameOfHospital { get; set; }
-    }
+		/// <summary>
+		/// /////////////////////////
+		/// 
+		/// </summary>
+		/// 
+
+		private List<ExaminationForMedicalAdvisePOCO> examinationForMedicalAdvisePOCOs;
+
+		public MedicalAdvisePOCO()
+		{
+			examinationForMedicalAdvisePOCOs = new List<ExaminationForMedicalAdvisePOCO>();
+			this.ExaminationForMedicalAdviseList = examinationForMedicalAdvisePOCOs;
+		}
+
+		public List<ExaminationForMedicalAdvisePOCO> ExaminationForMedicalAdviseList { get; set; }
+	}
+
+
 }

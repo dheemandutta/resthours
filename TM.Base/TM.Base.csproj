@@ -63,10 +63,12 @@
     <Compile Include="Entities\DepartmentPOCO.cs" />
     <Compile Include="Entities\EquipmentsPOCO.cs" />
     <Compile Include="Entities\ExaminationByDoctorAdvisePOCO.cs" />
+    <Compile Include="Entities\ExaminationForMedicalAdvisePOCO.cs" />
     <Compile Include="Entities\GroupsPOCO.cs" />
     <Compile Include="Entities\LoginPOCO.cs" />
     <Compile Include="Entities\ManageRankPOCO.cs" />
     <Compile Include="Entities\MedicalAdvisePOCO.cs" />
+    <Compile Include="Entities\MedicalAdvisePOCO_old.cs" />
     <Compile Include="Entities\MedicalChestPOCO.cs" />
     <Compile Include="Entities\MedicalSymtomologyPOCO.cs" />
     <Compile Include="Entities\MentalHealthPOCO.cs" />
