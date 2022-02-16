@@ -324,13 +324,13 @@ function validate_BeckDepressionInventoryIIFinal() {
         $('#q3').removeClass('highlighted');
     }
 
-    //if ($('input[type=radio][name="q4"]:checked').length == 0) {
-    //    $('#q4').addClass('highlighted');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#q4').removeClass('highlighted');
-    //}
+    if ($('input[type=radio][name="q4"]:checked').length == 0) {
+        $('#q4').addClass('highlighted');
+        isValid = false;
+    }
+    else {
+        $('#q4').removeClass('highlighted');
+    }
 
     if ($('input[type=radio][name="q5"]:checked').length == 0) {
         $('#q5').addClass('highlighted');
@@ -428,30 +428,6 @@ function validate_BeckDepressionInventoryIIFinal() {
         $('#q16').removeClass('highlighted');
     }
 
-    //if ($('input[type=radio][name="q17_1"]:checked').length == 0) {
-    //    $('#q17_1').addClass('highlighted');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#q17_1').removeClass('highlighted');
-    //}
-
-    //if ($('input[type=radio][name="q17_2"]:checked').length == 0) {
-    //    $('#q17_2').addClass('highlighted');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#q17_2').removeClass('highlighted');
-    //}
-
-    //if ($('input[type=radio][name="q17_3"]:checked').length == 0) {
-    //    $('#q17_3').addClass('highlighted');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#q17_3').removeClass('highlighted');
-    //}
-
     if ($('input[type=radio][name="q17"]:checked').length == 0) {
         $('#q17').addClass('highlighted');
         isValid = false;
@@ -467,31 +443,6 @@ function validate_BeckDepressionInventoryIIFinal() {
     else {
         $('#q18').removeClass('highlighted');
     }
-
-    //if ($('input[type=radio][name="q19_1"]:checked').length == 0) {
-    //    $('#q19_1').addClass('highlighted');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#q19_1').removeClass('highlighted');
-    //}
-
-    //if ($('input[type=radio][name="q19_2"]:checked').length == 0) {
-    //    $('#q19_2').addClass('highlighted');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#q19_2').removeClass('highlighted');
-    //}
-
-    //if ($('input[type=radio][name="q19_3"]:checked').length == 0) {
-    //    $('#q19_3').addClass('highlighted');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#q19_3').removeClass('highlighted');
-    //}
-
 
     if ($('input[type=radio][name="q19"]:checked').length == 0) {
         $('#q19').addClass('highlighted');
@@ -515,14 +466,6 @@ function validate_BeckDepressionInventoryIIFinal() {
     }
     else {
         $('#q21').removeClass('highlighted');
-    }
-
-    if ($('input[type=radio][name="q22"]:checked').length == 0) {
-        $('#q22').addClass('highlighted');
-        isValid = false;
-    }
-    else {
-        $('#q22').removeClass('highlighted');
     }
 
     return isValid;

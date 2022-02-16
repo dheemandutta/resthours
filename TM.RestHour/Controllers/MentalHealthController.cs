@@ -22,6 +22,7 @@ namespace TM.RestHour.Controllers
     public class MentalHealthController : Controller
     {
         // GET: MentalHealth
+        [TraceFilterAttribute]
         public ActionResult Index()
         {
             GetAllCrewForDrp();
@@ -31,17 +32,17 @@ namespace TM.RestHour.Controllers
             //crewtimesheetVM.Crew = crew;
             return View();
         }
-
+        [TraceFilterAttribute]
         public ActionResult MentalHealthReport()
         {
             return View();
         }
-
+        [TraceFilterAttribute]
         public ActionResult PsychologicalEvaluationForms()
         {
             return View();
         }
-
+        [TraceFilterAttribute]
         public ActionResult PsychologicalEvaluationScore()
         {
             return View();
@@ -105,23 +106,14 @@ namespace TM.RestHour.Controllers
             }
 
             MentalHealthBL mentalHealthBL = new MentalHealthBL();
-            int totalrecords = 0;
+            int postJoiningtotalrecords = 0;
+            int preSignOfftotalrecords = 0;
 
-            List<MentalHealthPOCO> mentalHealthPOCO = new List<MentalHealthPOCO>();
-            mentalHealthPOCO = mentalHealthBL.GetMentalHealthPageWise(pageIndex, ref totalrecords, length, int.Parse(Session["VesselID"].ToString()));
-            List<MentalHealthPOCO> mentalHealthList = new List<MentalHealthPOCO>();
-            foreach (MentalHealthPOCO mentalHealthPC in mentalHealthPOCO)
-            {
-                MentalHealthPOCO mentalHealth = new MentalHealthPOCO();
-                //mentalHealth.MentalHealthPostJoiningList.CrewId = mentalHealthPC.CrewId;
-                //mentalHealth.Name = mentalHealthPC.Name;
-                //mentalHealth.RankName = mentalHealthPC.RankName;
-                //mentalHealth.StartDate = mentalHealthPC.StartDate;
-
-                mentalHealthList.Add(mentalHealth);
-            }
-            var data = mentalHealthList;
-            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
+            MentalHealthPOCO mentalHealthPOCO = new MentalHealthPOCO();
+            mentalHealthPOCO = mentalHealthBL.GetMentalHealthPageWise(pageIndex, ref postJoiningtotalrecords, length, ref preSignOfftotalrecords);
+            
+            var data = mentalHealthPOCO;
+            return Json(new { draw = draw, postJoiningrecordsFiltered = postJoiningtotalrecords, preSignOffrecordsFiltered = preSignOfftotalrecords, postJoiningrecordsTotal = postJoiningtotalrecords, preSignOffrecordsTotal = preSignOfftotalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
     }
 }
