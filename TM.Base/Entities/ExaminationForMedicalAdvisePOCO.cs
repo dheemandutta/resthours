@@ -12,5 +12,6 @@ namespace TM.Base.Entities
         public string Examination { get; set; }
         public string ExaminationPath { get; set; }
         public DateTime ExaminationDate { get; set; }
+        public int MedicalAdviseId { get; set; }
     }
 }

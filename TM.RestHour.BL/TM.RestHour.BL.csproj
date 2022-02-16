@@ -63,6 +63,7 @@
     <Compile Include="GroupsBL.cs" />
     <Compile Include="LoginBL.cs" />
     <Compile Include="ManageRankBL.cs" />
+    <Compile Include="MedicalAdviseBL.cs" />
     <Compile Include="MedicalChestBL.cs" />
     <Compile Include="MentalHealthBL.cs" />
     <Compile Include="NonComplianceInfoBL.cs" />
