@@ -220,8 +220,23 @@ namespace TM.RestHour.Controllers
 
         public ActionResult ReportDailyTemperature()
         {
-            GetAllCrewForDrp();
-            return View();
+            //GetAllCrewForDrp();
+            //return View();
+
+            GetAllCrewForTimeSheet();
+
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+            }
+            else
+                crewtimesheetVM.Crew.ID = 0;
+
+            return View(crewtimesheetVM);
         }
 
         public ActionResult MailCIRM()
@@ -892,17 +907,27 @@ namespace TM.RestHour.Controllers
         public JsonResult SaveCrewTemperature(CrewTemperaturePOCO crewTemperature)
         {
             CrewBL crewBl = new CrewBL();
-            //CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
+            CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
 
-            //crewTemperaturePC.CrewID = crewTemperature.CrewID;
-            //crewTemperaturePC.ReadingDate = crewTemperature.ReadingDate;
-            //crewTemperaturePC.ReadingTime = crewTemperature.ReadingTime;
+            crewTemperaturePC.CrewID = crewTemperature.CrewID;
 
-            //crewTemperaturePC.Unit = crewTemperature.Unit;
-            //crewTemperaturePC.Temperature = crewTemperature.Temperature;
-            //crewTemperaturePC.TemperatureModeID = crewTemperature.TemperatureModeID;
+            crewTemperaturePC.BMI = crewTemperature.BMI;
+            crewTemperaturePC.Height = crewTemperature.Height;
+            crewTemperaturePC.Pulse = crewTemperature.Pulse;
+            crewTemperaturePC.Haemoglobin = crewTemperature.Haemoglobin;
+            crewTemperaturePC.Temperature = crewTemperature.Temperature;
+            crewTemperaturePC.FastingSuger = crewTemperature.FastingSuger;
+            crewTemperaturePC.VesselID = crewTemperature.VesselID;
+            crewTemperaturePC.RandomSuger = crewTemperature.RandomSuger;
+            crewTemperaturePC.Systolic = crewTemperature.Systolic;
+            crewTemperaturePC.Diastolic = crewTemperature.Diastolic;
+            crewTemperaturePC.Weight = crewTemperature.Weight;
+            crewTemperaturePC.DietaryRestriction = crewTemperature.DietaryRestriction;
+            crewTemperaturePC.RespiratoryRate = crewTemperature.RespiratoryRate;
+            crewTemperaturePC.Creatinine = crewTemperature.Creatinine;
+            crewTemperaturePC.SPO2 = crewTemperature.SPO2;
+            crewTemperaturePC.Bilirubin = crewTemperature.Bilirubin;
 
-            //crewTemperaturePC.Comment = crewTemperature.Comment;
             return Json(crewBl.SaveCrewTemperature(crewTemperature, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
@@ -1050,7 +1075,7 @@ namespace TM.RestHour.Controllers
 
         }
 
-        public JsonResult GetCrewTemperaturePageWiseByCrewID(int CrewID)
+        public JsonResult GetCrewTemperaturePageWiseByCrewID(int CrewID, int Month)
         {
             int draw, start, length;
             int pageIndex = 0;
@@ -1081,7 +1106,7 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<CrewTemperaturePOCO> CrewTemperaturePOCOList = new List<CrewTemperaturePOCO>();
-            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref totalrecords, length, CrewID); 
+            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref totalrecords, length, CrewID, Month); 
             List<CrewTemperature> crewList = new List<CrewTemperature>();
             foreach (CrewTemperaturePOCO crewPC in CrewTemperaturePOCOList)
             {
@@ -1089,15 +1114,24 @@ namespace TM.RestHour.Controllers
                
                 crewTemp.ID = crewPC.ID;
 
-                crewTemp.ReadingDate = crewPC.ReadingDate;
-                crewTemp.ReadingTime = crewPC.ReadingTime;
-                crewTemp.CrewName = crewPC.CrewName;
-                crewTemp.RankName = crewPC.RankName;
-                crewTemp.Place = crewPC.Place;
-                crewTemp.TemperatureMode = crewPC.TemperatureMode;
+                crewTemp.CrewID = crewPC.CrewID;
+                crewTemp.BMI = crewPC.BMI;
+                crewTemp.Height = crewPC.Height;
+                crewTemp.Pulse = crewPC.Pulse;
+                crewTemp.Haemoglobin = crewPC.Haemoglobin;
                 crewTemp.Temperature = crewPC.Temperature;
-                crewTemp.Unit = crewPC.Unit;
-                crewTemp.Means = crewPC.Means;
+                crewTemp.FastingSuger = crewPC.FastingSuger;
+                crewTemp.VesselID = crewPC.VesselID;
+                crewTemp.RandomSuger = crewPC.RandomSuger;
+                crewTemp.Systolic = crewPC.Systolic;
+                crewTemp.Diastolic = crewPC.Diastolic;
+                crewTemp.Weight = crewPC.Weight;
+                crewTemp.DietaryRestriction = crewPC.DietaryRestriction;
+                crewTemp.RespiratoryRate = crewPC.RespiratoryRate;
+                crewTemp.Creatinine = crewPC.Creatinine;
+                crewTemp.SPO2 = crewPC.SPO2;
+                crewTemp.Bilirubin = crewPC.Bilirubin;
+                crewTemp.TakenDate = crewPC.TakenDate;
 
                 crewList.Add(crewTemp);
             }
@@ -1107,7 +1141,7 @@ namespace TM.RestHour.Controllers
             return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCrewTemperaturePageWiseByCrewID2(int CrewID)
+        public JsonResult GetCrewTemperaturePageWiseByCrewID2(int CrewID, int Month)
         {
             int draw, start, length;
             int pageIndex = 0;
@@ -1138,7 +1172,7 @@ namespace TM.RestHour.Controllers
             int totalrecords = 0;
 
             List<CrewTemperaturePOCO> CrewTemperaturePOCOList = new List<CrewTemperaturePOCO>();
-            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref totalrecords, length, CrewID);
+            CrewTemperaturePOCOList = CrewBL.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref totalrecords, length, CrewID, Month);
             List<CrewTemperature> crewList = new List<CrewTemperature>();
             foreach (CrewTemperaturePOCO crewPC in CrewTemperaturePOCOList)
             {
@@ -1146,15 +1180,23 @@ namespace TM.RestHour.Controllers
 
                 crewTemp.ID = crewPC.ID;
 
-                crewTemp.ReadingDate = crewPC.ReadingDate;
-                crewTemp.ReadingTime = crewPC.ReadingTime;
-                crewTemp.CrewName = crewPC.CrewName;
-                crewTemp.RankName = crewPC.RankName;
-                crewTemp.Place = crewPC.Place;
-                crewTemp.TemperatureMode = crewPC.TemperatureMode;
-                crewTemp.Temperature = crewPC.Temperature;
-                crewTemp.Unit = crewPC.Unit;
-                crewTemp.Means = crewPC.Means;
+                //crewTemp.CrewID = crewPC.CrewID;
+                //crewTemp.BMI = crewPC.BMI;
+                //crewTemp.Height = crewPC.Height;
+                //crewTemp.Pulse = crewPC.Pulse;
+                //crewTemp.Haemoglobin = crewPC.Haemoglobin;
+                //crewTemp.Temperature = crewPC.Temperature;
+                //crewTemp.FastingSuger = crewPC.FastingSuger;
+                //crewTemp.VesselID = crewPC.VesselID;
+                //crewTemp.RandomSuger = crewPC.RandomSuger;
+                //crewTemp.Systolic = crewPC.Systolic;
+                //crewTemp.Diastolic = crewPC.Diastolic;
+                //crewTemp.Weight = crewPC.Weight;
+                //crewTemp.DietaryRestriction = crewPC.DietaryRestriction;
+                //crewTemp.RespiratoryRate = crewPC.RespiratoryRate;
+                //crewTemp.Creatinine = crewPC.Creatinine;
+                //crewTemp.SPO2 = crewPC.SPO2;
+                //crewTemp.Bilirubin = crewPC.Bilirubin;
 
                 crewList.Add(crewTemp);
             }
@@ -1208,15 +1250,24 @@ namespace TM.RestHour.Controllers
 
                 crewTemp.ID = crewPC.ID;
 
-                crewTemp.ReadingDate = crewPC.ReadingDate;
-                crewTemp.ReadingTime = crewPC.ReadingTime;
-                crewTemp.CrewName = crewPC.CrewName;
-                crewTemp.RankName = crewPC.RankName;
-                crewTemp.Place = crewPC.Place;
-                crewTemp.TemperatureMode = crewPC.TemperatureMode;
+                crewTemp.CrewID = crewPC.CrewID;
+                crewTemp.BMI = crewPC.BMI;
+                crewTemp.Height = crewPC.Height;
+                crewTemp.Pulse = crewPC.Pulse;
+                crewTemp.Haemoglobin = crewPC.Haemoglobin;
                 crewTemp.Temperature = crewPC.Temperature;
-                crewTemp.Unit = crewPC.Unit;
-                crewTemp.Means = crewPC.Means;
+                crewTemp.FastingSuger = crewPC.FastingSuger;
+                crewTemp.VesselID = crewPC.VesselID;
+                crewTemp.RandomSuger = crewPC.RandomSuger;
+                crewTemp.Systolic = crewPC.Systolic;
+                crewTemp.Diastolic = crewPC.Diastolic;
+                crewTemp.Weight = crewPC.Weight;
+                crewTemp.DietaryRestriction = crewPC.DietaryRestriction;
+                crewTemp.RespiratoryRate = crewPC.RespiratoryRate;
+                crewTemp.Creatinine = crewPC.Creatinine;
+                crewTemp.SPO2 = crewPC.SPO2;
+                crewTemp.Bilirubin = crewPC.Bilirubin;
+
 
                 crewList.Add(crewTemp);
             }
@@ -1265,15 +1316,24 @@ namespace TM.RestHour.Controllers
 
                 crewTemp.ID = crewPC.ID;
 
-                crewTemp.ReadingDate = crewPC.ReadingDate;
-                crewTemp.ReadingTime = crewPC.ReadingTime;
-                crewTemp.CrewName = crewPC.CrewName;
-                crewTemp.RankName = crewPC.RankName;
-                crewTemp.Place = crewPC.Place;
-                crewTemp.TemperatureMode = crewPC.TemperatureMode;
+                crewTemp.CrewID = crewPC.CrewID;
+                crewTemp.BMI = crewPC.BMI;
+                crewTemp.Height = crewPC.Height;
+                crewTemp.Pulse = crewPC.Pulse;
+                crewTemp.Haemoglobin = crewPC.Haemoglobin;
                 crewTemp.Temperature = crewPC.Temperature;
-                crewTemp.Unit = crewPC.Unit;
-                crewTemp.Means = crewPC.Means;
+                crewTemp.FastingSuger = crewPC.FastingSuger;
+                crewTemp.VesselID = crewPC.VesselID;
+                crewTemp.RandomSuger = crewPC.RandomSuger;
+                crewTemp.Systolic = crewPC.Systolic;
+                crewTemp.Diastolic = crewPC.Diastolic;
+                crewTemp.Weight = crewPC.Weight;
+                crewTemp.DietaryRestriction = crewPC.DietaryRestriction;
+                crewTemp.RespiratoryRate = crewPC.RespiratoryRate;
+                crewTemp.Creatinine = crewPC.Creatinine;
+                crewTemp.SPO2 = crewPC.SPO2;
+                crewTemp.Bilirubin = crewPC.Bilirubin;
+
 
                 crewList.Add(crewTemp);
             }

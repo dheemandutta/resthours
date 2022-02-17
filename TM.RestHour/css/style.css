@@ -16228,3 +16228,8 @@ button:disabled {
         transform: scaleY(1);
     }
 }
+
+.modal-dialog {
+
+    pointer-events: painted !important;
+}
