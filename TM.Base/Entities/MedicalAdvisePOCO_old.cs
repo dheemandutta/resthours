@@ -8,6 +8,7 @@ namespace TM.Base.Entities
 {
     public class MedicalAdvisePOCO_old
     {
+
         public int AdviseId { get; set; }
         public int CIRMId { get; set; }
         public string MedicalAssitanceType { get; set; }
