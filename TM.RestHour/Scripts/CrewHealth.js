@@ -528,12 +528,12 @@ function SetUpPrintGridReport2() {
 function validate2() {
     var isValid = true;
 
-    if ($('#ddlCrew').val().length === 0) {
-        $('#ddlCrew').css('border-color', 'Red');
+    if ($('#BMI').val().length === 0) {
+        $('#BMI').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#ddlCrew').css('border-color', 'lightgrey');
+        $('#BMI').css('border-color', 'lightgrey');
     }
 
    
@@ -545,6 +545,36 @@ function validate2() {
     return isValid;
 }
 
+
+function clearTextBox() {
+    $('#ID').val("");
+    $('#CrewID').val("");
+    $('#Height').val("");
+    $('#Weight').val("");
+    //$('#Age').val("");
+    $('#BMI').val("");
+    $('#AnyDietaryRestrictions').val("");
+    $('#Pulse').val("");
+    $('#RespiratoryRate').val("");
+    $('#SPO2').val("");
+    $('#Haemoglobin').val("");
+    $('#Creatinine').val("");
+    $('#Bilirubin').val("");
+    $('#Temperature').val("");
+    $('#Systolic').val("");
+    $('#Diastolic').val("");
+    $('#FastingSuger').val("");
+    $('#RandomSuger').val("");
+
+    $('#ID').val("");
+
+    $('#btnUpdate').hide();
+    $('#btnAdd').show();
+}
+
+
+
+
 function SaveCrewTemperature() {
     //debugger;
     var savecrewtemperature = $('#savecrewtemperature').val();
@@ -553,13 +583,15 @@ function SaveCrewTemperature() {
         return false;
     }
     if (res) {
-    var crewTemperature = {
+        var crewTemperature = {
+
+        ID: $('#ID').val(),
         CrewID: $('#ddlCrew').val(),
         Height: $('#Height').val(),
         Weight: $('#Weight').val(),
-        Age: $('#Age').val(),
+        //Age: $('#Age').val(),
         BMI: $('#BMI').val(),
-        AnyDietaryRestrictions: $('#AnyDietaryRestrictions').val(),
+        DietaryRestriction: $('#DietaryRestriction').val(),
         Pulse: $('#Pulse').val(),
         RespiratoryRate: $('#RespiratoryRate').val(),
         SPO2: $('#SPO2').val(),
@@ -570,7 +602,7 @@ function SaveCrewTemperature() {
         Systolic: $('#Systolic').val(),
         Diastolic: $('#Diastolic').val(),
         FastingSuger: $('#FastingSuger').val(),
-        RandomSuger: $('#RandomSuger').val(),
+        RandomSuger: $('#RandomSuger').val()
 
         //ChestPain: document.getElementById("ChestPain").checked
     };
@@ -584,13 +616,11 @@ function SaveCrewTemperature() {
         success: function (result) {
 
             if (result > 0) {
-                //show successfull message
-                alert('Data Saved Successfully');
-                // window.location = response.url;
 
                 //loadData();
+                alert('Added Successfully');
                 $('#myModal').modal('hide');
-                 alert('Added Successfully');
+                 
 
                 //toastr.options = {
                 //    "closeButton": false,
@@ -675,7 +705,6 @@ function GetCrewTemperaturePageWiseByCrewID(CrewID, Month) {
                 "data": {
                     CrewID: CrewID,
                     Month: Month
-
                 },
             },
             "columns": [
@@ -714,9 +743,21 @@ function GetCrewTemperaturePageWiseByCrewID(CrewID, Month) {
                 },
                 {
                     "data": "RandomSuger", "name": "RandomSuger", "autoWidth": true
+                },
+                {
+                    "data": "ID", "width": "50px", "render": function (data) {
+                        return '<a href="#" class="btn btn-info btn-sm" onclick="GetCrewTemperatureByID(' + data + ')"><i class="fas fa-edit"></i></a>';
+                    }
                 }
+                //,{
+                //    "data": "EquipmentsID", "width": "50px", "render": function (d) {
+                //        //debugger;
+                //        return '<a href="#" class="btn btn-info btn-sm" onclick="DeleteEquipments(' + d + ')"><i class="fas fa-trash"></i></a>';
+
                
-            ]
+            ],
+            "rowId": "ID",
+            "dom": "Bfrtip"
         });
     }
 
@@ -995,4 +1036,93 @@ function GetCrewTemperaturePageWise2() {
             }
         ]
     });
+}
+
+
+
+
+
+
+
+
+
+
+
+function GetCrewTemperatureByID(ID) {
+    $('#BMI').css('border-color', 'lightgrey');
+    var x = $("#GetCrewTemperatureByID").val();
+    //alert(x);
+    //debugger;
+    $.ajax({
+        url: x,
+        data:
+        {
+            ID: ID
+        },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            $('#ID').val(result.ID);
+
+            $('#CrewID').val(result.CrewID);
+            $('#BMI').val(result.BMI);
+            $('#Height').val(result.Height);
+            $('#Pulse').val(result.Pulse);
+            $('#Haemoglobin').val(result.Haemoglobin);
+            $('#Temperature').val(result.Temperature);
+            $('#FastingSuger').val(result.FastingSuger);
+            $('#VesselID').val(result.VesselID);
+            $('#RandomSuger').val(result.RandomSuger);
+            $('#Systolic').val(result.Systolic);
+            $('#Diastolic').val(result.Diastolic);
+            $('#Weight').val(result.Weight);
+            $('#DietaryRestriction').val(result.DietaryRestriction);
+            $('#RespiratoryRate').val(result.RespiratoryRate);
+            $('#Creatinine').val(result.Creatinine);
+            $('#SPO2').val(result.SPO2);
+            $('#Bilirubin').val(result.Bilirubin);
+
+            $('#myModal').modal('show');
+            $('#btnUpdate').show();
+            $('#btnAdd').hide();
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
+}
+
+
+function GetAgeFromDOBForCrewTemperature(CrewID) {
+    //$('#BMI').css('border-color', 'lightgrey');
+    var x = $("#GetAgeFromDOBForCrewTemperature").val();
+    //alert(x);
+    //debugger;
+    $.ajax({
+        url: x,
+        data:
+        {
+            CrewID: CrewID
+        },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            $('#Age').val(result.Age);
+
+            //$('#myModal').modal('show');
+            //$('#btnUpdate').show();
+            //$('#btnAdd').hide();
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
 }

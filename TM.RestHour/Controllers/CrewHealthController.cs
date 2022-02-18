@@ -909,6 +909,8 @@ namespace TM.RestHour.Controllers
             CrewBL crewBl = new CrewBL();
             CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
 
+            crewTemperaturePC.ID = crewTemperature.ID;
+
             crewTemperaturePC.CrewID = crewTemperature.CrewID;
 
             crewTemperaturePC.BMI = crewTemperature.BMI;
@@ -930,6 +932,35 @@ namespace TM.RestHour.Controllers
 
             return Json(crewBl.SaveCrewTemperature(crewTemperature, int.Parse(Session["VesselID"].ToString())), JsonRequestBehavior.AllowGet);
         }
+
+
+        public JsonResult GetCrewTemperatureByID(int ID)
+        {
+            CrewBL crewBl = new CrewBL();
+            CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
+
+            crewTemperaturePC = crewBl.GetCrewTemperatureByID(ID /*, int.Parse(Session["VesselID"].ToString())*/);
+
+            var data = crewTemperaturePC;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAgeFromDOBForCrewTemperature(int CrewID)
+        {
+            CrewBL crewBl = new CrewBL();
+            CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
+
+            crewTemperaturePC = crewBl.GetAgeFromDOBForCrewTemperature(CrewID /*, int.Parse(Session["VesselID"].ToString())*/);
+
+            var data = crewTemperaturePC;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
         [HttpGet]
         public JsonResult GetCrewDetailsForHealthByID2(int crewID)
         {

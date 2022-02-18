@@ -22,7 +22,7 @@ namespace TM.Base.Entities
 
         public string Temperature { get; set; }
 
-        public int? FastingSuger { get; set; }
+        public string FastingSuger { get; set; }
 
         public int VesselID { get; set; }
 
@@ -44,6 +44,8 @@ namespace TM.Base.Entities
 
         public string Bilirubin { get; set; }
 
-        public DateTime TakenDate { get; set; }
+        public string TakenDate { get; set; }
+
+        public string Age { get; set; }
     }
 }

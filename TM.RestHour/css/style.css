@@ -16229,6 +16229,7 @@ button:disabled {
     }
 }
 
+/*for popup*/
 .modal-dialog {
 
     pointer-events: painted !important;

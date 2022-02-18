@@ -288,6 +288,18 @@ namespace TM.RestHour.BL
             return crew.SaveCrewTemperature(crewTemperature, VesselID);
         }
 
+        public CrewTemperaturePOCO GetCrewTemperatureByID(int ID)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetCrewTemperatureByID(ID);
+        }
+
+        public CrewTemperaturePOCO GetAgeFromDOBForCrewTemperature(int CrewID)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetAgeFromDOBForCrewTemperature(CrewID);
+        }
+
         public List<CrewPOCO> GetAllTemperatureModeForDrp()
         {
             CrewDAL crew = new CrewDAL();
