@@ -946,16 +946,13 @@ namespace TM.RestHour.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetAgeFromDOBForCrewTemperature(int CrewID)
+        public JsonResult GetAgeFromDOBForCrewTemperature(string CrewID)
         {
             CrewBL crewBl = new CrewBL();
-            CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
 
-            crewTemperaturePC = crewBl.GetAgeFromDOBForCrewTemperature(CrewID /*, int.Parse(Session["VesselID"].ToString())*/);
+            string Age = crewBl.GetAgeFromDOBForCrewTemperature(int.Parse(CrewID) /*, int.Parse(Session["VesselID"].ToString())*/);
 
-            var data = crewTemperaturePC;
-
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(Age, JsonRequestBehavior.AllowGet);
         }
 
 

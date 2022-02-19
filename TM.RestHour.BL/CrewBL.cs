@@ -294,7 +294,7 @@ namespace TM.RestHour.BL
             return crew.GetCrewTemperatureByID(ID);
         }
 
-        public CrewTemperaturePOCO GetAgeFromDOBForCrewTemperature(int CrewID)
+        public string GetAgeFromDOBForCrewTemperature(int CrewID)
         {
             CrewDAL crew = new CrewDAL();
             return crew.GetAgeFromDOBForCrewTemperature(CrewID);

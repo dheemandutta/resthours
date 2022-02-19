@@ -1033,7 +1033,7 @@ namespace TM.RestHour.DAL
         }
 
 
-        public CrewTemperaturePOCO GetAgeFromDOBForCrewTemperature(int CrewID/*, int VesselID*/)
+        public string GetAgeFromDOBForCrewTemperature(int CrewID/*, int VesselID*/)
         {
             List<CrewTemperaturePOCO> prodPOList = new List<CrewTemperaturePOCO>();
             List<CrewTemperaturePOCO> prodPO = new List<CrewTemperaturePOCO>();
@@ -1052,24 +1052,8 @@ namespace TM.RestHour.DAL
                     con.Close();
                 }
             }
-            return ConvertDataTableToAgeFromDOBForCrewTemperaturByIDList(ds);
+            return ds.Tables[0].Rows[0]["Age"].ToString();
         }
-
-        private CrewTemperaturePOCO ConvertDataTableToAgeFromDOBForCrewTemperaturByIDList(DataSet ds)
-        {
-            CrewTemperaturePOCO pC = new CrewTemperaturePOCO();
-            //check if there is at all any data
-            if (ds.Tables.Count > 0)
-            {
-                foreach (DataRow item in ds.Tables[0].Rows)
-                {
-                    if (item["Age"] != DBNull.Value)
-                        pC.Age = Convert.ToString(item["Age"]);
-                }
-            }
-            return pC;
-        }
-
 
 
 

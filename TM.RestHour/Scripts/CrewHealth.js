@@ -1113,7 +1113,9 @@ function GetAgeFromDOBForCrewTemperature(CrewID) {
         dataType: "json",
         success: function (result) {
             //debugger;
-            $('#Age').val(result.Age);
+            console.log('Age');
+            console.log(result);
+            $('#Age').val(result);
 
             //$('#myModal').modal('show');
             //$('#btnUpdate').show();

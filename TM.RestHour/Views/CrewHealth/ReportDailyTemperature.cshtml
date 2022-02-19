@@ -182,26 +182,26 @@
                                     <div class="">
                                         <div class="form-group">
                                             <label for="Height">Height(cm)</label>
-                                            <input type="text" class="form-control" id="Height" placeholder="Height" />
+                                            <input type="number" class="form-control" id="Height" placeholder="Height" />
                                         </div>
                                     </div>
                                     <div class="">
                                         <div class="form-group">
                                             <label for="Weight">Weight(kg)</label>
-                                            <input type="text" class="form-control" id="Weight" placeholder="Weight" />
+                                            <input type="number" class="form-control" id="Weight" placeholder="Weight" />
                                         </div>
                                     </div>
                                     <div class="">
                                         <div class="form-group">
                                             <label for="Age ">Age</label>
-                                            <input type="text" class="form-control" id="Age" placeholder="Age" />
+                                            <input type="number" class="form-control" id="Age" placeholder="Age" disabled/>
                                         </div>
                                     </div>
                                     <div class="">
                                         <div class="form-group">
                                             @*<button type="button" class="btn btn-info mrRHT-10" id="CalculateBMI"><i class="ti-eye"></i>Calculate BMI</button>*@
                                             <button type="button" class="btn btn-info mrRHT-10" id="btnSubmit" style="margin-top:0px;" onclick="return CalculateBMI();">Calculate BMI</button>
-                                            <input type="text" class="form-control" id="BMI" placeholder="BMI" />
+                                            <input type="number" class="form-control" id="BMI" placeholder="BMI" />
                                         </div>
                                     </div>
                                     <div class="">
@@ -218,47 +218,47 @@
                                     <div class="">
                                         <div class="form-group">
                                             <label for="Pulse ">Pulse</label>
-                                            <input type="text" class="form-control" id="Pulse" placeholder="Pulse" />
+                                            <input type="number" class="form-control" id="Pulse" placeholder="Pulse" />
                                         </div>
                                         <div class="form-group">
                                             <label for="RespiratoryRate ">Respiratory Rate</label>
-                                            <input type="text" class="form-control" id="RespiratoryRate" placeholder="Respiratory Rate" />
+                                            <input type="number" class="form-control" id="RespiratoryRate" placeholder="Respiratory Rate" />
                                         </div>
                                         <div class="form-group">
                                             <label for="SPO2 ">SPO2</label>
-                                            <input type="text" class="form-control" id="SPO2" placeholder="SPO2" />
+                                            <input type="number" class="form-control" id="SPO2" placeholder="SPO2" />
                                         </div>
                                         <div class="form-group">
                                             <label for="Haemoglobin ">Haemoglobin</label>
-                                            <input type="text" class="form-control" id="Haemoglobin" placeholder="Haemoglobin" />
+                                            <input type="number" class="form-control" id="Haemoglobin" placeholder="Haemoglobin" />
                                         </div>
                                         <div class="form-group">
                                             <label for="Creatinine ">Creatinine</label>
-                                            <input type="text" class="form-control" id="Creatinine" placeholder="Creatinine" />
+                                            <input type="number" class="form-control" id="Creatinine" placeholder="Creatinine" />
                                         </div>
                                         <div class="form-group">
                                             <label for="Bilirubin ">Bilirubin</label>
-                                            <input type="text" class="form-control" id="Bilirubin" placeholder="Bilirubin" />
+                                            <input type="number" class="form-control" id="Bilirubin" placeholder="Bilirubin" />
                                         </div>
                                         <div class="form-group">
                                             <label for="Temperature ">Temperature</label>
-                                            <input type="text" class="form-control" id="Temperature" placeholder="Temperature" />
+                                            <input type="number" class="form-control" id="Temperature" placeholder="Temperature" />
                                         </div>
                                         <div class="form-group">
                                             <label for="Systolic ">Systolic</label>
-                                            <input type="text" class="form-control" id="Systolic" placeholder="Systolic" />
+                                            <input type="number" class="form-control" id="Systolic" placeholder="Systolic" />
                                         </div>
                                         <div class="form-group">
                                             <label for="Diastolic ">Diastolic</label>
-                                            <input type="text" class="form-control" id="Diastolic" placeholder="Diastolic" />
+                                            <input type="number" class="form-control" id="Diastolic" placeholder="Diastolic" />
                                         </div>
                                         <div class="form-group">
                                             <label for="FastingSuger ">Fasting Suger</label>
-                                            <input type="text" class="form-control" id="FastingSuger" placeholder="Fasting Suger " />
+                                            <input type="number" class="form-control" id="FastingSuger" placeholder="Fasting Suger " />
                                         </div>
                                         <div class="form-group">
                                             <label for="RandomSuger ">Random Suger</label>
-                                            <input type="text" class="form-control" id="RandomSuger" placeholder="RandomSuger" />
+                                            <input type="number" class="form-control" id="RandomSuger" placeholder="RandomSuger" />
                                         </div>
                                        
                                     </div>
@@ -359,8 +359,7 @@
         $(document).ready(function () {
 
 
-            var cID = $('#ddlCrew').val();
-            GetAgeFromDOBForCrewTemperature(cID);
+          
 
 
             $('#btnPrint').attr('disabled', true);
@@ -385,9 +384,9 @@
                 $('#ddlCrew').val(loggedInUserId);
                 $("#ddlCrew").prop("disabled", true);
 
+                GetAgeFromDOBForCrewTemperature(loggedInUserId);
+
             }
-
-
 
         });
 
