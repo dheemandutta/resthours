@@ -8,12 +8,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Threading.Tasks;
-using Quartz;
+
 using Ionic.Zip;
 
 namespace TM.RestHour.ExportImport
 {
-    public class Import : IJob
+    public class Import
     {
         static String extractPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "xml");
         static String zipPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "ZipFile");
@@ -22,7 +22,7 @@ namespace TM.RestHour.ExportImport
         public static bool isMailReadSuccessful = false;
 
 
-        public async Task Execute(IJobExecutionContext context)
+        public void Execute()
         {
             ImportMail();
             if (isMailReadSuccessful)

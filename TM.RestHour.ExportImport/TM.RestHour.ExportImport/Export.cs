@@ -12,12 +12,11 @@ using System.Configuration;
 using System.Globalization;
 using System.Data.SqlClient;
 using Ionic.Zip;
-using Quartz;
 using System.Threading;
 
 namespace TM.RestHour.ExportImport
 {
-	public class Export : IJob
+	public class Export
 	{
 		static String path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "xml");
 		static String zippath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "ZipFile");
@@ -26,8 +25,8 @@ namespace TM.RestHour.ExportImport
 		static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
 
-		public async Task Execute(IJobExecutionContext context)
-		{
+        public void Execute()
+        {
 			logger.Info("Process Started. - {0}", DateTime.Now.ToString());
 
 			ArchiveZipFiles();
@@ -67,10 +66,13 @@ namespace TM.RestHour.ExportImport
 					logger.Info("Archiving Completed. - {0}", DateTime.Now.ToString());
 				}
 			}
+
 		}
 
 
-		public void CreateZip()
+
+
+		private   void CreateZip()
 		{
 
 			try
@@ -113,7 +115,7 @@ namespace TM.RestHour.ExportImport
 			}
 		}
 
-		public async void ExportData()
+		private   void ExportData()
 		{
 			try
 			{
@@ -147,7 +149,7 @@ namespace TM.RestHour.ExportImport
 			}
 		}
 
-		public async void ExportCrew()
+		private   void ExportCrew()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -164,7 +166,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportDepartmentAdmin()
+		private   void ExportDepartmentAdmin()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -180,7 +182,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportDepartmentMaster()
+		private   void ExportDepartmentMaster()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -196,7 +198,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportFirstRun()
+		private   void ExportFirstRun()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -212,7 +214,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportGroupRank()
+		private   void ExportGroupRank()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -228,7 +230,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportGroups()
+		private   void ExportGroups()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -244,7 +246,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportNCDetails()
+		private   void ExportNCDetails()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -260,7 +262,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportRanks()
+		private   void ExportRanks()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -276,7 +278,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportRegimes()
+		private   void ExportRegimes()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -292,7 +294,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportServiceTerms()
+		private   void ExportServiceTerms()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -308,7 +310,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportShip()
+		private   void ExportShip()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -324,7 +326,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExporttblRegime()
+		private   void ExporttblRegime()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -340,7 +342,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportTimeAdjustment()
+		private   void ExportTimeAdjustment()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -356,7 +358,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportUserGroups()
+		private   void ExportUserGroups()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -372,7 +374,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportUsers()
+		private   void ExportUsers()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -388,7 +390,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportWorkSessions()
+		private   void ExportWorkSessions()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -404,7 +406,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportCrewRegimeTR()
+		private   void ExportCrewRegimeTR()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -420,7 +422,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportCompanyDetails()
+		private   void ExportCompanyDetails()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -439,7 +441,7 @@ namespace TM.RestHour.ExportImport
 		/// <summary>
 		/// Moves file from ZipFile directory to Archive Directory
 		/// </summary>
-		public async void ArchiveZipFiles()
+		private   void ArchiveZipFiles()
 		{
 			string sourceFilePath = zippath + "\\";
 			string destinationFilePath = ziparchivePath + "\\";
@@ -470,7 +472,7 @@ namespace TM.RestHour.ExportImport
 		/// <summary>
 		/// sends a mail
 		/// </summary>
-		public void SendMail()
+		private   void SendMail()
 		{
 
 			try
@@ -521,7 +523,7 @@ namespace TM.RestHour.ExportImport
 
 		}
 
-		public string GetConfigData(string KeyName)
+		private   string GetConfigData(string KeyName)
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -542,7 +544,7 @@ namespace TM.RestHour.ExportImport
 			//}
 		}
 
-		public bool ZipDirectoryContainsZipFiles()
+		private   bool ZipDirectoryContainsZipFiles()
 		{
 			try
 			{
@@ -563,7 +565,7 @@ namespace TM.RestHour.ExportImport
 		/// Returns the first zip file name from the Zipfiles folder . If no file is preset it returns an empty string
 		/// </summary>
 		/// <returns></returns>
-		public string GetZipFileName()
+		private   string GetZipFileName()
 		{
 			if (ZipDirectoryContainsZipFiles())
 			{
@@ -575,5 +577,7 @@ namespace TM.RestHour.ExportImport
 				return string.Empty;
 			}
 		}
+
+
 	}
 }
