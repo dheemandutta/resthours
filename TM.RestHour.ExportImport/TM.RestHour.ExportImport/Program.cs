@@ -9,7 +9,6 @@ namespace TM.RestHour.ExportImport
 {
     static class Program
     {
-
         private static IScheduler scheduler;
         static void Main(string[] args)
         {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM.RestHour", "TM.RestHour\TM.RestHour.csproj", "{43C8A4E6-5164-42FE-BAE1-538E1CC8B70F}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM.RestHour.BL", "TM.RestHour.BL\TM.RestHour.BL.csproj", "{3740F608-FB55-4C62-B6F1-53A1F07FE1CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM.Compliance", "TM.Compliance\TM.Compliance.csproj", "{44C982AF-7121-4CBA-9A23-0BA98C9253C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM.RestHour.ExportImport", "TM.RestHour.ExportImport\TM.RestHour.ExportImport\TM.RestHour.ExportImport.csproj", "{2F814E76-01D8-4BFB-8F58-0C3A95B86E01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,12 @@ Global
 		{44C982AF-7121-4CBA-9A23-0BA98C9253C0}.Installer|Any CPU.Build.0 = Installer|Any CPU
 		{44C982AF-7121-4CBA-9A23-0BA98C9253C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44C982AF-7121-4CBA-9A23-0BA98C9253C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F814E76-01D8-4BFB-8F58-0C3A95B86E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F814E76-01D8-4BFB-8F58-0C3A95B86E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F814E76-01D8-4BFB-8F58-0C3A95B86E01}.Installer|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F814E76-01D8-4BFB-8F58-0C3A95B86E01}.Installer|Any CPU.Build.0 = Debug|Any CPU
+		{2F814E76-01D8-4BFB-8F58-0C3A95B86E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F814E76-01D8-4BFB-8F58-0C3A95B86E01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

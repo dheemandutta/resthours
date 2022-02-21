@@ -12,6 +12,7 @@ namespace TM.RestHour.ExportImport
     {
         File, EventLog
     }
+
     public abstract class LogBase
     {
         protected readonly object lockObj = new object();

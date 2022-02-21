@@ -15,9 +15,9 @@ namespace TM.RestHour.ExportImport
 {
     public class Import : IJob
     {
-        static String extractPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "xml\\Import");
-        static String zipPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "ZipFile\\Import");
-        static String zipArchivePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "Archive\\Import");
+        static String extractPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "xml");
+        static String zipPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "ZipFile");
+        static String zipArchivePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "Archive");
         static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public static bool isMailReadSuccessful = false;
 
@@ -165,7 +165,7 @@ namespace TM.RestHour.ExportImport
             try
             {
 
-                ImportWorkSession();
+                Crew();
                 logger.Info("Crew Import Complete. - {0}", DateTime.Now.ToString());
 
             }
@@ -216,7 +216,7 @@ namespace TM.RestHour.ExportImport
         }
 
 
-        public static void ImportWorkSession()
+        public static void Crew()
         {
             try
             {
@@ -280,7 +280,7 @@ namespace TM.RestHour.ExportImport
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "WorkSession Import");
+                logger.Error(ex, "Crew Import");
                 //throw;
             }
         }
