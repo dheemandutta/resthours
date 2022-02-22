@@ -66,6 +66,7 @@ namespace TM.RestHour.Models
         public int RowNumber { get; set; }
 
         public string JoiningMedicalFile { get; set; }
+        public string JoiningMedicalFileName { get; set; }
 
         public int TemperatureModeID { get; set; }
         public string TemperatureMode { get; set; }

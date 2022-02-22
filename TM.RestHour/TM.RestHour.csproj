@@ -212,6 +212,7 @@
     <Compile Include="Models\CrewViewModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Equipments.cs" />
+    <Compile Include="Models\ExaminationForMedicalAdvise.cs" />
     <Compile Include="Models\Groups.cs" />
     <Compile Include="Models\GroupsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ManageRank.cs" />
     <Compile Include="Models\ManageRankViewModel.cs" />
+    <Compile Include="Models\MedicalAdvise.cs" />
     <Compile Include="Models\MedicalChest.cs" />
     <Compile Include="Models\MedicalSymtomology.cs" />
     <Compile Include="Models\OneDayTimeAdjustment.cs" />
@@ -1278,6 +1280,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\MailCIRM.js" />
+    <Content Include="Scripts\MedicalAdvise.js" />
     <Content Include="Scripts\MedicalChest.js" />
     <Content Include="Scripts\Medicine.js" />
     <Content Include="Scripts\MentalHealthReport.js" />
@@ -1535,6 +1538,8 @@
     <Content Include="Views\Plan\Index.cshtml" />
     <Content Include="Views\Home\UserDashboard.cshtml" />
     <Content Include="Views\MentalHealth\MentalHealthReport.cshtml" />
+    <Content Include="Views\MedicalAssistance\DoctorVisited.cshtml" />
+    <Content Include="Views\Shared\_pvMedicalAdvise.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

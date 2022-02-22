@@ -1,0 +1,339 @@
+﻿
+
+<div id="dvMedicalAdviseContent">
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Crew">Crew</label>
+                @*@Html.DropDownListFor(model => model.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })*@
+                @*<select id="ddlCrew" name="VesselTypeID" class="form-control" disabled></select>*@
+                <input type="text" class="form-control" id="CrewName" placeholder="CrewName" disabled />
+            </div>
+            <div class="form-group">
+                <label for="Nationality">Nationality</label>
+                @* @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control", @id = "Nationality" })*@
+                @*<select id="Nationality" name="VesselTypeID" class="form-control" disabled></select>*@
+                <input type="text" class="form-control" id="Nationality" placeholder="VesselName" disabled />
+            </div>
+            <div class="form-group">
+                <label for="VesselName">Vessel Name</label>
+                <input type="text" class="form-control" id="VesselName" placeholder="VesselName" disabled />
+            </div>
+            <div class="form-group">
+                <label for="IMONumber">IMO Number</label>
+                <input type="text" class="form-control" id="IMONumber" placeholder="IMO Number" disabled />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Rank">Rank</label>
+                @*@Html.DropDownListFor(model => model.RankID, (IEnumerable<SelectListItem>)ViewBag.Ranks, "Select", new { @class = "form-control", @id = "ddlRank" })*@
+                @*<select id="ddlRank" name="VesselTypeID" class="form-control" disabled></select>*@
+                <input type="text" class="form-control" id="Rank" placeholder="Rank " disabled />
+            </div>
+            <div class="form-group">
+                <label for=" Age">Date Of Birth  </label>
+                <input type="text" class="form-control" id="Age" placeholder="Age " disabled />
+            </div>
+            <div class="form-group">
+                <label for="VesselType">Vessel Type</label>
+                @*@Html.DropDownListFor(model => model.VesselTypeID, (IEnumerable<SelectListItem>)ViewBag.VesselType, "Select", new { @class = "form-control" })*@
+                @*<select id="VesselTypeID" name="VesselTypeID" class="form-control" disabled></select>*@
+                <input type="text" class="form-control" id="VesselType" placeholder="VesselTypeID " disabled />
+            </div>
+            <div class="form-group">
+                <label for="Owner">Owner</label>
+                <input type="text" class="form-control" id="Owner" placeholder="Owner " disabled />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Gender ">Gender </label>
+                <input type="text" class="form-control" id="Gender" placeholder=" " disabled />
+            </div>
+
+            <div class="form-group">
+                <label for=" PassportOrSeaman">Passport</label>
+                <input type="text" class="form-control" id="PassportOrSeaman" placeholder="Passport No " disabled />
+            </div>
+            <div class="form-group">
+                <label for="Flag">Flag</label>
+                <input type="text" class="form-control" id="FlagOfShip" placeholder="Flag Of Ship" disabled />
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Diagnosis">Diagnosis</label>
+                <input type="text" class="form-control" id="Diagnosis" placeholder="VesselName" />
+            </div>
+            <div class="form-group">
+                <label for="IsIllnessDueToAnAccident">Is Illness Due To An Accident</label>
+                <select name="IsIllnessDueToAnAccident" class="form-control" id="IsIllnessDueToAnAccident">
+                    <option value="0">Select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="TreatmentPrescribed">Treatment Prescribed</label>
+                <input type="text" class="form-control" id="TreatmentPrescribed" placeholder="Treatment Prescribed " />
+            </div>
+            <div class="form-group">
+                <label for="MedicinePrescribed">MedicinePrescribed</label>
+                <input type="text" class="form-control" id="MedicinePrescribed" placeholder="MedicinePrescribed " />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Examination">Examination </label><button type="button" class="button1" id="addrows">Add</button>
+                @*<input type="text" class="form-control" id="Examination" placeholder=" "  />*@
+            </div>
+            <table id="tblExamination" class="display table table-Examination" cellspacing="0" @*style="display:none;"*@>
+                @*<thead>
+                        <tr>
+                            <th style="color: #000000;"><label for="">Prescription Name </label></th>
+                            <th style="color: #000000;"> <label for="Delete"></label></th>
+                        </tr>
+                    </thead>*@
+                <tbody>
+                    <tr class="MedicationDetailRow">
+                        <td><input type="text" class="form-control" id="ExaminationName" name="ExaminationName" placeholder="Examination Name" /></td>
+                        <td >
+                            <input type="hidden" class="form-control" id="hdnExaminationFilePath" name="hdnExaminationFilePath" />
+                            <button type="button" class="button1" id="" name="DeleteRow" disabled>View</button>
+                            <button type="button" class="button1" id="" name="DeleteRow" disabled>Attach</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="RequireHospitalisation">Require Hospitalisation</label>
+                <input type="text" class="form-control" id="RequireHospitalisation" placeholder="Require Hospitalisation" />
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="RequireSurgery">Require Surgery</label>
+                <input type="text" class="form-control" id="RequireSurgery" placeholder="Require Surgery" />
+            </div>
+
+        </div>
+    </div>
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+        <div class="col-md-8">
+            <div class="form-group">
+                <input type="checkbox" class="radio" value="1" name="IsFitForDuty" id="IsFitForDuty" />
+                <label for="IsFitForDuty">IsFitForDuty</label>
+                @*<input type="text" class="form-control" id="IsFitForDuty" placeholder="Require Hospitalisation" />*@
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" class="radio " value="1" name="IsMayJoinOnBoardButLightDuty" id="IsMayJoinOnBoardButLightDuty" />
+                <label for="IsMayJoinOnBoardButLightDuty">IsMayJoinOnBoardButLightDuty</label>
+                <div style="float:right;">
+                    <input type="text" class="" id="MayJoinOnBoardDays" placeholder="Days" style="width:100px;" /> <label for="">days</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" class="radio " value="1" name="IsUnfitForDuty" id="IsUnfitForDuty" />
+                <label for="IsUnfitForDuty">IsUnfitForDuty</label>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @*<label for="FitForDutyComments">FitForDutyComments</label>*@
+                <input type="text" class="form-control" id="FitForDutyComments" placeholder="Comments" />
+            </div>
+            <div class="form-group">
+                @*<label for="FitForDutyComments">FitForDutyComments</label>*@
+                <input type="text" class="form-control" id="IsMayJoinOnBoardButLightDuty" placeholder="Comments" />
+            </div>
+            <div class="form-group">
+                @*<label for="FitForDutyComments">FitForDutyComments</label>*@
+                <input type="text" class="form-control" id="UnfitForDutyComments" placeholder="Comments" />
+            </div>
+
+        </div>
+    </div>
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="FutureFitnessAndRestrictions">FutureFitnessAndRestrictions</label>
+                <input type="text" class="form-control" id="FutureFitnessAndRestrictions" placeholder="FutureFitnessAndRestrictions" />
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="DischargeSummary">DischargeSummary</label>
+                <input type="text" class="form-control" id="DischargeSummary" placeholder="DischargeSummary" />
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="FollowUpAction">FollowUpAction</label>
+                <input type="text" class="form-control" id="FollowUpAction" placeholder="FollowUpAction" />
+            </div>
+
+        </div>
+    </div>
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="DoctorName">DoctorName</label>
+                <input type="text" class="form-control" id="DoctorName" placeholder="DoctorName" />
+            </div>
+            <div class="form-group">
+                <label for="DoctorSpeciality">DoctorSpeciality</label>
+                <input type="text" class="form-control" id="DoctorSpeciality" placeholder="DoctorSpeciality" />
+            </div>
+            <div class="form-group">
+                <label for="NameOfHospital">NameOfHospital</label>
+                <input type="text" class="form-control" id="NameOfHospital" placeholder="NameOfHospital" />
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="DoctorContactNo">DoctorContactNo</label>
+                <input type="text" class="form-control" id="DoctorContactNo" placeholder="DoctorContactNo " />
+            </div>
+            <div class="form-group">
+                <label for=" DoctorMedicalRegNo">DoctorMedicalRegNo</label>
+                <input type="text" class="form-control" id="DoctorMedicalRegNo" placeholder="DoctorMedicalRegNo " />
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="DoctorEmail ">DoctorEmail </label>
+                <input type="text" class="form-control" id="DoctorEmail" placeholder=" " />
+            </div>
+
+            <div class="form-group">
+                <label for=" DoctorCountry">DoctorCountry</label>
+                <input type="text" class="form-control" id="DoctorCountry" placeholder="DoctorCountry " />
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row" style="border: 1px solid #eee; padding: 10px;">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="VisitDate">Visit Date</label>
+                <input type="text" class="form-control" id="TestDate" placeholder="Visit Date" />
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="button" class="btn btn-sm btn-info" id="btnSend" onclick="SaveMedicalAdvise();" value="Send" style="display:none;" />
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+
+    var trCount = 1;
+    $("#addrows").click(function () {
+        trCount += 1;
+        $("#tblExamination").each(function () {
+
+            var tds = '<tr>';
+            var tdCount = 0;
+            jQuery.each($('tr:last td', this), function () {
+                tdCount += 1;
+                //if (tdCount == 1)
+                //    tds += '<td>' + trCount + '</td>';
+                //else
+                //    tds += '<td>' + $(this).html() + '</td>';
+
+                tds += '<td>' + $(this).html() + '</td>';
+            });
+            tds += '</tr>';
+            if ($('tbody', this).length > 0) {
+                $('tbody', this).append(tds);
+            } else {
+                $(this).append(tds);
+            }
+
+        });
+
+        //----------------------------------------------------------
+
+
+        //if ($('#Examination').val().length !== 0) {
+        //    $("#tblExamination").show();
+        //    $("#tblExamination").each(function () {
+
+        //        var tds = '<tr>';
+        //        var tdCount = 0;
+        //        jQuery.each($('tr:last td', this), function () {
+        //            tdCount += 1;
+        //            //if (tdCount == 1)
+        //            //    tds += '<td>' + trCount + '</td>';
+        //            //else
+        //            //    tds += '<td>' + $(this).html() + '</td>';
+
+        //            tds += '<td>' + $(this).html() + '</td>';
+        //        });
+        //        tds += '</tr>';
+        //        if ($('tbody', this).length > 0) {
+        //            $('tbody', this).append(tds);
+        //        } else {
+        //            $(this).append(tds);
+        //        }
+
+        //    });
+        //}
+
+
+       
+    });
+
+    $("#TestDate").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+
+    if (pageName ==='DoctorVisited') {
+        $("#btnSend").hide();
+    }
+</script>
