@@ -35,10 +35,10 @@ namespace TM.RestHour.BL
             return crew.GetCrewPageWise(pageIndex, ref recordCount, length, VesselID);
         }
 
-        public List<CrewTemperaturePOCO> GetCrewTemperaturePageWiseByCrewID(int pageIndex, ref int recordCount, int length, int crewID)
+        public List<CrewTemperaturePOCO> GetCrewTemperaturePageWiseByCrewID(int pageIndex, ref int recordCount, int length, int crewID, int Month)
         {
             CrewDAL crew = new CrewDAL();
-            return crew.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref recordCount, length, crewID);
+            return crew.GetCrewTemperaturePageWiseByCrewID(pageIndex, ref recordCount, length, crewID, Month);
         }
 
         public List<CrewTemperaturePOCO> GetCrewTemperaturePageWiseByCrewID2(int pageIndex, ref int recordCount, int length, int crewID)
@@ -286,6 +286,18 @@ namespace TM.RestHour.BL
         {
             CrewDAL crew = new CrewDAL();
             return crew.SaveCrewTemperature(crewTemperature, VesselID);
+        }
+
+        public CrewTemperaturePOCO GetCrewTemperatureByID(int ID)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetCrewTemperatureByID(ID);
+        }
+
+        public string GetAgeFromDOBForCrewTemperature(int CrewID)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetAgeFromDOBForCrewTemperature(CrewID);
         }
 
         public List<CrewPOCO> GetAllTemperatureModeForDrp()

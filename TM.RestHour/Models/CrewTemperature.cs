@@ -8,19 +8,43 @@ namespace TM.RestHour.Models
     public class CrewTemperature
     {
         public int ID { get; set; }
+
         public int CrewID { get; set; }
-        public decimal Temperature { get; set; }
-        public string Unit { get; set; }
-        public string ReadingDate { get; set; }
-        public string ReadingTime { get; set; }
-        public string Comment { get; set; }
 
-        public int TemperatureModeID { get; set; }
-        public string TemperatureMode { get; set; }
+        public string BMI { get; set; }
 
-        public string Place { get; set; }
-        public string Means { get; set; }
-        public string CrewName { get; set; }
-        public string RankName { get; set; }
+        public string Height { get; set; }
+
+        public string Pulse { get; set; }
+
+        public string Haemoglobin { get; set; }
+
+        public string Temperature { get; set; }
+
+        public string FastingSuger { get; set; }
+
+        public int VesselID { get; set; }
+
+        public string RandomSuger { get; set; }
+
+        public string Systolic { get; set; }
+
+        public string Diastolic { get; set; }
+
+        public string Weight { get; set; }
+
+        public string DietaryRestriction { get; set; }
+
+        public string RespiratoryRate { get; set; }
+
+        public string Creatinine { get; set; }
+
+        public string SPO2 { get; set; }
+
+        public string Bilirubin { get; set; }
+
+        public string TakenDate { get; set; }
+
+        public string Age { get; set; }
     }
 }

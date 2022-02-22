@@ -46,6 +46,10 @@
                 @Html.Hidden("getCrewTemperaturePageWise", @Url.Action("GetCrewTemperaturePageWise", "CrewHealth"))
                 @Html.Hidden("getCrewTemperaturePageWise2", @Url.Action("GetCrewTemperaturePageWise2", "CrewHealth"))
 
+                @Html.Hidden("savecrewtemperature", @Url.Action("SaveCrewTemperature", "CrewHealth"))
+                @Html.Hidden("GetCrewTemperatureByID", @Url.Action("GetCrewTemperatureByID", "CrewHealth"))
+                @Html.Hidden("GetAgeFromDOBForCrewTemperature", @Url.Action("GetAgeFromDOBForCrewTemperature", "CrewHealth"))
+
                 <div class="" id="sideform">
                     <div class="">
                         <div class="card-block">
@@ -56,7 +60,30 @@
                                             <div>
                                                 <div class="mrLFT-10" id="sideform">
                                                     <label for="selectCrew">Crew</label>
+                                                    @*@Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })*@
+                                                    @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
                                                     @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+
+                                                </div>
+                                                <div class="mrLFT-10" id="sideform">
+                                                    <div class="form-group">
+                                                        <label for="ReportsDate">Month</label>
+                                                        <select id="Month" style="width:100%;" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value="1">January</option>
+                                                            <option value="2">February</option>
+                                                            <option value="3">March</option>
+                                                            <option value="4">April</option>
+                                                            <option value="5">May</option>
+                                                            <option value="6">June</option>
+                                                            <option value="7">July</option>
+                                                            <option value="8">August</option>
+                                                            <option value="9">September</option>
+                                                            <option value="10">October</option>
+                                                            <option value="11">November</option>
+                                                            <option value="12">December</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,23 +91,25 @@
                                     <div class="col-sm-8 col-xs-12">
                                         <div class="form-group  mrTP-30">
                                             <div class="pull-right">
-                                                <div class="pull-right" id="sideform">
-                                                    @*<button type="button" class="button1" id="btnAdd" onclick="return SetUpGridCrewTemperatureReport(CrewID)">Show Report</button>*@
-                                                    <button type="button" class="btn btn-info mrRHT-10" id="ShowReportForAll"><i class="ti-eye"></i> Show For All</button>
-                                                </div>
-                                                <div class="pull-right" id="sideform">
-                                                    <button type="button" class="btn btn-primary mrRHT-10" id="btnPrintForAll" @*disabled="disabled"*@><i class="ti-printer"></i> Print For All</button>
-                                                </div>
+                                                @*<div class="pull-right" id="sideform">
+                                            <button type="button" class="btn btn-info mrRHT-10" id="ShowReportForAll"><i class="ti-eye"></i> Show For All</button>
+                                        </div>*@
+                                                @*<div class="pull-right" id="sideform">
+                                            <button type="button" class="btn btn-primary mrRHT-10" id="btnPrintForAll"><i class="ti-printer"></i> Print For All</button>
+                                        </div>*@
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="pull-right">
                                                 <div class="pull-right" id="sideform">
-                                                    @*<button type="button" class="button1" id="btnAdd" onclick="return SetUpGridCrewTemperatureReport(CrewID)">Show Report</button>*@
                                                     <button type="button" class="btn btn-info mrRHT-10" id="ShowReport"><i class="ti-eye"></i> Show Report</button>
                                                 </div>
                                                 <div class="pull-right" id="sideform">
-                                                    <button type="button" class="btn btn-primary mrRHT-10" id="btnPrint" @*disabled="disabled"*@><i class="ti-printer"></i> Print Report</button>
+                                                    <button type="button" class="btn btn-info mrRHT-10" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add</button><br /><br />
                                                 </div>
+
+                                                @*<div class="pull-right" id="sideform">
+                                            <button type="button" class="btn btn-primary mrRHT-10" id="btnPrint"><i class="ti-printer"></i> Print Report</button>
+                                        </div>*@
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="clearfix"></div>
@@ -102,21 +131,153 @@
                     <table id="certtableReport2" class="display table dataTable no-footer">
                         <thead align="center" class="blue_Color color_white">
                             <tr>
-                                <th>Reading Date</th>
-                                <th>Reading Time</th>
-                                <th>Full Name</th>
-                                <th>Rank</th>
-                                <th>Place</th>
-                                <th>Temperature Mode</th>
-                                <th>Body Temperature (NORMAL : 36.0 – 37.5 C)</th>
-                                <th>Unit</th>
-                                <th>TEMPERATURE TAKEN THROUGH</th>
+                                <th>Date</th>
+                                <th>Temperature</th>
+                                <th>Systolic</th>
+                                <th>Diastolic</th>
+                                <th>Respiratory Rate</th>
+                                <th>Pulse Rate</th>
+                                <th>Haemoglobin</th>
+                                <th>Bilirubin</th>
+                                <th>Creatinine</th>
+                                <th>SPO2</th>
+                                <th>Fasting Suger</th>
+                                <th>Random Suger</th>
+                                <th>Edit</th>
                             </tr>
                         </thead>
                     </table>
                 </div>
 
             </div>
+
+
+
+
+
+            @*Modal popup*@
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:890px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Add Monthly Medical Data</h4>
+                        </div>
+
+
+
+
+                        <div class="modal-dialog" id="dvuserdetailsn" style="width: 802px;">
+                            <fieldset class="for-panel">
+                                  <div class="form-group">
+                                      <input type="hidden" id="ID" />
+                                  </div>
+                                <div class="row">
+
+                                    @*<div class="">
+                                        <label for="selectCrew">Crew Name</label>
+                                        @Html.HiddenFor(model => model.Crew.ID, new { id = "hdnCrewId", value = Model.Crew.ID })
+                                        @Html.DropDownListFor(model => model.Crew.ID, (IEnumerable<SelectListItem>)ViewBag.Crew, "Select", new { @class = "form-control", @id = "ddlCrew" })
+                                    </div>*@
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label for="Height">Height(cm)</label>
+                                            <input type="number" class="form-control" id="Height" placeholder="Height" />
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label for="Weight">Weight(kg)</label>
+                                            <input type="number" class="form-control" id="Weight" placeholder="Weight" />
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label for="Age ">Age</label>
+                                            <input type="number" class="form-control" id="Age" placeholder="Age" disabled/>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="form-group">
+                                            @*<button type="button" class="btn btn-info mrRHT-10" id="CalculateBMI"><i class="ti-eye"></i>Calculate BMI</button>*@
+                                            <button type="button" class="btn btn-info mrRHT-10" id="btnSubmit" style="margin-top:0px;" onclick="return CalculateBMI();">Calculate BMI</button>
+                                            <input type="number" class="form-control" id="BMI" placeholder="BMI" />
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label for="AnyDietaryRestrictions">Any Dietary Restrictions</label>
+                                            <input type="text" class="form-control" id="DietaryRestriction" placeholder="Any Dietary Restrictions" />      
+                                        </div>
+                                    </div>
+
+                                </div>
+                               
+                                <div class="row">
+                                    <legend>Vital Parameters</legend>
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label for="Pulse ">Pulse</label>
+                                            <input type="number" class="form-control" id="Pulse" placeholder="Pulse" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="RespiratoryRate ">Respiratory Rate</label>
+                                            <input type="number" class="form-control" id="RespiratoryRate" placeholder="Respiratory Rate" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="SPO2 ">SPO2</label>
+                                            <input type="number" class="form-control" id="SPO2" placeholder="SPO2" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Haemoglobin ">Haemoglobin</label>
+                                            <input type="number" class="form-control" id="Haemoglobin" placeholder="Haemoglobin" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Creatinine ">Creatinine</label>
+                                            <input type="number" class="form-control" id="Creatinine" placeholder="Creatinine" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Bilirubin ">Bilirubin</label>
+                                            <input type="number" class="form-control" id="Bilirubin" placeholder="Bilirubin" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Temperature ">Temperature</label>
+                                            <input type="number" class="form-control" id="Temperature" placeholder="Temperature" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Systolic ">Systolic</label>
+                                            <input type="number" class="form-control" id="Systolic" placeholder="Systolic" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Diastolic ">Diastolic</label>
+                                            <input type="number" class="form-control" id="Diastolic" placeholder="Diastolic" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="FastingSuger ">Fasting Suger</label>
+                                            <input type="number" class="form-control" id="FastingSuger" placeholder="Fasting Suger " />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="RandomSuger ">Random Suger</label>
+                                            <input type="number" class="form-control" id="RandomSuger" placeholder="RandomSuger" />
+                                        </div>
+                                       
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info mrRHT-10" id="btnAdd" onclick="return SaveCrewTemperature();" style="width:86px;">Add</button>
+                            <button type="button" class="btn btn-info mrRHT-10" id="btnUpdate" style="display:none; width:86px;" onclick="SaveCrewTemperature();">Update</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
         </div>
     </div>
@@ -174,7 +335,7 @@
             </tbody>
         </table>
     </div>
-    
+
 
 </div>
 @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
@@ -197,14 +358,68 @@
 
         $(document).ready(function () {
 
+
+          
+
+
             $('#btnPrint').attr('disabled', true);
             $('#btnPrintForAll').attr('disabled', true);
+
+            $("#btnAdd").prop("disabled", true); // deep
+
+
+
+
+
+
+            var loggedInUserId = 0;
+            loggedInUserId = $('#hdnCrewId').val();
+            //$('#btnPrint').attr('disabled', true);
+            //$('#btnAdd').attr('disabled', true);
+
+            if (loggedInUserId > 0) { // user level log in
+
+                console.log('Logged In UserId');
+                console.log(loggedInUserId);
+                $('#ddlCrew').val(loggedInUserId);
+                $("#ddlCrew").prop("disabled", true);
+
+                GetAgeFromDOBForCrewTemperature(loggedInUserId);
+
+            }
+
         });
+
+
+
+        $("#btnSubmit").click(function () {   //deep
+            //alert("button");
+            $("#btnAdd").prop("disabled", false);
+        });
+
+        function CalculateBMI() {
+            var weight = $("#Weight").val();
+            var height = $("#Height").val();
+            //alert(weight);
+            if (weight > 0 && height > 0) {
+                var actualht = height / 100;
+                actualht = actualht.toFixed(2);
+                var finalBmi = (weight / (actualht * actualht));
+                finalBmi = finalBmi.toFixed(2);
+
+                $("#BMI").val(finalBmi);
+            }
+        }
+
+
+
+
+
 
 
         $('#ShowReport').click(function () {
 
-            $('#btnPrint').attr('disabled', false);
+            //$('#btnPrint').attr('disabled', false);
             GetCrewTemperaturePageWiseByCrewID();
         });
 

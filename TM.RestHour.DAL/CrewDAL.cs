@@ -780,87 +780,282 @@ namespace TM.RestHour.DAL
             con.Open();
             SqlCommand cmd = new SqlCommand("stpSaveCrewTemperature", con);
             cmd.CommandType = CommandType.StoredProcedure;
+
             cmd.Parameters.AddWithValue("@CrewID", crewTemperature.CrewID.ToString());
 
-            cmd.Parameters.AddWithValue("@SPO2Level", crewTemperature.SPO2Level.ToString());
-            cmd.Parameters.AddWithValue("@Temperature", crewTemperature.Temperature.ToString());
-
-            if (!String.IsNullOrEmpty(crewTemperature.Unit))
+            if (!String.IsNullOrEmpty(crewTemperature.BMI))
             {
-                cmd.Parameters.AddWithValue("@Unit", crewTemperature.Unit.ToString());
+                cmd.Parameters.AddWithValue("@BMI", crewTemperature.BMI.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Unit", DBNull.Value);
+                cmd.Parameters.AddWithValue("@BMI", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(crewTemperature.ReadingDate))
+            if (!String.IsNullOrEmpty(crewTemperature.Height))
             {
-                cmd.Parameters.AddWithValue("@ReadingDate", crewTemperature.ReadingDate.ToString());
+                cmd.Parameters.AddWithValue("@Height", crewTemperature.Height.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@ReadingDate", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Height", DBNull.Value);
             }
-            
-            cmd.Parameters.AddWithValue("@ReadingTime", crewTemperature.ReadingTime.ToString());
 
-            if (!String.IsNullOrEmpty(crewTemperature.Comment))
+            if (!String.IsNullOrEmpty(crewTemperature.Pulse))
             {
-                cmd.Parameters.AddWithValue("@Comment", crewTemperature.Comment);
+                cmd.Parameters.AddWithValue("@Pulse", crewTemperature.Pulse.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Pulse", DBNull.Value);
             }
 
-
-
-            if (!String.IsNullOrEmpty(crewTemperature.Place))
+            if (!String.IsNullOrEmpty(crewTemperature.Haemoglobin))
             {
-                cmd.Parameters.AddWithValue("@Place", crewTemperature.Place);
+                cmd.Parameters.AddWithValue("@Haemoglobin", crewTemperature.Haemoglobin.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Place", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Haemoglobin", DBNull.Value);
             }
 
-            if (!String.IsNullOrEmpty(crewTemperature.Means))
+            if (!String.IsNullOrEmpty(crewTemperature.Temperature))
             {
-                cmd.Parameters.AddWithValue("@Means", crewTemperature.Means);
+                cmd.Parameters.AddWithValue("@Temperature", crewTemperature.Temperature.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Means", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Temperature", DBNull.Value);
             }
 
-            cmd.Parameters.AddWithValue("@Fever", crewTemperature.Fever);
-            cmd.Parameters.AddWithValue("@Cough", crewTemperature.Cough);
-            cmd.Parameters.AddWithValue("@LossOfTesteOrSmell", crewTemperature.LossOfTesteOrSmell);
-            cmd.Parameters.AddWithValue("@Tiredness", crewTemperature.Tiredness);
-            cmd.Parameters.AddWithValue("@Headache", crewTemperature.Headache);
-            cmd.Parameters.AddWithValue("@Diarrhoea", crewTemperature.Diarrhoea);
-            cmd.Parameters.AddWithValue("@Breathlessness", crewTemperature.Breathlessness);
-            cmd.Parameters.AddWithValue("@Vomiting", crewTemperature.Vomiting);
-            cmd.Parameters.AddWithValue("@ChestPain", crewTemperature.ChestPain);
-
-            if (!String.IsNullOrEmpty(crewTemperature.Others))
+            if (!String.IsNullOrEmpty(crewTemperature.FastingSuger))
             {
-                cmd.Parameters.AddWithValue("@Others", crewTemperature.Others);
+                cmd.Parameters.AddWithValue("@FastingSuger", crewTemperature.FastingSuger.ToString());
             }
             else
             {
-                cmd.Parameters.AddWithValue("@Others", DBNull.Value);
+                cmd.Parameters.AddWithValue("@FastingSuger", DBNull.Value);
             }
 
+            if (!String.IsNullOrEmpty(crewTemperature.RandomSuger))
+            {
+                cmd.Parameters.AddWithValue("@RandomSuger", crewTemperature.RandomSuger.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@RandomSuger", DBNull.Value);
+            }
 
-            cmd.Parameters.AddWithValue("@TemperatureModeID", crewTemperature.TemperatureModeID);
+            if (!String.IsNullOrEmpty(crewTemperature.Systolic))
+            {
+                cmd.Parameters.AddWithValue("@Systolic", crewTemperature.Systolic.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Systolic", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.Diastolic))
+            {
+                cmd.Parameters.AddWithValue("@Diastolic", crewTemperature.Diastolic.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Diastolic", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.Weight))
+            {
+                cmd.Parameters.AddWithValue("@Weight", crewTemperature.Weight.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Weight", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.DietaryRestriction))
+            {
+                cmd.Parameters.AddWithValue("@DietaryRestriction", crewTemperature.DietaryRestriction.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DietaryRestriction", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.RespiratoryRate))
+            {
+                cmd.Parameters.AddWithValue("@RespiratoryRate", crewTemperature.RespiratoryRate.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@RespiratoryRate", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.Creatinine))
+            {
+                cmd.Parameters.AddWithValue("@Creatinine", crewTemperature.Creatinine.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Creatinine", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.SPO2))
+            {
+                cmd.Parameters.AddWithValue("@SPO2", crewTemperature.SPO2.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@SPO2", DBNull.Value);
+            }
+
+            if (!String.IsNullOrEmpty(crewTemperature.Bilirubin))
+            {
+                cmd.Parameters.AddWithValue("@Bilirubin", crewTemperature.Bilirubin.ToString());
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Bilirubin", DBNull.Value);
+            }
+
             cmd.Parameters.AddWithValue("@VesselID", VesselID);
+
+
+            if (crewTemperature.ID > 0)
+            {
+                cmd.Parameters.AddWithValue("@ID", crewTemperature.ID);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ID", DBNull.Value);
+            }
 
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
             return recordsAffected;
         }
+
+
+        public CrewTemperaturePOCO GetCrewTemperatureByID(int ID/*, int VesselID*/)
+        {
+            List<CrewTemperaturePOCO> prodPOList = new List<CrewTemperaturePOCO>();
+            List<CrewTemperaturePOCO> prodPO = new List<CrewTemperaturePOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetCrewTemperatureByID", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", ID);
+                    //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return ConvertDataTableToCrewTemperatureByIDList(ds);
+        }
+
+        private CrewTemperaturePOCO ConvertDataTableToCrewTemperatureByIDList(DataSet ds)
+        {
+            CrewTemperaturePOCO pC = new CrewTemperaturePOCO();
+            //check if there is at all any data
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    if (item["ID"] != DBNull.Value)
+                        pC.ID = Convert.ToInt32(item["ID"].ToString());
+
+                    if (item["CrewID"] != DBNull.Value)
+                        pC.CrewID = Convert.ToInt32(item["CrewID"].ToString());
+
+                    if (item["BMI"] != DBNull.Value)
+                        pC.BMI = item["BMI"].ToString();
+
+                    if (item["Height"] != DBNull.Value)
+                        pC.Height = item["Height"].ToString();
+
+                    if (item["Pulse"] != DBNull.Value)
+                        pC.Pulse = item["Pulse"].ToString();
+
+                    if (item["Haemoglobin"] != DBNull.Value)
+                        pC.Haemoglobin = item["Haemoglobin"].ToString();
+
+                    if (item["Temperature"] != DBNull.Value)
+                        pC.Temperature = item["Temperature"].ToString();
+
+                    if (item["FastingSuger"] != DBNull.Value)
+                        pC.FastingSuger = item["FastingSuger"].ToString();
+
+                    //if (item["VesselID"] != DBNull.Value)
+                    //    pC.VesselID = item["VesselID"].ToString();
+
+                    if (item["RandomSuger"] != DBNull.Value)
+                        pC.RandomSuger = item["RandomSuger"].ToString();
+
+                    if (item["Systolic"] != DBNull.Value)
+                        pC.Systolic = item["Systolic"].ToString();
+
+                    if (item["Diastolic"] != DBNull.Value)
+                        pC.Diastolic = item["Diastolic"].ToString();
+
+                    if (item["Weight"] != DBNull.Value)
+                        pC.Weight = item["Weight"].ToString();
+
+                    if (item["DietaryRestriction"] != DBNull.Value)
+                        pC.DietaryRestriction = item["DietaryRestriction"].ToString();
+
+                    if (item["RespiratoryRate"] != DBNull.Value)
+                        pC.RespiratoryRate = item["RespiratoryRate"].ToString();
+
+                    if (item["Creatinine"] != DBNull.Value)
+                        pC.Creatinine = item["Creatinine"].ToString();
+
+                    if (item["SPO2"] != DBNull.Value)
+                        pC.SPO2 = item["SPO2"].ToString();
+
+                    if (item["Bilirubin"] != DBNull.Value)
+                        pC.Bilirubin = item["Bilirubin"].ToString();
+
+                    //if (item["TakenDate"] != DBNull.Value)
+                    //    pC.TakenDate = item["TakenDate"].ToString();
+
+
+
+                    //List<int> days = new List<int>();
+                    //departmentList.Add(departmentPC);
+                }
+            }
+            return pC;
+        }
+
+
+        public string GetAgeFromDOBForCrewTemperature(int CrewID/*, int VesselID*/)
+        {
+            List<CrewTemperaturePOCO> prodPOList = new List<CrewTemperaturePOCO>();
+            List<CrewTemperaturePOCO> prodPO = new List<CrewTemperaturePOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetAgeFromDOBForCrewTemperature", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewID", CrewID);
+                    //cmd.Parameters.AddWithValue("@VesselID", VesselID);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return ds.Tables[0].Rows[0]["Age"].ToString();
+        }
+
+
 
         public List<CrewPOCO> GetAllTemperatureModeForDrp()
         {
@@ -883,7 +1078,7 @@ namespace TM.RestHour.DAL
 
         }
 
-        public List<CrewTemperaturePOCO> GetCrewTemperaturePageWiseByCrewID(int pageIndex, ref int recordCount, int length, int crewID)
+        public List<CrewTemperaturePOCO> GetCrewTemperaturePageWiseByCrewID(int pageIndex, ref int recordCount, int length, int crewID, int Month)
         {
 
             List<CrewTemperaturePOCO> crewPOList = new List<CrewTemperaturePOCO>();
@@ -899,6 +1094,8 @@ namespace TM.RestHour.DAL
                     cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
                     cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
                     cmd.Parameters.AddWithValue("@CrewID", crewID);
+                    cmd.Parameters.AddWithValue("@Month", Month);
+                    
                     con.Open();
 
                     DataSet ds = new DataSet();
@@ -910,16 +1107,25 @@ namespace TM.RestHour.DAL
                     {
                         crewPOList.Add(new CrewTemperaturePOCO
                         {
-                            //ID = Convert.ToInt32(dr["ID"]),
-                            ReadingDate = Convert.ToString(dr["ReadingDate"]),
-                            ReadingTime = Convert.ToString(dr["ReadingTime"]),
-                            CrewName = Convert.ToString(dr["CrewName"]),
-                            RankName = Convert.ToString(dr["RankName"]),
-                            Place = Convert.ToString(dr["Place"]),
-                            TemperatureMode = Convert.ToString(dr["TemperatureMode"]),
-                            Temperature = Convert.ToDecimal(dr["Temperature"]),
-                            Unit = Convert.ToString(dr["Unit"]),
-                            Means = Convert.ToString(dr["Means"])
+                            ID = Convert.ToInt32(dr["ID"]),
+                            CrewID = Convert.ToInt32(dr["CrewID"]),
+                            BMI = Convert.ToString(dr["BMI"]),
+                            Height = Convert.ToString(dr["Height"]),
+                            Pulse = Convert.ToString(dr["Pulse"]),
+                            Haemoglobin = Convert.ToString(dr["Haemoglobin"]),
+                            Temperature = Convert.ToString(dr["Temperature"]),
+                            FastingSuger = Convert.ToString(dr["FastingSuger"]),
+                            VesselID = Convert.ToInt32(dr["VesselID"]),
+                            RandomSuger = Convert.ToString(dr["RandomSuger"]),
+                            Systolic = Convert.ToString(dr["Systolic"]),
+                            Diastolic = Convert.ToString(dr["Diastolic"]),
+                            Weight = Convert.ToString(dr["Weight"]),
+                            DietaryRestriction = Convert.ToString(dr["DietaryRestriction"]),
+                            RespiratoryRate = Convert.ToString(dr["RespiratoryRate"]),
+                            Creatinine = Convert.ToString(dr["Creatinine"]),
+                            SPO2 = Convert.ToString(dr["SPO2"]),
+                            Bilirubin = Convert.ToString(dr["Bilirubin"]),
+                            TakenDate = Convert.ToString(dr["TakenDate"])
                         });
                     }
                     recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
@@ -957,15 +1163,23 @@ namespace TM.RestHour.DAL
                         crewPOList.Add(new CrewTemperaturePOCO
                         {
                             //ID = Convert.ToInt32(dr["ID"]),
-                            ReadingDate = Convert.ToString(dr["ReadingDate"]),
-                            ReadingTime = Convert.ToString(dr["ReadingTime"]),
-                            CrewName = Convert.ToString(dr["CrewName"]),
-                            RankName = Convert.ToString(dr["RankName"]),
-                            Place = Convert.ToString(dr["Place"]),
-                            TemperatureMode = Convert.ToString(dr["TemperatureMode"]),
-                            Temperature = Convert.ToDecimal(dr["Temperature"]),
-                            Unit = Convert.ToString(dr["Unit"]),
-                            Means = Convert.ToString(dr["Means"])
+                            CrewID = Convert.ToInt32(dr["CrewID"]),
+                            BMI = Convert.ToString(dr["BMI"]),
+                            Height = Convert.ToString(dr["Height"]),
+                            Pulse = Convert.ToString(dr["Pulse"]),
+                            Haemoglobin = Convert.ToString(dr["Haemoglobin"]),
+                            Temperature = Convert.ToString(dr["Temperature"]),
+                            FastingSuger = Convert.ToString(dr["FastingSuger"]),
+                            VesselID = Convert.ToInt32(dr["VesselID"]),
+                            RandomSuger = Convert.ToString(dr["RandomSuger"]),
+                            Systolic = Convert.ToString(dr["Systolic"]),
+                            Diastolic = Convert.ToString(dr["Diastolic"]),
+                            Weight = Convert.ToString(dr["Weight"]),
+                            DietaryRestriction = Convert.ToString(dr["DietaryRestriction"]),
+                            RespiratoryRate = Convert.ToString(dr["RespiratoryRate"]),
+                            Creatinine = Convert.ToString(dr["Creatinine"]),
+                            SPO2 = Convert.ToString(dr["SPO2"]),
+                            Bilirubin = Convert.ToString(dr["Bilirubin"])
                         });
                     }
                     recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
@@ -1005,15 +1219,23 @@ namespace TM.RestHour.DAL
                         crewPOList.Add(new CrewTemperaturePOCO
                         {
                             //ID = Convert.ToInt32(dr["ID"]),
-                            ReadingDate = Convert.ToString(dr["ReadingDate"]),
-                            ReadingTime = Convert.ToString(dr["ReadingTime"]),
-                            CrewName = Convert.ToString(dr["CrewName"]),
-                            RankName = Convert.ToString(dr["RankName"]),
-                            Place = Convert.ToString(dr["Place"]),
-                            TemperatureMode = Convert.ToString(dr["TemperatureMode"]),
-                            Temperature = Convert.ToDecimal(dr["Temperature"]),
-                            Unit = Convert.ToString(dr["Unit"]),
-                            Means = Convert.ToString(dr["Means"])
+                            CrewID = Convert.ToInt32(dr["CrewID"]),
+                            BMI = Convert.ToString(dr["BMI"]),
+                            Height = Convert.ToString(dr["Height"]),
+                            Pulse = Convert.ToString(dr["Pulse"]),
+                            Haemoglobin = Convert.ToString(dr["Haemoglobin"]),
+                            Temperature = Convert.ToString(dr["Temperature"]),
+                            FastingSuger = Convert.ToString(dr["FastingSuger"]),
+                            VesselID = Convert.ToInt32(dr["VesselID"]),
+                            RandomSuger = Convert.ToString(dr["RandomSuger"]),
+                            Systolic = Convert.ToString(dr["Systolic"]),
+                            Diastolic = Convert.ToString(dr["Diastolic"]),
+                            Weight = Convert.ToString(dr["Weight"]),
+                            DietaryRestriction = Convert.ToString(dr["DietaryRestriction"]),
+                            RespiratoryRate = Convert.ToString(dr["RespiratoryRate"]),
+                            Creatinine = Convert.ToString(dr["Creatinine"]),
+                            SPO2 = Convert.ToString(dr["SPO2"]),
+                            Bilirubin = Convert.ToString(dr["Bilirubin"])
                         });
                     }
                     recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);

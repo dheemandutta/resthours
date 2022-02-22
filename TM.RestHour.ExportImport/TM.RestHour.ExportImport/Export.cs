@@ -12,22 +12,21 @@ using System.Configuration;
 using System.Globalization;
 using System.Data.SqlClient;
 using Ionic.Zip;
-using Quartz;
 using System.Threading;
 
 namespace TM.RestHour.ExportImport
 {
-	public class Export : IJob
+	public class Export
 	{
-		static String path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "xml\\Export");
-		static String zippath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "ZipFile\\Export");
-		static String ziparchivePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "Archive\\Export");
+		static String path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "xml");
+		static String zippath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "ZipFile");
+		static String ziparchivePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase.Substring(8)), "Archive");
 		public static bool isMailSendSuccessful = false;
 		static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
 
-		public async Task Execute(IJobExecutionContext context)
-		{
+        public void Execute()
+        {
 			logger.Info("Process Started. - {0}", DateTime.Now.ToString());
 
 			ArchiveZipFiles();
@@ -41,13 +40,9 @@ namespace TM.RestHour.ExportImport
 					ArchiveZipFiles();
 					//redo the whole process again
 					isMailSendSuccessful = false;
-					logger.Info("Data Export Started. - {0}", DateTime.Now.ToString());
 					ExportData();
-					logger.Info("Data Export Completed. - {0}", DateTime.Now.ToString());
 					CreateZip();
-					logger.Info("Zip Created. - {0}", DateTime.Now.ToString());
 					SendMail();
-					logger.Info("Mail Sent. - {0}", DateTime.Now.ToString());
 					if (isMailSendSuccessful)
 					{
 						ArchiveZipFiles();
@@ -71,10 +66,13 @@ namespace TM.RestHour.ExportImport
 					logger.Info("Archiving Completed. - {0}", DateTime.Now.ToString());
 				}
 			}
+
 		}
 
 
-		public void CreateZip()
+
+
+		private   void CreateZip()
 		{
 
 			try
@@ -117,31 +115,24 @@ namespace TM.RestHour.ExportImport
 			}
 		}
 
-		public async void ExportData()
+		private   void ExportData()
 		{
 			try
 			{
-				ExportShip();
-				logger.Info("Ship Export Complete. - {0}", DateTime.Now.ToString());
-				ExportRanks();
-				logger.Info("Rank Export Complete. - {0}", DateTime.Now.ToString());
 				ExportCrew();
-				logger.Info("Crew Export Complete. - {0}", DateTime.Now.ToString());
-				ExportDepartmentMaster();
-				logger.Info("DepartmentMaster Export Complete. - {0}", DateTime.Now.ToString());
 				ExportDepartmentAdmin();
-				logger.Info("DepartmentAdmin Export Complete. - {0}", DateTime.Now.ToString());
-				ExportWorkSessions();
-				logger.Info("WorkSessions Export Complete. - {0}", DateTime.Now.ToString());
-				ExportNCDetails();
-				logger.Info("NCDetails Export Complete. - {0}", DateTime.Now.ToString());
-				ExportServiceTerms();
-				logger.Info("ServiceTerms Export Complete .- {0}", DateTime.Now.ToString());
-				ExporttblRegime();
-				logger.Info("tblRegime Export Complete. - {0}", DateTime.Now.ToString());
+				ExportDepartmentMaster();
 
-				//ExportTimeAdjustment();
-				//ExportCrewRegimeTR();
+				ExportNCDetails();
+				ExportRanks();
+
+				ExportServiceTerms();
+				ExportShip();
+				ExporttblRegime();
+				ExportTimeAdjustment();
+
+				ExportWorkSessions();
+				ExportCrewRegimeTR();
 
 			}
 
@@ -158,77 +149,56 @@ namespace TM.RestHour.ExportImport
 			}
 		}
 
-		public async void ExportCrew()
+		private   void ExportCrew()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportCrew", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCrew", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
 
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Crewxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Crew Export");
-            }
-        }
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Crewxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-		public async void ExportDepartmentAdmin()
+		private   void ExportDepartmentAdmin()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportDepartmentAdmin", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["DepartmentAdminxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "DepartmentAdmin Export");
-            }
-        }
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportDepartmentAdmin", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["DepartmentAdminxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-		public async void ExportDepartmentMaster()
+		private   void ExportDepartmentMaster()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportDepartmentMaster", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["DepartmentMasterxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "DepartmentMaster Export");
-            }
-        }
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportDepartmentMaster", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["DepartmentMasterxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-		public async void ExportFirstRun()
+		private   void ExportFirstRun()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -244,7 +214,7 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportGroupRank()
+		private   void ExportGroupRank()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -260,278 +230,199 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		public async void ExportGroups()
+		private   void ExportGroups()
 		{
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("stpExportGroups", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            DataSet ds = new DataSet();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(ds);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Groupsxml"].ToString(), XmlWriteMode.WriteSchema);
-            }
-            con.Close();
-
-        }
-
-        public async void ExportNCDetails()
-		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportNCDetails", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["NCDetailsxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "NCDetails Export");
-            }
-        }
-
-        public async void ExportRanks()
-		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportRanks", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Ranksxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Ranks Export");
-            }
-        }
-
-        public async void ExportRegimes()
-		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportRegimes", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Regimesxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Regimes Export");
-            }
-        }
-
-        public async void ExportServiceTerms()
-		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportServiceTerms", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["ServiceTermsxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "ServiceTerms Export");
-            }
-        }
-
-        public async void ExportShip()
-		{
-            try
-            {
-				SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-				con.Open();
-				SqlCommand cmd = new SqlCommand("stpExportShip", con);
-				cmd.CommandType = CommandType.StoredProcedure;
-				DataSet ds = new DataSet();
-				SqlDataAdapter da = new SqlDataAdapter(cmd);
-				da.Fill(ds);
-				if (ds.Tables[0].Rows.Count > 0)
-				{
-					ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Shipxml"].ToString(), XmlWriteMode.WriteSchema);
-				}
-				con.Close();
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportGroups", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Groupsxml"].ToString(), XmlWriteMode.WriteSchema);
 			}
-			catch(Exception ex)
-            {
-				logger.Error(ex, "Ship Export");
-			}
-			
+			con.Close();
 		}
 
-		public async void ExporttblRegime()
+		private   void ExportNCDetails()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExporttblRegime", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["tblRegimexml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "tblRegime Export");
-            }
-        }
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportNCDetails", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["NCDetailsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-		public async void ExportTimeAdjustment()
+		private   void ExportRanks()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportTimeAdjustment", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["TimeAdjustmentxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "TimeAdjustment Export");
-            }
-        }
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportRanks", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Ranksxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-        public async void ExportUserGroups()
+		private   void ExportRegimes()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportUserGroups", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["UserGroupsxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "UserGroups Export");
-            }
-        }
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportRegimes", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Regimesxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-		public async void ExportUsers()
+		private   void ExportServiceTerms()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportUsers", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Usersxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Users Export");
-            }
-        }
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportServiceTerms", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["ServiceTermsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-		public async void ExportWorkSessions()
+		private   void ExportShip()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportWorkSessions", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["WorkSessionsxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "WorkSessions Export");
-            }
-        }
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportShip", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Shipxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-		public async void ExportCrewRegimeTR()
+		private   void ExporttblRegime()
 		{
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("stpExportCrewRegimeTR", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CrewRegimeTRxml"].ToString(), XmlWriteMode.WriteSchema);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "CrewRegimeTR Export");
-            }
-        }
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExporttblRegime", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["tblRegimexml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
 
-		public async void ExportCompanyDetails()
+		private   void ExportTimeAdjustment()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportTimeAdjustment", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["TimeAdjustmentxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private   void ExportUserGroups()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportUserGroups", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["UserGroupsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private   void ExportUsers()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportUsers", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["Usersxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private   void ExportWorkSessions()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportWorkSessions", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["WorkSessionsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private   void ExportCrewRegimeTR()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCrewRegimeTR", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CrewRegimeTRxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private   void ExportCompanyDetails()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -550,7 +441,7 @@ namespace TM.RestHour.ExportImport
 		/// <summary>
 		/// Moves file from ZipFile directory to Archive Directory
 		/// </summary>
-		public async void ArchiveZipFiles()
+		private   void ArchiveZipFiles()
 		{
 			string sourceFilePath = zippath + "\\";
 			string destinationFilePath = ziparchivePath + "\\";
@@ -581,7 +472,7 @@ namespace TM.RestHour.ExportImport
 		/// <summary>
 		/// sends a mail
 		/// </summary>
-		public void SendMail()
+		private   void SendMail()
 		{
 
 			try
@@ -632,7 +523,7 @@ namespace TM.RestHour.ExportImport
 
 		}
 
-		public string GetConfigData(string KeyName)
+		private   string GetConfigData(string KeyName)
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -653,7 +544,7 @@ namespace TM.RestHour.ExportImport
 			//}
 		}
 
-		public bool ZipDirectoryContainsZipFiles()
+		private   bool ZipDirectoryContainsZipFiles()
 		{
 			try
 			{
@@ -674,7 +565,7 @@ namespace TM.RestHour.ExportImport
 		/// Returns the first zip file name from the Zipfiles folder . If no file is preset it returns an empty string
 		/// </summary>
 		/// <returns></returns>
-		public string GetZipFileName()
+		private   string GetZipFileName()
 		{
 			if (ZipDirectoryContainsZipFiles())
 			{
@@ -686,5 +577,7 @@ namespace TM.RestHour.ExportImport
 				return string.Empty;
 			}
 		}
+
+
 	}
 }

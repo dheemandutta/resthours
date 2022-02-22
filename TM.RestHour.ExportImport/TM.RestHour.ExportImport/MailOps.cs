@@ -119,15 +119,8 @@ namespace TM.RestHour.ExportImport
                 else if (MailServerType == MailType.IMAP)
                 {
                     var inbox = imap_Client.Inbox;
-                    IList<UniqueId> uids = null;
-                    //inbox.Open(FolderAccess.ReadWrite);
-                    //IList<UniqueId> uids = inbox.Search(SearchQuery.NotSeen);
-                    //************above two lines replaced by below if condition**** on 7th Oct 2021*****/
-                    if (inbox != null)
-                    {
-                        inbox.Open(FolderAccess.ReadWrite);
-                        uids = inbox.Search(SearchQuery.NotSeen);
-                    }
+                    inbox.Open(FolderAccess.ReadWrite);
+                    IList<UniqueId> uids = inbox.Search(SearchQuery.NotSeen);
                     foreach (UniqueId uid in uids)
                     {
 

@@ -16228,3 +16228,9 @@ button:disabled {
         transform: scaleY(1);
     }
 }
+
+/*for popup*/
+.modal-dialog {
+
+    pointer-events: painted !important;
+}
