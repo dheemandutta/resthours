@@ -438,6 +438,178 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
+
+
+
+
+		//for new table ....
+
+		private void ExportCIRMAccidentDetails()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMAccidentDetails", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMAccidentDetailsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMAffectedFindings()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMAffectedFindings", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMAffectedFindingsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMMedicalSymtomology()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMMedicalSymtomology", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMMedicalSymtomologyxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMMedicalTreatmentGivenOnboard()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMMedicalTreatmentGivenOnboard", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMMedicalTreatmentGivenOnboardxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMMedicationTaken()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMMedicationTaken", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMMedicationTakenxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMTeleMedicalConsultation()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMTeleMedicalConsultation", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMTeleMedicalConsultationxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMUploadedImages()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMUploadedImages", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMUploadedImagesxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMVitalStatistics()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMVitalStatistics", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMVitalStatisticsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMVoyageDetails()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMVoyageDetails", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMVoyageDetailsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportCIRMWeatherDetails()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMWeatherDetails", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMWeatherDetailsxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+
+
+
+
+
+
 		/// <summary>
 		/// Moves file from ZipFile directory to Archive Directory
 		/// </summary>

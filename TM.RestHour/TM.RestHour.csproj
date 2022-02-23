@@ -678,6 +678,7 @@
     <Content Include="devsqlscripts\14-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\23-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\28-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\29-01-2022 resthoursclient Full script.sql" />
@@ -1377,6 +1378,7 @@
     <Content Include="sqlscripts\14-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\22-01-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\23-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\27-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\28-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\29-01-2022 resthoursclient Full script.sql" />
@@ -1535,6 +1537,7 @@
     <Content Include="Views\Plan\Index.cshtml" />
     <Content Include="Views\Home\UserDashboard.cshtml" />
     <Content Include="Views\MentalHealth\MentalHealthReport.cshtml" />
+    <Content Include="Views\Reports\ReportDailyTemperature.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
