@@ -1032,6 +1032,32 @@ namespace TM.RestHour.DAL
             return pC;
         }
 
+        /// <summary>
+        /// Added on 23rd Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// BY BIN
+        /// <returns></returns>
+        public CrewTemperaturePOCO GetLatestCrewTemperatureByCrew(int crewId)
+        {
+            List<CrewTemperaturePOCO> prodPOList = new List<CrewTemperaturePOCO>();
+            List<CrewTemperaturePOCO> prodPO = new List<CrewTemperaturePOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetCrewTemperatureByCrew", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewId", crewId);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Close();
+                }
+            }
+            return ConvertDataTableToCrewTemperatureByIDList(ds);
+        }
 
         public string GetAgeFromDOBForCrewTemperature(int CrewID/*, int VesselID*/)
         {
@@ -1253,6 +1279,27 @@ namespace TM.RestHour.DAL
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("stpSaveJoiningMedicalFilePath", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CrewId", crewId);
+            cmd.Parameters.AddWithValue("@File", filepath);
+
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return recordsAffected;
+        }
+        /// <summary>
+        /// Added on 22nd Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public int SavePrescribedMedicineFilePath(int crewId, string filepath)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("stpSavePrescribedMedicineFilePath", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@CrewId", crewId);

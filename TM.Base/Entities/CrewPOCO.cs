@@ -68,6 +68,7 @@ namespace TM.Base.Entities
         public string File { get; set; }
 
         public string JoiningMedicalFile { get; set; }
+        public string JoiningMedicalFileName { get; set; }
 
         public int TemperatureModeID { get; set; }
         public string TemperatureMode { get; set; }

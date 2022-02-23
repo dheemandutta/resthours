@@ -15,5 +15,23 @@ namespace TM.RestHour.BL
             MedicalAdviseDAL medicalAdviseDAL = new MedicalAdviseDAL();
             return medicalAdviseDAL.GetMedicalAdvise(CrewId, TestDate);
         }
+        public MedicalAdvisePOCO GetMedicalAdviseById(int adviseId)
+        {
+            MedicalAdviseDAL medicalAdviseDAL = new MedicalAdviseDAL();
+            return medicalAdviseDAL.GetMedicalAdviseById(adviseId);
+        }
+        public List<MedicalAdvisePOCO> GetAllMedicalAdviseByCrew(int CrewId)
+        {
+            MedicalAdviseDAL medicalAdviseDAL = new MedicalAdviseDAL();
+
+            return medicalAdviseDAL.GetAllMedicalAdviseByCrew(CrewId);
+        }
+
+        public int SaveMedicalAdvise(MedicalAdvisePOCO mAdvisePoco)
+        {
+            MedicalAdviseDAL mAdviseDal = new MedicalAdviseDAL();
+
+            return mAdviseDal.SaveMedicalAdvise(mAdvisePoco);
+        }
     }
 }

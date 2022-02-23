@@ -98,6 +98,8 @@
     <Compile Include="Entities\UsersPOCO.cs" />
     <Compile Include="Entities\VesselDetailsPOCO.cs" />
     <Compile Include="Entities\VitalStatisticsPOCO.cs" />
+    <Compile Include="Entities\WellBeingHealthPOCO.cs" />
+    <Compile Include="Entities\WellBeingPOCO.cs" />
     <Compile Include="Entities\WorkingHoursPOCO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

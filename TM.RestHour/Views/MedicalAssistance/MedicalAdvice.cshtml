@@ -4,5 +4,74 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MedicalAdvice</h2>
+@*<h2>MedicalAdvice</h2>*@
 
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<script src="~/Scripts/MedicalAdvise.js"></script>
+
+<!-- style CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/colors/default.css" id="colorSkinCSS">
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugin/datepicker/css/pickmeup.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+<div class="">
+    <div class="head_title">
+        @*<h1 class="ta">Medical Advise</h1>*@
+        <input type="hidden" id="CIRMId" />
+        <input type="hidden" id="hdnPageName" value="MedicalAdvise" />
+    </div>
+    <div class="card bac">
+
+        @Html.Partial("_pvMedicalAdvise")
+
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script>
+
+        $(document).ready(function () {
+            pageName = $("#hdnPageName").val();
+
+            $("#btnSend").show();
+            
+
+        });
+
+        $("#VisitDate").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'd-M-yy',
+
+        });
+    </script>
+
+    
+   }

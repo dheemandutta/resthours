@@ -88,6 +88,57 @@ namespace TM.RestHour.Controllers
         {
             return View();
         }
+        public ActionResult DoctorVisited()
+        {
+            List<MedicalAdvise> allMedicalAdvise = new List<MedicalAdvise>();
+            
+
+            MedicalAdviseBL madviseBl = new MedicalAdviseBL();
+            List<MedicalAdvisePOCO> madvisePocoList = new List<MedicalAdvisePOCO>();
+
+            madvisePocoList = madviseBl.GetAllMedicalAdviseByCrew(Convert.ToInt32(Session["UserID"].ToString()));
+            if(madvisePocoList.Count() > 0)
+            {
+                foreach(MedicalAdvisePOCO madvisePoco in madvisePocoList)
+                {
+                    MedicalAdvise mAdvise = new MedicalAdvise();
+                    mAdvise.Id = madvisePoco.Id;
+                    mAdvise.Diagnosis = madvisePoco.Diagnosis;
+                    mAdvise.TreatmentPrescribed = madvisePoco.TreatmentPrescribed;
+                    mAdvise.IsIllnessDueToAnAccident = madvisePoco.IsIllnessDueToAnAccident;
+                    mAdvise.MedicinePrescribed = madvisePoco.MedicinePrescribed;
+                    mAdvise.RequireHospitalisation = madvisePoco.RequireHospitalisation;
+                    mAdvise.RequireSurgery = madvisePoco.RequireSurgery;
+                    mAdvise.IsFitForDuty = madvisePoco.IsFitForDuty;
+                    mAdvise.FitForDutyComments = madvisePoco.FitForDutyComments;
+                    mAdvise.IsMayJoinOnBoardButLightDuty = madvisePoco.IsMayJoinOnBoardButLightDuty;
+                    mAdvise.MayJoinOnBoardDays = madvisePoco.MayJoinOnBoardDays;
+                    mAdvise.MayJoinOnBoardComments = madvisePoco.MayJoinOnBoardComments;
+                    mAdvise.IsUnfitForDuty = madvisePoco.IsUnfitForDuty;
+                    mAdvise.UnfitForDutyComments = madvisePoco.UnfitForDutyComments;
+                    mAdvise.FutureFitnessAndRestrictions = madvisePoco.FutureFitnessAndRestrictions;
+                    mAdvise.DischargeSummary = madvisePoco.DischargeSummary;
+                    mAdvise.FollowUpAction = madvisePoco.FollowUpAction;
+                    mAdvise.DoctorName = madvisePoco.DoctorName;
+                    mAdvise.DoctorContactNo = madvisePoco.DoctorContactNo;
+                    mAdvise.DoctorEmail = madvisePoco.DoctorEmail;
+                    mAdvise.DoctorSpeciality = madvisePoco.DoctorSpeciality;
+                    mAdvise.DoctorMedicalRegNo = madvisePoco.DoctorMedicalRegNo;
+                    mAdvise.DoctorCountry = madvisePoco.DoctorCountry;
+                    mAdvise.NameOfHospital = madvisePoco.NameOfHospital;
+                    mAdvise.Path = madvisePoco.Path;
+                    mAdvise.TestDate = madvisePoco.TestDate;
+                    mAdvise.CrewId = madvisePoco.CrewId;
+
+                    allMedicalAdvise.Add(mAdvise);
+                }
+            }
+
+
+            return View(allMedicalAdvise);
+        }
+
+
 
 
         #region Dropdown
@@ -797,5 +848,234 @@ namespace TM.RestHour.Controllers
         }
 
         #endregion
+
+        [HttpPost]
+        public JsonResult UploadMedicalAdviseFile(string category, string visitDate)
+        {
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    List<string> returnMsg = new List<string>();
+                    string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                    fileName = category +"_" + Convert.ToInt32(Session["UserID"].ToString()) +"_" + visitDate;//Useless
+
+                    //  Get all files from Request object  
+                    HttpFileCollectionBase files = Request.Files;
+
+                    for (int i = 0; i < files.Count; i++)
+                    {
+
+                        HttpPostedFileBase file = files[i];
+                        string fname;
+                        string extn;
+
+                        // Checking for Internet Explorer  
+                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                        {
+                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                            fname = testfiles[testfiles.Length - 1];
+                            extn = Path.GetExtension(fname);
+                        }
+                        else
+                        {
+                            fname = file.FileName;
+                            extn = Path.GetExtension(file.FileName);
+                        }
+                        string path = Server.MapPath(ConfigurationManager.AppSettings["MedicalAdviseFilePath"].ToString());
+                        string filePath = ConfigurationManager.AppSettings["MedicalAdviseFilePath"].ToString();
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        if (System.IO.File.Exists(path + fileName))
+                        {
+                            System.IO.File.Delete(path + fileName);
+                        }
+                        fileName = fileName + extn;
+                        // Get the complete folder path and store the file inside it.  
+                        string fnameWithServerPath = Path.Combine(path, fileName);
+                        string fnameWithPath = Path.Combine(filePath, fileName);
+                        file.SaveAs(fnameWithServerPath);
+                        returnMsg.Add(fnameWithPath);
+
+                    }
+
+                    returnMsg.Add(category + " File Uploaded Successfully!");
+
+
+                    return Json(returnMsg, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json("Error occurred. Error details: " + ex.Message);
+                }
+            }
+            else
+            {
+                return Json("No files selected.");
+            }
+        }
+
+        [HttpPost]
+        public JsonResult AddMedicalAdvise(MedicalAdvise medicalAdvise)
+        {
+            MedicalAdviseBL mAdviseBl = new MedicalAdviseBL();
+            MedicalAdvisePOCO mAdvisePo = new MedicalAdvisePOCO();
+            string crewUserId = string.Empty;
+
+            mAdvisePo.TestDate = medicalAdvise.TestDate;
+            mAdvisePo.Path = medicalAdvise.Path;
+            mAdvisePo.CrewId = Convert.ToInt32(Session["UserID"].ToString());
+
+            mAdvisePo.Diagnosis                     = medicalAdvise.Diagnosis;
+            mAdvisePo.TreatmentPrescribed           = medicalAdvise.TreatmentPrescribed;
+            mAdvisePo.IsIllnessDueToAnAccident      = medicalAdvise.IsIllnessDueToAnAccident;
+            mAdvisePo.MedicinePrescribed            = medicalAdvise.MedicinePrescribed;
+            mAdvisePo.RequireHospitalisation        = medicalAdvise.RequireHospitalisation;
+            mAdvisePo.RequireSurgery                = medicalAdvise.RequireSurgery;
+            mAdvisePo.IsFitForDuty                  = medicalAdvise.IsFitForDuty;
+            mAdvisePo.FitForDutyComments            = medicalAdvise.FitForDutyComments;
+            mAdvisePo.IsMayJoinOnBoardButLightDuty  = medicalAdvise.IsMayJoinOnBoardButLightDuty;
+            mAdvisePo.MayJoinOnBoardDays            = medicalAdvise.MayJoinOnBoardDays;
+            mAdvisePo.MayJoinOnBoardComments        = medicalAdvise.MayJoinOnBoardComments;
+            mAdvisePo.IsUnfitForDuty                = medicalAdvise.IsUnfitForDuty;
+            mAdvisePo.UnfitForDutyComments          = medicalAdvise.UnfitForDutyComments;
+            mAdvisePo.FutureFitnessAndRestrictions  = medicalAdvise.FutureFitnessAndRestrictions;
+            mAdvisePo.DischargeSummary              = medicalAdvise.DischargeSummary;
+            mAdvisePo.FollowUpAction                = medicalAdvise.FollowUpAction;
+            mAdvisePo.DoctorName                    = medicalAdvise.DoctorName;
+            mAdvisePo.DoctorContactNo               = medicalAdvise.DoctorContactNo;
+            mAdvisePo.DoctorEmail                   = medicalAdvise.DoctorEmail;
+            mAdvisePo.DoctorSpeciality              = medicalAdvise.DoctorSpeciality;
+            mAdvisePo.DoctorMedicalRegNo            = medicalAdvise.DoctorMedicalRegNo;
+            mAdvisePo.DoctorCountry                 = medicalAdvise.DoctorCountry;
+            mAdvisePo.NameOfHospital                = medicalAdvise.NameOfHospital;
+
+            if(medicalAdvise.ExaminationForMedicalAdviseList.Count() > 0)
+            {
+                foreach(ExaminationForMedicalAdvise exmtnMedAdvise in medicalAdvise.ExaminationForMedicalAdviseList)
+                {
+                    ExaminationForMedicalAdvisePOCO exmtnMedAdvisePo = new ExaminationForMedicalAdvisePOCO();
+
+                    exmtnMedAdvisePo.Id = exmtnMedAdvise.Id;
+                    exmtnMedAdvisePo.Examination = exmtnMedAdvise.Examination;
+                    exmtnMedAdvisePo.ExaminationDate = exmtnMedAdvise.ExaminationDate;
+                    exmtnMedAdvisePo.ExaminationPath = exmtnMedAdvise.ExaminationPath;
+
+                    mAdvisePo.ExaminationForMedicalAdviseList.Add(exmtnMedAdvisePo);
+                }
+               
+            }
+
+
+            return Json(mAdviseBl.SaveMedicalAdvise(mAdvisePo), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetMedicalAdviseDetails(string adviseId)
+        {
+            MedicalAdvise mAdvise = new MedicalAdvise();
+            MedicalAdvisePOCO madvisePoco = new MedicalAdvisePOCO();
+            MedicalAdviseBL mAdviseBl = new MedicalAdviseBL();
+
+            List<ExaminationForMedicalAdvise> exmtnMedAdviseList = new List<ExaminationForMedicalAdvise>();
+
+            madvisePoco = mAdviseBl.GetMedicalAdviseById(Convert.ToInt32(adviseId));
+
+            mAdvise.Id                              = madvisePoco.Id;
+            mAdvise.Diagnosis                       = madvisePoco.Diagnosis;
+            mAdvise.TreatmentPrescribed             = madvisePoco.TreatmentPrescribed;
+            mAdvise.IsIllnessDueToAnAccident        = madvisePoco.IsIllnessDueToAnAccident;
+            mAdvise.MedicinePrescribed              = madvisePoco.MedicinePrescribed;
+            mAdvise.RequireHospitalisation          = madvisePoco.RequireHospitalisation;
+            mAdvise.RequireSurgery                  = madvisePoco.RequireSurgery;
+            mAdvise.IsFitForDuty                    = madvisePoco.IsFitForDuty;
+            mAdvise.FitForDutyComments              = madvisePoco.FitForDutyComments;
+            mAdvise.IsMayJoinOnBoardButLightDuty    = madvisePoco.IsMayJoinOnBoardButLightDuty;
+            mAdvise.MayJoinOnBoardDays              = madvisePoco.MayJoinOnBoardDays;
+            mAdvise.MayJoinOnBoardComments          = madvisePoco.MayJoinOnBoardComments;
+            mAdvise.IsUnfitForDuty                  = madvisePoco.IsUnfitForDuty;
+            mAdvise.UnfitForDutyComments            = madvisePoco.UnfitForDutyComments;
+            mAdvise.FutureFitnessAndRestrictions    = madvisePoco.FutureFitnessAndRestrictions;
+            mAdvise.DischargeSummary                = madvisePoco.DischargeSummary;
+            mAdvise.FollowUpAction                  = madvisePoco.FollowUpAction;
+            mAdvise.DoctorName                      = madvisePoco.DoctorName;
+            mAdvise.DoctorContactNo                 = madvisePoco.DoctorContactNo;
+            mAdvise.DoctorEmail                     = madvisePoco.DoctorEmail;
+            mAdvise.DoctorSpeciality                = madvisePoco.DoctorSpeciality;
+            mAdvise.DoctorMedicalRegNo              = madvisePoco.DoctorMedicalRegNo;
+            mAdvise.DoctorCountry                   = madvisePoco.DoctorCountry;
+            mAdvise.NameOfHospital                  = madvisePoco.NameOfHospital;
+            mAdvise.Path                            = madvisePoco.Path;
+            mAdvise.TestDate                        = madvisePoco.TestDate;
+
+            mAdvise.CrewId                          = madvisePoco.CrewId;
+            mAdvise.CrewName                        = madvisePoco.CrewName;
+            mAdvise.RankName                        = madvisePoco.RankName;
+            mAdvise.Gender                          = madvisePoco.Gender;
+            mAdvise.Nationality                     = madvisePoco.Nationality;
+            mAdvise.DOB                             = madvisePoco.DOB;
+            mAdvise.PassportOrSeaman                = madvisePoco.PassportOrSeaman;
+            mAdvise.VesselName                      = madvisePoco.VesselName;
+            mAdvise.VesselSubType                   = madvisePoco.VesselSubType;
+            mAdvise.FlagOfShip                      = madvisePoco.FlagOfShip;
+            mAdvise.IMONumber                       = madvisePoco.IMONumber;
+            mAdvise.CompanyOwner                    = madvisePoco.CompanyOwner;
+
+            if(madvisePoco.ExaminationForMedicalAdviseList.Count() > 0)
+            {
+                foreach(ExaminationForMedicalAdvisePOCO emaPo in madvisePoco.ExaminationForMedicalAdviseList)
+                {
+                    ExaminationForMedicalAdvise ema = new ExaminationForMedicalAdvise();
+
+                    ema.Id = emaPo.Id;
+                    ema.MedicalAdviseId = emaPo.MedicalAdviseId;
+                    ema.Examination = emaPo.Examination;
+                    ema.ExaminationPath = emaPo.ExaminationPath;
+                    ema.ExaminationDate = emaPo.ExaminationDate;
+
+                    exmtnMedAdviseList.Add(ema);
+                }
+            }
+            mAdvise.ExaminationForMedicalAdviseList = exmtnMedAdviseList;
+
+
+            return Json(mAdvise, JsonRequestBehavior.AllowGet);
+            //return Json(cirmPoco, JsonRequestBehavior.AllowGet);
+        }
+
+        public FileResult Download(string filePath)
+        {
+            string path = Server.MapPath(filePath);
+            //var folderPath = Path.Combine(path, catName);
+            //filePath = Path.Combine(path, filePath);
+            filePath = path;
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(filePath, FileMode.Open))
+            {
+                stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            var ext = Path.GetExtension(filePath).ToLowerInvariant();
+            return File(memory, GetMimeTypes()[ext], Path.GetFileName(filePath));
+        }
+        private Dictionary<string, string> GetMimeTypes()
+        {
+            return new Dictionary<string, string>
+            {
+                {".txt", "text/plain"},
+                {".pdf", "application/pdf"},
+                {".doc", "application/vnd.ms-word"},
+                {".docx", "application/vnd.ms-word"},
+                {".png", "image/png"},
+                {".jpg", "image/jpeg"},
+                //{".xlsx", "application/vnd.openxmlformats officedocument.spreadsheetml.sheet"},
+                {".jpeg", "image/jpeg"},
+                {".gif", "image/gif"},
+                {".csv", "text/csv"}
+            };
+        }
+
     }
 }

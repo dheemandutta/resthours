@@ -85,6 +85,7 @@
     <Compile Include="UserGroupsBL.cs" />
     <Compile Include="UsersBL.cs" />
     <Compile Include="VesselDetailsBL.cs" />
+    <Compile Include="WellBeingBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TM.Base\TM.Base.csproj">

@@ -84,6 +84,7 @@
     <Compile Include="UserGroupsDAL.cs" />
     <Compile Include="UsersDAL.cs" />
     <Compile Include="VesselDetailsDAL.cs" />
+    <Compile Include="WellBeingDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TM.Base\TM.Base.csproj">
