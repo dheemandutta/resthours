@@ -946,6 +946,24 @@ namespace TM.RestHour.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Added on 23rd Feb 2022
+        /// </summary>
+        /// <param name="crewID"></param>
+        /// BY BIN
+        /// <returns></returns>
+        public JsonResult GetLatestCrewTemperatureByCrew(int crewID)
+        {
+            CrewBL crewBl = new CrewBL();
+            CrewTemperaturePOCO crewTemperaturePC = new CrewTemperaturePOCO();
+
+            crewTemperaturePC = crewBl.GetLatestCrewTemperatureByCrew(crewID);
+
+            var data = crewTemperaturePC;
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        
         public JsonResult GetAgeFromDOBForCrewTemperature(string CrewID)
         {
             CrewBL crewBl = new CrewBL();
@@ -1505,6 +1523,77 @@ namespace TM.RestHour.Controllers
                 CrewBL crewBL = new CrewBL();
 
                 crewBL.SaveJoiningMedicalFilePath(int.Parse(formCollection["ID"].ToString()), fileName);
+
+                ViewBag.UploadMessage = "File Uploaded Successfully";
+            }
+            GetAllCrewForTimeSheet();
+            //admissionBl.SaveOrUpdate(admissionForm);   ID,fileName,
+            return View();
+        }
+
+
+        public ActionResult UploadPrescribedMedicine()
+        {
+            // GetAllCrewForTimeSheet();
+            GetAllCrewForDrp();
+            GetAllCrewForTimeSheet();
+            CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
+            Crew c = new Crew();
+            crewtimesheetVM.Crew = c;
+
+            if (Convert.ToBoolean(Session["User"]) == true)
+            {
+                crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+                crewtimesheetVM.CrewAdminId = 0;
+            }
+            else
+            {
+                crewtimesheetVM.Crew.ID = 0;
+                crewtimesheetVM.CrewAdminId = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
+                crewtimesheetVM.AdminStatus = System.Web.HttpContext.Current.Session["AdminStatus"].ToString();
+            }
+            return View(crewtimesheetVM);
+        }
+
+        [HttpPost]
+        [TraceFilterAttribute]
+        public ActionResult UploadPresCribedMedicine(HttpPostedFileBase postedFile, FormCollection formCollection)
+        {
+            //AdmissionFormBL admissionBl = new AdmissionFormBL();
+            if (postedFile != null)
+            {
+                //upload images
+                string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                fileName = "PrescribeMedicine" + "_" + formCollection["ID"].ToString();
+
+                //To Get File Extension
+                string FileExtension = Path.GetExtension(postedFile.FileName);
+                fileName = fileName + FileExtension;
+
+                if (FileExtension != ".pdf")
+                {
+                    ViewBag.UploadMessage = "You can only upload files of type pdf";
+                    return View();
+                }
+
+                //Get Upload path from Web.Config file AppSettings.
+                string path = Server.MapPath(ConfigurationManager.AppSettings["PrescribedMedicineUploadPath"].ToString());
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (System.IO.File.Exists(path + fileName))
+                {
+                    System.IO.File.Delete(path + fileName);
+                }
+
+                //To copy and save file into server.
+                postedFile.SaveAs(path + fileName);
+                ////BL call..............
+                CrewBL crewBL = new CrewBL();
+
+                crewBL.SavePrescribedMedicineFilePath(int.Parse(formCollection["ID"].ToString()), fileName);
 
                 ViewBag.UploadMessage = "File Uploaded Successfully";
             }

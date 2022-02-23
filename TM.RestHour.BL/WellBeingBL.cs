@@ -16,10 +16,36 @@ namespace TM.RestHour.BL
             return wbDAL.GetWellBeingHealthPageWise(pageIndex, ref recordCount, length);
         }
 
+        /// <summary>
+        /// Added on 21st Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// <returns></returns>
         public CrewPOCO GetJoiningMedicalFile(int crewId)
         {
             WellBeingDAL wbDAL = new WellBeingDAL();
             return wbDAL.GetJoiningMedicalFile(crewId);
+        }
+
+        /// <summary>
+        /// Added on 22nd Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// <returns></returns>
+        public CrewPOCO GetPrescribedMedicineFile(int crewId)
+        {
+            WellBeingDAL wbDAL = new WellBeingDAL();
+            return wbDAL.GetPrescribedMedicineFile(crewId);
+        }
+        /// <summary>
+        /// Added on 22nd Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// <returns></returns>
+        public CrewPOCO GetMedicalAdviseFile(int crewId)
+        {
+            WellBeingDAL wbDAL = new WellBeingDAL();
+            return wbDAL.GetMedicalAdviseFile(crewId);
         }
     }
 }

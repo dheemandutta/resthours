@@ -43,7 +43,7 @@
                 <th scope="col">Monthy Medical Data</th>
                 <th scope="col">Prescription Medicine</th>
                 <th scope="col">Medical Advice</th>
-                <th scope="col">Medicine Prescribed</th>
+                @*<th scope="col">Medicine Prescribed</th>*@
                 <th scope="col">Other </th>
             </tr>
         </thead>
@@ -92,34 +92,6 @@
     </table>
 </div>
 
-<div class="modal fade" id="viewAdviseDetailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog col-xl">
-        <div class="modal-content" style="width:170%;">
-            <div class="modal-header">
-
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
-            </div>
-
-            <div class="card-body" id="dvuserdetailsn">
-
-                @Html.Partial("_pvMedicalAdvise")
-
-
-
-
-            </div>
-
-            <div class="modal-footer">
-                <label class="hidden" id="lblSuccMsg"></label>
-                @*<button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>*@
-                @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
-                <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="modal fade" id="viewJoiningMedialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -159,6 +131,42 @@
 
     </div>
 </div>
+
+@***********************Daily Temperature Edit Modal************************@
+@Html.Partial("_pvDailyTemperatureModal")
+
+@***************End********Daily Temperature Edit Modal************************@
+
+
+<div class="modal fade" id="viewAdviseDetailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog col-xl">
+        <div class="modal-content" style="width:170%;">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+
+            <div class="card-body" id="dvuserdetailsn">
+
+                @Html.Partial("_pvMedicalAdvise")
+
+
+
+
+            </div>
+
+            <div class="modal-footer">
+                <label class="hidden" id="lblSuccMsg"></label>
+                @*<button type="button" class="buttonpop" id="btnAdd" onclick="return Add();" style="width:86px;">Add</button>*@
+                @*<button type="button" class="buttonpop" id="btnUpdate" style="display:none; width:86px;" onclick="Add();">Update</button>*@
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @section Scripts
 {

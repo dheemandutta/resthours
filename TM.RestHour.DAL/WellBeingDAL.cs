@@ -88,6 +88,11 @@ namespace TM.RestHour.DAL
                     else
                         wbHealthPo.IsMedicinePrescribed = false;
 
+                    if (item["OT"] != DBNull.Value)
+                        wbHealthPo.IsOthers = Convert.ToBoolean(item["OT"].ToString());
+                    else
+                        wbHealthPo.IsOthers = false;
+
 
 
                     wbHealthPocoList.Add(wbHealthPo);
@@ -100,7 +105,11 @@ namespace TM.RestHour.DAL
             return wbPo;
         }
 
-
+        /// <summary>
+        /// Added on 21st Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// <returns></returns>
         public CrewPOCO GetJoiningMedicalFile(int crewId)
         {
             CrewPOCO jm = new CrewPOCO();
@@ -129,6 +138,84 @@ namespace TM.RestHour.DAL
                 if (ds.Tables[0].Rows[0]["JoiningMedicalFile"] != null)
                     jm.JoiningMedicalFile = ds.Tables[0].Rows[0]["JoiningMedicalFile"].ToString();
                 
+            }
+
+
+            return jm;
+        }
+
+        /// <summary>
+        /// Added on 22nd Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// <returns></returns>
+        public CrewPOCO GetPrescribedMedicineFile(int crewId)
+        {
+            CrewPOCO jm = new CrewPOCO();
+
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetPrescribedMedicineFileByCrew", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewId", crewId);
+                    cmd.CommandTimeout = 100;
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                    da.Fill(ds);
+
+
+                    con.Close();
+                }
+            }
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+
+                if (ds.Tables[0].Rows[0]["PrescribedMedicineFile"] != null)
+                    jm.JoiningMedicalFile = ds.Tables[0].Rows[0]["PrescribedMedicineFile"].ToString();
+
+            }
+
+
+            return jm;
+        }
+
+        /// <summary>
+        /// Added on 22nd Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// <returns></returns>
+        public CrewPOCO GetMedicalAdviseFile(int crewId)
+        {
+            CrewPOCO jm = new CrewPOCO();
+
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetMedicalAdviseFileByCrew", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CrewId", crewId);
+                    cmd.CommandTimeout = 100;
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                    da.Fill(ds);
+
+
+                    con.Close();
+                }
+            }
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+
+                if (ds.Tables[0].Rows[0]["Path"] != null)
+                    jm.JoiningMedicalFile = ds.Tables[0].Rows[0]["Path"].ToString();
+
             }
 
 

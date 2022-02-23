@@ -1540,6 +1540,8 @@
     <Content Include="Views\MentalHealth\MentalHealthReport.cshtml" />
     <Content Include="Views\MedicalAssistance\DoctorVisited.cshtml" />
     <Content Include="Views\Shared\_pvMedicalAdvise.cshtml" />
+    <Content Include="Views\CrewHealth\UploadPrescribedMedicine.cshtml" />
+    <Content Include="Views\Shared\_pvDailyTemperatureModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

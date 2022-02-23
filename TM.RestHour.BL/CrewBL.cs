@@ -294,6 +294,18 @@ namespace TM.RestHour.BL
             return crew.GetCrewTemperatureByID(ID);
         }
 
+        /// <summary>
+        /// Added on 23rd Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// BY BIN
+        /// <returns></returns>
+        public CrewTemperaturePOCO GetLatestCrewTemperatureByCrew(int crewId)
+        {
+            CrewDAL crew = new CrewDAL();
+            return crew.GetLatestCrewTemperatureByCrew(crewId);
+        }
+
         public string GetAgeFromDOBForCrewTemperature(int CrewID)
         {
             CrewDAL crew = new CrewDAL();
@@ -320,6 +332,17 @@ namespace TM.RestHour.BL
         {
             CrewDAL crewDAL = new CrewDAL();
             return crewDAL.SaveJoiningMedicalFilePath(crewId, filepath);        //UploadJoiningMedical  --->  in Controler
+        }
+        /// <summary>
+        /// Added on 22nd Feb 2022
+        /// </summary>
+        /// <param name="crewId"></param>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public int SavePrescribedMedicineFilePath(int crewId, string filepath)
+        {
+            CrewDAL crewDAL = new CrewDAL();
+            return crewDAL.SavePrescribedMedicineFilePath(crewId, filepath);        //UploadPrescribedMedicine  --->  in Controler
         }
 
         public int SaveMedicineAvailableOnBoardFilePath(int crewId, string filepath)

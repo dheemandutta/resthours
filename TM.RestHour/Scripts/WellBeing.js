@@ -1061,7 +1061,7 @@ function SetUpWellBeingHealthGrid(jsondata) {
                 //"data": "IsLocusTested", "name": "IsLocusTested", "autoWidth": true
                 "data": "IsJoiningMedical", "width": "50px", "render": function (data, type, row) {
                     if (data == true) {
-                        return '<div class="align-center"><i class="fa fa-eye" style="color:#4ff339" aria-hidden="true"  onclick="ShowJoiningMedicalFile(' + row.CrewId +')"></i></div>';
+                        return '<div class="align-center"><a href="#"><i class="fa fa-eye" style="color:#4ff339" aria-hidden="true"  onclick="ShowJoiningMedicalFile(' + row.CrewId +')"></i></a></div>';
                     }
                     else if (data == false) {
                         //return '<a style="border-radius: 5px;"><img src="/images/R.png" width="16" height="16"></a>';
@@ -1073,7 +1073,7 @@ function SetUpWellBeingHealthGrid(jsondata) {
                 //"data": "IsMassTested", "name": "IsMassTested", "autoWidth": true
                 "data": "IsMonthlyMedicalData", "width": "50px", "render": function (data, type, row) {
                     if (data == true) {
-                        return '<div class="align-center"><i class="fa fa-eye" aria-hidden="true"></i></div>';
+                        return '<div class="align-center"><a href="#"><i class="fa fa-eye" style="color:#4ff339" aria-hidden="true"  onclick="ShowMonthlyMedicalData(' + row.CrewId +')"></i></a></div>';
                     }
                     else if (data == false) {
                         //return '<a style="border-radius: 5px;"><img src="/images/R.png" width="16" height="16"></a>';
@@ -1085,7 +1085,7 @@ function SetUpWellBeingHealthGrid(jsondata) {
                 //"data": "IsPSQ30Tested", "name": "IsPSQ30Tested", "autoWidth": true
                 "data": "IsPrescriptionMedicine", "width": "50px", "render": function (data, type, row) {
                     if (data == true) {
-                        return '<div class="align-center"><i class="fa fa-eye" aria-hidden="true"></i></div>';
+                        return '<div class="align-center"><a href="#"><i class="fa fa-eye" style="color:#4ff339" aria-hidden="true"  onclick="ShowPrescribedMedicineFile(' + row.CrewId +')"></i></a></div>';
                     }
                     else if (data == false) {
                         //return '<a style="border-radius: 5px;"><img src="/images/R.png" width="16" height="16"></a>';
@@ -1099,7 +1099,7 @@ function SetUpWellBeingHealthGrid(jsondata) {
                     if (data == true) {
                         //return '<a style="border-radius: 5px;"><img src="/images/G.png" width="16" height="16"></a>';
                         console.log(row.CrewId);
-                        return '<div class="align-center"><a><i class="fa fa-eye " style="color:#4ff339" aria-hidden="true" onclick="ShowMedicalAdviseDetailsModal(' + row.CrewId +')"></i></a></div>';
+                        return '<div class="align-center"><a href="#"><i class="fa fa-eye " style="color:#4ff339" aria-hidden="true" onclick="ShowMedicalAdviseDetailsModal(' + row.CrewId +')"></i></a></div>';
                     }
                     else if (data == false) {
                         //return '<a style="border-radius: 5px;"><img src="/images/R.png" width="16" height="16"></a>';
@@ -1107,24 +1107,24 @@ function SetUpWellBeingHealthGrid(jsondata) {
                     }
                 }
             },
-            {
-                //"data": "IsZ1Tested", "name": "IsZ1Tested", "autoWidth": true
-                "data": "IsMedicinePrescribed", "width": "50px", "render": function (data, type, row) {
-                    if (data == true) {
-                        return '<div class="align-center"><i class="fa fa-eye" aria-hidden="true"></i></div>';
-                    }
-                    else if (data == false) {
-                        //return '<a style="border-radius: 5px;"><img src="/images/R.png" width="16" height="16"></a>';
-                        return '<div class="align-center"><i class="fa fa-eye disabled" aria-hidden="true"></i></div>';
-                    }
-                }
-            },
+            //{
+            //    //"data": "IsZ1Tested", "name": "IsZ1Tested", "autoWidth": true
+            //    "data": "IsMedicinePrescribed", "width": "50px", "render": function (data, type, row) {
+            //        if (data == true) {
+            //            return '<div class="align-center"><i class="fa fa-eye" aria-hidden="true"></i></div>';
+            //        }
+            //        else if (data == false) {
+            //            //return '<a style="border-radius: 5px;"><img src="/images/R.png" width="16" height="16"></a>';
+            //            return '<div class="align-center"><i class="fa fa-eye disabled" aria-hidden="true"></i></div>';
+            //        }
+            //    }
+            //},
             {
                 //"data": "IsZ2Tested", "name": "IsZ2Tested", "autoWidth": true
                 "data": "IsOthers", "width": "50px", "render": function (data, type, row) {
                     if (data == true) {
                         //return '<a style="border-radius: 5px;"><img src="/images/G.png" width="16" height="16"></a>';
-                        return '<div class="align-center"><i class="fa fa-eye" aria-hidden="true"></i></div>';
+                        return '<div class="align-center"><a href="#"><i class="fa fa-eye" style="color:#4ff339" aria-hidden="true"  onclick="ShowMedicalAdviseFile(' + row.CrewId +')"></i></a></div>';
                     }
                     else if (data == false) {
                         //return '<a style="border-radius: 5px;"><img src="/images/R.png" width="16" height="16"></a>';
@@ -1262,4 +1262,139 @@ function ShowJoiningMedicalFile(crewId) {
     //#endregion
 
 }
+
+function ShowPrescribedMedicineFile(crewId) {
+
+    $('#pdfContent').html("");
+    $('#pdfContent').html('<embed id="embedPDF" src="" width="100%" height="600px;" />');
+
+    $('#hHeader').html("");
+    $('#embedPDF').removeAttr("src");
+    
+    //#region
+
+
+    $.ajax({
+        url: "/WellBeing/GetPrescribedMedicineData",
+        //data: JSON.stringify({ crewId: crewId }),
+        data: { crewId: crewId },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+
+            $('#hHeader').html(result.JoiningMedicalFileName);
+            $('#embedPDF').attr('src', result.JoiningMedicalFile);
+
+            $('#viewJoiningMedialModal').modal('show');
+
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+
+    //#endregion
+
+}
+
+function ShowMedicalAdviseFile(crewId) {
+
+    $('#pdfContent').html("");
+    $('#pdfContent').html('<embed id="embedPDF" src="" width="100%" height="600px;" />');
+
+    $('#hHeader').html("");
+    $('#embedPDF').removeAttr("src");
+    //var x = decodeURI(path);
+
+    //#region Show Modal
+    //$('#hHeader').html(planName);
+    //$('#embedPDF').attr('src', path);
+
+    //$('#viewJoiningMedialModal').modal('show');
+    //#endregion
+
+    //#region
+
+
+    $.ajax({
+        url: "/WellBeing/GetMedicalAdviseFileData",
+        //data: JSON.stringify({ crewId: crewId }),
+        data: { crewId: crewId },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+
+            $('#hHeader').html(result.JoiningMedicalFileName);
+            $('#embedPDF').attr('src', result.JoiningMedicalFile);
+
+            $('#viewJoiningMedialModal').modal('show');
+
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+
+    //#endregion
+
+}
+
+
+function ShowMonthlyMedicalData(crewId) {
+    $('#BMI').css('border-color', 'lightgrey');
+    var x = $("#GetCrewTemperatureByCrew").val();
+    //alert(x);
+    //debugger;
+    $.ajax({
+        url: x,
+        data:
+        {
+            crewID: crewId
+        },
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            //debugger;
+            $('#ID').val(result.ID);
+
+            $('#CrewID').val(result.CrewID);
+            $('#BMI').val(result.BMI);
+            $('#Height').val(result.Height);
+            $('#Pulse').val(result.Pulse);
+            $('#Haemoglobin').val(result.Haemoglobin);
+            $('#Temperature').val(result.Temperature);
+            $('#FastingSuger').val(result.FastingSuger);
+            $('#VesselID').val(result.VesselID);
+            $('#RandomSuger').val(result.RandomSuger);
+            $('#Systolic').val(result.Systolic);
+            $('#Diastolic').val(result.Diastolic);
+            $('#Weight').val(result.Weight);
+            $('#DietaryRestriction').val(result.DietaryRestriction);
+            $('#RespiratoryRate').val(result.RespiratoryRate);
+            $('#Creatinine').val(result.Creatinine);
+            $('#SPO2').val(result.SPO2);
+            $('#Bilirubin').val(result.Bilirubin);
+
+
+            $('#myModalLabel').html("");
+            $('#myModalLabel').html("Monthly Medical Data");
+            $("#myModal :input").prop("disabled", true);
+            $('#myModal').modal('show');
+            $('#btnUpdate').hide();
+            $('#btnAdd').hide();
+        },
+        error: function (errormessage) {
+            //debugger;
+            console.log(errormessage.responseText);
+        }
+    });
+    return false;
+}
+
+
 

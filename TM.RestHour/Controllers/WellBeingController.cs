@@ -282,14 +282,65 @@ namespace TM.RestHour.Controllers
         [HttpGet]
         public JsonResult GetJoiningMedicalData(string crewId)
         {
+            string path = "/JoiningMedical/";
             Crew file = new Crew();
             CrewPOCO filePo = new CrewPOCO();
             string filePath = "";
             WellBeingBL wbBl = new WellBeingBL();
             filePo = wbBl.GetJoiningMedicalFile(Convert.ToInt32(crewId) );
-            filePath = Path.ChangeExtension(filePo.JoiningMedicalFile, "pdf");
+            filePath = Path.Combine(path, Path.GetFileName( filePo.JoiningMedicalFile));
+
+            //filePath = Path.ChangeExtension(filePo.JoiningMedicalFile, "pdf");
+            filePath = Path.ChangeExtension(filePath, "pdf");
 
             file.JoiningMedicalFileName = Path.GetFileName(filePath);
+            //file.JoiningMedicalFileName = filePo.JoiningMedicalFileName;
+
+            //file.JoiningMedicalFile = parentPdfPath + filePath;
+            file.JoiningMedicalFile = filePath;
+            return Json(file, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetPrescribedMedicineData(string crewId)
+        {
+            string path = "/PrescribedMedicineImages/";
+            Crew file = new Crew();
+            CrewPOCO filePo = new CrewPOCO();
+            string filePath = "";
+            WellBeingBL wbBl = new WellBeingBL();
+            filePo = wbBl.GetPrescribedMedicineFile(Convert.ToInt32(crewId));
+            filePath = Path.Combine(path, Path.GetFileName(filePo.JoiningMedicalFile));
+
+            //filePath = Path.ChangeExtension(filePo.JoiningMedicalFile, "pdf");
+            filePath = Path.ChangeExtension(filePath, "pdf");
+
+            file.JoiningMedicalFileName = Path.GetFileName(filePath);
+            //file.JoiningMedicalFileName = filePo.JoiningMedicalFileName;
+
+            //file.JoiningMedicalFile = parentPdfPath + filePath;
+            file.JoiningMedicalFile = filePath;
+            return Json(file, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
+        public JsonResult GetMedicalAdviseFileData(string crewId)
+        {
+            string path = "/MedicalAdviseImages/";
+            Crew file = new Crew();
+            CrewPOCO filePo = new CrewPOCO();
+            string filePath = "";
+            WellBeingBL wbBl = new WellBeingBL();
+            filePo = wbBl.GetMedicalAdviseFile(Convert.ToInt32(crewId));
+            filePath = Path.Combine(path, Path.GetFileName(filePo.JoiningMedicalFile));
+
+            //filePath = Path.ChangeExtension(filePo.JoiningMedicalFile, "pdf");
+            filePath = Path.ChangeExtension(filePath, "pdf");
+
+            file.JoiningMedicalFileName = Path.GetFileName(filePath);
+            //file.JoiningMedicalFileName = filePo.JoiningMedicalFileName;
+
             //file.JoiningMedicalFile = parentPdfPath + filePath;
             file.JoiningMedicalFile = filePath;
             return Json(file, JsonRequestBehavior.AllowGet);
