@@ -236,11 +236,8 @@ body {
 
 .button1 {
     position: relative;
-    background-color: #a278fe;
     border: none;
-    font-size: 13px;
     color: #FFFFFF;
-    padding: 5px;
     width: 120px;
     text-align: center;
     -webkit-transition-duration: 0.4s; /* Safari */
@@ -1627,7 +1624,6 @@ table th, table td {
 
 .bac {
     overflow-y: auto;
-    height: 440px;
     border-radius: 5px;
 }
 

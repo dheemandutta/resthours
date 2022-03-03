@@ -10,16 +10,16 @@ namespace TM.RestHour.BL
 {
     public class RightsBL
     {
-        public RightsPOCO GetRightsByCrewId(int CrewId, string PageName, int VesselID, int UserID)
+        public RightsPOCO GetRightsByCrewId(int? CrewId, string PageName, int VesselID, int? UserID)
         {
             RightsDAL rightsDAL = new RightsDAL();
             return rightsDAL.GetRightsByCrewId(CrewId, PageName, VesselID, UserID);
         }
 
-        public void SaveAccess(string pageId, string hasAccess, int crewId)
+        public void SaveAccess(string pageId, string hasAccess, int? crewId, int? userId)
         {
             RightsDAL rightsDAL = new RightsDAL();
-            rightsDAL.SaveAccess(pageId, hasAccess, crewId);
+            rightsDAL.SaveAccess(pageId, hasAccess, crewId, userId);
 
         }
 
@@ -42,6 +42,13 @@ namespace TM.RestHour.BL
         {
             RightsDAL rightsDAL = new RightsDAL();
             return rightsDAL.GetAccessRightsByCrewId(CrewId);
+        }
+
+
+        public int GetUserIdByCrewID(int CrewID)
+        {
+            RightsDAL rightsDAL = new RightsDAL();
+            return rightsDAL.GetUserIdByCrewID(CrewID);
         }
     }
 }

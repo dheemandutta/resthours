@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="card bac">
-        <div class="card">
+        <div class="">
 
             <div class="row">
                 @*@Html.Hidden("GetCrewBookedHours", @Url.Action("GetCrewBookedHours", "TimeSheet"))*@
@@ -86,13 +86,10 @@
                                                 <div>
                                                     <div class="pull-right" id="sideform">
                                                         <button type="button" class="btn btn-primary mrRHT-10" id="btnAdd" @*disabled="disabled"*@ onclick="return GetHours2();"><i class="ti-eye"></i> Show Report</button>
-                                                    </div>
-
-                                                    <div class="pull-right" id="sideform">
-
                                                         <button type="button" class="btn btn-info mrRHT-10" id="btnPrint" @*disabled="disabled"*@><i class="ti-printer"></i> Print Report</button>
-
                                                     </div>
+
+                                                   
                                                     <div class="clearfix"></div>
                                                 </div>
                                             </div>

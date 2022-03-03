@@ -13,7 +13,7 @@ namespace TM.RestHour.DAL
 {
     public class RightsDAL
     {
-        public RightsPOCO GetRightsByCrewId(int CrewId, string PageName, int VesselID, int UserID)
+        public RightsPOCO GetRightsByCrewId(int? CrewId, string PageName, int VesselID, int? UserID)
         {
             List<RightsPOCO> prodPOList = new List<RightsPOCO>();
             List<RightsPOCO> prodPO = new List<RightsPOCO>();
@@ -23,7 +23,16 @@ namespace TM.RestHour.DAL
                 using (SqlCommand cmd = new SqlCommand("stpGetRightsByCrewId", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@CrewId", CrewId);
+
+                    if (CrewId != null)
+                        cmd.Parameters.AddWithValue("@CrewId", CrewId.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@CrewId", DBNull.Value);
+
+                    if (UserID != null)
+                        cmd.Parameters.AddWithValue("@UserId", UserID.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@UserId", DBNull.Value);
 
                     if (!String.IsNullOrEmpty(PageName))
                     {
@@ -43,7 +52,7 @@ namespace TM.RestHour.DAL
 
                 }
             }
-            return ConvertDataTableToRightsByCrewIdList(ds, VesselID, UserID);
+            return ConvertDataTableToRightsByCrewIdList(ds, VesselID, UserID.Value);
         }
 
         public List<CrewPOCO> AppendCrew(int VesselID, int UserID)
@@ -95,7 +104,7 @@ namespace TM.RestHour.DAL
         }
 
 
-        public void SaveAccess(string pageId, string hasAccess, int crewId )
+        public void SaveAccess(string pageId, string hasAccess, int? crewId, int? userId)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
             con.Open();
@@ -104,7 +113,16 @@ namespace TM.RestHour.DAL
 
             cmd.Parameters.AddWithValue("@pageId", pageId);
             cmd.Parameters.AddWithValue("@hasAccess", hasAccess);
-            cmd.Parameters.AddWithValue("@crewId", crewId);
+
+            if (crewId != null)
+                cmd.Parameters.AddWithValue("@crewId", crewId);
+            else
+                cmd.Parameters.AddWithValue("@crewId", DBNull.Value);
+
+            if (userId != null)
+                cmd.Parameters.AddWithValue("@UserId", userId);
+            else
+                cmd.Parameters.AddWithValue("@UserId", DBNull.Value);
 
             int recordsAffected = cmd.ExecuteNonQuery();
             con.Close();
@@ -288,6 +306,30 @@ namespace TM.RestHour.DAL
                 }
             }
             return prodPOList;
+        }
+
+
+        public int GetUserIdByCrewID(int CrewID)
+        {
+            List<RightsPOCO> prodPOList = new List<RightsPOCO>();
+            List<RightsPOCO> prodPO = new List<RightsPOCO>();
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("stpGetUserIdByCrewID", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("CrewID", CrewID);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    //prodPOList = Common.CommonDAL.ConvertDataTable<ProductPOCO>(ds.Tables[0]);
+                    con.Close();
+
+                }
+            }
+            return int.Parse(ds.Tables[0].Rows[0]["ID"].ToString());
         }
 
     }
