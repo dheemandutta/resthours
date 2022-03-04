@@ -673,6 +673,7 @@
     <Content Include="devsqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\02-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\03-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\03-03-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\07-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\11-02-2022 resthoursclient Full script.sql" />
@@ -1311,6 +1312,7 @@
     <Content Include="sqlscripts\01-CreateTable\CreateTable_RestHour.sql" />
     <Content Include="sqlscripts\02-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\03-02-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\03-03-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\03-UpdateDB\01-UpdateDB.sql" />
     <Content Include="sqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\04-CreateFunction\ufn_CSVToTable.sql" />

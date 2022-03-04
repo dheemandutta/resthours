@@ -15946,9 +15946,9 @@ button:disabled {
     padding: 4px;
 }
 
-.modal-dialog {
+/*.modal-dialog {
     max-width: 600px;
-}
+}*/
 
 .ui-datepicker-prev.ui-corner-all {
     background: #095ec3;
@@ -16234,6 +16234,7 @@ button:disabled {
 /*for popup*/
 .modal-dialog {
     pointer-events: painted !important;
+    padding: 0 20px;
 }
 table.dataTable tbody th, table.dataTable tbody td {
     padding: 16px 16px !important;

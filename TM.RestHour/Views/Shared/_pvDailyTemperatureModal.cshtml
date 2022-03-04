@@ -2,7 +2,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     @Html.Hidden("GetCrewTemperatureByID", @Url.Action("GetCrewTemperatureByID", "CrewHealth"))
     @Html.Hidden("GetCrewTemperatureByCrew", @Url.Action("GetLatestCrewTemperatureByCrew", "CrewHealth")) @************Used in Well Being****************@
-    <div class="modal-dialog" style="width:890px;">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -12,7 +12,7 @@
 
 
 
-            <div class="modal-dialog" id="dvuserdetailsn" style="width: 1200px !important;">
+            <div class="modal-dialog modal-lg" id="dvuserdetailsn">
                 <fieldset class="for-panel">
                     <div class="form-group">
                         <input type="hidden" id="ID" />
