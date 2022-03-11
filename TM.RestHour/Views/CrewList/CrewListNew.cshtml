@@ -102,7 +102,7 @@
                         <div style="width:100%; margin:0 auto" class="tablecontainer">
 
                             @Html.Hidden("loaddata", @Url.Action("LoadData", "CrewList"))
-                            @Html.Hidden("newurl", @Url.Action("Index", "AddCrew"))
+                            @Html.Hidden("newurl", @Url.Action("AddEditCrew", "AddCrew"))
                             @Html.Hidden("newurl1", @Url.Action("UpdateInActive", "CrewList"))
                             @Html.Hidden("crewlisturl", @Url.Action("CrewListNew", "CrewList"))
                             @Html.Hidden("createNewLogin", @Url.Action("CreateNewCrewLogin", "AddCrew"))
