@@ -420,8 +420,8 @@ function AddCrewEdit() {
 
 
 function CreateNewCrewLogin(crewId) {
-    //var posturl = $('#createNewLogin').val();
-    var posturl = "/AddCrew/CreateNewCrewLogin";
+    var posturl = $('#createNewLogin').val();
+    //var posturl = "/AddCrew/CreateNewCrewLogin";
 
     $.ajax({
         url: posturl,

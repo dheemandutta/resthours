@@ -288,8 +288,10 @@ namespace TM.RestHour.Controllers
             int groupId = ranks.GetGroupFromRank(crewPC.RankID, int.Parse(Session["VesselID"].ToString()));
 
 
+            //var data = new { result = "Redirect", url = Url.Action("Index", "CreateNewUserAccount", Request.QueryString.ToRouteValues(new { grp = groupId, username = crewUserId, crewId = crewPC.ID })) };
+              var data = new { result = "Redirect", url = "/CreateNewUserAccount/Index?" + "grp=" + groupId + "&username=" + crewUserId  + "&crewId=" + crewPC.ID };
 
-            return Json(new { result = "Redirect", url = Url.Action("Index", "CreateNewUserAccount", Request.QueryString.ToRouteValues(new { grp = groupId, username = crewUserId, crewId = crewPC.ID })) }, JsonRequestBehavior.AllowGet);
+            return Json(data, JsonRequestBehavior.AllowGet);
 
 
         }
