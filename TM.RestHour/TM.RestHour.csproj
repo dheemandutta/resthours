@@ -672,6 +672,7 @@
     <Content Include="css\style.css" />
     <Content Include="devsqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\01-04-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\01-04-2022 resthoursclient Full script_II.sql" />
     <Content Include="devsqlscripts\02-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\03-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\03-03-2022 resthoursclient Full script.sql" />
@@ -1312,6 +1313,7 @@
     <Content Include="Scripts\WellBeing.js" />
     <Content Include="sqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\01-04-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\01-04-2022 resthoursclient Full script_II.sql" />
     <Content Include="sqlscripts\01-CreateTable\CreateTable_RestHour.sql" />
     <Content Include="sqlscripts\02-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\03-02-2022 resthoursclient Full script.sql" />

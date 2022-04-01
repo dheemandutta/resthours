@@ -49,7 +49,20 @@
     <!-- sidebar  -->
     <nav class="sidebar dark_sidebar">
         <div class="logo d-flex justify-content-between">
-            <a class="large_logo" href="@Url.Action("Index", "Home" )"><img src="../img/logo_Worth.png" alt=""></a>
+
+            @if (Convert.ToBoolean(Session["SuperAdmin"].ToString()))
+            {
+                <a class="large_logo" href="@Url.Action("Index", "Home")"><img src="../img/logo_Worth.png" alt=""></a>
+            }
+            else if (Convert.ToBoolean(Session["Admin"].ToString()))
+            {
+                <a class="large_logo" href="@Url.Action("Index", "Home")"><img src="../img/logo_Worth.png" alt=""></a>
+            }
+            else if (Convert.ToBoolean(Session["User"].ToString()))
+            {
+                <a class="large_logo" href="@Url.Action("UserDashboard", "Home")"><img src="../img/logo_Worth.png" alt=""></a>
+            }
+
             <a class="small_logo" href="#"><img src="../img/logo_Worth_mini.png" alt=""></a>
             <div class="sidebar_close_icon d-lg-none">
                 <i class="ti-close"></i>
