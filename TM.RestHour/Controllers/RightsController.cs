@@ -22,9 +22,22 @@ namespace TM.RestHour.Controllers
         {
             RightsBL rightsBL = new RightsBL();
             RightsPOCO rightsPC = new RightsPOCO();
-            int CrewId = 0;
+            int? CrewId = 0;
             string PageName = "";
-            rightsPC = rightsBL.GetRightsByCrewId(CrewId, PageName, int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
+            int? UserId = 0;
+            string UserName = string.Empty;
+            if (Request.QueryString["crew"] != null)
+            {
+                CrewId = int.Parse(Request.QueryString["crew"].ToString());
+                UserId = rightsBL.GetUserIdByCrewID(CrewId.Value);
+            }
+            else
+            {
+                UserId = int.Parse(Session["UserId"].ToString());
+                CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+            }
+
+            rightsPC = rightsBL.GetRightsByCrewId(CrewId, PageName, int.Parse(Session["VesselID"].ToString()), UserId);
 
             ViewBag.Crew = rightsPC.CrewList.Select(x =>
                                             new SelectListItem()
@@ -43,15 +56,22 @@ namespace TM.RestHour.Controllers
             RightsBL rightsBL = new RightsBL();
             RightsPOCO rightsPC = new RightsPOCO();
 
-            int CrewId = 0;
+            int? CrewId = 0;
+            string PageName = "";
+            int? UserId = 0;
+            string UserName = string.Empty;
             if (Request.QueryString["crew"] != null)
             {
                 CrewId = int.Parse(Request.QueryString["crew"].ToString());
+                UserId = rightsBL.GetUserIdByCrewID(CrewId.Value);
             }
             else
-                CrewId = pOCO.CrewId;
+            {
+                UserId = int.Parse(Session["UserId"].ToString());
+                CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+            }
 
-            string PageName = pOCO.PageName;
+            PageName = pOCO.PageName;
             ViewBag.CrewId = CrewId;
             ViewBag.PageName = PageName;
 
@@ -59,9 +79,9 @@ namespace TM.RestHour.Controllers
             string pageIds = string.Join(",", pOCO.RightsList.Select(x => x.Id.ToString()).ToArray());
             string accessString = string.Join(",", pOCO.RightsList.Select(x => x.HasAccess.ToString()).ToArray());
 
-            rightsBL.SaveAccess(pageIds, accessString, CrewId);
+            rightsBL.SaveAccess(pageIds, accessString, CrewId.Value, UserId.Value);
 
-            rightsPC = rightsBL.GetRightsByCrewId(ViewBag.CrewId, ViewBag.PageName, int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
+            rightsPC = rightsBL.GetRightsByCrewId(ViewBag.CrewId, ViewBag.PageName, int.Parse(Session["VesselID"].ToString()), UserId);
 
             var cm = rightsPC;
 
@@ -81,51 +101,39 @@ namespace TM.RestHour.Controllers
         [AllowMultipleButton(Name = "action", Argument = "Index")]
         public ActionResult Index(RightsPOCO pOCO)
         {
+            
+
+
+
             RightsBL rightsBL = new RightsBL();
             RightsPOCO rightsPC = new RightsPOCO();
-
-            int CrewId = 0;
+            int? CrewId = 0;
+            string PageName = "";
+            int? UserId = 0;
+            string UserName = string.Empty;
             if (Request.QueryString["crew"] != null)
             {
                 CrewId = int.Parse(Request.QueryString["crew"].ToString());
+                UserId = rightsBL.GetUserIdByCrewID(CrewId.Value);
             }
             else
-                CrewId = pOCO.CrewId;
+            {
+                UserId = int.Parse(Session["UserId"].ToString());
+                CrewId = int.Parse(Session["LoggedInUserId"].ToString());
+            }
 
+            PageName = pOCO.PageName;
 
-            string PageName = pOCO.PageName;
-
-            rightsPC = rightsBL.GetRightsByCrewId(CrewId, PageName, int.Parse(Session["VesselID"].ToString()), int.Parse(System.Web.HttpContext.Current.Session["UserID"].ToString()));
-
-            //Rights um = new Rights();
-
-            var cm = rightsPC;
+            rightsPC = rightsBL.GetRightsByCrewId(CrewId, PageName, int.Parse(Session["VesselID"].ToString()), UserId);
 
             ViewBag.Crew = rightsPC.CrewList.Select(x =>
-                                           new SelectListItem()
-                                           {
-                                               Text = x.Name,
-                                               Value = x.ID.ToString()
-                                           });
+                                            new SelectListItem()
+                                            {
+                                                Text = x.Name,
+                                                Value = x.ID.ToString()
+                                            });
 
-            return View(cm);
-
-            //GetAllCrewForTimeSheet();
-
-            //CrewTimesheetViewModel crewtimesheetVM = new CrewTimesheetViewModel();
-            //Crew c = new Crew();
-            //crewtimesheetVM.Crew = c;
-
-            //if (Convert.ToBoolean(Session["User"]) == true)
-            //{
-            //    crewtimesheetVM.Crew.ID = int.Parse(System.Web.HttpContext.Current.Session["LoggedInUserId"].ToString());
-            //}
-            //else
-            //    crewtimesheetVM.Crew.ID = 0;
-
-            //return View(crewtimesheetVM);
-
-
+            return View(rightsPC);
         }
 
 

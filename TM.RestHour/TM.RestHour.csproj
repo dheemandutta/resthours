@@ -673,6 +673,7 @@
     <Content Include="devsqlscripts\01-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\02-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\03-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\03-03-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\07-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\11-02-2022 resthoursclient Full script.sql" />
@@ -680,6 +681,8 @@
     <Content Include="devsqlscripts\14-02-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\23-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\24-03-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\28-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\29-01-2022 resthoursclient Full script.sql" />
@@ -1310,6 +1313,7 @@
     <Content Include="sqlscripts\01-CreateTable\CreateTable_RestHour.sql" />
     <Content Include="sqlscripts\02-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\03-02-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\03-03-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\03-UpdateDB\01-UpdateDB.sql" />
     <Content Include="sqlscripts\04-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\04-CreateFunction\ufn_CSVToTable.sql" />
@@ -1380,6 +1384,8 @@
     <Content Include="sqlscripts\14-02-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\22-01-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\23-02-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\24-03-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\27-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\28-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\29-01-2022 resthoursclient Full script.sql" />
@@ -1542,9 +1548,11 @@
     <Content Include="Views\Shared\_pvMedicalAdvise.cshtml" />
     <Content Include="Views\CrewHealth\UploadPrescribedMedicine.cshtml" />
     <Content Include="Views\Shared\_pvDailyTemperatureModal.cshtml" />
+    <Content Include="Views\Reports\ReportDailyTemperature.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ExaminationForMedicalAdvise\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

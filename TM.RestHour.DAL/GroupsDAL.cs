@@ -82,5 +82,28 @@ namespace TM.RestHour.DAL
             return ranksList;
             con.Close();
         }
+
+        //for Groups drp 2
+        public List<GroupsPOCO> GetAllGroupsForDrp2(int VesselID)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_GetAllGroupsForDrp2", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@VesselID", VesselID);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            DataTable myTable = ds.Tables[0];
+            List<GroupsPOCO> ranksList = myTable.AsEnumerable().Select(m => new GroupsPOCO()
+            {
+                ID = m.Field<int>("ID"),
+                GroupName = m.Field<string>("GroupName"),
+
+            }).ToList();
+
+            return ranksList;
+            con.Close();
+        }
     }
 }

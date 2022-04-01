@@ -19,7 +19,7 @@ namespace TM.RestHour.Controllers
 		[TraceFilterAttribute]
 		public ActionResult Index()
         {
-            GetAllGroupsForDrp();
+            GetAllGroupsForDrp2();
             GetAllCrewForDrp();
 
 			
@@ -77,6 +77,34 @@ namespace TM.RestHour.Controllers
             List<GroupsPOCO> groupspocoList = new List<GroupsPOCO>();
 
             groupspocoList = groupsDAL.GetAllGroupsForDrp(int.Parse(Session["VesselID"].ToString()));
+
+            List<Groups> itmasterList = new List<Groups>();
+
+            foreach (GroupsPOCO up in groupspocoList)
+            {
+                Groups unt = new Groups();
+                unt.ID = up.ID;
+                unt.GroupName = up.GroupName;
+
+                itmasterList.Add(unt);
+            }
+
+            ViewBag.Groups = itmasterList.Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.GroupName,
+                                                Value = x.ID.ToString()
+                                            });
+
+        }
+
+        // for Groups drp 2
+        public void GetAllGroupsForDrp2()
+        {
+            GroupsBL groupsDAL = new GroupsBL();
+            List<GroupsPOCO> groupspocoList = new List<GroupsPOCO>();
+
+            groupspocoList = groupsDAL.GetAllGroupsForDrp2(int.Parse(Session["VesselID"].ToString()));
 
             List<Groups> itmasterList = new List<Groups>();
 

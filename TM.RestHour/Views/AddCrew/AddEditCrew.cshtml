@@ -46,199 +46,199 @@
             <input type="hidden" id="ID" />
             <input type="hidden" id="crewid" />
         </div>
-
-        <div class="row">
-            <div class="col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label for="FirstName">Given Name</label>
-                            <input type="text" class="form-control" id="FirstName" placeholder="Given Name" />
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label for=" MiddleName">Middle Name</label>
-                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label for="LastName">Family Name</label>
-                            <input type="text" class="form-control" id="LastName" placeholder="Family Name" />
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label for="Gender">Gender</label>
-                            @*<input type="text" class="form-control" id="Gender" placeholder="Gender" />*@
-                            <select id="Gender" style="width:100%;" class="form-control">
-                                <option value="">Select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label for="Rank">Rank</label>
-                            @Html.DropDownListFor(model => model.RankID, (IEnumerable<SelectListItem>)ViewBag.Ranks, "Select", new { @class = "form-control" })
-
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label for="Nationality">Nationality</label>
-                            @*<input type="text" class="form-control" id="Nationality" placeholder="Nationality" />*@
-                            @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label for="DOB">Date Of Birth</label>
-                            <input type="text" class="form-control" id="DOB" placeholder="Date Of Birth" />
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label for="POB">Place Of Birth</label>
-                            <input type="text" class="form-control" id="POB" placeholder="Place Of Birth" />
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <label for="Service Term">Service Term</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-6">
-                                    <input type="text" class="form-control valid" id="CreatedOn" placeholder="From" />
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <input onclick="myFunction()" type="text" class="form-control valid1" id="LatestUpdate" placeholder="To" />
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-sm-4 col-xs-12">
-                <div class="form-group">
-                    <label for="Department">Department</label>
-                    @*@Html.ListBoxFor(model => model.DepartmentMasterID, (IEnumerable<SelectListItem>)ViewBag.Departments, new { @class = "listbox", @multiple = "multiple", @id = "ddlAdmCru" })*@
-                    @Html.DropDownListFor(model => model.DepartmentMasterID, (IEnumerable<SelectListItem>)ViewBag.Departments, "Select", new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-xs-12">
-                <div class="form-group">
-                    <label for="POB">Issuing State Of Identity Document</label>
-                    <input type="text" class="form-control" id="IssuingStateOfIdentityDocument" placeholder="Issuing State Of Identity Document" />
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-xs-12">
-                <div class="form-group">
-                    <label for="DOB">Expiry Date Of Identity Document</label>
-                    <input type="text" class="form-control" id="ExpiryDateOfIdentityDocument" placeholder="Expiry Date Of Identity Document" />
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <div class="form-group">
+        <div class="card">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-sm-12 col-xs-12">
-                            <label for="PassportSeamanPassportBook">Seaman Book / Passport</label>
-                        </div>
-                        <div class="col-sm-12 col-xs-12 mrBTM-10">
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-6">
-                                    <input type="radio" name="PassportSeaman" value="1" checked> Seaman Book
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <input type="radio" name="PassportSeaman" value="0"> Passport
-                                </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="FirstName">Given Name</label>
+                                <input type="text" class="form-control" id="FirstName" placeholder="Given Name" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="PassportSeamanPassportBook" placeholder="Passport/Seaman/PassportBook" />
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for=" MiddleName">Middle Name</label>
+                                <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="LastName">Family Name</label>
+                                <input type="text" class="form-control" id="LastName" placeholder="Family Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="Gender">Gender</label>
+                                @*<input type="text" class="form-control" id="Gender" placeholder="Gender" />*@
+                                <select id="Gender" style="width:100%;" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="Rank">Rank</label>
+                                @Html.DropDownListFor(model => model.RankID, (IEnumerable<SelectListItem>)ViewBag.Ranks, "Select", new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="Nationality">Nationality</label>
+                                @*<input type="text" class="form-control" id="Nationality" placeholder="Nationality" />*@
+                                @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.CountryMaster, "Select", new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="DOB">Date Of Birth</label>
+                                <input type="text" class="form-control" id="DOB" placeholder="Date Of Birth" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="POB">Place Of Birth</label>
+                                <input type="text" class="form-control" id="POB" placeholder="Place Of Birth" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <label for="Service Term">Service Term</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-6">
+                                        <input type="text" class="form-control valid" id="CreatedOn" placeholder="From" />
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <input onclick="myFunction()" type="text" class="form-control valid1" id="LatestUpdate" placeholder="To" />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="Department">Department</label>
+                        @*@Html.ListBoxFor(model => model.DepartmentMasterID, (IEnumerable<SelectListItem>)ViewBag.Departments, new { @class = "listbox", @multiple = "multiple", @id = "ddlAdmCru" })*@
+                        @Html.DropDownListFor(model => model.DepartmentMasterID, (IEnumerable<SelectListItem>)ViewBag.Departments, "Select", new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="POB">Issuing State Of Identity Document</label>
+                        <input type="text" class="form-control" id="IssuingStateOfIdentityDocument" placeholder="Issuing State Of Identity Document" />
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="DOB">Expiry Date Of Identity Document</label>
+                        <input type="text" class="form-control" id="ExpiryDateOfIdentityDocument" placeholder="Expiry Date Of Identity Document" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <label for="PassportSeamanPassportBook">Seaman Book / Passport</label>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 mrBTM-10">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-6">
+                                        <input type="radio" name="PassportSeaman" value="1" checked> Seaman Book
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <input type="radio" name="PassportSeaman" value="0"> Passport
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <input type="text" class="form-control" id="PassportSeamanPassportBook" placeholder="Passport/Seaman/PassportBook" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-12 col-xs-12">
-                <div class="form-group">
-                    <label for="Comments">Comments</label>
-                    <textarea class="form-control" id="Comments" cols="7" rows="2"></textarea>
-                </div>
-            </div>
-        </div>
-            
-        <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <div class="row">
-                    <div class="col-sm-4 col-xs-4">
-                        <div class="form-group">
-                            <input id="Watchkeeper" type="checkbox" />
-                            <label for="Watchkeeper" style="padding:0;">Watch Keeper</label>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-4">
-                        <div class="form-group">
-                            <input id="OvertimeEnabled" type="checkbox" />
-                            <label for="OvertimeEnabled" style="padding:0;">Overtime Enabled</label>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-xs-4">
-                        <div class="form-group">
-                            <input id="AllowPsychologyForms" type="checkbox" />
-                            <label for="AllowPsychologyForms" style="padding:0;">Allow Psychology Forms</label>
-
-                        </div>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="Comments">Comments</label>
+                        <textarea class="form-control" id="Comments" cols="7" rows="2"></textarea>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-12 col-xs-12 mrTP-10">
-                <div class="form-group">
-                    @using (Html.BeginForm())
-                    {
-                        @*<input type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width:130px; float: right;" Close />*@
-                        <button type="submit" class="btn btn-danger pull-right" id="btnClose" onclick="return CloseCrew();" Close>Clear</button>
-                    }
-                    <button type="button" class="btn btn-primary pull-right mrRHT-10" id="btnAdd" onclick="return AddCrew();">Add / Update Crew</button>
-                    <button type="button" class="btn btn-info pull-right mrRHT-10" id="btnAdd1" onclick="return AddCrewEdit();" style="display:;">More Settings</button>
+            <div class="row">
+                <div class="col-sm-7 col-xs-12">
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <input id="Watchkeeper" type="checkbox" />
+                                <label for="Watchkeeper" style="padding:0;">Watch Keeper</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <input id="OvertimeEnabled" type="checkbox" />
+                                <label for="OvertimeEnabled" style="padding:0;">Overtime Enabled</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <input id="AllowPsychologyForms" type="checkbox" />
+                                <label for="AllowPsychologyForms" style="padding:0;">Allow Psychology Forms</label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 mrTP-10">
+                    <div class="form-group">
+                        @using (Html.BeginForm())
+                        {
+                            @*<input type="submit" class="button1" id="btnClose" onclick="return CloseCrew();" style="width:130px; float: right;" Close />*@
+                            <button type="submit" class="btn btn-danger pull-right" id="btnClose" onclick="return CloseCrew();" Close>Clear</button>
+                        }
+                        <button type="button" class="btn btn-primary pull-right mrRHT-10" id="btnAdd" onclick="return AddCrew();">Add / Update Crew</button>
+                        <button type="button" class="btn btn-info pull-right mrRHT-10" id="btnAdd1" onclick="return AddCrewEdit();" style="display:;">More Settings</button>
+                    </div>
                 </div>
             </div>
         </div>
-
     </form>
 </div>
 

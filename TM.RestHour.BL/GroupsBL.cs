@@ -28,5 +28,12 @@ namespace TM.RestHour.BL
             GroupsDAL groups = new GroupsDAL();
             return groups.GetAllGroupsForDrp(VesselID);
         }
+
+        //for Groups drp2
+        public List<GroupsPOCO> GetAllGroupsForDrp2(int VesselID)
+        {
+            GroupsDAL groups = new GroupsDAL();
+            return groups.GetAllGroupsForDrp2(VesselID);
+        }
     }
 }

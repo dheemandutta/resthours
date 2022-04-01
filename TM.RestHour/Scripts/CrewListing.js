@@ -13,7 +13,7 @@ function showDetail(id)
     //alert(id);
     var url = $('#newurl').val();
 
-    window.location.href = url + "/Index?mode=update&crew=" + id;
+    window.location.href = url + "?mode=update&crew=" + id;
 }
 
 function showDelete(id) {
@@ -420,8 +420,8 @@ function AddCrewEdit() {
 
 
 function CreateNewCrewLogin(crewId) {
-    //var posturl = $('#createNewLogin').val();
-    var posturl = "/AddCrew/CreateNewCrewLogin";
+    var posturl = $('#createNewLogin').val();
+    //var posturl = "/AddCrew/CreateNewCrewLogin";
 
     $.ajax({
         url: posturl,
