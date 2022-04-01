@@ -49,7 +49,7 @@
     <!-- sidebar  -->
     <nav class="sidebar dark_sidebar">
         <div class="logo d-flex justify-content-between">
-            <a class="large_logo" href="#"><img src="../img/logo_Worth.png" alt=""></a>
+            <a class="large_logo" href="@Url.Action("Index", "Home" )"><img src="../img/logo_Worth.png" alt=""></a>
             <a class="small_logo" href="#"><img src="../img/logo_Worth_mini.png" alt=""></a>
             <div class="sidebar_close_icon d-lg-none">
                 <i class="ti-close"></i>
@@ -82,7 +82,7 @@
                 </a>
                 <ul class="menu_Sub">
                     <li><a class = "@(AccessControl.CheckResourceReadAccess("Health") ? "active" : "disabled")" href="@Url.Action("WellBeingHealth", "WellBeing" )">Health</a></li>
-                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Mental Health") ? "active" : "disabled")" href="@Url.Action("WellBeingMentalHealth", "WellBeing" )">Mental Health</a></li>
+                    <li><a class = "@(AccessControl.CheckResourceReadAccess("Mental Health") ? "active" : "disabled")" href="@Url.Action("MentalHealthReport", "MentalHealth" )">Mental Health</a></li>
                     <li><a class = "@(AccessControl.CheckResourceReadAccess("WorkAndRestHours") ? "active" : "disabled")" href="@Url.Action("WellBeingWorkAndRestHours", "WellBeing" )">Work And Rest Hours</a></li>
                     @*<li><a href="@Url.Action("CrewListNew", "CrewList" )">Health Tips</a></li>*@
                     <li class="">
