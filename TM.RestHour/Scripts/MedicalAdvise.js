@@ -377,6 +377,7 @@ function LoadExaminationDataIntoTable(examinations) {
     var ExaminationRow;
     ExaminationList = examinations;
     var len = ExaminationList.length;
+    $('.table-Examination').find("tr:gt(0)").remove();// remove all rows except first row
     var tb = $('.table-Examination:eq(0) tbody');
     var trCnt = 0;
     if (len == 1) {
