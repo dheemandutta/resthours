@@ -43,10 +43,13 @@
 
 
 <div class="">
+    <div class="head_title arrowimg">
+        <a href="@Url.Action("UserDashboard", "Home" )"><span class="title-arrow"><img src="../img/arrow.png" /></span></a> <img src="../img/brein.png" />  <h1>Work and Rest Hours </h1>  <a href="@Url.Action("Index", "Reports" )"><span class="title-arrow"><img src="../img/RArrow.png" /></span></a>
+    </div>
     <div class="white_card_header">
         <div class="box_header m-0">
             <div class="main-title">
-                <h2 class="mrBTM-10">Crew Time Sheet</h2>
+                <h2 class="mrBTM-10"></h2>
             </div>
         </div>
     </div>
@@ -93,13 +96,13 @@
                                         <label>Total Work Hours:</label>
                                         <input type="text" class="form-control" id="TotalWorkHours" placeholder="Total Work Hours" />
                                     </div>
-                                    <div class="col-sm-4 col-xs-6" >
+                                    <div class="col-sm-4 col-xs-6">
 
                                         @*<div class="form-inline">*@
                                         @*<div class="form-horizontal" style="margin-bottom:3px;">
-                <br />
+                                                <br />
 
-            </div>*@
+                                            </div>*@
                                         <div class="form-horizontal" style="margin-bottom:3px;">
                                             <label>Total Rest Hours:</label>
                                             <input type="text" class="form-control" id="TotalRestHours" placeholder="Total Rest Hours" />
@@ -113,7 +116,7 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                   
+
                                     <div class="col-sm-4 col-xs-12">
                                         <label for="inputPassword3" class="control-label"></label>
                                         @*<label>Days</label>*@
@@ -127,13 +130,13 @@
 
                                         @*<div class="form-horizontal" style=" padding:10px 0;">
 
-                Compliant <div class="asia gr" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #2ecc71; float: left; background: #2ecc71; border-radius:50%;"></div>
-            </div>*@
+                                                Compliant <div class="asia gr" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #2ecc71; float: left; background: #2ecc71; border-radius:50%;"></div>
+                                            </div>*@
 
                                         @*<div class="form-horizontal" style=" padding:0px 0 6px 0;">
 
-                Non Compliant<div class="asia" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #ff0000e6; float: left; background: #ff0000e6; border-radius:50%;"></div>
-            </div>*@
+                                                Non Compliant<div class="asia" style="margin: 0 auto; display: inline-block; width: 19px; height: 19px; border: 1px solid #ff0000e6; float: left; background: #ff0000e6; border-radius:50%;"></div>
+                                            </div>*@
 
 
 
@@ -239,130 +242,129 @@
 
                     <div></div>
                     <div class="js-result-container"></div>
-					<div class="">
-						<table id="cloneTable" class="table-responsive">
-							<tr>
-								<td><b>Start Time</b></td>
-								<td><b>End Time</b></td>
-								<td>&nbsp;&nbsp;&nbsp;</td>
-								<td>&nbsp;&nbsp;&nbsp;</td>
-							</tr>
-							<tr class="clonrow">
-								<td>
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-														name="q"
-														id="stdt0"
-														type="search"
-														autofocus
-														autocomplete="off">
-											</span>
+                    <div class="">
+                        <table id="cloneTable" class="table-responsive">
+                            <tr>
+                                <td><b>Start Time</b></td>
+                                <td><b>End Time</b></td>
+                                <td>&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr class="clonrow">
+                                <td>
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="stdt0"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
 
-										</div>
-									</div>
-								</td>
-								<td>
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="enddat0"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="enddat0"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
 
-										</div>
-									</div>
-								</td>
-								<td>
-									<div class="popup" onclick="myFunction()">
-										<span class="ii">i</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="popup" onclick="myFunction()">
+                                        <span class="ii">i</span>
                                         <span class="popuptext" id="myPopup">
                                             <span style="float: right;"><i class="fa fa-times"></i></span>
-                                            1. Click on the box for entering time in hours format 0000hrs.<br/>
+                                            1. Click on the box for entering time in hours format 0000hrs.<br />
                                             2. Use backspace button to delete the existing 0000.<br />
                                             3. Type in the desired hours in XXXX format with XX00 or XX30 as available options.
                                         </span>
-									</div>
-								</td>
-								<td></td>
-							</tr>
-							<tr class="clonrow">
-								<td>
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="stdt1"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="clonrow">
+                                <td>
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="stdt1"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
 
-										</div>
-									</div>
-								</td>
-								<td>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
 
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="enddat1"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="enddat1"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
 
-										</div>
-									</div>
+                                        </div>
+                                    </div>
 
-								</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr class="clonrow">
-								<td>
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="stdt2"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="clonrow">
+                                <td>
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="stdt2"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
 
-										</div>
-									</div>
-								</td>
-								<td>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
 
-									<div class="typeahead__container">
-										<div class="typeahead__field">
-											<span class="typeahead__query">
-												<input class="js-typeahead"
-													   name="q"
-													   id="enddat2"
-													   type="search"
-													   autofocus
-													   autocomplete="off">
-											</span>
+                                    <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                            <span class="typeahead__query">
+                                                <input class="js-typeahead"
+                                                       name="q"
+                                                       id="enddat2"
+                                                       type="search"
+                                                       autofocus
+                                                       autocomplete="off">
+                                            </span>
 
-										</div>
-									</div>
+                                        </div>
+                                    </div>
 
-								</td>
-								<td>
-									
-								</td>
+                                </td>
+                                <td>
+                                </td>
                                 <td style="text-align: right;">
                                     <a href="#" class="btn btn-info a-btn-slide-text addbtn">
                                         <i class="ti-plus"></i>
@@ -372,10 +374,10 @@
                                         <i class="fa fa-times"></i>
                                     </a>
                                 </td>
-							</tr>
-						</table>
-					</div>
-                    
+                            </tr>
+                        </table>
+                    </div>
+
 
                     @*<span class="pos" style="align-self:center"></span>*@
                     @*<div class="pos" style=""></div>*@
@@ -396,7 +398,7 @@
                         <h4 class="mrBTM-10">
                             <legend>Crew Information</legend>
                         </h4>
-                        
+
                         <div class="row">
 
                             <div class="form-group">
@@ -424,7 +426,7 @@
                                 <div class="form-horizontal">
                                     <div class="row">
                                         <div class="col-sm-8 col-xs-12">
-                                           
+
                                             <form>
                                                 <div class="row">
                                                     <div class="col-sm-6 col-xs-12">
@@ -440,9 +442,9 @@
                                                         <label>
                                                             <input type="text" class="form-control" id="ServiceTerms2" placeholder="To" readonly />
                                                         </label>
-														</div>
                                                     </div>
-</form>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="col-sm-4 col-xs-12 mrTP-30" style="text-align: right;">
                                             <button id="btnRedirectCrewServicePage" type="button" class="btn btn-primary">Modify Service Terms</button>
@@ -472,13 +474,13 @@
 
 
 
-                                        
+
 
                                     </div>
                                 </div>
                             </div>
 
-							<div class="row">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 mrTP-10">
                                     <div class="form-horizontal">
                                         <h4 class="mrBTM-10">
@@ -488,7 +490,7 @@
                                         @*<input type="text" class="form-control" id="txtComments" placeholder="Comments" />*@
                                     </div>
                                 </div>
-							</div>
+                            </div>
                         </div>
 
 
