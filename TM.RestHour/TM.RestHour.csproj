@@ -682,6 +682,7 @@
     <Content Include="devsqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\22-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\23-02-2022 resthoursclient Full script.sql" />
+    <Content Include="devsqlscripts\24-03-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\27-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\28-01-2022 resthoursclient Full script.sql" />
     <Content Include="devsqlscripts\29-01-2022 resthoursclient Full script.sql" />
@@ -1384,6 +1385,7 @@
     <Content Include="sqlscripts\17-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\22-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\23-02-2022 resthoursclient Full script.sql" />
+    <Content Include="sqlscripts\24-03-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\27-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\28-01-2022 resthoursclient Full script.sql" />
     <Content Include="sqlscripts\29-01-2022 resthoursclient Full script.sql" />
@@ -1550,6 +1552,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ExaminationForMedicalAdvise\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -85,7 +85,7 @@ namespace TM.RestHour.ExportImport
 				SqlDataAdapter da = new SqlDataAdapter(cmd);
 				da.Fill(ds);
 				string fileName = ds.Tables[0].Rows[0]["IMONumber"].ToString();
-				fileName = fileName + "_" + DateTime.Now.ToString("MMddyyyyhhmm");
+				fileName = fileName + "_" + DateTime.Now.ToString("MMddyyyyhhmmss");
 				fileName = fileName + ".zip";
 
 				using (ZipFile zip = new ZipFile())
@@ -119,22 +119,41 @@ namespace TM.RestHour.ExportImport
 		{
 			try
 			{
+				ExportCIRM();
+				ExportCIRMAccidentDetails();
+				ExportCIRMAffectedFindings();
+				ExportCIRMMedicalSymtomology();
+				ExportCIRMMedicalTreatmentGivenOnboard();
+				ExportCIRMMedicationTaken();
+				ExportCIRMTeleMedicalConsultation();
+				ExportCIRMUploadedImages();
+				ExportCIRMVitalStatistics();
+				ExportCIRMVoyageDetails();
+				ExportCIRMWeatherDetails();
+
+				ExportFirstRun();
+				ExportGroupRank();
+				ExportGroups();
 				ExportCrew();
 				ExportDepartmentAdmin();
 				ExportDepartmentMaster();
-
 				ExportNCDetails();
 				ExportRanks();
-
 				ExportServiceTerms();
 				ExportShip();
 				ExporttblRegime();
 				ExportTimeAdjustment();
-
 				ExportWorkSessions();
 				ExportCrewRegimeTR();
 
-			}
+				ExportRegimes();
+				ExportUserGroups();
+				ExportUsers();
+
+                ExportExaminationForMedicalAdvise();
+                ExportJoiningMedicalFileData();
+                ExportMedicalAdvise();
+            }
 
 			catch (ThreadAbortException tex)
 			{
@@ -149,7 +168,30 @@ namespace TM.RestHour.ExportImport
 			}
 		}
 
-		private   void ExportCrew()
+		public async void ExportCIRM()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRM", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["CIRMxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+
+
+
+
+
+
+		private void ExportCrew()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -607,13 +649,61 @@ namespace TM.RestHour.ExportImport
 
 
 
+		private void ExportExaminationForMedicalAdvise()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportExaminationForMedicalAdvise", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["ExaminationForMedicalAdvisexml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportJoiningMedicalFileData()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportJoiningMedicalFileData", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["JoiningMedicalFileDataxml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
+		private void ExportMedicalAdvise()
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportMedicalAdvise", con);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				ds.WriteXml(path + "\\" + ConfigurationManager.AppSettings["MedicalAdvisexml"].ToString(), XmlWriteMode.WriteSchema);
+			}
+			con.Close();
+		}
+
 
 
 
 		/// <summary>
 		/// Moves file from ZipFile directory to Archive Directory
 		/// </summary>
-		private   void ArchiveZipFiles()
+		private void ArchiveZipFiles()
 		{
 			string sourceFilePath = zippath + "\\";
 			string destinationFilePath = ziparchivePath + "\\";
