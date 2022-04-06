@@ -119,18 +119,28 @@ namespace TM.RestHour.ExportImport
 		{
 			try
 			{
-				ExportCIRM();
+				//ExportCIRMPath();
+				//ExportCIRM();
+
+				ExportCIRMUploadedImagesPath();
+				ExportCIRMUploadedImages();
+
+				ExportExaminationForMedicalAdvisePath();
+				ExportExaminationForMedicalAdvise();
+
+				ExportMedicalAdvisePath();
+				ExportMedicalAdvise();
+
+
 				ExportCIRMAccidentDetails();
 				ExportCIRMAffectedFindings();
 				ExportCIRMMedicalSymtomology();
 				ExportCIRMMedicalTreatmentGivenOnboard();
 				ExportCIRMMedicationTaken();
 				ExportCIRMTeleMedicalConsultation();
-				ExportCIRMUploadedImages();
 				ExportCIRMVitalStatistics();
 				ExportCIRMVoyageDetails();
 				ExportCIRMWeatherDetails();
-
 				ExportFirstRun();
 				ExportGroupRank();
 				ExportGroups();
@@ -145,14 +155,10 @@ namespace TM.RestHour.ExportImport
 				ExportTimeAdjustment();
 				ExportWorkSessions();
 				ExportCrewRegimeTR();
-
 				ExportRegimes();
 				ExportUserGroups();
 				ExportUsers();
-
-                ExportExaminationForMedicalAdvise();
                 ExportJoiningMedicalFileData();
-                ExportMedicalAdvise();
             }
 
 			catch (ThreadAbortException tex)
@@ -168,6 +174,43 @@ namespace TM.RestHour.ExportImport
 			}
 		}
 
+
+		public void ExportCIRMPath(/*string ID*/)
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMPath", con);
+			//cmd.Parameters.AddWithValue("@ID", ID);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			DataTable myTable = ds.Tables[0];
+			List<string> stig = new List<string>();
+			
+				//PictureUploadPath = m.Field<string>("PictureUploadPath")
+				for (int i = 0; i < myTable.Rows.Count; i++)
+				{
+				stig.Add(myTable.Rows[i]["PictureUploadPath"].ToString());
+				string path = myTable.Rows[i]["PictureUploadPath"].ToString();
+
+
+				string currentDirectory = Path.GetDirectoryName(path);
+
+				string result;
+
+				result = Path.GetFileNameWithoutExtension(currentDirectory);
+				Console.WriteLine("GetFileName('{0}') returns '{1}'",
+					currentDirectory, result);
+
+				result = Path.GetFileName(path);
+				Console.WriteLine("GetFileName('{0}') returns '{1}'",
+					path, result);
+			    }
+
+			con.Close();
+			//return stig;
+		}
 		public async void ExportCIRM()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
@@ -582,7 +625,44 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
-		private void ExportCIRMUploadedImages()
+
+		public void ExportCIRMUploadedImagesPath(/*string ID*/)
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportCIRMUploadedImagesPath", con);
+			//cmd.Parameters.AddWithValue("@ID", ID);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			DataTable myTable = ds.Tables[0];
+			List<string> stig = new List<string>();
+
+			//PictureUploadPath = m.Field<string>("PictureUploadPath")
+			for (int i = 0; i < myTable.Rows.Count; i++)
+			{
+				stig.Add(myTable.Rows[i]["FilePath"].ToString());
+				string path = myTable.Rows[i]["FilePath"].ToString();
+
+
+				string currentDirectory = Path.GetDirectoryName(path);
+
+				string result;
+
+				result = Path.GetFileNameWithoutExtension(currentDirectory);
+				Console.WriteLine("GetFileName('{0}') returns '{1}'",
+					currentDirectory, result);
+
+				result = Path.GetFileName(path);
+				Console.WriteLine("GetFileName('{0}') returns '{1}'",
+					path, result);
+			}
+
+			con.Close();
+			//return stig;
+		}
+		public async void ExportCIRMUploadedImages()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
 			con.Open();
@@ -648,6 +728,42 @@ namespace TM.RestHour.ExportImport
 
 
 
+		public void ExportExaminationForMedicalAdvisePath(/*string ID*/)
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportExaminationForMedicalAdvisePath", con);
+			//cmd.Parameters.AddWithValue("@ID", ID);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			DataTable myTable = ds.Tables[0];
+			List<string> stig = new List<string>();
+
+			//PictureUploadPath = m.Field<string>("PictureUploadPath")
+			for (int i = 0; i < myTable.Rows.Count; i++)
+			{
+				stig.Add(myTable.Rows[i]["ExaminationPath"].ToString());
+				string path = myTable.Rows[i]["ExaminationPath"].ToString();
+
+
+				string currentDirectory = Path.GetDirectoryName(path);
+
+				string result;
+
+				result = Path.GetFileNameWithoutExtension(currentDirectory);
+				Console.WriteLine("GetFileName('{0}') returns '{1}'",
+					currentDirectory, result);
+
+				result = Path.GetFileName(path);
+				Console.WriteLine("GetFileName('{0}') returns '{1}'",
+					path, result);
+			}
+
+			con.Close();
+			//return stig;
+		}
 
 		private void ExportExaminationForMedicalAdvise()
 		{
@@ -681,6 +797,43 @@ namespace TM.RestHour.ExportImport
 			con.Close();
 		}
 
+
+		public void ExportMedicalAdvisePath(/*string ID*/)
+		{
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("stpExportMedicalAdvisePath", con);
+			//cmd.Parameters.AddWithValue("@ID", ID);
+			cmd.CommandType = CommandType.StoredProcedure;
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			da.Fill(ds);
+			DataTable myTable = ds.Tables[0];
+			List<string> stig = new List<string>();
+
+			//PictureUploadPath = m.Field<string>("PictureUploadPath")
+			for (int i = 0; i < myTable.Rows.Count; i++)
+			{
+				stig.Add(myTable.Rows[i]["Path"].ToString());
+				string path = myTable.Rows[i]["Path"].ToString();
+
+
+				string currentDirectory = Path.GetDirectoryName(path);
+
+				string result;
+
+				result = Path.GetFileNameWithoutExtension(currentDirectory);
+				Console.WriteLine("GetFileName('{0}') returns '{1}'",
+					currentDirectory, result);
+
+				result = Path.GetFileName(path);
+				Console.WriteLine("GetFileName('{0}') returns '{1}'",
+					path, result);
+			}
+
+			con.Close();
+			//return stig;
+		}
 		private void ExportMedicalAdvise()
 		{
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RestHourDBConnectionString"].ConnectionString);
