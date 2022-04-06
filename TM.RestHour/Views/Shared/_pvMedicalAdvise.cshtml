@@ -111,10 +111,10 @@
                 <tbody>
                     <tr class="MedicationDetailRow">
                         <td><input type="text" class="form-control" id="ExaminationName" name="ExaminationName" placeholder="Examination Name" /></td>
-                        <td >
+                        <td>
                             <input type="hidden" class="form-control" id="hdnExaminationFilePath" name="hdnExaminationFilePath" />
-                            <button type="button" class="button1" id="" name="DeleteRow" disabled>@*View*@ <i class="fa fa-eye" style="color:#4ff339" aria-hidden="true"></i></button>
-                            <button type="button" class="button1" id="" name="DeleteRow" disabled>@*Attach*@ <i class="fa fa-paperclip" style="color:#4ff339" aria-hidden="true"></i></button>
+                            <button type="button" class="button1" id="" name="ShowExamination" disabled onclick="ShowMedicalAdviseExaminationFile('');">@*View*@ <i class="fa fa-eye" style="color:#4ff339" aria-hidden="true"></i></button>
+                            <button type="button" class="button1" id="" name="UploadExamination"  onclick="ShowMedicalAdviseExaminationModal(1)">@*Attach*@ <i class="fa fa-paperclip" style="color:#4ff339" aria-hidden="true"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -266,6 +266,104 @@
 
 </div>
 
+
+<div class="modal fade" id="viewMedicalAdviseExaminationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title colorWhite" id="hHeader"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                @*<form>*@
+
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="card backtt">
+                            <div id="pdfContent" class="">
+                                <embed id="embedPDF" src="" width="100%" height="600px;" />
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                @*</form>*@
+
+            </div>
+
+
+            <div class="modal-footer" style="background-color:lightgray;">
+                @*<button type="button" class="btn btn-info btn-sm" style="background-color: #e90000; width:138px;" id="btnAdd" onclick="return UploadFilledUpFormNew();">Upload</button>*@
+                <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="uploadMedicalAdviseExaminationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:890px;">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Upload Examination File</h4>
+            </div>
+
+            <div class="card-body" id="dvuserdetailsn" style="width: 802px;">
+
+                <fieldset class="for-panel">
+                    <div class="row">
+                        <div id="" class="col-md-8" @*style="border: 1px solid #eee; padding: 10px;"*@>
+                            <div class="form-group">
+                                <label for="VisitDate">Visit Date</label>
+                                <input type="text" class="form-control" id="VisitDate1" placeholder="Visit Date" />
+                            </div>
+                        </div>
+                        <div class="col-md-8" @*style="border: 1px solid #eee; padding: 10px;"*@>
+                            <div class="form-group">
+                                <input id="uploadMedicalAdviseExaminationImage" multiple maxlength="4" name="upload" type="file" accept="application/pdf" />
+                            </div>
+                        </div>
+                        <div class="col-md-8" style="border: 1px solid #eee; padding: 10px;">
+                            <div class="form-group">
+                                <button type="button" class="buttonpop" value="" id="btnUploadMedicalAdviseExamination"  style="width:86px;">Upload</button>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+                        <div class="col-sm-3" style="width: 63%;"></div>
+
+                        <div class="form-group">
+                            <input type="hidden" id="hdnExaminationRowID" class="form-control" value="0" />
+                            @*<input type="hidden" id="hdnPlanCategoryId" value="" />
+                            <input type="hidden" id="hdnMedicalAdviseImagePath" value="" />*@
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="modal-footer">
+                <label class="hidden" id="lblSuccMsg"></label>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="width:86px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
 
     var trCount = 1;
@@ -277,20 +375,52 @@
             var tdCount = 0;
             jQuery.each($('tr:last td', this), function () {
                 tdCount += 1;
-                //if (tdCount == 1)
-                //    tds += '<td>' + trCount + '</td>';
-                //else
+                //if (tdCount == 1) {
+                //    //tds += '<td>' + trCount + '</td>';
                 //    tds += '<td>' + $(this).html() + '</td>';
+                //}                    
+                //else {
+                //    //tds += '<td>' + $(this).html() + '</td>';
+
+                //    //$(this).find("button[name='UploadExamination']").removeAttr('onclick');
+                //    //$(this).find("button[name='UploadExamination']").attr('onclick', "ShowMedicalAdviseExaminationModal(" + trCount + ")");
+
+                //    var items = $(this);
+                //    items.find("button[name='UploadExamination']").removeAttr('onclick');
+                //    items.find("button[name='UploadExamination']").attr('onclick', "ShowMedicalAdviseExaminationModal(" + trCount + ")");
+
+                //    tds += '<td>' + items.html() + '</td>';
+                //}
+                    
+
+                
+                
 
                 tds += '<td>' + $(this).html() + '</td>';
+                
             });
             tds += '</tr>';
+
+          
+
             if ($('tbody', this).length > 0) {
                 $('tbody', this).append(tds);
             } else {
                 $(this).append(tds);
             }
 
+            tdCount = 0;
+            jQuery.each($('tr:last td', this), function () {
+                tdCount += 1;
+                if (tdCount > 1) {
+                    //tds += '<td>' + trCount + '</td>';
+                    //tds += '<td>' + $(this).html() + '</td>';
+
+                    $(this).find("button[name='UploadExamination']").removeAttr('onclick');
+                    $(this).find("button[name='UploadExamination']").attr('onclick', "ShowMedicalAdviseExaminationModal(" + trCount + ")");
+                }
+                
+            });
         });
 
         //----------------------------------------------------------
@@ -322,18 +452,26 @@
         //}
 
 
-       
+
     });
 
     $("#TestDate").datepicker({
 
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'd-M-yy',
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
 
-        });
+    });
 
-    if (pageName ==='DoctorVisited') {
+    $("#VisitDate1").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'd-M-yy',
+
+    });
+
+    if (pageName === 'DoctorVisited') {
         $("#btnSend").hide();
     }
 </script>

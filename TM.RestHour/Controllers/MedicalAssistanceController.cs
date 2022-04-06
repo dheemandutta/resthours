@@ -918,6 +918,74 @@ namespace TM.RestHour.Controllers
         }
 
         [HttpPost]
+        public JsonResult UploadMedicalAdviseExaminationFile(string examinationName, string visitDate)
+        {
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    List<string> returnMsg = new List<string>();
+                    string fileName = String.Empty; //Path.GetFileNameWithoutExtension(postedFile.FileName);
+                    fileName = "MedicalAdviseExamination_"+ examinationName + "_" + Convert.ToInt32(Session["UserID"].ToString()) + "_" + visitDate;//Useless
+
+                    //  Get all files from Request object  
+                    HttpFileCollectionBase files = Request.Files;
+
+                    for (int i = 0; i < files.Count; i++)
+                    {
+
+                        HttpPostedFileBase file = files[i];
+                        string fname;
+                        string extn;
+
+                        // Checking for Internet Explorer  
+                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                        {
+                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                            fname = testfiles[testfiles.Length - 1];
+                            extn = Path.GetExtension(fname);
+                        }
+                        else
+                        {
+                            fname = file.FileName;
+                            extn = Path.GetExtension(file.FileName);
+                        }
+                        string path = Server.MapPath(ConfigurationManager.AppSettings["ExaminationFilePath"].ToString());
+                        string filePath = ConfigurationManager.AppSettings["ExaminationFilePath"].ToString();
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        if (System.IO.File.Exists(path + fileName))
+                        {
+                            System.IO.File.Delete(path + fileName);
+                        }
+                        fileName = fileName + extn;
+                        // Get the complete folder path and store the file inside it.  
+                        string fnameWithServerPath = Path.Combine(path, fileName);
+                        string fnameWithPath = Path.Combine(filePath, fileName);
+                        file.SaveAs(fnameWithServerPath);
+                        returnMsg.Add(fnameWithPath);
+
+                    }
+
+                    returnMsg.Add(examinationName + " File Uploaded Successfully!");
+
+
+                    return Json(returnMsg, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json("Error occurred. Error details: " + ex.Message);
+                }
+            }
+            else
+            {
+                return Json("No files selected.");
+            }
+        }
+
+        [HttpPost]
         public JsonResult AddMedicalAdvise(MedicalAdvise medicalAdvise)
         {
             MedicalAdviseBL mAdviseBl = new MedicalAdviseBL();

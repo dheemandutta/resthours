@@ -338,9 +338,10 @@ function DownloadDetails(path) {
 
 
 var ExaminationList = [];
+var newTrCnt = 1;
 function CreateExaminationDetailsJsonObject() {
     //alert(2);
-   
+    newTrCnt++;
     ExaminationList = [];
     var ExaminationRow;
     var ExaminationName;
@@ -354,6 +355,12 @@ function CreateExaminationDetailsJsonObject() {
         ExaminationRow = $(this);// alert(4);
         ExaminationName = $(ExaminationRow).find("input[name='ExaminationName']").val();
         ExaminationPath = $(ExaminationRow).find("input[name='hdnExaminationFilePath']").val();
+
+       
+
+        //ExaminationName = $(ExaminationRow).find("button[name='UploadExamination']").attr("onclick", "");
+        //ExaminationName = $(ExaminationRow).find("button[name='UploadExamination']").attr("onclick",  );
+        ////ExaminationPath = $(ExaminationRow).find("button[onclick='ShowMedicalAdviseExaminationModal(" + newTrCnt + ")']").val();
 
         ExaminationList.push({
             Examination: ExaminationName,
@@ -386,6 +393,12 @@ function LoadExaminationDataIntoTable(examinations) {
             $(ExaminationRow).find("input[name='ExaminationName']").val(ExaminationList[trCnt]["Examination"]);
             $(ExaminationRow).find("input[name='hdnExaminationFilePath']").val(ExaminationList[trCnt]["ExaminationPath"]);
 
+            //$(ExaminationRow).find("button[onclick='ShowMedicalAdviseExaminationFile('" + ExaminationList[trCnt]["ExaminationPath"]+"')']");
+            //$(ExaminationRow).find("button[onclick='ShowMedicalAdviseExaminationModal(1)']");
+
+            $(this).find("button[name='UploadExamination']").attr('onclick', "ShowMedicalAdviseExaminationFile('" + ExaminationList[trCnt]["ExaminationPath"] + "')");
+            $(this).find("button[name='UploadExamination']").removeAttr('disabled');
+
         });
     }
     else if (ExaminationList.length > 1) {
@@ -395,8 +408,11 @@ function LoadExaminationDataIntoTable(examinations) {
 
         tb.find("tr").each(function () {
             ExaminationRow = $(this);
-            $(ExaminationRow).find("input[name='ExaminationName']").val(ExaminationList[trCnt]["Examination"]);
-            $(ExaminationRow).find("input[name='hdnExaminationFilePath']").val(ExaminationList[trCnt]["ExaminationPath"]);
+           // $(ExaminationRow).find("button[onclick='ShowMedicalAdviseExaminationFile('" + ExaminationList[trCnt]["ExaminationPath"] + "')']");
+            //$(ExaminationRow).find("button[onclick='ShowMedicalAdviseExaminationModal("+i+")']");
+
+            $(this).find("button[name='UploadExamination']").attr('onclick', "ShowMedicalAdviseExaminationFile('" + ExaminationList[trCnt]["ExaminationPath"] + "')");
+            $(this).find("button[name='UploadExamination']").removeAttr('disabled');
             trCnt++;
         });
     }
@@ -414,6 +430,8 @@ function AddRow(trCount) {
             //else
             //    tds += '<td>' + $(this).html() + '</td>';
 
+            var items = $(this).html();
+
             tds += '<td>' + $(this).html() + '</td>';
         });
         tds += '</tr>';
@@ -426,6 +444,154 @@ function AddRow(trCount) {
     });
 }
 
+
+function ShowMedicalAdviseExaminationFile(name,path) {
+
+    $('#pdfContent').html("");
+    $('#pdfContent').html('<embed id="embedPDF" src="" width="100%" height="600px;" />');
+
+    $('#hHeader').html("");
+    $('#embedPDF').removeAttr("src");
+    //var x = decodeURI(path);
+
+    //#region Show Modal
+    $('#hHeader').html(name);
+    $('#embedPDF').attr('src', path);
+
+    $('#viewMedicalAdviseExaminationModal').modal('show');
+    //#endregion
+
+    //#region
+
+
+    //$.ajax({
+    //    url: "/MedicalAssistance/ShowMedicalAdviseExaminationFile",
+    //    //data: JSON.stringify({ crewId: crewId }),
+    //    data: { crewId: crewId },
+    //    type: "GET",
+    //    contentType: "application/json;charset=UTF-8",
+    //    dataType: "json",
+    //    success: function (result) {
+
+    //        $('#hHeader').html(result.ExaminationName);
+    //        $('#embedPDF').attr('src', result.ExaminationFilePath);
+
+    //        $('#viewMedicalAdviseExaminationModal').modal('show');
+
+    //    },
+    //    error: function (errormessage) {
+    //        //debugger;
+    //        console.log(errormessage.responseText);
+    //    }
+    //});
+
+    //#endregion
+
+}
+
+function ShowMedicalAdviseExaminationModal(rowId) {
+
+    var ExaminationRow;
+    var ExaminationName;
+    var tb = $('.table-Examination:eq(0) tbody');
+    var trCnt = 1;
+    tb.find("tr").each(function () {
+        ExaminationRow = $(this);// alert(4);
+        if (trCnt == rowId) {
+            ExaminationName = $(ExaminationRow).find("input[name='ExaminationName']").val();
+        }
+
+        trCnt++;
+    });
+
+    if (ExaminationName === "undefined" || ExaminationName === "") {
+        alert("Please enter Examination Name ...!");
+    } else {
+        $('#hdnExaminationRowID').val(rowId);
+        $('#btnUploadMedicalAdviseExamination').removeAttr('onclick');
+        $('#btnUploadMedicalAdviseExamination').attr('onclick', "UploadMedicalAdviseExaminationFile('" + ExaminationName + "'," + rowId + ")");
+        $('#uploadMedicalAdviseExaminationModal').modal('show');
+    }
+
+   
+}
+function UploadMedicalAdviseExaminationFile(name,rowId) {
+    var res = true;
+
+    if (name != "") {
+        //Checking whether FormData is available in browser  
+        if (window.FormData !== undefined) {
+            var fileUpload = $("#uploadMedicalAdviseExaminationImage").get(0);
+            var files = fileUpload.files;
+            // Create FormData object  
+            var fileData = new FormData();
+
+            // Looping over all files and add it to FormData object  
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            // Adding one more key to FormData object
+            fileData.append('examinationName', name);
+            fileData.append('visitDate', $("#VisitDate1").val());
+            $.ajax({
+                url: '/MedicalAssistance/UploadMedicalAdviseExaminationFile',
+                type: "POST",
+                //datatype: "json",
+                //contentType: "application/json; charset=utf-8",
+                contentType: false, // Not to set any content header  
+                processData: false, // Not to process data  
+                data: fileData,
+                success: function (result) {
+                    //alert(result);
+
+                    $("#lblSuccMsg").text(result[1]);
+                    //$("#hdnMedicalAdviseImagePath").val(result[0]);
+                    $("#lblSuccMsg").removeClass("hidden");
+
+
+                    var tb = $('.table-Examination:eq(0) tbody');
+                    var trCnt = 1;
+                    tb.find("tr").each(function () {
+                        ExaminationRow = $(this);
+                        if (trCnt == rowId) {
+
+                            $(ExaminationRow).find("input[name='hdnExaminationFilePath']").val(result[0]);
+                        }
+
+                        trCnt++;
+                    });
+
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-bottom-full-width",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.success(result[1]);
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    }
+
+}
 
 //var trCount = 1;
 //$("#addrows").click(function () {
